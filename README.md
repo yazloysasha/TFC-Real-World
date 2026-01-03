@@ -1,6 +1,6 @@
 ## TFC: Real World
 
-### 1. What this mod does
+### What this mod does
 
 **TFC: Real World** is an add-on for **TerraFirmaCraft** that makes your world look and feel like a believable version of our own planet, while fully preserving the original TFC gameplay.  
 Instead of random continents and climates, the mod drives TerraFirmaCraft's world generation using real‑world datasets for continents, elevation, rivers, biomes, and climate zones.  
@@ -17,7 +17,7 @@ It only adds extra _real‑world rules_ that tell TFC _where_ to place land, hei
 
 ---
 
-### 2. Features and changes in detail
+### Features and changes in detail
 
 - **Real‑world continent layout (from map)**
 
@@ -68,7 +68,7 @@ In short, **TFC: Real World keeps TerraFirmaCraft's gameplay complete and untouc
 
 ---
 
-### 3. Configuration and customization
+### Configuration and customization
 
 All configuration is stored in the file:
 
