@@ -151,8 +151,6 @@ public final class TFCRealWorld {
     defaultMaps.add("continent");
     defaultMaps.add("altitude");
     defaultMaps.add("hotspots");
-    defaultMaps.add("temperature");
-    defaultMaps.add("rainfall");
     return defaultMaps;
   }
 

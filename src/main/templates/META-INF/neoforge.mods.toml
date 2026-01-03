@@ -10,7 +10,7 @@ license = "MIT"
     displayName = "TFC: Real World"
     credits = "Addon mod for TerraFirmaCraft that enables real-world map-based generation"
     authors = "yazloysasha"
-    description = '''TFC: Real World - An addon mod for TerraFirmaCraft that enables generation based on real-world maps for continents, mountains, hotspots, rainfall, and temperature.'''
+    description = '''TFC: Real World - An addon mod for TerraFirmaCraft that enables world generation based on real-world maps for continents, mountains, hotspots and climate.'''
 
 # Dependencies
 [[dependencies.${modId}]]
