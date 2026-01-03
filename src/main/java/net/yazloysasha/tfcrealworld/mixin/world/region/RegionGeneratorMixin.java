@@ -72,25 +72,37 @@ public class RegionGeneratorMixin {
       );
       int verticalWorldScale = SettingsHelper.getVerticalWorldScale(settings);
 
-      initializeContinentMap(
-        instance,
-        horizontalWorldScale,
-        verticalWorldScale
-      );
-
+      PNGContinentNoise continentNoise = null;
       if (TFCRealWorldConfig.getContinentFromMap()) {
-        net.yazloysasha.tfcrealworld.world.region.GlobalOceanDistanceCache.initialize(
+        continentNoise = new PNGContinentNoise(
           horizontalWorldScale,
           verticalWorldScale
         );
+        initializeContinentMap(instance, continentNoise);
+
+        net.yazloysasha.tfcrealworld.world.region.GlobalOceanDistanceCache.initialize(
+          continentNoise
+        );
         net.yazloysasha.tfcrealworld.world.region.GlobalWestCoastDistanceCache.initialize(
-          horizontalWorldScale,
-          verticalWorldScale
+          continentNoise
         );
       }
 
-      initializeAltitudeMap(instance, horizontalWorldScale, verticalWorldScale);
-      initializeHotspotsMap(instance, horizontalWorldScale, verticalWorldScale);
+      if (TFCRealWorldConfig.getAltitudeFromMap()) {
+        PNGAltitudeNoise altitudeNoise = new PNGAltitudeNoise(
+          horizontalWorldScale,
+          verticalWorldScale
+        );
+        initializeAltitudeMap(instance, altitudeNoise);
+      }
+
+      if (TFCRealWorldConfig.getHotspotsFromMap()) {
+        PNGHotspotsNoise hotspotsNoise = new PNGHotspotsNoise(
+          horizontalWorldScale,
+          verticalWorldScale
+        );
+        initializeHotspotsMap(instance, hotspotsNoise);
+      }
 
       if (TFCRealWorldConfig.getKoppenFromMap()) {
         initializeKoppenBasedClimateMaps(
@@ -110,64 +122,43 @@ public class RegionGeneratorMixin {
 
   private void initializeContinentMap(
     RegionGenerator instance,
-    int horizontalWorldScale,
-    int verticalWorldScale
+    PNGContinentNoise continentNoise
   ) throws NoSuchFieldException {
-    if (TFCRealWorldConfig.getContinentFromMap()) {
-      Field continentField =
-        RegionGenerator.class.getDeclaredField("continentNoise");
-      @SuppressWarnings("deprecation")
-      long offset = UNSAFE.objectFieldOffset(continentField);
-      UNSAFE.putObject(
-        instance,
-        offset,
-        new PNGContinentNoise(horizontalWorldScale, verticalWorldScale)
-      );
-    }
+    Field continentField =
+      RegionGenerator.class.getDeclaredField("continentNoise");
+    @SuppressWarnings("deprecation")
+    long offset = UNSAFE.objectFieldOffset(continentField);
+    UNSAFE.putObject(instance, offset, continentNoise);
   }
 
   private void initializeAltitudeMap(
     RegionGenerator instance,
-    int horizontalWorldScale,
-    int verticalWorldScale
+    PNGAltitudeNoise altitudeNoise
   ) {
-    if (TFCRealWorldConfig.getAltitudeFromMap()) {
-      PNGAltitudeNoise altitudeNoise = new PNGAltitudeNoise(
-        horizontalWorldScale,
-        verticalWorldScale
-      );
-      AltitudeNoiseRegistry.register(instance, altitudeNoise);
-    }
+    AltitudeNoiseRegistry.register(instance, altitudeNoise);
   }
 
   private void initializeHotspotsMap(
     RegionGenerator instance,
-    int horizontalWorldScale,
-    int verticalWorldScale
+    PNGHotspotsNoise hotspotsNoise
   ) throws NoSuchFieldException {
-    if (TFCRealWorldConfig.getHotspotsFromMap()) {
-      PNGHotspotsNoise hotspotsNoise = new PNGHotspotsNoise(
-        horizontalWorldScale,
-        verticalWorldScale
-      );
-      Field hotspotIntensityField =
-        RegionGenerator.class.getDeclaredField("hotSpotIntensityNoise");
-      @SuppressWarnings("deprecation")
-      long intensityOffset = UNSAFE.objectFieldOffset(hotspotIntensityField);
-      UNSAFE.putObject(instance, intensityOffset, hotspotsNoise);
-      Field hotspotAgeField =
-        RegionGenerator.class.getDeclaredField("hotSpotAgeNoise");
-      @SuppressWarnings("deprecation")
-      long ageOffset = UNSAFE.objectFieldOffset(hotspotAgeField);
-      Noise2D ageNoise = new Noise2D() {
-        @Override
-        public double noise(double x, double z) {
-          return hotspotsNoise.getHotSpotAge(x, z);
-        }
-      };
-      UNSAFE.putObject(instance, ageOffset, ageNoise);
-      HotspotsNoiseRegistry.register(instance, hotspotsNoise);
-    }
+    Field hotspotIntensityField =
+      RegionGenerator.class.getDeclaredField("hotSpotIntensityNoise");
+    @SuppressWarnings("deprecation")
+    long intensityOffset = UNSAFE.objectFieldOffset(hotspotIntensityField);
+    UNSAFE.putObject(instance, intensityOffset, hotspotsNoise);
+    Field hotspotAgeField =
+      RegionGenerator.class.getDeclaredField("hotSpotAgeNoise");
+    @SuppressWarnings("deprecation")
+    long ageOffset = UNSAFE.objectFieldOffset(hotspotAgeField);
+    Noise2D ageNoise = new Noise2D() {
+      @Override
+      public double noise(double x, double z) {
+        return hotspotsNoise.getHotSpotAge(x, z);
+      }
+    };
+    UNSAFE.putObject(instance, ageOffset, ageNoise);
+    HotspotsNoiseRegistry.register(instance, hotspotsNoise);
   }
 
   private void initializeKoppenBasedClimateMaps(

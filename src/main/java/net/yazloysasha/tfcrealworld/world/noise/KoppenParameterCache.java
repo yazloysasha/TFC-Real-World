@@ -104,6 +104,13 @@ public class KoppenParameterCache {
     return instance;
   }
 
+  public static synchronized void clear() {
+    if (instance != null) {
+      LOGGER.info("Clearing Köppen parameter cache");
+      instance = null;
+    }
+  }
+
   /**
    * Gets a random valid parameter combination for the given climate.
    */

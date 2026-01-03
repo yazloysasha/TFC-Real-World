@@ -2,14 +2,9 @@ package net.yazloysasha.tfcrealworld.world.noise;
 
 import com.mojang.logging.LogUtils;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
-import javax.imageio.ImageIO;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
-import net.yazloysasha.tfcrealworld.util.MapPathHelper;
 import org.slf4j.Logger;
 
 /**
@@ -87,7 +82,7 @@ public class PNGKoppenNoise {
       worldRadiusBlocksZ /
       (double) net.dries007.tfc.world.region.Units.GRID_WIDTH_IN_BLOCK;
 
-    BufferedImage image = loadImage("koppen");
+    BufferedImage image = BasePNGNoise.loadImageFromCache("koppen");
     if (image == null) {
       throw new RuntimeException(
         "Failed to load koppen map. Map file is required when generating climate from Köppen map."
@@ -300,20 +295,6 @@ public class PNGKoppenNoise {
     imageZ = Math.clamp(imageZ, 0, height - 1);
 
     return new double[] { imageX, imageZ };
-  }
-
-  private BufferedImage loadImage(String mapName) {
-    Path mapPath = MapPathHelper.getMapPath(mapName);
-    try {
-      if (!Files.exists(mapPath)) {
-        LOGGER.error("{} map not found at: {}", mapName, mapPath);
-        return null;
-      }
-      return ImageIO.read(mapPath.toFile());
-    } catch (IOException e) {
-      LOGGER.error("Failed to load {} map from: {}", mapName, mapPath, e);
-      return null;
-    }
   }
 
   public int getWidth() {

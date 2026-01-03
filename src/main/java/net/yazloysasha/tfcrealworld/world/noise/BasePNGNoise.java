@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 import javax.imageio.ImageIO;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.Units;
@@ -14,6 +16,8 @@ import org.slf4j.Logger;
 public abstract class BasePNGNoise implements Noise2D {
 
   protected static final Logger LOGGER = LogUtils.getLogger();
+
+  private static final Map<String, BufferedImage> imageCache = new HashMap<>();
 
   protected final int[] pixels;
   protected final int width;
@@ -171,16 +175,42 @@ public abstract class BasePNGNoise implements Noise2D {
   }
 
   private BufferedImage loadImage(String mapName) {
+    return loadImageFromCache(mapName);
+  }
+
+  public static BufferedImage loadImageFromCache(String mapName) {
+    synchronized (imageCache) {
+      BufferedImage cached = imageCache.get(mapName);
+      if (cached != null) {
+        LOGGER.debug("Using cached {} map", mapName);
+        return cached;
+      }
+    }
+
     Path mapPath = MapPathHelper.getMapPath(mapName);
     try {
       if (!Files.exists(mapPath)) {
         LOGGER.error("{} map not found at: {}", mapName, mapPath);
         return null;
       }
-      return ImageIO.read(mapPath.toFile());
+      BufferedImage image = ImageIO.read(mapPath.toFile());
+      if (image != null) {
+        synchronized (imageCache) {
+          imageCache.put(mapName, image);
+          LOGGER.debug("Cached {} map", mapName);
+        }
+      }
+      return image;
     } catch (IOException e) {
       LOGGER.error("Failed to load {} map from: {}", mapName, mapPath, e);
       return null;
+    }
+  }
+
+  public static void clearImageCache() {
+    synchronized (imageCache) {
+      imageCache.clear();
+      LOGGER.info("Cleared PNG image cache");
     }
   }
 }

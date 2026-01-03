@@ -18,11 +18,8 @@ public class GlobalWestCoastDistanceCache extends BaseDistanceCache {
   @Nullable
   private static GlobalWestCoastDistanceCache instance = null;
 
-  private GlobalWestCoastDistanceCache(
-    int horizontalWorldScale,
-    int verticalWorldScale
-  ) {
-    super(new PNGContinentNoise(horizontalWorldScale, verticalWorldScale));
+  private GlobalWestCoastDistanceCache(PNGContinentNoise continentNoise) {
+    super(continentNoise);
     calculateDistances(continentNoise);
 
     LOGGER.info(
@@ -32,15 +29,16 @@ public class GlobalWestCoastDistanceCache extends BaseDistanceCache {
     );
   }
 
-  public static void initialize(
-    int horizontalWorldScale,
-    int verticalWorldScale
-  ) {
+  public static void initialize(PNGContinentNoise continentNoise) {
     if (instance == null) {
-      instance = new GlobalWestCoastDistanceCache(
-        horizontalWorldScale,
-        verticalWorldScale
-      );
+      instance = new GlobalWestCoastDistanceCache(continentNoise);
+    }
+  }
+
+  public static void clear() {
+    if (instance != null) {
+      LOGGER.info("Clearing global west coast distance cache");
+      instance = null;
     }
   }
 

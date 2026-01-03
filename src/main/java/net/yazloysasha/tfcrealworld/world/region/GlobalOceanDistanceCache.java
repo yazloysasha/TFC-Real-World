@@ -18,11 +18,8 @@ public class GlobalOceanDistanceCache extends BaseDistanceCache {
   @Nullable
   private static GlobalOceanDistanceCache instance = null;
 
-  private GlobalOceanDistanceCache(
-    int horizontalWorldScale,
-    int verticalWorldScale
-  ) {
-    super(new PNGContinentNoise(horizontalWorldScale, verticalWorldScale));
+  private GlobalOceanDistanceCache(PNGContinentNoise continentNoise) {
+    super(continentNoise);
     calculateDistances(continentNoise);
 
     LOGGER.info(
@@ -32,15 +29,16 @@ public class GlobalOceanDistanceCache extends BaseDistanceCache {
     );
   }
 
-  public static void initialize(
-    int horizontalWorldScale,
-    int verticalWorldScale
-  ) {
+  public static void initialize(PNGContinentNoise continentNoise) {
     if (instance == null) {
-      instance = new GlobalOceanDistanceCache(
-        horizontalWorldScale,
-        verticalWorldScale
-      );
+      instance = new GlobalOceanDistanceCache(continentNoise);
+    }
+  }
+
+  public static void clear() {
+    if (instance != null) {
+      LOGGER.info("Clearing global ocean distance cache");
+      instance = null;
     }
   }
 

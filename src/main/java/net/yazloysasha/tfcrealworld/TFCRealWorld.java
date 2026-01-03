@@ -15,11 +15,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
+import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -73,6 +75,16 @@ public final class TFCRealWorld {
     );
 
     NeoForge.EVENT_BUS.addListener(
+      ClientPlayerNetworkEvent.LoggingIn.class,
+      this::onClientLoggingIn
+    );
+
+    NeoForge.EVENT_BUS.addListener(
+      ClientPlayerNetworkEvent.LoggingOut.class,
+      this::onClientLoggingOut
+    );
+
+    NeoForge.EVENT_BUS.addListener(
       LevelEvent.Unload.class,
       this::onLevelUnload
     );
@@ -119,6 +131,8 @@ public final class TFCRealWorld {
     if (!event.getEntity().level().isClientSide) {
       return;
     }
+
+    // For safety, clear client-side view of server config when the local player logs out
     TFCRealWorldConfig.clearServerConfig();
   }
 
@@ -126,6 +140,37 @@ public final class TFCRealWorld {
     if (event.getLevel().isClientSide()) {
       TFCRealWorldConfig.clearServerConfig();
     }
+  }
+
+  private void onClientLoggingIn(ClientPlayerNetworkEvent.LoggingIn event) {
+    try {
+      Minecraft mc = Minecraft.getInstance();
+      boolean isSingleplayer =
+        mc.hasSingleplayerServer() && mc.getSingleplayerServer() != null;
+
+      if (!isSingleplayer) {
+        LOGGER.info("Client connecting to remote server, clearing caches");
+        clearCaches();
+      }
+    } catch (Exception e) {
+      LOGGER.warn(
+        "Could not determine server type on login, clearing caches",
+        e
+      );
+      clearCaches();
+    }
+  }
+
+  private void onClientLoggingOut(ClientPlayerNetworkEvent.LoggingOut event) {
+    // Always clear client-side view of server config when the network connection closes
+    TFCRealWorldConfig.clearServerConfig();
+  }
+
+  private void clearCaches() {
+    net.yazloysasha.tfcrealworld.world.region.GlobalOceanDistanceCache.clear();
+    net.yazloysasha.tfcrealworld.world.region.GlobalWestCoastDistanceCache.clear();
+    net.yazloysasha.tfcrealworld.world.noise.KoppenParameterCache.clear();
+    net.yazloysasha.tfcrealworld.world.noise.BasePNGNoise.clearImageCache();
   }
 
   private void setupMapsDirectory() {
