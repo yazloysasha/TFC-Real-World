@@ -172,183 +172,194 @@ public class TFCRealWorldConfig {
     SPEC = BUILDER.build();
   }
 
+  private static boolean serverConfigActive = false;
+  private static Double serverContinentalness;
+  private static Boolean serverFiniteContinents;
+  private static Boolean serverFlatBedrock;
+  private static Double serverGrassDensity;
+  private static Integer serverSpawnCenterX;
+  private static Integer serverSpawnCenterZ;
+  private static Integer serverSpawnDistance;
+  private static Integer serverTemperatureScale;
+  private static Integer serverRainfallScale;
+  private static Integer serverVerticalWorldScale;
+  private static Integer serverHorizontalWorldScale;
+  private static Boolean serverContinentFromMap;
+  private static Boolean serverAltitudeFromMap;
+  private static Boolean serverHotspotsFromMap;
+  private static Boolean serverKoppenFromMap;
+  private static Integer serverPoleOffset;
+  private static Boolean serverPoleLooping;
+  private static Boolean serverCanyonsNotVolcanic;
+
+  public static void setServerConfig(
+    double continentalness,
+    boolean finiteContinents,
+    boolean flatBedrock,
+    double grassDensity,
+    int spawnCenterX,
+    int spawnCenterZ,
+    int spawnDistance,
+    int temperatureScale,
+    int rainfallScale,
+    int verticalWorldScale,
+    int horizontalWorldScale,
+    boolean continentFromMap,
+    boolean altitudeFromMap,
+    boolean hotspotsFromMap,
+    boolean koppenFromMap,
+    int poleOffset,
+    boolean poleLooping,
+    boolean canyonsNotVolcanic
+  ) {
+    serverContinentalness = continentalness;
+    serverFiniteContinents = finiteContinents;
+    serverFlatBedrock = flatBedrock;
+    serverGrassDensity = grassDensity;
+    serverSpawnCenterX = spawnCenterX;
+    serverSpawnCenterZ = spawnCenterZ;
+    serverSpawnDistance = spawnDistance;
+    serverTemperatureScale = temperatureScale;
+    serverRainfallScale = rainfallScale;
+    serverVerticalWorldScale = verticalWorldScale;
+    serverHorizontalWorldScale = horizontalWorldScale;
+    serverContinentFromMap = continentFromMap;
+    serverAltitudeFromMap = altitudeFromMap;
+    serverHotspotsFromMap = hotspotsFromMap;
+    serverKoppenFromMap = koppenFromMap;
+    serverPoleOffset = poleOffset;
+    serverPoleLooping = poleLooping;
+    serverCanyonsNotVolcanic = canyonsNotVolcanic;
+    serverConfigActive = true;
+  }
+
+  public static void clearServerConfig() {
+    serverConfigActive = false;
+    serverContinentalness = null;
+    serverFiniteContinents = null;
+    serverFlatBedrock = null;
+    serverGrassDensity = null;
+    serverSpawnCenterX = null;
+    serverSpawnCenterZ = null;
+    serverSpawnDistance = null;
+    serverTemperatureScale = null;
+    serverRainfallScale = null;
+    serverVerticalWorldScale = null;
+    serverHorizontalWorldScale = null;
+    serverContinentFromMap = null;
+    serverAltitudeFromMap = null;
+    serverHotspotsFromMap = null;
+    serverKoppenFromMap = null;
+    serverPoleOffset = null;
+    serverPoleLooping = null;
+    serverCanyonsNotVolcanic = null;
+  }
+
   public static double getContinentalness() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getContinentalness() != null
-    ) {
-      return ServerConfigValues.getContinentalness();
-    }
-    return CONTINENTALNESS.get();
+    return serverConfigActive && serverContinentalness != null
+      ? serverContinentalness
+      : CONTINENTALNESS.get();
   }
 
   public static boolean getFiniteContinents() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getFiniteContinents() != null
-    ) {
-      return ServerConfigValues.getFiniteContinents();
-    }
-    return FINITE_CONTINENTS.get();
+    return serverConfigActive && serverFiniteContinents != null
+      ? serverFiniteContinents
+      : FINITE_CONTINENTS.get();
   }
 
   public static boolean getFlatBedrock() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getFlatBedrock() != null
-    ) {
-      return ServerConfigValues.getFlatBedrock();
-    }
-    return FLAT_BEDROCK.get();
+    return serverConfigActive && serverFlatBedrock != null
+      ? serverFlatBedrock
+      : FLAT_BEDROCK.get();
   }
 
   public static double getGrassDensity() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getGrassDensity() != null
-    ) {
-      return ServerConfigValues.getGrassDensity();
-    }
-    return GRASS_DENSITY.get();
+    return serverConfigActive && serverGrassDensity != null
+      ? serverGrassDensity
+      : GRASS_DENSITY.get();
   }
 
   public static int getSpawnCenterX() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getSpawnCenterX() != null
-    ) {
-      return ServerConfigValues.getSpawnCenterX();
-    }
-    return SPAWN_CENTER_X.get();
+    return serverConfigActive && serverSpawnCenterX != null
+      ? serverSpawnCenterX
+      : SPAWN_CENTER_X.get();
   }
 
   public static int getSpawnCenterZ() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getSpawnCenterZ() != null
-    ) {
-      return ServerConfigValues.getSpawnCenterZ();
-    }
-    return SPAWN_CENTER_Z.get();
+    return serverConfigActive && serverSpawnCenterZ != null
+      ? serverSpawnCenterZ
+      : SPAWN_CENTER_Z.get();
   }
 
   public static int getSpawnDistance() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getSpawnDistance() != null
-    ) {
-      return ServerConfigValues.getSpawnDistance();
-    }
-    return SPAWN_DISTANCE.get();
+    return serverConfigActive && serverSpawnDistance != null
+      ? serverSpawnDistance
+      : SPAWN_DISTANCE.get();
   }
 
   public static int getTemperatureScale() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getTemperatureScale() != null
-    ) {
-      return ServerConfigValues.getTemperatureScale();
-    }
-    return TEMPERATURE_SCALE.get();
+    return serverConfigActive && serverTemperatureScale != null
+      ? serverTemperatureScale
+      : TEMPERATURE_SCALE.get();
   }
 
   public static int getRainfallScale() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getRainfallScale() != null
-    ) {
-      return ServerConfigValues.getRainfallScale();
-    }
-    return RAINFALL_SCALE.get();
+    return serverConfigActive && serverRainfallScale != null
+      ? serverRainfallScale
+      : RAINFALL_SCALE.get();
   }
 
   public static int getVerticalWorldScale() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getVerticalWorldScale() != null
-    ) {
-      return ServerConfigValues.getVerticalWorldScale();
-    }
-    return VERTICAL_WORLD_SCALE.get();
+    return serverConfigActive && serverVerticalWorldScale != null
+      ? serverVerticalWorldScale
+      : VERTICAL_WORLD_SCALE.get();
   }
 
   public static int getHorizontalWorldScale() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getHorizontalWorldScale() != null
-    ) {
-      return ServerConfigValues.getHorizontalWorldScale();
-    }
-    return HORIZONTAL_WORLD_SCALE.get();
+    return serverConfigActive && serverHorizontalWorldScale != null
+      ? serverHorizontalWorldScale
+      : HORIZONTAL_WORLD_SCALE.get();
   }
 
   public static boolean getContinentFromMap() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getContinentFromMap() != null
-    ) {
-      return ServerConfigValues.getContinentFromMap();
-    }
-    return CONTINENT_FROM_MAP.get();
+    return serverConfigActive && serverContinentFromMap != null
+      ? serverContinentFromMap
+      : CONTINENT_FROM_MAP.get();
   }
 
   public static boolean getAltitudeFromMap() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getAltitudeFromMap() != null
-    ) {
-      return ServerConfigValues.getAltitudeFromMap();
-    }
-    return ALTITUDE_FROM_MAP.get();
+    return serverConfigActive && serverAltitudeFromMap != null
+      ? serverAltitudeFromMap
+      : ALTITUDE_FROM_MAP.get();
   }
 
   public static boolean getHotspotsFromMap() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getHotspotsFromMap() != null
-    ) {
-      return ServerConfigValues.getHotspotsFromMap();
-    }
-    return HOTSPOTS_FROM_MAP.get();
+    return serverConfigActive && serverHotspotsFromMap != null
+      ? serverHotspotsFromMap
+      : HOTSPOTS_FROM_MAP.get();
   }
 
   public static boolean getKoppenFromMap() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getKoppenFromMap() != null
-    ) {
-      return ServerConfigValues.getKoppenFromMap();
-    }
-    return KOPPEN_FROM_MAP.get();
+    return serverConfigActive && serverKoppenFromMap != null
+      ? serverKoppenFromMap
+      : KOPPEN_FROM_MAP.get();
   }
 
   public static int getPoleOffset() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getPoleOffset() != null
-    ) {
-      return ServerConfigValues.getPoleOffset();
-    }
-    return POLE_OFFSET.get();
+    return serverConfigActive && serverPoleOffset != null
+      ? serverPoleOffset
+      : POLE_OFFSET.get();
   }
 
   public static boolean getPoleLooping() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getPoleLooping() != null
-    ) {
-      return ServerConfigValues.getPoleLooping();
-    }
-    return POLE_LOOPING.get();
+    return serverConfigActive && serverPoleLooping != null
+      ? serverPoleLooping
+      : POLE_LOOPING.get();
   }
 
   public static boolean getCanyonsNotVolcanic() {
-    if (
-      ServerConfigValues.isServerConfigActive() &&
-      ServerConfigValues.getCanyonsNotVolcanic() != null
-    ) {
-      return ServerConfigValues.getCanyonsNotVolcanic();
-    }
-    return CANYONS_NOT_VOLCANIC.get();
+    return serverConfigActive && serverCanyonsNotVolcanic != null
+      ? serverCanyonsNotVolcanic
+      : CANYONS_NOT_VOLCANIC.get();
   }
 }

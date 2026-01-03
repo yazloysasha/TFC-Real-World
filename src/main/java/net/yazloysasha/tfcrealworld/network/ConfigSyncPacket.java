@@ -6,7 +6,7 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
-import net.yazloysasha.tfcrealworld.config.ServerConfigValues;
+import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 
 public record ConfigSyncPacket(
   double continentalness,
@@ -87,7 +87,7 @@ public record ConfigSyncPacket(
 
   public static void handle(ConfigSyncPacket packet, IPayloadContext context) {
     context.enqueueWork(() -> {
-      ServerConfigValues.setServerConfig(
+      TFCRealWorldConfig.setServerConfig(
         packet.continentalness(),
         packet.finiteContinents(),
         packet.flatBedrock(),

@@ -26,7 +26,6 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
-import net.yazloysasha.tfcrealworld.config.ServerConfigValues;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
 import net.yazloysasha.tfcrealworld.util.DynamicPackFinder;
@@ -120,12 +119,12 @@ public final class TFCRealWorld {
     if (!event.getEntity().level().isClientSide) {
       return;
     }
-    ServerConfigValues.clearServerConfig();
+    TFCRealWorldConfig.clearServerConfig();
   }
 
   private void onLevelUnload(LevelEvent.Unload event) {
     if (event.getLevel().isClientSide()) {
-      ServerConfigValues.clearServerConfig();
+      TFCRealWorldConfig.clearServerConfig();
     }
   }
 
