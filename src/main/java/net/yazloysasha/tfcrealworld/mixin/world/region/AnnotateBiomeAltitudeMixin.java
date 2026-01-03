@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class AnnotateBiomeAltitudeMixin {
 
   @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
-  private void realworld$overrideBiomeAltitude(
+  private void tfcrealworld$overrideBiomeAltitude(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {

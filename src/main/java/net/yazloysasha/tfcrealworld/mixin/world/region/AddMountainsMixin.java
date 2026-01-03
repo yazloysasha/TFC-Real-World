@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class AddMountainsMixin {
 
   @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
-  private void realworld$disableAddMountains(
+  private void tfcrealworld$disableAddMountains(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {

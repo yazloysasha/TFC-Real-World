@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class AddHotspotsMixin {
 
   @Inject(method = "apply", at = @At("TAIL"))
-  private void realworld$applyHotspotAgeFromMap(
+  private void tfcrealworld$applyHotspotAgeFromMap(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {

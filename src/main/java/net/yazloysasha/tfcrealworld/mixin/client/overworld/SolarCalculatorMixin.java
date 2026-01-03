@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class SolarCalculatorMixin {
 
   @Inject(method = "getLatitude", at = @At("HEAD"), cancellable = true)
-  private static void realworld$transformForLatitude(
+  private static void tfcrealworld$transformForLatitude(
     int z,
     float hemisphereScale,
     CallbackInfoReturnable<Float> cir
@@ -45,7 +45,7 @@ public class SolarCalculatorMixin {
     argsOnly = true,
     ordinal = 0
   )
-  private static int realworld$transformZForHemisphere(int z) {
+  private static int tfcrealworld$transformZForHemisphere(int z) {
     int poleOffset = TFCRealWorldConfig.POLE_OFFSET.get();
     return z + poleOffset;
   }

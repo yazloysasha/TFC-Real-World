@@ -16,7 +16,7 @@ public class SettingsMixin {
     cancellable = true,
     remap = false
   )
-  private void realworld$overrideFlatBedrock(
+  private void tfcrealworld$overrideFlatBedrock(
     CallbackInfoReturnable<Boolean> cir
   ) {
     cir.setReturnValue(TFCRealWorldConfig.FLAT_BEDROCK.get());
@@ -28,7 +28,7 @@ public class SettingsMixin {
     cancellable = true,
     remap = false
   )
-  private void realworld$overrideSpawnDistance(
+  private void tfcrealworld$overrideSpawnDistance(
     CallbackInfoReturnable<Integer> cir
   ) {
     cir.setReturnValue(TFCRealWorldConfig.SPAWN_DISTANCE.get());
@@ -40,7 +40,7 @@ public class SettingsMixin {
     cancellable = true,
     remap = false
   )
-  private void realworld$overrideSpawnCenterX(
+  private void tfcrealworld$overrideSpawnCenterX(
     CallbackInfoReturnable<Integer> cir
   ) {
     cir.setReturnValue(TFCRealWorldConfig.SPAWN_CENTER_X.get());
@@ -52,7 +52,7 @@ public class SettingsMixin {
     cancellable = true,
     remap = false
   )
-  private void realworld$overrideSpawnCenterZ(
+  private void tfcrealworld$overrideSpawnCenterZ(
     CallbackInfoReturnable<Integer> cir
   ) {
     cir.setReturnValue(TFCRealWorldConfig.SPAWN_CENTER_Z.get());
@@ -64,7 +64,7 @@ public class SettingsMixin {
     cancellable = true,
     remap = false
   )
-  private void realworld$overrideTemperatureScale(
+  private void tfcrealworld$overrideTemperatureScale(
     CallbackInfoReturnable<Integer> cir
   ) {
     cir.setReturnValue(TFCRealWorldConfig.TEMPERATURE_SCALE.get());
@@ -76,7 +76,7 @@ public class SettingsMixin {
     cancellable = true,
     remap = false
   )
-  private void realworld$overrideRainfallScale(
+  private void tfcrealworld$overrideRainfallScale(
     CallbackInfoReturnable<Integer> cir
   ) {
     cir.setReturnValue(TFCRealWorldConfig.RAINFALL_SCALE.get());
@@ -88,7 +88,7 @@ public class SettingsMixin {
     cancellable = true,
     remap = false
   )
-  private void realworld$overrideContinentalness(
+  private void tfcrealworld$overrideContinentalness(
     CallbackInfoReturnable<Float> cir
   ) {
     cir.setReturnValue(TFCRealWorldConfig.CONTINENTALNESS.get().floatValue());
@@ -100,7 +100,7 @@ public class SettingsMixin {
     cancellable = true,
     remap = false
   )
-  private void realworld$overrideGrassDensity(
+  private void tfcrealworld$overrideGrassDensity(
     CallbackInfoReturnable<Float> cir
   ) {
     cir.setReturnValue(TFCRealWorldConfig.GRASS_DENSITY.get().floatValue());
@@ -112,7 +112,7 @@ public class SettingsMixin {
     cancellable = true,
     remap = false
   )
-  private void realworld$overrideFiniteContinents(
+  private void tfcrealworld$overrideFiniteContinents(
     CallbackInfoReturnable<Boolean> cir
   ) {
     cir.setReturnValue(TFCRealWorldConfig.FINITE_CONTINENTS.get());

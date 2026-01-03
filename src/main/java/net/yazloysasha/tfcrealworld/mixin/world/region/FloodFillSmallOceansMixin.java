@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class FloodFillSmallOceansMixin {
 
   @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
-  private void realworld$skipFloodFillWhenUsingContinentMap(
+  private void tfcrealworld$skipFloodFillWhenUsingContinentMap(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {

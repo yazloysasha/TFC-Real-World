@@ -59,7 +59,7 @@ public class RegionGeneratorMixin {
   }
 
   @Inject(method = "<init>", at = @At("TAIL"))
-  private void realworld$replaceNoises(
+  private void tfcrealworld$replaceNoises(
     Settings settings,
     net.dries007.tfc.world.Seed seed,
     CallbackInfo ci

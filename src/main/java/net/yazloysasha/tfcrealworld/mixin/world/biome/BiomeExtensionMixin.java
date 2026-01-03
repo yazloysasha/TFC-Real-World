@@ -31,7 +31,7 @@ public class BiomeExtensionMixin {
   private boolean volcanic;
 
   @Inject(method = "isVolcanic", at = @At("HEAD"), cancellable = true)
-  private void realworld$overrideIsVolcanic(
+  private void tfcrealworld$overrideIsVolcanic(
     CallbackInfoReturnable<Boolean> cir
   ) {
     if (
@@ -45,7 +45,7 @@ public class BiomeExtensionMixin {
   }
 
   @Inject(method = "createNoiseSampler", at = @At("HEAD"), cancellable = true)
-  private void realworld$overrideCreateNoiseSampler(
+  private void tfcrealworld$overrideCreateNoiseSampler(
     Seed seed,
     CallbackInfoReturnable<@Nullable BiomeNoiseSampler> cir
   ) {
@@ -77,7 +77,7 @@ public class BiomeExtensionMixin {
   }
 
   @Inject(method = "createSurfaceBuilder", at = @At("HEAD"), cancellable = true)
-  private void realworld$overrideCreateSurfaceBuilder(
+  private void tfcrealworld$overrideCreateSurfaceBuilder(
     Seed seed,
     CallbackInfoReturnable<SurfaceBuilder> cir
   ) {

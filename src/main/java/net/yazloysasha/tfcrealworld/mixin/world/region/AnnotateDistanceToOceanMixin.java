@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class AnnotateDistanceToOceanMixin {
 
   @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
-  private void realworld$overrideDistanceToOcean(
+  private void tfcrealworld$overrideDistanceToOcean(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {

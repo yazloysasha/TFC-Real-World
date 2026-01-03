@@ -29,7 +29,7 @@ neoForge {
 }
 
 base {
-  archivesName.set("TFC-RealWorld-NeoForge-$minecraftVersion")
+  archivesName.set("TFC-Real-World-NeoForge-$minecraftVersion")
   group = "net.dries007.tfc"
   version = modVersion
 }

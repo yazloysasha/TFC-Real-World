@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class AnnotateBaseLandHeightMixin {
 
   @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
-  private void realworld$overrideBaseLandHeight(
+  private void tfcrealworld$overrideBaseLandHeight(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {

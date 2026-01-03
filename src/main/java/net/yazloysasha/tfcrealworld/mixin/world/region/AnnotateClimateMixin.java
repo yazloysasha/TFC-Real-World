@@ -26,7 +26,7 @@ public class AnnotateClimateMixin {
     locals = LocalCapture.CAPTURE_FAILHARD,
     cancellable = false
   )
-  private void realworld$overrideRainfallVariance(
+  private void tfcrealworld$overrideRainfallVariance(
     RegionGenerator.Context context,
     CallbackInfo ci,
     java.util.Iterator<?> iterator,
@@ -53,7 +53,7 @@ public class AnnotateClimateMixin {
       ordinal = 1
     )
   )
-  private float realworld$preserveTemperatureBiasTarget(
+  private float tfcrealworld$preserveTemperatureBiasTarget(
     float delta,
     float start,
     float end
@@ -75,7 +75,7 @@ public class AnnotateClimateMixin {
       ordinal = 2
     )
   )
-  private float realworld$preserveTemperatureFromMap(
+  private float tfcrealworld$preserveTemperatureFromMap(
     float delta,
     float start,
     float end
@@ -97,7 +97,7 @@ public class AnnotateClimateMixin {
       ordinal = 3
     )
   )
-  private float realworld$preserveRainfallFromMap(
+  private float tfcrealworld$preserveRainfallFromMap(
     float delta,
     float start,
     float end
@@ -119,7 +119,7 @@ public class AnnotateClimateMixin {
       ordinal = 4
     )
   )
-  private float realworld$preserveRainfallVarianceFromMap(
+  private float tfcrealworld$preserveRainfallVarianceFromMap(
     float delta,
     float start,
     float end
