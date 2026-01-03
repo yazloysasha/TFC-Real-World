@@ -52,10 +52,8 @@ It only adds extra _real-world rules_ that tell TFC _where_ to place land, heigh
 
 #### Non-invasive worldgen integration
 
-- Core TFC classes like `RegionGenerator` and `Settings` are extended via mixins only to:
-  - Replace continent / altitude / hotspot / climate **noise sources** with map-driven ones, when the corresponding options are enabled.
-  - Override numeric configuration values (like continentalness, spawn location, temperature and rainfall scale) from the mod's config file.
-- No new blocks, items, tools, tech tiers, mobs or GUIs are added. Existing TFC content is used as-is, just guided by real-world geography.
+Core TFC classes like `RegionGenerator` and `Settings` are extended via mixins only to replace continent / altitude / hotspot / climate **noise sources** with map-driven ones (when the corresponding options are enabled) and to override numeric configuration values (like continentalness, spawn location, temperature and rainfall scale) from the mod's config file.  
+No new blocks, items, tools, tech tiers, mobs or GUIs are added. Existing TFC content is used as-is, just guided by real-world geography.
 
 #### Optional biome volcano tweaks
 
@@ -73,11 +71,9 @@ In short, **TFC: Real World keeps TerraFirmaCraft's gameplay complete and untouc
 
 ### Configuration and customization
 
-All configuration is stored in the file:
+All configuration is stored in the file: `config/tfc_real_world/common.toml`
 
-- `config/tfc_real_world/common.toml`
-
-The options are grouped similarly to the internal config structure:
+The options are grouped similarly to the internal config structure.
 
 #### World generation settings (`world_generation`)
 
@@ -89,9 +85,7 @@ The options are grouped similarly to the internal config structure:
 #### Generation modes (`generation_modes`)
 
 - **Vertical world scale / horizontal world scale** – define the effective diameter of your world in blocks. This affects distances between poles, the _Globe Trotter_ advancement, and how real-world maps are stretched over the world.
-- **`continent_from_map`, `altitude_from_map`, `hotspots_from_map`, `koppen_from_map`** – main toggles that decide whether each system uses **real-world maps** or **pure TFC procedural noise**.
-  - When these are **false**, the corresponding part of worldgen behaves exactly like stock TerraFirmaCraft.
-  - When **true** (the default for most of them), the same TFC systems are simply driven by real-world PNG maps.
+- **`continent_from_map`, `altitude_from_map`, `hotspots_from_map`, `koppen_from_map`** – main toggles that decide whether each system uses **real-world maps** or **pure TFC procedural noise**. When these are **false**, the corresponding part of worldgen behaves exactly like stock TerraFirmaCraft; when **true** (the default for most of them), the same TFC systems are simply driven by real-world PNG maps.
 - **Pole offset and pole looping** – fine-tune how the poles are positioned and whether they wrap around, useful for matching climate belts to your preferred exploration pattern.
 
 #### Biome modifications (`biome_modifications`)
