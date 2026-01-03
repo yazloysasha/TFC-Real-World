@@ -18,7 +18,7 @@ public class AddHotspotsMixin {
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
+    if (TFCRealWorldConfig.getHotspotsFromMap()) {
       final PNGHotspotsNoise hotspotsNoise = HotspotsNoiseRegistry.get(
         context.generator()
       );

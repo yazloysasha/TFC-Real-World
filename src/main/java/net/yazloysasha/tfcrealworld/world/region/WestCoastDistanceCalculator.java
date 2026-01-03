@@ -13,7 +13,7 @@ public class WestCoastDistanceCalculator {
     Region region,
     RegionGenerator generator
   ) {
-    if (!TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
+    if (!TFCRealWorldConfig.getContinentFromMap()) {
       return;
     }
 

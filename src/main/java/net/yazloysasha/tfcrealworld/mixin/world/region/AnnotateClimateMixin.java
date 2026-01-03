@@ -35,7 +35,7 @@ public class AnnotateClimateMixin {
     int z,
     float bias
   ) {
-    if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
+    if (TFCRealWorldConfig.getKoppenFromMap()) {
       point.rainfallVariance = (float) context
         .generator()
         .rainfallVarianceNoise.noise(x, z);
@@ -58,7 +58,7 @@ public class AnnotateClimateMixin {
     float start,
     float end
   ) {
-    if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
+    if (TFCRealWorldConfig.getKoppenFromMap()) {
       return end;
     }
     return net.minecraft.util.Mth.lerp(delta, start, end);
@@ -80,7 +80,7 @@ public class AnnotateClimateMixin {
     float start,
     float end
   ) {
-    if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
+    if (TFCRealWorldConfig.getKoppenFromMap()) {
       return start;
     }
     return net.minecraft.util.Mth.lerp(delta, start, end);
@@ -102,7 +102,7 @@ public class AnnotateClimateMixin {
     float start,
     float end
   ) {
-    if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
+    if (TFCRealWorldConfig.getKoppenFromMap()) {
       return start;
     }
     return net.minecraft.util.Mth.lerp(delta, start, end);
@@ -124,7 +124,7 @@ public class AnnotateClimateMixin {
     float start,
     float end
   ) {
-    if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
+    if (TFCRealWorldConfig.getKoppenFromMap()) {
       return start;
     }
     return net.minecraft.util.Mth.lerp(delta, start, end);

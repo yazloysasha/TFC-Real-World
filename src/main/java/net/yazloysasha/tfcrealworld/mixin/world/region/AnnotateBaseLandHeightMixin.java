@@ -17,7 +17,7 @@ public class AnnotateBaseLandHeightMixin {
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
+    if (TFCRealWorldConfig.getAltitudeFromMap()) {
       AltitudeCalculator.calculateAltitude(context.region, context.generator());
       ci.cancel();
     }

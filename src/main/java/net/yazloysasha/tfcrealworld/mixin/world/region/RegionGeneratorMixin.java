@@ -78,7 +78,7 @@ public class RegionGeneratorMixin {
         verticalWorldScale
       );
 
-      if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
+      if (TFCRealWorldConfig.getContinentFromMap()) {
         net.yazloysasha.tfcrealworld.world.region.GlobalOceanDistanceCache.initialize(
           horizontalWorldScale,
           verticalWorldScale
@@ -92,7 +92,7 @@ public class RegionGeneratorMixin {
       initializeAltitudeMap(instance, horizontalWorldScale, verticalWorldScale);
       initializeHotspotsMap(instance, horizontalWorldScale, verticalWorldScale);
 
-      if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
+      if (TFCRealWorldConfig.getKoppenFromMap()) {
         initializeKoppenBasedClimateMaps(
           instance,
           seed,
@@ -113,7 +113,7 @@ public class RegionGeneratorMixin {
     int horizontalWorldScale,
     int verticalWorldScale
   ) throws NoSuchFieldException {
-    if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
+    if (TFCRealWorldConfig.getContinentFromMap()) {
       Field continentField =
         RegionGenerator.class.getDeclaredField("continentNoise");
       @SuppressWarnings("deprecation")
@@ -131,7 +131,7 @@ public class RegionGeneratorMixin {
     int horizontalWorldScale,
     int verticalWorldScale
   ) {
-    if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
+    if (TFCRealWorldConfig.getAltitudeFromMap()) {
       PNGAltitudeNoise altitudeNoise = new PNGAltitudeNoise(
         horizontalWorldScale,
         verticalWorldScale
@@ -145,7 +145,7 @@ public class RegionGeneratorMixin {
     int horizontalWorldScale,
     int verticalWorldScale
   ) throws NoSuchFieldException {
-    if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
+    if (TFCRealWorldConfig.getHotspotsFromMap()) {
       PNGHotspotsNoise hotspotsNoise = new PNGHotspotsNoise(
         horizontalWorldScale,
         verticalWorldScale

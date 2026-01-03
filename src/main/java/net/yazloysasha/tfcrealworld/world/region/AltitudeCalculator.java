@@ -15,7 +15,7 @@ public class AltitudeCalculator {
     Region region,
     RegionGenerator generator
   ) {
-    if (!TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
+    if (!TFCRealWorldConfig.getAltitudeFromMap()) {
       return;
     }
 

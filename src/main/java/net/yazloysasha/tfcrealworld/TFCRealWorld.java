@@ -15,12 +15,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
+import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.level.LevelEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+import net.yazloysasha.tfcrealworld.config.ServerConfigValues;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
 import net.yazloysasha.tfcrealworld.util.DynamicPackFinder;
 import net.yazloysasha.tfcrealworld.util.MapPathHelper;
 import org.slf4j.Logger;
@@ -50,7 +58,75 @@ public final class TFCRealWorld {
       DynamicPackFinder::registerPack
     );
 
+    modEventBus.addListener(
+      RegisterPayloadHandlersEvent.class,
+      this::registerNetwork
+    );
+
+    NeoForge.EVENT_BUS.addListener(
+      PlayerEvent.PlayerLoggedInEvent.class,
+      this::onPlayerLoggedIn
+    );
+
+    NeoForge.EVENT_BUS.addListener(
+      PlayerEvent.PlayerLoggedOutEvent.class,
+      this::onPlayerLoggedOut
+    );
+
+    NeoForge.EVENT_BUS.addListener(
+      LevelEvent.Unload.class,
+      this::onLevelUnload
+    );
+
     setupMapsDirectory();
+  }
+
+  private void registerNetwork(RegisterPayloadHandlersEvent event) {
+    final PayloadRegistrar registrar = event.registrar(TFCRealWorld.MOD_ID);
+    registrar.playToClient(
+      ConfigSyncPacket.TYPE,
+      ConfigSyncPacket.STREAM_CODEC,
+      ConfigSyncPacket::handle
+    );
+  }
+
+  private void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
+    if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+      ConfigSyncPacket packet = new ConfigSyncPacket(
+        TFCRealWorldConfig.getContinentalness(),
+        TFCRealWorldConfig.getFiniteContinents(),
+        TFCRealWorldConfig.getFlatBedrock(),
+        TFCRealWorldConfig.getGrassDensity(),
+        TFCRealWorldConfig.getSpawnCenterX(),
+        TFCRealWorldConfig.getSpawnCenterZ(),
+        TFCRealWorldConfig.getSpawnDistance(),
+        TFCRealWorldConfig.getTemperatureScale(),
+        TFCRealWorldConfig.getRainfallScale(),
+        TFCRealWorldConfig.getVerticalWorldScale(),
+        TFCRealWorldConfig.getHorizontalWorldScale(),
+        TFCRealWorldConfig.getContinentFromMap(),
+        TFCRealWorldConfig.getAltitudeFromMap(),
+        TFCRealWorldConfig.getHotspotsFromMap(),
+        TFCRealWorldConfig.getKoppenFromMap(),
+        TFCRealWorldConfig.getPoleOffset(),
+        TFCRealWorldConfig.getPoleLooping(),
+        TFCRealWorldConfig.getCanyonsNotVolcanic()
+      );
+      serverPlayer.connection.send(packet);
+    }
+  }
+
+  private void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
+    if (!event.getEntity().level().isClientSide) {
+      return;
+    }
+    ServerConfigValues.clearServerConfig();
+  }
+
+  private void onLevelUnload(LevelEvent.Unload event) {
+    if (event.getLevel().isClientSide()) {
+      ServerConfigValues.clearServerConfig();
+    }
   }
 
   private void setupMapsDirectory() {

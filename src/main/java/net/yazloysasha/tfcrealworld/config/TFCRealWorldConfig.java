@@ -171,4 +171,184 @@ public class TFCRealWorldConfig {
     BUILDER.pop();
     SPEC = BUILDER.build();
   }
+
+  public static double getContinentalness() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getContinentalness() != null
+    ) {
+      return ServerConfigValues.getContinentalness();
+    }
+    return CONTINENTALNESS.get();
+  }
+
+  public static boolean getFiniteContinents() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getFiniteContinents() != null
+    ) {
+      return ServerConfigValues.getFiniteContinents();
+    }
+    return FINITE_CONTINENTS.get();
+  }
+
+  public static boolean getFlatBedrock() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getFlatBedrock() != null
+    ) {
+      return ServerConfigValues.getFlatBedrock();
+    }
+    return FLAT_BEDROCK.get();
+  }
+
+  public static double getGrassDensity() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getGrassDensity() != null
+    ) {
+      return ServerConfigValues.getGrassDensity();
+    }
+    return GRASS_DENSITY.get();
+  }
+
+  public static int getSpawnCenterX() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getSpawnCenterX() != null
+    ) {
+      return ServerConfigValues.getSpawnCenterX();
+    }
+    return SPAWN_CENTER_X.get();
+  }
+
+  public static int getSpawnCenterZ() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getSpawnCenterZ() != null
+    ) {
+      return ServerConfigValues.getSpawnCenterZ();
+    }
+    return SPAWN_CENTER_Z.get();
+  }
+
+  public static int getSpawnDistance() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getSpawnDistance() != null
+    ) {
+      return ServerConfigValues.getSpawnDistance();
+    }
+    return SPAWN_DISTANCE.get();
+  }
+
+  public static int getTemperatureScale() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getTemperatureScale() != null
+    ) {
+      return ServerConfigValues.getTemperatureScale();
+    }
+    return TEMPERATURE_SCALE.get();
+  }
+
+  public static int getRainfallScale() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getRainfallScale() != null
+    ) {
+      return ServerConfigValues.getRainfallScale();
+    }
+    return RAINFALL_SCALE.get();
+  }
+
+  public static int getVerticalWorldScale() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getVerticalWorldScale() != null
+    ) {
+      return ServerConfigValues.getVerticalWorldScale();
+    }
+    return VERTICAL_WORLD_SCALE.get();
+  }
+
+  public static int getHorizontalWorldScale() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getHorizontalWorldScale() != null
+    ) {
+      return ServerConfigValues.getHorizontalWorldScale();
+    }
+    return HORIZONTAL_WORLD_SCALE.get();
+  }
+
+  public static boolean getContinentFromMap() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getContinentFromMap() != null
+    ) {
+      return ServerConfigValues.getContinentFromMap();
+    }
+    return CONTINENT_FROM_MAP.get();
+  }
+
+  public static boolean getAltitudeFromMap() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getAltitudeFromMap() != null
+    ) {
+      return ServerConfigValues.getAltitudeFromMap();
+    }
+    return ALTITUDE_FROM_MAP.get();
+  }
+
+  public static boolean getHotspotsFromMap() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getHotspotsFromMap() != null
+    ) {
+      return ServerConfigValues.getHotspotsFromMap();
+    }
+    return HOTSPOTS_FROM_MAP.get();
+  }
+
+  public static boolean getKoppenFromMap() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getKoppenFromMap() != null
+    ) {
+      return ServerConfigValues.getKoppenFromMap();
+    }
+    return KOPPEN_FROM_MAP.get();
+  }
+
+  public static int getPoleOffset() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getPoleOffset() != null
+    ) {
+      return ServerConfigValues.getPoleOffset();
+    }
+    return POLE_OFFSET.get();
+  }
+
+  public static boolean getPoleLooping() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getPoleLooping() != null
+    ) {
+      return ServerConfigValues.getPoleLooping();
+    }
+    return POLE_LOOPING.get();
+  }
+
+  public static boolean getCanyonsNotVolcanic() {
+    if (
+      ServerConfigValues.isServerConfigActive() &&
+      ServerConfigValues.getCanyonsNotVolcanic() != null
+    ) {
+      return ServerConfigValues.getCanyonsNotVolcanic();
+    }
+    return CANYONS_NOT_VOLCANIC.get();
+  }
 }

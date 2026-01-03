@@ -17,16 +17,16 @@ public class SolarCalculatorMixin {
     float hemisphereScale,
     CallbackInfoReturnable<Float> cir
   ) {
-    int poleOffset = TFCRealWorldConfig.POLE_OFFSET.get();
+    int poleOffset = TFCRealWorldConfig.getPoleOffset();
     int transformedZ = z + poleOffset;
 
     float verticalWorldScale =
-      (float) TFCRealWorldConfig.VERTICAL_WORLD_SCALE.get();
+      (float) TFCRealWorldConfig.getVerticalWorldScale();
     float actualHemisphereScale = verticalWorldScale * 0.5f;
 
     float triangleInput = transformedZ - 0.5f * actualHemisphereScale;
 
-    boolean poleLooping = TFCRealWorldConfig.POLE_LOOPING.get();
+    boolean poleLooping = TFCRealWorldConfig.getPoleLooping();
     if (!poleLooping && actualHemisphereScale > 0) {
       triangleInput = net.minecraft.util.Mth.clamp(
         triangleInput,
@@ -52,7 +52,7 @@ public class SolarCalculatorMixin {
     ordinal = 0
   )
   private static int tfcrealworld$transformZForHemisphere(int z) {
-    int poleOffset = TFCRealWorldConfig.POLE_OFFSET.get();
+    int poleOffset = TFCRealWorldConfig.getPoleOffset();
     return z + poleOffset;
   }
 
@@ -66,10 +66,10 @@ public class SolarCalculatorMixin {
     float hemisphereScale,
     CallbackInfoReturnable<Boolean> cir
   ) {
-    boolean poleLooping = TFCRealWorldConfig.POLE_LOOPING.get();
+    boolean poleLooping = TFCRealWorldConfig.getPoleLooping();
     if (!poleLooping) {
       float verticalWorldScale =
-        (float) TFCRealWorldConfig.VERTICAL_WORLD_SCALE.get();
+        (float) TFCRealWorldConfig.getVerticalWorldScale();
       float actualHemisphereScale = verticalWorldScale * 0.5f;
       int adjustedZ = z - (int) (actualHemisphereScale / 2);
       int poleToPoleDistance = (int) (actualHemisphereScale * 2);

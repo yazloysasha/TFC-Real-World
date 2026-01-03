@@ -21,7 +21,7 @@ public class AnnotateBiomeAltitudeMixin {
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
+    if (TFCRealWorldConfig.getAltitudeFromMap()) {
       calculateBiomeAltitudeFromMap(context.region);
       ci.cancel();
     }

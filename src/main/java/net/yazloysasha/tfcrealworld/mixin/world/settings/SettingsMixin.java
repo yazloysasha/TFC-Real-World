@@ -19,7 +19,7 @@ public class SettingsMixin {
   private void tfcrealworld$overrideFlatBedrock(
     CallbackInfoReturnable<Boolean> cir
   ) {
-    cir.setReturnValue(TFCRealWorldConfig.FLAT_BEDROCK.get());
+    cir.setReturnValue(TFCRealWorldConfig.getFlatBedrock());
   }
 
   @Inject(
@@ -31,7 +31,7 @@ public class SettingsMixin {
   private void tfcrealworld$overrideSpawnDistance(
     CallbackInfoReturnable<Integer> cir
   ) {
-    cir.setReturnValue(TFCRealWorldConfig.SPAWN_DISTANCE.get());
+    cir.setReturnValue(TFCRealWorldConfig.getSpawnDistance());
   }
 
   @Inject(
@@ -43,7 +43,7 @@ public class SettingsMixin {
   private void tfcrealworld$overrideSpawnCenterX(
     CallbackInfoReturnable<Integer> cir
   ) {
-    cir.setReturnValue(TFCRealWorldConfig.SPAWN_CENTER_X.get());
+    cir.setReturnValue(TFCRealWorldConfig.getSpawnCenterX());
   }
 
   @Inject(
@@ -55,7 +55,7 @@ public class SettingsMixin {
   private void tfcrealworld$overrideSpawnCenterZ(
     CallbackInfoReturnable<Integer> cir
   ) {
-    cir.setReturnValue(TFCRealWorldConfig.SPAWN_CENTER_Z.get());
+    cir.setReturnValue(TFCRealWorldConfig.getSpawnCenterZ());
   }
 
   @Inject(
@@ -67,7 +67,7 @@ public class SettingsMixin {
   private void tfcrealworld$overrideTemperatureScale(
     CallbackInfoReturnable<Integer> cir
   ) {
-    cir.setReturnValue(TFCRealWorldConfig.TEMPERATURE_SCALE.get());
+    cir.setReturnValue(TFCRealWorldConfig.getTemperatureScale());
   }
 
   @Inject(
@@ -79,7 +79,7 @@ public class SettingsMixin {
   private void tfcrealworld$overrideRainfallScale(
     CallbackInfoReturnable<Integer> cir
   ) {
-    cir.setReturnValue(TFCRealWorldConfig.RAINFALL_SCALE.get());
+    cir.setReturnValue(TFCRealWorldConfig.getRainfallScale());
   }
 
   @Inject(
@@ -91,7 +91,7 @@ public class SettingsMixin {
   private void tfcrealworld$overrideContinentalness(
     CallbackInfoReturnable<Float> cir
   ) {
-    cir.setReturnValue(TFCRealWorldConfig.CONTINENTALNESS.get().floatValue());
+    cir.setReturnValue((float) TFCRealWorldConfig.getContinentalness());
   }
 
   @Inject(
@@ -103,7 +103,7 @@ public class SettingsMixin {
   private void tfcrealworld$overrideGrassDensity(
     CallbackInfoReturnable<Float> cir
   ) {
-    cir.setReturnValue(TFCRealWorldConfig.GRASS_DENSITY.get().floatValue());
+    cir.setReturnValue((float) TFCRealWorldConfig.getGrassDensity());
   }
 
   @Inject(
@@ -115,6 +115,6 @@ public class SettingsMixin {
   private void tfcrealworld$overrideFiniteContinents(
     CallbackInfoReturnable<Boolean> cir
   ) {
-    cir.setReturnValue(TFCRealWorldConfig.FINITE_CONTINENTS.get());
+    cir.setReturnValue(TFCRealWorldConfig.getFiniteContinents());
   }
 }

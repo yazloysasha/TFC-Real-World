@@ -16,7 +16,7 @@ public class AddMountainsMixin {
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
+    if (TFCRealWorldConfig.getAltitudeFromMap()) {
       ci.cancel();
     }
   }

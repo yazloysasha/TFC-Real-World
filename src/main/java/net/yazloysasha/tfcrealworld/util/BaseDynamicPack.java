@@ -28,7 +28,7 @@ public abstract class BaseDynamicPack implements PackResources {
 
   protected int[] getWorldScaleValues() {
     int verticalWorldScale =
-      net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig.VERTICAL_WORLD_SCALE.get();
+      net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig.getVerticalWorldScale();
     int halfScale = verticalWorldScale / 2;
     int negativeHalfScale = -halfScale;
     return new int[] { halfScale, negativeHalfScale };

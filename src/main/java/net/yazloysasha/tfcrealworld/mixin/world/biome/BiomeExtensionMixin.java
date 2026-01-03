@@ -35,7 +35,7 @@ public class BiomeExtensionMixin {
     CallbackInfoReturnable<Boolean> cir
   ) {
     if (
-      TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get() &&
+      TFCRealWorldConfig.getCanyonsNotVolcanic() &&
       volcanic &&
       (key.location().getPath().equals("canyons") ||
         key.location().getPath().equals("doline_canyons"))
@@ -50,7 +50,7 @@ public class BiomeExtensionMixin {
     CallbackInfoReturnable<@Nullable BiomeNoiseSampler> cir
   ) {
     if (
-      TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get() &&
+      TFCRealWorldConfig.getCanyonsNotVolcanic() &&
       volcanic &&
       (key.location().getPath().equals("canyons") ||
         key.location().getPath().equals("doline_canyons"))
@@ -82,7 +82,7 @@ public class BiomeExtensionMixin {
     CallbackInfoReturnable<SurfaceBuilder> cir
   ) {
     if (
-      TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get() &&
+      TFCRealWorldConfig.getCanyonsNotVolcanic() &&
       volcanic &&
       (key.location().getPath().equals("canyons") ||
         key.location().getPath().equals("doline_canyons"))

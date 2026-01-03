@@ -17,7 +17,7 @@ public class AnnotateDistanceToWestCoastMixin {
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
+    if (TFCRealWorldConfig.getContinentFromMap()) {
       WestCoastDistanceCalculator.calculateDistanceToWestCoast(
         context.region,
         context.generator()
