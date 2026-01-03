@@ -11,6 +11,7 @@ license = "MIT"
     credits = "Earth-like world generation using real-world maps, filled with original TerraFirmaCraft content"
     authors = "yazloysasha"
     description = '''TFC: Real World generates a believable Earth-like world using real-world maps for continents, mountains, hotspots and climate, fully populated with TerraFirmaCraft's original content and progression.'''
+    displayTest = "MATCH_VERSION"
 
 # Dependencies
 [[dependencies.${modId}]]
