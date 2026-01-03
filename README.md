@@ -94,9 +94,11 @@ The options are grouped similarly to the internal config structure.
 
 #### Map files and customization
 
-- All map PNGs used by the mod are stored in:
-  - `config/tfc_real_world/maps/altitude.png`
-  - `config/tfc_real_world/maps/continent.png`
-  - `config/tfc_real_world/maps/hotspots.png`
-  - `config/tfc_real_world/maps/koppen.png`
-- On first run, the mod copies its built-in default maps into this directory. Advanced users can back them up and replace them with their own maps (keeping names and basic format compatible) to experiment with alternative Earth reconstructions or fantasy worlds, while still using TerraFirmaCraft's mechanics.
+All map PNGs used by the mod are stored in:
+
+- `config/tfc_real_world/maps/altitude.png`
+- `config/tfc_real_world/maps/continent.png`
+- `config/tfc_real_world/maps/hotspots.png`
+- `config/tfc_real_world/maps/koppen.png`
+
+On first run, the mod copies its built-in default maps into this directory. Advanced users can back them up and replace them with their own maps (keeping names and basic format compatible) to experiment with alternative Earth reconstructions or fantasy worlds, while still using TerraFirmaCraft's mechanics.
