@@ -1,0 +1,26 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.yazloysasha.tfcrealworld.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "tfc_real_world.refmap.json",
+  "mixins": [
+    "world.biome.BiomeExtensionMixin",
+    "world.region.AddHotspotsMixin",
+    "world.region.AddMountainsMixin",
+    "world.region.AnnotateBaseLandHeightMixin",
+    "world.region.AnnotateBiomeAltitudeMixin",
+    "world.region.AnnotateClimateMixin",
+    "world.region.AnnotateDistanceToOceanMixin",
+    "world.region.AnnotateDistanceToWestCoastMixin",
+    "world.region.FloodFillSmallOceansMixin",
+    "world.region.RegionGeneratorMixin",
+    "world.settings.SettingsMixin",
+    "client.overworld.SolarCalculatorMixin"
+  ],
+  "client": [],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

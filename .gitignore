@@ -1,0 +1,57 @@
+# Reverse gitignore - explicitly include files
+*
+!*/
+!/.gitignore
+!/.gitattributes
+!/.editorconfig
+
+# Github and build script
+!/.github/**/*.md
+!/.github/**/*.yml
+!/gradle/wrapper/gradle-wrapper.jar
+!/gradle/wrapper/gradle-wrapper.properties
+!/src/**
+
+# Resource generation
+!/resources/**/*.py
+!/resources/**/*.bbmodel
+!/resources/texture_templates/**/*.png
+!/resources/structure_templates/**/*.nbt
+!/resources/lang/**/*.json
+!/resources/requirements.txt
+!/resources/bsc5p_radec_min.json
+
+# Metadata
+!/build.gradle.kts
+!/settings.gradle.kts
+!/settings.gradle
+!/gradle.properties
+!/gradlew
+!/gradlew.bat
+!/LICENSE.txt
+!/HEADER.txt
+!/README.md
+!/CHANGELOG.md
+!/CodeStyle.xml
+
+# Splash / Logo Images
+!/img/**/*.png
+!/img/**/*.gif
+
+# Other exclusions
+__pycache__/
+*.pyc
+*.pdn
+
+/run/
+/out/
+/build/
+/venv/
+/.idea/
+/src/generated/resources/.cache/**
+
+# Local storage
+/data
+
+# MacOS
+.DS_Store

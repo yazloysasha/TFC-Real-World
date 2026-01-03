@@ -1,0 +1,38 @@
+# Loader metadata
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+
+# TFC: Real World
+[[mods]]
+    modId = "${modId}"
+    version = "${modVersion}"
+    displayName = "TFC: Real World"
+    credits = "Addon mod for TerraFirmaCraft that enables real-world map-based generation"
+    authors = "yazloysasha"
+    description = '''TFC: Real World - An addon mod for TerraFirmaCraft that enables generation based on real-world maps for continents, mountains, hotspots, rainfall, and temperature.'''
+
+# Dependencies
+[[dependencies.${modId}]]
+    modId = "tfc"
+    type = "required"
+    versionRange = "[4.0.0,)"
+    ordering = "AFTER"
+    side = "BOTH"
+
+[[dependencies.${modId}]]
+    modId = "neoforge"
+    type = "required"
+    versionRange = "${neoForgeVersionRange}"
+    ordering = "AFTER"
+    side = "BOTH"
+
+[[dependencies.${modId}]]
+    modId = "minecraft"
+    type = "required"
+    versionRange = "${minecraftVersionRange}"
+    ordering = "AFTER"
+    side = "BOTH"
+
+[[mixins]]
+    config = "${modId}.mixins.json"

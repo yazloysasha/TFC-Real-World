@@ -1,0 +1,325 @@
+package net.yazloysasha.tfcrealworld.test.drawing;
+
+import static net.dries007.tfc.common.blocks.rock.Rock.*;
+
+import com.google.common.collect.ImmutableMap;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import net.dries007.tfc.TerraFirmaCraft;
+import net.dries007.tfc.common.blocks.SandstoneBlockType;
+import net.dries007.tfc.common.blocks.TFCBlocks;
+import net.dries007.tfc.common.blocks.rock.Rock;
+import net.dries007.tfc.common.blocks.soil.SandBlockType;
+import net.dries007.tfc.world.TFCChunkGenerator;
+import net.dries007.tfc.world.biome.RegionBiomeSource;
+import net.dries007.tfc.world.settings.RockLayerSettings;
+import net.dries007.tfc.world.settings.RockLayerSettings.Data;
+import net.dries007.tfc.world.settings.RockLayerSettings.LayerData;
+import net.dries007.tfc.world.settings.RockSettings;
+import net.dries007.tfc.world.settings.Settings;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.world.level.biome.MultiNoiseBiomeSource;
+import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterLists;
+import net.minecraft.world.level.biome.TheEndBiomeSource;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.dimension.LevelStem;
+import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
+import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
+import net.minecraft.world.level.levelgen.presets.WorldPreset;
+
+public final class BuiltinWorldPreset {
+
+  public static void load(BootstrapContext<WorldPreset> context) {
+    final HolderGetter<DimensionType> dimensionTypes = context.lookup(
+      Registries.DIMENSION_TYPE
+    );
+    final HolderGetter<NoiseGeneratorSettings> noiseSettings = context.lookup(
+      Registries.NOISE_SETTINGS
+    );
+
+    context.register(
+      TerraFirmaCraft.PRESET,
+      new WorldPreset(
+        Map.of(
+          LevelStem.OVERWORLD,
+          new LevelStem(
+            dimensionTypes.getOrThrow(BuiltinDimensionTypes.OVERWORLD),
+            new TFCChunkGenerator(
+              new RegionBiomeSource(context.lookup(Registries.BIOME)),
+              noiseSettings.getOrThrow(NoiseGeneratorSettings.OVERWORLD),
+              defaultSettings()
+            )
+          ),
+          LevelStem.NETHER,
+          new LevelStem(
+            dimensionTypes.getOrThrow(BuiltinDimensionTypes.NETHER),
+            new NoiseBasedChunkGenerator(
+              MultiNoiseBiomeSource.createFromPreset(
+                context
+                  .lookup(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST)
+                  .getOrThrow(MultiNoiseBiomeSourceParameterLists.NETHER)
+              ),
+              noiseSettings.getOrThrow(NoiseGeneratorSettings.NETHER)
+            )
+          ),
+          LevelStem.END,
+          new LevelStem(
+            dimensionTypes.getOrThrow(BuiltinDimensionTypes.END),
+            new NoiseBasedChunkGenerator(
+              TheEndBiomeSource.create(context.lookup(Registries.BIOME)),
+              noiseSettings.getOrThrow(NoiseGeneratorSettings.END)
+            )
+          )
+        )
+      )
+    );
+  }
+
+  public static Settings defaultSettings() {
+    return new Settings(
+      false,
+      4_000,
+      0,
+      0,
+      20_000,
+      0,
+      20_000,
+      0,
+      rockLayerSettings(),
+      0.5f,
+      0.5f,
+      false
+    );
+  }
+
+  private static final Map<Rock, SandBlockType> ROCK_TO_SAND_COLOR =
+    ImmutableMap.<Rock, SandBlockType>builder()
+      .put(GRANITE, SandBlockType.YELLOW)
+      .put(DIORITE, SandBlockType.RED)
+      .put(GABBRO, SandBlockType.BLACK)
+      .put(RHYOLITE, SandBlockType.YELLOW)
+      .put(DACITE, SandBlockType.RED)
+      .put(ANDESITE, SandBlockType.RED)
+      .put(BASALT, SandBlockType.BLACK)
+      .put(SHALE, SandBlockType.BROWN)
+      .put(CLAYSTONE, SandBlockType.BROWN)
+      .put(LIMESTONE, SandBlockType.WHITE)
+      .put(CONGLOMERATE, SandBlockType.BROWN)
+      .put(DOLOMITE, SandBlockType.WHITE)
+      .put(CHERT, SandBlockType.RED)
+      .put(CHALK, SandBlockType.WHITE)
+      .put(TUFF, SandBlockType.GREEN)
+      .put(QUARTZITE, SandBlockType.WHITE)
+      .put(SLATE, SandBlockType.YELLOW)
+      .put(PHYLLITE, SandBlockType.YELLOW)
+      .put(SCHIST, SandBlockType.YELLOW)
+      .put(GNEISS, SandBlockType.YELLOW)
+      .put(MARBLE, SandBlockType.WHITE)
+      .build();
+
+  private static final Map<Rock, Boolean> ROCK_SET_KARST = ImmutableMap.<
+    Rock,
+    Boolean
+  >builder()
+    .put(GRANITE, Boolean.FALSE)
+    .put(DIORITE, Boolean.FALSE)
+    .put(GABBRO, Boolean.FALSE)
+    .put(SHALE, Boolean.FALSE)
+    .put(CLAYSTONE, Boolean.FALSE)
+    .put(LIMESTONE, Boolean.TRUE)
+    .put(CONGLOMERATE, Boolean.FALSE)
+    .put(DOLOMITE, Boolean.TRUE)
+    .put(CHERT, Boolean.FALSE)
+    .put(CHALK, Boolean.TRUE)
+    .put(TUFF, Boolean.FALSE)
+    .put(RHYOLITE, Boolean.FALSE)
+    .put(BASALT, Boolean.FALSE)
+    .put(ANDESITE, Boolean.FALSE)
+    .put(DACITE, Boolean.FALSE)
+    .put(QUARTZITE, Boolean.FALSE)
+    .put(SLATE, Boolean.FALSE)
+    .put(PHYLLITE, Boolean.FALSE)
+    .put(SCHIST, Boolean.FALSE)
+    .put(GNEISS, Boolean.FALSE)
+    .put(MARBLE, Boolean.TRUE)
+    .build();
+
+  // Used by badlands to determine whether they should have black sand
+  private static final Map<Rock, Boolean> ROCK_SET_MAFIC = ImmutableMap.<
+    Rock,
+    Boolean
+  >builder()
+    .put(GRANITE, Boolean.FALSE)
+    .put(DIORITE, Boolean.FALSE)
+    .put(GABBRO, Boolean.TRUE)
+    .put(SHALE, Boolean.FALSE)
+    .put(CLAYSTONE, Boolean.FALSE)
+    .put(LIMESTONE, Boolean.FALSE)
+    .put(CONGLOMERATE, Boolean.FALSE)
+    .put(DOLOMITE, Boolean.FALSE)
+    .put(CHERT, Boolean.FALSE)
+    .put(CHALK, Boolean.FALSE)
+    .put(TUFF, Boolean.FALSE)
+    .put(RHYOLITE, Boolean.FALSE)
+    .put(BASALT, Boolean.TRUE)
+    .put(ANDESITE, Boolean.FALSE)
+    .put(DACITE, Boolean.FALSE)
+    .put(QUARTZITE, Boolean.FALSE)
+    .put(SLATE, Boolean.FALSE)
+    .put(PHYLLITE, Boolean.FALSE)
+    .put(SCHIST, Boolean.FALSE)
+    .put(GNEISS, Boolean.FALSE)
+    .put(MARBLE, Boolean.FALSE)
+    .build();
+
+  private static final String BOTTOM = "bottom";
+  private static final String IGNEOUS_EXTRUSIVE = "igneous_extrusive";
+  private static final String IGNEOUS_EXTRUSIVE_X2 = "igneous_extrusive_x2";
+  private static final String SEDIMENTARY = "sedimentary";
+  private static final String UPLIFT = "uplift";
+  private static final String FELSIC = "felsic";
+  private static final String INTERMEDIATE = "intermediate";
+  private static final String MAFIC = "mafic";
+  private static final String MM_LOW_GRADE = "low_grade";
+  private static final String MM_HIGH_GRADE = "high_grade";
+  private static final String MM_MARBLE = "marble";
+  private static final String MM_QUARTZITE = "quartzite";
+
+  private static RockLayerSettings rockLayerSettings() {
+    return RockLayerSettings.decode(
+      new Data(
+        Arrays.stream(Rock.values()).collect(
+          Collectors.toMap(Rock::getSerializedName, BuiltinWorldPreset::rockOf)
+        ),
+        namesOf(GNEISS, SCHIST, DIORITE, GRANITE, GABBRO),
+        List.of(
+          layerOf(FELSIC, Map.of(GRANITE, BOTTOM)),
+          layerOf(INTERMEDIATE, Map.of(DIORITE, BOTTOM)),
+          layerOf(MAFIC, Map.of(GABBRO, BOTTOM)),
+          layerOf(
+            IGNEOUS_EXTRUSIVE,
+            Map.of(
+              RHYOLITE,
+              FELSIC,
+              ANDESITE,
+              INTERMEDIATE,
+              DACITE,
+              INTERMEDIATE,
+              BASALT,
+              MAFIC
+            )
+          ),
+          layerOf(
+            IGNEOUS_EXTRUSIVE_X2,
+            Map.of(
+              RHYOLITE,
+              IGNEOUS_EXTRUSIVE,
+              ANDESITE,
+              IGNEOUS_EXTRUSIVE,
+              DACITE,
+              IGNEOUS_EXTRUSIVE,
+              BASALT,
+              IGNEOUS_EXTRUSIVE
+            )
+          ),
+          layerOf(MM_HIGH_GRADE, Map.of(SCHIST, BOTTOM, GNEISS, BOTTOM)),
+          layerOf(
+            MM_LOW_GRADE,
+            Map.of(PHYLLITE, MM_HIGH_GRADE, SLATE, MM_HIGH_GRADE)
+          ),
+          layerOf(MM_MARBLE, Map.of(MARBLE, BOTTOM)),
+          layerOf(MM_QUARTZITE, Map.of(QUARTZITE, BOTTOM)),
+          layerOf(
+            SEDIMENTARY,
+            Map.of(
+              SHALE,
+              MM_LOW_GRADE,
+              CLAYSTONE,
+              MM_LOW_GRADE,
+              CONGLOMERATE,
+              MM_LOW_GRADE,
+              LIMESTONE,
+              MM_MARBLE,
+              DOLOMITE,
+              MM_MARBLE,
+              CHALK,
+              MM_MARBLE,
+              CHERT,
+              MM_QUARTZITE
+            )
+          ),
+          layerOf(
+            UPLIFT,
+            Map.of(
+              SLATE,
+              MM_HIGH_GRADE,
+              PHYLLITE,
+              MM_HIGH_GRADE,
+              MARBLE,
+              BOTTOM,
+              QUARTZITE,
+              BOTTOM,
+              DIORITE,
+              MM_LOW_GRADE,
+              GRANITE,
+              MM_LOW_GRADE,
+              GABBRO,
+              MM_LOW_GRADE
+            )
+          )
+        ),
+        // List of layers that can be the top layer for each variety of rock region
+        List.of(IGNEOUS_EXTRUSIVE),
+        List.of(IGNEOUS_EXTRUSIVE, SEDIMENTARY),
+        List.of(IGNEOUS_EXTRUSIVE, IGNEOUS_EXTRUSIVE_X2),
+        List.of(SEDIMENTARY, UPLIFT)
+      )
+    ).getOrThrow();
+  }
+
+  private static List<String> namesOf(Rock... rocks) {
+    return Stream.of(rocks).map(Rock::getSerializedName).toList();
+  }
+
+  private static LayerData layerOf(String layerId, Map<Rock, String> layers) {
+    return new LayerData(
+      layerId,
+      layers
+        .entrySet()
+        .stream()
+        .collect(
+          Collectors.toMap(
+            e -> e.getKey().getSerializedName(),
+            Map.Entry::getValue
+          )
+        )
+    );
+  }
+
+  private static RockSettings rockOf(Rock rock) {
+    final var blocks = TFCBlocks.ROCK_BLOCKS.get(rock);
+    final var color = ROCK_TO_SAND_COLOR.get(rock);
+    final var karst = ROCK_SET_KARST.get(rock);
+    final var mafic = ROCK_SET_MAFIC.get(rock);
+    return new RockSettings(
+      blocks.get(BlockType.RAW).get(),
+      blocks.get(BlockType.HARDENED).get(),
+      blocks.get(BlockType.GRAVEL).get(),
+      blocks.get(BlockType.COBBLE).get(),
+      TFCBlocks.SAND.get(color).get(),
+      TFCBlocks.SANDSTONE.get(color).get(SandstoneBlockType.RAW).get(),
+      Optional.of(blocks.get(BlockType.SPIKE).get()),
+      Optional.of(blocks.get(BlockType.LOOSE).get()),
+      Optional.of(blocks.get(BlockType.MOSSY_LOOSE).get()),
+      Optional.of(karst),
+      Optional.of(mafic)
+    );
+  }
+}
