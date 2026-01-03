@@ -20,21 +20,27 @@ public class SolarCalculatorMixin {
     int poleOffset = TFCRealWorldConfig.POLE_OFFSET.get();
     int transformedZ = z + poleOffset;
 
+    float verticalWorldScale =
+      (float) TFCRealWorldConfig.VERTICAL_WORLD_SCALE.get();
+    float actualHemisphereScale = verticalWorldScale * 0.5f;
+
+    float triangleInput = transformedZ - 0.5f * actualHemisphereScale;
+
+    boolean poleLooping = TFCRealWorldConfig.POLE_LOOPING.get();
+    if (!poleLooping && actualHemisphereScale > 0) {
+      triangleInput = net.minecraft.util.Mth.clamp(
+        triangleInput,
+        -actualHemisphereScale,
+        actualHemisphereScale
+      );
+    }
+
     float latitude = net.dries007.tfc.util.Helpers.triangle(
       -net.minecraft.util.Mth.HALF_PI,
       0,
-      1 / (4 * hemisphereScale),
-      transformedZ - 0.5f * hemisphereScale
+      1 / (4 * actualHemisphereScale),
+      triangleInput
     );
-
-    boolean poleLooping = TFCRealWorldConfig.POLE_LOOPING.get();
-    if (!poleLooping && hemisphereScale > 0) {
-      latitude = net.minecraft.util.Mth.clamp(
-        latitude,
-        -net.minecraft.util.Mth.HALF_PI,
-        net.minecraft.util.Mth.HALF_PI
-      );
-    }
 
     cir.setReturnValue(latitude);
   }
@@ -48,5 +54,33 @@ public class SolarCalculatorMixin {
   private static int tfcrealworld$transformZForHemisphere(int z) {
     int poleOffset = TFCRealWorldConfig.POLE_OFFSET.get();
     return z + poleOffset;
+  }
+
+  @Inject(
+    method = "getInNorthernHemisphere(IF)Z",
+    at = @At("HEAD"),
+    cancellable = true
+  )
+  private static void tfcrealworld$overrideHemisphereCheck(
+    int z,
+    float hemisphereScale,
+    CallbackInfoReturnable<Boolean> cir
+  ) {
+    boolean poleLooping = TFCRealWorldConfig.POLE_LOOPING.get();
+    if (!poleLooping) {
+      float verticalWorldScale =
+        (float) TFCRealWorldConfig.VERTICAL_WORLD_SCALE.get();
+      float actualHemisphereScale = verticalWorldScale * 0.5f;
+      int adjustedZ = z - (int) (actualHemisphereScale / 2);
+      int poleToPoleDistance = (int) (actualHemisphereScale * 2);
+
+      if (adjustedZ < -poleToPoleDistance) {
+        cir.setReturnValue(false);
+      } else if (adjustedZ > poleToPoleDistance) {
+        cir.setReturnValue(true);
+      } else {
+        cir.setReturnValue(adjustedZ > 0);
+      }
+    }
   }
 }

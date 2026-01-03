@@ -163,7 +163,6 @@ public class TFCRealWorldConfig {
     BUILDER.pop();
     BUILDER.push("biome_modifications");
 
-    BUILDER.comment("");
     BUILDER.comment(
       "Whether canyons and doline_canyons biomes should have volcanic features removed."
     );
