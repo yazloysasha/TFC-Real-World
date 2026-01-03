@@ -1,5 +1,9 @@
 ## TFC: Real World
 
+<div align="center">
+![Earth Map](img/altitude.png)
+</div>
+
 ### What this mod does
 
 **TFC: Real World** generates a world that looks and feels like a believable version of our own planet – a map of Earth filled with all the original **TerraFirmaCraft** content and progression.  
