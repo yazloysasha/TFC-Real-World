@@ -86,7 +86,6 @@ The options are grouped similarly to the internal config structure:
 - **Generation modes (`generation_modes`)**
 
   - **Vertical world scale / horizontal world scale** – define the effective diameter of your world in blocks. This affects distances between poles, the _Globe Trotter_ advancement, and how real‑world maps are stretched over the world.
-  - **Min / max temperature, min / max rainfall** – clamp the climate parameters generated from the Köppen map or from TFC's noise, ensuring values stay within comfortable bounds.
   - **`continent_from_map`, `altitude_from_map`, `hotspots_from_map`, `koppen_from_map`** – main toggles that decide whether each system uses **real‑world maps** or **pure TFC procedural noise**.
     - When these are **false**, the corresponding part of worldgen behaves exactly like stock TerraFirmaCraft.
     - When **true** (the default for most of them), the same TFC systems are simply driven by real‑world PNG maps.

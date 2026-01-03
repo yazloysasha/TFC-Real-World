@@ -22,10 +22,6 @@ public class TFCRealWorldConfig {
   // Generation mode settings
   public static final ModConfigSpec.IntValue VERTICAL_WORLD_SCALE;
   public static final ModConfigSpec.IntValue HORIZONTAL_WORLD_SCALE;
-  public static final ModConfigSpec.DoubleValue MIN_TEMPERATURE;
-  public static final ModConfigSpec.DoubleValue MAX_TEMPERATURE;
-  public static final ModConfigSpec.DoubleValue MIN_RAINFALL;
-  public static final ModConfigSpec.DoubleValue MAX_RAINFALL;
   public static final ModConfigSpec.BooleanValue CONTINENT_FROM_MAP;
   public static final ModConfigSpec.BooleanValue ALTITUDE_FROM_MAP;
   public static final ModConfigSpec.BooleanValue HOTSPOTS_FROM_MAP;
@@ -118,36 +114,6 @@ public class TFCRealWorldConfig {
     HORIZONTAL_WORLD_SCALE = BUILDER.comment(
       "Horizontal world scale (diameter) in blocks. Affects map stretching when generating from map."
     ).defineInRange("horizontal_world_scale", 40000, 1000, 200000);
-
-    BUILDER.comment("");
-
-    MIN_TEMPERATURE = BUILDER.comment(
-      "Minimum temperature in degrees Celsius"
-    ).defineInRange("min_temperature", -20.0, -100.0, 100.0);
-
-    BUILDER.comment("");
-
-    MAX_TEMPERATURE = BUILDER.comment(
-      "Maximum temperature in degrees Celsius"
-    ).defineInRange("max_temperature", 30.0, -100.0, 100.0);
-
-    BUILDER.comment("");
-
-    MIN_RAINFALL = BUILDER.comment("Minimum rainfall in mm").defineInRange(
-      "min_rainfall",
-      0.0,
-      0.0,
-      10000.0
-    );
-
-    BUILDER.comment("");
-
-    MAX_RAINFALL = BUILDER.comment("Maximum rainfall in mm").defineInRange(
-      "max_rainfall",
-      500.0,
-      0.0,
-      10000.0
-    );
 
     BUILDER.comment("");
 
