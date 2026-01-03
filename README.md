@@ -15,7 +15,7 @@ The goal of the mod is to give you a **recognizable, exploration‑focused TFC w
 - **Travel through realistic climate belts and biomes**, from equatorial rainforests to deserts, steppes, temperate forests and polar regions.
 
 **Important:** the mod does **not** change vanilla TFC mechanics, items or progression and does **not** override TFC's core worldgen systems.  
-It only adds extra _real‑world rules_ that tell TFC _where_ to place land, heights, climate and biomes, using external map data.
+It only adds extra _real‑world rules_ that tell TFC _where_ to place land, heights, climate and biomes, using external map data. The underlying procedural generation remains fully active, so every world you create is still unique even when driven by the same real‑world maps.
 
 ---
 
