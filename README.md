@@ -1,8 +1,6 @@
 ## TFC: Real World
 
-<div align="center">
 ![Earth Map](img/altitude.png)
-</div>
 
 ### What this mod does
 
