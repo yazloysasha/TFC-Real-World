@@ -1,6 +1,6 @@
 ## TFC: Real World
 
-![Earth Map](img/altitude.png)
+![Earth Maps](img/collage.png)
 
 ### What this mod does
 
