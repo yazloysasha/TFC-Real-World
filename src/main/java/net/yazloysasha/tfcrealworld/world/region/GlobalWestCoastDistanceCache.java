@@ -131,75 +131,9 @@ public class GlobalWestCoastDistanceCache extends BaseDistanceCache {
       final byte lastDist = distanceMap[last];
       final int nextDistance = lastDist + (lastDist > 40 ? -1 : 1);
 
-      final boolean canGoLeft = lastX > 0;
-      final boolean canGoRight = lastX < width - 1;
-      final boolean canGoUp = lastZ > 0;
-      final boolean canGoDown = lastZ < height - 1;
-
-      if (canGoLeft) {
-        int idx = lastZ * width + (lastX - 1);
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.max(nextDistance, 0);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
-      if (canGoRight) {
-        int idx = lastZ * width + (lastX + 1);
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.max(nextDistance, 0);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
-      if (canGoUp) {
-        int idx = (lastZ - 1) * width + lastX;
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.max(nextDistance, 0);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
-      if (canGoDown) {
-        int idx = (lastZ + 1) * width + lastX;
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.max(nextDistance, 0);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
-      if (canGoLeft && canGoUp) {
-        int idx = (lastZ - 1) * width + (lastX - 1);
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.max(nextDistance, 0);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
-      if (canGoRight && canGoUp) {
-        int idx = (lastZ - 1) * width + (lastX + 1);
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.max(nextDistance, 0);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
-      if (canGoLeft && canGoDown) {
-        int idx = (lastZ + 1) * width + (lastX - 1);
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.max(nextDistance, 0);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
-      if (canGoRight && canGoDown) {
-        int idx = (lastZ + 1) * width + (lastX + 1);
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.max(nextDistance, 0);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
+      processNeighbors(lastX, lastZ, nextDistance, explored, queue, d ->
+        Math.max(d, 0)
+      );
     }
   }
 }

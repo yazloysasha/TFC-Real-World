@@ -1,5 +1,8 @@
 package net.yazloysasha.tfcrealworld.world.region;
 
+import it.unimi.dsi.fastutil.ints.IntArrayFIFOQueue;
+import java.util.BitSet;
+import java.util.function.IntUnaryOperator;
 import net.yazloysasha.tfcrealworld.world.noise.PNGContinentNoise;
 
 /**
@@ -35,10 +38,6 @@ abstract class BaseDistanceCache {
     this.distanceMap = new byte[width * height];
   }
 
-  /**
-   * Transforms world coordinates to image coordinates and performs bilinear interpolation.
-   * Returns the four corner indices and interpolation factors.
-   */
   protected InterpolationResult getInterpolationData(int gridX, int gridZ) {
     double clampedX = Math.clamp(gridX, -worldRadiusGridX, worldRadiusGridX);
     double clampedZ = Math.clamp(gridZ, -worldRadiusGridZ, worldRadiusGridZ);
@@ -70,8 +69,117 @@ abstract class BaseDistanceCache {
   }
 
   /**
-   * Result of coordinate transformation for bilinear interpolation.
+   * Processes all 8 neighbors in BFS algorithm.
+   *
+   * @param lastX X coordinate of the current point
+   * @param lastZ Z coordinate of the current point
+   * @param nextDistance The distance value to assign to neighbors
+   * @param explored BitSet tracking explored points
+   * @param queue Queue for BFS traversal
+   * @param distanceProcessor Function to process the distance value
    */
+  protected void processNeighbors(
+    int lastX,
+    int lastZ,
+    int nextDistance,
+    BitSet explored,
+    IntArrayFIFOQueue queue,
+    IntUnaryOperator distanceProcessor
+  ) {
+    final boolean canGoLeft = lastX > 0;
+    final boolean canGoRight = lastX < width - 1;
+    final boolean canGoUp = lastZ > 0;
+    final boolean canGoDown = lastZ < height - 1;
+
+    if (canGoLeft) {
+      processNeighbor(
+        lastZ * width + (lastX - 1),
+        nextDistance,
+        explored,
+        queue,
+        distanceProcessor
+      );
+    }
+    if (canGoRight) {
+      processNeighbor(
+        lastZ * width + (lastX + 1),
+        nextDistance,
+        explored,
+        queue,
+        distanceProcessor
+      );
+    }
+    if (canGoUp) {
+      processNeighbor(
+        (lastZ - 1) * width + lastX,
+        nextDistance,
+        explored,
+        queue,
+        distanceProcessor
+      );
+    }
+    if (canGoDown) {
+      processNeighbor(
+        (lastZ + 1) * width + lastX,
+        nextDistance,
+        explored,
+        queue,
+        distanceProcessor
+      );
+    }
+
+    if (canGoLeft && canGoUp) {
+      processNeighbor(
+        (lastZ - 1) * width + (lastX - 1),
+        nextDistance,
+        explored,
+        queue,
+        distanceProcessor
+      );
+    }
+    if (canGoRight && canGoUp) {
+      processNeighbor(
+        (lastZ - 1) * width + (lastX + 1),
+        nextDistance,
+        explored,
+        queue,
+        distanceProcessor
+      );
+    }
+    if (canGoLeft && canGoDown) {
+      processNeighbor(
+        (lastZ + 1) * width + (lastX - 1),
+        nextDistance,
+        explored,
+        queue,
+        distanceProcessor
+      );
+    }
+    if (canGoRight && canGoDown) {
+      processNeighbor(
+        (lastZ + 1) * width + (lastX + 1),
+        nextDistance,
+        explored,
+        queue,
+        distanceProcessor
+      );
+    }
+  }
+
+  private void processNeighbor(
+    int idx,
+    int nextDistance,
+    BitSet explored,
+    IntArrayFIFOQueue queue,
+    IntUnaryOperator distanceProcessor
+  ) {
+    if (distanceMap[idx] == 0 && !explored.get(idx)) {
+      distanceMap[idx] = (byte) distanceProcessor.applyAsInt(nextDistance);
+      queue.enqueue(idx);
+      explored.set(idx);
+    }
+  }
+
   protected static class InterpolationResult {
 
     final int x0;

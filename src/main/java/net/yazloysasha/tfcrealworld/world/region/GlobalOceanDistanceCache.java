@@ -66,9 +66,12 @@ public class GlobalOceanDistanceCache extends BaseDistanceCache {
       double dist01Pos = dist01 > 0 ? dist01 : 0;
       double dist11Pos = dist11 > 0 ? dist11 : 0;
 
-      double dist0 = dist00Pos * (1 - interpolation.fx) + dist10Pos * interpolation.fx;
-      double dist1 = dist01Pos * (1 - interpolation.fx) + dist11Pos * interpolation.fx;
-      double finalDist = dist0 * (1 - interpolation.fz) + dist1 * interpolation.fz;
+      double dist0 =
+        dist00Pos * (1 - interpolation.fx) + dist10Pos * interpolation.fx;
+      double dist1 =
+        dist01Pos * (1 - interpolation.fx) + dist11Pos * interpolation.fx;
+      double finalDist =
+        dist0 * (1 - interpolation.fz) + dist1 * interpolation.fz;
       return (byte) Math.max(0, Math.round(finalDist));
     } else {
       if (dist00 == -2 || dist10 == -2 || dist01 == -2 || dist11 == -2) {
@@ -107,75 +110,9 @@ public class GlobalOceanDistanceCache extends BaseDistanceCache {
       final byte lastDist = distanceMap[last];
       final int nextDistance = lastDist + 1;
 
-      final boolean canGoLeft = lastX > 0;
-      final boolean canGoRight = lastX < width - 1;
-      final boolean canGoUp = lastZ > 0;
-      final boolean canGoDown = lastZ < height - 1;
-
-      if (canGoLeft) {
-        int idx = lastZ * width + (lastX - 1);
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.min(nextDistance, 127);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
-      if (canGoRight) {
-        int idx = lastZ * width + (lastX + 1);
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.min(nextDistance, 127);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
-      if (canGoUp) {
-        int idx = (lastZ - 1) * width + lastX;
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.min(nextDistance, 127);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
-      if (canGoDown) {
-        int idx = (lastZ + 1) * width + lastX;
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.min(nextDistance, 127);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
-      if (canGoLeft && canGoUp) {
-        int idx = (lastZ - 1) * width + (lastX - 1);
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.min(nextDistance, 127);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
-      if (canGoRight && canGoUp) {
-        int idx = (lastZ - 1) * width + (lastX + 1);
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.min(nextDistance, 127);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
-      if (canGoLeft && canGoDown) {
-        int idx = (lastZ + 1) * width + (lastX - 1);
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.min(nextDistance, 127);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
-      if (canGoRight && canGoDown) {
-        int idx = (lastZ + 1) * width + (lastX + 1);
-        if (distanceMap[idx] == 0 && !explored.get(idx)) {
-          distanceMap[idx] = (byte) Math.min(nextDistance, 127);
-          queue.enqueue(idx);
-          explored.set(idx);
-        }
-      }
+      processNeighbors(lastX, lastZ, nextDistance, explored, queue, d ->
+        Math.min(d, 127)
+      );
     }
 
     for (int z = 0; z < height; z++) {

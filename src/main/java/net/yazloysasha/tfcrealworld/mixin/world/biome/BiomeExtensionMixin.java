@@ -30,16 +30,24 @@ public class BiomeExtensionMixin {
   @Shadow
   private boolean volcanic;
 
+  private boolean isCanyonBiome() {
+    String biomePath = key.location().getPath();
+    return biomePath.equals("canyons") || biomePath.equals("doline_canyons");
+  }
+
+  private boolean shouldRemoveVolcanicFeatures() {
+    return (
+      TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get() &&
+      volcanic &&
+      isCanyonBiome()
+    );
+  }
+
   @Inject(method = "isVolcanic", at = @At("HEAD"), cancellable = true)
   private void tfcrealworld$overrideIsVolcanic(
     CallbackInfoReturnable<Boolean> cir
   ) {
-    if (
-      TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get() &&
-      volcanic &&
-      (key.location().getPath().equals("canyons") ||
-        key.location().getPath().equals("doline_canyons"))
-    ) {
+    if (shouldRemoveVolcanicFeatures()) {
       cir.setReturnValue(false);
     }
   }
@@ -49,20 +57,15 @@ public class BiomeExtensionMixin {
     Seed seed,
     CallbackInfoReturnable<@Nullable BiomeNoiseSampler> cir
   ) {
-    if (
-      TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get() &&
-      volcanic &&
-      (key.location().getPath().equals("canyons") ||
-        key.location().getPath().equals("doline_canyons"))
-    ) {
-      // Return original noise without volcanoes
-      if (key.location().getPath().equals("canyons")) {
+    if (shouldRemoveVolcanicFeatures()) {
+      String biomePath = key.location().getPath();
+      if (biomePath.equals("canyons")) {
         cir.setReturnValue(
           BiomeNoiseSampler.fromHeightNoise(
             BiomeNoise.canyons(seed.seed(), -2, 40)
           )
         );
-      } else if (key.location().getPath().equals("doline_canyons")) {
+      } else if (biomePath.equals("doline_canyons")) {
         cir.setReturnValue(
           BiomeNoiseSampler.fromHeightNoise(
             BiomeNoise.bowlDolines(
@@ -81,12 +84,7 @@ public class BiomeExtensionMixin {
     Seed seed,
     CallbackInfoReturnable<SurfaceBuilder> cir
   ) {
-    if (
-      TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get() &&
-      volcanic &&
-      (key.location().getPath().equals("canyons") ||
-        key.location().getPath().equals("doline_canyons"))
-    ) {
+    if (shouldRemoveVolcanicFeatures()) {
       cir.setReturnValue(NormalSurfaceBuilder.INSTANCE.apply(seed));
     }
   }
