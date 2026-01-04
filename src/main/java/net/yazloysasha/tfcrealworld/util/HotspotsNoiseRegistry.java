@@ -1,27 +1,30 @@
 package net.yazloysasha.tfcrealworld.util;
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import java.util.Map;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.world.noise.PNGHotspotsNoise;
 
-public class HotspotsNoiseRegistry {
+/**
+ * Registry for storing PNGHotspotsNoise instances for each RegionGenerator.
+ */
+public class HotspotsNoiseRegistry extends BaseNoiseRegistry<PNGHotspotsNoise> {
 
-  private static final Map<RegionGenerator, PNGHotspotsNoise> REGISTRY =
-    new Object2ObjectOpenHashMap<>();
+  private static final HotspotsNoiseRegistry INSTANCE =
+    new HotspotsNoiseRegistry();
+
+  private HotspotsNoiseRegistry() {}
 
   public static void register(
     RegionGenerator generator,
-    PNGHotspotsNoise hotspotsNoise
+    PNGHotspotsNoise noise
   ) {
-    REGISTRY.put(generator, hotspotsNoise);
+    INSTANCE.registry.put(generator, noise);
   }
 
   public static PNGHotspotsNoise get(RegionGenerator generator) {
-    return REGISTRY.get(generator);
+    return INSTANCE.registry.get(generator);
   }
 
   public static void unregister(RegionGenerator generator) {
-    REGISTRY.remove(generator);
+    INSTANCE.registry.remove(generator);
   }
 }

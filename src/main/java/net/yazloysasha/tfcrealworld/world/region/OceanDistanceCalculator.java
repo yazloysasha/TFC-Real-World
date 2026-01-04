@@ -23,38 +23,31 @@ public class OceanDistanceCalculator extends RegionPointCalculator {
       return;
     }
 
-    forEachPoint(
-      region,
-      point -> {
-        point.distanceToOcean = cache.getDistance(
-          point.x,
-          point.z,
-          point.land()
-        );
-      }
-    );
-    forEachPoint(
-      region,
-      point -> {
-        if (!point.land()) {
-          boolean hasNonIslandLandNeighbor = false;
-          for (int dx = -1; dx <= 1; dx++) {
-            for (int dz = -1; dz <= 1; dz++) {
-              if (dx == 0 && dz == 0) continue;
-              @Nullable
-              Region.Point neighbor = region.atOffset(point.index, dx, dz);
-              if (neighbor != null && neighbor.land() && !neighbor.island()) {
-                hasNonIslandLandNeighbor = true;
-                break;
-              }
-            }
-            if (hasNonIslandLandNeighbor) break;
-          }
-          if (hasNonIslandLandNeighbor) {
-            point.setShore();
-          }
+    forEachPoint(region, point -> {
+      point.distanceToOcean = cache.getDistance(point.x, point.z, point.land());
+    });
+
+    // Identify shore points for river generation
+    forEachPoint(region, point -> {
+      if (!point.land()) {
+        if (hasNonIslandLandNeighbor(region, point)) {
+          point.setShore();
         }
       }
-    );
+    });
+  }
+
+  private boolean hasNonIslandLandNeighbor(Region region, Region.Point point) {
+    for (int dx = -1; dx <= 1; dx++) {
+      for (int dz = -1; dz <= 1; dz++) {
+        if (dx == 0 && dz == 0) continue;
+        @Nullable
+        Region.Point neighbor = region.atOffset(point.index, dx, dz);
+        if (neighbor != null && neighbor.land() && !neighbor.island()) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }
