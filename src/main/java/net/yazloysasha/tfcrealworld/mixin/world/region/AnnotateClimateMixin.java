@@ -3,6 +3,7 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 import net.dries007.tfc.world.region.AnnotateClimate;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.dries007.tfc.world.region.Units;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,6 +13,33 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(AnnotateClimate.class)
 public class AnnotateClimateMixin {
+
+  @org.spongepowered.asm.mixin.injection.Redirect(
+    method = "apply",
+    at = @At(
+      value = "INVOKE",
+      target = "Lnet/dries007/tfc/world/noise/Noise2D;noise(DD)D",
+      ordinal = 0
+    )
+  )
+  private double tfcrealworld$transformZForTemperature(
+    net.dries007.tfc.world.noise.Noise2D instance,
+    double x,
+    double z
+  ) {
+    if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
+      return instance.noise(x, z);
+    }
+
+    int temperatureScale = TFCRealWorldConfig.TEMPERATURE_SCALE.get();
+    if (temperatureScale > 0) {
+      double offsetInGrid =
+        (double) (-temperatureScale / 2) / Units.GRID_WIDTH_IN_BLOCK;
+      return instance.noise(x, z - offsetInGrid);
+    }
+
+    return instance.noise(x, z);
+  }
 
   /**
    * Overrides rainfallVariance calculation when using map.
