@@ -276,7 +276,7 @@ public class KoppenParameterCache {
   private void buildCache() {
     LOGGER.info("Building Köppen parameter cache...");
 
-    float[] temperatures = generateRange(-20.0f, 30.0f, 0.1f);
+    float[] temperatures = generateRange(-20.0f, 30.0f, 1.0f);
     float[] rainfalls = generateRange(0.0f, 500.0f, 10.0f);
     float[] rainVars = generateRange(-1.0f, 1.0f, 0.1f);
     Map<KoppenClimateClassification, Integer> climateCounts = new HashMap<>();
