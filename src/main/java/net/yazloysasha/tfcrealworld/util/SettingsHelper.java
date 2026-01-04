@@ -36,9 +36,4 @@ public class SettingsHelper {
   public static int getHorizontalWorldScale(Settings settings) {
     return TFCRealWorldConfig.getHorizontalWorldScale();
   }
-
-  @Deprecated
-  public static int getWorldScale(Settings settings) {
-    return getVerticalWorldScale(settings);
-  }
 }
