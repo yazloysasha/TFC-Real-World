@@ -48,36 +48,22 @@ public class GlobalWestCoastDistanceCache extends BaseDistanceCache {
   }
 
   public byte getDistance(int gridX, int gridZ) {
-    double clampedX = Math.clamp(gridX, -worldRadiusGridX, worldRadiusGridX);
-    double clampedZ = Math.clamp(gridZ, -worldRadiusGridZ, worldRadiusGridZ);
+    InterpolationResult interpolation = getInterpolationData(gridX, gridZ);
 
-    double imageX = centerX + clampedX * scaleX;
-    double imageZ = centerZ + clampedZ * scaleZ;
-
-    imageX = Math.clamp(imageX, 0, width - 1);
-    imageZ = Math.clamp(imageZ, 0, height - 1);
-
-    int x0 = (int) Math.floor(imageX);
-    int z0 = (int) Math.floor(imageZ);
-    int x1 = Math.min(x0 + 1, width - 1);
-    int z1 = Math.min(z0 + 1, height - 1);
-
-    double fx = imageX - x0;
-    double fz = imageZ - z0;
-
-    int idx00 = z0 * width + x0;
-    int idx10 = z0 * width + x1;
-    int idx01 = z1 * width + x0;
-    int idx11 = z1 * width + x1;
+    int idx00 = interpolation.z0 * width + interpolation.x0;
+    int idx10 = interpolation.z0 * width + interpolation.x1;
+    int idx01 = interpolation.z1 * width + interpolation.x0;
+    int idx11 = interpolation.z1 * width + interpolation.x1;
 
     byte dist00 = distanceMap[idx00];
     byte dist10 = distanceMap[idx10];
     byte dist01 = distanceMap[idx01];
     byte dist11 = distanceMap[idx11];
 
-    double dist0 = dist00 * (1 - fx) + dist10 * fx;
-    double dist1 = dist01 * (1 - fx) + dist11 * fx;
-    double finalDist = dist0 * (1 - fz) + dist1 * fz;
+    double dist0 = dist00 * (1 - interpolation.fx) + dist10 * interpolation.fx;
+    double dist1 = dist01 * (1 - interpolation.fx) + dist11 * interpolation.fx;
+    double finalDist =
+      dist0 * (1 - interpolation.fz) + dist1 * interpolation.fz;
     return (byte) Math.max(0, Math.round(finalDist));
   }
 

@@ -48,27 +48,12 @@ public class GlobalOceanDistanceCache extends BaseDistanceCache {
   }
 
   public byte getDistance(int gridX, int gridZ, boolean isLand) {
-    double clampedX = Math.clamp(gridX, -worldRadiusGridX, worldRadiusGridX);
-    double clampedZ = Math.clamp(gridZ, -worldRadiusGridZ, worldRadiusGridZ);
+    InterpolationResult interpolation = getInterpolationData(gridX, gridZ);
 
-    double imageX = centerX + clampedX * scaleX;
-    double imageZ = centerZ + clampedZ * scaleZ;
-
-    imageX = Math.clamp(imageX, 0, width - 1);
-    imageZ = Math.clamp(imageZ, 0, height - 1);
-
-    int x0 = (int) Math.floor(imageX);
-    int z0 = (int) Math.floor(imageZ);
-    int x1 = Math.min(x0 + 1, width - 1);
-    int z1 = Math.min(z0 + 1, height - 1);
-
-    double fx = imageX - x0;
-    double fz = imageZ - z0;
-
-    int idx00 = z0 * width + x0;
-    int idx10 = z0 * width + x1;
-    int idx01 = z1 * width + x0;
-    int idx11 = z1 * width + x1;
+    int idx00 = interpolation.z0 * width + interpolation.x0;
+    int idx10 = interpolation.z0 * width + interpolation.x1;
+    int idx01 = interpolation.z1 * width + interpolation.x0;
+    int idx11 = interpolation.z1 * width + interpolation.x1;
 
     byte dist00 = distanceMap[idx00];
     byte dist10 = distanceMap[idx10];
@@ -81,9 +66,9 @@ public class GlobalOceanDistanceCache extends BaseDistanceCache {
       double dist01Pos = dist01 > 0 ? dist01 : 0;
       double dist11Pos = dist11 > 0 ? dist11 : 0;
 
-      double dist0 = dist00Pos * (1 - fx) + dist10Pos * fx;
-      double dist1 = dist01Pos * (1 - fx) + dist11Pos * fx;
-      double finalDist = dist0 * (1 - fz) + dist1 * fz;
+      double dist0 = dist00Pos * (1 - interpolation.fx) + dist10Pos * interpolation.fx;
+      double dist1 = dist01Pos * (1 - interpolation.fx) + dist11Pos * interpolation.fx;
+      double finalDist = dist0 * (1 - interpolation.fz) + dist1 * interpolation.fz;
       return (byte) Math.max(0, Math.round(finalDist));
     } else {
       if (dist00 == -2 || dist10 == -2 || dist01 == -2 || dist11 == -2) {
