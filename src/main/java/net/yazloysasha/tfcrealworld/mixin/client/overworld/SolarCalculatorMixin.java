@@ -11,23 +11,26 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(SolarCalculator.class)
 public class SolarCalculatorMixin {
 
+  private static int getTransformedZ(int z) {
+    return z + TFCRealWorldConfig.POLE_OFFSET.get();
+  }
+
+  private static float getActualHemisphereScale() {
+    return (float) TFCRealWorldConfig.VERTICAL_WORLD_SCALE.get() * 0.5f;
+  }
+
   @Inject(method = "getLatitude", at = @At("HEAD"), cancellable = true)
   private static void tfcrealworld$transformForLatitude(
     int z,
     float hemisphereScale,
     CallbackInfoReturnable<Float> cir
   ) {
-    int poleOffset = TFCRealWorldConfig.getPoleOffset();
-    int transformedZ = z + poleOffset;
-
-    float verticalWorldScale =
-      (float) TFCRealWorldConfig.getVerticalWorldScale();
-    float actualHemisphereScale = verticalWorldScale * 0.5f;
+    int transformedZ = getTransformedZ(z);
+    float actualHemisphereScale = getActualHemisphereScale();
 
     float triangleInput = transformedZ - 0.5f * actualHemisphereScale;
 
-    boolean poleLooping = TFCRealWorldConfig.getPoleLooping();
-    if (!poleLooping && actualHemisphereScale > 0) {
+    if (!TFCRealWorldConfig.POLE_LOOPING.get() && actualHemisphereScale > 0) {
       triangleInput = net.minecraft.util.Mth.clamp(
         triangleInput,
         -actualHemisphereScale,
@@ -52,8 +55,7 @@ public class SolarCalculatorMixin {
     ordinal = 0
   )
   private static int tfcrealworld$transformZForHemisphere(int z) {
-    int poleOffset = TFCRealWorldConfig.getPoleOffset();
-    return z + poleOffset;
+    return getTransformedZ(z);
   }
 
   @Inject(
@@ -66,12 +68,9 @@ public class SolarCalculatorMixin {
     float hemisphereScale,
     CallbackInfoReturnable<Boolean> cir
   ) {
-    boolean poleLooping = TFCRealWorldConfig.getPoleLooping();
-    if (!poleLooping) {
-      float verticalWorldScale =
-        (float) TFCRealWorldConfig.getVerticalWorldScale();
-      float actualHemisphereScale = verticalWorldScale * 0.5f;
-      int adjustedZ = z - (int) (actualHemisphereScale / 2);
+    if (!TFCRealWorldConfig.POLE_LOOPING.get()) {
+      float actualHemisphereScale = getActualHemisphereScale();
+      int adjustedZ = (int) (z - (actualHemisphereScale / 2));
       int poleToPoleDistance = (int) (actualHemisphereScale * 2);
 
       if (adjustedZ < -poleToPoleDistance) {

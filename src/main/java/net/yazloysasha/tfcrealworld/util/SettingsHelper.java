@@ -30,10 +30,10 @@ public class SettingsHelper {
       }
     }
 
-    return TFCRealWorldConfig.getVerticalWorldScale();
+    return TFCRealWorldConfig.VERTICAL_WORLD_SCALE.get();
   }
 
   public static int getHorizontalWorldScale(Settings settings) {
-    return TFCRealWorldConfig.getHorizontalWorldScale();
+    return TFCRealWorldConfig.HORIZONTAL_WORLD_SCALE.get();
   }
 }

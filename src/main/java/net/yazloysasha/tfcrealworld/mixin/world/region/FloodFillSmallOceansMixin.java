@@ -21,7 +21,7 @@ public class FloodFillSmallOceansMixin {
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    if (TFCRealWorldConfig.getContinentFromMap()) {
+    if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
       ci.cancel();
     }
   }

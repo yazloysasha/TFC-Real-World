@@ -104,24 +104,24 @@ public final class TFCRealWorld {
   private void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
     if (event.getEntity() instanceof ServerPlayer serverPlayer) {
       ConfigSyncPacket packet = new ConfigSyncPacket(
-        TFCRealWorldConfig.getContinentalness(),
-        TFCRealWorldConfig.getFiniteContinents(),
-        TFCRealWorldConfig.getFlatBedrock(),
-        TFCRealWorldConfig.getGrassDensity(),
-        TFCRealWorldConfig.getSpawnCenterX(),
-        TFCRealWorldConfig.getSpawnCenterZ(),
-        TFCRealWorldConfig.getSpawnDistance(),
-        TFCRealWorldConfig.getTemperatureScale(),
-        TFCRealWorldConfig.getRainfallScale(),
-        TFCRealWorldConfig.getVerticalWorldScale(),
-        TFCRealWorldConfig.getHorizontalWorldScale(),
-        TFCRealWorldConfig.getContinentFromMap(),
-        TFCRealWorldConfig.getAltitudeFromMap(),
-        TFCRealWorldConfig.getHotspotsFromMap(),
-        TFCRealWorldConfig.getKoppenFromMap(),
-        TFCRealWorldConfig.getPoleOffset(),
-        TFCRealWorldConfig.getPoleLooping(),
-        TFCRealWorldConfig.getCanyonsNotVolcanic()
+        TFCRealWorldConfig.CONTINENTALNESS.get(),
+        TFCRealWorldConfig.FINITE_CONTINENTS.get(),
+        TFCRealWorldConfig.FLAT_BEDROCK.get(),
+        TFCRealWorldConfig.GRASS_DENSITY.get(),
+        TFCRealWorldConfig.SPAWN_CENTER_X.get(),
+        TFCRealWorldConfig.SPAWN_CENTER_Z.get(),
+        TFCRealWorldConfig.SPAWN_DISTANCE.get(),
+        TFCRealWorldConfig.TEMPERATURE_SCALE.get(),
+        TFCRealWorldConfig.RAINFALL_SCALE.get(),
+        TFCRealWorldConfig.VERTICAL_WORLD_SCALE.get(),
+        TFCRealWorldConfig.HORIZONTAL_WORLD_SCALE.get(),
+        TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
+        TFCRealWorldConfig.ALTITUDE_FROM_MAP.get(),
+        TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get(),
+        TFCRealWorldConfig.KOPPEN_FROM_MAP.get(),
+        TFCRealWorldConfig.POLE_OFFSET.get(),
+        TFCRealWorldConfig.POLE_LOOPING.get(),
+        TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get()
       );
       serverPlayer.connection.send(packet);
     }
@@ -268,9 +268,10 @@ public final class TFCRealWorld {
 
   private List<String> getDefaultMapList() {
     List<String> defaultMaps = new ArrayList<>();
-    defaultMaps.add("continent");
+    defaultMaps.add("continents");
     defaultMaps.add("altitude");
     defaultMaps.add("hotspots");
+    defaultMaps.add("koppen");
     return defaultMaps;
   }
 

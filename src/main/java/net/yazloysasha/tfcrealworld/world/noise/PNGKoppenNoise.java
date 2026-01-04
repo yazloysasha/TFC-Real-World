@@ -82,7 +82,7 @@ public class PNGKoppenNoise {
       worldRadiusBlocksZ /
       (double) net.dries007.tfc.world.region.Units.GRID_WIDTH_IN_BLOCK;
 
-    BufferedImage image = BasePNGNoise.loadImageFromCache("koppen");
+    BufferedImage image = BasePNGNoise.loadImage("koppen");
     if (image == null) {
       throw new RuntimeException(
         "Failed to load koppen map. Map file is required when generating climate from Köppen map."

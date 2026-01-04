@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
 /**
  * Drawing utility.
  */
-@SuppressWarnings({ "unchecked", "unused", "UnusedReturnValue" })
+@SuppressWarnings({ "unchecked", "UnusedReturnValue" })
 public abstract class Artist<T, A extends Artist<T, A>> {
 
   public static final String ARTIST_DIRECTORY = "../../artist";

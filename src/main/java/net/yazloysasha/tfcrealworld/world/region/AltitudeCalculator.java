@@ -9,23 +9,22 @@ import net.yazloysasha.tfcrealworld.world.noise.PNGAltitudeNoise;
 /**
  * Calculator for land height and water depth based on altitude map.
  */
-public class AltitudeCalculator {
+public class AltitudeCalculator extends RegionPointCalculator {
 
-  public static void calculateAltitude(
-    Region region,
-    RegionGenerator generator
-  ) {
-    if (!TFCRealWorldConfig.getAltitudeFromMap()) {
+  @Override
+  public void calculate(Region region, RegionGenerator generator) {
+    if (!TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
       return;
     }
 
-    PNGAltitudeNoise altitudeNoise = AltitudeNoiseRegistry.get(generator);
+    final PNGAltitudeNoise altitudeNoise = AltitudeNoiseRegistry.get(generator);
     if (altitudeNoise == null) {
       return;
     }
 
-    for (final var point : region.points()) {
-      if (point != null) {
+    forEachPoint(
+      region,
+      point -> {
         if (point.land()) {
           point.baseLandHeight = altitudeNoise.getBaseLandHeight(
             (double) point.x,
@@ -38,6 +37,6 @@ public class AltitudeCalculator {
           );
         }
       }
-    }
+    );
   }
 }

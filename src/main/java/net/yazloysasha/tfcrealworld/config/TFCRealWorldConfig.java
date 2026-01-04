@@ -1,5 +1,7 @@
 package net.yazloysasha.tfcrealworld.config;
 
+import java.util.Arrays;
+import java.util.List;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class TFCRealWorldConfig {
@@ -8,95 +10,97 @@ public class TFCRealWorldConfig {
     new ModConfigSpec.Builder();
   public static final ModConfigSpec SPEC;
 
-  // World generation settings (from overworld.json -> tfc_settings, excluding rock_layer_settings)
-  public static final ModConfigSpec.DoubleValue CONTINENTALNESS;
-  public static final ModConfigSpec.BooleanValue FINITE_CONTINENTS;
-  public static final ModConfigSpec.BooleanValue FLAT_BEDROCK;
-  public static final ModConfigSpec.DoubleValue GRASS_DENSITY;
-  public static final ModConfigSpec.IntValue SPAWN_CENTER_X;
-  public static final ModConfigSpec.IntValue SPAWN_CENTER_Z;
-  public static final ModConfigSpec.IntValue SPAWN_DISTANCE;
-  public static final ModConfigSpec.IntValue TEMPERATURE_SCALE;
-  public static final ModConfigSpec.IntValue RAINFALL_SCALE;
+  // World generation settings
+  public static final ConfigOption<Double> CONTINENTALNESS;
+  public static final ConfigOption<Boolean> FINITE_CONTINENTS;
+  public static final ConfigOption<Boolean> FLAT_BEDROCK;
+  public static final ConfigOption<Double> GRASS_DENSITY;
+  public static final ConfigOption<Integer> SPAWN_CENTER_X;
+  public static final ConfigOption<Integer> SPAWN_CENTER_Z;
+  public static final ConfigOption<Integer> SPAWN_DISTANCE;
+  public static final ConfigOption<Integer> TEMPERATURE_SCALE;
+  public static final ConfigOption<Integer> RAINFALL_SCALE;
 
   // Generation mode settings
-  public static final ModConfigSpec.IntValue VERTICAL_WORLD_SCALE;
-  public static final ModConfigSpec.IntValue HORIZONTAL_WORLD_SCALE;
-  public static final ModConfigSpec.BooleanValue CONTINENT_FROM_MAP;
-  public static final ModConfigSpec.BooleanValue ALTITUDE_FROM_MAP;
-  public static final ModConfigSpec.BooleanValue HOTSPOTS_FROM_MAP;
-  public static final ModConfigSpec.BooleanValue KOPPEN_FROM_MAP;
-  public static final ModConfigSpec.IntValue POLE_OFFSET;
-  public static final ModConfigSpec.BooleanValue POLE_LOOPING;
-  public static final ModConfigSpec.BooleanValue CANYONS_NOT_VOLCANIC;
+  public static final ConfigOption<Integer> VERTICAL_WORLD_SCALE;
+  public static final ConfigOption<Integer> HORIZONTAL_WORLD_SCALE;
+  public static final ConfigOption<Boolean> CONTINENT_FROM_MAP;
+  public static final ConfigOption<Boolean> ALTITUDE_FROM_MAP;
+  public static final ConfigOption<Boolean> HOTSPOTS_FROM_MAP;
+  public static final ConfigOption<Boolean> KOPPEN_FROM_MAP;
+  public static final ConfigOption<Integer> POLE_OFFSET;
+  public static final ConfigOption<Boolean> POLE_LOOPING;
+  public static final ConfigOption<Boolean> CANYONS_NOT_VOLCANIC;
+
+  private static final List<ConfigOption<?>> allOptions;
 
   static {
     BUILDER.comment("TFC: Real World Configuration").push("world_generation");
 
-    CONTINENTALNESS = BUILDER.comment(
-      "Continentalness value (0.0 to 1.0)"
-    ).defineInRange("continentalness", 0.5, 0.0, 1.0);
-
-    BUILDER.comment("");
-
-    FINITE_CONTINENTS = BUILDER.comment("Whether continents are finite").define(
-      "finite_continents",
-      false
-    );
-
-    BUILDER.comment("");
-
-    FLAT_BEDROCK = BUILDER.comment("Whether bedrock is flat").define(
-      "flat_bedrock",
-      false
-    );
-
-    BUILDER.comment("");
-
-    GRASS_DENSITY = BUILDER.comment("Grass density (0.0 to 1.0)").defineInRange(
-      "grass_density",
+    CONTINENTALNESS = new ConfigOption<>(
+      BUILDER,
+      "continentalness",
+      "Continentalness value (0.0 to 1.0)",
       0.5,
       0.0,
       1.0
     );
-
-    BUILDER.comment("");
-
-    SPAWN_CENTER_X = BUILDER.comment("Spawn center X coordinate").defineInRange(
+    FINITE_CONTINENTS = new ConfigOption<>(
+      BUILDER,
+      "finite_continents",
+      "Whether continents are finite",
+      false
+    );
+    FLAT_BEDROCK = new ConfigOption<>(
+      BUILDER,
+      "flat_bedrock",
+      "Whether bedrock is flat",
+      false
+    );
+    GRASS_DENSITY = new ConfigOption<>(
+      BUILDER,
+      "grass_density",
+      "Grass density (0.0 to 1.0)",
+      0.5,
+      0.0,
+      1.0
+    );
+    SPAWN_CENTER_X = new ConfigOption<>(
+      BUILDER,
       "spawn_center_x",
+      "Spawn center X coordinate",
       -9000,
       -100000,
       100000
     );
-
-    BUILDER.comment("");
-
-    SPAWN_CENTER_Z = BUILDER.comment("Spawn center Z coordinate").defineInRange(
+    SPAWN_CENTER_Z = new ConfigOption<>(
+      BUILDER,
       "spawn_center_z",
+      "Spawn center Z coordinate",
       -3000,
       -100000,
       100000
     );
-
-    BUILDER.comment("");
-
-    SPAWN_DISTANCE = BUILDER.comment("Spawn distance in blocks").defineInRange(
+    SPAWN_DISTANCE = new ConfigOption<>(
+      BUILDER,
       "spawn_distance",
+      "Spawn distance in blocks",
       100,
       0,
       10000
     );
-
-    BUILDER.comment("");
-
-    TEMPERATURE_SCALE = BUILDER.comment(
-      "Temperature scale in blocks"
-    ).defineInRange("temperature_scale", 40000, 1000, 100000);
-
-    BUILDER.comment("");
-
-    RAINFALL_SCALE = BUILDER.comment("Rainfall scale in blocks").defineInRange(
+    TEMPERATURE_SCALE = new ConfigOption<>(
+      BUILDER,
+      "temperature_scale",
+      "Temperature scale in blocks",
+      40000,
+      1000,
+      100000
+    );
+    RAINFALL_SCALE = new ConfigOption<>(
+      BUILDER,
       "rainfall_scale",
+      "Rainfall scale in blocks",
       40000,
       1000,
       100000
@@ -105,92 +109,101 @@ public class TFCRealWorldConfig {
     BUILDER.pop();
     BUILDER.push("generation_modes");
 
-    VERTICAL_WORLD_SCALE = BUILDER.comment(
-      "Vertical world scale (diameter) in blocks. Affects distance between poles and globe_trotter achievement."
-    ).defineInRange("vertical_world_scale", 40000, 1000, 200000);
-
-    BUILDER.comment("");
-
-    HORIZONTAL_WORLD_SCALE = BUILDER.comment(
-      "Horizontal world scale (diameter) in blocks. Affects map stretching when generating from map."
-    ).defineInRange("horizontal_world_scale", 40000, 1000, 200000);
-
-    BUILDER.comment("");
-
-    CONTINENT_FROM_MAP = BUILDER.comment(
-      "Whether to generate continents from map (true) or procedurally (false)"
-    ).define("continent_from_map", true);
-
-    BUILDER.comment("");
-
-    ALTITUDE_FROM_MAP = BUILDER.comment(
+    VERTICAL_WORLD_SCALE = new ConfigOption<>(
+      BUILDER,
+      "vertical_world_scale",
+      "Vertical world scale (diameter) in blocks. Affects distance between poles and globe_trotter achievement.",
+      40000,
+      1000,
+      200000
+    );
+    HORIZONTAL_WORLD_SCALE = new ConfigOption<>(
+      BUILDER,
+      "horizontal_world_scale",
+      "Horizontal world scale (diameter) in blocks. Affects map stretching when generating from map.",
+      40000,
+      1000,
+      200000
+    );
+    CONTINENT_FROM_MAP = new ConfigOption<>(
+      BUILDER,
+      "continent_from_map",
+      "Whether to generate continents from map (true) or procedurally (false)",
+      true
+    );
+    ALTITUDE_FROM_MAP = new ConfigOption<>(
+      BUILDER,
+      "altitude_from_map",
       "Whether to generate base land height and ocean depth from altitude map (true) or procedurally (false). " +
       "Uses grayscale altitude.png where brightness 128 = sea level (0m), brightness 255 = highest elevation. " +
       "For land: values below sea level (brightness < 128) are treated as 0. " +
       "Land elevations (brightness >= 128) are mapped to baseLandHeight range (0-24). " +
       "For ocean: underwater areas (brightness < 128) are mapped to baseOceanDepth range (0-15), " +
-      "where lower brightness (deeper) = higher depth value."
-    ).define("altitude_from_map", true);
-
-    BUILDER.comment("");
-
-    HOTSPOTS_FROM_MAP = BUILDER.comment(
-      "Whether to generate hotspots from map (true) or procedurally (false). Uses hotspots.png with grayscale values: 0 (NoActivity), 64 (Ancient), 127 (Extinct), 192 (Dormant), 255 (Active)."
-    ).define("hotspots_from_map", true);
-
-    BUILDER.comment("");
-
-    KOPPEN_FROM_MAP = BUILDER.comment(
+      "where lower brightness (deeper) = higher depth value.",
+      true
+    );
+    HOTSPOTS_FROM_MAP = new ConfigOption<>(
+      BUILDER,
+      "hotspots_from_map",
+      "Whether to generate hotspots from map (true) or procedurally (false). Uses hotspots.png with grayscale values: 0 (NoActivity), 64 (Ancient), 127 (Extinct), 192 (Dormant), 255 (Active).",
+      true
+    );
+    KOPPEN_FROM_MAP = new ConfigOption<>(
+      BUILDER,
+      "koppen_from_map",
       "Whether to generate climate parameters (temperature, rainfall, rainfall variance) from Köppen climate map (true) or procedurally (false). " +
-      "When enabled, reads koppen.png map and generates procedural parameter values that are valid for each Köppen climate classification."
-    ).define("koppen_from_map", true);
-
-    BUILDER.comment("");
-
-    POLE_OFFSET = BUILDER.comment("Pole offset in blocks").defineInRange(
+      "When enabled, reads koppen.png map and generates procedural parameter values that are valid for each Köppen climate classification.",
+      true
+    );
+    POLE_OFFSET = new ConfigOption<>(
+      BUILDER,
       "pole_offset",
+      "Pole offset in blocks",
       10000,
       -100000,
       100000
     );
-
-    BUILDER.comment("");
-
-    POLE_LOOPING = BUILDER.comment(
-      "Whether poles should loop (cyclical)"
-    ).define("pole_looping", false);
+    POLE_LOOPING = new ConfigOption<>(
+      BUILDER,
+      "pole_looping",
+      "Whether poles should loop (cyclical)",
+      false
+    );
 
     BUILDER.pop();
     BUILDER.push("biome_modifications");
 
-    BUILDER.comment(
-      "Whether canyons and doline_canyons biomes should have volcanic features removed."
+    CANYONS_NOT_VOLCANIC = new ConfigOption<>(
+      BUILDER,
+      "canyons_not_volcanic",
+      "Whether canyons and doline_canyons biomes should have volcanic features removed.",
+      true
     );
-    CANYONS_NOT_VOLCANIC = BUILDER.define("canyons_not_volcanic", true);
 
     BUILDER.pop();
     SPEC = BUILDER.build();
-  }
 
-  private static boolean serverConfigActive = false;
-  private static Double serverContinentalness;
-  private static Boolean serverFiniteContinents;
-  private static Boolean serverFlatBedrock;
-  private static Double serverGrassDensity;
-  private static Integer serverSpawnCenterX;
-  private static Integer serverSpawnCenterZ;
-  private static Integer serverSpawnDistance;
-  private static Integer serverTemperatureScale;
-  private static Integer serverRainfallScale;
-  private static Integer serverVerticalWorldScale;
-  private static Integer serverHorizontalWorldScale;
-  private static Boolean serverContinentFromMap;
-  private static Boolean serverAltitudeFromMap;
-  private static Boolean serverHotspotsFromMap;
-  private static Boolean serverKoppenFromMap;
-  private static Integer serverPoleOffset;
-  private static Boolean serverPoleLooping;
-  private static Boolean serverCanyonsNotVolcanic;
+    allOptions = Arrays.asList(
+      CONTINENTALNESS,
+      FINITE_CONTINENTS,
+      FLAT_BEDROCK,
+      GRASS_DENSITY,
+      SPAWN_CENTER_X,
+      SPAWN_CENTER_Z,
+      SPAWN_DISTANCE,
+      TEMPERATURE_SCALE,
+      RAINFALL_SCALE,
+      VERTICAL_WORLD_SCALE,
+      HORIZONTAL_WORLD_SCALE,
+      CONTINENT_FROM_MAP,
+      ALTITUDE_FROM_MAP,
+      HOTSPOTS_FROM_MAP,
+      KOPPEN_FROM_MAP,
+      POLE_OFFSET,
+      POLE_LOOPING,
+      CANYONS_NOT_VOLCANIC
+    );
+  }
 
   public static void setServerConfig(
     double continentalness,
@@ -212,154 +225,27 @@ public class TFCRealWorldConfig {
     boolean poleLooping,
     boolean canyonsNotVolcanic
   ) {
-    serverContinentalness = continentalness;
-    serverFiniteContinents = finiteContinents;
-    serverFlatBedrock = flatBedrock;
-    serverGrassDensity = grassDensity;
-    serverSpawnCenterX = spawnCenterX;
-    serverSpawnCenterZ = spawnCenterZ;
-    serverSpawnDistance = spawnDistance;
-    serverTemperatureScale = temperatureScale;
-    serverRainfallScale = rainfallScale;
-    serverVerticalWorldScale = verticalWorldScale;
-    serverHorizontalWorldScale = horizontalWorldScale;
-    serverContinentFromMap = continentFromMap;
-    serverAltitudeFromMap = altitudeFromMap;
-    serverHotspotsFromMap = hotspotsFromMap;
-    serverKoppenFromMap = koppenFromMap;
-    serverPoleOffset = poleOffset;
-    serverPoleLooping = poleLooping;
-    serverCanyonsNotVolcanic = canyonsNotVolcanic;
-    serverConfigActive = true;
+    CONTINENTALNESS.setServerValue(continentalness);
+    FINITE_CONTINENTS.setServerValue(finiteContinents);
+    FLAT_BEDROCK.setServerValue(flatBedrock);
+    GRASS_DENSITY.setServerValue(grassDensity);
+    SPAWN_CENTER_X.setServerValue(spawnCenterX);
+    SPAWN_CENTER_Z.setServerValue(spawnCenterZ);
+    SPAWN_DISTANCE.setServerValue(spawnDistance);
+    TEMPERATURE_SCALE.setServerValue(temperatureScale);
+    RAINFALL_SCALE.setServerValue(rainfallScale);
+    VERTICAL_WORLD_SCALE.setServerValue(verticalWorldScale);
+    HORIZONTAL_WORLD_SCALE.setServerValue(horizontalWorldScale);
+    CONTINENT_FROM_MAP.setServerValue(continentFromMap);
+    ALTITUDE_FROM_MAP.setServerValue(altitudeFromMap);
+    HOTSPOTS_FROM_MAP.setServerValue(hotspotsFromMap);
+    KOPPEN_FROM_MAP.setServerValue(koppenFromMap);
+    POLE_OFFSET.setServerValue(poleOffset);
+    POLE_LOOPING.setServerValue(poleLooping);
+    CANYONS_NOT_VOLCANIC.setServerValue(canyonsNotVolcanic);
   }
 
   public static void clearServerConfig() {
-    serverConfigActive = false;
-    serverContinentalness = null;
-    serverFiniteContinents = null;
-    serverFlatBedrock = null;
-    serverGrassDensity = null;
-    serverSpawnCenterX = null;
-    serverSpawnCenterZ = null;
-    serverSpawnDistance = null;
-    serverTemperatureScale = null;
-    serverRainfallScale = null;
-    serverVerticalWorldScale = null;
-    serverHorizontalWorldScale = null;
-    serverContinentFromMap = null;
-    serverAltitudeFromMap = null;
-    serverHotspotsFromMap = null;
-    serverKoppenFromMap = null;
-    serverPoleOffset = null;
-    serverPoleLooping = null;
-    serverCanyonsNotVolcanic = null;
-  }
-
-  public static double getContinentalness() {
-    return serverConfigActive && serverContinentalness != null
-      ? serverContinentalness
-      : CONTINENTALNESS.get();
-  }
-
-  public static boolean getFiniteContinents() {
-    return serverConfigActive && serverFiniteContinents != null
-      ? serverFiniteContinents
-      : FINITE_CONTINENTS.get();
-  }
-
-  public static boolean getFlatBedrock() {
-    return serverConfigActive && serverFlatBedrock != null
-      ? serverFlatBedrock
-      : FLAT_BEDROCK.get();
-  }
-
-  public static double getGrassDensity() {
-    return serverConfigActive && serverGrassDensity != null
-      ? serverGrassDensity
-      : GRASS_DENSITY.get();
-  }
-
-  public static int getSpawnCenterX() {
-    return serverConfigActive && serverSpawnCenterX != null
-      ? serverSpawnCenterX
-      : SPAWN_CENTER_X.get();
-  }
-
-  public static int getSpawnCenterZ() {
-    return serverConfigActive && serverSpawnCenterZ != null
-      ? serverSpawnCenterZ
-      : SPAWN_CENTER_Z.get();
-  }
-
-  public static int getSpawnDistance() {
-    return serverConfigActive && serverSpawnDistance != null
-      ? serverSpawnDistance
-      : SPAWN_DISTANCE.get();
-  }
-
-  public static int getTemperatureScale() {
-    return serverConfigActive && serverTemperatureScale != null
-      ? serverTemperatureScale
-      : TEMPERATURE_SCALE.get();
-  }
-
-  public static int getRainfallScale() {
-    return serverConfigActive && serverRainfallScale != null
-      ? serverRainfallScale
-      : RAINFALL_SCALE.get();
-  }
-
-  public static int getVerticalWorldScale() {
-    return serverConfigActive && serverVerticalWorldScale != null
-      ? serverVerticalWorldScale
-      : VERTICAL_WORLD_SCALE.get();
-  }
-
-  public static int getHorizontalWorldScale() {
-    return serverConfigActive && serverHorizontalWorldScale != null
-      ? serverHorizontalWorldScale
-      : HORIZONTAL_WORLD_SCALE.get();
-  }
-
-  public static boolean getContinentFromMap() {
-    return serverConfigActive && serverContinentFromMap != null
-      ? serverContinentFromMap
-      : CONTINENT_FROM_MAP.get();
-  }
-
-  public static boolean getAltitudeFromMap() {
-    return serverConfigActive && serverAltitudeFromMap != null
-      ? serverAltitudeFromMap
-      : ALTITUDE_FROM_MAP.get();
-  }
-
-  public static boolean getHotspotsFromMap() {
-    return serverConfigActive && serverHotspotsFromMap != null
-      ? serverHotspotsFromMap
-      : HOTSPOTS_FROM_MAP.get();
-  }
-
-  public static boolean getKoppenFromMap() {
-    return serverConfigActive && serverKoppenFromMap != null
-      ? serverKoppenFromMap
-      : KOPPEN_FROM_MAP.get();
-  }
-
-  public static int getPoleOffset() {
-    return serverConfigActive && serverPoleOffset != null
-      ? serverPoleOffset
-      : POLE_OFFSET.get();
-  }
-
-  public static boolean getPoleLooping() {
-    return serverConfigActive && serverPoleLooping != null
-      ? serverPoleLooping
-      : POLE_LOOPING.get();
-  }
-
-  public static boolean getCanyonsNotVolcanic() {
-    return serverConfigActive && serverCanyonsNotVolcanic != null
-      ? serverCanyonsNotVolcanic
-      : CANYONS_NOT_VOLCANIC.get();
+    allOptions.forEach(ConfigOption::clearServerValue);
   }
 }

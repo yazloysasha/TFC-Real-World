@@ -113,7 +113,7 @@ public abstract class BasePNGNoise implements Noise2D {
     };
   }
 
-  protected double[] worldToImage(double x, double z) {
+  public double[] worldToImage(double x, double z) {
     double clampedX = Math.clamp(x, -worldRadiusGridX, worldRadiusGridX);
     double clampedZ = Math.clamp(z, -worldRadiusGridZ, worldRadiusGridZ);
 
@@ -174,11 +174,7 @@ public abstract class BasePNGNoise implements Noise2D {
     return worldRadiusGridZ;
   }
 
-  private BufferedImage loadImage(String mapName) {
-    return loadImageFromCache(mapName);
-  }
-
-  public static BufferedImage loadImageFromCache(String mapName) {
+  public static BufferedImage loadImage(String mapName) {
     synchronized (imageCache) {
       BufferedImage cached = imageCache.get(mapName);
       if (cached != null) {

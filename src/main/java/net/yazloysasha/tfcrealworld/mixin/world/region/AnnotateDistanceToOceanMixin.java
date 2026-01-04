@@ -17,11 +17,9 @@ public class AnnotateDistanceToOceanMixin {
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    if (TFCRealWorldConfig.getContinentFromMap()) {
-      OceanDistanceCalculator.calculateDistanceToOcean(
-        context.region,
-        context.generator()
-      );
+    if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
+      new OceanDistanceCalculator()
+        .calculate(context.region, context.generator());
       ci.cancel();
     }
   }
