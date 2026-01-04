@@ -93,7 +93,7 @@ public class TFCRealWorldConfig {
       BUILDER,
       "temperature_scale",
       "Temperature scale in blocks",
-      40000,
+      20000,
       1000,
       100000
     );
@@ -101,7 +101,7 @@ public class TFCRealWorldConfig {
       BUILDER,
       "rainfall_scale",
       "Rainfall scale in blocks",
-      40000,
+      20000,
       1000,
       100000
     );
