@@ -3,6 +3,8 @@ package net.yazloysasha.tfcrealworld.world.region;
 import java.util.function.Consumer;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Base class for region point calculators.
@@ -20,5 +22,13 @@ public abstract class RegionPointCalculator {
         pointConsumer.accept(point);
       }
     }
+  }
+
+  protected boolean isContinentFromMapEnabled() {
+    return TFCRealWorldConfig.CONTINENT_FROM_MAP.get();
+  }
+
+  protected <T> boolean validateCache(@Nullable T cache) {
+    return cache != null;
   }
 }

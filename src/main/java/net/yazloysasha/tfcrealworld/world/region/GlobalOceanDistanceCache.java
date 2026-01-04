@@ -1,19 +1,15 @@
 package net.yazloysasha.tfcrealworld.world.region;
 
-import com.mojang.logging.LogUtils;
 import it.unimi.dsi.fastutil.ints.IntArrayFIFOQueue;
 import java.util.BitSet;
 import net.yazloysasha.tfcrealworld.world.noise.PNGContinentNoise;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
 
 /**
  * Global cache of distances to ocean based on continent map.
  * Calculates distance to ocean for the entire map once during initialization.
  */
-public class GlobalOceanDistanceCache extends BaseDistanceCache {
-
-  private static final Logger LOGGER = LogUtils.getLogger();
+public class GlobalOceanDistanceCache extends BaseGlobalDistanceCache {
 
   @Nullable
   private static GlobalOceanDistanceCache instance = null;
@@ -21,25 +17,19 @@ public class GlobalOceanDistanceCache extends BaseDistanceCache {
   private GlobalOceanDistanceCache(PNGContinentNoise continentNoise) {
     super(continentNoise);
     calculateDistances(continentNoise);
-
-    LOGGER.info(
-      "Global ocean distance cache initialized: {}x{}",
-      width,
-      height
-    );
   }
 
   public static void initialize(PNGContinentNoise continentNoise) {
-    if (instance == null) {
-      instance = new GlobalOceanDistanceCache(continentNoise);
-    }
+    instance = initializeInstance(
+      instance,
+      new GlobalOceanDistanceCache(continentNoise),
+      "ocean distance"
+    );
   }
 
   public static void clear() {
-    if (instance != null) {
-      LOGGER.info("Clearing global ocean distance cache");
-      instance = null;
-    }
+    clearInstance(instance, "ocean distance");
+    instance = null;
   }
 
   @Nullable
@@ -49,16 +39,11 @@ public class GlobalOceanDistanceCache extends BaseDistanceCache {
 
   public byte getDistance(int gridX, int gridZ, boolean isLand) {
     InterpolationResult interpolation = getInterpolationData(gridX, gridZ);
-
-    int idx00 = interpolation.z0 * width + interpolation.x0;
-    int idx10 = interpolation.z0 * width + interpolation.x1;
-    int idx01 = interpolation.z1 * width + interpolation.x0;
-    int idx11 = interpolation.z1 * width + interpolation.x1;
-
-    byte dist00 = distanceMap[idx00];
-    byte dist10 = distanceMap[idx10];
-    byte dist01 = distanceMap[idx01];
-    byte dist11 = distanceMap[idx11];
+    byte[] distances = getDistanceValues(interpolation);
+    byte dist00 = distances[0];
+    byte dist10 = distances[1];
+    byte dist01 = distances[2];
+    byte dist11 = distances[3];
 
     if (isLand) {
       double dist00Pos = dist00 > 0 ? dist00 : 0;

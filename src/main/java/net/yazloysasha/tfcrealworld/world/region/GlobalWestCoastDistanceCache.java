@@ -1,19 +1,15 @@
 package net.yazloysasha.tfcrealworld.world.region;
 
-import com.mojang.logging.LogUtils;
 import it.unimi.dsi.fastutil.ints.IntArrayFIFOQueue;
 import java.util.BitSet;
 import net.yazloysasha.tfcrealworld.world.noise.PNGContinentNoise;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
 
 /**
  * Global cache of distances to west coast based on continent map.
  * Calculates distance to west coast for the entire map once during initialization.
  */
-public class GlobalWestCoastDistanceCache extends BaseDistanceCache {
-
-  private static final Logger LOGGER = LogUtils.getLogger();
+public class GlobalWestCoastDistanceCache extends BaseGlobalDistanceCache {
 
   @Nullable
   private static GlobalWestCoastDistanceCache instance = null;
@@ -21,25 +17,19 @@ public class GlobalWestCoastDistanceCache extends BaseDistanceCache {
   private GlobalWestCoastDistanceCache(PNGContinentNoise continentNoise) {
     super(continentNoise);
     calculateDistances(continentNoise);
-
-    LOGGER.info(
-      "Global west coast distance cache initialized: {}x{}",
-      width,
-      height
-    );
   }
 
   public static void initialize(PNGContinentNoise continentNoise) {
-    if (instance == null) {
-      instance = new GlobalWestCoastDistanceCache(continentNoise);
-    }
+    instance = initializeInstance(
+      instance,
+      new GlobalWestCoastDistanceCache(continentNoise),
+      "west coast distance"
+    );
   }
 
   public static void clear() {
-    if (instance != null) {
-      LOGGER.info("Clearing global west coast distance cache");
-      instance = null;
-    }
+    clearInstance(instance, "west coast distance");
+    instance = null;
   }
 
   @Nullable
@@ -49,22 +39,7 @@ public class GlobalWestCoastDistanceCache extends BaseDistanceCache {
 
   public byte getDistance(int gridX, int gridZ) {
     InterpolationResult interpolation = getInterpolationData(gridX, gridZ);
-
-    int idx00 = interpolation.z0 * width + interpolation.x0;
-    int idx10 = interpolation.z0 * width + interpolation.x1;
-    int idx01 = interpolation.z1 * width + interpolation.x0;
-    int idx11 = interpolation.z1 * width + interpolation.x1;
-
-    byte dist00 = distanceMap[idx00];
-    byte dist10 = distanceMap[idx10];
-    byte dist01 = distanceMap[idx01];
-    byte dist11 = distanceMap[idx11];
-
-    double dist0 = dist00 * (1 - interpolation.fx) + dist10 * interpolation.fx;
-    double dist1 = dist01 * (1 - interpolation.fx) + dist11 * interpolation.fx;
-    double finalDist =
-      dist0 * (1 - interpolation.fz) + dist1 * interpolation.fz;
-    return (byte) Math.max(0, Math.round(finalDist));
+    return interpolateDistance(interpolation);
   }
 
   private void calculateDistances(PNGContinentNoise continentNoise) {

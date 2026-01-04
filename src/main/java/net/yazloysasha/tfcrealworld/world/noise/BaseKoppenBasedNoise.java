@@ -12,7 +12,7 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
 
   protected final PNGKoppenNoise koppenNoise;
   protected final KoppenParameterCache parameterCache;
-  protected final Noise2D indexNoise; // Generates index (0.0-1.0) for parameter selection
+  protected final Noise2D indexNoise;
 
   protected BaseKoppenBasedNoise(
     PNGKoppenNoise koppenNoise,
@@ -21,8 +21,6 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
   ) {
     this.koppenNoise = koppenNoise;
     this.parameterCache = KoppenParameterCache.getInstance();
-    // Use the same seed for all three parameters to ensure consistency
-    // Parameters match original TFC: 2 octaves for finer patterns
     this.indexNoise = new OpenSimplex2D(seed)
       .octaves(2)
       .spread(spread)
@@ -36,8 +34,6 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
 
     double[] indices = calculateIndices(x, z);
 
-    // Get parameters from cache for each of the 4 climates
-    // All parameters are guaranteed to belong to their zone
     KoppenParameterCache.ParameterCombination params00 =
       parameterCache.getParametersByIndex(interpolation.climate00, indices[0]);
     KoppenParameterCache.ParameterCombination params10 =
@@ -56,52 +52,24 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
     return postProcessResult(result);
   }
 
-  /**
-   * Calculates indices for each corner with smooth variations.
-   * Returns array of 4 indices: [index00, index10, index01, index11]
-   */
   protected double[] calculateIndices(double x, double z) {
     double rawIndex = indexNoise.noise(x, z);
     double baseIndex = smoothstep(Math.clamp(rawIndex, 0.0, 1.0));
 
-    // Generate indices for each corner with smooth variations
-    // Use smaller variations for finer patterns (as in original TFC)
-    double index00 = smoothstep(
-      Math.clamp(
-        baseIndex + (indexNoise.noise(x - 0.1, z - 0.1) - 0.5) * 0.08,
-        0.0,
-        1.0
-      )
-    );
-    double index10 = smoothstep(
-      Math.clamp(
-        baseIndex + (indexNoise.noise(x + 0.1, z - 0.1) - 0.5) * 0.08,
-        0.0,
-        1.0
-      )
-    );
-    double index01 = smoothstep(
-      Math.clamp(
-        baseIndex + (indexNoise.noise(x - 0.1, z + 0.1) - 0.5) * 0.08,
-        0.0,
-        1.0
-      )
-    );
-    double index11 = smoothstep(
-      Math.clamp(
-        baseIndex + (indexNoise.noise(x + 0.1, z + 0.1) - 0.5) * 0.08,
-        0.0,
-        1.0
-      )
-    );
-
-    return new double[] { index00, index10, index01, index11 };
+    return new double[] {
+      calculateCornerIndex(x - 0.1, z - 0.1, baseIndex),
+      calculateCornerIndex(x + 0.1, z - 0.1, baseIndex),
+      calculateCornerIndex(x - 0.1, z + 0.1, baseIndex),
+      calculateCornerIndex(x + 0.1, z + 0.1, baseIndex),
+    };
   }
 
-  /**
-   * Smoothstep function for smoother interpolation.
-   * Returns 0 for t=0, 1 for t=1, with smooth S-curve in between.
-   */
+  private double calculateCornerIndex(double x, double z, double baseIndex) {
+    return smoothstep(
+      Math.clamp(baseIndex + (indexNoise.noise(x, z) - 0.5) * 0.08, 0.0, 1.0)
+    );
+  }
+
   protected double smoothstep(double t) {
     return t * t * (3.0 - 2.0 * t);
   }
@@ -114,11 +82,6 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
     KoppenParameterCache.ParameterCombination params
   );
 
-  /**
-   * Post-processes the result value.
-   * Subclasses can override this to apply clamping or other transformations.
-   * Default implementation returns the value as-is.
-   */
   protected double postProcessResult(double result) {
     return result;
   }

@@ -12,4 +12,16 @@ public abstract class BaseNoiseRegistry<T> {
 
   protected final Map<RegionGenerator, T> registry =
     new Object2ObjectOpenHashMap<>();
+
+  protected void registerNoise(RegionGenerator generator, T noise) {
+    registry.put(generator, noise);
+  }
+
+  protected T getNoise(RegionGenerator generator) {
+    return registry.get(generator);
+  }
+
+  protected void unregisterNoise(RegionGenerator generator) {
+    registry.remove(generator);
+  }
 }

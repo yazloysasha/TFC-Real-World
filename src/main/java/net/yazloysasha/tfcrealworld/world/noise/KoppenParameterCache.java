@@ -78,7 +78,6 @@ public class KoppenParameterCache {
     ParameterArray
   > climateCombinations;
 
-  // Cached base values and ranges for fast access
   private final Map<KoppenClimateClassification, Float> baseTemperatures;
   private final Map<KoppenClimateClassification, Float> baseRainfalls;
   private final Map<KoppenClimateClassification, Float> baseRainVars;
@@ -152,7 +151,6 @@ public class KoppenParameterCache {
       return new ParameterCombination(5.0f, 100.0f, 0.0f);
     }
 
-    // Clamp index to [0.0, 1.0]
     index = Math.clamp(index, 0.0, 1.0);
 
     int arrayLength = combinations.temperatures.length;
@@ -171,7 +169,6 @@ public class KoppenParameterCache {
       return combinations.get(lowerIndex);
     }
 
-    // Linear interpolation between two adjacent parameter combinations
     ParameterCombination lower = combinations.get(lowerIndex);
     ParameterCombination upper = combinations.get(upperIndex);
 
@@ -193,7 +190,6 @@ public class KoppenParameterCache {
     if (cached != null) {
       return cached;
     }
-    // Fallback (should not happen after cache is built)
     LOGGER.warn(
       "No cached temperature found for climate: {}, using default",
       climate
@@ -209,7 +205,6 @@ public class KoppenParameterCache {
     if (cached != null) {
       return cached;
     }
-    // Fallback (should not happen after cache is built)
     LOGGER.warn(
       "No cached rainfall found for climate: {}, using default",
       climate
@@ -225,7 +220,6 @@ public class KoppenParameterCache {
     if (cached != null) {
       return cached;
     }
-    // Fallback (should not happen after cache is built)
     LOGGER.warn(
       "No cached rainVar found for climate: {}, using default",
       climate
@@ -329,7 +323,6 @@ public class KoppenParameterCache {
       }
     }
 
-    // Sort parameters by 3 values: lowest first, then gradually increasing
     LOGGER.info(
       "Sorting parameter combinations by temperature, rainfall, and rainVar..."
     );
@@ -440,7 +433,6 @@ public class KoppenParameterCache {
       return;
     }
 
-    // Find ranges for normalization
     float tempMin = Float.MAX_VALUE;
     float tempMax = Float.MIN_VALUE;
     float rainMin = Float.MAX_VALUE;
@@ -457,7 +449,6 @@ public class KoppenParameterCache {
       if (array.rainVars[i] > rainVarMax) rainVarMax = array.rainVars[i];
     }
 
-    // Avoid division by zero
     float tempRange = tempMax - tempMin;
     float rainRange = rainMax - rainMin;
     float rainVarRange = rainVarMax - rainVarMin;
@@ -465,14 +456,11 @@ public class KoppenParameterCache {
     if (rainRange < 0.001f) rainRange = 1.0f;
     if (rainVarRange < 0.001f) rainVarRange = 1.0f;
 
-    // Create list of indices
     List<Integer> indices = new ArrayList<>(length);
     for (int i = 0; i < length; i++) {
       indices.add(i);
     }
 
-    // Sort indices by combined normalized metric with equal weights (100 each)
-    // All three parameters are normalized to [0, 1] and summed with equal weights
     final float finalTempMin = tempMin;
     final float finalTempRange = tempRange;
     final float finalRainMin = rainMin;
@@ -483,25 +471,20 @@ public class KoppenParameterCache {
     Collections.sort(
       indices,
       Comparator.comparingDouble((Integer i) -> {
-        // Normalize all three parameters to [0, 1] range
         double normTemp =
           (array.temperatures[i] - finalTempMin) / finalTempRange;
         double normRain = (array.rainfalls[i] - finalRainMin) / finalRainRange;
         double normRainVar =
           (array.rainVars[i] - finalRainVarMin) / finalRainVarRange;
 
-        // Combine all three parameters with equal weights (100 each)
-        // Use weighted sum for smooth interpolation across all parameters simultaneously
         return normTemp * 100.0 + normRain * 100.0 + normRainVar * 100.0;
       })
     );
 
-    // Create temporary arrays
     float[] tempTemps = new float[length];
     float[] tempRains = new float[length];
     float[] tempRainVars = new float[length];
 
-    // Reorder arrays according to sorted indices
     for (int i = 0; i < length; i++) {
       int originalIndex = indices.get(i);
       tempTemps[i] = array.temperatures[originalIndex];
@@ -509,7 +492,6 @@ public class KoppenParameterCache {
       tempRainVars[i] = array.rainVars[originalIndex];
     }
 
-    // Copy back
     System.arraycopy(tempTemps, 0, array.temperatures, 0, length);
     System.arraycopy(tempRains, 0, array.rainfalls, 0, length);
     System.arraycopy(tempRainVars, 0, array.rainVars, 0, length);

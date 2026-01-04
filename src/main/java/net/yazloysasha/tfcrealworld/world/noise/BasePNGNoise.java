@@ -80,7 +80,10 @@ public abstract class BasePNGNoise implements Noise2D {
     return transformBrightness(brightness);
   }
 
-  protected double sampleBrightness(double imageX, double imageZ) {
+  protected InterpolationCoords calculateInterpolationCoords(
+    double imageX,
+    double imageZ
+  ) {
     int x0 = (int) Math.floor(imageX);
     int z0 = (int) Math.floor(imageZ);
     int x1 = Math.min(x0 + 1, width - 1);
@@ -89,28 +92,52 @@ public abstract class BasePNGNoise implements Noise2D {
     double fx = imageX - x0;
     double fz = imageZ - z0;
 
-    double brightness00 = getBrightness(pixels[z0 * width + x0]);
-    double brightness10 = getBrightness(pixels[z0 * width + x1]);
-    double brightness01 = getBrightness(pixels[z1 * width + x0]);
-    double brightness11 = getBrightness(pixels[z1 * width + x1]);
+    return new InterpolationCoords(x0, z0, x1, z1, fx, fz);
+  }
 
-    double brightness0 = brightness00 * (1 - fx) + brightness10 * fx;
-    double brightness1 = brightness01 * (1 - fx) + brightness11 * fx;
-    return brightness0 * (1 - fz) + brightness1 * fz;
+  protected double sampleBrightness(double imageX, double imageZ) {
+    InterpolationCoords coords = calculateInterpolationCoords(imageX, imageZ);
+
+    double brightness00 = getBrightness(pixels[coords.z0 * width + coords.x0]);
+    double brightness10 = getBrightness(pixels[coords.z0 * width + coords.x1]);
+    double brightness01 = getBrightness(pixels[coords.z1 * width + coords.x0]);
+    double brightness11 = getBrightness(pixels[coords.z1 * width + coords.x1]);
+
+    double brightness0 =
+      brightness00 * (1 - coords.fx) + brightness10 * coords.fx;
+    double brightness1 =
+      brightness01 * (1 - coords.fx) + brightness11 * coords.fx;
+    return brightness0 * (1 - coords.fz) + brightness1 * coords.fz;
   }
 
   protected int[] samplePixels(double imageX, double imageZ) {
-    int x0 = (int) Math.floor(imageX);
-    int z0 = (int) Math.floor(imageZ);
-    int x1 = Math.min(x0 + 1, width - 1);
-    int z1 = Math.min(z0 + 1, height - 1);
+    InterpolationCoords coords = calculateInterpolationCoords(imageX, imageZ);
 
     return new int[] {
-      pixels[z0 * width + x0],
-      pixels[z0 * width + x1],
-      pixels[z1 * width + x0],
-      pixels[z1 * width + x1],
+      pixels[coords.z0 * width + coords.x0],
+      pixels[coords.z0 * width + coords.x1],
+      pixels[coords.z1 * width + coords.x0],
+      pixels[coords.z1 * width + coords.x1],
     };
+  }
+
+  protected static class InterpolationCoords {
+
+    final int x0;
+    final int z0;
+    final int x1;
+    final int z1;
+    final double fx;
+    final double fz;
+
+    InterpolationCoords(int x0, int z0, int x1, int z1, double fx, double fz) {
+      this.x0 = x0;
+      this.z0 = z0;
+      this.x1 = x1;
+      this.z1 = z1;
+      this.fx = fx;
+      this.fz = fz;
+    }
   }
 
   public double[] worldToImage(double x, double z) {
