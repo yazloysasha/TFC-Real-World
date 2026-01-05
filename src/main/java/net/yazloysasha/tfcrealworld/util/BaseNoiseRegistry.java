@@ -20,8 +20,4 @@ public abstract class BaseNoiseRegistry<T> {
   protected T getNoise(RegionGenerator generator) {
     return registry.get(generator);
   }
-
-  protected void unregisterNoise(RegionGenerator generator) {
-    registry.remove(generator);
-  }
 }

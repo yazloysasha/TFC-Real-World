@@ -23,8 +23,4 @@ public class HotspotsNoiseRegistry extends BaseNoiseRegistry<PNGHotspotsNoise> {
   public static PNGHotspotsNoise get(RegionGenerator generator) {
     return INSTANCE.getNoise(generator);
   }
-
-  public static void unregister(RegionGenerator generator) {
-    INSTANCE.unregisterNoise(generator);
-  }
 }

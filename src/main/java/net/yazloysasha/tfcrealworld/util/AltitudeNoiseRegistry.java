@@ -23,8 +23,4 @@ public class AltitudeNoiseRegistry extends BaseNoiseRegistry<PNGAltitudeNoise> {
   public static PNGAltitudeNoise get(RegionGenerator generator) {
     return INSTANCE.getNoise(generator);
   }
-
-  public static void unregister(RegionGenerator generator) {
-    INSTANCE.unregisterNoise(generator);
-  }
 }
