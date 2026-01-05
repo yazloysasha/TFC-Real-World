@@ -32,13 +32,13 @@ public abstract class BasePNGNoise implements Noise2D {
   protected final double worldRadiusGridZ;
 
   protected BasePNGNoise(
-    int horizontalWorldScale,
-    int verticalWorldScale,
+    int horizontalWorldSize,
+    int verticalWorldSize,
     String mapName,
     String errorMessage
   ) {
-    this.worldRadiusBlocksX = horizontalWorldScale / 2;
-    this.worldRadiusBlocksZ = verticalWorldScale / 2;
+    this.worldRadiusBlocksX = horizontalWorldSize / 2;
+    this.worldRadiusBlocksZ = verticalWorldSize / 2;
     this.worldRadiusGridX =
       worldRadiusBlocksX / (double) Units.GRID_WIDTH_IN_BLOCK;
     this.worldRadiusGridZ =

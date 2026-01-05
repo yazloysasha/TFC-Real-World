@@ -22,14 +22,12 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Integer> RAINFALL_SCALE;
 
   // Generation mode settings
-  public static final ConfigOption<Integer> VERTICAL_WORLD_SCALE;
-  public static final ConfigOption<Integer> HORIZONTAL_WORLD_SCALE;
+  public static final ConfigOption<Integer> HORIZONTAL_WORLD_SIZE;
+  public static final ConfigOption<Integer> VERTICAL_WORLD_SIZE;
   public static final ConfigOption<Boolean> CONTINENT_FROM_MAP;
   public static final ConfigOption<Boolean> ALTITUDE_FROM_MAP;
   public static final ConfigOption<Boolean> HOTSPOTS_FROM_MAP;
   public static final ConfigOption<Boolean> KOPPEN_FROM_MAP;
-  public static final ConfigOption<Integer> POLE_OFFSET;
-  public static final ConfigOption<Boolean> POLE_LOOPING;
   public static final ConfigOption<Boolean> CANYONS_NOT_VOLCANIC;
 
   private static final List<ConfigOption<?>> allOptions;
@@ -109,18 +107,18 @@ public class TFCRealWorldConfig {
     BUILDER.pop();
     BUILDER.push("generation_modes");
 
-    VERTICAL_WORLD_SCALE = new ConfigOption<>(
+    HORIZONTAL_WORLD_SIZE = new ConfigOption<>(
       BUILDER,
-      "vertical_world_scale",
-      "Vertical world scale (diameter) in blocks. Affects distance between poles and globe_trotter achievement.",
+      "horizontal_world_size",
+      "Horizontal world size (diameter) in blocks. Affects horizontal map stretching when generating from map.",
       40000,
       1000,
       200000
     );
-    HORIZONTAL_WORLD_SCALE = new ConfigOption<>(
+    VERTICAL_WORLD_SIZE = new ConfigOption<>(
       BUILDER,
-      "horizontal_world_scale",
-      "Horizontal world scale (diameter) in blocks. Affects map stretching when generating from map.",
+      "vertical_world_size",
+      "Vertical world size (diameter) in blocks. Affects vertical map stretching when generating from map.",
       40000,
       1000,
       200000
@@ -155,20 +153,6 @@ public class TFCRealWorldConfig {
       "When enabled, reads koppen.png map and generates procedural parameter values that are valid for each Köppen climate classification.",
       true
     );
-    POLE_OFFSET = new ConfigOption<>(
-      BUILDER,
-      "pole_offset",
-      "Pole offset in blocks",
-      10000,
-      -100000,
-      100000
-    );
-    POLE_LOOPING = new ConfigOption<>(
-      BUILDER,
-      "pole_looping",
-      "Whether poles should loop (cyclical)",
-      false
-    );
 
     BUILDER.pop();
     BUILDER.push("biome_modifications");
@@ -193,14 +177,12 @@ public class TFCRealWorldConfig {
       SPAWN_DISTANCE,
       TEMPERATURE_SCALE,
       RAINFALL_SCALE,
-      VERTICAL_WORLD_SCALE,
-      HORIZONTAL_WORLD_SCALE,
+      HORIZONTAL_WORLD_SIZE,
+      VERTICAL_WORLD_SIZE,
       CONTINENT_FROM_MAP,
       ALTITUDE_FROM_MAP,
       HOTSPOTS_FROM_MAP,
       KOPPEN_FROM_MAP,
-      POLE_OFFSET,
-      POLE_LOOPING,
       CANYONS_NOT_VOLCANIC
     );
   }
@@ -215,14 +197,12 @@ public class TFCRealWorldConfig {
     int spawnDistance,
     int temperatureScale,
     int rainfallScale,
-    int verticalWorldScale,
-    int horizontalWorldScale,
+    int horizontalWorldSize,
+    int verticalWorldSize,
     boolean continentFromMap,
     boolean altitudeFromMap,
     boolean hotspotsFromMap,
     boolean koppenFromMap,
-    int poleOffset,
-    boolean poleLooping,
     boolean canyonsNotVolcanic
   ) {
     CONTINENTALNESS.setServerValue(continentalness);
@@ -234,18 +214,24 @@ public class TFCRealWorldConfig {
     SPAWN_DISTANCE.setServerValue(spawnDistance);
     TEMPERATURE_SCALE.setServerValue(temperatureScale);
     RAINFALL_SCALE.setServerValue(rainfallScale);
-    VERTICAL_WORLD_SCALE.setServerValue(verticalWorldScale);
-    HORIZONTAL_WORLD_SCALE.setServerValue(horizontalWorldScale);
+    HORIZONTAL_WORLD_SIZE.setServerValue(horizontalWorldSize);
+    VERTICAL_WORLD_SIZE.setServerValue(verticalWorldSize);
     CONTINENT_FROM_MAP.setServerValue(continentFromMap);
     ALTITUDE_FROM_MAP.setServerValue(altitudeFromMap);
     HOTSPOTS_FROM_MAP.setServerValue(hotspotsFromMap);
     KOPPEN_FROM_MAP.setServerValue(koppenFromMap);
-    POLE_OFFSET.setServerValue(poleOffset);
-    POLE_LOOPING.setServerValue(poleLooping);
     CANYONS_NOT_VOLCANIC.setServerValue(canyonsNotVolcanic);
   }
 
   public static void clearServerConfig() {
     allOptions.forEach(ConfigOption::clearServerValue);
+  }
+
+  public static int getHemisphereScale() {
+    if (KOPPEN_FROM_MAP.get()) {
+      return (int) (VERTICAL_WORLD_SIZE.get() / 2);
+    } else {
+      return TEMPERATURE_SCALE.get();
+    }
   }
 }

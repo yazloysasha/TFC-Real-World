@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackLocationInfo;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.resources.IoSupplier;
+import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import org.jetbrains.annotations.Nullable;
 
 public class DynamicDataPack extends BaseDynamicPack {
@@ -41,15 +42,13 @@ public class DynamicDataPack extends BaseDynamicPack {
         StandardCharsets.UTF_8
       );
 
-      int[] scaleValues = getWorldScaleValues();
-      int halfScale = scaleValues[0];
-      int negativeHalfScale = scaleValues[1];
+      int hemisphereScale = TFCRealWorldConfig.getHemisphereScale();
 
       String json = template
-        .replace("\"{WORLD_SCALE_HALF}\"", String.valueOf(halfScale))
+        .replace("\"{HEMISPHERE_SCALE}\"", String.valueOf(hemisphereScale))
         .replace(
-          "\"{WORLD_SCALE_NEGATIVE_HALF}\"",
-          String.valueOf(negativeHalfScale)
+          "\"{HEMISPHERE_SCALE_NEGATIVE}\"",
+          String.valueOf(-hemisphereScale)
         );
 
       cachedAdvancementJson = json;

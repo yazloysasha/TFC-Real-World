@@ -7,7 +7,6 @@ import net.dries007.tfc.world.settings.Settings;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.AltitudeNoiseRegistry;
 import net.yazloysasha.tfcrealworld.util.HotspotsNoiseRegistry;
-import net.yazloysasha.tfcrealworld.util.SettingsHelper;
 import net.yazloysasha.tfcrealworld.world.noise.KoppenBasedRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.KoppenBasedRainfallVarianceNoise;
 import net.yazloysasha.tfcrealworld.world.noise.KoppenBasedTemperatureNoise;
@@ -67,16 +66,14 @@ public class RegionGeneratorMixin {
     RegionGenerator instance = (RegionGenerator) (Object) this;
 
     try {
-      int horizontalWorldScale = SettingsHelper.getHorizontalWorldScale(
-        settings
-      );
-      int verticalWorldScale = SettingsHelper.getVerticalWorldScale(settings);
+      int horizontalWorldSize = TFCRealWorldConfig.HORIZONTAL_WORLD_SIZE.get();
+      int verticalWorldSize = TFCRealWorldConfig.VERTICAL_WORLD_SIZE.get();
 
       PNGContinentNoise continentNoise = null;
       if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
         continentNoise = new PNGContinentNoise(
-          horizontalWorldScale,
-          verticalWorldScale
+          horizontalWorldSize,
+          verticalWorldSize
         );
         initializeContinentMap(instance, continentNoise);
 
@@ -90,16 +87,16 @@ public class RegionGeneratorMixin {
 
       if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
         PNGAltitudeNoise altitudeNoise = new PNGAltitudeNoise(
-          horizontalWorldScale,
-          verticalWorldScale
+          horizontalWorldSize,
+          verticalWorldSize
         );
         initializeAltitudeMap(instance, altitudeNoise);
       }
 
       if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
         PNGHotspotsNoise hotspotsNoise = new PNGHotspotsNoise(
-          horizontalWorldScale,
-          verticalWorldScale
+          horizontalWorldSize,
+          verticalWorldSize
         );
         initializeHotspotsMap(instance, hotspotsNoise);
       }
@@ -108,8 +105,8 @@ public class RegionGeneratorMixin {
         initializeKoppenBasedClimateMaps(
           instance,
           seed,
-          horizontalWorldScale,
-          verticalWorldScale
+          horizontalWorldSize,
+          verticalWorldSize
         );
       }
     } catch (NoSuchFieldException e) {
@@ -164,12 +161,12 @@ public class RegionGeneratorMixin {
   private void initializeKoppenBasedClimateMaps(
     RegionGenerator instance,
     net.dries007.tfc.world.Seed seed,
-    int horizontalWorldScale,
-    int verticalWorldScale
+    int horizontalWorldSize,
+    int verticalWorldSize
   ) throws NoSuchFieldException {
     PNGKoppenNoise koppenNoise = new PNGKoppenNoise(
-      horizontalWorldScale,
-      verticalWorldScale
+      horizontalWorldSize,
+      verticalWorldSize
     );
 
     long koppenSeed = seed.next();

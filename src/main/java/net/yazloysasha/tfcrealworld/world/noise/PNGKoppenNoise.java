@@ -72,9 +72,9 @@ public class PNGKoppenNoise {
   private final double worldRadiusGridX;
   private final double worldRadiusGridZ;
 
-  public PNGKoppenNoise(int horizontalWorldScale, int verticalWorldScale) {
-    this.worldRadiusBlocksX = horizontalWorldScale / 2;
-    this.worldRadiusBlocksZ = verticalWorldScale / 2;
+  public PNGKoppenNoise(int horizontalWorldSize, int verticalWorldSize) {
+    this.worldRadiusBlocksX = horizontalWorldSize / 2;
+    this.worldRadiusBlocksZ = verticalWorldSize / 2;
     this.worldRadiusGridX =
       worldRadiusBlocksX /
       (double) net.dries007.tfc.world.region.Units.GRID_WIDTH_IN_BLOCK;

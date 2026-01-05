@@ -113,14 +113,12 @@ public final class TFCRealWorld {
         TFCRealWorldConfig.SPAWN_DISTANCE.get(),
         TFCRealWorldConfig.TEMPERATURE_SCALE.get(),
         TFCRealWorldConfig.RAINFALL_SCALE.get(),
-        TFCRealWorldConfig.VERTICAL_WORLD_SCALE.get(),
-        TFCRealWorldConfig.HORIZONTAL_WORLD_SCALE.get(),
+        TFCRealWorldConfig.HORIZONTAL_WORLD_SIZE.get(),
+        TFCRealWorldConfig.VERTICAL_WORLD_SIZE.get(),
         TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
         TFCRealWorldConfig.ALTITUDE_FROM_MAP.get(),
         TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get(),
         TFCRealWorldConfig.KOPPEN_FROM_MAP.get(),
-        TFCRealWorldConfig.POLE_OFFSET.get(),
-        TFCRealWorldConfig.POLE_LOOPING.get(),
         TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get()
       );
       serverPlayer.connection.send(packet);

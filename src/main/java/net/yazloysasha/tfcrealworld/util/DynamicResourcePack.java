@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackLocationInfo;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.resources.IoSupplier;
+import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import org.jetbrains.annotations.Nullable;
 
 public class DynamicResourcePack extends BaseDynamicPack {
@@ -98,18 +99,16 @@ public class DynamicResourcePack extends BaseDynamicPack {
         StandardCharsets.UTF_8
       );
 
-      int[] scaleValues = getWorldScaleValues();
-      int halfScale = scaleValues[0];
-      int negativeHalfScale = scaleValues[1];
+      int hemisphereScale = TFCRealWorldConfig.getHemisphereScale();
 
       String json = template
         .replace(
-          "{WORLD_SCALE_HALF_FORMATTED}",
-          formatNumberWithCommas(halfScale)
+          "{HEMISPHERE_SCALE_FORMATTED}",
+          formatNumberWithCommas(hemisphereScale)
         )
         .replace(
-          "{WORLD_SCALE_NEGATIVE_HALF_FORMATTED}",
-          formatNumberWithCommas(negativeHalfScale)
+          "{HEMISPHERE_SCALE_NEGATIVE_FORMATTED}",
+          formatNumberWithCommas(-hemisphereScale)
         );
 
       synchronized (langJsonCache) {

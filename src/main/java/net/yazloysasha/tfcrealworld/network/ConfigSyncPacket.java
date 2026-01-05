@@ -18,14 +18,12 @@ public record ConfigSyncPacket(
   int spawnDistance,
   int temperatureScale,
   int rainfallScale,
-  int verticalWorldScale,
-  int horizontalWorldScale,
+  int horizontalWorldSize,
+  int verticalWorldSize,
   boolean continentFromMap,
   boolean altitudeFromMap,
   boolean hotspotsFromMap,
   boolean koppenFromMap,
-  int poleOffset,
-  boolean poleLooping,
   boolean canyonsNotVolcanic
 )
   implements CustomPacketPayload {
@@ -47,14 +45,12 @@ public record ConfigSyncPacket(
       buffer.writeInt(packet.spawnDistance);
       buffer.writeInt(packet.temperatureScale);
       buffer.writeInt(packet.rainfallScale);
-      buffer.writeInt(packet.verticalWorldScale);
-      buffer.writeInt(packet.horizontalWorldScale);
+      buffer.writeInt(packet.horizontalWorldSize);
+      buffer.writeInt(packet.verticalWorldSize);
       buffer.writeBoolean(packet.continentFromMap);
       buffer.writeBoolean(packet.altitudeFromMap);
       buffer.writeBoolean(packet.hotspotsFromMap);
       buffer.writeBoolean(packet.koppenFromMap);
-      buffer.writeInt(packet.poleOffset);
-      buffer.writeBoolean(packet.poleLooping);
       buffer.writeBoolean(packet.canyonsNotVolcanic);
     },
     buffer ->
@@ -73,8 +69,6 @@ public record ConfigSyncPacket(
         buffer.readBoolean(),
         buffer.readBoolean(),
         buffer.readBoolean(),
-        buffer.readBoolean(),
-        buffer.readInt(),
         buffer.readBoolean(),
         buffer.readBoolean()
       )
@@ -97,14 +91,12 @@ public record ConfigSyncPacket(
         packet.spawnDistance(),
         packet.temperatureScale(),
         packet.rainfallScale(),
-        packet.verticalWorldScale(),
-        packet.horizontalWorldScale(),
+        packet.horizontalWorldSize(),
+        packet.verticalWorldSize(),
         packet.continentFromMap(),
         packet.altitudeFromMap(),
         packet.hotspotsFromMap(),
         packet.koppenFromMap(),
-        packet.poleOffset(),
-        packet.poleLooping(),
         packet.canyonsNotVolcanic()
       );
     });

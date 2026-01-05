@@ -26,14 +26,6 @@ public abstract class BaseDynamicPack implements PackResources {
     this.locationInfo = locationInfo;
   }
 
-  protected int[] getWorldScaleValues() {
-    int verticalWorldScale =
-      net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig.VERTICAL_WORLD_SCALE.get();
-    int halfScale = verticalWorldScale / 2;
-    int negativeHalfScale = -halfScale;
-    return new int[] { halfScale, negativeHalfScale };
-  }
-
   @Override
   public @Nullable IoSupplier<InputStream> getRootResource(String... path) {
     return null;

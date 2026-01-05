@@ -4,10 +4,10 @@ public class PNGHotspotsNoise extends BasePNGNoise {
 
   private static final String MAP_NAME = "hotspots";
 
-  public PNGHotspotsNoise(int horizontalWorldScale, int verticalWorldScale) {
+  public PNGHotspotsNoise(int horizontalWorldSize, int verticalWorldSize) {
     super(
-      horizontalWorldScale,
-      verticalWorldScale,
+      horizontalWorldSize,
+      verticalWorldSize,
       MAP_NAME,
       "Failed to load hotspots map. Map file is required when generating hotspots from map."
     );
