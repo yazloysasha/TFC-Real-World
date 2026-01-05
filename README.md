@@ -25,7 +25,6 @@ It only adds extra _real-world rules_ that tell TFC _where_ to place land, heigh
 
 - Continents and oceans can be sampled from a PNG map (`continent.png`) instead of pure noise.
 - This produces large-scale landmasses and ocean basins that resemble Earth's distribution while still going through TFC's normal region and biome pipeline.
-- Optionally supports finite or looping continents, controlled via configuration.
 
 #### Elevation and ocean depth from real-world altitude data
 
@@ -84,9 +83,8 @@ The options are grouped similarly to the internal config structure.
 
 #### Generation modes (`generation_modes`)
 
-- **Vertical world scale / horizontal world scale** – define the effective diameter of your world in blocks. This affects distances between poles, the _Globe Trotter_ advancement, and how real-world maps are stretched over the world.
+- **`horizontal_tile_size`, `vertical_tile_size`** – define the size of each tile (diameter) in blocks. The world is organized as a grid of tiles that repeat seamlessly beyond the main tile boundaries. Each tile alternates with mirroring on odd-numbered tiles, creating an infinite wrapped world. This affects how real-world maps are stretched over the world, distances between poles, and the _Globe Trotter_ advancement.
 - **`continent_from_map`, `altitude_from_map`, `hotspots_from_map`, `koppen_from_map`** – main toggles that decide whether each system uses **real-world maps** or **pure TFC procedural noise**. When these are **false**, the corresponding part of worldgen behaves exactly like stock TerraFirmaCraft; when **true** (the default for most of them), the same TFC systems are simply driven by real-world PNG maps.
-- **Pole offset and pole looping** – fine-tune how the poles are positioned and whether they wrap around, useful for matching climate belts to your preferred exploration pattern.
 
 #### Biome modifications (`biome_modifications`)
 
