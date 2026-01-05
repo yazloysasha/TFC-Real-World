@@ -20,8 +20,8 @@ abstract class BaseDistanceCache {
   protected final double centerZ;
   protected final double scaleX;
   protected final double scaleZ;
-  protected final double worldRadiusGridX;
-  protected final double worldRadiusGridZ;
+  protected final double tileRadiusGridX;
+  protected final double tileRadiusGridZ;
   protected final PNGContinentNoise continentNoise;
 
   protected BaseDistanceCache(PNGContinentNoise continentNoise) {
@@ -32,15 +32,15 @@ abstract class BaseDistanceCache {
     this.centerZ = continentNoise.getCenterZ();
     this.scaleX = continentNoise.getScaleX();
     this.scaleZ = continentNoise.getScaleZ();
-    this.worldRadiusGridX = continentNoise.getWorldRadiusGridX();
-    this.worldRadiusGridZ = continentNoise.getWorldRadiusGridZ();
+    this.tileRadiusGridX = continentNoise.getTileRadiusGridX();
+    this.tileRadiusGridZ = continentNoise.getTileRadiusGridZ();
 
     this.distanceMap = new byte[width * height];
   }
 
   protected InterpolationResult getInterpolationData(int gridX, int gridZ) {
-    double clampedX = Math.clamp(gridX, -worldRadiusGridX, worldRadiusGridX);
-    double clampedZ = Math.clamp(gridZ, -worldRadiusGridZ, worldRadiusGridZ);
+    double clampedX = Math.clamp(gridX, -tileRadiusGridX, tileRadiusGridX);
+    double clampedZ = Math.clamp(gridZ, -tileRadiusGridZ, tileRadiusGridZ);
 
     double imageX = centerX + clampedX * scaleX;
     double imageZ = centerZ + clampedZ * scaleZ;

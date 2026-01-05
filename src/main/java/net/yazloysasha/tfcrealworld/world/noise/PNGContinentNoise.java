@@ -4,10 +4,10 @@ public class PNGContinentNoise extends BasePNGNoise {
 
   private static final String MAP_NAME = "continent";
 
-  public PNGContinentNoise(int horizontalWorldSize, int verticalWorldSize) {
+  public PNGContinentNoise(int horizontalTileSize, int verticalTileSize) {
     super(
-      horizontalWorldSize,
-      verticalWorldSize,
+      horizontalTileSize,
+      verticalTileSize,
       MAP_NAME,
       "Failed to load continent map. Map file is required when generating continents from map."
     );

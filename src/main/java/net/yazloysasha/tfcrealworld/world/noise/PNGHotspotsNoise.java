@@ -4,10 +4,10 @@ public class PNGHotspotsNoise extends BasePNGNoise {
 
   private static final String MAP_NAME = "hotspots";
 
-  public PNGHotspotsNoise(int horizontalWorldSize, int verticalWorldSize) {
+  public PNGHotspotsNoise(int horizontalTileSize, int verticalTileSize) {
     super(
-      horizontalWorldSize,
-      verticalWorldSize,
+      horizontalTileSize,
+      verticalTileSize,
       MAP_NAME,
       "Failed to load hotspots map. Map file is required when generating hotspots from map."
     );
@@ -19,7 +19,7 @@ public class PNGHotspotsNoise extends BasePNGNoise {
   }
 
   public byte getHotSpotAge(double x, double z) {
-    double[] imageCoords = worldToImage(x, z);
+    double[] imageCoords = tileToImage(x, z);
     double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
 
     if (brightness <= 32.0) {

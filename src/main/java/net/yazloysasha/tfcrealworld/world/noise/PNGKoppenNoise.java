@@ -67,19 +67,19 @@ public class PNGKoppenNoise {
   private final double centerZ;
   private final double scaleX;
   private final double scaleZ;
-  private final int worldRadiusBlocksX;
-  private final int worldRadiusBlocksZ;
-  private final double worldRadiusGridX;
-  private final double worldRadiusGridZ;
+  private final int tileRadiusBlocksX;
+  private final int tileRadiusBlocksZ;
+  private final double tileRadiusGridX;
+  private final double tileRadiusGridZ;
 
-  public PNGKoppenNoise(int horizontalWorldSize, int verticalWorldSize) {
-    this.worldRadiusBlocksX = horizontalWorldSize / 2;
-    this.worldRadiusBlocksZ = verticalWorldSize / 2;
-    this.worldRadiusGridX =
-      worldRadiusBlocksX /
+  public PNGKoppenNoise(int horizontalTileSize, int verticalTileSize) {
+    this.tileRadiusBlocksX = horizontalTileSize / 2;
+    this.tileRadiusBlocksZ = verticalTileSize / 2;
+    this.tileRadiusGridX =
+      tileRadiusBlocksX /
       (double) net.dries007.tfc.world.region.Units.GRID_WIDTH_IN_BLOCK;
-    this.worldRadiusGridZ =
-      worldRadiusBlocksZ /
+    this.tileRadiusGridZ =
+      tileRadiusBlocksZ /
       (double) net.dries007.tfc.world.region.Units.GRID_WIDTH_IN_BLOCK;
 
     BufferedImage image = BasePNGNoise.loadImage("koppen");
@@ -98,26 +98,26 @@ public class PNGKoppenNoise {
     this.centerX = width / 2.0;
     this.centerZ = height / 2.0;
 
-    this.scaleX = width / (2.0 * worldRadiusGridX);
-    this.scaleZ = height / (2.0 * worldRadiusGridZ);
+    this.scaleX = width / (2.0 * tileRadiusGridX);
+    this.scaleZ = height / (2.0 * tileRadiusGridZ);
 
     LOGGER.info(
       "Loaded koppen map: {}x{} pixels, covering {}x{} blocks (radius X: {} blocks, Z: {} blocks)",
       width,
       height,
-      worldRadiusBlocksX * 2,
-      worldRadiusBlocksZ * 2,
-      worldRadiusBlocksX,
-      worldRadiusBlocksZ
+      tileRadiusBlocksX * 2,
+      tileRadiusBlocksZ * 2,
+      tileRadiusBlocksX,
+      tileRadiusBlocksZ
     );
   }
 
   /**
-   * Gets the Köppen climate classification at the given world coordinates.
+   * Gets the Köppen climate classification at the given tile coordinates.
    * Uses bilinear interpolation to sample from the map.
    */
   public KoppenClimateClassification getClimate(double x, double z) {
-    double[] imageCoords = worldToImage(x, z);
+    double[] imageCoords = tileToImage(x, z);
     return sampleClimate(imageCoords[0], imageCoords[1]);
   }
 
@@ -129,7 +129,7 @@ public class PNGKoppenNoise {
     double x,
     double z
   ) {
-    double[] imageCoords = worldToImage(x, z);
+    double[] imageCoords = tileToImage(x, z);
     return sampleClimateInterpolation(imageCoords[0], imageCoords[1]);
   }
 
@@ -284,9 +284,28 @@ public class PNGKoppenNoise {
     return closestClimate;
   }
 
-  private double[] worldToImage(double x, double z) {
-    double clampedX = Math.clamp(x, -worldRadiusGridX, worldRadiusGridX);
-    double clampedZ = Math.clamp(z, -worldRadiusGridZ, worldRadiusGridZ);
+  private double[] tileToImage(double x, double z) {
+    int tileX = (int) Math.floor(
+      (x + tileRadiusGridX) / (2.0 * tileRadiusGridX)
+    );
+    int tileZ = (int) Math.floor(
+      (z + tileRadiusGridZ) / (2.0 * tileRadiusGridZ)
+    );
+
+    double tileCenterX = tileX * 2.0 * tileRadiusGridX;
+    double tileCenterZ = tileZ * 2.0 * tileRadiusGridZ;
+    double localX = x - tileCenterX;
+    double localZ = z - tileCenterZ;
+
+    if (Math.floorMod(tileX, 2) != 0) {
+      localX = -localX;
+    }
+    if (Math.floorMod(tileZ, 2) != 0) {
+      localZ = -localZ;
+    }
+
+    double clampedX = Math.clamp(localX, -tileRadiusGridX, tileRadiusGridX);
+    double clampedZ = Math.clamp(localZ, -tileRadiusGridZ, tileRadiusGridZ);
 
     double imageX = centerX + clampedX * scaleX;
     double imageZ = centerZ + clampedZ * scaleZ;

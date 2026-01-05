@@ -18,8 +18,8 @@ public record ConfigSyncPacket(
   int spawnDistance,
   int temperatureScale,
   int rainfallScale,
-  int horizontalWorldSize,
-  int verticalWorldSize,
+  int horizontalTileSize,
+  int verticalTileSize,
   boolean continentFromMap,
   boolean altitudeFromMap,
   boolean hotspotsFromMap,
@@ -45,8 +45,8 @@ public record ConfigSyncPacket(
       buffer.writeInt(packet.spawnDistance);
       buffer.writeInt(packet.temperatureScale);
       buffer.writeInt(packet.rainfallScale);
-      buffer.writeInt(packet.horizontalWorldSize);
-      buffer.writeInt(packet.verticalWorldSize);
+      buffer.writeInt(packet.horizontalTileSize);
+      buffer.writeInt(packet.verticalTileSize);
       buffer.writeBoolean(packet.continentFromMap);
       buffer.writeBoolean(packet.altitudeFromMap);
       buffer.writeBoolean(packet.hotspotsFromMap);
@@ -91,8 +91,8 @@ public record ConfigSyncPacket(
         packet.spawnDistance(),
         packet.temperatureScale(),
         packet.rainfallScale(),
-        packet.horizontalWorldSize(),
-        packet.verticalWorldSize(),
+        packet.horizontalTileSize(),
+        packet.verticalTileSize(),
         packet.continentFromMap(),
         packet.altitudeFromMap(),
         packet.hotspotsFromMap(),

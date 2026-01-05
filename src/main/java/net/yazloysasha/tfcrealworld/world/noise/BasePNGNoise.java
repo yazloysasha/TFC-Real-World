@@ -26,23 +26,23 @@ public abstract class BasePNGNoise implements Noise2D {
   protected final double centerZ;
   protected final double scaleX;
   protected final double scaleZ;
-  protected final int worldRadiusBlocksX;
-  protected final int worldRadiusBlocksZ;
-  protected final double worldRadiusGridX;
-  protected final double worldRadiusGridZ;
+  protected final int tileRadiusBlocksX;
+  protected final int tileRadiusBlocksZ;
+  protected final double tileRadiusGridX;
+  protected final double tileRadiusGridZ;
 
   protected BasePNGNoise(
-    int horizontalWorldSize,
-    int verticalWorldSize,
+    int horizontalTileSize,
+    int verticalTileSize,
     String mapName,
     String errorMessage
   ) {
-    this.worldRadiusBlocksX = horizontalWorldSize / 2;
-    this.worldRadiusBlocksZ = verticalWorldSize / 2;
-    this.worldRadiusGridX =
-      worldRadiusBlocksX / (double) Units.GRID_WIDTH_IN_BLOCK;
-    this.worldRadiusGridZ =
-      worldRadiusBlocksZ / (double) Units.GRID_WIDTH_IN_BLOCK;
+    this.tileRadiusBlocksX = horizontalTileSize / 2;
+    this.tileRadiusBlocksZ = verticalTileSize / 2;
+    this.tileRadiusGridX =
+      tileRadiusBlocksX / (double) Units.GRID_WIDTH_IN_BLOCK;
+    this.tileRadiusGridZ =
+      tileRadiusBlocksZ / (double) Units.GRID_WIDTH_IN_BLOCK;
 
     BufferedImage image = loadImage(mapName);
     if (image == null) {
@@ -58,24 +58,24 @@ public abstract class BasePNGNoise implements Noise2D {
     this.centerX = width / 2.0;
     this.centerZ = height / 2.0;
 
-    this.scaleX = width / (2.0 * worldRadiusGridX);
-    this.scaleZ = height / (2.0 * worldRadiusGridZ);
+    this.scaleX = width / (2.0 * tileRadiusGridX);
+    this.scaleZ = height / (2.0 * tileRadiusGridZ);
 
     LOGGER.info(
       "Loaded {} map: {}x{} pixels, covering {}x{} blocks (radius X: {} blocks, Z: {} blocks)",
       mapName,
       width,
       height,
-      worldRadiusBlocksX * 2,
-      worldRadiusBlocksZ * 2,
-      worldRadiusBlocksX,
-      worldRadiusBlocksZ
+      tileRadiusBlocksX * 2,
+      tileRadiusBlocksZ * 2,
+      tileRadiusBlocksX,
+      tileRadiusBlocksZ
     );
   }
 
   @Override
   public double noise(double x, double z) {
-    double[] imageCoords = worldToImage(x, z);
+    double[] imageCoords = tileToImage(x, z);
     double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
     return transformBrightness(brightness);
   }
@@ -140,9 +140,28 @@ public abstract class BasePNGNoise implements Noise2D {
     }
   }
 
-  public double[] worldToImage(double x, double z) {
-    double clampedX = Math.clamp(x, -worldRadiusGridX, worldRadiusGridX);
-    double clampedZ = Math.clamp(z, -worldRadiusGridZ, worldRadiusGridZ);
+  public double[] tileToImage(double x, double z) {
+    int tileX = (int) Math.floor(
+      (x + tileRadiusGridX) / (2.0 * tileRadiusGridX)
+    );
+    int tileZ = (int) Math.floor(
+      (z + tileRadiusGridZ) / (2.0 * tileRadiusGridZ)
+    );
+
+    double tileCenterX = tileX * 2.0 * tileRadiusGridX;
+    double tileCenterZ = tileZ * 2.0 * tileRadiusGridZ;
+    double localX = x - tileCenterX;
+    double localZ = z - tileCenterZ;
+
+    if (Math.floorMod(tileX, 2) != 0) {
+      localX = -localX;
+    }
+    if (Math.floorMod(tileZ, 2) != 0) {
+      localZ = -localZ;
+    }
+
+    double clampedX = Math.clamp(localX, -tileRadiusGridX, tileRadiusGridX);
+    double clampedZ = Math.clamp(localZ, -tileRadiusGridZ, tileRadiusGridZ);
 
     double imageX = centerX + clampedX * scaleX;
     double imageZ = centerZ + clampedZ * scaleZ;
@@ -193,12 +212,12 @@ public abstract class BasePNGNoise implements Noise2D {
     return scaleZ;
   }
 
-  public double getWorldRadiusGridX() {
-    return worldRadiusGridX;
+  public double getTileRadiusGridX() {
+    return tileRadiusGridX;
   }
 
-  public double getWorldRadiusGridZ() {
-    return worldRadiusGridZ;
+  public double getTileRadiusGridZ() {
+    return tileRadiusGridZ;
   }
 
   public static BufferedImage loadImage(String mapName) {

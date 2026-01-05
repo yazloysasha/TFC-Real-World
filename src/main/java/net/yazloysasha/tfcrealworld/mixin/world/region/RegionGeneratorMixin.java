@@ -66,14 +66,14 @@ public class RegionGeneratorMixin {
     RegionGenerator instance = (RegionGenerator) (Object) this;
 
     try {
-      int horizontalWorldSize = TFCRealWorldConfig.HORIZONTAL_WORLD_SIZE.get();
-      int verticalWorldSize = TFCRealWorldConfig.VERTICAL_WORLD_SIZE.get();
+      int horizontalTileSize = TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get();
+      int verticalTileSize = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get();
 
       PNGContinentNoise continentNoise = null;
       if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
         continentNoise = new PNGContinentNoise(
-          horizontalWorldSize,
-          verticalWorldSize
+          horizontalTileSize,
+          verticalTileSize
         );
         initializeContinentMap(instance, continentNoise);
 
@@ -87,16 +87,16 @@ public class RegionGeneratorMixin {
 
       if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
         PNGAltitudeNoise altitudeNoise = new PNGAltitudeNoise(
-          horizontalWorldSize,
-          verticalWorldSize
+          horizontalTileSize,
+          verticalTileSize
         );
         initializeAltitudeMap(instance, altitudeNoise);
       }
 
       if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
         PNGHotspotsNoise hotspotsNoise = new PNGHotspotsNoise(
-          horizontalWorldSize,
-          verticalWorldSize
+          horizontalTileSize,
+          verticalTileSize
         );
         initializeHotspotsMap(instance, hotspotsNoise);
       }
@@ -105,8 +105,8 @@ public class RegionGeneratorMixin {
         initializeKoppenBasedClimateMaps(
           instance,
           seed,
-          horizontalWorldSize,
-          verticalWorldSize
+          horizontalTileSize,
+          verticalTileSize
         );
       }
     } catch (NoSuchFieldException e) {
@@ -161,12 +161,12 @@ public class RegionGeneratorMixin {
   private void initializeKoppenBasedClimateMaps(
     RegionGenerator instance,
     net.dries007.tfc.world.Seed seed,
-    int horizontalWorldSize,
-    int verticalWorldSize
+    int horizontalTileSize,
+    int verticalTileSize
   ) throws NoSuchFieldException {
     PNGKoppenNoise koppenNoise = new PNGKoppenNoise(
-      horizontalWorldSize,
-      verticalWorldSize
+      horizontalTileSize,
+      verticalTileSize
     );
 
     long koppenSeed = seed.next();
