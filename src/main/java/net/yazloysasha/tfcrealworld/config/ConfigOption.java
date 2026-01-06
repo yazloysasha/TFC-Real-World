@@ -9,6 +9,12 @@ public class ConfigOption<T> implements Supplier<T> {
   private T serverValue;
   private boolean serverConfigActive = false;
 
+  @SuppressWarnings("rawtypes")
+  private Class<? extends Enum> enumClass;
+
+  @SuppressWarnings("rawtypes")
+  private ModConfigSpec.ConfigValue enumConfigValue;
+
   public ConfigOption(
     ModConfigSpec.Builder builder,
     String name,
@@ -52,11 +58,32 @@ public class ConfigOption<T> implements Supplier<T> {
     }
   }
 
+  @SuppressWarnings("rawtypes")
+  public <E extends Enum<E>> ConfigOption(
+    ModConfigSpec.Builder builder,
+    String name,
+    String comment,
+    E defaultValue,
+    Class<E> enumClass
+  ) {
+    builder.comment("");
+    builder.comment(comment);
+    this.enumClass = (Class<? extends Enum>) enumClass;
+    this.enumConfigValue = builder.defineEnum(name, defaultValue);
+    this.configValue = null;
+  }
+
   @Override
+  @SuppressWarnings("unchecked")
   public T get() {
     if (serverConfigActive && serverValue != null) {
       return serverValue;
     }
+
+    if (enumClass != null && enumConfigValue != null) {
+      return (T) enumConfigValue.get();
+    }
+
     return configValue.get();
   }
 

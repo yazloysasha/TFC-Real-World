@@ -7,6 +7,7 @@ import net.dries007.tfc.world.settings.Settings;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.AltitudeNoiseRegistry;
 import net.yazloysasha.tfcrealworld.util.HotspotsNoiseRegistry;
+import net.yazloysasha.tfcrealworld.util.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.world.noise.KoppenBasedRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.KoppenBasedRainfallVarianceNoise;
 import net.yazloysasha.tfcrealworld.world.noise.KoppenBasedTemperatureNoise;
@@ -64,6 +65,8 @@ public class RegionGeneratorMixin {
     CallbackInfo ci
   ) {
     RegionGenerator instance = (RegionGenerator) (Object) this;
+
+    WorldSeedHolder.setSeed(seed.seed());
 
     try {
       int horizontalTileSize = TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get();

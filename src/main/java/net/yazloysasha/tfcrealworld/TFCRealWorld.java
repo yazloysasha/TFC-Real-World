@@ -104,13 +104,16 @@ public final class TFCRealWorld {
   private void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
     if (event.getEntity() instanceof ServerPlayer serverPlayer) {
       ConfigSyncPacket packet = new ConfigSyncPacket(
-        TFCRealWorldConfig.CONTINENTALNESS.get(),
-        TFCRealWorldConfig.FINITE_CONTINENTS.get(),
-        TFCRealWorldConfig.FLAT_BEDROCK.get(),
-        TFCRealWorldConfig.GRASS_DENSITY.get(),
+        TFCRealWorldConfig.SPAWN_MODE.get(),
+        TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.get(),
+        TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.get(),
         TFCRealWorldConfig.SPAWN_CENTER_X.get(),
         TFCRealWorldConfig.SPAWN_CENTER_Z.get(),
         TFCRealWorldConfig.SPAWN_DISTANCE.get(),
+        TFCRealWorldConfig.FLAT_BEDROCK.get(),
+        TFCRealWorldConfig.FINITE_CONTINENTS.get(),
+        TFCRealWorldConfig.CONTINENTALNESS.get(),
+        TFCRealWorldConfig.GRASS_DENSITY.get(),
         TFCRealWorldConfig.TEMPERATURE_SCALE.get(),
         TFCRealWorldConfig.RAINFALL_SCALE.get(),
         TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get(),
@@ -119,7 +122,12 @@ public final class TFCRealWorld {
         TFCRealWorldConfig.ALTITUDE_FROM_MAP.get(),
         TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get(),
         TFCRealWorldConfig.KOPPEN_FROM_MAP.get(),
-        TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get()
+        TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get(),
+        TFCRealWorldConfig.WEST_EDGE_LONGITUDE.get(),
+        TFCRealWorldConfig.EAST_EDGE_LONGITUDE.get(),
+        TFCRealWorldConfig.SOUTH_EDGE_LATITUDE.get(),
+        TFCRealWorldConfig.NORTH_EDGE_LATITUDE.get(),
+        TFCRealWorldConfig.MAP_PROJECTION.get()
       );
       serverPlayer.connection.send(packet);
     }

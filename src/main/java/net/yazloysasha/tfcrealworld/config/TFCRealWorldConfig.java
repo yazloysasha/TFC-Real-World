@@ -6,18 +6,33 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class TFCRealWorldConfig {
 
+  public enum SpawnMode {
+    DEFAULT,
+    GEOGRAPHIC,
+    RANDOM,
+  }
+
+  public enum MapProjection {
+    EQUAL_EARTH,
+  }
+
   public static final ModConfigSpec.Builder BUILDER =
     new ModConfigSpec.Builder();
   public static final ModConfigSpec SPEC;
 
+  // Spawn settings
+  public static final ConfigOption<SpawnMode> SPAWN_MODE;
+  public static final ConfigOption<Double> SPAWN_CENTER_LONGITUDE;
+  public static final ConfigOption<Double> SPAWN_CENTER_LATITUDE;
+
   // World generation settings
-  public static final ConfigOption<Double> CONTINENTALNESS;
-  public static final ConfigOption<Boolean> FINITE_CONTINENTS;
-  public static final ConfigOption<Boolean> FLAT_BEDROCK;
-  public static final ConfigOption<Double> GRASS_DENSITY;
   public static final ConfigOption<Integer> SPAWN_CENTER_X;
   public static final ConfigOption<Integer> SPAWN_CENTER_Z;
   public static final ConfigOption<Integer> SPAWN_DISTANCE;
+  public static final ConfigOption<Boolean> FLAT_BEDROCK;
+  public static final ConfigOption<Boolean> FINITE_CONTINENTS;
+  public static final ConfigOption<Double> CONTINENTALNESS;
+  public static final ConfigOption<Double> GRASS_DENSITY;
   public static final ConfigOption<Integer> TEMPERATURE_SCALE;
   public static final ConfigOption<Integer> RAINFALL_SCALE;
 
@@ -28,45 +43,57 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Boolean> ALTITUDE_FROM_MAP;
   public static final ConfigOption<Boolean> HOTSPOTS_FROM_MAP;
   public static final ConfigOption<Boolean> KOPPEN_FROM_MAP;
+
+  // Biome modifications settings
   public static final ConfigOption<Boolean> CANYONS_NOT_VOLCANIC;
+
+  // Map settings
+  public static final ConfigOption<Double> WEST_EDGE_LONGITUDE;
+  public static final ConfigOption<Double> EAST_EDGE_LONGITUDE;
+  public static final ConfigOption<Double> SOUTH_EDGE_LATITUDE;
+  public static final ConfigOption<Double> NORTH_EDGE_LATITUDE;
+  public static final ConfigOption<MapProjection> MAP_PROJECTION;
 
   private static final List<ConfigOption<?>> allOptions;
 
   static {
-    BUILDER.comment("TFC: Real World Configuration").push("world_generation");
+    BUILDER.comment("TFC: Real World Configuration");
+    BUILDER.push("spawn_settings");
 
-    CONTINENTALNESS = new ConfigOption<>(
+    SPAWN_MODE = new ConfigOption<>(
       BUILDER,
-      "continentalness",
-      "Continentalness value (0.0 to 1.0)",
-      0.5,
-      0.0,
-      1.0
+      "spawn_mode",
+      "Spawn mode. Affects spawn location\n" +
+      "  DEFAULT - use spawn_center_x/z\n" +
+      "  GEOGRAPHIC - spawn_center_longitude/latitude\n" +
+      "  RANDOM - generate from seed",
+      SpawnMode.DEFAULT,
+      SpawnMode.class
     );
-    FINITE_CONTINENTS = new ConfigOption<>(
+    SPAWN_CENTER_LONGITUDE = new ConfigOption<>(
       BUILDER,
-      "finite_continents",
-      "Whether continents are finite",
-      false
+      "spawn_center_longitude",
+      "Geographic longitude for spawn location (used when spawn_mode is GEOGRAPHIC)",
+      0.0, // TODO: Выставить правильно сконвертированные координаты с текущих X/Z
+      -180.0,
+      180.0
     );
-    FLAT_BEDROCK = new ConfigOption<>(
+    SPAWN_CENTER_LATITUDE = new ConfigOption<>(
       BUILDER,
-      "flat_bedrock",
-      "Whether bedrock is flat",
-      false
+      "spawn_center_latitude",
+      "Geographic latitude for spawn location (used when spawn_mode is GEOGRAPHIC)",
+      0.0, // TODO: Выставить правильно сконвертированные координаты с текущих X/Z
+      -90.0,
+      90.0
     );
-    GRASS_DENSITY = new ConfigOption<>(
-      BUILDER,
-      "grass_density",
-      "Grass density (0.0 to 1.0)",
-      0.5,
-      0.0,
-      1.0
-    );
+
+    BUILDER.pop();
+    BUILDER.push("world_generation");
+
     SPAWN_CENTER_X = new ConfigOption<>(
       BUILDER,
       "spawn_center_x",
-      "Spawn center X coordinate",
+      "Spawn center X coordinate (used when spawn_mode is DEFAULT)",
       -9000,
       -100000,
       100000
@@ -74,7 +101,7 @@ public class TFCRealWorldConfig {
     SPAWN_CENTER_Z = new ConfigOption<>(
       BUILDER,
       "spawn_center_z",
-      "Spawn center Z coordinate",
+      "Spawn center Z coordinate (used when spawn_mode is DEFAULT)",
       -3000,
       -100000,
       100000
@@ -86,6 +113,34 @@ public class TFCRealWorldConfig {
       100,
       0,
       10000
+    );
+    FLAT_BEDROCK = new ConfigOption<>(
+      BUILDER,
+      "flat_bedrock",
+      "Whether bedrock is flat",
+      false
+    );
+    FINITE_CONTINENTS = new ConfigOption<>(
+      BUILDER,
+      "finite_continents",
+      "Whether continents are finite",
+      false
+    );
+    CONTINENTALNESS = new ConfigOption<>(
+      BUILDER,
+      "continentalness",
+      "Continentalness value (0.0 to 1.0)",
+      0.5,
+      0.0,
+      1.0
+    );
+    GRASS_DENSITY = new ConfigOption<>(
+      BUILDER,
+      "grass_density",
+      "Grass density (0.0 to 1.0)",
+      0.5,
+      0.0,
+      1.0
     );
     TEMPERATURE_SCALE = new ConfigOption<>(
       BUILDER,
@@ -165,16 +220,66 @@ public class TFCRealWorldConfig {
     );
 
     BUILDER.pop();
+    BUILDER.push("map_settings");
+    BUILDER.comment(
+      " !!! I don't recommend changing it if you're not sure !!!"
+    );
+
+    WEST_EDGE_LONGITUDE = new ConfigOption<>(
+      BUILDER,
+      "west_edge_longitude",
+      "Western boundary of the map extent in degrees longitude",
+      -20.0,
+      -180.0,
+      180.0
+    );
+    EAST_EDGE_LONGITUDE = new ConfigOption<>(
+      BUILDER,
+      "east_edge_longitude",
+      "Eastern boundary of the map extent in degrees longitude",
+      160.0,
+      -180.0,
+      180.0
+    );
+    SOUTH_EDGE_LATITUDE = new ConfigOption<>(
+      BUILDER,
+      "south_edge_latitude",
+      "Southern boundary of the map extent in degrees latitude",
+      -90.0,
+      -90.0,
+      90.0
+    );
+    NORTH_EDGE_LATITUDE = new ConfigOption<>(
+      BUILDER,
+      "north_edge_latitude",
+      "Northern boundary of the map extent in degrees latitude",
+      90.0,
+      -90.0,
+      90.0
+    );
+    MAP_PROJECTION = new ConfigOption<>(
+      BUILDER,
+      "map_projection",
+      "Map projection type for geographic coordinate conversion\n" +
+      "  EQUAL_EARTH - equal-area, preserving the scale of areas",
+      MapProjection.EQUAL_EARTH,
+      MapProjection.class
+    );
+
+    BUILDER.pop();
     SPEC = BUILDER.build();
 
     allOptions = Arrays.asList(
-      CONTINENTALNESS,
-      FINITE_CONTINENTS,
-      FLAT_BEDROCK,
-      GRASS_DENSITY,
+      SPAWN_MODE,
+      SPAWN_CENTER_LONGITUDE,
+      SPAWN_CENTER_LATITUDE,
       SPAWN_CENTER_X,
       SPAWN_CENTER_Z,
       SPAWN_DISTANCE,
+      FLAT_BEDROCK,
+      FINITE_CONTINENTS,
+      CONTINENTALNESS,
+      GRASS_DENSITY,
       TEMPERATURE_SCALE,
       RAINFALL_SCALE,
       HORIZONTAL_TILE_SIZE,
@@ -183,18 +288,26 @@ public class TFCRealWorldConfig {
       ALTITUDE_FROM_MAP,
       HOTSPOTS_FROM_MAP,
       KOPPEN_FROM_MAP,
-      CANYONS_NOT_VOLCANIC
+      CANYONS_NOT_VOLCANIC,
+      WEST_EDGE_LONGITUDE,
+      EAST_EDGE_LONGITUDE,
+      SOUTH_EDGE_LATITUDE,
+      NORTH_EDGE_LATITUDE,
+      MAP_PROJECTION
     );
   }
 
   public static void setServerConfig(
-    double continentalness,
-    boolean finiteContinents,
-    boolean flatBedrock,
-    double grassDensity,
+    SpawnMode spawnMode,
+    Double spawnCenterLongtitude,
+    Double spawnCenterLatitude,
     int spawnCenterX,
     int spawnCenterZ,
     int spawnDistance,
+    boolean flatBedrock,
+    boolean finiteContinents,
+    double continentalness,
+    double grassDensity,
     int temperatureScale,
     int rainfallScale,
     int horizontalTileSize,
@@ -203,15 +316,23 @@ public class TFCRealWorldConfig {
     boolean altitudeFromMap,
     boolean hotspotsFromMap,
     boolean koppenFromMap,
-    boolean canyonsNotVolcanic
+    boolean canyonsNotVolcanic,
+    Double westEdgeLongtitude,
+    Double eastEdgeLongtitude,
+    Double southEdgeLatitude,
+    Double northEdgeLatitude,
+    MapProjection mapProjection
   ) {
-    CONTINENTALNESS.setServerValue(continentalness);
-    FINITE_CONTINENTS.setServerValue(finiteContinents);
-    FLAT_BEDROCK.setServerValue(flatBedrock);
-    GRASS_DENSITY.setServerValue(grassDensity);
+    SPAWN_MODE.setServerValue(spawnMode);
+    SPAWN_CENTER_LONGITUDE.setServerValue(spawnCenterLongtitude);
+    SPAWN_CENTER_LATITUDE.setServerValue(spawnCenterLatitude);
     SPAWN_CENTER_X.setServerValue(spawnCenterX);
     SPAWN_CENTER_Z.setServerValue(spawnCenterZ);
     SPAWN_DISTANCE.setServerValue(spawnDistance);
+    FLAT_BEDROCK.setServerValue(flatBedrock);
+    FINITE_CONTINENTS.setServerValue(finiteContinents);
+    CONTINENTALNESS.setServerValue(continentalness);
+    GRASS_DENSITY.setServerValue(grassDensity);
     TEMPERATURE_SCALE.setServerValue(temperatureScale);
     RAINFALL_SCALE.setServerValue(rainfallScale);
     HORIZONTAL_TILE_SIZE.setServerValue(horizontalTileSize);
@@ -221,6 +342,11 @@ public class TFCRealWorldConfig {
     HOTSPOTS_FROM_MAP.setServerValue(hotspotsFromMap);
     KOPPEN_FROM_MAP.setServerValue(koppenFromMap);
     CANYONS_NOT_VOLCANIC.setServerValue(canyonsNotVolcanic);
+    WEST_EDGE_LONGITUDE.setServerValue(westEdgeLongtitude);
+    EAST_EDGE_LONGITUDE.setServerValue(eastEdgeLongtitude);
+    SOUTH_EDGE_LATITUDE.setServerValue(southEdgeLatitude);
+    NORTH_EDGE_LATITUDE.setServerValue(northEdgeLatitude);
+    MAP_PROJECTION.setServerValue(mapProjection);
   }
 
   public static void clearServerConfig() {

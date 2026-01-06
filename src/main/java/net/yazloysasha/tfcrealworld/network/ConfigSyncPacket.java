@@ -9,13 +9,16 @@ import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 
 public record ConfigSyncPacket(
-  double continentalness,
-  boolean finiteContinents,
-  boolean flatBedrock,
-  double grassDensity,
+  TFCRealWorldConfig.SpawnMode spawnMode,
+  Double spawnCenterLongtitude,
+  Double spawnCenterLatitude,
   int spawnCenterX,
   int spawnCenterZ,
   int spawnDistance,
+  boolean flatBedrock,
+  boolean finiteContinents,
+  double continentalness,
+  double grassDensity,
   int temperatureScale,
   int rainfallScale,
   int horizontalTileSize,
@@ -24,7 +27,12 @@ public record ConfigSyncPacket(
   boolean altitudeFromMap,
   boolean hotspotsFromMap,
   boolean koppenFromMap,
-  boolean canyonsNotVolcanic
+  boolean canyonsNotVolcanic,
+  Double westEdgeLongtitude,
+  Double eastEdgeLongtitude,
+  Double southEdgeLatitude,
+  Double northEdgeLatitude,
+  TFCRealWorldConfig.MapProjection mapProjection
 )
   implements CustomPacketPayload {
   public static final Type<ConfigSyncPacket> TYPE = new Type<>(
@@ -36,13 +44,16 @@ public record ConfigSyncPacket(
     ConfigSyncPacket
   > STREAM_CODEC = StreamCodec.of(
     (buffer, packet) -> {
-      buffer.writeDouble(packet.continentalness);
-      buffer.writeBoolean(packet.finiteContinents);
-      buffer.writeBoolean(packet.flatBedrock);
-      buffer.writeDouble(packet.grassDensity);
+      buffer.writeEnum(packet.spawnMode);
+      buffer.writeDouble(packet.spawnCenterLongtitude);
+      buffer.writeDouble(packet.spawnCenterLatitude);
       buffer.writeInt(packet.spawnCenterX);
       buffer.writeInt(packet.spawnCenterZ);
       buffer.writeInt(packet.spawnDistance);
+      buffer.writeBoolean(packet.flatBedrock);
+      buffer.writeBoolean(packet.finiteContinents);
+      buffer.writeDouble(packet.continentalness);
+      buffer.writeDouble(packet.grassDensity);
       buffer.writeInt(packet.temperatureScale);
       buffer.writeInt(packet.rainfallScale);
       buffer.writeInt(packet.horizontalTileSize);
@@ -52,25 +63,38 @@ public record ConfigSyncPacket(
       buffer.writeBoolean(packet.hotspotsFromMap);
       buffer.writeBoolean(packet.koppenFromMap);
       buffer.writeBoolean(packet.canyonsNotVolcanic);
+      buffer.writeDouble(packet.westEdgeLongtitude);
+      buffer.writeDouble(packet.eastEdgeLongtitude);
+      buffer.writeDouble(packet.southEdgeLatitude);
+      buffer.writeDouble(packet.northEdgeLatitude);
+      buffer.writeEnum(packet.mapProjection);
     },
     buffer ->
       new ConfigSyncPacket(
+        buffer.readEnum(TFCRealWorldConfig.SpawnMode.class),
         buffer.readDouble(),
+        buffer.readDouble(),
+        buffer.readInt(),
+        buffer.readInt(),
+        buffer.readInt(),
         buffer.readBoolean(),
         buffer.readBoolean(),
+        buffer.readDouble(),
         buffer.readDouble(),
         buffer.readInt(),
         buffer.readInt(),
         buffer.readInt(),
         buffer.readInt(),
-        buffer.readInt(),
-        buffer.readInt(),
-        buffer.readInt(),
         buffer.readBoolean(),
         buffer.readBoolean(),
         buffer.readBoolean(),
         buffer.readBoolean(),
-        buffer.readBoolean()
+        buffer.readBoolean(),
+        buffer.readDouble(),
+        buffer.readDouble(),
+        buffer.readDouble(),
+        buffer.readDouble(),
+        buffer.readEnum(TFCRealWorldConfig.MapProjection.class)
       )
   );
 
@@ -82,13 +106,16 @@ public record ConfigSyncPacket(
   public static void handle(ConfigSyncPacket packet, IPayloadContext context) {
     context.enqueueWork(() -> {
       TFCRealWorldConfig.setServerConfig(
-        packet.continentalness(),
-        packet.finiteContinents(),
-        packet.flatBedrock(),
-        packet.grassDensity(),
+        packet.spawnMode(),
+        packet.spawnCenterLongtitude(),
+        packet.spawnCenterLatitude(),
         packet.spawnCenterX(),
         packet.spawnCenterZ(),
         packet.spawnDistance(),
+        packet.flatBedrock(),
+        packet.finiteContinents(),
+        packet.continentalness(),
+        packet.grassDensity(),
         packet.temperatureScale(),
         packet.rainfallScale(),
         packet.horizontalTileSize(),
@@ -97,7 +124,12 @@ public record ConfigSyncPacket(
         packet.altitudeFromMap(),
         packet.hotspotsFromMap(),
         packet.koppenFromMap(),
-        packet.canyonsNotVolcanic()
+        packet.canyonsNotVolcanic(),
+        packet.westEdgeLongtitude(),
+        packet.eastEdgeLongtitude(),
+        packet.southEdgeLatitude(),
+        packet.northEdgeLatitude(),
+        packet.mapProjection()
       );
     });
   }
