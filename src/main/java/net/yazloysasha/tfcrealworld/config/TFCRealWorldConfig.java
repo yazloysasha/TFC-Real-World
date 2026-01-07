@@ -66,7 +66,7 @@ public class TFCRealWorldConfig {
       BUILDER,
       "spawn_center_longitude",
       "Geographic longitude for spawn location (used when spawn_mode is GEOGRAPHIC)",
-      0.0, // TODO: Выставить правильно сконвертированные координаты с текущих X/Z
+      29.216615,
       -180.0,
       180.0
     );
@@ -74,7 +74,7 @@ public class TFCRealWorldConfig {
       BUILDER,
       "spawn_center_latitude",
       "Geographic latitude for spawn location (used when spawn_mode is GEOGRAPHIC)",
-      0.0, // TODO: Выставить правильно сконвертированные координаты с текущих X/Z
+      9.779201,
       -90.0,
       90.0
     );
