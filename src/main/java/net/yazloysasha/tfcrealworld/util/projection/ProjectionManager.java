@@ -24,7 +24,7 @@ public class ProjectionManager {
     return strategy;
   }
 
-  public static int geographicToMinecraftX(
+  public static int[] geographicToMinecraft(
     double spawnCenterLongtitude,
     double spawnCenterLatitude,
     int horizontalTileSize,
@@ -40,37 +40,7 @@ public class ProjectionManager {
     double tileCenterLongitude = (westEdgeLongitude + eastEdgeLongitude) / 2.0;
     double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
 
-    return strategy.geographicToMinecraftX(
-      spawnCenterLongtitude,
-      spawnCenterLatitude,
-      horizontalTileSize,
-      verticalTileSize,
-      westEdgeLongitude,
-      eastEdgeLongitude,
-      southEdgeLatitude,
-      northEdgeLatitude,
-      tileCenterLongitude,
-      tileCenterLatitude
-    );
-  }
-
-  public static int geographicToMinecraftZ(
-    double spawnCenterLongtitude,
-    double spawnCenterLatitude,
-    int horizontalTileSize,
-    int verticalTileSize,
-    double westEdgeLongitude,
-    double eastEdgeLongitude,
-    double southEdgeLatitude,
-    double northEdgeLatitude,
-    MapProjection projection
-  ) {
-    MapProjectionStrategy strategy = getStrategy(projection);
-
-    double tileCenterLongitude = (westEdgeLongitude + eastEdgeLongitude) / 2.0;
-    double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
-
-    return strategy.geographicToMinecraftZ(
+    return strategy.geographicToMinecraft(
       spawnCenterLongtitude,
       spawnCenterLatitude,
       horizontalTileSize,

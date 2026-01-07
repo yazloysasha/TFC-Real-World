@@ -9,7 +9,7 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
   private static final double SQRT_3 = Math.sqrt(3.0);
 
   @Override
-  public int geographicToMinecraftX(
+  public int[] geographicToMinecraft(
     double spawnCenterLongtitude,
     double spawnCenterLatitude,
     int horizontalTileSize,
@@ -64,33 +64,9 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double normalizedX = (projX - westProjX) / projWidth;
     normalizedX = Math.clamp(normalizedX, 0.0, 1.0);
 
-    return (int) Math.round(
+    int x = (int) Math.round(
       normalizedX * horizontalTileSize - horizontalTileSize / 2.0
     );
-  }
-
-  @Override
-  public int geographicToMinecraftZ(
-    double spawnCenterLongtitude,
-    double spawnCenterLatitude,
-    int horizontalTileSize,
-    int verticalTileSize,
-    double westEdgeLongitude,
-    double eastEdgeLongitude,
-    double southEdgeLatitude,
-    double northEdgeLatitude,
-    double tileCenterLongitude,
-    double tileCenterLatitude
-  ) {
-    spawnCenterLatitude = Math.clamp(spawnCenterLatitude, -90.0, 90.0);
-
-    double latRad = Math.toRadians(spawnCenterLatitude);
-
-    double sinLat = Math.sin(latRad);
-    double sinLatSq = sinLat * sinLat;
-    double denominator = 1.0 + 3.0 * sinLatSq;
-
-    double projY = (SQRT_3 * sinLat) / denominator;
 
     double southLatRad = Math.toRadians(southEdgeLatitude);
     double northLatRad = Math.toRadians(northEdgeLatitude);
@@ -100,6 +76,7 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double southDenominator = 1.0 + 3.0 * sinSouthLat * sinSouthLat;
     double northDenominator = 1.0 + 3.0 * sinNorthLat * sinNorthLat;
 
+    double projY = (SQRT_3 * sinLat) / denominator;
     double southProjY = (SQRT_3 * sinSouthLat) / southDenominator;
     double northProjY = (SQRT_3 * sinNorthLat) / northDenominator;
 
@@ -108,9 +85,11 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double normalizedY = (projY - southProjY) / projHeight;
     normalizedY = Math.clamp(normalizedY, 0.0, 1.0);
 
-    return (int) Math.round(
+    int z = (int) Math.round(
       normalizedY * verticalTileSize - verticalTileSize / 2.0
     );
+
+    return new int[] { x, z };
   }
 
   private static double normalizeLongitude(double longitude) {
