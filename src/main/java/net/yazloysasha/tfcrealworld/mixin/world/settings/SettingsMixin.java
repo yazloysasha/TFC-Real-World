@@ -4,6 +4,7 @@ import java.util.Random;
 import net.dries007.tfc.world.settings.Settings;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.types.CachedSpawnCenter;
+import net.yazloysasha.tfcrealworld.types.SpawnMode;
 import net.yazloysasha.tfcrealworld.util.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.projection.ProjectionManager;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,10 +27,10 @@ public class SettingsMixin {
   private void tfcrealworld$overrideSpawnDistance(
     CallbackInfoReturnable<Integer> cir
   ) {
-    TFCRealWorldConfig.SpawnMode mode = TFCRealWorldConfig.SPAWN_MODE.get();
+    SpawnMode mode = TFCRealWorldConfig.SPAWN_MODE.get();
     int value = TFCRealWorldConfig.SPAWN_DISTANCE.get();
 
-    if (mode == TFCRealWorldConfig.SpawnMode.RANDOM) {
+    if (mode == SpawnMode.RANDOM) {
       int halfX = TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get() / 2;
       int halfZ = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get() / 2;
       value = Math.min(halfX, halfZ);
@@ -65,24 +66,21 @@ public class SettingsMixin {
   }
 
   private static int[] getSpawnCenter() {
-    TFCRealWorldConfig.SpawnMode mode = TFCRealWorldConfig.SPAWN_MODE.get();
+    SpawnMode mode = TFCRealWorldConfig.SPAWN_MODE.get();
 
-    long seed = mode == TFCRealWorldConfig.SpawnMode.RANDOM
-      ? WorldSeedHolder.getSeed()
-      : 0L;
+    long seed = mode == SpawnMode.RANDOM ? WorldSeedHolder.getSeed() : 0L;
     CachedSpawnCenter cachedSpawnCenter = SPAWN_CENTER_CACHE.get();
     if (
       cachedSpawnCenter != null &&
       cachedSpawnCenter.mode() == mode &&
-      (mode != TFCRealWorldConfig.SpawnMode.RANDOM ||
-        cachedSpawnCenter.seed() == seed)
+      (mode != SpawnMode.RANDOM || cachedSpawnCenter.seed() == seed)
     ) {
       return cachedSpawnCenter.coords();
     }
 
     int[] result;
 
-    if (mode == TFCRealWorldConfig.SpawnMode.GEOGRAPHIC) {
+    if (mode == SpawnMode.GEOGRAPHIC) {
       result = ProjectionManager.geographicToMinecraft(
         TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.get(),
         TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.get(),
@@ -94,7 +92,7 @@ public class SettingsMixin {
         TFCRealWorldConfig.NORTH_EDGE_LATITUDE.get(),
         TFCRealWorldConfig.MAP_PROJECTION.get()
       );
-    } else if (mode == TFCRealWorldConfig.SpawnMode.RANDOM) {
+    } else if (mode == SpawnMode.RANDOM) {
       long worldSeed = seed;
       Random rng = new Random(worldSeed ^ 0x1234ABCDL);
 

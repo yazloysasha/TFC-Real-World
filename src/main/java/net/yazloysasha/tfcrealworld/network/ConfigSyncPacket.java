@@ -7,9 +7,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.types.MapProjection;
+import net.yazloysasha.tfcrealworld.types.SpawnMode;
 
 public record ConfigSyncPacket(
-  TFCRealWorldConfig.SpawnMode spawnMode,
+  SpawnMode spawnMode,
   Double spawnCenterLongtitude,
   Double spawnCenterLatitude,
   int spawnCenterX,
@@ -32,7 +34,7 @@ public record ConfigSyncPacket(
   Double eastEdgeLongtitude,
   Double southEdgeLatitude,
   Double northEdgeLatitude,
-  TFCRealWorldConfig.MapProjection mapProjection
+  MapProjection mapProjection
 )
   implements CustomPacketPayload {
   public static final Type<ConfigSyncPacket> TYPE = new Type<>(
@@ -71,7 +73,7 @@ public record ConfigSyncPacket(
     },
     buffer ->
       new ConfigSyncPacket(
-        buffer.readEnum(TFCRealWorldConfig.SpawnMode.class),
+        buffer.readEnum(SpawnMode.class),
         buffer.readDouble(),
         buffer.readDouble(),
         buffer.readInt(),
@@ -94,7 +96,7 @@ public record ConfigSyncPacket(
         buffer.readDouble(),
         buffer.readDouble(),
         buffer.readDouble(),
-        buffer.readEnum(TFCRealWorldConfig.MapProjection.class)
+        buffer.readEnum(MapProjection.class)
       )
   );
 

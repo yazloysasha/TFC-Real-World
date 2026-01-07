@@ -2,7 +2,7 @@ package net.yazloysasha.tfcrealworld.util.projection;
 
 import java.util.HashMap;
 import java.util.Map;
-import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig.MapProjection;
+import net.yazloysasha.tfcrealworld.types.MapProjection;
 
 public class ProjectionManager {
 

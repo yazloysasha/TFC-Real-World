@@ -3,18 +3,10 @@ package net.yazloysasha.tfcrealworld.config;
 import java.util.Arrays;
 import java.util.List;
 import net.neoforged.neoforge.common.ModConfigSpec;
+import net.yazloysasha.tfcrealworld.types.MapProjection;
+import net.yazloysasha.tfcrealworld.types.SpawnMode;
 
 public class TFCRealWorldConfig {
-
-  public enum SpawnMode {
-    DEFAULT,
-    GEOGRAPHIC,
-    RANDOM,
-  }
-
-  public enum MapProjection {
-    EQUAL_EARTH,
-  }
 
   public static final ModConfigSpec.Builder BUILDER =
     new ModConfigSpec.Builder();
