@@ -114,6 +114,8 @@ public final class TFCRealWorld {
         TFCRealWorldConfig.FINITE_CONTINENTS.get(),
         TFCRealWorldConfig.CONTINENTALNESS.get(),
         TFCRealWorldConfig.GRASS_DENSITY.get(),
+        TFCRealWorldConfig.TEMPERATURE_CONSTANT.get(),
+        TFCRealWorldConfig.RAINFALL_CONSTANT.get(),
         TFCRealWorldConfig.TEMPERATURE_SCALE.get(),
         TFCRealWorldConfig.RAINFALL_SCALE.get(),
         TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get(),

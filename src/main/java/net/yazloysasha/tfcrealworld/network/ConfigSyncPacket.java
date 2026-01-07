@@ -21,6 +21,8 @@ public record ConfigSyncPacket(
   boolean finiteContinents,
   double continentalness,
   double grassDensity,
+  double temperatureConstant,
+  double rainfallConstant,
   int temperatureScale,
   int rainfallScale,
   int horizontalTileSize,
@@ -56,6 +58,8 @@ public record ConfigSyncPacket(
       buffer.writeBoolean(packet.finiteContinents);
       buffer.writeDouble(packet.continentalness);
       buffer.writeDouble(packet.grassDensity);
+      buffer.writeDouble(packet.temperatureConstant);
+      buffer.writeDouble(packet.rainfallConstant);
       buffer.writeInt(packet.temperatureScale);
       buffer.writeInt(packet.rainfallScale);
       buffer.writeInt(packet.horizontalTileSize);
@@ -81,6 +85,8 @@ public record ConfigSyncPacket(
         buffer.readInt(),
         buffer.readBoolean(),
         buffer.readBoolean(),
+        buffer.readDouble(),
+        buffer.readDouble(),
         buffer.readDouble(),
         buffer.readDouble(),
         buffer.readInt(),
@@ -118,6 +124,8 @@ public record ConfigSyncPacket(
         packet.finiteContinents(),
         packet.continentalness(),
         packet.grassDensity(),
+        packet.temperatureConstant(),
+        packet.rainfallConstant(),
         packet.temperatureScale(),
         packet.rainfallScale(),
         packet.horizontalTileSize(),

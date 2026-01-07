@@ -25,6 +25,8 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Boolean> FINITE_CONTINENTS;
   public static final ConfigOption<Double> CONTINENTALNESS;
   public static final ConfigOption<Double> GRASS_DENSITY;
+  public static final ConfigOption<Double> TEMPERATURE_CONSTANT;
+  public static final ConfigOption<Double> RAINFALL_CONSTANT;
   public static final ConfigOption<Integer> TEMPERATURE_SCALE;
   public static final ConfigOption<Integer> RAINFALL_SCALE;
 
@@ -86,25 +88,25 @@ public class TFCRealWorldConfig {
       BUILDER,
       "spawn_center_x",
       "Spawn center X coordinate (used when spawn_mode is DEFAULT)",
-      -9000,
-      -100000,
-      100000
+      -9_000,
+      -20_000,
+      20_000
     );
     SPAWN_CENTER_Z = new ConfigOption<>(
       BUILDER,
       "spawn_center_z",
       "Spawn center Z coordinate (used when spawn_mode is DEFAULT)",
-      -3000,
-      -100000,
-      100000
+      -3_000,
+      -20_000,
+      20_000
     );
     SPAWN_DISTANCE = new ConfigOption<>(
       BUILDER,
       "spawn_distance",
       "Spawn distance in blocks",
       100,
-      0,
-      10000
+      100,
+      20_000
     );
     FLAT_BEDROCK = new ConfigOption<>(
       BUILDER,
@@ -121,7 +123,7 @@ public class TFCRealWorldConfig {
     CONTINENTALNESS = new ConfigOption<>(
       BUILDER,
       "continentalness",
-      "Continentalness value (0.0 to 1.0)",
+      "Continentalness value",
       0.5,
       0.0,
       1.0
@@ -129,8 +131,24 @@ public class TFCRealWorldConfig {
     GRASS_DENSITY = new ConfigOption<>(
       BUILDER,
       "grass_density",
-      "Grass density (0.0 to 1.0)",
+      "Grass density",
       0.5,
+      0.0,
+      1.0
+    );
+    TEMPERATURE_CONSTANT = new ConfigOption<>(
+      BUILDER,
+      "temperature_constant",
+      "Temperature constant",
+      0.0,
+      0.0,
+      1.0
+    );
+    RAINFALL_CONSTANT = new ConfigOption<>(
+      BUILDER,
+      "rainfall_constant",
+      "Rainfall constant",
+      0.0,
       0.0,
       1.0
     );
@@ -138,17 +156,17 @@ public class TFCRealWorldConfig {
       BUILDER,
       "temperature_scale",
       "Temperature scale in blocks",
-      20000,
-      1000,
-      100000
+      20_000,
+      0,
+      40_000
     );
     RAINFALL_SCALE = new ConfigOption<>(
       BUILDER,
       "rainfall_scale",
       "Rainfall scale in blocks",
-      20000,
-      1000,
-      100000
+      20_000,
+      0,
+      40_000
     );
 
     BUILDER.pop();
@@ -158,17 +176,17 @@ public class TFCRealWorldConfig {
       BUILDER,
       "horizontal_tile_size",
       "Horizontal tile size (diameter) in blocks. Affects horizontal map stretching when generating from map.",
-      40000,
-      1000,
-      200000
+      40_000,
+      0,
+      200_000
     );
     VERTICAL_TILE_SIZE = new ConfigOption<>(
       BUILDER,
       "vertical_tile_size",
       "Vertical tile size (diameter) in blocks. Affects vertical map stretching when generating from map.",
-      40000,
-      1000,
-      200000
+      40_000,
+      0,
+      200_000
     );
     CONTINENT_FROM_MAP = new ConfigOption<>(
       BUILDER,
@@ -272,6 +290,8 @@ public class TFCRealWorldConfig {
       FINITE_CONTINENTS,
       CONTINENTALNESS,
       GRASS_DENSITY,
+      TEMPERATURE_CONSTANT,
+      RAINFALL_CONSTANT,
       TEMPERATURE_SCALE,
       RAINFALL_SCALE,
       HORIZONTAL_TILE_SIZE,
@@ -300,6 +320,8 @@ public class TFCRealWorldConfig {
     boolean finiteContinents,
     double continentalness,
     double grassDensity,
+    double temperatureConstant,
+    double rainfallConstant,
     int temperatureScale,
     int rainfallScale,
     int horizontalTileSize,
@@ -325,6 +347,8 @@ public class TFCRealWorldConfig {
     FINITE_CONTINENTS.setServerValue(finiteContinents);
     CONTINENTALNESS.setServerValue(continentalness);
     GRASS_DENSITY.setServerValue(grassDensity);
+    TEMPERATURE_CONSTANT.setServerValue(temperatureConstant);
+    RAINFALL_CONSTANT.setServerValue(rainfallConstant);
     TEMPERATURE_SCALE.setServerValue(temperatureScale);
     RAINFALL_SCALE.setServerValue(rainfallScale);
     HORIZONTAL_TILE_SIZE.setServerValue(horizontalTileSize);

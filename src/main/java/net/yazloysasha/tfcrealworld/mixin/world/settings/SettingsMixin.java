@@ -176,6 +176,32 @@ public class SettingsMixin {
   }
 
   @Inject(
+    method = "temperatureConstant",
+    at = @At("RETURN"),
+    cancellable = true,
+    remap = false
+  )
+  private void tfcrealworld$overrideTemperatureConstant(
+    CallbackInfoReturnable<Float> cir
+  ) {
+    cir.setReturnValue(
+      TFCRealWorldConfig.TEMPERATURE_CONSTANT.get().floatValue()
+    );
+  }
+
+  @Inject(
+    method = "rainfallConstant",
+    at = @At("RETURN"),
+    cancellable = true,
+    remap = false
+  )
+  private void tfcrealworld$overrideRainfallConstant(
+    CallbackInfoReturnable<Float> cir
+  ) {
+    cir.setReturnValue(TFCRealWorldConfig.RAINFALL_CONSTANT.get().floatValue());
+  }
+
+  @Inject(
     method = "temperatureScale",
     at = @At("RETURN"),
     cancellable = true,
