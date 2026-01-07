@@ -70,12 +70,7 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double projHeight = Math.abs(northProjY - southProjY);
 
     double normalizedX = (projX - westProjX) / projWidth;
-    normalizedX = Math.clamp(normalizedX, 0.0, 1.0);
-
-    double normalizedY = (projY - southProjY) / projHeight;
-    normalizedY = Math.clamp(normalizedY, 0.0, 1.0);
-
-    normalizedY = 1.0 - normalizedY;
+    double normalizedY = 1.0 - (projY - southProjY) / projHeight;
 
     int x = (int) Math.round(
       normalizedX * horizontalTileSize - horizontalTileSize / 2.0
