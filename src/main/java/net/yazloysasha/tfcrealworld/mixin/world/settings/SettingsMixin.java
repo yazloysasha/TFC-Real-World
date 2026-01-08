@@ -1,12 +1,7 @@
 package net.yazloysasha.tfcrealworld.mixin.world.settings;
 
-import java.util.Random;
 import net.dries007.tfc.world.settings.Settings;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.types.CachedSpawnCenter;
-import net.yazloysasha.tfcrealworld.types.SpawnMode;
-import net.yazloysasha.tfcrealworld.util.WorldSeedHolder;
-import net.yazloysasha.tfcrealworld.util.projection.ProjectionManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,30 +9,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Settings.class)
 public class SettingsMixin {
-
-  private static final ThreadLocal<CachedSpawnCenter> SPAWN_CENTER_CACHE =
-    new ThreadLocal<>();
-
-  @Inject(
-    method = "spawnDistance",
-    at = @At("RETURN"),
-    cancellable = true,
-    remap = false
-  )
-  private void tfcrealworld$overrideSpawnDistance(
-    CallbackInfoReturnable<Integer> cir
-  ) {
-    SpawnMode mode = TFCRealWorldConfig.SPAWN_MODE.get();
-    int value = TFCRealWorldConfig.SPAWN_DISTANCE.get();
-
-    if (mode == SpawnMode.RANDOM) {
-      int halfX = TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get() / 2;
-      int halfZ = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get() / 2;
-      value = Math.min(halfX, halfZ);
-    }
-
-    cir.setReturnValue(value);
-  }
 
   @Inject(
     method = "spawnCenterX",
@@ -48,8 +19,7 @@ public class SettingsMixin {
   private void tfcrealworld$overrideSpawnCenterX(
     CallbackInfoReturnable<Integer> cir
   ) {
-    int[] spawnCenter = getSpawnCenter();
-    cir.setReturnValue(spawnCenter[0]);
+    cir.setReturnValue(TFCRealWorldConfig.SPAWN_CENTER_X.get());
   }
 
   @Inject(
@@ -61,70 +31,19 @@ public class SettingsMixin {
   private void tfcrealworld$overrideSpawnCenterZ(
     CallbackInfoReturnable<Integer> cir
   ) {
-    int[] spawnCenter = getSpawnCenter();
-    cir.setReturnValue(spawnCenter[1]);
+    cir.setReturnValue(TFCRealWorldConfig.SPAWN_CENTER_Z.get());
   }
 
-  private static int[] getSpawnCenter() {
-    SpawnMode mode = TFCRealWorldConfig.SPAWN_MODE.get();
-
-    long seed = mode == SpawnMode.RANDOM ? WorldSeedHolder.getSeed() : 0L;
-    CachedSpawnCenter cachedSpawnCenter = SPAWN_CENTER_CACHE.get();
-    if (
-      cachedSpawnCenter != null &&
-      cachedSpawnCenter.mode() == mode &&
-      (mode != SpawnMode.RANDOM || cachedSpawnCenter.seed() == seed)
-    ) {
-      return cachedSpawnCenter.coords();
-    }
-
-    int[] result;
-
-    if (mode == SpawnMode.GEOGRAPHIC) {
-      result = ProjectionManager.geographicToMinecraft(
-        TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.get(),
-        TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.get(),
-        TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get(),
-        TFCRealWorldConfig.VERTICAL_TILE_SIZE.get(),
-        TFCRealWorldConfig.WEST_EDGE_LONGITUDE.get(),
-        TFCRealWorldConfig.EAST_EDGE_LONGITUDE.get(),
-        TFCRealWorldConfig.SOUTH_EDGE_LATITUDE.get(),
-        TFCRealWorldConfig.NORTH_EDGE_LATITUDE.get(),
-        TFCRealWorldConfig.MAP_PROJECTION.get()
-      );
-    } else if (mode == SpawnMode.RANDOM) {
-      long worldSeed = seed;
-      Random rng = new Random(worldSeed ^ 0x1234ABCDL);
-
-      int halfX = TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get() / 2;
-      int halfZ = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get() / 2;
-
-      // For RANDOM mode, SPAWN_DISTANCE is a square movement radius
-      int spawnDistance = Math.min(halfX, halfZ);
-
-      // Ensure SPAWN_CENTER ± SPAWN_DISTANCE stays within half of the tile size:
-      // |center| + spawnDistance <= halfSize on each axis
-      int maxCenterX = Math.max(0, halfX - spawnDistance);
-      int maxCenterZ = Math.max(0, halfZ - spawnDistance);
-
-      int x = maxCenterX == 0
-        ? 0
-        : rng.nextInt(maxCenterX * 2 + 1) - maxCenterX;
-      int z = maxCenterZ == 0
-        ? 0
-        : rng.nextInt(maxCenterZ * 2 + 1) - maxCenterZ;
-
-      result = new int[] { x, z };
-    } else {
-      result = new int[] {
-        TFCRealWorldConfig.SPAWN_CENTER_X.get(),
-        TFCRealWorldConfig.SPAWN_CENTER_Z.get(),
-      };
-    }
-
-    SPAWN_CENTER_CACHE.set(new CachedSpawnCenter(mode, seed, result));
-
-    return result;
+  @Inject(
+    method = "spawnDistance",
+    at = @At("RETURN"),
+    cancellable = true,
+    remap = false
+  )
+  private void tfcrealworld$overrideSpawnDistance(
+    CallbackInfoReturnable<Integer> cir
+  ) {
+    cir.setReturnValue(TFCRealWorldConfig.SPAWN_DISTANCE.get());
   }
 
   @Inject(
