@@ -1,6 +1,8 @@
 package net.yazloysasha.tfcrealworld.mixin.client.overworld;
 
 import net.dries007.tfc.client.overworld.SolarCalculator;
+import net.dries007.tfc.util.Helpers;
+import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -26,8 +28,8 @@ public class SolarCalculatorMixin {
     int transformedZ = getTransformedZ(z);
     float triangleInput = transformedZ - 0.5f * hemisphereScale;
 
-    float latitude = net.dries007.tfc.util.Helpers.triangle(
-      -net.minecraft.util.Mth.HALF_PI,
+    float latitude = Helpers.triangle(
+      -Mth.HALF_PI,
       0,
       1 / (4 * hemisphereScale),
       triangleInput

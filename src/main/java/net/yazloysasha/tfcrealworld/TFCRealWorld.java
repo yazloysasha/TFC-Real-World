@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -32,6 +33,10 @@ import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
 import net.yazloysasha.tfcrealworld.util.DynamicPackFinder;
 import net.yazloysasha.tfcrealworld.util.MapPathHelper;
+import net.yazloysasha.tfcrealworld.world.noise.BasePNGNoise;
+import net.yazloysasha.tfcrealworld.world.noise.KoppenParameterCache;
+import net.yazloysasha.tfcrealworld.world.region.GlobalOceanDistanceCache;
+import net.yazloysasha.tfcrealworld.world.region.GlobalWestCoastDistanceCache;
 import org.slf4j.Logger;
 
 @Mod(TFCRealWorld.MOD_ID)
@@ -175,10 +180,10 @@ public final class TFCRealWorld {
   }
 
   private void clearCaches() {
-    net.yazloysasha.tfcrealworld.world.region.GlobalOceanDistanceCache.clear();
-    net.yazloysasha.tfcrealworld.world.region.GlobalWestCoastDistanceCache.clear();
-    net.yazloysasha.tfcrealworld.world.noise.KoppenParameterCache.clear();
-    net.yazloysasha.tfcrealworld.world.noise.BasePNGNoise.clearImageCache();
+    GlobalOceanDistanceCache.clear();
+    GlobalWestCoastDistanceCache.clear();
+    KoppenParameterCache.clear();
+    BasePNGNoise.clearImageCache();
   }
 
   private void setupMapsDirectory() {
@@ -213,7 +218,7 @@ public final class TFCRealWorld {
     String resourcePath = "/assets/tfc_real_world/maps/";
 
     try {
-      java.net.URL resourceUrl = TFCRealWorld.class.getResource(resourcePath);
+      URL resourceUrl = TFCRealWorld.class.getResource(resourcePath);
       if (resourceUrl == null) {
         LOGGER.warn("Maps resource directory not found, using default list");
         return getDefaultMapList();

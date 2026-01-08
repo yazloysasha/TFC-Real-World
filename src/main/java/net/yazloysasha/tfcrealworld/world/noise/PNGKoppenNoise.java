@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
+import net.dries007.tfc.world.region.Units;
 import org.slf4j.Logger;
 
 /**
@@ -76,11 +77,9 @@ public class PNGKoppenNoise {
     this.tileRadiusBlocksX = horizontalTileSize / 2;
     this.tileRadiusBlocksZ = verticalTileSize / 2;
     this.tileRadiusGridX =
-      tileRadiusBlocksX /
-      (double) net.dries007.tfc.world.region.Units.GRID_WIDTH_IN_BLOCK;
+      tileRadiusBlocksX / (double) Units.GRID_WIDTH_IN_BLOCK;
     this.tileRadiusGridZ =
-      tileRadiusBlocksZ /
-      (double) net.dries007.tfc.world.region.Units.GRID_WIDTH_IN_BLOCK;
+      tileRadiusBlocksZ / (double) Units.GRID_WIDTH_IN_BLOCK;
 
     BufferedImage image = BasePNGNoise.loadImage("koppen");
     if (image == null) {

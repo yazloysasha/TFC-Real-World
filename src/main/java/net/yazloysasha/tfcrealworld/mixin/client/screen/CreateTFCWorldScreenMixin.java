@@ -1,9 +1,17 @@
 package net.yazloysasha.tfcrealworld.mixin.client.screen;
 
+import com.mojang.serialization.Codec;
+import java.util.List;
 import net.dries007.tfc.client.screen.CreateTFCWorldScreen;
+import net.dries007.tfc.world.settings.Settings;
 import net.minecraft.client.OptionInstance;
+import net.minecraft.client.Options;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.layouts.GridLayout;
+import net.minecraft.client.gui.narration.NarrationElementOutput;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.types.MapStatus;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
@@ -96,14 +104,12 @@ public class CreateTFCWorldScreenMixin {
     return new OptionInstance<>(
       caption,
       OptionInstance.cachedConstantTooltip(
-        net.minecraft.network.chat.Component.translatable(caption + ".tooltip")
+        Component.translatable(caption + ".tooltip")
       ),
       (text, value) ->
-        net.minecraft.client.Options.genericValueLabel(
+        Options.genericValueLabel(
           text,
-          net.minecraft.network.chat.Component.literal(
-            String.format("%.2f", value)
-          )
+          Component.literal(String.format("%.2f", value))
         ),
       OptionInstance.UnitDouble.INSTANCE.xmap(
         sliderValue -> min + sliderValue * range,
@@ -120,19 +126,18 @@ public class CreateTFCWorldScreenMixin {
     Class<E> enumClass,
     E defaultValue
   ) {
-    java.util.List<E> values = java.util.List.of(enumClass.getEnumConstants());
+    List<E> values = List.of(enumClass.getEnumConstants());
 
-    com.mojang.serialization.Codec<E> codec =
-      com.mojang.serialization.Codec.STRING.xmap(
-        name -> {
-          try {
-            return Enum.valueOf(enumClass, name.toUpperCase());
-          } catch (IllegalArgumentException e) {
-            return defaultValue;
-          }
-        },
-        value -> value.name().toLowerCase()
-      );
+    Codec<E> codec = Codec.STRING.xmap(
+      name -> {
+        try {
+          return Enum.valueOf(enumClass, name.toUpperCase());
+        } catch (IllegalArgumentException e) {
+          return defaultValue;
+        }
+      },
+      value -> value.name().toLowerCase()
+    );
 
     OptionInstance.Enum<E> enumValueSet = new OptionInstance.Enum<>(
       values,
@@ -142,12 +147,10 @@ public class CreateTFCWorldScreenMixin {
     return new OptionInstance<>(
       caption,
       OptionInstance.cachedConstantTooltip(
-        net.minecraft.network.chat.Component.translatable(caption + ".tooltip")
+        Component.translatable(caption + ".tooltip")
       ),
       (text, value) ->
-        net.minecraft.network.chat.Component.translatable(
-          caption + "." + value.name().toLowerCase()
-        ),
+        Component.translatable(caption + "." + value.name().toLowerCase()),
       enumValueSet,
       defaultValue,
       v -> {}
@@ -233,8 +236,8 @@ public class CreateTFCWorldScreenMixin {
   )
   private void tfcrealworld$addAllOptionsInOrder(
     CallbackInfo ci,
-    net.minecraft.world.level.chunk.ChunkGenerator generator,
-    net.dries007.tfc.world.settings.Settings settings,
+    ChunkGenerator generator,
+    Settings settings,
     GridLayout grid,
     GridLayout.RowHelper builder
   ) {
@@ -333,16 +336,10 @@ public class CreateTFCWorldScreenMixin {
       originalOptionCounter < 11
     ) {
       originalOptionCounter++;
-      return new net.minecraft.client.gui.components.AbstractWidget(
-        0,
-        0,
-        200,
-        20,
-        net.minecraft.network.chat.Component.empty()
-      ) {
+      return new AbstractWidget(0, 0, 200, 20, Component.empty()) {
         @Override
         protected void renderWidget(
-          net.minecraft.client.gui.GuiGraphics graphics,
+          GuiGraphics graphics,
           int mouseX,
           int mouseY,
           float partialTick
@@ -350,7 +347,7 @@ public class CreateTFCWorldScreenMixin {
 
         @Override
         protected void updateWidgetNarration(
-          net.minecraft.client.gui.narration.NarrationElementOutput narrationElementOutput
+          NarrationElementOutput narrationElementOutput
         ) {}
       };
     }

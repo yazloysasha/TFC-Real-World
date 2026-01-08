@@ -1,6 +1,7 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
 import java.lang.reflect.Field;
+import net.dries007.tfc.world.Seed;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.dries007.tfc.world.settings.Settings;
@@ -15,6 +16,8 @@ import net.yazloysasha.tfcrealworld.world.noise.PNGAltitudeNoise;
 import net.yazloysasha.tfcrealworld.world.noise.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.PNGHotspotsNoise;
 import net.yazloysasha.tfcrealworld.world.noise.PNGKoppenNoise;
+import net.yazloysasha.tfcrealworld.world.region.GlobalOceanDistanceCache;
+import net.yazloysasha.tfcrealworld.world.region.GlobalWestCoastDistanceCache;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -44,7 +47,7 @@ public class RegionGeneratorMixin {
 
   @Shadow
   @Final
-  private net.dries007.tfc.world.Seed seed;
+  private Seed seed;
 
   private static final Unsafe UNSAFE;
 
@@ -61,7 +64,7 @@ public class RegionGeneratorMixin {
   @Inject(method = "<init>", at = @At("TAIL"))
   private void tfcrealworld$replaceNoises(
     Settings settings,
-    net.dries007.tfc.world.Seed seed,
+    Seed seed,
     CallbackInfo ci
   ) {
     RegionGenerator instance = (RegionGenerator) (Object) this;
@@ -80,12 +83,8 @@ public class RegionGeneratorMixin {
         );
         initializeContinentMap(instance, continentNoise);
 
-        net.yazloysasha.tfcrealworld.world.region.GlobalOceanDistanceCache.initialize(
-          continentNoise
-        );
-        net.yazloysasha.tfcrealworld.world.region.GlobalWestCoastDistanceCache.initialize(
-          continentNoise
-        );
+        GlobalOceanDistanceCache.initialize(continentNoise);
+        GlobalWestCoastDistanceCache.initialize(continentNoise);
       }
 
       if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
@@ -163,7 +162,7 @@ public class RegionGeneratorMixin {
 
   private void initializeKoppenBasedClimateMaps(
     RegionGenerator instance,
-    net.dries007.tfc.world.Seed seed,
+    Seed seed,
     int horizontalTileSize,
     int verticalTileSize
   ) throws NoSuchFieldException {
