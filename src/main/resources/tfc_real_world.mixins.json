@@ -18,7 +18,10 @@
     "world.settings.SettingsMixin",
     "client.overworld.SolarCalculatorMixin"
   ],
-  "client": [],
+  "client": [
+    "client.screen.CreateTFCWorldScreenMixin",
+    "client.screen.CreateTFCWorldScreenAccessor"
+  ],
   "server": [],
   "injectors": {
     "defaultRequire": 1

@@ -12,8 +12,8 @@ import net.yazloysasha.tfcrealworld.types.SpawnMode;
 
 public record ConfigSyncPacket(
   SpawnMode spawnMode,
-  Double spawnCenterLongtitude,
-  Double spawnCenterLatitude,
+  double spawnCenterLongtitude,
+  double spawnCenterLatitude,
   int spawnCenterX,
   int spawnCenterZ,
   int spawnDistance,
@@ -32,10 +32,10 @@ public record ConfigSyncPacket(
   boolean hotspotsFromMap,
   boolean koppenFromMap,
   boolean canyonsNotVolcanic,
-  Double westEdgeLongtitude,
-  Double eastEdgeLongtitude,
-  Double southEdgeLatitude,
-  Double northEdgeLatitude,
+  double westEdgeLongtitude,
+  double eastEdgeLongtitude,
+  double southEdgeLatitude,
+  double northEdgeLatitude,
   MapProjection mapProjection
 )
   implements CustomPacketPayload {

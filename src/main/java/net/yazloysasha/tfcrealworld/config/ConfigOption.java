@@ -15,6 +15,9 @@ public class ConfigOption<T> implements Supplier<T> {
   @SuppressWarnings("rawtypes")
   private ModConfigSpec.ConfigValue enumConfigValue;
 
+  private T minValue;
+  private T maxValue;
+
   public ConfigOption(
     ModConfigSpec.Builder builder,
     String name,
@@ -23,6 +26,7 @@ public class ConfigOption<T> implements Supplier<T> {
   ) {
     builder.comment("");
     builder.comment(comment);
+
     this.configValue = builder.define(name, defaultValue);
   }
 
@@ -35,8 +39,12 @@ public class ConfigOption<T> implements Supplier<T> {
     T min,
     T max
   ) {
+    this.minValue = min;
+    this.maxValue = max;
+
     builder.comment("");
     builder.comment(comment);
+
     if (defaultValue instanceof Double) {
       this.configValue = (ModConfigSpec.ConfigValue<T>) builder.defineInRange(
         name,
@@ -68,6 +76,7 @@ public class ConfigOption<T> implements Supplier<T> {
   ) {
     builder.comment("");
     builder.comment(comment);
+
     this.enumClass = (Class<? extends Enum>) enumClass;
     this.enumConfigValue = builder.defineEnum(name, defaultValue);
     this.configValue = null;
@@ -95,5 +104,26 @@ public class ConfigOption<T> implements Supplier<T> {
   public void clearServerValue() {
     this.serverValue = null;
     this.serverConfigActive = false;
+  }
+
+  @SuppressWarnings("unchecked")
+  public void set(T value) {
+    if (enumClass != null && enumConfigValue != null) {
+      ((ModConfigSpec.ConfigValue<T>) enumConfigValue).set(value);
+    } else if (configValue != null) {
+      configValue.set(value);
+    } else {
+      throw new IllegalStateException(
+        "Cannot set value: ConfigOption is not properly initialized"
+      );
+    }
+  }
+
+  public T getMin() {
+    return minValue;
+  }
+
+  public T getMax() {
+    return maxValue;
   }
 }

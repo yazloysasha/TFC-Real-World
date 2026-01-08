@@ -311,8 +311,8 @@ public class TFCRealWorldConfig {
 
   public static void setServerConfig(
     SpawnMode spawnMode,
-    Double spawnCenterLongtitude,
-    Double spawnCenterLatitude,
+    double spawnCenterLongtitude,
+    double spawnCenterLatitude,
     int spawnCenterX,
     int spawnCenterZ,
     int spawnDistance,
@@ -331,10 +331,10 @@ public class TFCRealWorldConfig {
     boolean hotspotsFromMap,
     boolean koppenFromMap,
     boolean canyonsNotVolcanic,
-    Double westEdgeLongtitude,
-    Double eastEdgeLongtitude,
-    Double southEdgeLatitude,
-    Double northEdgeLatitude,
+    double westEdgeLongtitude,
+    double eastEdgeLongtitude,
+    double southEdgeLatitude,
+    double northEdgeLatitude,
     MapProjection mapProjection
   ) {
     SPAWN_MODE.setServerValue(spawnMode);
@@ -371,7 +371,7 @@ public class TFCRealWorldConfig {
 
   public static int getHemisphereScale() {
     if (KOPPEN_FROM_MAP.get()) {
-      return (int) (VERTICAL_TILE_SIZE.get() / 2);
+      return VERTICAL_TILE_SIZE.get() / 2;
     } else {
       return TEMPERATURE_SCALE.get();
     }
