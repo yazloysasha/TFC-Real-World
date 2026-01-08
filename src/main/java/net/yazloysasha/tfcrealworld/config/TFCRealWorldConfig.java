@@ -17,10 +17,15 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Double> SPAWN_CENTER_LONGITUDE;
   public static final ConfigOption<Double> SPAWN_CENTER_LATITUDE;
 
-  // World generation settings
+  // TFC spawn settings
   public static final ConfigOption<Integer> SPAWN_CENTER_X;
   public static final ConfigOption<Integer> SPAWN_CENTER_Z;
   public static final ConfigOption<Integer> SPAWN_DISTANCE;
+
+  // Biome modifications settings
+  public static final ConfigOption<Boolean> CANYONS_NOT_VOLCANIC;
+
+  // World generation settings
   public static final ConfigOption<Boolean> FLAT_BEDROCK;
   public static final ConfigOption<Boolean> FINITE_CONTINENTS;
   public static final ConfigOption<Double> CONTINENTALNESS;
@@ -37,9 +42,6 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Boolean> ALTITUDE_FROM_MAP;
   public static final ConfigOption<Boolean> HOTSPOTS_FROM_MAP;
   public static final ConfigOption<Boolean> KOPPEN_FROM_MAP;
-
-  // Biome modifications settings
-  public static final ConfigOption<Boolean> CANYONS_NOT_VOLCANIC;
 
   // Map settings
   public static final ConfigOption<Double> WEST_EDGE_LONGITUDE;
@@ -82,7 +84,7 @@ public class TFCRealWorldConfig {
     );
 
     BUILDER.pop();
-    BUILDER.push("world_generation");
+    BUILDER.push("tfc_spawn_settings");
 
     SPAWN_CENTER_X = new ConfigOption<>(
       BUILDER,
@@ -108,6 +110,20 @@ public class TFCRealWorldConfig {
       100,
       20_000
     );
+
+    BUILDER.pop();
+    BUILDER.push("biome_modifications");
+
+    CANYONS_NOT_VOLCANIC = new ConfigOption<>(
+      BUILDER,
+      "canyons_not_volcanic",
+      "Whether canyons and doline_canyons biomes should have volcanic features removed.",
+      true
+    );
+
+    BUILDER.pop();
+    BUILDER.push("world_generation");
+
     FLAT_BEDROCK = new ConfigOption<>(
       BUILDER,
       "flat_bedrock",
@@ -220,16 +236,6 @@ public class TFCRealWorldConfig {
     );
 
     BUILDER.pop();
-    BUILDER.push("biome_modifications");
-
-    CANYONS_NOT_VOLCANIC = new ConfigOption<>(
-      BUILDER,
-      "canyons_not_volcanic",
-      "Whether canyons and doline_canyons biomes should have volcanic features removed.",
-      true
-    );
-
-    BUILDER.pop();
     BUILDER.push("map_settings");
     BUILDER.comment(
       " !!! I don't recommend changing it if you're not sure !!!"
@@ -316,6 +322,7 @@ public class TFCRealWorldConfig {
     int spawnCenterX,
     int spawnCenterZ,
     int spawnDistance,
+    boolean canyonsNotVolcanic,
     boolean flatBedrock,
     boolean finiteContinents,
     double continentalness,
@@ -330,7 +337,6 @@ public class TFCRealWorldConfig {
     boolean altitudeFromMap,
     boolean hotspotsFromMap,
     boolean koppenFromMap,
-    boolean canyonsNotVolcanic,
     double westEdgeLongtitude,
     double eastEdgeLongtitude,
     double southEdgeLatitude,
@@ -343,6 +349,7 @@ public class TFCRealWorldConfig {
     SPAWN_CENTER_X.setServerValue(spawnCenterX);
     SPAWN_CENTER_Z.setServerValue(spawnCenterZ);
     SPAWN_DISTANCE.setServerValue(spawnDistance);
+    CANYONS_NOT_VOLCANIC.setServerValue(canyonsNotVolcanic);
     FLAT_BEDROCK.setServerValue(flatBedrock);
     FINITE_CONTINENTS.setServerValue(finiteContinents);
     CONTINENTALNESS.setServerValue(continentalness);
@@ -357,7 +364,6 @@ public class TFCRealWorldConfig {
     ALTITUDE_FROM_MAP.setServerValue(altitudeFromMap);
     HOTSPOTS_FROM_MAP.setServerValue(hotspotsFromMap);
     KOPPEN_FROM_MAP.setServerValue(koppenFromMap);
-    CANYONS_NOT_VOLCANIC.setServerValue(canyonsNotVolcanic);
     WEST_EDGE_LONGITUDE.setServerValue(westEdgeLongtitude);
     EAST_EDGE_LONGITUDE.setServerValue(eastEdgeLongtitude);
     SOUTH_EDGE_LATITUDE.setServerValue(southEdgeLatitude);

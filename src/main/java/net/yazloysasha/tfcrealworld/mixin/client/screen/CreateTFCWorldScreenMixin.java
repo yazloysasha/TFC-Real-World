@@ -2,21 +2,26 @@ package net.yazloysasha.tfcrealworld.mixin.client.screen;
 
 import net.dries007.tfc.client.screen.CreateTFCWorldScreen;
 import net.minecraft.client.OptionInstance;
+import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.layouts.GridLayout;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.types.MapStatus;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(CreateTFCWorldScreen.class)
 public class CreateTFCWorldScreenMixin {
 
-  // Spawn settings
+  @Unique
+  private OptionInstance<MapStatus> mapStatus;
+
   @Unique
   private OptionInstance<SpawnMode> spawnMode;
 
@@ -26,7 +31,6 @@ public class CreateTFCWorldScreenMixin {
   @Unique
   private OptionInstance<Double> spawnCenterLatitude;
 
-  // World generation settings
   @Shadow
   private OptionInstance<Integer> spawnCenterX;
 
@@ -35,6 +39,9 @@ public class CreateTFCWorldScreenMixin {
 
   @Shadow
   private OptionInstance<Integer> spawnDistance;
+
+  @Unique
+  private OptionInstance<Boolean> canyonsNotVolcanic;
 
   @Shadow
   private OptionInstance<Boolean> flatBedrock;
@@ -60,7 +67,6 @@ public class CreateTFCWorldScreenMixin {
   @Shadow
   private OptionInstance<Integer> rainfallScale;
 
-  // Generation mode settings
   @Unique
   private OptionInstance<Integer> horizontalTileSize;
 
@@ -78,10 +84,6 @@ public class CreateTFCWorldScreenMixin {
 
   @Unique
   private OptionInstance<Boolean> koppenFromMap;
-
-  // Biome modifications settings
-  @Unique
-  private OptionInstance<Boolean> canyonsNotVolcanic;
 
   @Unique
   private static OptionInstance<Double> doubleOption(
@@ -154,6 +156,15 @@ public class CreateTFCWorldScreenMixin {
 
   @Inject(method = "init()V", at = @At("HEAD"))
   private void tfcrealworld$initAdditionalOptions(CallbackInfo ci) {
+    final CreateTFCWorldScreenAccessor accessor =
+      (CreateTFCWorldScreenAccessor) (Object) this;
+
+    originalOptionCounter = 0;
+    mapStatus = enumOption(
+      "tfc_real_world.create_world.map_status",
+      MapStatus.class,
+      MapStatus.SOON
+    );
     spawnMode = enumOption(
       "tfc_real_world.create_world.spawn_mode",
       SpawnMode.class,
@@ -171,8 +182,11 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.getMin(),
       TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.getMax()
     );
-    final CreateTFCWorldScreenAccessor accessor =
-      (CreateTFCWorldScreenAccessor) (Object) this;
+    canyonsNotVolcanic = OptionInstance.createBoolean(
+      "tfc_real_world.create_world.canyons_not_volcanic",
+      TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get(),
+      value -> {}
+    );
     horizontalTileSize = accessor.tfcrealworld$invokeKmOption(
       "tfc_real_world.create_world.horizontal_tile_size",
       TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.getMin(),
@@ -205,24 +219,19 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.KOPPEN_FROM_MAP.get(),
       value -> {}
     );
-    canyonsNotVolcanic = OptionInstance.createBoolean(
-      "tfc_real_world.create_world.canyons_not_volcanic",
-      TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get(),
-      value -> {}
-    );
   }
 
   @Inject(
     method = "init()V",
     at = @At(
       value = "INVOKE",
-      target = "Lnet/minecraft/client/gui/components/Button;builder(Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/gui/components/Button$OnPress;)Lnet/minecraft/client/gui/components/Button$Builder;",
+      target = "Lnet/dries007/tfc/client/screen/CreateTFCWorldScreen;smallButton(Lnet/minecraft/client/OptionInstance;)Lnet/minecraft/client/gui/components/AbstractWidget;",
       ordinal = 0,
       shift = At.Shift.BEFORE
     ),
     locals = LocalCapture.CAPTURE_FAILHARD
   )
-  private void tfcrealworld$addAdditionalOptions(
+  private void tfcrealworld$addAllOptionsInOrder(
     CallbackInfo ci,
     net.minecraft.world.level.chunk.ChunkGenerator generator,
     net.dries007.tfc.world.settings.Settings settings,
@@ -232,6 +241,13 @@ public class CreateTFCWorldScreenMixin {
     if (spawnMode != null) {
       final CreateTFCWorldScreenAccessor accessor =
         (CreateTFCWorldScreenAccessor) (Object) this;
+
+      AbstractWidget mapStatusWidget = accessor.tfcrealworld$invokeSmallButton(
+        mapStatus
+      );
+      mapStatusWidget.active = false;
+
+      builder.addChild(mapStatusWidget);
       builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnMode));
       builder.addChild(
         accessor.tfcrealworld$invokeSmallButton(spawnCenterLongitude)
@@ -239,6 +255,30 @@ public class CreateTFCWorldScreenMixin {
       builder.addChild(
         accessor.tfcrealworld$invokeSmallButton(spawnCenterLatitude)
       );
+      builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnCenterX));
+      builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnCenterZ));
+      builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnDistance));
+      builder.addChild(
+        accessor.tfcrealworld$invokeSmallButton(canyonsNotVolcanic)
+      );
+      builder.addChild(accessor.tfcrealworld$invokeSmallButton(flatBedrock));
+      builder.addChild(
+        accessor.tfcrealworld$invokeSmallButton(finiteContinents)
+      );
+      builder.addChild(
+        accessor.tfcrealworld$invokeSmallButton(continentalness)
+      );
+      builder.addChild(accessor.tfcrealworld$invokeSmallButton(grassDensity));
+      builder.addChild(
+        accessor.tfcrealworld$invokeSmallButton(temperatureConstant)
+      );
+      builder.addChild(
+        accessor.tfcrealworld$invokeSmallButton(rainfallConstant)
+      );
+      builder.addChild(
+        accessor.tfcrealworld$invokeSmallButton(temperatureScale)
+      );
+      builder.addChild(accessor.tfcrealworld$invokeSmallButton(rainfallScale));
       builder.addChild(
         accessor.tfcrealworld$invokeSmallButton(horizontalTileSize)
       );
@@ -255,10 +295,69 @@ public class CreateTFCWorldScreenMixin {
         accessor.tfcrealworld$invokeSmallButton(hotspotsFromMap)
       );
       builder.addChild(accessor.tfcrealworld$invokeSmallButton(koppenFromMap));
-      builder.addChild(
-        accessor.tfcrealworld$invokeSmallButton(canyonsNotVolcanic)
-      );
     }
+  }
+
+  @Unique
+  private int originalOptionCounter = 0;
+
+  @Redirect(
+    method = "init()V",
+    at = @At(
+      value = "INVOKE",
+      target = "Lnet/dries007/tfc/client/screen/CreateTFCWorldScreen;smallButton(Lnet/minecraft/client/OptionInstance;)Lnet/minecraft/client/gui/components/AbstractWidget;"
+    )
+  )
+  private AbstractWidget tfcrealworld$cancelOriginalSmallButton(
+    CreateTFCWorldScreen instance,
+    OptionInstance<?> option
+  ) {
+    if (spawnMode == null) {
+      final CreateTFCWorldScreenAccessor accessor =
+        (CreateTFCWorldScreenAccessor) instance;
+      return accessor.tfcrealworld$invokeSmallButton(option);
+    }
+
+    if (
+      (option == flatBedrock ||
+        option == spawnDistance ||
+        option == spawnCenterX ||
+        option == spawnCenterZ ||
+        option == temperatureScale ||
+        option == rainfallScale ||
+        option == temperatureConstant ||
+        option == rainfallConstant ||
+        option == continentalness ||
+        option == grassDensity ||
+        option == finiteContinents) &&
+      originalOptionCounter < 11
+    ) {
+      originalOptionCounter++;
+      return new net.minecraft.client.gui.components.AbstractWidget(
+        0,
+        0,
+        200,
+        20,
+        net.minecraft.network.chat.Component.empty()
+      ) {
+        @Override
+        protected void renderWidget(
+          net.minecraft.client.gui.GuiGraphics graphics,
+          int mouseX,
+          int mouseY,
+          float partialTick
+        ) {}
+
+        @Override
+        protected void updateWidgetNarration(
+          net.minecraft.client.gui.narration.NarrationElementOutput narrationElementOutput
+        ) {}
+      };
+    }
+
+    final CreateTFCWorldScreenAccessor accessor =
+      (CreateTFCWorldScreenAccessor) instance;
+    return accessor.tfcrealworld$invokeSmallButton(option);
   }
 
   @Inject(method = "applySettings()V", at = @At("TAIL"))
@@ -270,6 +369,7 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.SPAWN_CENTER_X.set(spawnCenterX.get());
       TFCRealWorldConfig.SPAWN_CENTER_Z.set(spawnCenterZ.get());
       TFCRealWorldConfig.SPAWN_DISTANCE.set(spawnDistance.get());
+      TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.set(canyonsNotVolcanic.get());
       TFCRealWorldConfig.FLAT_BEDROCK.set(flatBedrock.get());
       TFCRealWorldConfig.FINITE_CONTINENTS.set(finiteContinents.get());
       TFCRealWorldConfig.CONTINENTALNESS.set(continentalness.get());
@@ -284,7 +384,6 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.ALTITUDE_FROM_MAP.set(altitudeFromMap.get());
       TFCRealWorldConfig.HOTSPOTS_FROM_MAP.set(hotspotsFromMap.get());
       TFCRealWorldConfig.KOPPEN_FROM_MAP.set(koppenFromMap.get());
-      TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.set(canyonsNotVolcanic.get());
     }
   }
 }

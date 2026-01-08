@@ -17,6 +17,7 @@ public record ConfigSyncPacket(
   int spawnCenterX,
   int spawnCenterZ,
   int spawnDistance,
+  boolean canyonsNotVolcanic,
   boolean flatBedrock,
   boolean finiteContinents,
   double continentalness,
@@ -31,7 +32,6 @@ public record ConfigSyncPacket(
   boolean altitudeFromMap,
   boolean hotspotsFromMap,
   boolean koppenFromMap,
-  boolean canyonsNotVolcanic,
   double westEdgeLongtitude,
   double eastEdgeLongtitude,
   double southEdgeLatitude,
@@ -54,6 +54,7 @@ public record ConfigSyncPacket(
       buffer.writeInt(packet.spawnCenterX);
       buffer.writeInt(packet.spawnCenterZ);
       buffer.writeInt(packet.spawnDistance);
+      buffer.writeBoolean(packet.canyonsNotVolcanic);
       buffer.writeBoolean(packet.flatBedrock);
       buffer.writeBoolean(packet.finiteContinents);
       buffer.writeDouble(packet.continentalness);
@@ -68,7 +69,6 @@ public record ConfigSyncPacket(
       buffer.writeBoolean(packet.altitudeFromMap);
       buffer.writeBoolean(packet.hotspotsFromMap);
       buffer.writeBoolean(packet.koppenFromMap);
-      buffer.writeBoolean(packet.canyonsNotVolcanic);
       buffer.writeDouble(packet.westEdgeLongtitude);
       buffer.writeDouble(packet.eastEdgeLongtitude);
       buffer.writeDouble(packet.southEdgeLatitude);
@@ -85,15 +85,15 @@ public record ConfigSyncPacket(
         buffer.readInt(),
         buffer.readBoolean(),
         buffer.readBoolean(),
-        buffer.readDouble(),
-        buffer.readDouble(),
-        buffer.readDouble(),
-        buffer.readDouble(),
-        buffer.readInt(),
-        buffer.readInt(),
-        buffer.readInt(),
-        buffer.readInt(),
         buffer.readBoolean(),
+        buffer.readDouble(),
+        buffer.readDouble(),
+        buffer.readDouble(),
+        buffer.readDouble(),
+        buffer.readInt(),
+        buffer.readInt(),
+        buffer.readInt(),
+        buffer.readInt(),
         buffer.readBoolean(),
         buffer.readBoolean(),
         buffer.readBoolean(),
@@ -120,6 +120,7 @@ public record ConfigSyncPacket(
         packet.spawnCenterX(),
         packet.spawnCenterZ(),
         packet.spawnDistance(),
+        packet.canyonsNotVolcanic(),
         packet.flatBedrock(),
         packet.finiteContinents(),
         packet.continentalness(),
@@ -134,7 +135,6 @@ public record ConfigSyncPacket(
         packet.altitudeFromMap(),
         packet.hotspotsFromMap(),
         packet.koppenFromMap(),
-        packet.canyonsNotVolcanic(),
         packet.westEdgeLongtitude(),
         packet.eastEdgeLongtitude(),
         packet.southEdgeLatitude(),
