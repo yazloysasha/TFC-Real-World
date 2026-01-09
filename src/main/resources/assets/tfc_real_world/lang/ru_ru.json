@@ -1,7 +1,7 @@
 {
-  "tfc_real_world.create_world.map_status": "Карта",
-  "tfc_real_world.create_world.map_status.tooltip": "Тип карты для генерации мира.",
-  "tfc_real_world.create_world.map_status.soon": "Скоро",
+  "tfc_real_world.create_world.map_type": "Карта",
+  "tfc_real_world.create_world.map_type.tooltip": "Тип карты для генерации мира.",
+  "tfc_real_world.create_world.map_type.soon": "Скоро",
   "tfc_real_world.create_world.spawn_mode": "Режим точки появления",
   "tfc_real_world.create_world.spawn_mode.tooltip": "Определяет способ расчёта точки появления.\nПо умолчанию - использует стандартные координаты.\nГеографический - использует реальные долготу и широту.\nСлучайный - генерирует случайно из сида мира.",
   "tfc_real_world.create_world.spawn_mode.default": "По умолчанию",

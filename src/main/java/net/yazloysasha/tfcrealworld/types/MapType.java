@@ -1,5 +1,5 @@
 package net.yazloysasha.tfcrealworld.types;
 
-public enum MapStatus {
+public enum MapType {
   SOON,
 }

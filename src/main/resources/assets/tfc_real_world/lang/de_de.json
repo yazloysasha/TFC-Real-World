@@ -1,7 +1,7 @@
 {
-  "tfc_real_world.create_world.map_status": "Karte",
-  "tfc_real_world.create_world.map_status.tooltip": "Kartentyp für die Welterzeugung.",
-  "tfc_real_world.create_world.map_status.soon": "Demnächst",
+  "tfc_real_world.create_world.map_type": "Karte",
+  "tfc_real_world.create_world.map_type.tooltip": "Kartentyp für die Welterzeugung.",
+  "tfc_real_world.create_world.map_type.soon": "Demnächst",
   "tfc_real_world.create_world.spawn_mode": "Erscheinungspunkt-Modus",
   "tfc_real_world.create_world.spawn_mode.tooltip": "Bestimmt, wie der Erscheinungspunkt berechnet wird.\nStandard - verwendet Standardkoordinaten.\nGeografisch - verwendet echte Längen- und Breitengrade.\nZufällig - generiert zufällig aus Weltsamen.",
   "tfc_real_world.create_world.spawn_mode.default": "Standard",

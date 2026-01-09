@@ -11,7 +11,7 @@ import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.types.MapStatus;
+import net.yazloysasha.tfcrealworld.types.MapType;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 public class CreateTFCWorldScreenMixin {
 
   @Unique
-  private OptionInstance<MapStatus> mapStatus;
+  private OptionInstance<MapType> mapType;
 
   @Unique
   private OptionInstance<SpawnMode> spawnMode;
@@ -163,10 +163,10 @@ public class CreateTFCWorldScreenMixin {
     final CreateTFCWorldScreenAccessor accessor =
       (CreateTFCWorldScreenAccessor) (Object) this;
 
-    mapStatus = enumOption(
-      "tfc_real_world.create_world.map_status",
-      MapStatus.class,
-      MapStatus.SOON
+    mapType = enumOption(
+      "tfc_real_world.create_world.map_type",
+      MapType.class,
+      MapType.SOON
     );
     spawnMode = enumOption(
       "tfc_real_world.create_world.spawn_mode",
@@ -244,12 +244,12 @@ public class CreateTFCWorldScreenMixin {
     final CreateTFCWorldScreenAccessor accessor =
       (CreateTFCWorldScreenAccessor) (Object) this;
 
-    AbstractWidget mapStatusWidget = accessor.tfcrealworld$invokeSmallButton(
-      mapStatus
+    AbstractWidget mapTypeWidget = accessor.tfcrealworld$invokeSmallButton(
+      mapType
     );
-    mapStatusWidget.active = false;
+    mapTypeWidget.active = false;
 
-    builder.addChild(mapStatusWidget);
+    builder.addChild(mapTypeWidget);
     builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnMode));
     builder.addChild(
       accessor.tfcrealworld$invokeSmallButton(spawnCenterLongitude)

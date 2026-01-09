@@ -1,7 +1,7 @@
 {
-  "tfc_real_world.create_world.map_status": "지도",
-  "tfc_real_world.create_world.map_status.tooltip": "월드 생성에 사용되는 지도 유형.",
-  "tfc_real_world.create_world.map_status.soon": "곧 출시",
+  "tfc_real_world.create_world.map_type": "지도",
+  "tfc_real_world.create_world.map_type.tooltip": "월드 생성에 사용되는 지도 유형.",
+  "tfc_real_world.create_world.map_type.soon": "곧 출시",
   "tfc_real_world.create_world.spawn_mode": "출현 지점 모드",
   "tfc_real_world.create_world.spawn_mode.tooltip": "출현 지점 위치 계산 방법을 결정.\n기본값 - 표준 좌표 사용.\n지리적 - 실제 세계의 경도와 위도 사용.\n무작위 - 월드 시드에서 무작위로 생성.",
   "tfc_real_world.create_world.spawn_mode.default": "기본값",

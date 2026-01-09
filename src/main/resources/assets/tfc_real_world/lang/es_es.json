@@ -1,7 +1,7 @@
 {
-  "tfc_real_world.create_world.map_status": "Mapa",
-  "tfc_real_world.create_world.map_status.tooltip": "Tipo de mapa utilizado para la generación del mundo.",
-  "tfc_real_world.create_world.map_status.soon": "Próximamente",
+  "tfc_real_world.create_world.map_type": "Mapa",
+  "tfc_real_world.create_world.map_type.tooltip": "Tipo de mapa utilizado para la generación del mundo.",
+  "tfc_real_world.create_world.map_type.soon": "Próximamente",
   "tfc_real_world.create_world.spawn_mode": "Modo de Punto de Aparición",
   "tfc_real_world.create_world.spawn_mode.tooltip": "Determina cómo se calcula la ubicación del punto de aparición.\nPor Defecto - usa coordenadas estándar.\nGeográfico - usa longitud y latitud del mundo real.\nAleatorio - genera aleatoriamente desde la semilla del mundo.",
   "tfc_real_world.create_world.spawn_mode.default": "Por Defecto",

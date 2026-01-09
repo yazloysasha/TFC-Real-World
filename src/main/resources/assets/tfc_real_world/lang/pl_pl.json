@@ -1,7 +1,7 @@
 {
-  "tfc_real_world.create_world.map_status": "Mapa",
-  "tfc_real_world.create_world.map_status.tooltip": "Typ mapy używany do generowania świata.",
-  "tfc_real_world.create_world.map_status.soon": "Wkrótce",
+  "tfc_real_world.create_world.map_type": "Mapa",
+  "tfc_real_world.create_world.map_type.tooltip": "Typ mapy używany do generowania świata.",
+  "tfc_real_world.create_world.map_type.soon": "Wkrótce",
   "tfc_real_world.create_world.spawn_mode": "Tryb Punktu Pojawienia",
   "tfc_real_world.create_world.spawn_mode.tooltip": "Określa sposób obliczania lokalizacji punktu pojawienia.\nDomyślny - używa standardowych współrzędnych.\nGeograficzny - używa rzeczywistej długości i szerokości geograficznej.\nLosowy - generuje losowo z ziarna świata.",
   "tfc_real_world.create_world.spawn_mode.default": "Domyślny",

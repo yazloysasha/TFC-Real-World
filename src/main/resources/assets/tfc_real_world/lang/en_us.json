@@ -1,7 +1,7 @@
 {
-  "tfc_real_world.create_world.map_status": "Map",
-  "tfc_real_world.create_world.map_status.tooltip": "Type of map used for world generation.",
-  "tfc_real_world.create_world.map_status.soon": "Coming Soon",
+  "tfc_real_world.create_world.map_type": "Map",
+  "tfc_real_world.create_world.map_type.tooltip": "Type of map used for world generation.",
+  "tfc_real_world.create_world.map_type.soon": "Coming Soon",
   "tfc_real_world.create_world.spawn_mode": "Appearance Point Mode",
   "tfc_real_world.create_world.spawn_mode.tooltip": "Determines how the appearance point location is calculated.\nDefault - uses standard coordinates.\nGeographic - uses real-world longitude and latitude.\nRandom - generates randomly from world seed.",
   "tfc_real_world.create_world.spawn_mode.default": "Default",
