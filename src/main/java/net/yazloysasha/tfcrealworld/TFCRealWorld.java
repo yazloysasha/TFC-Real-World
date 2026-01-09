@@ -22,6 +22,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
@@ -58,6 +59,12 @@ public final class TFCRealWorld {
       TFCRealWorldConfig.SPEC,
       "tfc_real_world/common.toml"
     );
+
+    modEventBus.addListener(ModConfigEvent.Loading.class, event -> {
+      if (event.getConfig().getModId().equals(MOD_ID)) {
+        TFCRealWorldConfig.setModConfig(event.getConfig());
+      }
+    });
 
     modEventBus.addListener(
       AddPackFindersEvent.class,

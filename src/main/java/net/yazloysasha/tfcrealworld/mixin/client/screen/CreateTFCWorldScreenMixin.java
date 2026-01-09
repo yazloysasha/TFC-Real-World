@@ -337,5 +337,7 @@ public class CreateTFCWorldScreenMixin {
     TFCRealWorldConfig.ALTITUDE_FROM_MAP.set(altitudeFromMap.get());
     TFCRealWorldConfig.HOTSPOTS_FROM_MAP.set(hotspotsFromMap.get());
     TFCRealWorldConfig.KOPPEN_FROM_MAP.set(koppenFromMap.get());
+
+    TFCRealWorldConfig.saveConfig();
   }
 }

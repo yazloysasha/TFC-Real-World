@@ -1,16 +1,23 @@
 package net.yazloysasha.tfcrealworld.config;
 
+import com.mojang.logging.LogUtils;
 import java.util.Arrays;
 import java.util.List;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.yazloysasha.tfcrealworld.types.MapProjection;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
+import org.slf4j.Logger;
 
 public class TFCRealWorldConfig {
+
+  private static final Logger LOGGER = LogUtils.getLogger();
 
   public static final ModConfigSpec.Builder BUILDER =
     new ModConfigSpec.Builder();
   public static final ModConfigSpec SPEC;
+
+  private static ModConfig modConfig;
 
   // Spawn settings
   public static final ConfigOption<SpawnMode> SPAWN_MODE;
@@ -380,6 +387,23 @@ public class TFCRealWorldConfig {
       return VERTICAL_TILE_SIZE.get() / 2;
     } else {
       return TEMPERATURE_SCALE.get();
+    }
+  }
+
+  public static void setModConfig(ModConfig config) {
+    modConfig = config;
+  }
+
+  public static void saveConfig() {
+    if (modConfig != null) {
+      try {
+        var loadedConfig = modConfig.getLoadedConfig();
+        if (loadedConfig != null) {
+          loadedConfig.save();
+        }
+      } catch (Exception e) {
+        LOGGER.warn("Failed to save config to file", e);
+      }
     }
   }
 }
