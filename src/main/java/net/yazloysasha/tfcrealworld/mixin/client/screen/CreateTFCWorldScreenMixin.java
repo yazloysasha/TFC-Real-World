@@ -6,10 +6,8 @@ import net.dries007.tfc.client.screen.CreateTFCWorldScreen;
 import net.dries007.tfc.world.settings.Settings;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.layouts.GridLayout;
-import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
@@ -94,6 +92,9 @@ public class CreateTFCWorldScreenMixin {
   private OptionInstance<Boolean> koppenFromMap;
 
   @Unique
+  private static int optionsCount = 0;
+
+  @Unique
   private static OptionInstance<Double> doubleOption(
     String caption,
     double defaultValue,
@@ -162,7 +163,6 @@ public class CreateTFCWorldScreenMixin {
     final CreateTFCWorldScreenAccessor accessor =
       (CreateTFCWorldScreenAccessor) (Object) this;
 
-    originalOptionCounter = 0;
     mapStatus = enumOption(
       "tfc_real_world.create_world.map_status",
       MapStatus.class,
@@ -241,68 +241,34 @@ public class CreateTFCWorldScreenMixin {
     GridLayout grid,
     GridLayout.RowHelper builder
   ) {
-    if (spawnMode != null) {
-      final CreateTFCWorldScreenAccessor accessor =
-        (CreateTFCWorldScreenAccessor) (Object) this;
+    final CreateTFCWorldScreenAccessor accessor =
+      (CreateTFCWorldScreenAccessor) (Object) this;
 
-      AbstractWidget mapStatusWidget = accessor.tfcrealworld$invokeSmallButton(
-        mapStatus
-      );
-      mapStatusWidget.active = false;
+    AbstractWidget mapStatusWidget = accessor.tfcrealworld$invokeSmallButton(
+      mapStatus
+    );
+    mapStatusWidget.active = false;
 
-      builder.addChild(mapStatusWidget);
-      builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnMode));
-      builder.addChild(
-        accessor.tfcrealworld$invokeSmallButton(spawnCenterLongitude)
-      );
-      builder.addChild(
-        accessor.tfcrealworld$invokeSmallButton(spawnCenterLatitude)
-      );
-      builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnCenterX));
-      builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnCenterZ));
-      builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnDistance));
-      builder.addChild(
-        accessor.tfcrealworld$invokeSmallButton(canyonsNotVolcanic)
-      );
-      builder.addChild(accessor.tfcrealworld$invokeSmallButton(flatBedrock));
-      builder.addChild(
-        accessor.tfcrealworld$invokeSmallButton(finiteContinents)
-      );
-      builder.addChild(
-        accessor.tfcrealworld$invokeSmallButton(continentalness)
-      );
-      builder.addChild(accessor.tfcrealworld$invokeSmallButton(grassDensity));
-      builder.addChild(
-        accessor.tfcrealworld$invokeSmallButton(temperatureConstant)
-      );
-      builder.addChild(
-        accessor.tfcrealworld$invokeSmallButton(rainfallConstant)
-      );
-      builder.addChild(
-        accessor.tfcrealworld$invokeSmallButton(temperatureScale)
-      );
-      builder.addChild(accessor.tfcrealworld$invokeSmallButton(rainfallScale));
-      builder.addChild(
-        accessor.tfcrealworld$invokeSmallButton(horizontalTileSize)
-      );
-      builder.addChild(
-        accessor.tfcrealworld$invokeSmallButton(verticalTileSize)
-      );
-      builder.addChild(
-        accessor.tfcrealworld$invokeSmallButton(continentFromMap)
-      );
-      builder.addChild(
-        accessor.tfcrealworld$invokeSmallButton(altitudeFromMap)
-      );
-      builder.addChild(
-        accessor.tfcrealworld$invokeSmallButton(hotspotsFromMap)
-      );
-      builder.addChild(accessor.tfcrealworld$invokeSmallButton(koppenFromMap));
-    }
+    builder.addChild(mapStatusWidget);
+    builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnMode));
+    builder.addChild(
+      accessor.tfcrealworld$invokeSmallButton(spawnCenterLongitude)
+    );
+    builder.addChild(
+      accessor.tfcrealworld$invokeSmallButton(spawnCenterLatitude)
+    );
+    builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnCenterX));
+    builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnCenterZ));
+    builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnDistance));
+    builder.addChild(
+      accessor.tfcrealworld$invokeSmallButton(canyonsNotVolcanic)
+    );
+    builder.addChild(accessor.tfcrealworld$invokeSmallButton(flatBedrock));
+    builder.addChild(accessor.tfcrealworld$invokeSmallButton(finiteContinents));
+    builder.addChild(accessor.tfcrealworld$invokeSmallButton(continentalness));
+
+    optionsCount = 0;
   }
-
-  @Unique
-  private int originalOptionCounter = 0;
 
   @Redirect(
     method = "init()V",
@@ -315,72 +281,61 @@ public class CreateTFCWorldScreenMixin {
     CreateTFCWorldScreen instance,
     OptionInstance<?> option
   ) {
-    if (spawnMode == null) {
-      final CreateTFCWorldScreenAccessor accessor =
-        (CreateTFCWorldScreenAccessor) instance;
-      return accessor.tfcrealworld$invokeSmallButton(option);
-    }
-
-    if (
-      (option == flatBedrock ||
-        option == spawnDistance ||
-        option == spawnCenterX ||
-        option == spawnCenterZ ||
-        option == temperatureScale ||
-        option == rainfallScale ||
-        option == temperatureConstant ||
-        option == rainfallConstant ||
-        option == continentalness ||
-        option == grassDensity ||
-        option == finiteContinents) &&
-      originalOptionCounter < 11
-    ) {
-      originalOptionCounter++;
-      return new AbstractWidget(0, 0, 200, 20, Component.empty()) {
-        @Override
-        protected void renderWidget(
-          GuiGraphics graphics,
-          int mouseX,
-          int mouseY,
-          float partialTick
-        ) {}
-
-        @Override
-        protected void updateWidgetNarration(
-          NarrationElementOutput narrationElementOutput
-        ) {}
-      };
-    }
+    optionsCount++;
 
     final CreateTFCWorldScreenAccessor accessor =
-      (CreateTFCWorldScreenAccessor) instance;
-    return accessor.tfcrealworld$invokeSmallButton(option);
+      (CreateTFCWorldScreenAccessor) (Object) this;
+
+    switch (optionsCount) {
+      case 1:
+        return accessor.tfcrealworld$invokeSmallButton(grassDensity);
+      case 2:
+        return accessor.tfcrealworld$invokeSmallButton(temperatureConstant);
+      case 3:
+        return accessor.tfcrealworld$invokeSmallButton(rainfallConstant);
+      case 4:
+        return accessor.tfcrealworld$invokeSmallButton(temperatureScale);
+      case 5:
+        return accessor.tfcrealworld$invokeSmallButton(rainfallScale);
+      case 6:
+        return accessor.tfcrealworld$invokeSmallButton(horizontalTileSize);
+      case 7:
+        return accessor.tfcrealworld$invokeSmallButton(verticalTileSize);
+      case 8:
+        return accessor.tfcrealworld$invokeSmallButton(continentFromMap);
+      case 9:
+        return accessor.tfcrealworld$invokeSmallButton(altitudeFromMap);
+      case 10:
+        return accessor.tfcrealworld$invokeSmallButton(hotspotsFromMap);
+      case 11:
+        return accessor.tfcrealworld$invokeSmallButton(koppenFromMap);
+      default:
+        return accessor.tfcrealworld$invokeSmallButton(option);
+    }
   }
 
   @Inject(method = "applySettings()V", at = @At("TAIL"))
   private void tfcrealworld$applyAdditionalSettings(CallbackInfo ci) {
-    if (spawnMode != null) {
-      TFCRealWorldConfig.SPAWN_MODE.set(spawnMode.get());
-      TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.set(spawnCenterLongitude.get());
-      TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.set(spawnCenterLatitude.get());
-      TFCRealWorldConfig.SPAWN_CENTER_X.set(spawnCenterX.get());
-      TFCRealWorldConfig.SPAWN_CENTER_Z.set(spawnCenterZ.get());
-      TFCRealWorldConfig.SPAWN_DISTANCE.set(spawnDistance.get());
-      TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.set(canyonsNotVolcanic.get());
-      TFCRealWorldConfig.FLAT_BEDROCK.set(flatBedrock.get());
-      TFCRealWorldConfig.FINITE_CONTINENTS.set(finiteContinents.get());
-      TFCRealWorldConfig.CONTINENTALNESS.set(continentalness.get());
-      TFCRealWorldConfig.GRASS_DENSITY.set(grassDensity.get());
-      TFCRealWorldConfig.TEMPERATURE_CONSTANT.set(temperatureConstant.get());
-      TFCRealWorldConfig.RAINFALL_CONSTANT.set(rainfallConstant.get());
-      TFCRealWorldConfig.TEMPERATURE_SCALE.set(temperatureScale.get());
-      TFCRealWorldConfig.RAINFALL_SCALE.set(rainfallScale.get());
-      TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.set(horizontalTileSize.get());
-      TFCRealWorldConfig.VERTICAL_TILE_SIZE.set(verticalTileSize.get());
-      TFCRealWorldConfig.CONTINENT_FROM_MAP.set(continentFromMap.get());
-      TFCRealWorldConfig.ALTITUDE_FROM_MAP.set(altitudeFromMap.get());
-      TFCRealWorldConfig.HOTSPOTS_FROM_MAP.set(hotspotsFromMap.get());
-      TFCRealWorldConfig.KOPPEN_FROM_MAP.set(koppenFromMap.get());
-    }
+    TFCRealWorldConfig.SPAWN_MODE.set(spawnMode.get());
+    TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.set(spawnCenterLongitude.get());
+    TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.set(spawnCenterLatitude.get());
+    TFCRealWorldConfig.SPAWN_CENTER_X.set(spawnCenterX.get());
+    TFCRealWorldConfig.SPAWN_CENTER_Z.set(spawnCenterZ.get());
+    TFCRealWorldConfig.SPAWN_DISTANCE.set(spawnDistance.get());
+    TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.set(canyonsNotVolcanic.get());
+    TFCRealWorldConfig.FLAT_BEDROCK.set(flatBedrock.get());
+    TFCRealWorldConfig.FINITE_CONTINENTS.set(finiteContinents.get());
+    TFCRealWorldConfig.CONTINENTALNESS.set(continentalness.get());
+    TFCRealWorldConfig.GRASS_DENSITY.set(grassDensity.get());
+    TFCRealWorldConfig.TEMPERATURE_CONSTANT.set(temperatureConstant.get());
+    TFCRealWorldConfig.RAINFALL_CONSTANT.set(rainfallConstant.get());
+    TFCRealWorldConfig.TEMPERATURE_SCALE.set(temperatureScale.get());
+    TFCRealWorldConfig.RAINFALL_SCALE.set(rainfallScale.get());
+    TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.set(horizontalTileSize.get());
+    TFCRealWorldConfig.VERTICAL_TILE_SIZE.set(verticalTileSize.get());
+    TFCRealWorldConfig.CONTINENT_FROM_MAP.set(continentFromMap.get());
+    TFCRealWorldConfig.ALTITUDE_FROM_MAP.set(altitudeFromMap.get());
+    TFCRealWorldConfig.HOTSPOTS_FROM_MAP.set(hotspotsFromMap.get());
+    TFCRealWorldConfig.KOPPEN_FROM_MAP.set(koppenFromMap.get());
   }
 }
