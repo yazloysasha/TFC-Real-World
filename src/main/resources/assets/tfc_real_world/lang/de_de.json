@@ -1,0 +1,23 @@
+{
+  "tfc_real_world.create_world.map_status": "Karte",
+  "tfc_real_world.create_world.map_status.tooltip": "Kartentyp für die Welterzeugung.",
+  "tfc_real_world.create_world.map_status.soon": "Demnächst",
+  "tfc_real_world.create_world.spawn_mode": "Erscheinungspunkt-Modus",
+  "tfc_real_world.create_world.spawn_mode.tooltip": "Bestimmt, wie der Erscheinungspunkt berechnet wird.\nStandard - verwendet Standardkoordinaten.\nGeografisch - verwendet echte Längen- und Breitengrade.\nZufällig - generiert zufällig aus Weltsamen.",
+  "tfc_real_world.create_world.spawn_mode.default": "Standard",
+  "tfc_real_world.create_world.spawn_mode.geographic": "Geografisch",
+  "tfc_real_world.create_world.spawn_mode.random": "Zufällig",
+  "tfc_real_world.create_world.spawn_center_longitude": "Erscheinungspunkt Längengrad",
+  "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Geografischer Längengrad für Erscheinungspunkt (wird im geografischen Modus verwendet).",
+  "tfc_real_world.create_world.spawn_center_latitude": "Erscheinungspunkt Breitengrad",
+  "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Geografischer Breitengrad für Erscheinungspunkt (wird im geografischen Modus verwendet).",
+  "tfc_real_world.create_world.canyons_not_volcanic": "Schluchten nicht vulkanisch",
+  "tfc_real_world.create_world.horizontal_tile_size": "Horizontale Gebietsgröße",
+  "tfc_real_world.create_world.horizontal_tile_size.tooltip": "Horizontale Größe jedes Weltgebiets in Blöcken. Beeinflusst, wie Echtweltkarten über die Welt gestreckt werden.",
+  "tfc_real_world.create_world.vertical_tile_size": "Vertikale Gebietsgröße",
+  "tfc_real_world.create_world.vertical_tile_size.tooltip": "Vertikale Größe jedes Weltgebiets in Blöcken. Beeinflusst Abstände zwischen Polen und Weltumhüllung.",
+  "tfc_real_world.create_world.continent_from_map": "Kontinent von Karte",
+  "tfc_real_world.create_world.altitude_from_map": "Höhe von Karte",
+  "tfc_real_world.create_world.hotspots_from_map": "Hotspots von Karte",
+  "tfc_real_world.create_world.koppen_from_map": "Klima von Karte"
+}

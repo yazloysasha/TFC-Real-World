@@ -1,0 +1,23 @@
+{
+  "tfc_real_world.create_world.map_status": "地圖",
+  "tfc_real_world.create_world.map_status.tooltip": "用於世界生成的地圖類型。",
+  "tfc_real_world.create_world.map_status.soon": "即將推出",
+  "tfc_real_world.create_world.spawn_mode": "出現點模式",
+  "tfc_real_world.create_world.spawn_mode.tooltip": "確定出現點位置的計算方式。\n預設 - 使用標準座標。\n地理 - 使用真實世界的經度和緯度。\n隨機 - 從世界種子隨機生成。",
+  "tfc_real_world.create_world.spawn_mode.default": "預設",
+  "tfc_real_world.create_world.spawn_mode.geographic": "地理",
+  "tfc_real_world.create_world.spawn_mode.random": "隨機",
+  "tfc_real_world.create_world.spawn_center_longitude": "出現點經度",
+  "tfc_real_world.create_world.spawn_center_longitude.tooltip": "出現點位置的地理經度（在地理模式中使用）。",
+  "tfc_real_world.create_world.spawn_center_latitude": "出現點緯度",
+  "tfc_real_world.create_world.spawn_center_latitude.tooltip": "出現點位置的地理緯度（在地理模式中使用）。",
+  "tfc_real_world.create_world.canyons_not_volcanic": "峽谷非火山",
+  "tfc_real_world.create_world.horizontal_tile_size": "水平區域大小",
+  "tfc_real_world.create_world.horizontal_tile_size.tooltip": "每個世界區域的水平大小（以方塊為單位）。影響真實世界地圖在世界上的拉伸方式。",
+  "tfc_real_world.create_world.vertical_tile_size": "垂直區域大小",
+  "tfc_real_world.create_world.vertical_tile_size.tooltip": "每個世界區域的垂直大小（以方塊為單位）。影響兩極之間的距離和世界包裹。",
+  "tfc_real_world.create_world.continent_from_map": "從地圖生成大陸",
+  "tfc_real_world.create_world.altitude_from_map": "從地圖生成海拔",
+  "tfc_real_world.create_world.hotspots_from_map": "從地圖生成熱點",
+  "tfc_real_world.create_world.koppen_from_map": "從地圖生成氣候"
+}

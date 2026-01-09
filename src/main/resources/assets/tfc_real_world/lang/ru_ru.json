@@ -1,0 +1,23 @@
+{
+  "tfc_real_world.create_world.map_status": "Карта",
+  "tfc_real_world.create_world.map_status.tooltip": "Тип карты для генерации мира.",
+  "tfc_real_world.create_world.map_status.soon": "Скоро",
+  "tfc_real_world.create_world.spawn_mode": "Режим точки появления",
+  "tfc_real_world.create_world.spawn_mode.tooltip": "Определяет способ расчёта точки появления.\nПо умолчанию - использует стандартные координаты.\nГеографический - использует реальные долготу и широту.\nСлучайный - генерирует случайно из сида мира.",
+  "tfc_real_world.create_world.spawn_mode.default": "По умолчанию",
+  "tfc_real_world.create_world.spawn_mode.geographic": "Географический",
+  "tfc_real_world.create_world.spawn_mode.random": "Случайный",
+  "tfc_real_world.create_world.spawn_center_longitude": "Долгота точки появления",
+  "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Географическая долгота для точки появления (используется в географическом режиме).",
+  "tfc_real_world.create_world.spawn_center_latitude": "Широта точки появления",
+  "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Географическая широта для точки появления (используется в географическом режиме).",
+  "tfc_real_world.create_world.canyons_not_volcanic": "Каньоны не вулканические",
+  "tfc_real_world.create_world.horizontal_tile_size": "Горизонтальный размер области",
+  "tfc_real_world.create_world.horizontal_tile_size.tooltip": "Горизонтальный размер каждой области мира в блоках. Влияет на то, как карты реального мира растягиваются по миру.",
+  "tfc_real_world.create_world.vertical_tile_size": "Вертикальный размер области",
+  "tfc_real_world.create_world.vertical_tile_size.tooltip": "Вертикальный размер каждой области мира в блоках. Влияет на расстояния между полюсами и заворачивание мира.",
+  "tfc_real_world.create_world.continent_from_map": "Континенты с карты",
+  "tfc_real_world.create_world.altitude_from_map": "Высота с карты",
+  "tfc_real_world.create_world.hotspots_from_map": "Горячие точки с карты",
+  "tfc_real_world.create_world.koppen_from_map": "Климат с карты"
+}

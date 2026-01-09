@@ -1,0 +1,23 @@
+{
+  "tfc_real_world.create_world.map_status": "Карта",
+  "tfc_real_world.create_world.map_status.tooltip": "Тип карти для генерації світу.",
+  "tfc_real_world.create_world.map_status.soon": "Незабаром",
+  "tfc_real_world.create_world.spawn_mode": "Режим точки появи",
+  "tfc_real_world.create_world.spawn_mode.tooltip": "Визначає спосіб розрахунку точки появи.\nЗа замовчуванням - використовує стандартні координати.\nГеографічний - використовує реальні довготу та широту.\nВипадковий - генерує випадково з сіду світу.",
+  "tfc_real_world.create_world.spawn_mode.default": "За замовчуванням",
+  "tfc_real_world.create_world.spawn_mode.geographic": "Географічний",
+  "tfc_real_world.create_world.spawn_mode.random": "Випадковий",
+  "tfc_real_world.create_world.spawn_center_longitude": "Довгота точки появи",
+  "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Географічна довгота для точки появи (використовується в географічному режимі).",
+  "tfc_real_world.create_world.spawn_center_latitude": "Широта точки появи",
+  "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Географічна широта для точки появи (використовується в географічному режимі).",
+  "tfc_real_world.create_world.canyons_not_volcanic": "Каньйони не вулканічні",
+  "tfc_real_world.create_world.horizontal_tile_size": "Горизонтальний розмір області",
+  "tfc_real_world.create_world.horizontal_tile_size.tooltip": "Горизонтальний розмір кожної області світу в блоках. Впливає на те, як карти реального світу розтягуються по світу.",
+  "tfc_real_world.create_world.vertical_tile_size": "Вертикальний розмір області",
+  "tfc_real_world.create_world.vertical_tile_size.tooltip": "Вертикальний розмір кожної області світу в блоках. Впливає на відстані між полюсами та загортання світу.",
+  "tfc_real_world.create_world.continent_from_map": "Континенти з карти",
+  "tfc_real_world.create_world.altitude_from_map": "Висота з карти",
+  "tfc_real_world.create_world.hotspots_from_map": "Гарячі точки з карти",
+  "tfc_real_world.create_world.koppen_from_map": "Клімат з карти"
+}

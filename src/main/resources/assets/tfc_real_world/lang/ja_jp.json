@@ -1,0 +1,23 @@
+{
+  "tfc_real_world.create_world.map_status": "マップ",
+  "tfc_real_world.create_world.map_status.tooltip": "ワールド生成に使用するマップタイプ。",
+  "tfc_real_world.create_world.map_status.soon": "近日公開",
+  "tfc_real_world.create_world.spawn_mode": "出現ポイントモード",
+  "tfc_real_world.create_world.spawn_mode.tooltip": "出現ポイントの位置の計算方法を決定。\nデフォルト - 標準座標を使用。\n地理的 - 実世界の経度と緯度を使用。\nランダム - ワールドシードからランダムに生成。",
+  "tfc_real_world.create_world.spawn_mode.default": "デフォルト",
+  "tfc_real_world.create_world.spawn_mode.geographic": "地理的",
+  "tfc_real_world.create_world.spawn_mode.random": "ランダム",
+  "tfc_real_world.create_world.spawn_center_longitude": "出現ポイント経度",
+  "tfc_real_world.create_world.spawn_center_longitude.tooltip": "出現ポイント位置の地理的経度（地理モードで使用）。",
+  "tfc_real_world.create_world.spawn_center_latitude": "出現ポイント緯度",
+  "tfc_real_world.create_world.spawn_center_latitude.tooltip": "出現ポイント位置の地理的緯度（地理モードで使用）。",
+  "tfc_real_world.create_world.canyons_not_volcanic": "峡谷は非火山性",
+  "tfc_real_world.create_world.horizontal_tile_size": "水平領域サイズ",
+  "tfc_real_world.create_world.horizontal_tile_size.tooltip": "各ワールド領域の水平サイズ（ブロック単位）。実世界マップがワールド上でどのように伸縮されるかに影響。",
+  "tfc_real_world.create_world.vertical_tile_size": "垂直領域サイズ",
+  "tfc_real_world.create_world.vertical_tile_size.tooltip": "各ワールド領域の垂直サイズ（ブロック単位）。極間の距離とワールドのラッピングに影響。",
+  "tfc_real_world.create_world.continent_from_map": "マップから大陸",
+  "tfc_real_world.create_world.altitude_from_map": "マップから標高",
+  "tfc_real_world.create_world.hotspots_from_map": "マップからホットスポット",
+  "tfc_real_world.create_world.koppen_from_map": "マップから気候"
+}

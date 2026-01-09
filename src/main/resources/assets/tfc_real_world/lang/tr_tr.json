@@ -1,0 +1,23 @@
+{
+  "tfc_real_world.create_world.map_status": "Harita",
+  "tfc_real_world.create_world.map_status.tooltip": "Dünya oluşturma için kullanılan harita türü.",
+  "tfc_real_world.create_world.map_status.soon": "Yakında",
+  "tfc_real_world.create_world.spawn_mode": "Görünme Noktası Modu",
+  "tfc_real_world.create_world.spawn_mode.tooltip": "Görünme noktası konumunun nasıl hesaplandığını belirler.\nVarsayılan - standart koordinatları kullanır.\nCoğrafi - gerçek dünya boylam ve enlem kullanır.\nRastgele - dünya tohumundan rastgele üretir.",
+  "tfc_real_world.create_world.spawn_mode.default": "Varsayılan",
+  "tfc_real_world.create_world.spawn_mode.geographic": "Coğrafi",
+  "tfc_real_world.create_world.spawn_mode.random": "Rastgele",
+  "tfc_real_world.create_world.spawn_center_longitude": "Görünme Noktası Boylamı",
+  "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Görünme noktası konumu için coğrafi boylam (coğrafi modda kullanılır).",
+  "tfc_real_world.create_world.spawn_center_latitude": "Görünme Noktası Enlemi",
+  "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Görünme noktası konumu için coğrafi enlem (coğrafi modda kullanılır).",
+  "tfc_real_world.create_world.canyons_not_volcanic": "Kanyonlar Volkanik Değil",
+  "tfc_real_world.create_world.horizontal_tile_size": "Yatay Bölge Boyutu",
+  "tfc_real_world.create_world.horizontal_tile_size.tooltip": "Her dünya bölgesinin blok cinsinden yatay boyutu. Gerçek dünya haritalarının dünya üzerinde nasıl gerildiğini etkiler.",
+  "tfc_real_world.create_world.vertical_tile_size": "Dikey Bölge Boyutu",
+  "tfc_real_world.create_world.vertical_tile_size.tooltip": "Her dünya bölgesinin blok cinsinden dikey boyutu. Kutuplar arası mesafeleri ve dünya sarmasını etkiler.",
+  "tfc_real_world.create_world.continent_from_map": "Haritadan Kıta",
+  "tfc_real_world.create_world.altitude_from_map": "Haritadan Yükseklik",
+  "tfc_real_world.create_world.hotspots_from_map": "Haritadan Sıcak Noktalar",
+  "tfc_real_world.create_world.koppen_from_map": "Haritadan İklim"
+}

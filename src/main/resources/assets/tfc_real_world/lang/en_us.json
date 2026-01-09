@@ -1,0 +1,23 @@
+{
+  "tfc_real_world.create_world.map_status": "Map",
+  "tfc_real_world.create_world.map_status.tooltip": "Type of map used for world generation.",
+  "tfc_real_world.create_world.map_status.soon": "Coming Soon",
+  "tfc_real_world.create_world.spawn_mode": "Appearance Point Mode",
+  "tfc_real_world.create_world.spawn_mode.tooltip": "Determines how the appearance point location is calculated.\nDefault - uses standard coordinates.\nGeographic - uses real-world longitude and latitude.\nRandom - generates randomly from world seed.",
+  "tfc_real_world.create_world.spawn_mode.default": "Default",
+  "tfc_real_world.create_world.spawn_mode.geographic": "Geographic",
+  "tfc_real_world.create_world.spawn_mode.random": "Random",
+  "tfc_real_world.create_world.spawn_center_longitude": "Appearance Point Longitude",
+  "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Geographic longitude for appearance point location (used in Geographic mode).",
+  "tfc_real_world.create_world.spawn_center_latitude": "Appearance Point Latitude",
+  "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Geographic latitude for appearance point location (used in Geographic mode).",
+  "tfc_real_world.create_world.canyons_not_volcanic": "Canyons Not Volcanic",
+  "tfc_real_world.create_world.horizontal_tile_size": "Horizontal Region Size",
+  "tfc_real_world.create_world.horizontal_tile_size.tooltip": "Horizontal size of each world region in blocks. Affects how real-world maps are stretched over the world.",
+  "tfc_real_world.create_world.vertical_tile_size": "Vertical Region Size",
+  "tfc_real_world.create_world.vertical_tile_size.tooltip": "Vertical size of each world region in blocks. Affects distances between poles and world wrapping.",
+  "tfc_real_world.create_world.continent_from_map": "Continent From Map",
+  "tfc_real_world.create_world.altitude_from_map": "Altitude From Map",
+  "tfc_real_world.create_world.hotspots_from_map": "Hotspots From Map",
+  "tfc_real_world.create_world.koppen_from_map": "Climate From Map"
+}

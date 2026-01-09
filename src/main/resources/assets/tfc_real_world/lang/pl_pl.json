@@ -1,0 +1,23 @@
+{
+  "tfc_real_world.create_world.map_status": "Mapa",
+  "tfc_real_world.create_world.map_status.tooltip": "Typ mapy używany do generowania świata.",
+  "tfc_real_world.create_world.map_status.soon": "Wkrótce",
+  "tfc_real_world.create_world.spawn_mode": "Tryb Punktu Pojawienia",
+  "tfc_real_world.create_world.spawn_mode.tooltip": "Określa sposób obliczania lokalizacji punktu pojawienia.\nDomyślny - używa standardowych współrzędnych.\nGeograficzny - używa rzeczywistej długości i szerokości geograficznej.\nLosowy - generuje losowo z ziarna świata.",
+  "tfc_real_world.create_world.spawn_mode.default": "Domyślny",
+  "tfc_real_world.create_world.spawn_mode.geographic": "Geograficzny",
+  "tfc_real_world.create_world.spawn_mode.random": "Losowy",
+  "tfc_real_world.create_world.spawn_center_longitude": "Długość Geograficzna Punktu Pojawienia",
+  "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Długość geograficzna dla lokalizacji punktu pojawienia (używana w trybie geograficznym).",
+  "tfc_real_world.create_world.spawn_center_latitude": "Szerokość Geograficzna Punktu Pojawienia",
+  "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Szerokość geograficzna dla lokalizacji punktu pojawienia (używana w trybie geograficznym).",
+  "tfc_real_world.create_world.canyons_not_volcanic": "Kaniony Nie Wulkaniczne",
+  "tfc_real_world.create_world.horizontal_tile_size": "Poziomy Rozmiar Regionu",
+  "tfc_real_world.create_world.horizontal_tile_size.tooltip": "Poziomy rozmiar każdego regionu świata w blokach. Wpływa na to, jak mapy rzeczywistego świata są rozciągane na świecie.",
+  "tfc_real_world.create_world.vertical_tile_size": "Pionowy Rozmiar Regionu",
+  "tfc_real_world.create_world.vertical_tile_size.tooltip": "Pionowy rozmiar każdego regionu świata w blokach. Wpływa na odległości między biegunami i zawijanie świata.",
+  "tfc_real_world.create_world.continent_from_map": "Kontynent Z Mapy",
+  "tfc_real_world.create_world.altitude_from_map": "Wysokość Z Mapy",
+  "tfc_real_world.create_world.hotspots_from_map": "Gorące Punkty Z Mapy",
+  "tfc_real_world.create_world.koppen_from_map": "Klimat Z Mapy"
+}
