@@ -1,6 +1,14 @@
 package net.yazloysasha.tfcrealworld.util.projection;
 
 public interface MapProjectionStrategy {
+  double getLatitudeByZ(
+    double z,
+    int verticalTileSize,
+    double southEdgeLatitude,
+    double northEdgeLatitude,
+    double tileCenterLongitude
+  );
+
   double[] geographicToMinecraft(
     double longitude,
     double latitude,

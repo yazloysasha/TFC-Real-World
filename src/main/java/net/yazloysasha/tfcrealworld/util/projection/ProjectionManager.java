@@ -25,6 +25,24 @@ public class ProjectionManager {
     return strategy;
   }
 
+  public static double getLatitudeByZ(double z) {
+    MapProjection projection = TFCRealWorldConfig.getMapProjection();
+    MapProjectionStrategy strategy = getStrategy(projection);
+
+    double westEdgeLongitude = TFCRealWorldConfig.getWestEdgeLongitude();
+    double eastEdgeLongitude = TFCRealWorldConfig.getEastEdgeLongitude();
+
+    double tileCenterLongitude = (westEdgeLongitude + eastEdgeLongitude) / 2.0;
+
+    return strategy.getLatitudeByZ(
+      z,
+      TFCRealWorldConfig.VERTICAL_TILE_SIZE.get(),
+      TFCRealWorldConfig.getSouthEdgeLatitude(),
+      TFCRealWorldConfig.getNorthEdgeLatitude(),
+      tileCenterLongitude
+    );
+  }
+
   public static double[] geographicToMinecraft(
     double longitude,
     double latitude,
