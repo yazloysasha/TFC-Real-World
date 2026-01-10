@@ -411,14 +411,6 @@ public class KoppenParameterCache {
       }
     }
 
-    long estimatedBytes = totalCombinations * 12L;
-    estimatedBytes += 6L * 30L * 100L;
-    LOGGER.info(
-      "Estimated memory usage: ~{} MB (optimized from ~{} MB using objects)",
-      String.format("%.1f", estimatedBytes / (1024.0 * 1024.0)),
-      String.format("%.1f", (totalCombinations * 56.0) / (1024.0 * 1024.0))
-    );
-
     LOGGER.info("Köppen parameter cache built successfully");
   }
 
