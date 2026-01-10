@@ -12,7 +12,7 @@ import net.yazloysasha.tfcrealworld.types.SpawnMode;
 public record ConfigSyncPacket(
   String mapProfile,
   SpawnMode spawnMode,
-  double spawnCenterLongtitude,
+  double spawnCenterLongitude,
   double spawnCenterLatitude,
   int spawnCenterX,
   int spawnCenterZ,
@@ -45,7 +45,7 @@ public record ConfigSyncPacket(
     (buffer, packet) -> {
       buffer.writeUtf(packet.mapProfile);
       buffer.writeEnum(packet.spawnMode);
-      buffer.writeDouble(packet.spawnCenterLongtitude);
+      buffer.writeDouble(packet.spawnCenterLongitude);
       buffer.writeDouble(packet.spawnCenterLatitude);
       buffer.writeInt(packet.spawnCenterX);
       buffer.writeInt(packet.spawnCenterZ);
@@ -103,7 +103,7 @@ public record ConfigSyncPacket(
       TFCRealWorldConfig.setServerConfig(
         packet.mapProfile(),
         packet.spawnMode(),
-        packet.spawnCenterLongtitude(),
+        packet.spawnCenterLongitude(),
         packet.spawnCenterLatitude(),
         packet.spawnCenterX(),
         packet.spawnCenterZ(),

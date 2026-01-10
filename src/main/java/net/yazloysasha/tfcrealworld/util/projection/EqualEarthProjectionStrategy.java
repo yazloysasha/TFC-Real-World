@@ -15,7 +15,7 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
 
   @Override
   public int[] geographicToMinecraft(
-    double spawnCenterLongtitude,
+    double spawnCenterLongitude,
     double spawnCenterLatitude,
     int horizontalTileSize,
     int verticalTileSize,
@@ -26,11 +26,11 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double tileCenterLongitude,
     double tileCenterLatitude
   ) {
-    spawnCenterLongtitude = normalizeLongitude(spawnCenterLongtitude);
+    spawnCenterLongitude = normalizeLongitude(spawnCenterLongitude);
     spawnCenterLatitude = Math.clamp(spawnCenterLatitude, -90.0, 90.0);
 
     double lambda0 = Math.toRadians(tileCenterLongitude);
-    double lambda = Math.toRadians(spawnCenterLongtitude);
+    double lambda = Math.toRadians(spawnCenterLongitude);
     double phi = Math.toRadians(spawnCenterLatitude);
 
     double deltaLambda = lambda - lambda0;
@@ -106,6 +106,143 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double y = R * theta * (A1 + A2 * theta2 + theta6 * (A3 + A4 * theta2));
 
     return new double[] { x, y };
+  }
+
+  @Override
+  public double[] minecraftToGeographic(
+    int spawnCenterX,
+    int spawnCenterZ,
+    int horizontalTileSize,
+    int verticalTileSize,
+    double westEdgeLongitude,
+    double eastEdgeLongitude,
+    double southEdgeLatitude,
+    double northEdgeLatitude,
+    double tileCenterLongitude,
+    double tileCenterLatitude
+  ) {
+    double lambda0 = Math.toRadians(tileCenterLongitude);
+    double westLonRad = Math.toRadians(westEdgeLongitude);
+    double eastLonRad = Math.toRadians(eastEdgeLongitude);
+    double southLatRad = Math.toRadians(southEdgeLatitude);
+    double northLatRad = Math.toRadians(northEdgeLatitude);
+    double centralLatRad = Math.toRadians(tileCenterLatitude);
+
+    double deltaWestLon = westLonRad - lambda0;
+    double deltaEastLon = eastLonRad - lambda0;
+
+    while (deltaWestLon > Math.PI) deltaWestLon -= 2.0 * Math.PI;
+    while (deltaWestLon < -Math.PI) deltaWestLon += 2.0 * Math.PI;
+    while (deltaEastLon > Math.PI) deltaEastLon -= 2.0 * Math.PI;
+    while (deltaEastLon < -Math.PI) deltaEastLon += 2.0 * Math.PI;
+
+    double[] westProj = forwardProjection(centralLatRad, deltaWestLon);
+    double[] eastProj = forwardProjection(centralLatRad, deltaEastLon);
+    double westProjX = westProj[0];
+    double eastProjX = eastProj[0];
+
+    double[] southProj = forwardProjection(southLatRad, 0.0);
+    double[] northProj = forwardProjection(northLatRad, 0.0);
+    double southProjY = southProj[1];
+    double northProjY = northProj[1];
+
+    double projWidth = Math.abs(eastProjX - westProjX);
+    double projHeight = Math.abs(northProjY - southProjY);
+
+    double normalizedX =
+      (spawnCenterX + horizontalTileSize / 2.0) / horizontalTileSize;
+    double normalizedY =
+      1.0 - (spawnCenterZ + verticalTileSize / 2.0) / verticalTileSize;
+
+    double projX = westProjX + normalizedX * projWidth;
+    double projY = southProjY + normalizedY * projHeight;
+
+    double[] geoCoords = inverseProjection(projX, projY, lambda0);
+
+    double longitude = Math.toDegrees(geoCoords[0]);
+    double latitude = Math.toDegrees(geoCoords[1]);
+
+    longitude = normalizeLongitude(longitude);
+    latitude = Math.clamp(latitude, -90.0, 90.0);
+
+    return new double[] { longitude, latitude };
+  }
+
+  /**
+   * Inverse projection of Equal Earth.
+   * Converts projection coordinates (x, y) to geographic coordinates (longitude, latitude).
+   *
+   * @param projX projection X coordinate
+   * @param projY projection Y coordinate
+   * @param lambda0 central meridian longitude in radians
+   * @return array [longitude, latitude] in radians
+   */
+  private static double[] inverseProjection(
+    double projX,
+    double projY,
+    double lambda0
+  ) {
+    double theta = solveThetaForY(projY);
+
+    double cosTheta = Math.cos(theta);
+    double theta2 = theta * theta;
+    double theta6 = theta2 * theta2 * theta2;
+    double theta8 = theta6 * theta2;
+    double denominator =
+      9.0 * A4 * theta8 + 7.0 * A3 * theta6 + 3.0 * A2 * theta2 + A1;
+
+    double deltaLambda =
+      (3.0 * denominator * projX) / (2.0 * SQRT_3 * R * cosTheta);
+
+    double phi = Math.asin((2.0 / SQRT_3) * Math.sin(theta));
+
+    double longitude = lambda0 + deltaLambda;
+    double latitude = phi;
+
+    while (longitude > Math.PI) longitude -= 2.0 * Math.PI;
+    while (longitude < -Math.PI) longitude += 2.0 * Math.PI;
+
+    return new double[] { longitude, latitude };
+  }
+
+  /**
+   * Solves for theta given y in the Equal Earth projection.
+   * Uses Newton's method to solve: y = R * theta * (A1 + A2 * theta^2 + theta^6 * (A3 + A4 * theta^2))
+   *
+   * @param y projection Y coordinate
+   * @return theta in radians
+   */
+  private static double solveThetaForY(double y) {
+    double targetY = y / R;
+    double theta = Math.asin(
+      Math.min(1.0, Math.max(-1.0, ((2.0 / SQRT_3) * targetY) / (A1 + 1.0)))
+    );
+
+    for (int i = 0; i < 20; i++) {
+      double theta2 = theta * theta;
+      double theta6 = theta2 * theta2 * theta2;
+      double theta8 = theta6 * theta2;
+
+      double f =
+        theta * (A1 + A2 * theta2 + theta6 * (A3 + A4 * theta2)) - targetY;
+      double fPrime =
+        A1 + 3.0 * A2 * theta2 + 7.0 * A3 * theta6 + 9.0 * A4 * theta8;
+
+      if (Math.abs(fPrime) < 1e-10) {
+        break;
+      }
+
+      double delta = f / fPrime;
+      theta = theta - delta;
+
+      if (Math.abs(delta) < 1e-10) {
+        break;
+      }
+
+      theta = Math.clamp(theta, -Math.PI / 2.0, Math.PI / 2.0);
+    }
+
+    return theta;
   }
 
   private static double normalizeLongitude(double longitude) {

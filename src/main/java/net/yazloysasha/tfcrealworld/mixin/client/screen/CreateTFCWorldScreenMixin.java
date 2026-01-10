@@ -235,16 +235,16 @@ public class CreateTFCWorldScreenMixin {
     }
 
     MapProfile profile = ProfileManager.getProfile(profileId);
+    double convertedLongitude = profile.getSpawnCenterLongitude();
+    double convertedLatitude = profile.getSpawnCenterLatitude();
 
-    spawnCenterLongitude.set(profile.spawnCenterLongitude());
-    spawnCenterLatitude.set(profile.spawnCenterLatitude());
+    spawnCenterLongitude.set(convertedLongitude);
+    spawnCenterLatitude.set(convertedLatitude);
     spawnCenterX.set(profile.spawnCenterX());
     spawnCenterZ.set(profile.spawnCenterZ());
 
-    TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.set(
-      profile.spawnCenterLongitude()
-    );
-    TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.set(profile.spawnCenterLatitude());
+    TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.set(convertedLongitude);
+    TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.set(convertedLatitude);
     TFCRealWorldConfig.SPAWN_CENTER_X.set(profile.spawnCenterX());
     TFCRealWorldConfig.SPAWN_CENTER_Z.set(profile.spawnCenterZ());
   }

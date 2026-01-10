@@ -22,7 +22,8 @@ public class TFCRealWorldConfig {
 
   private static ModConfig modConfig;
 
-  public static String DEFAULT_MAP_PROFILE = "OLD_WORLD_EQUAL_EARTH";
+  public static final String DEFAULT_MAP_PROFILE = "OLD_WORLD_EQUAL_EARTH";
+  public static final int DEFAULT_TILE_SIZE = 40_000;
 
   public static final ConfigOption<String> MAP_PROFILE;
   public static final ConfigOption<SpawnMode> SPAWN_MODE;
@@ -276,7 +277,7 @@ public class TFCRealWorldConfig {
   public static void setServerConfig(
     String mapProfile,
     SpawnMode spawnMode,
-    double spawnCenterLongtitude,
+    double spawnCenterLongitude,
     double spawnCenterLatitude,
     int spawnCenterX,
     int spawnCenterZ,
@@ -299,7 +300,7 @@ public class TFCRealWorldConfig {
   ) {
     MAP_PROFILE.setServerValue(mapProfile);
     SPAWN_MODE.setServerValue(spawnMode);
-    SPAWN_CENTER_LONGITUDE.setServerValue(spawnCenterLongtitude);
+    SPAWN_CENTER_LONGITUDE.setServerValue(spawnCenterLongitude);
     SPAWN_CENTER_LATITUDE.setServerValue(spawnCenterLatitude);
     SPAWN_CENTER_X.setServerValue(spawnCenterX);
     SPAWN_CENTER_Z.setServerValue(spawnCenterZ);
@@ -351,11 +352,11 @@ public class TFCRealWorldConfig {
   }
 
   public static double getSpawnCenterLongitude() {
-    return getProfile().spawnCenterLongitude();
+    return getProfile().getSpawnCenterLongitude();
   }
 
   public static double getSpawnCenterLatitude() {
-    return getProfile().spawnCenterLatitude();
+    return getProfile().getSpawnCenterLatitude();
   }
 
   public static int getSpawnCenterX() {
