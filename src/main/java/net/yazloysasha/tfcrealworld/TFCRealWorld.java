@@ -48,12 +48,6 @@ public final class TFCRealWorld {
   public static final Logger LOGGER = LogUtils.getLogger();
 
   public TFCRealWorld(ModContainer container, IEventBus modEventBus) {
-    LOGGER.info(
-      "Initializing {} v{}",
-      MOD_NAME,
-      container.getModInfo().getVersion()
-    );
-
     container.registerConfig(
       ModConfig.Type.COMMON,
       TFCRealWorldConfig.SPEC,
@@ -169,14 +163,9 @@ public final class TFCRealWorld {
         mc.hasSingleplayerServer() && mc.getSingleplayerServer() != null;
 
       if (!isSingleplayer) {
-        LOGGER.info("Client connecting to remote server, clearing caches");
         clearCaches();
       }
     } catch (Exception e) {
-      LOGGER.warn(
-        "Could not determine server type on login, clearing caches",
-        e
-      );
       clearCaches();
     }
   }
@@ -199,15 +188,9 @@ public final class TFCRealWorld {
 
       if (!Files.exists(mapsDir)) {
         Files.createDirectories(mapsDir);
-        LOGGER.info("Created maps directory at: {}", mapsDir);
       }
 
       List<String> mapNames = discoverMapsFromResources();
-      LOGGER.info(
-        "Discovered {} maps in resources: {}",
-        mapNames.size(),
-        mapNames
-      );
 
       for (String mapName : mapNames) {
         Path mapPath = MapPathHelper.getMapPath(mapName);
@@ -227,7 +210,6 @@ public final class TFCRealWorld {
     try {
       URL resourceUrl = TFCRealWorld.class.getResource(resourcePath);
       if (resourceUrl == null) {
-        LOGGER.warn("Maps resource directory not found, using default list");
         return getDefaultMapList();
       }
 
@@ -272,16 +254,11 @@ public final class TFCRealWorld {
       }
 
       if (mapNames.isEmpty()) {
-        LOGGER.warn("No maps discovered in resources, using default list");
         return getDefaultMapList();
       }
 
       return mapNames;
     } catch (URISyntaxException | IOException e) {
-      LOGGER.warn(
-        "Failed to discover maps from resources, falling back to default list",
-        e
-      );
       return getDefaultMapList();
     }
   }
@@ -302,11 +279,6 @@ public final class TFCRealWorld {
         TFCRealWorld.class.getResourceAsStream(resourcePath)
     ) {
       if (resourceStream == null) {
-        LOGGER.warn(
-          "Default map {} not found in resources at: {}",
-          mapName,
-          resourcePath
-        );
         return;
       }
 
@@ -315,7 +287,6 @@ public final class TFCRealWorld {
         targetPath,
         StandardCopyOption.REPLACE_EXISTING
       );
-      LOGGER.info("Copied default map {} to: {}", mapName, targetPath);
     } catch (IOException e) {
       LOGGER.error(
         "Failed to copy default map {} to: {}",

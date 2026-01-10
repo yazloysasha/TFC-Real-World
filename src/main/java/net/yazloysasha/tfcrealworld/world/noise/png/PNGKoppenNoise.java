@@ -99,16 +99,6 @@ public class PNGKoppenNoise {
 
     this.scaleX = width / (2.0 * tileRadiusGridX);
     this.scaleZ = height / (2.0 * tileRadiusGridZ);
-
-    LOGGER.info(
-      "Loaded koppen map: {}x{} pixels, covering {}x{} blocks (radius X: {} blocks, Z: {} blocks)",
-      width,
-      height,
-      tileRadiusBlocksX * 2,
-      tileRadiusBlocksZ * 2,
-      tileRadiusBlocksX,
-      tileRadiusBlocksZ
-    );
   }
 
   /**

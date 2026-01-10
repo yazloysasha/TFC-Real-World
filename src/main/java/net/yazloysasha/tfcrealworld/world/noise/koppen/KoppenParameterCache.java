@@ -1,6 +1,5 @@
 package net.yazloysasha.tfcrealworld.world.noise.koppen;
 
-import com.mojang.logging.LogUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -8,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
-import org.slf4j.Logger;
 
 /**
  * Caches valid parameter combinations for each Köppen climate classification.
@@ -21,8 +19,6 @@ import org.slf4j.Logger;
  * Memory-optimized: stores data as primitive arrays instead of objects to reduce memory footprint.
  */
 public class KoppenParameterCache {
-
-  private static final Logger LOGGER = LogUtils.getLogger();
 
   /**
    * Represents a valid parameter combination for a climate.
@@ -105,7 +101,6 @@ public class KoppenParameterCache {
 
   public static synchronized void clear() {
     if (instance != null) {
-      LOGGER.info("Clearing Köppen parameter cache");
       instance = null;
     }
   }
@@ -119,10 +114,6 @@ public class KoppenParameterCache {
   ) {
     ParameterArray combinations = climateCombinations.get(climate);
     if (combinations == null || combinations.temperatures.length == 0) {
-      LOGGER.warn(
-        "No parameter combinations found for climate: {}, using defaults",
-        climate
-      );
       return new ParameterCombination(5.0f, 100.0f, 0.0f);
     }
 
@@ -144,10 +135,6 @@ public class KoppenParameterCache {
   ) {
     ParameterArray combinations = climateCombinations.get(climate);
     if (combinations == null || combinations.temperatures.length == 0) {
-      LOGGER.warn(
-        "No parameter combinations found for climate: {}, using defaults",
-        climate
-      );
       return new ParameterCombination(5.0f, 100.0f, 0.0f);
     }
 
@@ -190,10 +177,6 @@ public class KoppenParameterCache {
     if (cached != null) {
       return cached;
     }
-    LOGGER.warn(
-      "No cached temperature found for climate: {}, using default",
-      climate
-    );
     return 5.0f;
   }
 
@@ -205,10 +188,6 @@ public class KoppenParameterCache {
     if (cached != null) {
       return cached;
     }
-    LOGGER.warn(
-      "No cached rainfall found for climate: {}, using default",
-      climate
-    );
     return 100.0f;
   }
 
@@ -220,10 +199,6 @@ public class KoppenParameterCache {
     if (cached != null) {
       return cached;
     }
-    LOGGER.warn(
-      "No cached rainVar found for climate: {}, using default",
-      climate
-    );
     return 0.0f;
   }
 
@@ -268,8 +243,6 @@ public class KoppenParameterCache {
    * Based on _build_climate_to_parameters_mapper() from maps.py.
    */
   private void buildCache() {
-    LOGGER.info("Building Köppen parameter cache...");
-
     float[] temperatures = generateRange(-20.0f, 30.0f, 1.0f);
     float[] rainfalls = generateRange(0.0f, 500.0f, 10.0f);
     float[] rainVars = generateRange(-1.0f, 1.0f, 0.1f);
@@ -290,8 +263,6 @@ public class KoppenParameterCache {
         }
       }
     }
-
-    LOGGER.info("Processed {} parameter combinations", processed);
 
     for (Map.Entry<
       KoppenClimateClassification,
@@ -323,9 +294,6 @@ public class KoppenParameterCache {
       }
     }
 
-    LOGGER.info(
-      "Sorting parameter combinations by temperature, rainfall, and rainVar..."
-    );
     for (KoppenClimateClassification climate : KoppenClimateClassification.values()) {
       ParameterArray array = climateCombinations.get(climate);
       if (array != null && array.temperatures.length > 0) {
@@ -339,30 +307,13 @@ public class KoppenParameterCache {
       .mapToInt(array -> array.temperatures.length)
       .sum();
 
-    LOGGER.info("Parameter combinations by climate:");
     for (KoppenClimateClassification climate : KoppenClimateClassification.values()) {
       ParameterArray combinations = climateCombinations.get(climate);
-      int count = combinations.temperatures.length;
-      if (count > 0) {
-        double percentage = (count / (double) totalCombinations) * 100.0;
-        LOGGER.info(
-          "  {}: {} combinations ({})%",
-          climate,
-          count,
-          String.format("%.2f", percentage)
-        );
-      } else {
-        LOGGER.warn("  {}: No valid combinations found", climate);
+      if (combinations == null || combinations.temperatures.length == 0) {
+        // No valid combinations for this climate - using defaults when needed
       }
     }
 
-    LOGGER.info(
-      "Created {} parameter combinations across {} climates",
-      totalCombinations,
-      climateCombinations.size()
-    );
-
-    LOGGER.info("Pre-computing base values and ranges...");
     for (KoppenClimateClassification climate : KoppenClimateClassification.values()) {
       ParameterArray combinations = climateCombinations.get(climate);
       if (combinations != null && combinations.temperatures.length > 0) {
@@ -410,8 +361,6 @@ public class KoppenParameterCache {
         rainVarRanges.put(climate, new float[] { -1.0f, 1.0f });
       }
     }
-
-    LOGGER.info("Köppen parameter cache built successfully");
   }
 
   /**

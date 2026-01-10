@@ -60,17 +60,6 @@ public abstract class BasePNGNoise implements Noise2D {
 
     this.scaleX = width / (2.0 * tileRadiusGridX);
     this.scaleZ = height / (2.0 * tileRadiusGridZ);
-
-    LOGGER.info(
-      "Loaded {} map: {}x{} pixels, covering {}x{} blocks (radius X: {} blocks, Z: {} blocks)",
-      mapName,
-      width,
-      height,
-      tileRadiusBlocksX * 2,
-      tileRadiusBlocksZ * 2,
-      tileRadiusBlocksX,
-      tileRadiusBlocksZ
-    );
   }
 
   @Override
@@ -224,7 +213,6 @@ public abstract class BasePNGNoise implements Noise2D {
     synchronized (imageCache) {
       BufferedImage cached = imageCache.get(mapName);
       if (cached != null) {
-        LOGGER.debug("Using cached {} map", mapName);
         return cached;
       }
     }
@@ -239,7 +227,6 @@ public abstract class BasePNGNoise implements Noise2D {
       if (image != null) {
         synchronized (imageCache) {
           imageCache.put(mapName, image);
-          LOGGER.debug("Cached {} map", mapName);
         }
       }
       return image;
@@ -252,7 +239,6 @@ public abstract class BasePNGNoise implements Noise2D {
   public static void clearImageCache() {
     synchronized (imageCache) {
       imageCache.clear();
-      LOGGER.info("Cleared PNG image cache");
     }
   }
 }

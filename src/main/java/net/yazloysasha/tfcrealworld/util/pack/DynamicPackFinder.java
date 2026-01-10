@@ -84,11 +84,6 @@ public class DynamicPackFinder {
           );
 
           if (pack != null) {
-            LOGGER.info(
-              "Successfully registered dynamic pack: {} (type: {})",
-              pack.getId(),
-              event.getPackType()
-            );
             consumer.accept(pack);
           } else {
             LOGGER.warn(
