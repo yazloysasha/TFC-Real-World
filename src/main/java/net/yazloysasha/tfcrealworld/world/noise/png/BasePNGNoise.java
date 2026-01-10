@@ -3,14 +3,14 @@ package net.yazloysasha.tfcrealworld.world.noise.png;
 import com.mojang.logging.LogUtils;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.Units;
-import net.yazloysasha.tfcrealworld.util.helpers.MapPathHelper;
+import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 import org.slf4j.Logger;
 
 public abstract class BasePNGNoise implements Noise2D {
@@ -210,30 +210,46 @@ public abstract class BasePNGNoise implements Noise2D {
   }
 
   public static BufferedImage loadImage(String mapName) {
+    String cacheKey = getProfileId() + ":" + mapName;
     synchronized (imageCache) {
-      BufferedImage cached = imageCache.get(mapName);
+      BufferedImage cached = imageCache.get(cacheKey);
       if (cached != null) {
         return cached;
       }
     }
 
-    Path mapPath = MapPathHelper.getMapPath(mapName);
-    try {
-      if (!Files.exists(mapPath)) {
-        LOGGER.error("{} map not found at: {}", mapName, mapPath);
+    String profileId = getProfileId();
+    try (
+      InputStream mapStream = ProfileManager.getMapStream(profileId, mapName)
+    ) {
+      if (mapStream == null) {
+        LOGGER.error(
+          "Map {} not found for profile {} in resources",
+          mapName,
+          profileId
+        );
         return null;
       }
-      BufferedImage image = ImageIO.read(mapPath.toFile());
+      BufferedImage image = ImageIO.read(mapStream);
       if (image != null) {
         synchronized (imageCache) {
-          imageCache.put(mapName, image);
+          imageCache.put(cacheKey, image);
         }
       }
       return image;
     } catch (IOException e) {
-      LOGGER.error("Failed to load {} map from: {}", mapName, mapPath, e);
+      LOGGER.error(
+        "Failed to load {} map for profile {} from resources",
+        mapName,
+        profileId,
+        e
+      );
       return null;
     }
+  }
+
+  private static String getProfileId() {
+    return TFCRealWorldConfig.MAP_PROFILE.get();
   }
 
   public static void clearImageCache() {

@@ -55,11 +55,11 @@ public class SpawnCenterHelper {
         TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.get(),
         TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get(),
         TFCRealWorldConfig.VERTICAL_TILE_SIZE.get(),
-        TFCRealWorldConfig.WEST_EDGE_LONGITUDE.get(),
-        TFCRealWorldConfig.EAST_EDGE_LONGITUDE.get(),
-        TFCRealWorldConfig.SOUTH_EDGE_LATITUDE.get(),
-        TFCRealWorldConfig.NORTH_EDGE_LATITUDE.get(),
-        TFCRealWorldConfig.MAP_PROJECTION.get()
+        TFCRealWorldConfig.getWestEdgeLongitude(),
+        TFCRealWorldConfig.getEastEdgeLongitude(),
+        TFCRealWorldConfig.getSouthEdgeLatitude(),
+        TFCRealWorldConfig.getNorthEdgeLatitude(),
+        TFCRealWorldConfig.getMapProjection()
       );
     } else if (mode == SpawnMode.RANDOM) {
       long worldSeed = seed;

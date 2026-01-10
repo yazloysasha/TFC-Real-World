@@ -7,10 +7,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.types.MapProjection;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
 
 public record ConfigSyncPacket(
+  String mapProfile,
   SpawnMode spawnMode,
   double spawnCenterLongtitude,
   double spawnCenterLatitude,
@@ -31,12 +31,7 @@ public record ConfigSyncPacket(
   boolean continentFromMap,
   boolean altitudeFromMap,
   boolean hotspotsFromMap,
-  boolean koppenFromMap,
-  double westEdgeLongtitude,
-  double eastEdgeLongtitude,
-  double southEdgeLatitude,
-  double northEdgeLatitude,
-  MapProjection mapProjection
+  boolean koppenFromMap
 )
   implements CustomPacketPayload {
   public static final Type<ConfigSyncPacket> TYPE = new Type<>(
@@ -48,6 +43,7 @@ public record ConfigSyncPacket(
     ConfigSyncPacket
   > STREAM_CODEC = StreamCodec.of(
     (buffer, packet) -> {
+      buffer.writeUtf(packet.mapProfile);
       buffer.writeEnum(packet.spawnMode);
       buffer.writeDouble(packet.spawnCenterLongtitude);
       buffer.writeDouble(packet.spawnCenterLatitude);
@@ -69,14 +65,10 @@ public record ConfigSyncPacket(
       buffer.writeBoolean(packet.altitudeFromMap);
       buffer.writeBoolean(packet.hotspotsFromMap);
       buffer.writeBoolean(packet.koppenFromMap);
-      buffer.writeDouble(packet.westEdgeLongtitude);
-      buffer.writeDouble(packet.eastEdgeLongtitude);
-      buffer.writeDouble(packet.southEdgeLatitude);
-      buffer.writeDouble(packet.northEdgeLatitude);
-      buffer.writeEnum(packet.mapProjection);
     },
     buffer ->
       new ConfigSyncPacket(
+        buffer.readUtf(),
         buffer.readEnum(SpawnMode.class),
         buffer.readDouble(),
         buffer.readDouble(),
@@ -97,12 +89,7 @@ public record ConfigSyncPacket(
         buffer.readBoolean(),
         buffer.readBoolean(),
         buffer.readBoolean(),
-        buffer.readBoolean(),
-        buffer.readDouble(),
-        buffer.readDouble(),
-        buffer.readDouble(),
-        buffer.readDouble(),
-        buffer.readEnum(MapProjection.class)
+        buffer.readBoolean()
       )
   );
 
@@ -114,6 +101,7 @@ public record ConfigSyncPacket(
   public static void handle(ConfigSyncPacket packet, IPayloadContext context) {
     context.enqueueWork(() -> {
       TFCRealWorldConfig.setServerConfig(
+        packet.mapProfile(),
         packet.spawnMode(),
         packet.spawnCenterLongtitude(),
         packet.spawnCenterLatitude(),
@@ -134,12 +122,7 @@ public record ConfigSyncPacket(
         packet.continentFromMap(),
         packet.altitudeFromMap(),
         packet.hotspotsFromMap(),
-        packet.koppenFromMap(),
-        packet.westEdgeLongtitude(),
-        packet.eastEdgeLongtitude(),
-        packet.southEdgeLatitude(),
-        packet.northEdgeLatitude(),
-        packet.mapProjection()
+        packet.koppenFromMap()
       );
     });
   }

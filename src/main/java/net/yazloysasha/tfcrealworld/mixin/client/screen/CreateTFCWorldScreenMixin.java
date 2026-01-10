@@ -10,9 +10,12 @@ import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.types.MapType;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
+import net.yazloysasha.tfcrealworld.util.profile.MapProfile;
+import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
+import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -26,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 public class CreateTFCWorldScreenMixin {
 
   @Unique
-  private OptionInstance<MapType> mapType;
+  private OptionInstance<String> mapProfile;
 
   @Unique
   private OptionInstance<SpawnMode> spawnMode;
@@ -95,6 +98,11 @@ public class CreateTFCWorldScreenMixin {
   private static int optionsCount = 0;
 
   @Unique
+  private static String getCaption(String suffix) {
+    return TFCRealWorld.MOD_ID + "." + suffix;
+  }
+
+  @Unique
   private static OptionInstance<Double> doubleOption(
     String caption,
     double defaultValue,
@@ -158,67 +166,155 @@ public class CreateTFCWorldScreenMixin {
     );
   }
 
+  @Unique
+  private static OptionInstance<String> stringOption(
+    String caption,
+    List<String> values,
+    String defaultValue
+  ) {
+    Codec<String> codec = Codec.STRING.xmap(
+      name -> values.contains(name) ? name : defaultValue,
+      value -> value
+    );
+
+    OptionInstance.Enum<String> enumValueSet = new OptionInstance.Enum<>(
+      values,
+      codec
+    );
+
+    return new OptionInstance<>(
+      caption,
+      OptionInstance.cachedConstantTooltip(
+        Component.translatable(caption + ".tooltip")
+      ),
+      (text, value) -> Component.translatable(caption + "." + value),
+      enumValueSet,
+      defaultValue,
+      v -> {}
+    );
+  }
+
+  @Unique
+  private OptionInstance<String> stringOptionWithProfileCallback(
+    String caption,
+    List<String> values,
+    String defaultValue
+  ) {
+    Codec<String> codec = Codec.STRING.xmap(
+      name -> values.contains(name) ? name : defaultValue,
+      value -> value
+    );
+
+    OptionInstance.Enum<String> enumValueSet = new OptionInstance.Enum<>(
+      values,
+      codec
+    );
+
+    return new OptionInstance<>(
+      caption,
+      OptionInstance.cachedConstantTooltip(
+        Component.translatable(caption + ".tooltip")
+      ),
+      (text, value) -> Component.translatable(caption + "." + value),
+      enumValueSet,
+      defaultValue,
+      profileId -> applyProfileSpawnSettings(profileId)
+    );
+  }
+
+  @Unique
+  private void applyProfileSpawnSettings(String profileId) {
+    if (
+      spawnCenterLongitude == null ||
+      spawnCenterLatitude == null ||
+      spawnCenterX == null ||
+      spawnCenterZ == null
+    ) {
+      return;
+    }
+
+    MapProfile profile = ProfileManager.getProfile(profileId);
+
+    spawnCenterLongitude.set(profile.spawnCenterLongitude());
+    spawnCenterLatitude.set(profile.spawnCenterLatitude());
+    spawnCenterX.set(profile.spawnCenterX());
+    spawnCenterZ.set(profile.spawnCenterZ());
+
+    TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.set(
+      profile.spawnCenterLongitude()
+    );
+    TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.set(profile.spawnCenterLatitude());
+    TFCRealWorldConfig.SPAWN_CENTER_X.set(profile.spawnCenterX());
+    TFCRealWorldConfig.SPAWN_CENTER_Z.set(profile.spawnCenterZ());
+  }
+
   @Inject(method = "init()V", at = @At("HEAD"))
   private void tfcrealworld$initAdditionalOptions(CallbackInfo ci) {
     final CreateTFCWorldScreenAccessor accessor =
       (CreateTFCWorldScreenAccessor) (Object) this;
 
-    mapType = enumOption(
-      "tfc_real_world.create_world.map_type",
-      MapType.class,
-      MapType.SOON
+    List<String> availableProfiles = ProfileManager.discoverProfiles();
+    String defaultProfile = TFCRealWorldConfig.MAP_PROFILE.get();
+    if (!availableProfiles.contains(defaultProfile)) {
+      defaultProfile = TFCRealWorldConfig.DEFAULT_MAP_PROFILE;
+    }
+
+    mapProfile = stringOptionWithProfileCallback(
+      getCaption("create_world.map_profile"),
+      availableProfiles,
+      defaultProfile
     );
     spawnMode = enumOption(
-      "tfc_real_world.create_world.spawn_mode",
+      getCaption("create_world.spawn_mode"),
       SpawnMode.class,
       TFCRealWorldConfig.SPAWN_MODE.get()
     );
     spawnCenterLongitude = doubleOption(
-      "tfc_real_world.create_world.spawn_center_longitude",
+      getCaption("create_world.spawn_center_longitude"),
       TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.get(),
       TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.getMin(),
       TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.getMax()
     );
     spawnCenterLatitude = doubleOption(
-      "tfc_real_world.create_world.spawn_center_latitude",
+      getCaption("create_world.spawn_center_latitude"),
       TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.get(),
       TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.getMin(),
       TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.getMax()
     );
     canyonsNotVolcanic = OptionInstance.createBoolean(
-      "tfc_real_world.create_world.canyons_not_volcanic",
+      getCaption("create_world.canyons_not_volcanic"),
       TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get(),
       value -> {}
     );
     horizontalTileSize = accessor.tfcrealworld$invokeKmOption(
-      "tfc_real_world.create_world.horizontal_tile_size",
+      getCaption("create_world.horizontal_tile_size"),
       TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.getMin(),
       TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.getMax(),
       TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get()
     );
     verticalTileSize = accessor.tfcrealworld$invokeKmOption(
-      "tfc_real_world.create_world.vertical_tile_size",
+      getCaption("create_world.vertical_tile_size"),
       TFCRealWorldConfig.VERTICAL_TILE_SIZE.getMin(),
       TFCRealWorldConfig.VERTICAL_TILE_SIZE.getMax(),
       TFCRealWorldConfig.VERTICAL_TILE_SIZE.get()
     );
     continentFromMap = OptionInstance.createBoolean(
-      "tfc_real_world.create_world.continent_from_map",
+      getCaption("create_world.continent_from_map"),
       TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
       value -> {}
     );
     altitudeFromMap = OptionInstance.createBoolean(
-      "tfc_real_world.create_world.altitude_from_map",
+      getCaption("create_world.altitude_from_map"),
       TFCRealWorldConfig.ALTITUDE_FROM_MAP.get(),
       value -> {}
     );
     hotspotsFromMap = OptionInstance.createBoolean(
-      "tfc_real_world.create_world.hotspots_from_map",
+      getCaption("create_world.hotspots_from_map"),
       TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get(),
       value -> {}
     );
     koppenFromMap = OptionInstance.createBoolean(
-      "tfc_real_world.create_world.koppen_from_map",
+      getCaption("create_world.koppen_from_map"),
       TFCRealWorldConfig.KOPPEN_FROM_MAP.get(),
       value -> {}
     );
@@ -244,12 +340,7 @@ public class CreateTFCWorldScreenMixin {
     final CreateTFCWorldScreenAccessor accessor =
       (CreateTFCWorldScreenAccessor) (Object) this;
 
-    AbstractWidget mapTypeWidget = accessor.tfcrealworld$invokeSmallButton(
-      mapType
-    );
-    mapTypeWidget.active = false;
-
-    builder.addChild(mapTypeWidget);
+    builder.addChild(accessor.tfcrealworld$invokeSmallButton(mapProfile));
     builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnMode));
     builder.addChild(
       accessor.tfcrealworld$invokeSmallButton(spawnCenterLongitude)
@@ -316,6 +407,10 @@ public class CreateTFCWorldScreenMixin {
 
   @Inject(method = "applySettings()V", at = @At("TAIL"))
   private void tfcrealworld$applyAdditionalSettings(CallbackInfo ci) {
+    String previousProfile = TFCRealWorldConfig.MAP_PROFILE.get();
+    String newProfile = mapProfile.get();
+
+    TFCRealWorldConfig.MAP_PROFILE.set(newProfile);
     TFCRealWorldConfig.SPAWN_MODE.set(spawnMode.get());
     TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.set(spawnCenterLongitude.get());
     TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.set(spawnCenterLatitude.get());
@@ -339,5 +434,10 @@ public class CreateTFCWorldScreenMixin {
     TFCRealWorldConfig.KOPPEN_FROM_MAP.set(koppenFromMap.get());
 
     TFCRealWorldConfig.saveConfig();
+
+    if (!newProfile.equals(previousProfile)) {
+      BasePNGNoise.clearImageCache();
+      ProfileManager.clearCache();
+    }
   }
 }

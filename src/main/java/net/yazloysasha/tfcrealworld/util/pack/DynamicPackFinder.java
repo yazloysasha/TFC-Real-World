@@ -10,6 +10,7 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
+import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import org.slf4j.Logger;
 
 public class DynamicPackFinder {
@@ -26,7 +27,7 @@ public class DynamicPackFinder {
       Pack.ResourcesSupplier resourcesSupplier;
 
       if (event.getPackType() == PackType.CLIENT_RESOURCES) {
-        packId = "tfc_real_world_assets";
+        packId = TFCRealWorld.MOD_ID + "_assets";
         packName = Component.literal("TFC: Real World - Assets");
         resourcesSupplier = new Pack.ResourcesSupplier() {
           @Override
@@ -43,7 +44,7 @@ public class DynamicPackFinder {
           }
         };
       } else {
-        packId = "tfc_real_world_data";
+        packId = TFCRealWorld.MOD_ID + "_data";
         packName = Component.literal("TFC: Real World - Data");
         resourcesSupplier = new Pack.ResourcesSupplier() {
           @Override

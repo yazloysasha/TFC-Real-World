@@ -5,8 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.ModConfigSpec;
+import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.types.MapProjection;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
+import net.yazloysasha.tfcrealworld.util.profile.MapProfile;
+import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 import org.slf4j.Logger;
 
 public class TFCRealWorldConfig {
@@ -19,20 +22,16 @@ public class TFCRealWorldConfig {
 
   private static ModConfig modConfig;
 
-  // Spawn settings
+  public static String DEFAULT_MAP_PROFILE = "old_world_equal_earth";
+
+  public static final ConfigOption<String> MAP_PROFILE;
   public static final ConfigOption<SpawnMode> SPAWN_MODE;
   public static final ConfigOption<Double> SPAWN_CENTER_LONGITUDE;
   public static final ConfigOption<Double> SPAWN_CENTER_LATITUDE;
-
-  // TFC spawn settings
   public static final ConfigOption<Integer> SPAWN_CENTER_X;
   public static final ConfigOption<Integer> SPAWN_CENTER_Z;
   public static final ConfigOption<Integer> SPAWN_DISTANCE;
-
-  // Biome modifications settings
   public static final ConfigOption<Boolean> CANYONS_NOT_VOLCANIC;
-
-  // World generation settings
   public static final ConfigOption<Boolean> FLAT_BEDROCK;
   public static final ConfigOption<Boolean> FINITE_CONTINENTS;
   public static final ConfigOption<Double> CONTINENTALNESS;
@@ -41,8 +40,6 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Double> RAINFALL_CONSTANT;
   public static final ConfigOption<Integer> TEMPERATURE_SCALE;
   public static final ConfigOption<Integer> RAINFALL_SCALE;
-
-  // Generation mode settings
   public static final ConfigOption<Integer> HORIZONTAL_TILE_SIZE;
   public static final ConfigOption<Integer> VERTICAL_TILE_SIZE;
   public static final ConfigOption<Boolean> CONTINENT_FROM_MAP;
@@ -50,17 +47,22 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Boolean> HOTSPOTS_FROM_MAP;
   public static final ConfigOption<Boolean> KOPPEN_FROM_MAP;
 
-  // Map settings
-  public static final ConfigOption<Double> WEST_EDGE_LONGITUDE;
-  public static final ConfigOption<Double> EAST_EDGE_LONGITUDE;
-  public static final ConfigOption<Double> SOUTH_EDGE_LATITUDE;
-  public static final ConfigOption<Double> NORTH_EDGE_LATITUDE;
-  public static final ConfigOption<MapProjection> MAP_PROJECTION;
-
   private static final List<ConfigOption<?>> allOptions;
 
   static {
     BUILDER.comment("TFC: Real World Configuration");
+    BUILDER.push("map_settings");
+
+    MAP_PROFILE = new ConfigOption<>(
+      BUILDER,
+      "map_profile",
+      "Map profile ID. Profiles are loaded from data/" +
+      TFCRealWorld.MOD_ID +
+      "/profiles/",
+      DEFAULT_MAP_PROFILE
+    );
+
+    BUILDER.pop();
     BUILDER.push("spawn_settings");
 
     SPAWN_MODE = new ConfigOption<>(
@@ -77,7 +79,7 @@ public class TFCRealWorldConfig {
       BUILDER,
       "spawn_center_longitude",
       "Geographic longitude for spawn location (used when spawn_mode is GEOGRAPHIC)",
-      29.216615,
+      getSpawnCenterLongitude(),
       -180.0,
       180.0
     );
@@ -85,7 +87,7 @@ public class TFCRealWorldConfig {
       BUILDER,
       "spawn_center_latitude",
       "Geographic latitude for spawn location (used when spawn_mode is GEOGRAPHIC)",
-      9.779201,
+      getSpawnCenterLatitude(),
       -90.0,
       90.0
     );
@@ -97,7 +99,7 @@ public class TFCRealWorldConfig {
       BUILDER,
       "spawn_center_x",
       "Spawn center X coordinate (used when spawn_mode is DEFAULT)",
-      -9_000,
+      getSpawnCenterX(),
       -20_000,
       20_000
     );
@@ -105,7 +107,7 @@ public class TFCRealWorldConfig {
       BUILDER,
       "spawn_center_z",
       "Spawn center Z coordinate (used when spawn_mode is DEFAULT)",
-      -3_000,
+      getSpawnCenterZ(),
       -20_000,
       20_000
     );
@@ -243,56 +245,10 @@ public class TFCRealWorldConfig {
     );
 
     BUILDER.pop();
-    BUILDER.push("map_settings");
-    BUILDER.comment(
-      " !!! I don't recommend changing it if you're not sure !!!"
-    );
-
-    WEST_EDGE_LONGITUDE = new ConfigOption<>(
-      BUILDER,
-      "west_edge_longitude",
-      "Western boundary of the map extent in degrees longitude",
-      -20.0,
-      -180.0,
-      180.0
-    );
-    EAST_EDGE_LONGITUDE = new ConfigOption<>(
-      BUILDER,
-      "east_edge_longitude",
-      "Eastern boundary of the map extent in degrees longitude",
-      160.0,
-      -180.0,
-      180.0
-    );
-    SOUTH_EDGE_LATITUDE = new ConfigOption<>(
-      BUILDER,
-      "south_edge_latitude",
-      "Southern boundary of the map extent in degrees latitude",
-      -90.0,
-      -90.0,
-      90.0
-    );
-    NORTH_EDGE_LATITUDE = new ConfigOption<>(
-      BUILDER,
-      "north_edge_latitude",
-      "Northern boundary of the map extent in degrees latitude",
-      90.0,
-      -90.0,
-      90.0
-    );
-    MAP_PROJECTION = new ConfigOption<>(
-      BUILDER,
-      "map_projection",
-      "Map projection type for geographic coordinate conversion\n" +
-      "  EQUAL_EARTH - equal-area, preserving the scale of areas",
-      MapProjection.EQUAL_EARTH,
-      MapProjection.class
-    );
-
-    BUILDER.pop();
     SPEC = BUILDER.build();
 
     allOptions = Arrays.asList(
+      MAP_PROFILE,
       SPAWN_MODE,
       SPAWN_CENTER_LONGITUDE,
       SPAWN_CENTER_LATITUDE,
@@ -313,16 +269,12 @@ public class TFCRealWorldConfig {
       ALTITUDE_FROM_MAP,
       HOTSPOTS_FROM_MAP,
       KOPPEN_FROM_MAP,
-      CANYONS_NOT_VOLCANIC,
-      WEST_EDGE_LONGITUDE,
-      EAST_EDGE_LONGITUDE,
-      SOUTH_EDGE_LATITUDE,
-      NORTH_EDGE_LATITUDE,
-      MAP_PROJECTION
+      CANYONS_NOT_VOLCANIC
     );
   }
 
   public static void setServerConfig(
+    String mapProfile,
     SpawnMode spawnMode,
     double spawnCenterLongtitude,
     double spawnCenterLatitude,
@@ -343,13 +295,9 @@ public class TFCRealWorldConfig {
     boolean continentFromMap,
     boolean altitudeFromMap,
     boolean hotspotsFromMap,
-    boolean koppenFromMap,
-    double westEdgeLongtitude,
-    double eastEdgeLongtitude,
-    double southEdgeLatitude,
-    double northEdgeLatitude,
-    MapProjection mapProjection
+    boolean koppenFromMap
   ) {
+    MAP_PROFILE.setServerValue(mapProfile);
     SPAWN_MODE.setServerValue(spawnMode);
     SPAWN_CENTER_LONGITUDE.setServerValue(spawnCenterLongtitude);
     SPAWN_CENTER_LATITUDE.setServerValue(spawnCenterLatitude);
@@ -371,11 +319,6 @@ public class TFCRealWorldConfig {
     ALTITUDE_FROM_MAP.setServerValue(altitudeFromMap);
     HOTSPOTS_FROM_MAP.setServerValue(hotspotsFromMap);
     KOPPEN_FROM_MAP.setServerValue(koppenFromMap);
-    WEST_EDGE_LONGITUDE.setServerValue(westEdgeLongtitude);
-    EAST_EDGE_LONGITUDE.setServerValue(eastEdgeLongtitude);
-    SOUTH_EDGE_LATITUDE.setServerValue(southEdgeLatitude);
-    NORTH_EDGE_LATITUDE.setServerValue(northEdgeLatitude);
-    MAP_PROJECTION.setServerValue(mapProjection);
   }
 
   public static void clearServerConfig() {
@@ -405,5 +348,47 @@ public class TFCRealWorldConfig {
         LOGGER.warn("Failed to save config to file", e);
       }
     }
+  }
+
+  public static double getSpawnCenterLongitude() {
+    return getProfile().spawnCenterLongitude();
+  }
+
+  public static double getSpawnCenterLatitude() {
+    return getProfile().spawnCenterLatitude();
+  }
+
+  public static int getSpawnCenterX() {
+    return getProfile().spawnCenterX();
+  }
+
+  public static int getSpawnCenterZ() {
+    return getProfile().spawnCenterZ();
+  }
+
+  public static double getWestEdgeLongitude() {
+    return getProfile().westEdgeLongitude();
+  }
+
+  public static double getEastEdgeLongitude() {
+    return getProfile().eastEdgeLongitude();
+  }
+
+  public static double getSouthEdgeLatitude() {
+    return getProfile().southEdgeLatitude();
+  }
+
+  public static double getNorthEdgeLatitude() {
+    return getProfile().northEdgeLatitude();
+  }
+
+  public static MapProjection getMapProjection() {
+    return getProfile().mapProjection();
+  }
+
+  private static MapProfile getProfile() {
+    return ProfileManager.getProfile(
+      SPEC == null ? DEFAULT_MAP_PROFILE : MAP_PROFILE.get()
+    );
   }
 }

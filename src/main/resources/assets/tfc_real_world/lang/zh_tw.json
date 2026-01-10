@@ -1,7 +1,7 @@
 {
-  "tfc_real_world.create_world.map_type": "地圖",
-  "tfc_real_world.create_world.map_type.tooltip": "用於世界生成的地圖類型。",
-  "tfc_real_world.create_world.map_type.soon": "即將推出",
+  "tfc_real_world.create_world.map_profile": "地圖配置檔案",
+  "tfc_real_world.create_world.map_profile.tooltip": "用於世界生成的地圖配置檔案。",
+  "tfc_real_world.create_world.map_profile.old_world_equal_earth": "舊世界（等面積地球）",
   "tfc_real_world.create_world.spawn_mode": "出現點模式",
   "tfc_real_world.create_world.spawn_mode.tooltip": "確定出現點位置的計算方式。\n預設 - 使用標準座標。\n地理 - 使用真實世界的經度和緯度。\n隨機 - 從世界種子隨機生成。",
   "tfc_real_world.create_world.spawn_mode.default": "預設",

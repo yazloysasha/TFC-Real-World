@@ -1,21 +1,6 @@
 package net.yazloysasha.tfcrealworld;
 
 import com.mojang.logging.LogUtils;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Stream;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.IEventBus;
@@ -32,7 +17,6 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
-import net.yazloysasha.tfcrealworld.util.helpers.MapPathHelper;
 import net.yazloysasha.tfcrealworld.util.pack.DynamicPackFinder;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
@@ -51,7 +35,7 @@ public final class TFCRealWorld {
     container.registerConfig(
       ModConfig.Type.COMMON,
       TFCRealWorldConfig.SPEC,
-      "tfc_real_world/common.toml"
+      MOD_ID + "_common.toml"
     );
 
     modEventBus.addListener(ModConfigEvent.Loading.class, event -> {
@@ -94,8 +78,6 @@ public final class TFCRealWorld {
       LevelEvent.Unload.class,
       this::onLevelUnload
     );
-
-    setupMapsDirectory();
   }
 
   private void registerNetwork(RegisterPayloadHandlersEvent event) {
@@ -110,6 +92,7 @@ public final class TFCRealWorld {
   private void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
     if (event.getEntity() instanceof ServerPlayer serverPlayer) {
       ConfigSyncPacket packet = new ConfigSyncPacket(
+        TFCRealWorldConfig.MAP_PROFILE.get(),
         TFCRealWorldConfig.SPAWN_MODE.get(),
         TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.get(),
         TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.get(),
@@ -130,12 +113,7 @@ public final class TFCRealWorld {
         TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
         TFCRealWorldConfig.ALTITUDE_FROM_MAP.get(),
         TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get(),
-        TFCRealWorldConfig.KOPPEN_FROM_MAP.get(),
-        TFCRealWorldConfig.WEST_EDGE_LONGITUDE.get(),
-        TFCRealWorldConfig.EAST_EDGE_LONGITUDE.get(),
-        TFCRealWorldConfig.SOUTH_EDGE_LATITUDE.get(),
-        TFCRealWorldConfig.NORTH_EDGE_LATITUDE.get(),
-        TFCRealWorldConfig.MAP_PROJECTION.get()
+        TFCRealWorldConfig.KOPPEN_FROM_MAP.get()
       );
       serverPlayer.connection.send(packet);
     }
@@ -146,7 +124,6 @@ public final class TFCRealWorld {
       return;
     }
 
-    // For safety, clear client-side view of server config when the local player logs out
     TFCRealWorldConfig.clearServerConfig();
   }
 
@@ -171,7 +148,6 @@ public final class TFCRealWorld {
   }
 
   private void onClientLoggingOut(ClientPlayerNetworkEvent.LoggingOut event) {
-    // Always clear client-side view of server config when the network connection closes
     TFCRealWorldConfig.clearServerConfig();
   }
 
@@ -180,120 +156,5 @@ public final class TFCRealWorld {
     GlobalWestCoastDistanceCache.clear();
     KoppenParameterCache.clear();
     BasePNGNoise.clearImageCache();
-  }
-
-  private void setupMapsDirectory() {
-    try {
-      Path mapsDir = MapPathHelper.getMapsDirectory();
-
-      if (!Files.exists(mapsDir)) {
-        Files.createDirectories(mapsDir);
-      }
-
-      List<String> mapNames = discoverMapsFromResources();
-
-      for (String mapName : mapNames) {
-        Path mapPath = MapPathHelper.getMapPath(mapName);
-        if (!Files.exists(mapPath)) {
-          copyMapFromResources(mapName, mapPath);
-        }
-      }
-    } catch (Exception e) {
-      LOGGER.error("Failed to setup maps directory", e);
-    }
-  }
-
-  private List<String> discoverMapsFromResources() {
-    List<String> mapNames = new ArrayList<>();
-    String resourcePath = "/assets/tfc_real_world/maps/";
-
-    try {
-      URL resourceUrl = TFCRealWorld.class.getResource(resourcePath);
-      if (resourceUrl == null) {
-        return getDefaultMapList();
-      }
-
-      URI resourceUri = resourceUrl.toURI();
-      Path mapsResourcePath;
-      FileSystem fileSystem = null;
-
-      try {
-        if (resourceUri.getScheme().equals("jar")) {
-          fileSystem = FileSystems.newFileSystem(
-            resourceUri,
-            Collections.emptyMap()
-          );
-          mapsResourcePath = fileSystem.getPath(resourcePath);
-        } else {
-          mapsResourcePath = Paths.get(resourceUri);
-        }
-
-        if (Files.exists(mapsResourcePath)) {
-          try (Stream<Path> paths = Files.list(mapsResourcePath)) {
-            paths
-              .filter(Files::isRegularFile)
-              .filter(path -> path.getFileName().toString().endsWith(".png"))
-              .forEach(path -> {
-                String fileName = path.getFileName().toString();
-                String mapName = fileName.substring(0, fileName.length() - 4);
-                mapNames.add(mapName);
-              });
-          }
-        }
-
-        if (fileSystem != null) {
-          fileSystem.close();
-        }
-      } catch (IOException e) {
-        if (fileSystem != null) {
-          try {
-            fileSystem.close();
-          } catch (IOException ignored) {}
-        }
-        throw e;
-      }
-
-      if (mapNames.isEmpty()) {
-        return getDefaultMapList();
-      }
-
-      return mapNames;
-    } catch (URISyntaxException | IOException e) {
-      return getDefaultMapList();
-    }
-  }
-
-  private List<String> getDefaultMapList() {
-    List<String> defaultMaps = new ArrayList<>();
-    defaultMaps.add("continents");
-    defaultMaps.add("altitude");
-    defaultMaps.add("hotspots");
-    defaultMaps.add("koppen");
-    return defaultMaps;
-  }
-
-  private void copyMapFromResources(String mapName, Path targetPath) {
-    String resourcePath = "/assets/tfc_real_world/maps/" + mapName + ".png";
-    try (
-      InputStream resourceStream =
-        TFCRealWorld.class.getResourceAsStream(resourcePath)
-    ) {
-      if (resourceStream == null) {
-        return;
-      }
-
-      Files.copy(
-        resourceStream,
-        targetPath,
-        StandardCopyOption.REPLACE_EXISTING
-      );
-    } catch (IOException e) {
-      LOGGER.error(
-        "Failed to copy default map {} to: {}",
-        mapName,
-        targetPath,
-        e
-      );
-    }
   }
 }
