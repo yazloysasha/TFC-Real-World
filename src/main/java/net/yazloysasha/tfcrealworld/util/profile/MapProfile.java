@@ -32,7 +32,7 @@ public record MapProfile(
       "/data/" +
       TFCRealWorld.MOD_ID +
       "/profiles/" +
-      profileId +
+      profileId.toLowerCase() +
       "/settings.json";
 
     try (

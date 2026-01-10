@@ -215,7 +215,8 @@ public class CreateTFCWorldScreenMixin {
       OptionInstance.cachedConstantTooltip(
         Component.translatable(caption + ".tooltip")
       ),
-      (text, value) -> Component.translatable(caption + "." + value),
+      (text, value) ->
+        Component.translatable(caption + "." + value.toLowerCase()),
       enumValueSet,
       defaultValue,
       profileId -> applyProfileSpawnSettings(profileId)

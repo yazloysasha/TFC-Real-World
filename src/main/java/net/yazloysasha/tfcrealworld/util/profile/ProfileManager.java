@@ -66,7 +66,7 @@ public class ProfileManager {
                 String profileId = path.getFileName().toString();
                 Path settingsPath = path.resolve("settings.json");
                 if (Files.exists(settingsPath)) {
-                  profileIds.add(profileId);
+                  profileIds.add(profileId.toUpperCase());
                 }
               });
           }
@@ -121,7 +121,7 @@ public class ProfileManager {
       "/data/" +
       TFCRealWorld.MOD_ID +
       "/profiles/" +
-      profileId +
+      profileId.toLowerCase() +
       "/maps/" +
       mapName +
       ".png";

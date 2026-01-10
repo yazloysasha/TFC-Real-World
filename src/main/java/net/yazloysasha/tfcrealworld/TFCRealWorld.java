@@ -32,11 +32,7 @@ public final class TFCRealWorld {
   public static final Logger LOGGER = LogUtils.getLogger();
 
   public TFCRealWorld(ModContainer container, IEventBus modEventBus) {
-    container.registerConfig(
-      ModConfig.Type.COMMON,
-      TFCRealWorldConfig.SPEC,
-      MOD_ID + "_common.toml"
-    );
+    container.registerConfig(ModConfig.Type.COMMON, TFCRealWorldConfig.SPEC);
 
     modEventBus.addListener(ModConfigEvent.Loading.class, event -> {
       if (event.getConfig().getModId().equals(MOD_ID)) {

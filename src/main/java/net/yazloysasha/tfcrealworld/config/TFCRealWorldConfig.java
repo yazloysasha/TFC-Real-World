@@ -22,7 +22,7 @@ public class TFCRealWorldConfig {
 
   private static ModConfig modConfig;
 
-  public static String DEFAULT_MAP_PROFILE = "old_world_equal_earth";
+  public static String DEFAULT_MAP_PROFILE = "OLD_WORLD_EQUAL_EARTH";
 
   public static final ConfigOption<String> MAP_PROFILE;
   public static final ConfigOption<SpawnMode> SPAWN_MODE;
