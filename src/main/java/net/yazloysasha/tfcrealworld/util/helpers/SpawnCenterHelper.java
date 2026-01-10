@@ -50,17 +50,14 @@ public class SpawnCenterHelper {
     int[] result;
 
     if (mode == SpawnMode.GEOGRAPHIC) {
-      result = ProjectionManager.geographicToMinecraft(
+      double[] geoCoords = ProjectionManager.geographicToMinecraft(
         TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.get(),
-        TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.get(),
-        TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get(),
-        TFCRealWorldConfig.VERTICAL_TILE_SIZE.get(),
-        TFCRealWorldConfig.getWestEdgeLongitude(),
-        TFCRealWorldConfig.getEastEdgeLongitude(),
-        TFCRealWorldConfig.getSouthEdgeLatitude(),
-        TFCRealWorldConfig.getNorthEdgeLatitude(),
-        TFCRealWorldConfig.getMapProjection()
+        TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.get()
       );
+      result = new int[] {
+        (int) Math.round(geoCoords[0]),
+        (int) Math.round(geoCoords[1]),
+      };
     } else if (mode == SpawnMode.RANDOM) {
       long worldSeed = seed;
       Random rng = new Random(worldSeed ^ 0x1234ABCDL);

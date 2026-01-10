@@ -91,7 +91,7 @@ public record MapProfile(
     int horizontalTileSize = TFCRealWorldConfig.SPEC != null
       ? TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get()
       : TFCRealWorldConfig.DEFAULT_TILE_SIZE;
-    int verticalTileSize = TFCRealWorldConfig.VERTICAL_TILE_SIZE != null
+    int verticalTileSize = TFCRealWorldConfig.SPEC != null
       ? TFCRealWorldConfig.VERTICAL_TILE_SIZE.get()
       : TFCRealWorldConfig.DEFAULT_TILE_SIZE;
 
@@ -135,7 +135,7 @@ public record MapProfile(
     int horizontalTileSize = TFCRealWorldConfig.SPEC != null
       ? TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get()
       : TFCRealWorldConfig.DEFAULT_TILE_SIZE;
-    int verticalTileSize = TFCRealWorldConfig.VERTICAL_TILE_SIZE != null
+    int verticalTileSize = TFCRealWorldConfig.SPEC != null
       ? TFCRealWorldConfig.VERTICAL_TILE_SIZE.get()
       : TFCRealWorldConfig.DEFAULT_TILE_SIZE;
 

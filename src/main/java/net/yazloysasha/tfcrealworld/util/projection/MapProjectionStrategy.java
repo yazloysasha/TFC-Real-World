@@ -1,9 +1,9 @@
 package net.yazloysasha.tfcrealworld.util.projection;
 
 public interface MapProjectionStrategy {
-  int[] geographicToMinecraft(
-    double spawnCenterLongitude,
-    double spawnCenterLatitude,
+  double[] geographicToMinecraft(
+    double longitude,
+    double latitude,
     int horizontalTileSize,
     int verticalTileSize,
     double westEdgeLongitude,
@@ -15,8 +15,8 @@ public interface MapProjectionStrategy {
   );
 
   double[] minecraftToGeographic(
-    int spawnCenterX,
-    int spawnCenterZ,
+    double x,
+    double z,
     int horizontalTileSize,
     int verticalTileSize,
     double westEdgeLongitude,

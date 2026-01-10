@@ -14,9 +14,9 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
   private static final double R = 1.0;
 
   @Override
-  public int[] geographicToMinecraft(
-    double spawnCenterLongitude,
-    double spawnCenterLatitude,
+  public double[] geographicToMinecraft(
+    double longitude,
+    double latitude,
     int horizontalTileSize,
     int verticalTileSize,
     double westEdgeLongitude,
@@ -26,12 +26,12 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double tileCenterLongitude,
     double tileCenterLatitude
   ) {
-    spawnCenterLongitude = normalizeLongitude(spawnCenterLongitude);
-    spawnCenterLatitude = Math.clamp(spawnCenterLatitude, -90.0, 90.0);
+    longitude = normalizeLongitude(longitude);
+    latitude = normalizeLatitude(latitude);
 
-    double lambda0 = Math.toRadians(tileCenterLongitude);
-    double lambda = Math.toRadians(spawnCenterLongitude);
-    double phi = Math.toRadians(spawnCenterLatitude);
+    double lambda0 = Math.toRadians(longitude);
+    double lambda = Math.toRadians(longitude);
+    double phi = Math.toRadians(latitude);
 
     double deltaLambda = lambda - lambda0;
 
@@ -72,14 +72,10 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double normalizedX = (projX - westProjX) / projWidth;
     double normalizedY = 1.0 - (projY - southProjY) / projHeight;
 
-    int x = (int) Math.round(
-      normalizedX * horizontalTileSize - horizontalTileSize / 2.0
-    );
-    int z = (int) Math.round(
-      normalizedY * verticalTileSize - verticalTileSize / 2.0
-    );
+    double x = (normalizedX * horizontalTileSize - horizontalTileSize / 2.0);
+    double z = (normalizedY * verticalTileSize - verticalTileSize / 2.0);
 
-    return new int[] { x, z };
+    return new double[] { x, z };
   }
 
   /**
@@ -110,8 +106,8 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
 
   @Override
   public double[] minecraftToGeographic(
-    int spawnCenterX,
-    int spawnCenterZ,
+    double x,
+    double z,
     int horizontalTileSize,
     int verticalTileSize,
     double westEdgeLongitude,
@@ -149,10 +145,8 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double projWidth = Math.abs(eastProjX - westProjX);
     double projHeight = Math.abs(northProjY - southProjY);
 
-    double normalizedX =
-      (spawnCenterX + horizontalTileSize / 2.0) / horizontalTileSize;
-    double normalizedY =
-      1.0 - (spawnCenterZ + verticalTileSize / 2.0) / verticalTileSize;
+    double normalizedX = (x + horizontalTileSize / 2.0) / horizontalTileSize;
+    double normalizedY = 1.0 - (z + verticalTileSize / 2.0) / verticalTileSize;
 
     double projX = westProjX + normalizedX * projWidth;
     double projY = southProjY + normalizedY * projHeight;
@@ -194,7 +188,9 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double deltaLambda =
       (3.0 * denominator * projX) / (2.0 * SQRT_3 * R * cosTheta);
 
-    double phi = Math.asin((2.0 / SQRT_3) * Math.sin(theta));
+    double phi = Math.asin(
+      Math.clamp((2.0 / SQRT_3) * Math.sin(theta), -1.0, 1.0)
+    );
 
     double longitude = lambda0 + deltaLambda;
     double latitude = phi;
@@ -249,5 +245,9 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     while (longitude > 180.0) longitude -= 360.0;
     while (longitude < -180.0) longitude += 360.0;
     return longitude;
+  }
+
+  private static double normalizeLatitude(double latitude) {
+    return Math.clamp(latitude, -90.0, 90.0);
   }
 }
