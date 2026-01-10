@@ -33,41 +33,48 @@ Instead of random generation, the world's continents, mountains, oceans, and cli
 
 ### ⚙️ Technical Details & Configuration
 
+#### 🏞️ How It Works & Features
+
 <div class="spoiler">
-<b>How It Works & Features 🏞️</b>
+The mod works by replacing TFC's default noise generators with data sampled from customizable map images. This integrates seamlessly, letting TFC's rich procedural detail fill in the local terrain.<br><br>
 
-The mod works by replacing TFC's default noise generators with data sampled from customizable map images. This integrates seamlessly, letting TFC's rich procedural detail fill in the local terrain.
-
-- **Continent & Ocean Layout:** Shaped by a world map image, creating Earth-like landmasses.
-- **Elevation & Depth:** Real altitude data creates realistic mountains, plains, and ocean floors.
-- **Volcanic Activity:** Hotspot maps guide the placement of TFC's volcanoes to tectonically plausible areas.
-- **Climate System:** A Köppen climate map defines temperature and rainfall belts (tropical, arid, temperate, continental, polar), which TFC's existing systems use to create biomes.
-- **Non-Intrusive:** No new blocks, items, or mobs. Uses Mixins to only redirect worldgen rules.
-- **Enhanced Canyon Biomes:** Optional config to make canyon biomes purely erosional, removing volcanic features.
+<ul>
+<li><b>Continent & Ocean Layout:</b> Shaped by a world map image, creating Earth-like landmasses.</li>
+<li><b>Elevation & Depth:</b> Real altitude data creates realistic mountains, plains, and ocean floors.</li>
+<li><b>Volcanic Activity:</b> Hotspot maps guide the placement of TFC's volcanoes to tectonically plausible areas.</li>
+<li><b>Climate System:</b> A Köppen climate map defines temperature and rainfall belts (tropical, arid, temperate, continental, polar), which TFC's existing systems use to create biomes.</li>
+<li><b>Non-Intrusive:</b> No new blocks, items, or mobs. Uses Mixins to only redirect worldgen rules.</li>
+<li><b>Enhanced Canyon Biomes:</b> Optional config to make canyon biomes purely erosional, removing volcanic features.</li>
+</ul>
 
 </div>
 
+#### 🛠️ Easy In-Game Configuration
+
 <div class="spoiler">
-<b>Easy In-Game Configuration 🛠️</b>
+All settings are accessible directly from the <b>TFC world creation screen</b> for easy customization.<br><br>
 
-All settings are accessible directly from the **TFC world creation screen** for easy customization.
-
-- **Spawn Location Modes:**
-  - `DEFAULT` – Classic TFC coordinate-based spawn.
-  - `GEOGRAPHIC` – Spawn using real-world longitude and latitude! Choose your starting city or region.
-  - `RANDOM` – Spawn in a random location determined by the world seed.
-- **World Generation Toggles:** Easily enable/disable the use of real-world maps for Continents, Altitude, Hotspots, and Climate.
-- **Parameter Adjustment:** Fine-tune familiar TFC worldgen values like continentalness, temperature scale, and rainfall directly in the GUI.
-- **Automatic Setup:** Default map files are provided and auto-copied to your `config` folder for easy modification.
+<ul>
+<li><b>Spawn Location Modes:</b><ul>
+  <li><code>DEFAULT</code> – Classic TFC coordinate-based spawn.</li>
+  <li><code>GEOGRAPHIC</code> – Spawn using real-world longitude and latitude! Choose your starting city or region.</li>
+  <li><code>RANDOM</code> – Spawn in a random location determined by the world seed.</li>
+</ul></li>
+<li><b>World Generation Toggles:</b> Easily enable/disable the use of real-world maps for Continents, Altitude, Hotspots, and Climate.</li>
+<li><b>Parameter Adjustment:</b> Fine-tune familiar TFC worldgen values like continentalness, temperature scale, and rainfall directly in the GUI.</li>
+<li><b>Automatic Setup:</b> Default map files are provided and auto-copied to your <code>config</code> folder for easy modification.</li>
+</ul>
 
 </div>
 
-<div class="spoiler">
-<b>Roadmap 🗺️</b>
+#### 🗺️ Roadmap
 
-1.  **Add New Map Profiles:** Provide alternative world map projections (e.g., Equal Earth with the Americas centered, Mercator projection) for different visual styles and gameplay feels.
-2.  **Improve Climate Transitions:** Smooth the blending between different climate zones for even more natural-looking biome borders.
-3.  **Backport Support:** Bring mod to older, popular TFC versions, including 1.20.1, 1.18.2, and 1.12.2 (if possible).
+<div class="spoiler">
+<ol>
+<li><b>Add New Map Profiles:</b> Provide alternative world map projections (e.g., Equal Earth with the Americas centered, Mercator projection) for different visual styles and gameplay feels.</li>
+<li><b>Improve Climate Transitions:</b> Smooth the blending between different climate zones for even more natural-looking biome borders.</li>
+<li><b>Backport Support:</b> Bring mod to older, popular TFC versions, including 1.20.1, 1.18.2, and 1.12.2 (if possible).</li>
+</ol>
 
 </div>
 
