@@ -1,6 +1,6 @@
 # TFC: Real World 🌍
 
-![Earth Maps](img/public/collage.png)
+![Earth Maps](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
 
 ### Explore a World You Know
 
@@ -34,7 +34,7 @@ Instead of random generation, the world's continents, mountains, oceans, and cli
 ### ⚙️ Technical Details & Configuration
 
 <details>
-<summary><b>How It Works & Features 🏞️</b></summary>
+<summary>How It Works & Features 🏞️</summary>
 
 The mod works by replacing TFC's default noise generators with data sampled from customizable map images. This integrates seamlessly, letting TFC's rich procedural detail fill in the local terrain.
 
@@ -48,7 +48,7 @@ The mod works by replacing TFC's default noise generators with data sampled from
 </details>
 
 <details>
-<summary><b>Easy In-Game Configuration 🛠️</b></summary>
+<summary>Easy In-Game Configuration 🛠️</summary>
 
 All settings are accessible directly from the **TFC world creation screen** for easy customization.
 
@@ -63,7 +63,7 @@ All settings are accessible directly from the **TFC world creation screen** for 
 </details>
 
 <details>
-<summary><b>Roadmap 🗺️</b></summary>
+<summary>Roadmap 🗺️</summary>
 
 1.  **Add New Map Profiles:** Provide alternative world map projections (e.g., Equal Earth with the Americas centered, Mercator projection) for different visual styles and gameplay feels.
 2.  **Improve Climate Transitions:** Smooth the blending between different climate zones for even more natural-looking biome borders.

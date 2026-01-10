@@ -1,6 +1,6 @@
 # TFC: Real World 🌍
 
-![Earth Maps](img/public/collage.png)
+![Earth Maps](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
 
 ### Explore a World You Know
 
@@ -33,8 +33,8 @@ Instead of random generation, the world's continents, mountains, oceans, and cli
 
 ### ⚙️ Technical Details & Configuration
 
-<details>
-<summary><b>How It Works & Features 🏞️</b></summary>
+<div class="spoiler">
+<b>How It Works & Features 🏞️</b>
 
 The mod works by replacing TFC's default noise generators with data sampled from customizable map images. This integrates seamlessly, letting TFC's rich procedural detail fill in the local terrain.
 
@@ -45,10 +45,10 @@ The mod works by replacing TFC's default noise generators with data sampled from
 - **Non-Intrusive:** No new blocks, items, or mobs. Uses Mixins to only redirect worldgen rules.
 - **Enhanced Canyon Biomes:** Optional config to make canyon biomes purely erosional, removing volcanic features.
 
-</details>
+</div>
 
-<details>
-<summary><b>Easy In-Game Configuration 🛠️</b></summary>
+<div class="spoiler">
+<b>Easy In-Game Configuration 🛠️</b>
 
 All settings are accessible directly from the **TFC world creation screen** for easy customization.
 
@@ -60,16 +60,16 @@ All settings are accessible directly from the **TFC world creation screen** for 
 - **Parameter Adjustment:** Fine-tune familiar TFC worldgen values like continentalness, temperature scale, and rainfall directly in the GUI.
 - **Automatic Setup:** Default map files are provided and auto-copied to your `config` folder for easy modification.
 
-</details>
+</div>
 
-<details>
-<summary><b>Roadmap 🗺️</b></summary>
+<div class="spoiler">
+<b>Roadmap 🗺️</b>
 
 1.  **Add New Map Profiles:** Provide alternative world map projections (e.g., Equal Earth with the Americas centered, Mercator projection) for different visual styles and gameplay feels.
 2.  **Improve Climate Transitions:** Smooth the blending between different climate zones for even more natural-looking biome borders.
 3.  **Backport Support:** Bring mod to older, popular TFC versions, including 1.20.1, 1.18.2, and 1.12.2 (if possible).
 
-</details>
+</div>
 
 ---
 

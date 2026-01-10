@@ -34,9 +34,8 @@
 !/CHANGELOG.md
 !/CodeStyle.xml
 
-# Splash / Logo Images
-!/img/**/*.png
-!/img/**/*.gif
+# Public resources
+!/public/**
 
 # Other exclusions
 __pycache__/
