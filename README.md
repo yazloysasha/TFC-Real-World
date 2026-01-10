@@ -34,7 +34,7 @@ Instead of random generation, the world's continents, mountains, oceans, and cli
 ### ⚙️ Technical Details & Configuration
 
 <details>
-<summary><b>How It Works & Features</b></summary>
+<summary><b>How It Works & Features 🏞️</b></summary>
 
 The mod works by replacing TFC's default noise generators with data sampled from customizable map images. This integrates seamlessly, letting TFC's rich procedural detail fill in the local terrain.
 
@@ -67,7 +67,7 @@ All settings are accessible directly from the **TFC world creation screen** for 
 
 1.  **Add New Map Profiles:** Provide alternative world map projections (e.g., Equal Earth with the Americas centered, Mercator projection) for different visual styles and gameplay feels.
 2.  **Improve Climate Transitions:** Smooth the blending between different climate zones for even more natural-looking biome borders.
-3.  **Backport Support:** Explore the possibility of bringing TFC: Real World to older, popular TFC versions (1.20.1, 1.18.2, and 1.12.2).
+3.  **Backport Support:** Bring mod to older, popular TFC versions, including 1.20.1, 1.18.2, and 1.12.2 (if possible).
 
 </details>
 
