@@ -28,17 +28,18 @@ public class SolarCalculatorMixin {
   }
 
   private static int[] transformCoords(
+    int x,
     int z,
     int horizontalTileSize,
     int verticalTileSize
   ) {
     return new int[] {
-      transformCoordForLatitude(z, horizontalTileSize),
+      transformCoordForLatitude(x, horizontalTileSize),
       transformCoordForLatitude(z, verticalTileSize),
     };
   }
 
-  private static double[] getGeographicCoords(int z) {
+  private static double[] getGeographicCoords(int x, int z) {
     int horizontalTileSize = TFCRealWorldConfig.SPEC != null
       ? TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get()
       : TFCRealWorldConfig.DEFAULT_TILE_SIZE;
@@ -49,6 +50,7 @@ public class SolarCalculatorMixin {
     CachedSolarCalculation cached = CALCULATION_CACHE.get();
     if (
       cached != null &&
+      cached.x() == x &&
       cached.z() == z &&
       cached.horizontalTileSize() == horizontalTileSize &&
       cached.verticalTileSize() == verticalTileSize
@@ -57,6 +59,7 @@ public class SolarCalculatorMixin {
     }
 
     int[] transformedCoords = transformCoords(
+      x,
       z,
       horizontalTileSize,
       verticalTileSize
@@ -68,6 +71,7 @@ public class SolarCalculatorMixin {
 
     CALCULATION_CACHE.set(
       new CachedSolarCalculation(
+        x,
         z,
         horizontalTileSize,
         verticalTileSize,
@@ -84,7 +88,7 @@ public class SolarCalculatorMixin {
     float hemisphereScale,
     CallbackInfoReturnable<Float> cir
   ) {
-    double[] geoCoords = getGeographicCoords(z);
+    double[] geoCoords = getGeographicCoords(0, z);
     float latitude = (float) Math.toRadians(geoCoords[1]);
 
     cir.setReturnValue(latitude);
@@ -100,7 +104,7 @@ public class SolarCalculatorMixin {
     float hemisphereScale,
     CallbackInfoReturnable<Boolean> cir
   ) {
-    double[] geoCoords = getGeographicCoords(z);
+    double[] geoCoords = getGeographicCoords(0, z);
 
     cir.setReturnValue(geoCoords[1] > 0);
   }
