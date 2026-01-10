@@ -72,7 +72,7 @@ No new blocks, items, tools, tech tiers or mobs are added. Existing TFC content 
 - **GEOGRAPHIC** – uses real-world geographic coordinates (longitude/latitude) that are automatically converted to world coordinates
 - **RANDOM** – generates spawn location procedurally based on world seed
 
-Geographic coordinates allow you to spawn players at specific real-world locations (e.g., spawn at coordinates of a major city or region)
+Geographic coordinates allow you to spawn players at specific real-world locations (e.g., spawn at coordinates of a major city or region).
 
 In short, **TFC: Real World keeps TerraFirmaCraft's gameplay complete and untouched**, and only changes **where** and **how** the existing systems are applied, using real-world-inspired map data.
 
