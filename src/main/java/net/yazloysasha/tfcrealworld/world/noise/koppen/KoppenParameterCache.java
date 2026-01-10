@@ -1,4 +1,4 @@
-package net.yazloysasha.tfcrealworld.world.noise;
+package net.yazloysasha.tfcrealworld.world.noise.koppen;
 
 import com.mojang.logging.LogUtils;
 import java.util.ArrayList;

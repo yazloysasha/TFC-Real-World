@@ -1,7 +1,7 @@
-package net.yazloysasha.tfcrealworld.world.region;
+package net.yazloysasha.tfcrealworld.world.region.cache;
 
 import com.mojang.logging.LogUtils;
-import net.yazloysasha.tfcrealworld.world.noise.PNGContinentNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
@@ -43,7 +43,9 @@ abstract class BaseGlobalDistanceCache extends BaseDistanceCache {
     }
   }
 
-  protected byte[] getDistanceValues(InterpolationResult interpolation) {
+  protected byte[] getDistanceValues(
+    BaseDistanceCache.InterpolationResult interpolation
+  ) {
     int idx00 = interpolation.z0 * width + interpolation.x0;
     int idx10 = interpolation.z0 * width + interpolation.x1;
     int idx01 = interpolation.z1 * width + interpolation.x0;
@@ -57,7 +59,9 @@ abstract class BaseGlobalDistanceCache extends BaseDistanceCache {
     };
   }
 
-  protected byte interpolateDistance(InterpolationResult interpolation) {
+  protected byte interpolateDistance(
+    BaseDistanceCache.InterpolationResult interpolation
+  ) {
     byte[] distances = getDistanceValues(interpolation);
     byte dist00 = distances[0];
     byte dist10 = distances[1];

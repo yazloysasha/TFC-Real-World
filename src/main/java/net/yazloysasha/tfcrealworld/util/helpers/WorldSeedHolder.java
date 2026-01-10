@@ -1,4 +1,4 @@
-package net.yazloysasha.tfcrealworld.util;
+package net.yazloysasha.tfcrealworld.util.helpers;
 
 public class WorldSeedHolder {
 

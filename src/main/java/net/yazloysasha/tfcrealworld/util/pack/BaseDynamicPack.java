@@ -1,4 +1,4 @@
-package net.yazloysasha.tfcrealworld.util;
+package net.yazloysasha.tfcrealworld.util.pack;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-package net.yazloysasha.tfcrealworld.util;
+package net.yazloysasha.tfcrealworld.util.helpers;
 
 import java.nio.file.Path;
 import net.neoforged.fml.loading.FMLPaths;

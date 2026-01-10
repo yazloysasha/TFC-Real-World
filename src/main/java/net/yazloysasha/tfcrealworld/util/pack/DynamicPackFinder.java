@@ -1,4 +1,4 @@
-package net.yazloysasha.tfcrealworld.util;
+package net.yazloysasha.tfcrealworld.util.pack;
 
 import com.mojang.logging.LogUtils;
 import java.util.Optional;

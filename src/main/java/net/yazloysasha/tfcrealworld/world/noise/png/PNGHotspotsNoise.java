@@ -1,4 +1,4 @@
-package net.yazloysasha.tfcrealworld.world.noise;
+package net.yazloysasha.tfcrealworld.world.noise.png;
 
 public class PNGHotspotsNoise extends BasePNGNoise {
 

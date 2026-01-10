@@ -1,4 +1,4 @@
-package net.yazloysasha.tfcrealworld.world.noise;
+package net.yazloysasha.tfcrealworld.world.noise.png;
 
 import com.mojang.logging.LogUtils;
 import java.awt.image.BufferedImage;
@@ -10,7 +10,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.Units;
-import net.yazloysasha.tfcrealworld.util.MapPathHelper;
+import net.yazloysasha.tfcrealworld.util.helpers.MapPathHelper;
 import org.slf4j.Logger;
 
 public abstract class BasePNGNoise implements Noise2D {

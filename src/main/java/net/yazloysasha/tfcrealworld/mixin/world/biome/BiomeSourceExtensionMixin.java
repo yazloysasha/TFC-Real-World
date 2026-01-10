@@ -2,7 +2,7 @@ package net.yazloysasha.tfcrealworld.mixin.world.biome;
 
 import net.dries007.tfc.world.biome.BiomeSourceExtension;
 import net.dries007.tfc.world.settings.Settings;
-import net.yazloysasha.tfcrealworld.util.SpawnCenterHelper;
+import net.yazloysasha.tfcrealworld.util.helpers.SpawnCenterHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;

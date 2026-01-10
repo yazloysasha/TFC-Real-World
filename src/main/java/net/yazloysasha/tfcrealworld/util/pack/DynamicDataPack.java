@@ -1,4 +1,4 @@
-package net.yazloysasha.tfcrealworld.util;
+package net.yazloysasha.tfcrealworld.util.pack;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;

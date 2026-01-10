@@ -1,9 +1,9 @@
-package net.yazloysasha.tfcrealworld.world.region;
+package net.yazloysasha.tfcrealworld.world.region.cache;
 
 import it.unimi.dsi.fastutil.ints.IntArrayFIFOQueue;
 import java.util.BitSet;
 import java.util.function.IntUnaryOperator;
-import net.yazloysasha.tfcrealworld.world.noise.PNGContinentNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 
 /**
  * Base class for distance caches that share common functionality.

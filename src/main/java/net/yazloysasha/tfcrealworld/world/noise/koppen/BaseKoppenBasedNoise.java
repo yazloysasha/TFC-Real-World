@@ -1,7 +1,8 @@
-package net.yazloysasha.tfcrealworld.world.noise;
+package net.yazloysasha.tfcrealworld.world.noise.koppen;
 
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.noise.OpenSimplex2D;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
 
 /**
  * Base class for Köppen-based noise generators.

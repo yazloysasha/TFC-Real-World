@@ -32,12 +32,12 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
-import net.yazloysasha.tfcrealworld.util.DynamicPackFinder;
-import net.yazloysasha.tfcrealworld.util.MapPathHelper;
-import net.yazloysasha.tfcrealworld.world.noise.BasePNGNoise;
-import net.yazloysasha.tfcrealworld.world.noise.KoppenParameterCache;
-import net.yazloysasha.tfcrealworld.world.region.GlobalOceanDistanceCache;
-import net.yazloysasha.tfcrealworld.world.region.GlobalWestCoastDistanceCache;
+import net.yazloysasha.tfcrealworld.util.helpers.MapPathHelper;
+import net.yazloysasha.tfcrealworld.util.pack.DynamicPackFinder;
+import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
+import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
+import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
+import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
 import org.slf4j.Logger;
 
 @Mod(TFCRealWorld.MOD_ID)

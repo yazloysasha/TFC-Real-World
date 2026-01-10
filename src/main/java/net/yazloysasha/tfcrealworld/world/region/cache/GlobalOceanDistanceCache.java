@@ -1,8 +1,8 @@
-package net.yazloysasha.tfcrealworld.world.region;
+package net.yazloysasha.tfcrealworld.world.region.cache;
 
 import it.unimi.dsi.fastutil.ints.IntArrayFIFOQueue;
 import java.util.BitSet;
-import net.yazloysasha.tfcrealworld.world.noise.PNGContinentNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -38,7 +38,10 @@ public class GlobalOceanDistanceCache extends BaseGlobalDistanceCache {
   }
 
   public byte getDistance(int gridX, int gridZ, boolean isLand) {
-    InterpolationResult interpolation = getInterpolationData(gridX, gridZ);
+    BaseDistanceCache.InterpolationResult interpolation = getInterpolationData(
+      gridX,
+      gridZ
+    );
     byte[] distances = getDistanceValues(interpolation);
     byte dist00 = distances[0];
     byte dist10 = distances[1];

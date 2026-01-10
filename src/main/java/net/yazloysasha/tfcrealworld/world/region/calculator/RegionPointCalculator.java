@@ -1,4 +1,4 @@
-package net.yazloysasha.tfcrealworld.world.region;
+package net.yazloysasha.tfcrealworld.world.region.calculator;
 
 import java.util.function.Consumer;
 import net.dries007.tfc.world.region.Region;

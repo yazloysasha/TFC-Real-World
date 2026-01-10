@@ -1,8 +1,8 @@
-package net.yazloysasha.tfcrealworld.world.region;
+package net.yazloysasha.tfcrealworld.world.region.cache;
 
 import it.unimi.dsi.fastutil.ints.IntArrayFIFOQueue;
 import java.util.BitSet;
-import net.yazloysasha.tfcrealworld.world.noise.PNGContinentNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import org.jetbrains.annotations.Nullable;
 
 /**

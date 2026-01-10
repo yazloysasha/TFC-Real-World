@@ -1,4 +1,4 @@
-package net.yazloysasha.tfcrealworld.util;
+package net.yazloysasha.tfcrealworld.util.helpers;
 
 import java.util.Random;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;

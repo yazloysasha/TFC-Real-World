@@ -1,4 +1,6 @@
-package net.yazloysasha.tfcrealworld.world.noise;
+package net.yazloysasha.tfcrealworld.world.noise.koppen;
+
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
 
 /**
  * Generates temperature noise based on Köppen climate map.

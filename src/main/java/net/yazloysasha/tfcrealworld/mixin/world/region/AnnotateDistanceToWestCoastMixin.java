@@ -3,7 +3,7 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 import net.dries007.tfc.world.region.AnnotateDistanceToWestCoast;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.world.region.WestCoastDistanceCalculator;
+import net.yazloysasha.tfcrealworld.world.region.calculator.WestCoastDistanceCalculator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

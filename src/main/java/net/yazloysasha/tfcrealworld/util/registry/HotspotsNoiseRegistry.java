@@ -1,7 +1,7 @@
-package net.yazloysasha.tfcrealworld.util;
+package net.yazloysasha.tfcrealworld.util.registry;
 
 import net.dries007.tfc.world.region.RegionGenerator;
-import net.yazloysasha.tfcrealworld.world.noise.PNGHotspotsNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
 
 /**
  * Registry for storing PNGHotspotsNoise instances for each RegionGenerator.

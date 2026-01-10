@@ -1,7 +1,8 @@
-package net.yazloysasha.tfcrealworld.world.region;
+package net.yazloysasha.tfcrealworld.world.region.calculator;
 
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import org.jetbrains.annotations.Nullable;
 
 /**

@@ -1,7 +1,7 @@
-package net.yazloysasha.tfcrealworld.util;
+package net.yazloysasha.tfcrealworld.util.registry;
 
 import net.dries007.tfc.world.region.RegionGenerator;
-import net.yazloysasha.tfcrealworld.world.noise.PNGAltitudeNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
 
 /**
  * Registry for storing PNGAltitudeNoise instances for each RegionGenerator.
