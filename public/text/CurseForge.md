@@ -20,7 +20,7 @@ This mod reshapes your TFC world using the very layout of our own planet. Experi
 
 Instead of random generation, the world's continents, mountains, oceans, and climate zones are guided by real-world data. This creates a uniquely immersive and logical geography for your survival saga.
 
-#### Key Experiences & New Rules: 🧭
+#### 🧭 Key Experiences & New Rules:
 
 - **Sail Across Familiar Waters:** Navigate vast oceans and coastlines that mirror Earth's great seas. ⛵
 - **Conquer Legendary Peaks:** Trek through towering mountain ranges and descend into deep oceanic trenches. 🏔️
