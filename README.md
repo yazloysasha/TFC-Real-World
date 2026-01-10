@@ -1,6 +1,6 @@
 # TFC: Real World 🌍
 
-![Earth Maps](img/public/collage.png)
+![Earth Maps](public/img/collage.png)
 
 ### Explore a World You Know
 
