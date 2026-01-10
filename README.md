@@ -52,7 +52,7 @@ It only adds extra _real-world rules_ that tell TFC _where_ to place land, heigh
 #### Non-invasive worldgen integration
 
 Core TFC classes like `RegionGenerator` and `Settings` are extended via mixins only to replace continent / altitude / hotspot / climate **noise sources** with map-driven ones (when the corresponding options are enabled) and to override numeric configuration values (like continentalness, spawn location, temperature and rainfall scale) from the mod's config file.  
-No new blocks, items, tools, tech tiers, mobs or GUIs are added. Existing TFC content is used as-is, just guided by real-world geography.
+No new blocks, items, tools, tech tiers or mobs are added. Existing TFC content is used as-is, just guided by real-world geography. Configuration options are integrated into TFC's existing world creation screen.
 
 #### Optional biome volcano tweaks
 
@@ -64,31 +64,28 @@ No new blocks, items, tools, tech tiers, mobs or GUIs are added. Existing TFC co
 - On startup, the mod registers dynamic resource and data packs that expose its maps and data to Minecraft/TFC without requiring you to manage external packs manually.
 - Default map PNGs are bundled inside the mod and **automatically copied** into the game's directory if missing, so you can easily inspect or replace them.
 
+#### Spawn location system with multiple modes
+
+- **Spawn mode selection** – choose how spawn location is determined:
+  - **DEFAULT** – uses traditional X/Z coordinates
+  - **GEOGRAPHIC** – uses real-world geographic coordinates (longitude/latitude) that are automatically converted to world coordinates
+  - **RANDOM** – generates spawn location procedurally based on world seed
+- Geographic coordinates allow you to spawn players at specific real-world locations (e.g., spawn at coordinates of a major city or region)
+
 In short, **TFC: Real World keeps TerraFirmaCraft's gameplay complete and untouched**, and only changes **where** and **how** the existing systems are applied, using real-world-inspired map data.
 
 ---
 
 ### Configuration and customization
 
-All configuration is stored in the file: `config/tfc_real_world/common.toml`
+All mod settings are available directly in the **TFC world creation screen**, so you can customize your world before generating it without needing to edit any config files. Settings are organized into several groups:
 
-The options are grouped similarly to the internal config structure.
+- **Spawn settings** – choose how spawn location is determined (traditional coordinates, geographic coordinates, or random from seed), and configure spawn position and distance
+- **Biome modifications** – optional tweaks like removing volcanic features from canyon biomes
+- **World generation** – adjust TFC world generation parameters like continentalness, grass density, bedrock flatness, and temperature/rainfall scales
+- **Generation modes** – toggle whether continents, altitude, hotspots, and climate should use real-world maps or procedural generation. You can also adjust tile sizes that control how maps are stretched across the world
 
-#### World generation settings (`world_generation`)
-
-- **Continentalness, finite continents, grass density** – mirror TFC's own world settings, but can be overridden here without editing TFC's original JSONs.
-- **Flat bedrock** – toggle whether bedrock should be flat.
-- **Spawn center (X/Z) and spawn distance** – control where the world spawn region is centered and how far from the center players can appear.
-- **Temperature / rainfall scale** – set the horizontal scale (in blocks) over which temperature and rainfall change, keeping behavior consistent with TFC but adjusted to match your world size.
-
-#### Generation modes (`generation_modes`)
-
-- **`horizontal_tile_size`, `vertical_tile_size`** – define the size of each tile (diameter) in blocks. The world is organized as a grid of tiles that repeat seamlessly beyond the main tile boundaries. Each tile alternates with mirroring on odd-numbered tiles, creating an infinite wrapped world. This affects how real-world maps are stretched over the world, distances between poles, and the _Globe Trotter_ advancement.
-- **`continent_from_map`, `altitude_from_map`, `hotspots_from_map`, `koppen_from_map`** – main toggles that decide whether each system uses **real-world maps** or **pure TFC procedural noise**. When these are **false**, the corresponding part of worldgen behaves exactly like stock TerraFirmaCraft; when **true** (the default for most of them), the same TFC systems are simply driven by real-world PNG maps.
-
-#### Biome modifications (`biome_modifications`)
-
-- **`canyons_not_volcanic`** – when enabled, removes volcanic behavior from `canyons` and `doline_canyons` biomes while keeping everything else unchanged.
+All settings include helpful tooltips in the GUI, and your choices are automatically saved to `config/tfc_real_world/common.toml`. Advanced users can still edit the config file directly if needed.
 
 #### Map files and customization
 
