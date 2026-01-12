@@ -33,45 +33,78 @@ public record MapProfile(
   > GEOGRAPHIC_COORDS_CACHE = new ThreadLocal<>();
 
   public static MapProfile loadFromResources(String profileId) {
-    String settingsPath =
-      "/data/" +
-      TFCRealWorld.MOD_ID +
-      "/profiles/" +
-      profileId.toLowerCase() +
-      "/settings.json";
+    String lowerProfileId = profileId.toLowerCase();
+    String[] parts = ProfileManager.parseProfileId(lowerProfileId);
+    String namespace = parts[0];
+    String profileName = parts[1];
 
-    try (
-      InputStream stream = TFCRealWorld.class.getResourceAsStream(settingsPath)
-    ) {
-      if (stream == null) {
-        LOGGER.error(
-          "Profile settings not found at: {}. Using default values.",
-          settingsPath
+    ProfileManager.ProfileLocation location = ProfileManager.getProfileLocation(
+      profileId
+    );
+
+    InputStream stream = null;
+    if (location != null) {
+      if (location.isZip()) {
+        stream = ProfileManager.getSettingsStreamFromZip(
+          location.zipPath(),
+          namespace,
+          profileName
         );
-        return createDefault(profileId);
+      } else if (location.directoryPath() != null) {
+        stream = ProfileManager.getSettingsStreamFromDirectory(
+          location.directoryPath()
+        );
       }
+    }
 
-      JsonObject json = GSON.fromJson(
-        new InputStreamReader(stream),
-        JsonObject.class
-      );
+    if (stream == null) {
+      String settingsPath =
+        "/data/" +
+        TFCRealWorld.MOD_ID +
+        "/profiles/" +
+        namespace +
+        "/" +
+        profileName +
+        "/settings.json";
+      stream = TFCRealWorld.class.getResourceAsStream(settingsPath);
+    }
 
-      return new MapProfile(
-        profileId,
-        json.get("spawn_center_x").getAsInt(),
-        json.get("spawn_center_z").getAsInt(),
-        json.get("west_edge_longitude").getAsDouble(),
-        json.get("east_edge_longitude").getAsDouble(),
-        json.get("south_edge_latitude").getAsDouble(),
-        json.get("north_edge_latitude").getAsDouble(),
-        MapProjection.valueOf(
-          json.get("map_projection").getAsString().toUpperCase()
-        )
+    if (stream == null) {
+      LOGGER.error(
+        "Profile settings not found for: {}. Using default values.",
+        profileId
       );
-    } catch (Exception e) {
-      LOGGER.error("Failed to load profile {} from resources", profileId, e);
       return createDefault(profileId);
     }
+
+    try (InputStream s = stream) {
+      JsonObject json = GSON.fromJson(
+        new InputStreamReader(s),
+        JsonObject.class
+      );
+      return parseJsonProfile(profileId, json);
+    } catch (Exception e) {
+      LOGGER.error("Failed to load profile {}", profileId, e);
+      return createDefault(profileId);
+    }
+  }
+
+  private static MapProfile parseJsonProfile(
+    String profileId,
+    JsonObject json
+  ) {
+    return new MapProfile(
+      profileId,
+      json.get("spawn_center_x").getAsInt(),
+      json.get("spawn_center_z").getAsInt(),
+      json.get("west_edge_longitude").getAsDouble(),
+      json.get("east_edge_longitude").getAsDouble(),
+      json.get("south_edge_latitude").getAsDouble(),
+      json.get("north_edge_latitude").getAsDouble(),
+      MapProjection.valueOf(
+        json.get("map_projection").getAsString().toUpperCase()
+      )
+    );
   }
 
   private static MapProfile createDefault(String profileId) {
@@ -87,13 +120,20 @@ public record MapProfile(
     );
   }
 
-  public double getSpawnCenterLongitude() {
+  private static int[] getTileSizes() {
     int horizontalTileSize = TFCRealWorldConfig.SPEC != null
       ? TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get()
       : TFCRealWorldConfig.DEFAULT_TILE_SIZE;
     int verticalTileSize = TFCRealWorldConfig.SPEC != null
       ? TFCRealWorldConfig.VERTICAL_TILE_SIZE.get()
       : TFCRealWorldConfig.DEFAULT_TILE_SIZE;
+    return new int[] { horizontalTileSize, verticalTileSize };
+  }
+
+  private double[] getGeographicCoords() {
+    int[] tileSizes = getTileSizes();
+    int horizontalTileSize = tileSizes[0];
+    int verticalTileSize = tileSizes[1];
 
     CachedGeographicCoords cached = GEOGRAPHIC_COORDS_CACHE.get();
     if (
@@ -103,7 +143,7 @@ public record MapProfile(
       cached.horizontalTileSize() == horizontalTileSize &&
       cached.verticalTileSize() == verticalTileSize
     ) {
-      return cached.longitude();
+      return new double[] { cached.longitude(), cached.latitude() };
     }
 
     double[] geoCoords = ProjectionManager.minecraftToGeographic(
@@ -118,60 +158,25 @@ public record MapProfile(
       mapProjection
     );
 
-    CachedGeographicCoords newCache = new CachedGeographicCoords(
-      spawnCenterX,
-      spawnCenterZ,
-      horizontalTileSize,
-      verticalTileSize,
-      geoCoords[0],
-      geoCoords[1]
+    GEOGRAPHIC_COORDS_CACHE.set(
+      new CachedGeographicCoords(
+        spawnCenterX,
+        spawnCenterZ,
+        horizontalTileSize,
+        verticalTileSize,
+        geoCoords[0],
+        geoCoords[1]
+      )
     );
-    GEOGRAPHIC_COORDS_CACHE.set(newCache);
 
-    return geoCoords[0];
+    return geoCoords;
+  }
+
+  public double getSpawnCenterLongitude() {
+    return getGeographicCoords()[0];
   }
 
   public double getSpawnCenterLatitude() {
-    int horizontalTileSize = TFCRealWorldConfig.SPEC != null
-      ? TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get()
-      : TFCRealWorldConfig.DEFAULT_TILE_SIZE;
-    int verticalTileSize = TFCRealWorldConfig.SPEC != null
-      ? TFCRealWorldConfig.VERTICAL_TILE_SIZE.get()
-      : TFCRealWorldConfig.DEFAULT_TILE_SIZE;
-
-    CachedGeographicCoords cached = GEOGRAPHIC_COORDS_CACHE.get();
-    if (
-      cached != null &&
-      cached.spawnCenterX() == spawnCenterX &&
-      cached.spawnCenterZ() == spawnCenterZ &&
-      cached.horizontalTileSize() == horizontalTileSize &&
-      cached.verticalTileSize() == verticalTileSize
-    ) {
-      return cached.latitude();
-    }
-
-    double[] geoCoords = ProjectionManager.minecraftToGeographic(
-      spawnCenterX,
-      spawnCenterZ,
-      horizontalTileSize,
-      verticalTileSize,
-      westEdgeLongitude,
-      eastEdgeLongitude,
-      southEdgeLatitude,
-      northEdgeLatitude,
-      mapProjection
-    );
-
-    CachedGeographicCoords newCache = new CachedGeographicCoords(
-      spawnCenterX,
-      spawnCenterZ,
-      horizontalTileSize,
-      verticalTileSize,
-      geoCoords[0],
-      geoCoords[1]
-    );
-    GEOGRAPHIC_COORDS_CACHE.set(newCache);
-
-    return geoCoords[1];
+    return getGeographicCoords()[1];
   }
 }

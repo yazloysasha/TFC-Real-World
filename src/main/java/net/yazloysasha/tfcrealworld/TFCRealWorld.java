@@ -19,6 +19,7 @@ import net.yazloysasha.tfcrealworld.config.ConfigManager;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
 import net.yazloysasha.tfcrealworld.util.pack.DynamicPackFinder;
+import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
@@ -33,6 +34,8 @@ public final class TFCRealWorld {
   public static final Logger LOGGER = LogUtils.getLogger();
 
   public TFCRealWorld(ModContainer container, IEventBus modEventBus) {
+    ProfileManager.initialize();
+
     container.registerConfig(
       ModConfig.Type.COMMON,
       TFCRealWorldConfig.SPEC,

@@ -442,7 +442,6 @@ public class CreateTFCWorldScreenMixin {
 
     if (!newProfile.equals(previousProfile)) {
       BasePNGNoise.clearImageCache();
-      ProfileManager.clearCache();
     }
   }
 }

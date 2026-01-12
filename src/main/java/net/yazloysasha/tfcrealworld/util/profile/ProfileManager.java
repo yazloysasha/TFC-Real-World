@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
+import net.neoforged.fml.loading.FMLPaths;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import org.slf4j.Logger;
@@ -25,22 +26,49 @@ public class ProfileManager {
 
   private static final Logger LOGGER = LogUtils.getLogger();
   private static final Map<String, MapProfile> PROFILE_CACHE = new HashMap<>();
-  private static List<String> availableProfiles = null;
+  private static final Map<String, ProfileLocation> PROFILE_LOCATIONS =
+    new HashMap<>();
+  private static boolean initialized = false;
 
-  public static List<String> discoverProfiles() {
-    if (availableProfiles != null) {
-      return availableProfiles;
+  public record ProfileLocation(
+    String namespace,
+    String profileName,
+    boolean isZip,
+    Path zipPath,
+    Path directoryPath
+  ) {}
+
+  public static void initialize() {
+    if (initialized) {
+      return;
     }
 
     List<String> profileIds = new ArrayList<>();
+    discoverProfilesFromExternal(profileIds);
+    discoverProfilesFromJar(profileIds);
+
+    if (profileIds.isEmpty()) {
+      LOGGER.warn("No profiles found, using default profile");
+    }
+
+    initialized = true;
+  }
+
+  public static List<String> discoverProfiles() {
+    List<String> profileIds = new ArrayList<>(PROFILE_LOCATIONS.keySet());
+    if (profileIds.isEmpty()) {
+      return getDefaultProfileList();
+    }
+    return profileIds;
+  }
+
+  private static void discoverProfilesFromJar(List<String> profileIds) {
     String resourcePath = "/data/" + TFCRealWorld.MOD_ID + "/profiles/";
 
     try {
       URL resourceUrl = TFCRealWorld.class.getResource(resourcePath);
       if (resourceUrl == null) {
-        LOGGER.warn("Profiles directory not found at: {}", resourcePath);
-        availableProfiles = getDefaultProfileList();
-        return availableProfiles;
+        return;
       }
 
       URI resourceUri = resourceUrl.toURI();
@@ -59,17 +87,13 @@ public class ProfileManager {
         }
 
         if (Files.exists(profilesResourcePath)) {
-          try (Stream<Path> paths = Files.list(profilesResourcePath)) {
-            paths
-              .filter(Files::isDirectory)
-              .forEach(path -> {
-                String profileId = path.getFileName().toString();
-                Path settingsPath = path.resolve("settings.json");
-                if (Files.exists(settingsPath)) {
-                  profileIds.add(profileId.toUpperCase());
-                }
-              });
-          }
+          discoverProfilesInPath(
+            profilesResourcePath,
+            profileIds,
+            false,
+            null,
+            true
+          );
         }
 
         if (fileSystem != null) {
@@ -83,24 +107,184 @@ public class ProfileManager {
         }
         throw e;
       }
-
-      if (profileIds.isEmpty()) {
-        availableProfiles = getDefaultProfileList();
-      } else {
-        availableProfiles = profileIds;
-      }
     } catch (URISyntaxException | IOException e) {
-      LOGGER.error("Failed to discover profiles from resources", e);
-      availableProfiles = getDefaultProfileList();
+      LOGGER.error("Failed to discover profiles from JAR", e);
+    }
+  }
+
+  private static void discoverProfilesFromExternal(List<String> profileIds) {
+    Path configDir = FMLPaths.CONFIGDIR.get();
+    Path profilesDir = configDir
+      .resolve(TFCRealWorld.MOD_ID)
+      .resolve("profiles");
+
+    if (!Files.exists(profilesDir)) {
+      try {
+        Files.createDirectories(profilesDir);
+        LOGGER.info("Created profiles directory: {}", profilesDir);
+      } catch (IOException e) {
+        LOGGER.error("Failed to create profiles directory: {}", profilesDir, e);
+        return;
+      }
     }
 
-    return availableProfiles;
+    try (Stream<Path> paths = Files.list(profilesDir)) {
+      paths.forEach(path -> {
+        String fileName = path.getFileName().toString();
+        if (Files.isDirectory(path)) {
+          String namespace = fileName;
+          discoverProfilesInNamespace(
+            path,
+            namespace,
+            profileIds,
+            false,
+            null,
+            false
+          );
+        } else if (fileName.toLowerCase().endsWith(".zip")) {
+          discoverProfilesFromZip(path, profileIds, false);
+        }
+      });
+    } catch (IOException e) {
+      LOGGER.error("Failed to list items in external profiles directory", e);
+    }
+  }
+
+  private static void discoverProfilesInPath(
+    Path profilesPath,
+    List<String> profileIds,
+    boolean isZip,
+    Path zipPath,
+    boolean skipIfExists
+  ) {
+    try (Stream<Path> namespacePaths = Files.list(profilesPath)) {
+      namespacePaths
+        .filter(Files::isDirectory)
+        .forEach(namespacePath -> {
+          String namespace = namespacePath.getFileName().toString();
+          discoverProfilesInNamespace(
+            namespacePath,
+            namespace,
+            profileIds,
+            isZip,
+            zipPath,
+            skipIfExists
+          );
+        });
+    } catch (IOException e) {
+      LOGGER.error("Failed to list namespaces in profiles directory", e);
+    }
+  }
+
+  private static void discoverProfilesInNamespace(
+    Path namespacePath,
+    String namespace,
+    List<String> profileIds,
+    boolean isZip,
+    Path zipPath,
+    boolean skipIfExists
+  ) {
+    try (Stream<Path> paths = Files.list(namespacePath)) {
+      paths.forEach(path -> {
+        String fileName = path.getFileName().toString();
+        if (Files.isDirectory(path)) {
+          String profileName = fileName;
+          Path settingsPath = path.resolve("settings.json");
+          if (Files.exists(settingsPath)) {
+            addProfile(
+              namespace,
+              profileName,
+              profileIds,
+              isZip,
+              zipPath,
+              isZip ? null : path,
+              skipIfExists
+            );
+          }
+        } else if (fileName.toLowerCase().endsWith(".zip")) {
+          discoverProfilesFromZip(path, profileIds, skipIfExists);
+        }
+      });
+    } catch (IOException e) {
+      LOGGER.error("Failed to list profiles in namespace: {}", namespace, e);
+    }
+  }
+
+  private static void addProfile(
+    String namespace,
+    String profileName,
+    List<String> profileIds,
+    boolean isZip,
+    Path zipPath,
+    Path directoryPath,
+    boolean skipIfExists
+  ) {
+    String profileId = buildProfileId(namespace, profileName);
+    String upperProfileId = profileId.toUpperCase();
+
+    if (skipIfExists && PROFILE_LOCATIONS.containsKey(upperProfileId)) {
+      return;
+    }
+
+    if (!profileIds.contains(upperProfileId)) {
+      profileIds.add(upperProfileId);
+    }
+    PROFILE_LOCATIONS.put(
+      upperProfileId,
+      new ProfileLocation(namespace, profileName, isZip, zipPath, directoryPath)
+    );
+  }
+
+  private static void discoverProfilesFromZip(
+    Path zipPath,
+    List<String> profileIds,
+    boolean skipIfExists
+  ) {
+    try (
+      FileSystem zipFs = FileSystems.newFileSystem(
+        zipPath,
+        Collections.emptyMap()
+      )
+    ) {
+      Path rootPath = zipFs.getPath("/");
+      if (Files.exists(rootPath)) {
+        discoverProfilesInPath(
+          rootPath,
+          profileIds,
+          true,
+          zipPath,
+          skipIfExists
+        );
+      }
+    } catch (IOException e) {
+      LOGGER.error("Failed to read ZIP file: {}", zipPath, e);
+    }
+  }
+
+  private static String buildProfileId(String namespace, String profileName) {
+    if ("default".equals(namespace)) {
+      return profileName;
+    }
+    return namespace + ":" + profileName;
+  }
+
+  public static String[] parseProfileId(String profileId) {
+    int colonIndex = profileId.indexOf(':');
+    if (colonIndex == -1) {
+      return new String[] { "default", profileId };
+    }
+    return new String[] {
+      profileId.substring(0, colonIndex),
+      profileId.substring(colonIndex + 1),
+    };
+  }
+
+  public static ProfileLocation getProfileLocation(String profileId) {
+    return PROFILE_LOCATIONS.get(profileId.toUpperCase());
   }
 
   private static List<String> getDefaultProfileList() {
-    List<String> defaultProfiles = new ArrayList<>();
-    defaultProfiles.add(TFCRealWorldConfig.DEFAULT_MAP_PROFILE);
-    return defaultProfiles;
+    return List.of(TFCRealWorldConfig.DEFAULT_MAP_PROFILE);
   }
 
   public static MapProfile getProfile(String profileId) {
@@ -111,20 +295,150 @@ public class ProfileManager {
     });
   }
 
-  public static void clearCache() {
-    PROFILE_CACHE.clear();
-    availableProfiles = null;
-  }
-
   public static InputStream getMapStream(String profileId, String mapName) {
+    String[] parts = parseProfileId(profileId.toLowerCase());
+    String namespace = parts[0];
+    String profileName = parts[1];
+
+    ProfileLocation location = PROFILE_LOCATIONS.get(profileId.toUpperCase());
+    if (location != null) {
+      if (location.isZip()) {
+        return getMapStreamFromZip(
+          location.zipPath(),
+          namespace,
+          profileName,
+          mapName
+        );
+      } else if (location.directoryPath() != null) {
+        return getMapStreamFromDirectory(location.directoryPath(), mapName);
+      }
+    }
+
     String resourcePath =
       "/data/" +
       TFCRealWorld.MOD_ID +
       "/profiles/" +
-      profileId.toLowerCase() +
+      namespace +
+      "/" +
+      profileName +
       "/maps/" +
       mapName +
       ".png";
     return TFCRealWorld.class.getResourceAsStream(resourcePath);
+  }
+
+  private static InputStream getMapStreamFromZip(
+    Path zipPath,
+    String namespace,
+    String profileName,
+    String mapName
+  ) {
+    try {
+      FileSystem zipFs = FileSystems.newFileSystem(
+        zipPath,
+        Collections.emptyMap()
+      );
+      Path mapPath = zipFs.getPath(
+        "/" + namespace + "/" + profileName + "/maps/" + mapName + ".png"
+      );
+      if (Files.exists(mapPath)) {
+        return new ZipInputStreamWrapper(Files.newInputStream(mapPath), zipFs);
+      } else {
+        zipFs.close();
+      }
+    } catch (IOException e) {
+      LOGGER.error("Failed to read map from ZIP: {}", zipPath, e);
+    }
+    return null;
+  }
+
+  private static class ZipInputStreamWrapper extends InputStream {
+
+    private final InputStream delegate;
+    private final FileSystem fileSystem;
+
+    public ZipInputStreamWrapper(InputStream delegate, FileSystem fileSystem) {
+      this.delegate = delegate;
+      this.fileSystem = fileSystem;
+    }
+
+    @Override
+    public int read() throws IOException {
+      return delegate.read();
+    }
+
+    @Override
+    public int read(byte[] b) throws IOException {
+      return delegate.read(b);
+    }
+
+    @Override
+    public int read(byte[] b, int off, int len) throws IOException {
+      return delegate.read(b, off, len);
+    }
+
+    @Override
+    public void close() throws IOException {
+      delegate.close();
+      fileSystem.close();
+    }
+  }
+
+  private static InputStream getMapStreamFromDirectory(
+    Path profilePath,
+    String mapName
+  ) {
+    try {
+      Path mapPath = profilePath.resolve("maps").resolve(mapName + ".png");
+      if (Files.exists(mapPath)) {
+        return Files.newInputStream(mapPath);
+      }
+    } catch (IOException e) {
+      LOGGER.error("Failed to read map from directory: {}", profilePath, e);
+    }
+    return null;
+  }
+
+  static InputStream getSettingsStreamFromZip(
+    Path zipPath,
+    String namespace,
+    String profileName
+  ) {
+    try {
+      FileSystem zipFs = FileSystems.newFileSystem(
+        zipPath,
+        Collections.emptyMap()
+      );
+      Path settingsPath = zipFs.getPath(
+        "/" + namespace + "/" + profileName + "/settings.json"
+      );
+      if (Files.exists(settingsPath)) {
+        return new ZipInputStreamWrapper(
+          Files.newInputStream(settingsPath),
+          zipFs
+        );
+      } else {
+        zipFs.close();
+      }
+    } catch (IOException e) {
+      LOGGER.error("Failed to read settings from ZIP: {}", zipPath, e);
+    }
+    return null;
+  }
+
+  static InputStream getSettingsStreamFromDirectory(Path profilePath) {
+    try {
+      Path settingsPath = profilePath.resolve("settings.json");
+      if (Files.exists(settingsPath)) {
+        return Files.newInputStream(settingsPath);
+      }
+    } catch (IOException e) {
+      LOGGER.error(
+        "Failed to read settings from directory: {}",
+        profilePath,
+        e
+      );
+    }
+    return null;
   }
 }
