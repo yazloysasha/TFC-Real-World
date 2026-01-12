@@ -21,7 +21,8 @@
   ],
   "client": [
     "client.screen.CreateTFCWorldScreenMixin",
-    "client.screen.CreateTFCWorldScreenAccessor"
+    "client.screen.CreateTFCWorldScreenAccessor",
+    "client.screen.ScreenAccessor"
   ],
   "server": [],
   "injectors": {

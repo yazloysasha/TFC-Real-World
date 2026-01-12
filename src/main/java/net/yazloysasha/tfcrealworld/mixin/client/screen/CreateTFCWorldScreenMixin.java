@@ -95,6 +95,18 @@ public class CreateTFCWorldScreenMixin {
   private OptionInstance<Boolean> koppenFromMap;
 
   @Unique
+  private AbstractWidget spawnCenterLongitudeWidget;
+
+  @Unique
+  private AbstractWidget spawnCenterLatitudeWidget;
+
+  @Unique
+  private AbstractWidget spawnCenterXWidget;
+
+  @Unique
+  private AbstractWidget spawnCenterZWidget;
+
+  @Unique
   private static int optionsCount = 0;
 
   @Unique
@@ -239,12 +251,6 @@ public class CreateTFCWorldScreenMixin {
       return;
     }
 
-    // TODO: Make sure the settings change correctly (currently they change in the code, but they don't change visually)
-    TFCRealWorld.LOGGER.info(
-      "applyProfileSpawnSettings called with profileId: {}",
-      profileId
-    );
-
     MapProfile profile = ProfileManager.getProfile(profileId);
     double convertedLongitude = profile.getSpawnCenterLongitude();
     double convertedLatitude = profile.getSpawnCenterLatitude();
@@ -254,10 +260,74 @@ public class CreateTFCWorldScreenMixin {
     spawnCenterX.set(profile.spawnCenterX());
     spawnCenterZ.set(profile.spawnCenterZ());
 
-    TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.set(convertedLongitude);
-    TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.set(convertedLatitude);
-    TFCRealWorldConfig.SPAWN_CENTER_X.set(profile.spawnCenterX());
-    TFCRealWorldConfig.SPAWN_CENTER_Z.set(profile.spawnCenterZ());
+    updateWidgets();
+  }
+
+  @Unique
+  private void updateWidgets() {
+    final CreateTFCWorldScreenAccessor accessor =
+      (CreateTFCWorldScreenAccessor) (Object) this;
+    final ScreenAccessor screenAccessor = (ScreenAccessor) (Object) this;
+
+    if (spawnCenterLongitudeWidget != null) {
+      int x = spawnCenterLongitudeWidget.getX();
+      int y = spawnCenterLongitudeWidget.getY();
+      int width = spawnCenterLongitudeWidget.getWidth();
+      AbstractWidget oldWidget = spawnCenterLongitudeWidget;
+      spawnCenterLongitudeWidget = accessor.tfcrealworld$invokeSmallButton(
+        spawnCenterLongitude
+      );
+      spawnCenterLongitudeWidget.setPosition(x, y);
+      spawnCenterLongitudeWidget.setWidth(width);
+      screenAccessor.tfcrealworld$invokeRemoveWidget(oldWidget);
+      screenAccessor.tfcrealworld$invokeAddRenderableWidget(
+        spawnCenterLongitudeWidget
+      );
+    }
+
+    if (spawnCenterLatitudeWidget != null) {
+      int x = spawnCenterLatitudeWidget.getX();
+      int y = spawnCenterLatitudeWidget.getY();
+      int width = spawnCenterLatitudeWidget.getWidth();
+      AbstractWidget oldWidget = spawnCenterLatitudeWidget;
+      spawnCenterLatitudeWidget = accessor.tfcrealworld$invokeSmallButton(
+        spawnCenterLatitude
+      );
+      spawnCenterLatitudeWidget.setPosition(x, y);
+      spawnCenterLatitudeWidget.setWidth(width);
+      screenAccessor.tfcrealworld$invokeRemoveWidget(oldWidget);
+      screenAccessor.tfcrealworld$invokeAddRenderableWidget(
+        spawnCenterLatitudeWidget
+      );
+    }
+
+    if (spawnCenterXWidget != null) {
+      int x = spawnCenterXWidget.getX();
+      int y = spawnCenterXWidget.getY();
+      int width = spawnCenterXWidget.getWidth();
+      AbstractWidget oldWidget = spawnCenterXWidget;
+      spawnCenterXWidget = accessor.tfcrealworld$invokeSmallButton(
+        spawnCenterX
+      );
+      spawnCenterXWidget.setPosition(x, y);
+      spawnCenterXWidget.setWidth(width);
+      screenAccessor.tfcrealworld$invokeRemoveWidget(oldWidget);
+      screenAccessor.tfcrealworld$invokeAddRenderableWidget(spawnCenterXWidget);
+    }
+
+    if (spawnCenterZWidget != null) {
+      int x = spawnCenterZWidget.getX();
+      int y = spawnCenterZWidget.getY();
+      int width = spawnCenterZWidget.getWidth();
+      AbstractWidget oldWidget = spawnCenterZWidget;
+      spawnCenterZWidget = accessor.tfcrealworld$invokeSmallButton(
+        spawnCenterZ
+      );
+      spawnCenterZWidget.setPosition(x, y);
+      spawnCenterZWidget.setWidth(width);
+      screenAccessor.tfcrealworld$invokeRemoveWidget(oldWidget);
+      screenAccessor.tfcrealworld$invokeAddRenderableWidget(spawnCenterZWidget);
+    }
   }
 
   @Inject(method = "init()V", at = @At("HEAD"))
@@ -354,14 +424,18 @@ public class CreateTFCWorldScreenMixin {
 
     builder.addChild(accessor.tfcrealworld$invokeSmallButton(mapProfile));
     builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnMode));
-    builder.addChild(
-      accessor.tfcrealworld$invokeSmallButton(spawnCenterLongitude)
+    spawnCenterLongitudeWidget = accessor.tfcrealworld$invokeSmallButton(
+      spawnCenterLongitude
     );
-    builder.addChild(
-      accessor.tfcrealworld$invokeSmallButton(spawnCenterLatitude)
+    builder.addChild(spawnCenterLongitudeWidget);
+    spawnCenterLatitudeWidget = accessor.tfcrealworld$invokeSmallButton(
+      spawnCenterLatitude
     );
-    builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnCenterX));
-    builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnCenterZ));
+    builder.addChild(spawnCenterLatitudeWidget);
+    spawnCenterXWidget = accessor.tfcrealworld$invokeSmallButton(spawnCenterX);
+    builder.addChild(spawnCenterXWidget);
+    spawnCenterZWidget = accessor.tfcrealworld$invokeSmallButton(spawnCenterZ);
+    builder.addChild(spawnCenterZWidget);
     builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnDistance));
     builder.addChild(
       accessor.tfcrealworld$invokeSmallButton(canyonsNotVolcanic)
