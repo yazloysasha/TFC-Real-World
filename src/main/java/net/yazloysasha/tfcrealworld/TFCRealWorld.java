@@ -15,6 +15,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+import net.yazloysasha.tfcrealworld.config.ConfigManager;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
 import net.yazloysasha.tfcrealworld.util.pack.DynamicPackFinder;
@@ -32,13 +33,19 @@ public final class TFCRealWorld {
   public static final Logger LOGGER = LogUtils.getLogger();
 
   public TFCRealWorld(ModContainer container, IEventBus modEventBus) {
-    container.registerConfig(ModConfig.Type.COMMON, TFCRealWorldConfig.SPEC);
+    container.registerConfig(
+      ModConfig.Type.COMMON,
+      TFCRealWorldConfig.SPEC,
+      MOD_ID + "/common.toml"
+    );
 
     modEventBus.addListener(ModConfigEvent.Loading.class, event -> {
       if (event.getConfig().getModId().equals(MOD_ID)) {
         TFCRealWorldConfig.setModConfig(event.getConfig());
       }
     });
+
+    NeoForge.EVENT_BUS.register(ConfigManager.class);
 
     modEventBus.addListener(
       AddPackFindersEvent.class,
@@ -87,31 +94,7 @@ public final class TFCRealWorld {
 
   private void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
     if (event.getEntity() instanceof ServerPlayer serverPlayer) {
-      ConfigSyncPacket packet = new ConfigSyncPacket(
-        TFCRealWorldConfig.MAP_PROFILE.get(),
-        TFCRealWorldConfig.SPAWN_MODE.get(),
-        TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.get(),
-        TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.get(),
-        TFCRealWorldConfig.SPAWN_CENTER_X.get(),
-        TFCRealWorldConfig.SPAWN_CENTER_Z.get(),
-        TFCRealWorldConfig.SPAWN_DISTANCE.get(),
-        TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get(),
-        TFCRealWorldConfig.FLAT_BEDROCK.get(),
-        TFCRealWorldConfig.FINITE_CONTINENTS.get(),
-        TFCRealWorldConfig.CONTINENTALNESS.get(),
-        TFCRealWorldConfig.GRASS_DENSITY.get(),
-        TFCRealWorldConfig.TEMPERATURE_CONSTANT.get(),
-        TFCRealWorldConfig.RAINFALL_CONSTANT.get(),
-        TFCRealWorldConfig.TEMPERATURE_SCALE.get(),
-        TFCRealWorldConfig.RAINFALL_SCALE.get(),
-        TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get(),
-        TFCRealWorldConfig.VERTICAL_TILE_SIZE.get(),
-        TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
-        TFCRealWorldConfig.ALTITUDE_FROM_MAP.get(),
-        TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get(),
-        TFCRealWorldConfig.KOPPEN_FROM_MAP.get()
-      );
-      serverPlayer.connection.send(packet);
+      ConfigManager.sendConfigToClient(serverPlayer);
     }
   }
 
