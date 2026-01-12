@@ -2,6 +2,7 @@ package net.yazloysasha.tfcrealworld.mixin.client.screen;
 
 import com.mojang.serialization.Codec;
 import java.util.List;
+import java.util.function.Consumer;
 import net.dries007.tfc.client.screen.CreateTFCWorldScreen;
 import net.dries007.tfc.world.settings.Settings;
 import net.minecraft.client.OptionInstance;
@@ -242,15 +243,6 @@ public class CreateTFCWorldScreenMixin {
 
   @Unique
   private void applyProfileSpawnSettings(String profileId) {
-    if (
-      spawnCenterLongitude == null ||
-      spawnCenterLatitude == null ||
-      spawnCenterX == null ||
-      spawnCenterZ == null
-    ) {
-      return;
-    }
-
     MapProfile profile = ProfileManager.getProfile(profileId);
     double convertedLongitude = profile.getSpawnCenterLongitude();
     double convertedLatitude = profile.getSpawnCenterLatitude();
@@ -264,70 +256,37 @@ public class CreateTFCWorldScreenMixin {
   }
 
   @Unique
-  private void updateWidgets() {
+  private void updateWidget(
+    AbstractWidget currentWidget,
+    OptionInstance<?> option,
+    Consumer<AbstractWidget> setter
+  ) {
     final CreateTFCWorldScreenAccessor accessor =
       (CreateTFCWorldScreenAccessor) (Object) this;
     final ScreenAccessor screenAccessor = (ScreenAccessor) (Object) this;
 
-    if (spawnCenterLongitudeWidget != null) {
-      int x = spawnCenterLongitudeWidget.getX();
-      int y = spawnCenterLongitudeWidget.getY();
-      int width = spawnCenterLongitudeWidget.getWidth();
-      AbstractWidget oldWidget = spawnCenterLongitudeWidget;
-      spawnCenterLongitudeWidget = accessor.tfcrealworld$invokeSmallButton(
-        spawnCenterLongitude
-      );
-      spawnCenterLongitudeWidget.setPosition(x, y);
-      spawnCenterLongitudeWidget.setWidth(width);
-      screenAccessor.tfcrealworld$invokeRemoveWidget(oldWidget);
-      screenAccessor.tfcrealworld$invokeAddRenderableWidget(
-        spawnCenterLongitudeWidget
-      );
-    }
+    AbstractWidget newWidget = accessor.tfcrealworld$invokeSmallButton(option);
+    newWidget.setPosition(currentWidget.getX(), currentWidget.getY());
+    newWidget.setWidth(currentWidget.getWidth());
+    screenAccessor.tfcrealworld$invokeRemoveWidget(currentWidget);
+    screenAccessor.tfcrealworld$invokeAddRenderableWidget(newWidget);
+    setter.accept(newWidget);
+  }
 
-    if (spawnCenterLatitudeWidget != null) {
-      int x = spawnCenterLatitudeWidget.getX();
-      int y = spawnCenterLatitudeWidget.getY();
-      int width = spawnCenterLatitudeWidget.getWidth();
-      AbstractWidget oldWidget = spawnCenterLatitudeWidget;
-      spawnCenterLatitudeWidget = accessor.tfcrealworld$invokeSmallButton(
-        spawnCenterLatitude
-      );
-      spawnCenterLatitudeWidget.setPosition(x, y);
-      spawnCenterLatitudeWidget.setWidth(width);
-      screenAccessor.tfcrealworld$invokeRemoveWidget(oldWidget);
-      screenAccessor.tfcrealworld$invokeAddRenderableWidget(
-        spawnCenterLatitudeWidget
-      );
-    }
-
-    if (spawnCenterXWidget != null) {
-      int x = spawnCenterXWidget.getX();
-      int y = spawnCenterXWidget.getY();
-      int width = spawnCenterXWidget.getWidth();
-      AbstractWidget oldWidget = spawnCenterXWidget;
-      spawnCenterXWidget = accessor.tfcrealworld$invokeSmallButton(
-        spawnCenterX
-      );
-      spawnCenterXWidget.setPosition(x, y);
-      spawnCenterXWidget.setWidth(width);
-      screenAccessor.tfcrealworld$invokeRemoveWidget(oldWidget);
-      screenAccessor.tfcrealworld$invokeAddRenderableWidget(spawnCenterXWidget);
-    }
-
-    if (spawnCenterZWidget != null) {
-      int x = spawnCenterZWidget.getX();
-      int y = spawnCenterZWidget.getY();
-      int width = spawnCenterZWidget.getWidth();
-      AbstractWidget oldWidget = spawnCenterZWidget;
-      spawnCenterZWidget = accessor.tfcrealworld$invokeSmallButton(
-        spawnCenterZ
-      );
-      spawnCenterZWidget.setPosition(x, y);
-      spawnCenterZWidget.setWidth(width);
-      screenAccessor.tfcrealworld$invokeRemoveWidget(oldWidget);
-      screenAccessor.tfcrealworld$invokeAddRenderableWidget(spawnCenterZWidget);
-    }
+  @Unique
+  private void updateWidgets() {
+    updateWidget(spawnCenterLongitudeWidget, spawnCenterLongitude, widget ->
+      spawnCenterLongitudeWidget = widget
+    );
+    updateWidget(spawnCenterLatitudeWidget, spawnCenterLatitude, widget ->
+      spawnCenterLatitudeWidget = widget
+    );
+    updateWidget(spawnCenterXWidget, spawnCenterX, widget ->
+      spawnCenterXWidget = widget
+    );
+    updateWidget(spawnCenterZWidget, spawnCenterZ, widget ->
+      spawnCenterZWidget = widget
+    );
   }
 
   @Inject(method = "init()V", at = @At("HEAD"))
