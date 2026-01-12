@@ -167,7 +167,7 @@ public class TFCRealWorldConfig {
       "temperature_constant",
       "Temperature constant",
       0.0,
-      0.0,
+      -1.0,
       1.0
     );
     RAINFALL_CONSTANT = new ConfigOption<>(
@@ -175,7 +175,7 @@ public class TFCRealWorldConfig {
       "rainfall_constant",
       "Rainfall constant",
       0.0,
-      0.0,
+      -1.0,
       1.0
     );
     TEMPERATURE_SCALE = new ConfigOption<>(

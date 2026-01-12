@@ -423,8 +423,12 @@ public class CreateTFCWorldScreenMixin {
     TFCRealWorldConfig.FINITE_CONTINENTS.set(finiteContinents.get());
     TFCRealWorldConfig.CONTINENTALNESS.set(continentalness.get());
     TFCRealWorldConfig.GRASS_DENSITY.set(grassDensity.get());
-    TFCRealWorldConfig.TEMPERATURE_CONSTANT.set(temperatureConstant.get());
-    TFCRealWorldConfig.RAINFALL_CONSTANT.set(rainfallConstant.get());
+    TFCRealWorldConfig.TEMPERATURE_CONSTANT.set(
+      temperatureConstant.get() * 2.0 - 1.0
+    );
+    TFCRealWorldConfig.RAINFALL_CONSTANT.set(
+      rainfallConstant.get() * 2.0 - 1.0
+    );
     TFCRealWorldConfig.TEMPERATURE_SCALE.set(temperatureScale.get());
     TFCRealWorldConfig.RAINFALL_SCALE.set(rainfallScale.get());
     TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.set(horizontalTileSize.get());
