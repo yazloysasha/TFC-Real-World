@@ -215,8 +215,13 @@ public class CreateTFCWorldScreenMixin {
       OptionInstance.cachedConstantTooltip(
         Component.translatable(caption + ".tooltip")
       ),
-      (text, value) ->
-        Component.translatable(caption + "." + value.toLowerCase()),
+      (text, value) -> {
+        String[] parts = ProfileManager.parseProfileId(value.toLowerCase());
+        String namespace = parts[0];
+        String profileName = parts[1];
+        String langKey = caption + "." + namespace + "." + profileName;
+        return Component.translatable(langKey);
+      },
       enumValueSet,
       defaultValue,
       profileId -> applyProfileSpawnSettings(profileId)
@@ -233,6 +238,12 @@ public class CreateTFCWorldScreenMixin {
     ) {
       return;
     }
+
+    // TODO: Make sure the settings change correctly (currently they change in the code, but they don't change visually)
+    TFCRealWorld.LOGGER.info(
+      "applyProfileSpawnSettings called with profileId: {}",
+      profileId
+    );
 
     MapProfile profile = ProfileManager.getProfile(profileId);
     double convertedLongitude = profile.getSpawnCenterLongitude();

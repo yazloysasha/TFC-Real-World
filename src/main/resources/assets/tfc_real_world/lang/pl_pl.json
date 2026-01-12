@@ -1,7 +1,7 @@
 {
   "tfc_real_world.create_world.map_profile": "Profil Mapy",
   "tfc_real_world.create_world.map_profile.tooltip": "Profil mapy używany do generowania świata.",
-  "tfc_real_world.create_world.map_profile.old_world_equal_earth": "Stary Świat (Equal Earth)",
+  "tfc_real_world.create_world.map_profile.default.old_world_equal_earth": "Stary Świat (Equal Earth)",
   "tfc_real_world.create_world.spawn_mode": "Tryb Punktu Pojawienia",
   "tfc_real_world.create_world.spawn_mode.tooltip": "Określa sposób obliczania lokalizacji punktu pojawienia.\nDomyślny - używa standardowych współrzędnych.\nGeograficzny - używa rzeczywistej długości i szerokości geograficznej.\nLosowy - generuje losowo z ziarna świata.",
   "tfc_real_world.create_world.spawn_mode.default": "Domyślny",

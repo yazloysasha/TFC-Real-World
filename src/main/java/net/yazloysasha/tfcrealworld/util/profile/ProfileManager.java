@@ -1,6 +1,5 @@
 package net.yazloysasha.tfcrealworld.util.profile;
 
-import com.mojang.logging.LogUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
@@ -20,11 +19,9 @@ import java.util.stream.Stream;
 import net.neoforged.fml.loading.FMLPaths;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import org.slf4j.Logger;
 
 public class ProfileManager {
 
-  private static final Logger LOGGER = LogUtils.getLogger();
   private static final Map<String, MapProfile> PROFILE_CACHE = new HashMap<>();
   private static final Map<String, ProfileLocation> PROFILE_LOCATIONS =
     new HashMap<>();
@@ -48,7 +45,7 @@ public class ProfileManager {
     discoverProfilesFromJar(profileIds);
 
     if (profileIds.isEmpty()) {
-      LOGGER.warn("No profiles found, using default profile");
+      TFCRealWorld.LOGGER.warn("No profiles found, using default profile");
     }
 
     initialized = true;
@@ -108,7 +105,7 @@ public class ProfileManager {
         throw e;
       }
     } catch (URISyntaxException | IOException e) {
-      LOGGER.error("Failed to discover profiles from JAR", e);
+      TFCRealWorld.LOGGER.error("Failed to discover profiles from JAR", e);
     }
   }
 
@@ -121,9 +118,13 @@ public class ProfileManager {
     if (!Files.exists(profilesDir)) {
       try {
         Files.createDirectories(profilesDir);
-        LOGGER.info("Created profiles directory: {}", profilesDir);
+        TFCRealWorld.LOGGER.info("Created profiles directory: {}", profilesDir);
       } catch (IOException e) {
-        LOGGER.error("Failed to create profiles directory: {}", profilesDir, e);
+        TFCRealWorld.LOGGER.error(
+          "Failed to create profiles directory: {}",
+          profilesDir,
+          e
+        );
         return;
       }
     }
@@ -146,7 +147,10 @@ public class ProfileManager {
         }
       });
     } catch (IOException e) {
-      LOGGER.error("Failed to list items in external profiles directory", e);
+      TFCRealWorld.LOGGER.error(
+        "Failed to list items in external profiles directory",
+        e
+      );
     }
   }
 
@@ -172,7 +176,10 @@ public class ProfileManager {
           );
         });
     } catch (IOException e) {
-      LOGGER.error("Failed to list namespaces in profiles directory", e);
+      TFCRealWorld.LOGGER.error(
+        "Failed to list namespaces in profiles directory",
+        e
+      );
     }
   }
 
@@ -206,7 +213,11 @@ public class ProfileManager {
         }
       });
     } catch (IOException e) {
-      LOGGER.error("Failed to list profiles in namespace: {}", namespace, e);
+      TFCRealWorld.LOGGER.error(
+        "Failed to list profiles in namespace: {}",
+        namespace,
+        e
+      );
     }
   }
 
@@ -257,22 +268,16 @@ public class ProfileManager {
         );
       }
     } catch (IOException e) {
-      LOGGER.error("Failed to read ZIP file: {}", zipPath, e);
+      TFCRealWorld.LOGGER.error("Failed to read ZIP file: {}", zipPath, e);
     }
   }
 
   private static String buildProfileId(String namespace, String profileName) {
-    if ("default".equals(namespace)) {
-      return profileName;
-    }
     return namespace + ":" + profileName;
   }
 
   public static String[] parseProfileId(String profileId) {
     int colonIndex = profileId.indexOf(':');
-    if (colonIndex == -1) {
-      return new String[] { "default", profileId };
-    }
     return new String[] {
       profileId.substring(0, colonIndex),
       profileId.substring(colonIndex + 1),
@@ -290,7 +295,7 @@ public class ProfileManager {
   public static MapProfile getProfile(String profileId) {
     return PROFILE_CACHE.computeIfAbsent(profileId, id -> {
       MapProfile profile = MapProfile.loadFromResources(id);
-      LOGGER.info("Loaded profile: {}", id);
+      TFCRealWorld.LOGGER.info("Loaded profile: {}", id);
       return profile;
     });
   }
@@ -347,7 +352,7 @@ public class ProfileManager {
         zipFs.close();
       }
     } catch (IOException e) {
-      LOGGER.error("Failed to read map from ZIP: {}", zipPath, e);
+      TFCRealWorld.LOGGER.error("Failed to read map from ZIP: {}", zipPath, e);
     }
     return null;
   }
@@ -394,7 +399,11 @@ public class ProfileManager {
         return Files.newInputStream(mapPath);
       }
     } catch (IOException e) {
-      LOGGER.error("Failed to read map from directory: {}", profilePath, e);
+      TFCRealWorld.LOGGER.error(
+        "Failed to read map from directory: {}",
+        profilePath,
+        e
+      );
     }
     return null;
   }
@@ -421,7 +430,11 @@ public class ProfileManager {
         zipFs.close();
       }
     } catch (IOException e) {
-      LOGGER.error("Failed to read settings from ZIP: {}", zipPath, e);
+      TFCRealWorld.LOGGER.error(
+        "Failed to read settings from ZIP: {}",
+        zipPath,
+        e
+      );
     }
     return null;
   }
@@ -433,7 +446,7 @@ public class ProfileManager {
         return Files.newInputStream(settingsPath);
       }
     } catch (IOException e) {
-      LOGGER.error(
+      TFCRealWorld.LOGGER.error(
         "Failed to read settings from directory: {}",
         profilePath,
         e

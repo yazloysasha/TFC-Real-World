@@ -1,7 +1,7 @@
 {
   "tfc_real_world.create_world.map_profile": "지도 프로필",
   "tfc_real_world.create_world.map_profile.tooltip": "월드 생성에 사용되는 지도 프로필.",
-  "tfc_real_world.create_world.map_profile.old_world_equal_earth": "구세계 (Equal Earth)",
+  "tfc_real_world.create_world.map_profile.default.old_world_equal_earth": "구세계 (Equal Earth)",
   "tfc_real_world.create_world.spawn_mode": "출현 지점 모드",
   "tfc_real_world.create_world.spawn_mode.tooltip": "출현 지점 위치 계산 방법을 결정.\n기본값 - 표준 좌표 사용.\n지리적 - 실제 세계의 경도와 위도 사용.\n무작위 - 월드 시드에서 무작위로 생성.",
   "tfc_real_world.create_world.spawn_mode.default": "기본값",

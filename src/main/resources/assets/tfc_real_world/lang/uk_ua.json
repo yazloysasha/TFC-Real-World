@@ -1,7 +1,7 @@
 {
   "tfc_real_world.create_world.map_profile": "Профіль карти",
   "tfc_real_world.create_world.map_profile.tooltip": "Профіль карти для генерації світу.",
-  "tfc_real_world.create_world.map_profile.old_world_equal_earth": "Старий Світ (Equal Earth)",
+  "tfc_real_world.create_world.map_profile.default.old_world_equal_earth": "Старий Світ (Equal Earth)",
   "tfc_real_world.create_world.spawn_mode": "Режим точки появи",
   "tfc_real_world.create_world.spawn_mode.tooltip": "Визначає спосіб розрахунку точки появи.\nЗа замовчуванням - використовує стандартні координати.\nГеографічний - використовує реальні довготу та широту.\nВипадковий - генерує випадково з сіду світу.",
   "tfc_real_world.create_world.spawn_mode.default": "За замовчуванням",

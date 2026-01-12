@@ -1,6 +1,5 @@
 package net.yazloysasha.tfcrealworld.world.noise.png;
 
-import com.mojang.logging.LogUtils;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,13 +8,11 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.Units;
+import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
-import org.slf4j.Logger;
 
 public abstract class BasePNGNoise implements Noise2D {
-
-  protected static final Logger LOGGER = LogUtils.getLogger();
 
   private static final Map<String, BufferedImage> imageCache = new HashMap<>();
 
@@ -223,7 +220,7 @@ public abstract class BasePNGNoise implements Noise2D {
       InputStream mapStream = ProfileManager.getMapStream(profileId, mapName)
     ) {
       if (mapStream == null) {
-        LOGGER.error(
+        TFCRealWorld.LOGGER.error(
           "Map {} not found for profile {} in resources",
           mapName,
           profileId
@@ -238,7 +235,7 @@ public abstract class BasePNGNoise implements Noise2D {
       }
       return image;
     } catch (IOException e) {
-      LOGGER.error(
+      TFCRealWorld.LOGGER.error(
         "Failed to load {} map for profile {} from resources",
         mapName,
         profileId,

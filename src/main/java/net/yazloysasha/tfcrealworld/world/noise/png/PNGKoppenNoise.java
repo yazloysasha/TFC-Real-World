@@ -1,12 +1,10 @@
 package net.yazloysasha.tfcrealworld.world.noise.png;
 
-import com.mojang.logging.LogUtils;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
 import net.dries007.tfc.world.region.Units;
-import org.slf4j.Logger;
 
 /**
  * Noise generator that reads Köppen climate classification from a PNG map.
@@ -14,8 +12,6 @@ import org.slf4j.Logger;
  * Returns the Köppen climate code as a string (e.g., "AF", "BWH", etc.).
  */
 public class PNGKoppenNoise {
-
-  private static final Logger LOGGER = LogUtils.getLogger();
 
   // Köppen climate classification colors (from maps.py)
   private static final Map<

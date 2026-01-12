@@ -1,6 +1,5 @@
 package net.yazloysasha.tfcrealworld.util.pack;
 
-import com.mojang.logging.LogUtils;
 import java.util.Optional;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackLocationInfo;
@@ -11,11 +10,8 @@ import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
-import org.slf4j.Logger;
 
 public class DynamicPackFinder {
-
-  private static final Logger LOGGER = LogUtils.getLogger();
 
   public static void registerPack(AddPackFindersEvent event) {
     if (
@@ -87,13 +83,13 @@ public class DynamicPackFinder {
           if (pack != null) {
             consumer.accept(pack);
           } else {
-            LOGGER.warn(
+            TFCRealWorld.LOGGER.warn(
               "Failed to create Pack: readMetaAndCreate returned null for type {}",
               event.getPackType()
             );
           }
         } catch (Exception e) {
-          LOGGER.error(
+          TFCRealWorld.LOGGER.error(
             "Error creating dynamic resource pack: {}",
             e.getMessage(),
             e

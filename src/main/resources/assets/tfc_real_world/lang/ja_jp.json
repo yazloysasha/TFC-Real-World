@@ -1,7 +1,7 @@
 {
   "tfc_real_world.create_world.map_profile": "マッププロファイル",
   "tfc_real_world.create_world.map_profile.tooltip": "ワールド生成に使用するマッププロファイル。",
-  "tfc_real_world.create_world.map_profile.old_world_equal_earth": "旧世界（Equal Earth）",
+  "tfc_real_world.create_world.map_profile.default.old_world_equal_earth": "旧世界（Equal Earth）",
   "tfc_real_world.create_world.spawn_mode": "出現ポイントモード",
   "tfc_real_world.create_world.spawn_mode.tooltip": "出現ポイントの位置の計算方法を決定。\nデフォルト - 標準座標を使用。\n地理的 - 実世界の経度と緯度を使用。\nランダム - ワールドシードからランダムに生成。",
   "tfc_real_world.create_world.spawn_mode.default": "デフォルト",

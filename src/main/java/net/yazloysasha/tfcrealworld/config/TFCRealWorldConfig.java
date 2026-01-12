@@ -1,6 +1,5 @@
 package net.yazloysasha.tfcrealworld.config;
 
-import com.mojang.logging.LogUtils;
 import java.util.Arrays;
 import java.util.List;
 import net.neoforged.fml.config.ModConfig;
@@ -10,11 +9,8 @@ import net.yazloysasha.tfcrealworld.types.MapProjection;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
 import net.yazloysasha.tfcrealworld.util.profile.MapProfile;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
-import org.slf4j.Logger;
 
 public class TFCRealWorldConfig {
-
-  private static final Logger LOGGER = LogUtils.getLogger();
 
   public static final ModConfigSpec.Builder BUILDER =
     new ModConfigSpec.Builder();
@@ -22,7 +18,8 @@ public class TFCRealWorldConfig {
 
   private static ModConfig modConfig;
 
-  public static final String DEFAULT_MAP_PROFILE = "OLD_WORLD_EQUAL_EARTH";
+  public static final String DEFAULT_MAP_PROFILE =
+    "DEFAULT:OLD_WORLD_EQUAL_EARTH";
   public static final int DEFAULT_TILE_SIZE = 40_000;
 
   public static final ConfigOption<String> MAP_PROFILE;
@@ -346,7 +343,7 @@ public class TFCRealWorldConfig {
           loadedConfig.save();
         }
       } catch (Exception e) {
-        LOGGER.warn("Failed to save config to file", e);
+        TFCRealWorld.LOGGER.warn("Failed to save config to file", e);
       }
     }
   }

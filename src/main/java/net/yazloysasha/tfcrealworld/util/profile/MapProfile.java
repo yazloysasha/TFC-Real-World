@@ -3,7 +3,6 @@ package net.yazloysasha.tfcrealworld.util.profile;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.mojang.logging.LogUtils;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
@@ -11,10 +10,10 @@ import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.types.CachedGeographicCoords;
 import net.yazloysasha.tfcrealworld.types.MapProjection;
 import net.yazloysasha.tfcrealworld.util.projection.ProjectionManager;
-import org.slf4j.Logger;
 
 public record MapProfile(
-  String id,
+  String namespace,
+  String name,
   int spawnCenterX,
   int spawnCenterZ,
   double westEdgeLongitude,
@@ -23,7 +22,6 @@ public record MapProfile(
   double northEdgeLatitude,
   MapProjection mapProjection
 ) {
-  private static final Logger LOGGER = LogUtils.getLogger();
   private static final Gson GSON = new GsonBuilder()
     .setPrettyPrinting()
     .create();
@@ -35,8 +33,12 @@ public record MapProfile(
   public static MapProfile loadFromResources(String profileId) {
     String lowerProfileId = profileId.toLowerCase();
     String[] parts = ProfileManager.parseProfileId(lowerProfileId);
-    String namespace = parts[0];
-    String profileName = parts[1];
+    String namespaceLower = parts[0];
+    String profileNameLower = parts[1];
+
+    // Store in upper-case
+    String namespace = namespaceLower.toUpperCase();
+    String profileName = profileNameLower.toUpperCase();
 
     ProfileManager.ProfileLocation location = ProfileManager.getProfileLocation(
       profileId
@@ -47,8 +49,8 @@ public record MapProfile(
       if (location.isZip()) {
         stream = ProfileManager.getSettingsStreamFromZip(
           location.zipPath(),
-          namespace,
-          profileName
+          namespaceLower,
+          profileNameLower
         );
       } else if (location.directoryPath() != null) {
         stream = ProfileManager.getSettingsStreamFromDirectory(
@@ -62,19 +64,20 @@ public record MapProfile(
         "/data/" +
         TFCRealWorld.MOD_ID +
         "/profiles/" +
-        namespace +
+        namespaceLower +
         "/" +
-        profileName +
+        profileNameLower +
         "/settings.json";
       stream = TFCRealWorld.class.getResourceAsStream(settingsPath);
     }
 
     if (stream == null) {
-      LOGGER.error(
-        "Profile settings not found for: {}. Using default values.",
-        profileId
+      TFCRealWorld.LOGGER.error(
+        "Profile settings not found for: {}:{}. Using default values.",
+        namespace,
+        profileName
       );
-      return createDefault(profileId);
+      return createDefault(namespace, profileName);
     }
 
     try (InputStream s = stream) {
@@ -82,19 +85,26 @@ public record MapProfile(
         new InputStreamReader(s),
         JsonObject.class
       );
-      return parseJsonProfile(profileId, json);
+      return parseJsonProfile(namespace, profileName, json);
     } catch (Exception e) {
-      LOGGER.error("Failed to load profile {}", profileId, e);
-      return createDefault(profileId);
+      TFCRealWorld.LOGGER.error(
+        "Failed to load profile {}:{}",
+        namespace,
+        profileName,
+        e
+      );
+      return createDefault(namespace, profileName);
     }
   }
 
   private static MapProfile parseJsonProfile(
-    String profileId,
+    String namespace,
+    String name,
     JsonObject json
   ) {
     return new MapProfile(
-      profileId,
+      namespace,
+      name,
       json.get("spawn_center_x").getAsInt(),
       json.get("spawn_center_z").getAsInt(),
       json.get("west_edge_longitude").getAsDouble(),
@@ -107,9 +117,10 @@ public record MapProfile(
     );
   }
 
-  private static MapProfile createDefault(String profileId) {
+  private static MapProfile createDefault(String namespace, String name) {
     return new MapProfile(
-      profileId,
+      namespace,
+      name,
       -9_000,
       -3_000,
       -20.0,
