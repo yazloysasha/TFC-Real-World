@@ -323,14 +323,6 @@ public class TFCRealWorldConfig {
     allOptions.forEach(ConfigOption::clearServerValue);
   }
 
-  public static int getHemisphereScale() {
-    if (KOPPEN_FROM_MAP.get()) {
-      return VERTICAL_TILE_SIZE.get() / 2;
-    } else {
-      return TEMPERATURE_SCALE.get();
-    }
-  }
-
   public static void setModConfig(ModConfig config) {
     modConfig = config;
   }

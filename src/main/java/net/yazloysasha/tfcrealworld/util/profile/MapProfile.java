@@ -131,20 +131,13 @@ public record MapProfile(
     );
   }
 
-  private static int[] getTileSizes() {
+  private double[] getGeographicCoords() {
     int horizontalTileSize = TFCRealWorldConfig.SPEC != null
       ? TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get()
       : TFCRealWorldConfig.DEFAULT_TILE_SIZE;
     int verticalTileSize = TFCRealWorldConfig.SPEC != null
       ? TFCRealWorldConfig.VERTICAL_TILE_SIZE.get()
       : TFCRealWorldConfig.DEFAULT_TILE_SIZE;
-    return new int[] { horizontalTileSize, verticalTileSize };
-  }
-
-  private double[] getGeographicCoords() {
-    int[] tileSizes = getTileSizes();
-    int horizontalTileSize = tileSizes[0];
-    int verticalTileSize = tileSizes[1];
 
     CachedGeographicCoords cached = GEOGRAPHIC_COORDS_CACHE.get();
     if (

@@ -24,12 +24,9 @@ public class SolarCalculatorMixin {
   }
 
   private static double getLatitudeByZ(int z) {
-    int verticalTileSize = TFCRealWorldConfig.SPEC != null
-      ? TFCRealWorldConfig.VERTICAL_TILE_SIZE.get()
-      : TFCRealWorldConfig.DEFAULT_TILE_SIZE;
-
-    int transformedZ = transformCoordForLatitude(z, verticalTileSize);
-    return ProjectionManager.getLatitudeByZ(transformedZ);
+    return ProjectionManager.getLatitudeByZ(
+      transformCoordForLatitude(z, TFCRealWorldConfig.VERTICAL_TILE_SIZE.get())
+    );
   }
 
   @Inject(method = "getLatitude", at = @At("HEAD"), cancellable = true)

@@ -99,7 +99,7 @@ public class DynamicResourcePack extends BaseDynamicPack {
         StandardCharsets.UTF_8
       );
 
-      int hemisphereScale = TFCRealWorldConfig.getHemisphereScale();
+      int hemisphereScale = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get() / 2;
 
       String json = template
         .replace(

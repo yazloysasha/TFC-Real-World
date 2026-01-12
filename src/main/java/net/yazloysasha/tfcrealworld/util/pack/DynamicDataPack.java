@@ -42,7 +42,7 @@ public class DynamicDataPack extends BaseDynamicPack {
         StandardCharsets.UTF_8
       );
 
-      int hemisphereScale = TFCRealWorldConfig.getHemisphereScale();
+      int hemisphereScale = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get() / 2;
 
       String json = template
         .replace("\"{HEMISPHERE_SCALE}\"", String.valueOf(hemisphereScale))
