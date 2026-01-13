@@ -1,8 +1,11 @@
 {
   "parent": "tfc:world/root",
   "criteria": {
-    "both": {
-      "trigger": "tfc_real_world:fixed_globe_trotter_location"
+    "high": {
+      "trigger": "tfc_real_world:fixed_high_globe_trotter_location"
+    },
+    "low": {
+      "trigger": "tfc_real_world:fixed_low_globe_trotter_location"
     }
   },
   "display": {
@@ -21,5 +24,5 @@
     "hidden": false,
     "background": "tfc:textures/block/mud/fluvisol.png"
   },
-  "requirements": [["both"]]
+  "requirements": [["high"], ["low"]]
 }

@@ -12,11 +12,13 @@ import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.yazloysasha.tfcrealworld.config.ConfigManager;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
+import net.yazloysasha.tfcrealworld.trigger.ModTriggers;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
@@ -48,6 +50,10 @@ public final class TFCRealWorld {
 
     NeoForge.EVENT_BUS.register(ConfigManager.class);
 
+    ModTriggers.TRIGGERS.register(modEventBus);
+
+    NeoForge.EVENT_BUS.addListener(this::onPlayerTick);
+
     modEventBus.addListener(
       RegisterPayloadHandlersEvent.class,
       this::registerNetwork
@@ -77,6 +83,17 @@ public final class TFCRealWorld {
       LevelEvent.Unload.class,
       this::onLevelUnload
     );
+  }
+
+  private void onPlayerTick(PlayerTickEvent.Post event) {
+    if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+      if (serverPlayer.tickCount % 20 == 0) {
+        ModTriggers.FIXED_HIGH_GLOBE_TROTTER_LOCATION.get()
+          .trigger(serverPlayer);
+        ModTriggers.FIXED_LOW_GLOBE_TROTTER_LOCATION.get()
+          .trigger(serverPlayer);
+      }
+    }
   }
 
   private void registerNetwork(RegisterPayloadHandlersEvent event) {
