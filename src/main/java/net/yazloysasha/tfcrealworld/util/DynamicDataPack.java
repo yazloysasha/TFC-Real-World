@@ -51,7 +51,7 @@ public class DynamicDataPack implements PackResources {
   ) {
     if (
       type == PackType.SERVER_DATA &&
-      isCorrectNamespace(location.getNamespace()) &&
+      location.getNamespace().equals(TFC_NAMESPACE) &&
       location.getPath().equals(ADVANCEMENT_PATH)
     ) {
       String json = getAdvancementJson();
@@ -71,8 +71,8 @@ public class DynamicDataPack implements PackResources {
   ) {
     if (
       type == PackType.SERVER_DATA &&
-      isCorrectNamespace(namespace) &&
-      (path.equals("advancement") || path.equals("advancement/world"))
+      namespace.equals(TFC_NAMESPACE) &&
+      path.equals("advancement")
     ) {
       ResourceLocation advancementLocation =
         ResourceLocation.fromNamespaceAndPath(TFC_NAMESPACE, ADVANCEMENT_PATH);
@@ -113,10 +113,6 @@ public class DynamicDataPack implements PackResources {
 
   @Override
   public void close() {}
-
-  private boolean isCorrectNamespace(String namespace) {
-    return namespace.equals(TFC_NAMESPACE);
-  }
 
   private String getAdvancementJson() {
     int currentHemisphereScale =
