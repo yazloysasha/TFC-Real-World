@@ -16,6 +16,7 @@ import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
+import net.yazloysasha.tfcrealworld.util.DataPackGenerator;
 
 public class ConfigManager {
 
@@ -54,6 +55,7 @@ public class ConfigManager {
       }
 
       loadServerConfig(serverConfigFile);
+      DataPackGenerator.generateDataPack(server);
     } catch (IOException e) {
       TFCRealWorld.LOGGER.error("Error working with server config", e);
     }
