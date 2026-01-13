@@ -18,8 +18,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.yazloysasha.tfcrealworld.config.ConfigManager;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
-import net.yazloysasha.tfcrealworld.util.pack.DynamicDataPack;
-import net.yazloysasha.tfcrealworld.util.pack.DynamicPackFinder;
+import net.yazloysasha.tfcrealworld.util.DynamicDataPack;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
@@ -59,7 +58,7 @@ public final class TFCRealWorld {
 
     modEventBus.addListener(
       AddPackFindersEvent.class,
-      DynamicPackFinder::registerPack
+      DynamicDataPack::registerPack
     );
 
     modEventBus.addListener(
