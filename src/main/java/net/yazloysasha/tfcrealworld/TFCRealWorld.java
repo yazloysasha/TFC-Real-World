@@ -10,7 +10,6 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -18,8 +17,6 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.yazloysasha.tfcrealworld.config.ConfigManager;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
-import net.yazloysasha.tfcrealworld.util.pack.DynamicDataPack;
-import net.yazloysasha.tfcrealworld.util.pack.DynamicPackFinder;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
@@ -49,18 +46,7 @@ public final class TFCRealWorld {
       }
     });
 
-    modEventBus.addListener(ModConfigEvent.Reloading.class, event -> {
-      if (event.getConfig().getModId().equals(MOD_ID)) {
-        DynamicDataPack.invalidateCache();
-      }
-    });
-
     NeoForge.EVENT_BUS.register(ConfigManager.class);
-
-    modEventBus.addListener(
-      AddPackFindersEvent.class,
-      DynamicPackFinder::registerPack
-    );
 
     modEventBus.addListener(
       RegisterPayloadHandlersEvent.class,
