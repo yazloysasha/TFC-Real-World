@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Stream;
 import net.neoforged.fml.loading.FMLPaths;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
@@ -118,7 +119,6 @@ public class ProfileManager {
     if (!Files.exists(profilesDir)) {
       try {
         Files.createDirectories(profilesDir);
-        TFCRealWorld.LOGGER.info("Created profiles directory: {}", profilesDir);
       } catch (IOException e) {
         TFCRealWorld.LOGGER.error(
           "Failed to create profiles directory: {}",
@@ -293,11 +293,10 @@ public class ProfileManager {
   }
 
   public static MapProfile getProfile(String profileId) {
-    return PROFILE_CACHE.computeIfAbsent(profileId, id -> {
-      MapProfile profile = MapProfile.loadFromResources(id);
-      TFCRealWorld.LOGGER.info("Loaded profile: {}", id);
-      return profile;
-    });
+    return PROFILE_CACHE.computeIfAbsent(
+      profileId,
+      MapProfile::loadFromResources
+    );
   }
 
   public static InputStream getMapStream(String profileId, String mapName) {
@@ -338,23 +337,26 @@ public class ProfileManager {
     String profileName,
     String mapName
   ) {
-    try {
-      FileSystem zipFs = FileSystems.newFileSystem(
-        zipPath,
-        Collections.emptyMap()
-      );
-      Path mapPath = zipFs.getPath(
-        "/" + namespace + "/" + profileName + "/maps/" + mapName + ".png"
-      );
-      if (Files.exists(mapPath)) {
-        return new ZipInputStreamWrapper(Files.newInputStream(mapPath), zipFs);
-      } else {
-        zipFs.close();
+    return withZipFileSystem(zipPath, zipFs -> {
+      try {
+        Path mapPath = zipFs.getPath(
+          "/" + namespace + "/" + profileName + "/maps/" + mapName + ".png"
+        );
+        if (Files.exists(mapPath)) {
+          return new ZipInputStreamWrapper(
+            Files.newInputStream(mapPath),
+            zipFs
+          );
+        }
+      } catch (IOException e) {
+        TFCRealWorld.LOGGER.error(
+          "Failed to read map from ZIP: {}",
+          zipPath,
+          e
+        );
       }
-    } catch (IOException e) {
-      TFCRealWorld.LOGGER.error("Failed to read map from ZIP: {}", zipPath, e);
-    }
-    return null;
+      return null;
+    });
   }
 
   private static class ZipInputStreamWrapper extends InputStream {
@@ -413,30 +415,26 @@ public class ProfileManager {
     String namespace,
     String profileName
   ) {
-    try {
-      FileSystem zipFs = FileSystems.newFileSystem(
-        zipPath,
-        Collections.emptyMap()
-      );
-      Path settingsPath = zipFs.getPath(
-        "/" + namespace + "/" + profileName + "/settings.json"
-      );
-      if (Files.exists(settingsPath)) {
-        return new ZipInputStreamWrapper(
-          Files.newInputStream(settingsPath),
-          zipFs
+    return withZipFileSystem(zipPath, zipFs -> {
+      try {
+        Path settingsPath = zipFs.getPath(
+          "/" + namespace + "/" + profileName + "/settings.json"
         );
-      } else {
-        zipFs.close();
+        if (Files.exists(settingsPath)) {
+          return new ZipInputStreamWrapper(
+            Files.newInputStream(settingsPath),
+            zipFs
+          );
+        }
+      } catch (IOException e) {
+        TFCRealWorld.LOGGER.error(
+          "Failed to read settings from ZIP: {}",
+          zipPath,
+          e
+        );
       }
-    } catch (IOException e) {
-      TFCRealWorld.LOGGER.error(
-        "Failed to read settings from ZIP: {}",
-        zipPath,
-        e
-      );
-    }
-    return null;
+      return null;
+    });
   }
 
   static InputStream getSettingsStreamFromDirectory(Path profilePath) {
@@ -453,5 +451,36 @@ public class ProfileManager {
       );
     }
     return null;
+  }
+
+  /**
+   * Helper method to safely work with ZIP FileSystem.
+   * Ensures proper resource cleanup even if exceptions occur.
+   *
+   * @param zipPath Path to the ZIP file
+   * @param action Function to execute with the FileSystem
+   * @return Result from action, or null if an error occurred
+   */
+  private static InputStream withZipFileSystem(
+    Path zipPath,
+    Function<FileSystem, InputStream> action
+  ) {
+    FileSystem zipFs = null;
+    try {
+      zipFs = FileSystems.newFileSystem(zipPath, Collections.emptyMap());
+      InputStream result = action.apply(zipFs);
+      if (result == null && zipFs != null) {
+        zipFs.close();
+        zipFs = null;
+      }
+      return result;
+    } catch (IOException e) {
+      if (zipFs != null) {
+        try {
+          zipFs.close();
+        } catch (IOException ignored) {}
+      }
+      return null;
+    }
   }
 }

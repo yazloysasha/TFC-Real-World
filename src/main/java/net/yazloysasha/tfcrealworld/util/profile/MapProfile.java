@@ -30,13 +30,21 @@ public record MapProfile(
     CachedGeographicCoords
   > GEOGRAPHIC_COORDS_CACHE = new ThreadLocal<>();
 
+  private static final int DEFAULT_SPAWN_CENTER_X = -9_000;
+  private static final int DEFAULT_SPAWN_CENTER_Z = -3_000;
+  private static final double DEFAULT_WEST_EDGE_LONGITUDE = -20.0;
+  private static final double DEFAULT_EAST_EDGE_LONGITUDE = 160.0;
+  private static final double DEFAULT_SOUTH_EDGE_LATITUDE = -90.0;
+  private static final double DEFAULT_NORTH_EDGE_LATITUDE = 90.0;
+  private static final MapProjection DEFAULT_MAP_PROJECTION =
+    MapProjection.EQUAL_EARTH;
+
   public static MapProfile loadFromResources(String profileId) {
     String lowerProfileId = profileId.toLowerCase();
     String[] parts = ProfileManager.parseProfileId(lowerProfileId);
     String namespaceLower = parts[0];
     String profileNameLower = parts[1];
 
-    // Store in upper-case
     String namespace = namespaceLower.toUpperCase();
     String profileName = profileNameLower.toUpperCase();
 
@@ -105,15 +113,29 @@ public record MapProfile(
     return new MapProfile(
       namespace,
       name,
-      json.get("spawn_center_x").getAsInt(),
-      json.get("spawn_center_z").getAsInt(),
-      json.get("west_edge_longitude").getAsDouble(),
-      json.get("east_edge_longitude").getAsDouble(),
-      json.get("south_edge_latitude").getAsDouble(),
-      json.get("north_edge_latitude").getAsDouble(),
-      MapProjection.valueOf(
-        json.get("map_projection").getAsString().toUpperCase()
-      )
+      json.has("spawn_center_x")
+        ? json.get("spawn_center_x").getAsInt()
+        : DEFAULT_SPAWN_CENTER_X,
+      json.has("spawn_center_z")
+        ? json.get("spawn_center_z").getAsInt()
+        : DEFAULT_SPAWN_CENTER_Z,
+      json.has("west_edge_longitude")
+        ? json.get("west_edge_longitude").getAsDouble()
+        : DEFAULT_WEST_EDGE_LONGITUDE,
+      json.has("east_edge_longitude")
+        ? json.get("east_edge_longitude").getAsDouble()
+        : DEFAULT_EAST_EDGE_LONGITUDE,
+      json.has("south_edge_latitude")
+        ? json.get("south_edge_latitude").getAsDouble()
+        : DEFAULT_SOUTH_EDGE_LATITUDE,
+      json.has("north_edge_latitude")
+        ? json.get("north_edge_latitude").getAsDouble()
+        : DEFAULT_NORTH_EDGE_LATITUDE,
+      json.has("map_projection")
+        ? MapProjection.valueOf(
+          json.get("map_projection").getAsString().toUpperCase()
+        )
+        : DEFAULT_MAP_PROJECTION
     );
   }
 
@@ -121,13 +143,13 @@ public record MapProfile(
     return new MapProfile(
       namespace,
       name,
-      -9_000,
-      -3_000,
-      -20.0,
-      160.0,
-      -90.0,
-      90.0,
-      MapProjection.EQUAL_EARTH
+      DEFAULT_SPAWN_CENTER_X,
+      DEFAULT_SPAWN_CENTER_Z,
+      DEFAULT_WEST_EDGE_LONGITUDE,
+      DEFAULT_EAST_EDGE_LONGITUDE,
+      DEFAULT_SOUTH_EDGE_LATITUDE,
+      DEFAULT_NORTH_EDGE_LATITUDE,
+      DEFAULT_MAP_PROJECTION
     );
   }
 
