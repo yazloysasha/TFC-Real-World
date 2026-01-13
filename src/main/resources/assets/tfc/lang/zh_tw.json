@@ -1,3 +1,3 @@
 {
-  "tfc.advancements.world.globe_trotter.description": "抵達南極與北極（z={HEMISPHERE_SCALE_FORMATTED} 與 z={HEMISPHERE_SCALE_NEGATIVE_FORMATTED}）"
+  "tfc.advancements.world.globe_trotter.description": "抵達南極與北極（z=%s 與 z=-%s）"
 }

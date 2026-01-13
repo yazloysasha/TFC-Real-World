@@ -14,49 +14,23 @@ import net.yazloysasha.tfcrealworld.TFCRealWorld;
 public class DynamicPackFinder {
 
   public static void registerPack(AddPackFindersEvent event) {
-    if (
-      event.getPackType() == PackType.CLIENT_RESOURCES ||
-      event.getPackType() == PackType.SERVER_DATA
-    ) {
-      String packId;
-      Component packName;
-      Pack.ResourcesSupplier resourcesSupplier;
+    if (event.getPackType() == PackType.SERVER_DATA) {
+      String packId = TFCRealWorld.MOD_ID + "_data";
+      Component packName = Component.literal("TFC: Real World - Data");
+      Pack.ResourcesSupplier resourcesSupplier = new Pack.ResourcesSupplier() {
+        @Override
+        public PackResources openPrimary(PackLocationInfo location) {
+          return new DynamicDataPack(location);
+        }
 
-      if (event.getPackType() == PackType.CLIENT_RESOURCES) {
-        packId = TFCRealWorld.MOD_ID + "_assets";
-        packName = Component.literal("TFC: Real World - Assets");
-        resourcesSupplier = new Pack.ResourcesSupplier() {
-          @Override
-          public PackResources openPrimary(PackLocationInfo location) {
-            return new DynamicResourcePack(location);
-          }
-
-          @Override
-          public PackResources openFull(
-            PackLocationInfo location,
-            Pack.Metadata metadata
-          ) {
-            return new DynamicResourcePack(location);
-          }
-        };
-      } else {
-        packId = TFCRealWorld.MOD_ID + "_data";
-        packName = Component.literal("TFC: Real World - Data");
-        resourcesSupplier = new Pack.ResourcesSupplier() {
-          @Override
-          public PackResources openPrimary(PackLocationInfo location) {
-            return new DynamicDataPack(location);
-          }
-
-          @Override
-          public PackResources openFull(
-            PackLocationInfo location,
-            Pack.Metadata metadata
-          ) {
-            return new DynamicDataPack(location);
-          }
-        };
-      }
+        @Override
+        public PackResources openFull(
+          PackLocationInfo location,
+          Pack.Metadata metadata
+        ) {
+          return new DynamicDataPack(location);
+        }
+      };
 
       PackLocationInfo locationInfo = new PackLocationInfo(
         packId,
@@ -90,7 +64,7 @@ public class DynamicPackFinder {
           }
         } catch (Exception e) {
           TFCRealWorld.LOGGER.error(
-            "Error creating dynamic resource pack: {}",
+            "Error creating dynamic data pack: {}",
             e.getMessage(),
             e
           );

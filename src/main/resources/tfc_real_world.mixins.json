@@ -20,6 +20,7 @@
     "client.overworld.SolarCalculatorMixin"
   ],
   "client": [
+    "client.advancement.DisplayInfoMixin",
     "client.screen.CreateTFCWorldScreenMixin",
     "client.screen.CreateTFCWorldScreenAccessor",
     "client.screen.ScreenAccessor"

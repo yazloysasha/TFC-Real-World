@@ -18,6 +18,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.yazloysasha.tfcrealworld.config.ConfigManager;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
+import net.yazloysasha.tfcrealworld.util.pack.DynamicDataPack;
 import net.yazloysasha.tfcrealworld.util.pack.DynamicPackFinder;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
@@ -45,6 +46,12 @@ public final class TFCRealWorld {
     modEventBus.addListener(ModConfigEvent.Loading.class, event -> {
       if (event.getConfig().getModId().equals(MOD_ID)) {
         TFCRealWorldConfig.setModConfig(event.getConfig());
+      }
+    });
+
+    modEventBus.addListener(ModConfigEvent.Reloading.class, event -> {
+      if (event.getConfig().getModId().equals(MOD_ID)) {
+        DynamicDataPack.invalidateCache();
       }
     });
 

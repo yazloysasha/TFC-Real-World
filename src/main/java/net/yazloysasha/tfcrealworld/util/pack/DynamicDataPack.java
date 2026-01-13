@@ -17,13 +17,25 @@ public class DynamicDataPack extends BaseDynamicPack {
     "/data/tfc/advancement/world/globe_trotter.json";
 
   private static String cachedAdvancementJson = null;
+  private static int cachedHemisphereScale = -1;
 
   public DynamicDataPack(PackLocationInfo locationInfo) {
     super(locationInfo);
   }
 
+  public static void invalidateCache() {
+    cachedAdvancementJson = null;
+    cachedHemisphereScale = -1;
+  }
+
   private String getAdvancementJson() {
-    if (cachedAdvancementJson != null) {
+    int currentHemisphereScale =
+      TFCRealWorldConfig.VERTICAL_TILE_SIZE.get() / 2;
+
+    if (
+      cachedAdvancementJson != null &&
+      cachedHemisphereScale == currentHemisphereScale
+    ) {
       return cachedAdvancementJson;
     }
 
@@ -42,16 +54,18 @@ public class DynamicDataPack extends BaseDynamicPack {
         StandardCharsets.UTF_8
       );
 
-      int hemisphereScale = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get() / 2;
-
       String json = template
-        .replace("\"{HEMISPHERE_SCALE}\"", String.valueOf(hemisphereScale))
+        .replace(
+          "\"{HEMISPHERE_SCALE}\"",
+          String.valueOf(currentHemisphereScale)
+        )
         .replace(
           "\"{HEMISPHERE_SCALE_NEGATIVE}\"",
-          String.valueOf(-hemisphereScale)
+          String.valueOf(-currentHemisphereScale)
         );
 
       cachedAdvancementJson = json;
+      cachedHemisphereScale = currentHemisphereScale;
       return json;
     } catch (Exception e) {
       throw new RuntimeException(
