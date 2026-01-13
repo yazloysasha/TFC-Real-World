@@ -145,12 +145,9 @@ public class DynamicDataPack implements PackResources {
       );
 
       String json = template
+        .replace("\"HEMISPHERE_SCALE\"", String.valueOf(currentHemisphereScale))
         .replace(
-          "\"{HEMISPHERE_SCALE}\"",
-          String.valueOf(currentHemisphereScale)
-        )
-        .replace(
-          "\"{HEMISPHERE_SCALE_NEGATIVE}\"",
+          "\"-HEMISPHERE_SCALE\"",
           String.valueOf(-currentHemisphereScale)
         );
 
