@@ -1,0 +1,25 @@
+{
+  "parent": "tfc:world/root",
+  "criteria": {
+    "both": {
+      "trigger": "tfc_real_world:fixed_globe_trotter_location"
+    }
+  },
+  "display": {
+    "icon": {
+      "id": "minecraft:map"
+    },
+    "title": {
+      "translate": "tfc.advancements.world.globe_trotter.title"
+    },
+    "description": {
+      "translate": "tfc.advancements.world.globe_trotter.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "tfc:textures/block/mud/fluvisol.png"
+  },
+  "requirements": [["both"]]
+}
