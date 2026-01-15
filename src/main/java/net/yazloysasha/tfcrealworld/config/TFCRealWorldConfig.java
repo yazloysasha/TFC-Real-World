@@ -52,9 +52,9 @@ public class TFCRealWorldConfig {
     MAP_PROFILE = new ConfigOption<>(
       BUILDER,
       "map_profile",
-      "Map profile ID. Profiles are loaded from data/" +
+      "Map profile ID. Profiles are loaded from config/" +
       TFCRealWorld.MOD_ID +
-      "/profiles/",
+      "/profiles/<namespace>/<id>/**",
       DEFAULT_MAP_PROFILE
     );
 
