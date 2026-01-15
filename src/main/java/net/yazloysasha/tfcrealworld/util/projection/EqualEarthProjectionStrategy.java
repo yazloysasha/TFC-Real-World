@@ -56,10 +56,25 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double tileCenterLongitude,
     double tileCenterLatitude
   ) {
+    double[] normalizedEdges = normalizeLongitudeEdges(
+      westEdgeLongitude,
+      eastEdgeLongitude
+    );
+    double normalizedWest = normalizedEdges[0];
+    double normalizedEast = normalizedEdges[1];
+
     longitude = normalizeLongitude(longitude);
     latitude = normalizeLatitude(latitude);
 
-    double lambda0 = Math.toRadians(longitude);
+    if (westEdgeLongitude > eastEdgeLongitude) {
+      if (longitude >= westEdgeLongitude) {
+        longitude = longitude - 360.0;
+      }
+    }
+
+    double normalizedTileCenterLongitude =
+      (normalizedWest + normalizedEast) / 2.0;
+    double lambda0 = Math.toRadians(normalizedTileCenterLongitude);
     double lambda = Math.toRadians(longitude);
     double phi = Math.toRadians(latitude);
 
@@ -72,8 +87,8 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double projX = projCoords[0];
     double projY = projCoords[1];
 
-    double westLonRad = Math.toRadians(westEdgeLongitude);
-    double eastLonRad = Math.toRadians(eastEdgeLongitude);
+    double westLonRad = Math.toRadians(normalizedWest);
+    double eastLonRad = Math.toRadians(normalizedEast);
     double southLatRad = Math.toRadians(southEdgeLatitude);
     double northLatRad = Math.toRadians(northEdgeLatitude);
     double centralLatRad = Math.toRadians(tileCenterLatitude);
@@ -147,9 +162,18 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double tileCenterLongitude,
     double tileCenterLatitude
   ) {
-    double lambda0 = Math.toRadians(tileCenterLongitude);
-    double westLonRad = Math.toRadians(westEdgeLongitude);
-    double eastLonRad = Math.toRadians(eastEdgeLongitude);
+    double[] normalizedEdges = normalizeLongitudeEdges(
+      westEdgeLongitude,
+      eastEdgeLongitude
+    );
+    double normalizedWest = normalizedEdges[0];
+    double normalizedEast = normalizedEdges[1];
+
+    double normalizedTileCenterLongitude =
+      (normalizedWest + normalizedEast) / 2.0;
+    double lambda0 = Math.toRadians(normalizedTileCenterLongitude);
+    double westLonRad = Math.toRadians(normalizedWest);
+    double eastLonRad = Math.toRadians(normalizedEast);
     double southLatRad = Math.toRadians(southEdgeLatitude);
     double northLatRad = Math.toRadians(northEdgeLatitude);
     double centralLatRad = Math.toRadians(tileCenterLatitude);
@@ -188,6 +212,17 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
 
     longitude = normalizeLongitude(longitude);
     latitude = Math.clamp(latitude, -90.0, 90.0);
+
+    if (westEdgeLongitude > eastEdgeLongitude) {
+      if (longitude < normalizedWest) {
+        double positiveLongitude = longitude + 360.0;
+        if (
+          positiveLongitude >= westEdgeLongitude && positiveLongitude <= 180.0
+        ) {
+          longitude = positiveLongitude;
+        }
+      }
+    }
 
     return new double[] { longitude, latitude };
   }
@@ -269,6 +304,17 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     }
 
     return theta;
+  }
+
+  private static double[] normalizeLongitudeEdges(
+    double westEdgeLongitude,
+    double eastEdgeLongitude
+  ) {
+    if (westEdgeLongitude > eastEdgeLongitude) {
+      westEdgeLongitude -= 360.0;
+    }
+
+    return new double[] { westEdgeLongitude, eastEdgeLongitude };
   }
 
   private static double normalizeLongitude(double longitude) {

@@ -25,6 +25,17 @@ public class ProjectionManager {
     return strategy;
   }
 
+  private static double calculateTileCenterLongitude(
+    double westEdgeLongitude,
+    double eastEdgeLongitude
+  ) {
+    if (westEdgeLongitude > eastEdgeLongitude) {
+      westEdgeLongitude -= 360.0;
+    }
+
+    return (westEdgeLongitude + eastEdgeLongitude) / 2.0;
+  }
+
   public static double getLatitudeByZ(double z) {
     MapProjection projection = TFCRealWorldConfig.getMapProjection();
     MapProjectionStrategy strategy = getStrategy(projection);
@@ -32,7 +43,10 @@ public class ProjectionManager {
     double westEdgeLongitude = TFCRealWorldConfig.getWestEdgeLongitude();
     double eastEdgeLongitude = TFCRealWorldConfig.getEastEdgeLongitude();
 
-    double tileCenterLongitude = (westEdgeLongitude + eastEdgeLongitude) / 2.0;
+    double tileCenterLongitude = calculateTileCenterLongitude(
+      westEdgeLongitude,
+      eastEdgeLongitude
+    );
 
     return strategy.getLatitudeByZ(
       z,
@@ -56,7 +70,10 @@ public class ProjectionManager {
   ) {
     MapProjectionStrategy strategy = getStrategy(projection);
 
-    double tileCenterLongitude = (westEdgeLongitude + eastEdgeLongitude) / 2.0;
+    double tileCenterLongitude = calculateTileCenterLongitude(
+      westEdgeLongitude,
+      eastEdgeLongitude
+    );
     double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
 
     return strategy.geographicToMinecraft(
@@ -86,7 +103,10 @@ public class ProjectionManager {
   ) {
     MapProjectionStrategy strategy = getStrategy(projection);
 
-    double tileCenterLongitude = (westEdgeLongitude + eastEdgeLongitude) / 2.0;
+    double tileCenterLongitude = calculateTileCenterLongitude(
+      westEdgeLongitude,
+      eastEdgeLongitude
+    );
     double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
 
     return strategy.minecraftToGeographic(
@@ -115,7 +135,10 @@ public class ProjectionManager {
     double southEdgeLatitude = TFCRealWorldConfig.getSouthEdgeLatitude();
     double northEdgeLatitude = TFCRealWorldConfig.getNorthEdgeLatitude();
 
-    double tileCenterLongitude = (westEdgeLongitude + eastEdgeLongitude) / 2.0;
+    double tileCenterLongitude = calculateTileCenterLongitude(
+      westEdgeLongitude,
+      eastEdgeLongitude
+    );
     double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
 
     return strategy.geographicToMinecraft(
@@ -141,7 +164,10 @@ public class ProjectionManager {
     double southEdgeLatitude = TFCRealWorldConfig.getSouthEdgeLatitude();
     double northEdgeLatitude = TFCRealWorldConfig.getNorthEdgeLatitude();
 
-    double tileCenterLongitude = (westEdgeLongitude + eastEdgeLongitude) / 2.0;
+    double tileCenterLongitude = calculateTileCenterLongitude(
+      westEdgeLongitude,
+      eastEdgeLongitude
+    );
     double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
 
     return strategy.minecraftToGeographic(
