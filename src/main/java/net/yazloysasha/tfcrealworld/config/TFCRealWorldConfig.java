@@ -19,7 +19,6 @@ public class TFCRealWorldConfig {
   private static ModConfig modConfig;
 
   public static final String DEFAULT_MAP_PROFILE = "DEFAULT:FULL_EQUAL_EARTH";
-  public static final int DEFAULT_TILE_SIZE = 40_000;
 
   public static final ConfigOption<String> MAP_PROFILE;
   public static final ConfigOption<SpawnMode> SPAWN_MODE;
@@ -198,7 +197,7 @@ public class TFCRealWorldConfig {
       BUILDER,
       "horizontal_tile_size",
       "Horizontal tile size (diameter) in blocks. Affects horizontal map stretching when generating from map.",
-      40_000,
+      getHorizontalTileSize(),
       0,
       200_000
     );
@@ -206,7 +205,7 @@ public class TFCRealWorldConfig {
       BUILDER,
       "vertical_tile_size",
       "Vertical tile size (diameter) in blocks. Affects vertical map stretching when generating from map.",
-      40_000,
+      getVerticalTileSize(),
       0,
       200_000
     );
@@ -353,6 +352,14 @@ public class TFCRealWorldConfig {
 
   public static int getSpawnCenterZ() {
     return getProfile().spawnCenterZ();
+  }
+
+  public static int getHorizontalTileSize() {
+    return getProfile().horizontalTileSize();
+  }
+
+  public static int getVerticalTileSize() {
+    return getProfile().verticalTileSize();
   }
 
   public static double getWestEdgeLongitude() {

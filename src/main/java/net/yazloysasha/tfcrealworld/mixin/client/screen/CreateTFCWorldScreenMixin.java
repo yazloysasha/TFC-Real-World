@@ -108,6 +108,12 @@ public class CreateTFCWorldScreenMixin {
   private AbstractWidget spawnCenterZWidget;
 
   @Unique
+  private AbstractWidget horizontalTileSizeWidget;
+
+  @Unique
+  private AbstractWidget verticalTileSizeWidget;
+
+  @Unique
   private static int optionsCount = 0;
 
   @Unique
@@ -251,6 +257,8 @@ public class CreateTFCWorldScreenMixin {
     spawnCenterLatitude.set(convertedLatitude);
     spawnCenterX.set(profile.spawnCenterX());
     spawnCenterZ.set(profile.spawnCenterZ());
+    horizontalTileSize.set(profile.horizontalTileSize());
+    verticalTileSize.set(profile.verticalTileSize());
 
     updateWidgets();
   }
@@ -286,6 +294,12 @@ public class CreateTFCWorldScreenMixin {
     );
     updateWidget(spawnCenterZWidget, spawnCenterZ, widget ->
       spawnCenterZWidget = widget
+    );
+    updateWidget(horizontalTileSizeWidget, horizontalTileSize, widget ->
+      horizontalTileSizeWidget = widget
+    );
+    updateWidget(verticalTileSizeWidget, verticalTileSize, widget ->
+      verticalTileSizeWidget = widget
     );
   }
 
@@ -434,9 +448,15 @@ public class CreateTFCWorldScreenMixin {
       case 5:
         return accessor.tfcrealworld$invokeSmallButton(rainfallScale);
       case 6:
-        return accessor.tfcrealworld$invokeSmallButton(horizontalTileSize);
+        horizontalTileSizeWidget = accessor.tfcrealworld$invokeSmallButton(
+          horizontalTileSize
+        );
+        return horizontalTileSizeWidget;
       case 7:
-        return accessor.tfcrealworld$invokeSmallButton(verticalTileSize);
+        verticalTileSizeWidget = accessor.tfcrealworld$invokeSmallButton(
+          verticalTileSize
+        );
+        return verticalTileSizeWidget;
       case 8:
         return accessor.tfcrealworld$invokeSmallButton(continentFromMap);
       case 9:

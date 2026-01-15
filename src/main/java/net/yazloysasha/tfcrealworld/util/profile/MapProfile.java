@@ -6,7 +6,6 @@ import com.google.gson.JsonObject;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
-import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.types.CachedGeographicCoords;
 import net.yazloysasha.tfcrealworld.types.MapProjection;
 import net.yazloysasha.tfcrealworld.util.projection.ProjectionManager;
@@ -16,6 +15,8 @@ public record MapProfile(
   String name,
   int spawnCenterX,
   int spawnCenterZ,
+  Integer horizontalTileSize,
+  Integer verticalTileSize,
   double westEdgeLongitude,
   double eastEdgeLongitude,
   double southEdgeLatitude,
@@ -32,6 +33,8 @@ public record MapProfile(
 
   private static final int DEFAULT_SPAWN_CENTER_X = -9_000;
   private static final int DEFAULT_SPAWN_CENTER_Z = -3_000;
+  private static final int DEFAULT_HORIZONTAL_TILE_SIZE = 80_000;
+  private static final int DEFAULT_VERTICAL_TILE_SIZE = 40_000;
   private static final double DEFAULT_WEST_EDGE_LONGITUDE = -20.0;
   private static final double DEFAULT_EAST_EDGE_LONGITUDE = 160.0;
   private static final double DEFAULT_SOUTH_EDGE_LATITUDE = -90.0;
@@ -119,6 +122,12 @@ public record MapProfile(
       json.has("spawn_center_z")
         ? json.get("spawn_center_z").getAsInt()
         : DEFAULT_SPAWN_CENTER_Z,
+      json.has("horizontal_tile_size")
+        ? json.get("horizontal_tile_size").getAsInt()
+        : DEFAULT_HORIZONTAL_TILE_SIZE,
+      json.has("vertical_tile_size")
+        ? json.get("vertical_tile_size").getAsInt()
+        : DEFAULT_VERTICAL_TILE_SIZE,
       json.has("west_edge_longitude")
         ? json.get("west_edge_longitude").getAsDouble()
         : DEFAULT_WEST_EDGE_LONGITUDE,
@@ -145,6 +154,8 @@ public record MapProfile(
       name,
       DEFAULT_SPAWN_CENTER_X,
       DEFAULT_SPAWN_CENTER_Z,
+      DEFAULT_HORIZONTAL_TILE_SIZE,
+      DEFAULT_VERTICAL_TILE_SIZE,
       DEFAULT_WEST_EDGE_LONGITUDE,
       DEFAULT_EAST_EDGE_LONGITUDE,
       DEFAULT_SOUTH_EDGE_LATITUDE,
@@ -154,20 +165,13 @@ public record MapProfile(
   }
 
   private double[] getGeographicCoords() {
-    int horizontalTileSize = TFCRealWorldConfig.SPEC != null
-      ? TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get()
-      : TFCRealWorldConfig.DEFAULT_TILE_SIZE;
-    int verticalTileSize = TFCRealWorldConfig.SPEC != null
-      ? TFCRealWorldConfig.VERTICAL_TILE_SIZE.get()
-      : TFCRealWorldConfig.DEFAULT_TILE_SIZE;
-
     CachedGeographicCoords cached = GEOGRAPHIC_COORDS_CACHE.get();
     if (
       cached != null &&
       cached.spawnCenterX() == spawnCenterX &&
       cached.spawnCenterZ() == spawnCenterZ &&
-      cached.horizontalTileSize() == horizontalTileSize &&
-      cached.verticalTileSize() == verticalTileSize
+      cached.horizontalTileSize() == this.horizontalTileSize &&
+      cached.verticalTileSize() == this.verticalTileSize
     ) {
       return new double[] { cached.longitude(), cached.latitude() };
     }
@@ -175,8 +179,8 @@ public record MapProfile(
     double[] geoCoords = ProjectionManager.minecraftToGeographic(
       spawnCenterX,
       spawnCenterZ,
-      horizontalTileSize,
-      verticalTileSize,
+      this.horizontalTileSize,
+      this.verticalTileSize,
       westEdgeLongitude,
       eastEdgeLongitude,
       southEdgeLatitude,
