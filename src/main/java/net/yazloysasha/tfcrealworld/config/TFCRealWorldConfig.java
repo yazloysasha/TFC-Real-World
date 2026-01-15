@@ -18,8 +18,7 @@ public class TFCRealWorldConfig {
 
   private static ModConfig modConfig;
 
-  public static final String DEFAULT_MAP_PROFILE =
-    "DEFAULT:OLD_WORLD_EQUAL_EARTH";
+  public static final String DEFAULT_MAP_PROFILE = "DEFAULT:FULL_EQUAL_EARTH";
   public static final int DEFAULT_TILE_SIZE = 40_000;
 
   public static final ConfigOption<String> MAP_PROFILE;
