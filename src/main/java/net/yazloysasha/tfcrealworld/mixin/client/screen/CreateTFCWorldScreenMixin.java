@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import net.dries007.tfc.client.screen.CreateTFCWorldScreen;
 import net.dries007.tfc.world.settings.Settings;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.components.AbstractWidget;
@@ -235,11 +236,10 @@ public class CreateTFCWorldScreenMixin {
         Component.translatable(caption + ".tooltip")
       ),
       (text, value) -> {
-        String[] parts = ProfileManager.parseProfileId(value.toLowerCase());
-        String namespace = parts[0];
-        String profileName = parts[1];
-        String langKey = caption + "." + namespace + "." + profileName;
-        return Component.translatable(langKey);
+        MapProfile profile = ProfileManager.getProfile(value);
+        String languageCode = Minecraft.getInstance().options.languageCode;
+        String displayName = profile.getDisplayName(languageCode);
+        return Component.literal(displayName);
       },
       enumValueSet,
       defaultValue,

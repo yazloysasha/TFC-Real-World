@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.types.CachedGeographicCoords;
 import net.yazloysasha.tfcrealworld.types.MapProjection;
@@ -21,7 +23,8 @@ public record MapProfile(
   double eastEdgeLongitude,
   double southEdgeLatitude,
   double northEdgeLatitude,
-  MapProjection mapProjection
+  MapProjection mapProjection,
+  Map<String, String> lang
 ) {
   private static final Gson GSON = new GsonBuilder()
     .setPrettyPrinting()
@@ -113,6 +116,14 @@ public record MapProfile(
     String name,
     JsonObject json
   ) {
+    Map<String, String> langMap = new HashMap<>();
+    if (json.has("lang") && json.get("lang").isJsonObject()) {
+      JsonObject langObj = json.get("lang").getAsJsonObject();
+      for (String key : langObj.keySet()) {
+        langMap.put(key.toLowerCase(), langObj.get(key).getAsString());
+      }
+    }
+
     return new MapProfile(
       namespace,
       name,
@@ -144,7 +155,8 @@ public record MapProfile(
         ? MapProjection.valueOf(
           json.get("map_projection").getAsString().toUpperCase()
         )
-        : DEFAULT_MAP_PROJECTION
+        : DEFAULT_MAP_PROJECTION,
+      langMap
     );
   }
 
@@ -160,7 +172,8 @@ public record MapProfile(
       DEFAULT_EAST_EDGE_LONGITUDE,
       DEFAULT_SOUTH_EDGE_LATITUDE,
       DEFAULT_NORTH_EDGE_LATITUDE,
-      DEFAULT_MAP_PROJECTION
+      DEFAULT_MAP_PROJECTION,
+      new HashMap<>()
     );
   }
 
@@ -208,5 +221,19 @@ public record MapProfile(
 
   public double getSpawnCenterLatitude() {
     return getGeographicCoords()[1];
+  }
+
+  public String getDisplayName(String languageCode) {
+    if (lang == null || lang.isEmpty()) {
+      return namespace + ":" + name;
+    }
+
+    String langKey = languageCode != null
+      ? languageCode.toLowerCase()
+      : "en_us";
+    return lang.getOrDefault(
+      langKey,
+      lang.getOrDefault("en_us", namespace + ":" + name)
+    );
   }
 }
