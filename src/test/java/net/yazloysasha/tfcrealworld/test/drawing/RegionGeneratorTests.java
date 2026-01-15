@@ -67,7 +67,7 @@ public class RegionGeneratorTests implements TestSetup {
       RandomSupport.generateUniqueSeed(),
       0,
       0,
-      312
+      156
     );
   }
 

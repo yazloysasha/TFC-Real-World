@@ -39,14 +39,12 @@ abstract class BaseDistanceCache {
   }
 
   protected InterpolationResult getInterpolationData(int gridX, int gridZ) {
-    double clampedX = Math.clamp(gridX, -tileRadiusGridX, tileRadiusGridX);
-    double clampedZ = Math.clamp(gridZ, -tileRadiusGridZ, tileRadiusGridZ);
-
-    double imageX = centerX + clampedX * scaleX;
-    double imageZ = centerZ + clampedZ * scaleZ;
-
-    imageX = Math.clamp(imageX, 0, width - 1);
-    imageZ = Math.clamp(imageZ, 0, height - 1);
+    double[] imageCoords = continentNoise.tileToImage(
+      (double) gridX,
+      (double) gridZ
+    );
+    double imageX = imageCoords[0];
+    double imageZ = imageCoords[1];
 
     int x0 = (int) Math.floor(imageX);
     int z0 = (int) Math.floor(imageZ);
