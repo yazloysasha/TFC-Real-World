@@ -1,0 +1,9 @@
+{
+  "spawn_center_x": 0,
+  "spawn_center_z": 0,
+  "west_edge_longitude": -180.0,
+  "east_edge_longitude": 180.0,
+  "south_edge_latitude": -90.0,
+  "north_edge_latitude": 90.0,
+  "map_projection": "EQUAL_EARTH"
+}
