@@ -1,7 +1,6 @@
 {
   "tfc_real_world.create_world.map_profile": "地图配置文件",
   "tfc_real_world.create_world.map_profile.tooltip": "用于世界生成的地图配置文件。",
-  "tfc_real_world.create_world.map_profile.default.old_world_equal_earth": "旧世界（等面积地球）",
   "tfc_real_world.create_world.spawn_mode": "出现点模式",
   "tfc_real_world.create_world.spawn_mode.tooltip": "确定出现点位置的计算方式。\n默认 - 使用标准坐标。\n地理 - 使用真实世界的经度和纬度。\n随机 - 从世界种子随机生成。",
   "tfc_real_world.create_world.spawn_mode.default": "默认",

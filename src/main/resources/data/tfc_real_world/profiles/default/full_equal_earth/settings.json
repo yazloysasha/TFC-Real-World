@@ -7,5 +7,20 @@
   "east_edge_longitude": 180.0,
   "south_edge_latitude": -90.0,
   "north_edge_latitude": 90.0,
-  "map_projection": "EQUAL_EARTH"
+  "map_projection": "EQUAL_EARTH",
+  "lang": {
+    "de_de": "Ganze Welt (Equal Earth)",
+    "en_us": "Full World (Equal Earth)",
+    "es_es": "Mundo Completo (Equal Earth)",
+    "ja_jp": "全世界（Equal Earth）",
+    "ko_kr": "전 세계 (Equal Earth)",
+    "pl_pl": "Cały Świat (Equal Earth)",
+    "pt_br": "Mundo Completo (Equal Earth)",
+    "ru_ru": "Весь мир (Equal Earth)",
+    "tr_tr": "Tüm Dünya (Equal Earth)",
+    "uk_ua": "Весь світ (Equal Earth)",
+    "zh_cn": "全世界（等面积地球）",
+    "zh_hk": "全世界（等面積地球）",
+    "zh_tw": "全世界（等面積地球）"
+  }
 }

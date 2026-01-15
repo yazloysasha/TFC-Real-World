@@ -7,5 +7,20 @@
   "east_edge_longitude": 160.0,
   "south_edge_latitude": -90.0,
   "north_edge_latitude": 90.0,
-  "map_projection": "EQUAL_EARTH"
+  "map_projection": "EQUAL_EARTH",
+  "lang": {
+    "de_de": "Alte Welt (Equal Earth)",
+    "en_us": "Old World (Equal Earth)",
+    "es_es": "Viejo Mundo (Equal Earth)",
+    "ja_jp": "旧世界（Equal Earth）",
+    "ko_kr": "구세계 (Equal Earth)",
+    "pl_pl": "Stary Świat (Equal Earth)",
+    "pt_br": "Velho Mundo (Equal Earth)",
+    "ru_ru": "Старый Свет (Equal Earth)",
+    "tr_tr": "Eski Dünya (Equal Earth)",
+    "uk_ua": "Старий Світ (Equal Earth)",
+    "zh_cn": "旧世界（等面积地球）",
+    "zh_hk": "舊世界（等面積地球）",
+    "zh_tw": "舊世界（等面積地球）"
+  }
 }

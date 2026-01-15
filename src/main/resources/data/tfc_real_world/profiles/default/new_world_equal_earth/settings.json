@@ -7,5 +7,20 @@
   "east_edge_longitude": -20.0,
   "south_edge_latitude": -90.0,
   "north_edge_latitude": 90.0,
-  "map_projection": "EQUAL_EARTH"
+  "map_projection": "EQUAL_EARTH",
+  "lang": {
+    "de_de": "Neue Welt (Equal Earth)",
+    "en_us": "New World (Equal Earth)",
+    "es_es": "Nuevo Mundo (Equal Earth)",
+    "ja_jp": "新世界（Equal Earth）",
+    "ko_kr": "신세계 (Equal Earth)",
+    "pl_pl": "Nowy Świat (Equal Earth)",
+    "pt_br": "Novo Mundo (Equal Earth)",
+    "ru_ru": "Новый Свет (Equal Earth)",
+    "tr_tr": "Yeni Dünya (Equal Earth)",
+    "uk_ua": "Новий Світ (Equal Earth)",
+    "zh_cn": "新世界（等面积地球）",
+    "zh_hk": "新世界（等面積地球）",
+    "zh_tw": "新世界（等面積地球）"
+  }
 }

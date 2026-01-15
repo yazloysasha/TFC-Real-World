@@ -1,7 +1,6 @@
 {
   "tfc_real_world.create_world.map_profile": "Harita Profili",
   "tfc_real_world.create_world.map_profile.tooltip": "Dünya oluşturma için kullanılan harita profili.",
-  "tfc_real_world.create_world.map_profile.default.old_world_equal_earth": "Eski Dünya (Equal Earth)",
   "tfc_real_world.create_world.spawn_mode": "Görünme Noktası Modu",
   "tfc_real_world.create_world.spawn_mode.tooltip": "Görünme noktası konumunun nasıl hesaplandığını belirler.\nVarsayılan - standart koordinatları kullanır.\nCoğrafi - gerçek dünya boylam ve enlem kullanır.\nRastgele - dünya tohumundan rastgele üretir.",
   "tfc_real_world.create_world.spawn_mode.default": "Varsayılan",

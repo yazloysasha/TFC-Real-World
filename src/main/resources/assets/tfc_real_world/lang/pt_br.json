@@ -1,7 +1,6 @@
 {
   "tfc_real_world.create_world.map_profile": "Perfil de Mapa",
   "tfc_real_world.create_world.map_profile.tooltip": "Perfil de mapa usado para a geração do mundo.",
-  "tfc_real_world.create_world.map_profile.default.old_world_equal_earth": "Velho Mundo (Equal Earth)",
   "tfc_real_world.create_world.spawn_mode": "Modo de Ponto de Aparição",
   "tfc_real_world.create_world.spawn_mode.tooltip": "Determina como a localização do ponto de aparição é calculada.\nPadrão - usa coordenadas padrão.\nGeográfico - usa longitude e latitude do mundo real.\nAleatório - gera aleatoriamente a partir da semente do mundo.",
   "tfc_real_world.create_world.spawn_mode.default": "Padrão",
