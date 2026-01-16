@@ -18,8 +18,7 @@
     "world.region.ChooseBiomesAccessor",
     "world.region.FloodFillSmallOceansMixin",
     "world.region.RegionGeneratorMixin",
-    "world.settings.SettingsMixin",
-    "client.overworld.SolarCalculatorMixin"
+    "world.settings.SettingsMixin"
   ],
   "client": [
     "client.advancement.DisplayInfoMixin",
