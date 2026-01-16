@@ -76,8 +76,8 @@ public class TFCRealWorldConfig {
       "spawn_center_longitude",
       "Geographic longitude for spawn location (used when spawn_mode is GEOGRAPHIC)",
       getSpawnCenterLongitude(),
-      -180.0,
-      180.0
+      -360.0,
+      360.0
     );
     SPAWN_CENTER_LATITUDE = new ConfigOption<>(
       BUILDER,

@@ -56,30 +56,11 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double tileCenterLongitude,
     double tileCenterLatitude
   ) {
-    double[] normalizedEdges = normalizeLongitudeEdges(
-      westEdgeLongitude,
-      eastEdgeLongitude
-    );
-    double normalizedWest = normalizedEdges[0];
-    double normalizedEast = normalizedEdges[1];
-
-    longitude = normalizeLongitude(longitude);
-    latitude = normalizeLatitude(latitude);
-
-    if (westEdgeLongitude > eastEdgeLongitude) {
-      if (longitude >= westEdgeLongitude) {
-        longitude = longitude - 360.0;
-      }
-    }
-
-    double normalizedTileCenterLongitude =
-      (normalizedWest + normalizedEast) / 2.0;
-    double lambda0 = Math.toRadians(normalizedTileCenterLongitude);
+    double lambda0 = Math.toRadians(tileCenterLongitude);
     double lambda = Math.toRadians(longitude);
     double phi = Math.toRadians(latitude);
 
     double deltaLambda = lambda - lambda0;
-
     while (deltaLambda > Math.PI) deltaLambda -= 2.0 * Math.PI;
     while (deltaLambda < -Math.PI) deltaLambda += 2.0 * Math.PI;
 
@@ -87,15 +68,14 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double projX = projCoords[0];
     double projY = projCoords[1];
 
-    double westLonRad = Math.toRadians(normalizedWest);
-    double eastLonRad = Math.toRadians(normalizedEast);
+    double westLonRad = Math.toRadians(westEdgeLongitude);
+    double eastLonRad = Math.toRadians(eastEdgeLongitude);
     double southLatRad = Math.toRadians(southEdgeLatitude);
     double northLatRad = Math.toRadians(northEdgeLatitude);
     double centralLatRad = Math.toRadians(tileCenterLatitude);
 
     double deltaWestLon = westLonRad - lambda0;
     double deltaEastLon = eastLonRad - lambda0;
-
     while (deltaWestLon > Math.PI) deltaWestLon -= 2.0 * Math.PI;
     while (deltaWestLon < -Math.PI) deltaWestLon += 2.0 * Math.PI;
     while (deltaEastLon > Math.PI) deltaEastLon -= 2.0 * Math.PI;
@@ -111,6 +91,15 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double southProjY = southProj[1];
     double northProjY = northProj[1];
 
+    double longitudeRange = eastEdgeLongitude - westEdgeLongitude;
+    double normalizedRange = longitudeRange;
+    if (normalizedRange < 0) normalizedRange += 360.0;
+    if (normalizedRange >= 360.0) {
+      double[] maxWestProj = forwardProjection(centralLatRad, -Math.PI);
+      double[] maxEastProj = forwardProjection(centralLatRad, Math.PI);
+      westProjX = maxWestProj[0];
+      eastProjX = maxEastProj[0];
+    }
     double projWidth = Math.abs(eastProjX - westProjX);
     double projHeight = Math.abs(northProjY - southProjY);
 
@@ -162,25 +151,15 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double tileCenterLongitude,
     double tileCenterLatitude
   ) {
-    double[] normalizedEdges = normalizeLongitudeEdges(
-      westEdgeLongitude,
-      eastEdgeLongitude
-    );
-    double normalizedWest = normalizedEdges[0];
-    double normalizedEast = normalizedEdges[1];
-
-    double normalizedTileCenterLongitude =
-      (normalizedWest + normalizedEast) / 2.0;
-    double lambda0 = Math.toRadians(normalizedTileCenterLongitude);
-    double westLonRad = Math.toRadians(normalizedWest);
-    double eastLonRad = Math.toRadians(normalizedEast);
+    double lambda0 = Math.toRadians(tileCenterLongitude);
+    double westLonRad = Math.toRadians(westEdgeLongitude);
+    double eastLonRad = Math.toRadians(eastEdgeLongitude);
     double southLatRad = Math.toRadians(southEdgeLatitude);
     double northLatRad = Math.toRadians(northEdgeLatitude);
     double centralLatRad = Math.toRadians(tileCenterLatitude);
 
     double deltaWestLon = westLonRad - lambda0;
     double deltaEastLon = eastLonRad - lambda0;
-
     while (deltaWestLon > Math.PI) deltaWestLon -= 2.0 * Math.PI;
     while (deltaWestLon < -Math.PI) deltaWestLon += 2.0 * Math.PI;
     while (deltaEastLon > Math.PI) deltaEastLon -= 2.0 * Math.PI;
@@ -196,6 +175,15 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double southProjY = southProj[1];
     double northProjY = northProj[1];
 
+    double longitudeRange = eastEdgeLongitude - westEdgeLongitude;
+    double normalizedRange = longitudeRange;
+    if (normalizedRange < 0) normalizedRange += 360.0;
+    if (normalizedRange >= 360.0) {
+      double[] maxWestProj = forwardProjection(centralLatRad, -Math.PI);
+      double[] maxEastProj = forwardProjection(centralLatRad, Math.PI);
+      westProjX = maxWestProj[0];
+      eastProjX = maxEastProj[0];
+    }
     double projWidth = Math.abs(eastProjX - westProjX);
     double projHeight = Math.abs(northProjY - southProjY);
 
@@ -210,19 +198,7 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double longitude = Math.toDegrees(geoCoords[0]);
     double latitude = Math.toDegrees(geoCoords[1]);
 
-    longitude = normalizeLongitude(longitude);
     latitude = Math.clamp(latitude, -90.0, 90.0);
-
-    if (westEdgeLongitude > eastEdgeLongitude) {
-      if (longitude < normalizedWest) {
-        double positiveLongitude = longitude + 360.0;
-        if (
-          positiveLongitude >= westEdgeLongitude && positiveLongitude <= 180.0
-        ) {
-          longitude = positiveLongitude;
-        }
-      }
-    }
 
     return new double[] { longitude, latitude };
   }
@@ -304,26 +280,5 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     }
 
     return theta;
-  }
-
-  private static double[] normalizeLongitudeEdges(
-    double westEdgeLongitude,
-    double eastEdgeLongitude
-  ) {
-    if (westEdgeLongitude > eastEdgeLongitude) {
-      westEdgeLongitude -= 360.0;
-    }
-
-    return new double[] { westEdgeLongitude, eastEdgeLongitude };
-  }
-
-  private static double normalizeLongitude(double longitude) {
-    while (longitude > 180.0) longitude -= 360.0;
-    while (longitude < -180.0) longitude += 360.0;
-    return longitude;
-  }
-
-  private static double normalizeLatitude(double latitude) {
-    return Math.clamp(latitude, -90.0, 90.0);
   }
 }

@@ -25,28 +25,17 @@ public class ProjectionManager {
     return strategy;
   }
 
-  private static double calculateTileCenterLongitude(
-    double westEdgeLongitude,
-    double eastEdgeLongitude
-  ) {
-    if (westEdgeLongitude > eastEdgeLongitude) {
-      westEdgeLongitude -= 360.0;
-    }
-
-    return (westEdgeLongitude + eastEdgeLongitude) / 2.0;
+  private static double normalizeLongitude(double longitude) {
+    return longitude % 360.0;
   }
 
   public static double getLatitudeByZ(double z) {
     MapProjection projection = TFCRealWorldConfig.getMapProjection();
     MapProjectionStrategy strategy = getStrategy(projection);
 
-    double westEdgeLongitude = TFCRealWorldConfig.getWestEdgeLongitude();
-    double eastEdgeLongitude = TFCRealWorldConfig.getEastEdgeLongitude();
-
-    double tileCenterLongitude = calculateTileCenterLongitude(
-      westEdgeLongitude,
-      eastEdgeLongitude
-    );
+    double west = normalizeLongitude(TFCRealWorldConfig.getWestEdgeLongitude());
+    double east = normalizeLongitude(TFCRealWorldConfig.getEastEdgeLongitude());
+    double tileCenterLongitude = (west + east) / 2.0;
 
     return strategy.getLatitudeByZ(
       z,
@@ -70,10 +59,13 @@ public class ProjectionManager {
   ) {
     MapProjectionStrategy strategy = getStrategy(projection);
 
-    double tileCenterLongitude = calculateTileCenterLongitude(
-      westEdgeLongitude,
-      eastEdgeLongitude
-    );
+    longitude = normalizeLongitude(longitude);
+    latitude = Math.clamp(latitude, -90.0, 90.0);
+
+    double west = normalizeLongitude(westEdgeLongitude);
+    double east = normalizeLongitude(eastEdgeLongitude);
+
+    double tileCenterLongitude = (west + east) / 2.0;
     double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
 
     return strategy.geographicToClassic(
@@ -81,8 +73,8 @@ public class ProjectionManager {
       latitude,
       horizontalTileSize,
       verticalTileSize,
-      westEdgeLongitude,
-      eastEdgeLongitude,
+      west,
+      east,
       southEdgeLatitude,
       northEdgeLatitude,
       tileCenterLongitude,
@@ -103,84 +95,57 @@ public class ProjectionManager {
   ) {
     MapProjectionStrategy strategy = getStrategy(projection);
 
-    double tileCenterLongitude = calculateTileCenterLongitude(
-      westEdgeLongitude,
-      eastEdgeLongitude
-    );
+    double west = normalizeLongitude(westEdgeLongitude);
+    double east = normalizeLongitude(eastEdgeLongitude);
+
+    double tileCenterLongitude = (west + east) / 2.0;
     double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
 
-    return strategy.classicToGeographic(
+    double[] result = strategy.classicToGeographic(
       x,
       z,
       horizontalTileSize,
       verticalTileSize,
-      westEdgeLongitude,
-      eastEdgeLongitude,
+      west,
+      east,
       southEdgeLatitude,
       northEdgeLatitude,
       tileCenterLongitude,
       tileCenterLatitude
     );
+
+    result[0] = normalizeLongitude(result[0]);
+    return result;
   }
 
   public static double[] geographicToClassic(
     double longitude,
     double latitude
   ) {
-    MapProjection projection = TFCRealWorldConfig.getMapProjection();
-    MapProjectionStrategy strategy = getStrategy(projection);
-
-    double westEdgeLongitude = TFCRealWorldConfig.getWestEdgeLongitude();
-    double eastEdgeLongitude = TFCRealWorldConfig.getEastEdgeLongitude();
-    double southEdgeLatitude = TFCRealWorldConfig.getSouthEdgeLatitude();
-    double northEdgeLatitude = TFCRealWorldConfig.getNorthEdgeLatitude();
-
-    double tileCenterLongitude = calculateTileCenterLongitude(
-      westEdgeLongitude,
-      eastEdgeLongitude
-    );
-    double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
-
-    return strategy.geographicToClassic(
+    return geographicToClassic(
       longitude,
       latitude,
       TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get(),
       TFCRealWorldConfig.VERTICAL_TILE_SIZE.get(),
-      westEdgeLongitude,
-      eastEdgeLongitude,
-      southEdgeLatitude,
-      northEdgeLatitude,
-      tileCenterLongitude,
-      tileCenterLatitude
+      TFCRealWorldConfig.getWestEdgeLongitude(),
+      TFCRealWorldConfig.getEastEdgeLongitude(),
+      TFCRealWorldConfig.getSouthEdgeLatitude(),
+      TFCRealWorldConfig.getNorthEdgeLatitude(),
+      TFCRealWorldConfig.getMapProjection()
     );
   }
 
   public static double[] classicToGeographic(double x, double z) {
-    MapProjection projection = TFCRealWorldConfig.getMapProjection();
-    MapProjectionStrategy strategy = getStrategy(projection);
-
-    double westEdgeLongitude = TFCRealWorldConfig.getWestEdgeLongitude();
-    double eastEdgeLongitude = TFCRealWorldConfig.getEastEdgeLongitude();
-    double southEdgeLatitude = TFCRealWorldConfig.getSouthEdgeLatitude();
-    double northEdgeLatitude = TFCRealWorldConfig.getNorthEdgeLatitude();
-
-    double tileCenterLongitude = calculateTileCenterLongitude(
-      westEdgeLongitude,
-      eastEdgeLongitude
-    );
-    double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
-
-    return strategy.classicToGeographic(
+    return classicToGeographic(
       x,
       z,
       TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get(),
       TFCRealWorldConfig.VERTICAL_TILE_SIZE.get(),
-      westEdgeLongitude,
-      eastEdgeLongitude,
-      southEdgeLatitude,
-      northEdgeLatitude,
-      tileCenterLongitude,
-      tileCenterLatitude
+      TFCRealWorldConfig.getWestEdgeLongitude(),
+      TFCRealWorldConfig.getEastEdgeLongitude(),
+      TFCRealWorldConfig.getSouthEdgeLatitude(),
+      TFCRealWorldConfig.getNorthEdgeLatitude(),
+      TFCRealWorldConfig.getMapProjection()
     );
   }
 }

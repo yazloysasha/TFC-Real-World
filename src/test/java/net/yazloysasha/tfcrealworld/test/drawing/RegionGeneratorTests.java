@@ -42,6 +42,12 @@ public class RegionGeneratorTests implements TestSetup {
     RegionGeneratorTests.class
   );
 
+  private static final double[][] CITIES_GEOGRAPHIC_COORDS = {
+    { 12.4964, 41.9028 }, // Rome
+    { -77.0369, 38.9072 }, // Washington
+    { 38.7225, 14.1211 }, // Aksum
+  };
+
   final DoubleFunction<Color> blue = Artist.Colors.linearGradient(
     new Color(50, 50, 150),
     new Color(100, 140, 255)
@@ -373,6 +379,9 @@ public class RegionGeneratorTests implements TestSetup {
           x,
           y
         );
+        if (isCityLocation(x, y)) {
+          yield Color.WHITE;
+        }
         GridLineType gridLineType = getGridLineType(x, y);
         yield switch (gridLineType) {
           case THIRTY_DEG -> Color.YELLOW;
@@ -462,6 +471,49 @@ public class RegionGeneratorTests implements TestSetup {
     }
 
     return GridLineType.NONE;
+  }
+
+  private boolean isCityLocation(int gridX, int gridZ) {
+    MapProfile profile = MapProfile.loadFromResources(
+      TFCRealWorldConfig.DEFAULT_MAP_PROFILE
+    );
+
+    double classicX = gridX * Units.GRID_WIDTH_IN_BLOCK;
+    double classicZ = gridZ * Units.GRID_WIDTH_IN_BLOCK;
+
+    double[] geoCoords = ProjectionManager.classicToGeographic(
+      classicX,
+      classicZ,
+      profile.horizontalTileSize(),
+      profile.verticalTileSize(),
+      profile.westEdgeLongitude(),
+      profile.eastEdgeLongitude(),
+      profile.southEdgeLatitude(),
+      profile.northEdgeLatitude(),
+      profile.mapProjection()
+    );
+
+    double longitude = geoCoords[0];
+    double latitude = geoCoords[1];
+
+    if (!Double.isFinite(longitude) || !Double.isFinite(latitude)) {
+      return false;
+    }
+
+    double cityRadius = 2;
+
+    for (double[] cityCoords : CITIES_GEOGRAPHIC_COORDS) {
+      double cityLon = cityCoords[0];
+      double cityLat = cityCoords[1];
+      double dist = Math.sqrt(
+        Math.pow(longitude - cityLon, 2) + Math.pow(latitude - cityLat, 2)
+      );
+      if (dist < cityRadius) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   private boolean isNorthernHemisphere(int z) {
