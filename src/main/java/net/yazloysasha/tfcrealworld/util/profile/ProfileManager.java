@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +58,11 @@ public class ProfileManager {
     if (profileIds.isEmpty()) {
       return getDefaultProfileList();
     }
+    Map<String, Integer> indexMap = new HashMap<>();
+    for (String profileId : profileIds) {
+      indexMap.put(profileId, getProfile(profileId).index());
+    }
+    profileIds.sort(Comparator.comparing(indexMap::get));
     return profileIds;
   }
 

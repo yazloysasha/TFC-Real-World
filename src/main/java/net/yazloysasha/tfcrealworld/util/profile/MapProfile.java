@@ -15,10 +15,11 @@ import net.yazloysasha.tfcrealworld.util.projection.ProjectionManager;
 public record MapProfile(
   String namespace,
   String name,
+  int index,
   double spawnCenterLongitude,
   double spawnCenterLatitude,
-  Integer horizontalTileSize,
-  Integer verticalTileSize,
+  int horizontalTileSize,
+  int verticalTileSize,
   double westEdgeLongitude,
   double eastEdgeLongitude,
   double southEdgeLatitude,
@@ -33,12 +34,13 @@ public record MapProfile(
   private static final ThreadLocal<CachedClassicCoords> CLASSIC_COORDS_CACHE =
     new ThreadLocal<>();
 
-  private static final double DEFAULT_SPAWN_CENTER_LONGITUDE = 0.0;
-  private static final double DEFAULT_SPAWN_CENTER_LATITUDE = 0.0;
+  private static final Integer DEFAULT_INDEX = Integer.MAX_VALUE;
+  private static final double DEFAULT_SPAWN_CENTER_LONGITUDE = 12.4964;
+  private static final double DEFAULT_SPAWN_CENTER_LATITUDE = 41.9028;
   private static final int DEFAULT_HORIZONTAL_TILE_SIZE = 80_000;
   private static final int DEFAULT_VERTICAL_TILE_SIZE = 40_000;
-  private static final double DEFAULT_WEST_EDGE_LONGITUDE = -20.0;
-  private static final double DEFAULT_EAST_EDGE_LONGITUDE = 160.0;
+  private static final double DEFAULT_WEST_EDGE_LONGITUDE = -170.0;
+  private static final double DEFAULT_EAST_EDGE_LONGITUDE = 190.0;
   private static final double DEFAULT_SOUTH_EDGE_LATITUDE = -90.0;
   private static final double DEFAULT_NORTH_EDGE_LATITUDE = 90.0;
   private static final MapProjection DEFAULT_MAP_PROJECTION =
@@ -126,6 +128,7 @@ public record MapProfile(
     return new MapProfile(
       namespace,
       name,
+      json.has("index") ? json.get("index").getAsInt() : DEFAULT_INDEX,
       json.has("spawn_center_longitude")
         ? json.get("spawn_center_longitude").getAsDouble()
         : DEFAULT_SPAWN_CENTER_LONGITUDE,
@@ -163,6 +166,7 @@ public record MapProfile(
     return new MapProfile(
       namespace,
       name,
+      DEFAULT_INDEX,
       DEFAULT_SPAWN_CENTER_LONGITUDE,
       DEFAULT_SPAWN_CENTER_LATITUDE,
       DEFAULT_HORIZONTAL_TILE_SIZE,
