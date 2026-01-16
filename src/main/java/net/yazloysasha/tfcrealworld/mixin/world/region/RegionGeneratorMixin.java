@@ -17,7 +17,6 @@ import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
-import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -84,7 +83,6 @@ public class RegionGeneratorMixin {
         initializeContinentMap(instance, continentNoise);
 
         GlobalOceanDistanceCache.initialize(continentNoise);
-        GlobalWestCoastDistanceCache.initialize(continentNoise);
       }
 
       if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {

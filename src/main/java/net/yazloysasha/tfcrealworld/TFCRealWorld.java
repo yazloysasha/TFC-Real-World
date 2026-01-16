@@ -23,7 +23,6 @@ import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
-import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
 import org.slf4j.Logger;
 
 @Mod(TFCRealWorld.MOD_ID)
@@ -145,7 +144,6 @@ public final class TFCRealWorld {
 
   private void clearCaches() {
     GlobalOceanDistanceCache.clear();
-    GlobalWestCoastDistanceCache.clear();
     KoppenParameterCache.clear();
     BasePNGNoise.clearImageCache();
   }
