@@ -338,27 +338,27 @@ public class TFCRealWorldConfig {
     }
   }
 
-  public static double getSpawnCenterLongitude() {
+  private static double getSpawnCenterLongitude() {
     return getProfile().spawnCenterLongitude();
   }
 
-  public static double getSpawnCenterLatitude() {
+  private static double getSpawnCenterLatitude() {
     return getProfile().spawnCenterLatitude();
   }
 
-  public static int getSpawnCenterX() {
+  private static int getSpawnCenterX() {
     return getProfile().getSpawnCenterX();
   }
 
-  public static int getSpawnCenterZ() {
+  private static int getSpawnCenterZ() {
     return getProfile().getSpawnCenterZ();
   }
 
-  public static int getHorizontalTileSize() {
+  private static int getHorizontalTileSize() {
     return getProfile().horizontalTileSize();
   }
 
-  public static int getVerticalTileSize() {
+  private static int getVerticalTileSize() {
     return getProfile().verticalTileSize();
   }
 
