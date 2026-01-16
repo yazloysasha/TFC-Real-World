@@ -5,7 +5,7 @@ plugins {
 val minecraftVersion: String = "1.21.1"
 val neoForgeVersion: String = "21.1.197"
 val patchouliVersion: String = "1.21.1-92-NEOFORGE"
-val tfcVersion: String = "4.0.16-beta"
+val tfcVersion: String = "4.0.17-beta"
 
 val modId: String = "tfc_real_world"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
@@ -17,6 +17,7 @@ val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata"
     "modVersion" to modVersion,
     "minecraftVersionRange" to "[$minecraftVersion]",
     "neoForgeVersionRange" to "[$neoForgeVersion,)",
+    "tfcVersionRange" to "[$tfcVersion]",
   )
   inputs.properties(modReplacementProperties)
   expand(modReplacementProperties)
