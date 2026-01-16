@@ -57,7 +57,7 @@ public class ProjectionManager {
     );
   }
 
-  public static double[] geographicToMinecraft(
+  public static double[] geographicToClassic(
     double longitude,
     double latitude,
     int horizontalTileSize,
@@ -76,7 +76,7 @@ public class ProjectionManager {
     );
     double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
 
-    return strategy.geographicToMinecraft(
+    return strategy.geographicToClassic(
       longitude,
       latitude,
       horizontalTileSize,
@@ -90,7 +90,7 @@ public class ProjectionManager {
     );
   }
 
-  public static double[] minecraftToGeographic(
+  public static double[] classicToGeographic(
     double x,
     double z,
     int horizontalTileSize,
@@ -109,7 +109,7 @@ public class ProjectionManager {
     );
     double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
 
-    return strategy.minecraftToGeographic(
+    return strategy.classicToGeographic(
       x,
       z,
       horizontalTileSize,
@@ -123,7 +123,7 @@ public class ProjectionManager {
     );
   }
 
-  public static double[] geographicToMinecraft(
+  public static double[] geographicToClassic(
     double longitude,
     double latitude
   ) {
@@ -141,7 +141,7 @@ public class ProjectionManager {
     );
     double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
 
-    return strategy.geographicToMinecraft(
+    return strategy.geographicToClassic(
       longitude,
       latitude,
       TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get(),
@@ -155,7 +155,7 @@ public class ProjectionManager {
     );
   }
 
-  public static double[] minecraftToGeographic(double x, double z) {
+  public static double[] classicToGeographic(double x, double z) {
     MapProjection projection = TFCRealWorldConfig.getMapProjection();
     MapProjectionStrategy strategy = getStrategy(projection);
 
@@ -170,7 +170,7 @@ public class ProjectionManager {
     );
     double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
 
-    return strategy.minecraftToGeographic(
+    return strategy.classicToGeographic(
       x,
       z,
       TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get(),

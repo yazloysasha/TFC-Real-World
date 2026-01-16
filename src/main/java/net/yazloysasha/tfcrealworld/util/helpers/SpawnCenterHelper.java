@@ -34,6 +34,25 @@ public class SpawnCenterHelper {
     return spawnCenter[1];
   }
 
+  private static int[] generateRandomSpawnCenter(long seed) {
+    Random rng = new Random(seed ^ 0x1234ABCDL);
+    int halfX = TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get() / 2;
+    int halfZ = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get() / 2;
+
+    // For RANDOM mode, SPAWN_DISTANCE is a square movement radius
+    int spawnDistance = Math.min(halfX, halfZ);
+
+    // Ensure SPAWN_CENTER ± SPAWN_DISTANCE stays within half of the tile size:
+    // |center| + spawnDistance <= halfSize on each axis
+    int maxCenterX = Math.max(0, halfX - spawnDistance);
+    int maxCenterZ = Math.max(0, halfZ - spawnDistance);
+
+    int x = maxCenterX == 0 ? 0 : rng.nextInt(maxCenterX * 2 + 1) - maxCenterX;
+    int z = maxCenterZ == 0 ? 0 : rng.nextInt(maxCenterZ * 2 + 1) - maxCenterZ;
+
+    return new int[] { x, z };
+  }
+
   private static int[] getSpawnCenter() {
     SpawnMode mode = TFCRealWorldConfig.SPAWN_MODE.get();
 
@@ -47,46 +66,24 @@ public class SpawnCenterHelper {
       return cachedSpawnCenter.coords();
     }
 
-    int[] result;
-
-    if (mode == SpawnMode.GEOGRAPHIC) {
-      double[] geoCoords = ProjectionManager.geographicToMinecraft(
-        TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.get(),
-        TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.get()
-      );
-      result = new int[] {
-        (int) Math.round(geoCoords[0]),
-        (int) Math.round(geoCoords[1]),
+    int[] result =
+      switch (mode) {
+        case GEOGRAPHIC -> {
+          double[] geoCoords = ProjectionManager.geographicToClassic(
+            TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.get(),
+            TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.get()
+          );
+          yield new int[] {
+            (int) Math.round(geoCoords[0]),
+            (int) Math.round(geoCoords[1]),
+          };
+        }
+        case CLASSIC -> new int[] {
+          TFCRealWorldConfig.SPAWN_CENTER_X.get(),
+          TFCRealWorldConfig.SPAWN_CENTER_Z.get(),
+        };
+        case RANDOM -> generateRandomSpawnCenter(seed);
       };
-    } else if (mode == SpawnMode.RANDOM) {
-      long worldSeed = seed;
-      Random rng = new Random(worldSeed ^ 0x1234ABCDL);
-
-      int halfX = TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get() / 2;
-      int halfZ = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get() / 2;
-
-      // For RANDOM mode, SPAWN_DISTANCE is a square movement radius
-      int spawnDistance = Math.min(halfX, halfZ);
-
-      // Ensure SPAWN_CENTER ± SPAWN_DISTANCE stays within half of the tile size:
-      // |center| + spawnDistance <= halfSize on each axis
-      int maxCenterX = Math.max(0, halfX - spawnDistance);
-      int maxCenterZ = Math.max(0, halfZ - spawnDistance);
-
-      int x = maxCenterX == 0
-        ? 0
-        : rng.nextInt(maxCenterX * 2 + 1) - maxCenterX;
-      int z = maxCenterZ == 0
-        ? 0
-        : rng.nextInt(maxCenterZ * 2 + 1) - maxCenterZ;
-
-      result = new int[] { x, z };
-    } else {
-      result = new int[] {
-        TFCRealWorldConfig.SPAWN_CENTER_X.get(),
-        TFCRealWorldConfig.SPAWN_CENTER_Z.get(),
-      };
-    }
 
     SPAWN_CENTER_CACHE.set(new CachedSpawnCenter(mode, seed, result));
 

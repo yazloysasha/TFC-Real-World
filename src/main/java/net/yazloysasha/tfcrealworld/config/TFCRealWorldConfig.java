@@ -65,10 +65,10 @@ public class TFCRealWorldConfig {
       BUILDER,
       "spawn_mode",
       "Spawn mode. Affects spawn location\n" +
-      "  DEFAULT - use spawn_center_x/z\n" +
       "  GEOGRAPHIC - spawn_center_longitude/latitude\n" +
-      "  RANDOM - generate from seed",
-      SpawnMode.DEFAULT,
+      "  RANDOM - generate from seed\n" +
+      "  CLASSIC - use spawn_center_x/z",
+      SpawnMode.GEOGRAPHIC,
       SpawnMode.class
     );
     SPAWN_CENTER_LONGITUDE = new ConfigOption<>(
@@ -339,19 +339,19 @@ public class TFCRealWorldConfig {
   }
 
   public static double getSpawnCenterLongitude() {
-    return getProfile().getSpawnCenterLongitude();
+    return getProfile().spawnCenterLongitude();
   }
 
   public static double getSpawnCenterLatitude() {
-    return getProfile().getSpawnCenterLatitude();
+    return getProfile().spawnCenterLatitude();
   }
 
   public static int getSpawnCenterX() {
-    return getProfile().spawnCenterX();
+    return getProfile().getSpawnCenterX();
   }
 
   public static int getSpawnCenterZ() {
-    return getProfile().spawnCenterZ();
+    return getProfile().getSpawnCenterZ();
   }
 
   public static int getHorizontalTileSize() {

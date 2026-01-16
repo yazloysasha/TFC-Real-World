@@ -1,6 +1,6 @@
 {
-  "spawn_center_x": -6851,
-  "spawn_center_z": -4320,
+  "spawn_center_longitude": 0,
+  "spawn_center_latitude": 0,
   "horizontal_tile_size": 40000,
   "vertical_tile_size": 40000,
   "west_edge_longitude": -20.0,

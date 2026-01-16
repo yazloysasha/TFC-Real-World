@@ -1,7 +1,7 @@
 package net.yazloysasha.tfcrealworld.util.projection;
 
 /**
- * Equal Earth projection implementation for converting geographic coordinates to Minecraft coordinates.
+ * Equal Earth projection implementation for converting geographic coordinates to classic coordinates.
  * Uses the exact mathematical formulas of the Equal Earth projection.
  */
 public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
@@ -44,7 +44,7 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
   }
 
   @Override
-  public double[] geographicToMinecraft(
+  public double[] geographicToClassic(
     double longitude,
     double latitude,
     int horizontalTileSize,
@@ -150,7 +150,7 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
   }
 
   @Override
-  public double[] minecraftToGeographic(
+  public double[] classicToGeographic(
     double x,
     double z,
     int horizontalTileSize,

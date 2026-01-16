@@ -8,15 +8,15 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
-import net.yazloysasha.tfcrealworld.types.CachedGeographicCoords;
+import net.yazloysasha.tfcrealworld.types.CachedClassicCoords;
 import net.yazloysasha.tfcrealworld.types.MapProjection;
 import net.yazloysasha.tfcrealworld.util.projection.ProjectionManager;
 
 public record MapProfile(
   String namespace,
   String name,
-  int spawnCenterX,
-  int spawnCenterZ,
+  double spawnCenterLongitude,
+  double spawnCenterLatitude,
   Integer horizontalTileSize,
   Integer verticalTileSize,
   double westEdgeLongitude,
@@ -30,12 +30,11 @@ public record MapProfile(
     .setPrettyPrinting()
     .create();
 
-  private static final ThreadLocal<
-    CachedGeographicCoords
-  > GEOGRAPHIC_COORDS_CACHE = new ThreadLocal<>();
+  private static final ThreadLocal<CachedClassicCoords> CLASSIC_COORDS_CACHE =
+    new ThreadLocal<>();
 
-  private static final int DEFAULT_SPAWN_CENTER_X = -9_000;
-  private static final int DEFAULT_SPAWN_CENTER_Z = -3_000;
+  private static final double DEFAULT_SPAWN_CENTER_LONGITUDE = 0.0;
+  private static final double DEFAULT_SPAWN_CENTER_LATITUDE = 0.0;
   private static final int DEFAULT_HORIZONTAL_TILE_SIZE = 80_000;
   private static final int DEFAULT_VERTICAL_TILE_SIZE = 40_000;
   private static final double DEFAULT_WEST_EDGE_LONGITUDE = -20.0;
@@ -127,12 +126,12 @@ public record MapProfile(
     return new MapProfile(
       namespace,
       name,
-      json.has("spawn_center_x")
-        ? json.get("spawn_center_x").getAsInt()
-        : DEFAULT_SPAWN_CENTER_X,
-      json.has("spawn_center_z")
-        ? json.get("spawn_center_z").getAsInt()
-        : DEFAULT_SPAWN_CENTER_Z,
+      json.has("spawn_center_longitude")
+        ? json.get("spawn_center_longitude").getAsDouble()
+        : DEFAULT_SPAWN_CENTER_LONGITUDE,
+      json.has("spawn_center_latitude")
+        ? json.get("spawn_center_latitude").getAsDouble()
+        : DEFAULT_SPAWN_CENTER_LATITUDE,
       json.has("horizontal_tile_size")
         ? json.get("horizontal_tile_size").getAsInt()
         : DEFAULT_HORIZONTAL_TILE_SIZE,
@@ -164,8 +163,8 @@ public record MapProfile(
     return new MapProfile(
       namespace,
       name,
-      DEFAULT_SPAWN_CENTER_X,
-      DEFAULT_SPAWN_CENTER_Z,
+      DEFAULT_SPAWN_CENTER_LONGITUDE,
+      DEFAULT_SPAWN_CENTER_LATITUDE,
       DEFAULT_HORIZONTAL_TILE_SIZE,
       DEFAULT_VERTICAL_TILE_SIZE,
       DEFAULT_WEST_EDGE_LONGITUDE,
@@ -177,21 +176,21 @@ public record MapProfile(
     );
   }
 
-  private double[] getGeographicCoords() {
-    CachedGeographicCoords cached = GEOGRAPHIC_COORDS_CACHE.get();
+  private int[] getClassicCoords() {
+    CachedClassicCoords cached = CLASSIC_COORDS_CACHE.get();
     if (
       cached != null &&
-      cached.spawnCenterX() == spawnCenterX &&
-      cached.spawnCenterZ() == spawnCenterZ &&
+      cached.spawnCenterLongitude() == spawnCenterLongitude &&
+      cached.spawnCenterLatitude() == spawnCenterLatitude &&
       cached.horizontalTileSize() == this.horizontalTileSize &&
       cached.verticalTileSize() == this.verticalTileSize
     ) {
-      return new double[] { cached.longitude(), cached.latitude() };
+      return new int[] { cached.spawnCenterX(), cached.spawnCenterZ() };
     }
 
-    double[] geoCoords = ProjectionManager.minecraftToGeographic(
-      spawnCenterX,
-      spawnCenterZ,
+    double[] classicCoords = ProjectionManager.geographicToClassic(
+      spawnCenterLongitude,
+      spawnCenterLatitude,
       this.horizontalTileSize,
       this.verticalTileSize,
       westEdgeLongitude,
@@ -201,26 +200,29 @@ public record MapProfile(
       mapProjection
     );
 
-    GEOGRAPHIC_COORDS_CACHE.set(
-      new CachedGeographicCoords(
+    int spawnCenterX = (int) Math.round(classicCoords[0]);
+    int spawnCenterZ = (int) Math.round(classicCoords[1]);
+
+    CLASSIC_COORDS_CACHE.set(
+      new CachedClassicCoords(
+        spawnCenterLongitude,
+        spawnCenterLatitude,
         spawnCenterX,
         spawnCenterZ,
         horizontalTileSize,
-        verticalTileSize,
-        geoCoords[0],
-        geoCoords[1]
+        verticalTileSize
       )
     );
 
-    return geoCoords;
+    return new int[] { spawnCenterX, spawnCenterZ };
   }
 
-  public double getSpawnCenterLongitude() {
-    return getGeographicCoords()[0];
+  public int getSpawnCenterX() {
+    return getClassicCoords()[0];
   }
 
-  public double getSpawnCenterLatitude() {
-    return getGeographicCoords()[1];
+  public int getSpawnCenterZ() {
+    return getClassicCoords()[1];
   }
 
   public String getDisplayName(String languageCode) {

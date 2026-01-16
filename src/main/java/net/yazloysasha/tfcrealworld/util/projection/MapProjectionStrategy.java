@@ -9,7 +9,7 @@ public interface MapProjectionStrategy {
     double tileCenterLongitude
   );
 
-  double[] geographicToMinecraft(
+  double[] geographicToClassic(
     double longitude,
     double latitude,
     int horizontalTileSize,
@@ -22,7 +22,7 @@ public interface MapProjectionStrategy {
     double tileCenterLatitude
   );
 
-  double[] minecraftToGeographic(
+  double[] classicToGeographic(
     double x,
     double z,
     int horizontalTileSize,

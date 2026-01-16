@@ -250,13 +250,11 @@ public class CreateTFCWorldScreenMixin {
   @Unique
   private void applyProfileSpawnSettings(String profileId) {
     MapProfile profile = ProfileManager.getProfile(profileId);
-    double convertedLongitude = profile.getSpawnCenterLongitude();
-    double convertedLatitude = profile.getSpawnCenterLatitude();
 
-    spawnCenterLongitude.set(convertedLongitude);
-    spawnCenterLatitude.set(convertedLatitude);
-    spawnCenterX.set(profile.spawnCenterX());
-    spawnCenterZ.set(profile.spawnCenterZ());
+    spawnCenterLongitude.set(profile.spawnCenterLongitude());
+    spawnCenterLatitude.set(profile.spawnCenterLatitude());
+    spawnCenterX.set(profile.getSpawnCenterX());
+    spawnCenterZ.set(profile.getSpawnCenterZ());
     horizontalTileSize.set(profile.horizontalTileSize());
     verticalTileSize.set(profile.verticalTileSize());
 
