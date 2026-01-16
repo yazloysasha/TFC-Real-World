@@ -13,7 +13,6 @@
     "world.region.AnnotateBiomeAltitudeMixin",
     "world.region.AnnotateClimateMixin",
     "world.region.AnnotateDistanceToOceanMixin",
-    "world.region.AnnotateDistanceToWestCoastMixin",
     "world.region.ChooseBiomesMixin",
     "world.region.ChooseBiomesAccessor",
     "world.region.FloodFillSmallOceansMixin",
