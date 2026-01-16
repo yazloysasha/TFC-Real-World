@@ -17,9 +17,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-/**
- * Removes volcanic features from canyons and doline_canyons biomes when configured.
- */
 @Mixin(BiomeExtension.class)
 public class BiomeExtensionMixin {
 
@@ -28,26 +25,26 @@ public class BiomeExtensionMixin {
   private ResourceKey<Biome> key;
 
   @Shadow
-  private boolean volcanic;
+  private boolean hasCinderCones;
 
   private boolean isCanyonBiome() {
     String biomePath = key.location().getPath();
     return biomePath.equals("canyons") || biomePath.equals("doline_canyons");
   }
 
-  private boolean shouldRemoveVolcanicFeatures() {
+  private boolean shouldRemoveCinderCones() {
     return (
       TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get() &&
-      volcanic &&
+      hasCinderCones &&
       isCanyonBiome()
     );
   }
 
-  @Inject(method = "isVolcanic", at = @At("HEAD"), cancellable = true)
-  private void tfcrealworld$overrideIsVolcanic(
+  @Inject(method = "hasCinderCones", at = @At("HEAD"), cancellable = true)
+  private void tfcrealworld$overrideHasCinderCones(
     CallbackInfoReturnable<Boolean> cir
   ) {
-    if (shouldRemoveVolcanicFeatures()) {
+    if (shouldRemoveCinderCones()) {
       cir.setReturnValue(false);
     }
   }
@@ -57,7 +54,7 @@ public class BiomeExtensionMixin {
     Seed seed,
     CallbackInfoReturnable<@Nullable BiomeNoiseSampler> cir
   ) {
-    if (shouldRemoveVolcanicFeatures()) {
+    if (shouldRemoveCinderCones()) {
       String biomePath = key.location().getPath();
       if (biomePath.equals("canyons")) {
         cir.setReturnValue(
@@ -84,7 +81,7 @@ public class BiomeExtensionMixin {
     Seed seed,
     CallbackInfoReturnable<SurfaceBuilder> cir
   ) {
-    if (shouldRemoveVolcanicFeatures()) {
+    if (shouldRemoveCinderCones()) {
       cir.setReturnValue(NormalSurfaceBuilder.INSTANCE.apply(seed));
     }
   }
