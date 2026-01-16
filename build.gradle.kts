@@ -1,22 +1,24 @@
 plugins {
-  id("net.neoforged.moddev") version "2.0.107"
+  java
+  id("net.minecraftforge.gradle") version "[6.0,6.2)"
+  id("org.spongepowered.mixin") version "0.7.+"
 }
 
-val minecraftVersion: String = "1.21.1"
-val neoForgeVersion: String = "21.1.197"
-val patchouliVersion: String = "1.21.1-92-NEOFORGE"
-val tfcVersion: String = "4.0.17-beta"
+val minecraftVersion: String = "1.20.1"
+val forgeVersion: String = "47.1.3"
+val patchouliVersion: String = "1.20.1-81-FORGE"
+val tfcVersion: String = "3.2.20"
 
 val modId: String = "tfc_real_world"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
-val modJavaVersion: String = "21"
+val modJavaVersion: String = "17"
 
 val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata") {
   val modReplacementProperties = mapOf(
     "modId" to modId,
     "modVersion" to modVersion,
     "minecraftVersionRange" to "[$minecraftVersion]",
-    "neoForgeVersionRange" to "[$neoForgeVersion,)",
+    "forgeVersionRange" to "[$forgeVersion,)",
     "tfcVersionRange" to "[$tfcVersion]",
   )
   inputs.properties(modReplacementProperties)
@@ -25,12 +27,8 @@ val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata"
   into(layout.buildDirectory.dir("generated/sources/modMetadata"))
 }
 
-neoForge {
-  version = neoForgeVersion
-}
-
 base {
-  archivesName.set("TFC-Real-World-NeoForge-$minecraftVersion")
+  archivesName.set("TFC-Real-World-Forge-$minecraftVersion")
   group = "net.dries007.tfc"
   version = modVersion
 }
@@ -42,9 +40,11 @@ java {
 repositories {
   mavenCentral()
   mavenLocal()
-  exclusiveContent {
-    forRepository { maven("https://maven.blamejared.com") }
-    filter { includeGroup("vazkii.patchouli") }
+  maven(url = "https://maven.blamejared.com") // Patchouli
+  maven(url = "https://www.cursemaven.com") {
+    content {
+      includeGroup("curse.maven")
+    }
   }
   ivy {
     url = uri("https://github.com/TerraFirmaCraft/TerraFirmaCraft/releases/download")
@@ -65,56 +65,68 @@ sourceSets {
   }
 }
 
-neoForge {
-  validateAccessTransformers = true
+minecraft {
+  mappings("official", minecraftVersion)
 
   runs {
-    configureEach {
-      jvmArguments.addAll("-XX:+IgnoreUnrecognizedVMOptions", "-XX:+AllowEnhancedClassRedefinition", "-ea")
+    all {
+      args("-mixin.config=$modId.mixins.json")
+      
+      property("forge.logging.console.level", "debug")
+      property("forge.enabledGameTestNamespaces", modId)
+      
+      property("mixin.env.remapRefMap", "true")
+      property("mixin.env.refMapRemappingFile", "$projectDir/build/createSrgToMcp/output.srg")
+      
+      jvmArgs("-ea", "-Xmx4G", "-Xms4G")
+      
+      mods.create(modId) {
+        source(sourceSets.main.get())
+        source(sourceSets.test.get())
+      }
     }
+
     register("client") {
-      client()
-      gameDirectory = file("run/client")
+      workingDirectory(project.file("run/client"))
     }
+
     register("server") {
-      server()
-      gameDirectory = file("run/server")
-      programArgument("--nogui")
+      workingDirectory(project.file("run/server"))
+      arg("--nogui")
     }
   }
+}
 
-  mods {
-    create(modId) {
-      sourceSet(sourceSets.main.get())
-    }
-  }
-
-  unitTest {
-    enable()
-    testedMod = mods[modId]
-  }
-
-  ideSyncTask(generateModMetadata)
+mixin {
+  add(sourceSets.main.get(), "$modId.refmap.json")
 }
 
 dependencies {
-  compileOnly("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$tfcVersion@jar")
-  
-  testImplementation("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$tfcVersion@jar")
-  testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
-  testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.3")
-  testImplementation("vazkii.patchouli:Patchouli:$patchouliVersion")
+  minecraft("net.minecraftforge", "forge", version = "$minecraftVersion-$forgeVersion")
+
+  // TerraFirmaCraft
+  compileOnly(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$tfcVersion@jar"))
+
+  // Mixin
+  annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
+
+  // Test
+  testImplementation(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$tfcVersion@jar"))
+  testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+  testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.9.2")
+  testImplementation(fg.deobf("vazkii.patchouli:Patchouli:$patchouliVersion"))
 }
 
 tasks {
+  processResources {
+    dependsOn(generateModMetadata)
+  }
+
   jar {
     manifest {
       attributes["Implementation-Version"] = project.version
+      attributes["MixinConfigs"] = "$modId.mixins.json"
     }
-  }
-
-  named("neoForgeIdeSync") {
-    dependsOn(generateModMetadata)
   }
 
   test {

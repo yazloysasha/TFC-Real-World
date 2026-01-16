@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "net.yazloysasha.tfcrealworld.mixin",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_17",
   "refmap": "tfc_real_world.refmap.json",
   "mixins": [
     "world.biome.BiomeExtensionMixin",

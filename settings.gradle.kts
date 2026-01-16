@@ -1,16 +1,20 @@
 pluginManagement {
   repositories {
     gradlePluginPortal()
-    mavenCentral()
-    exclusiveContent {
-      forRepository { maven("https://maven.neoforged.net/releases") }
-      filter { includeGroupAndSubgroups("net.neoforged") }
+    maven(url = "https://maven.minecraftforge.net/")
+    maven(url = "https://repo.spongepowered.org/repository/maven-public/")
+  }
+  resolutionStrategy {
+    eachPlugin {
+      if (requested.id.namespace == "org.spongepowered") {
+        useModule("org.spongepowered:mixingradle:${requested.version}")
+      }
     }
   }
 }
 
 plugins {
-  id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+  id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
 }
 
 rootProject.name = "tfc_real_world"
