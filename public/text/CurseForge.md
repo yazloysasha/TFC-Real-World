@@ -71,9 +71,8 @@ All settings are accessible directly from the <b>TFC world creation screen</b> f
 
 <div class="spoiler">
 <ol>
-<li><b>Add New Map Profiles:</b> Provide alternative world map projections (e.g., Equal Earth with the Americas centered, Mercator projection) for different visual styles and gameplay feels.</li>
-<li><b>Improve Climate Transitions:</b> Smooth the blending between different climate zones for even more natural-looking biome borders.</li>
 <li><b>Backport Support:</b> Bring mod to older, popular TFC versions, including 1.20.1, 1.18.2, and 1.12.2 (if possible).</li>
+<li><b>Improve Climate Transitions:</b> Smooth the blending between different climate zones for even more natural-looking biome borders.</li>
 </ol>
 
 </div>
