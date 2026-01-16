@@ -28,7 +28,10 @@ import net.dries007.tfc.world.region.Units;
 import net.dries007.tfc.world.settings.Settings;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.levelgen.RandomSupport;
+import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.test.TestSetup;
+import net.yazloysasha.tfcrealworld.util.profile.MapProfile;
+import net.yazloysasha.tfcrealworld.util.projection.ProjectionManager;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -363,7 +366,102 @@ public class RegionGeneratorTests implements TestSetup {
           ? Color.MAGENTA
           : Color.PINK
         : continentColor(point);
+      case PROJECTION_GRID -> {
+        Color baseColor = taskColor(
+          DrawnTask.ADD_RIVERS_AND_LAKES,
+          region,
+          x,
+          y
+        );
+        GridLineType gridLineType = getGridLineType(x, y);
+        yield switch (gridLineType) {
+          case THIRTY_DEG -> Color.YELLOW;
+          case TEN_DEG -> Color.BLACK;
+          case NONE -> baseColor;
+        };
+      }
     };
+  }
+
+  private enum GridLineType {
+    NONE,
+    TEN_DEG,
+    THIRTY_DEG,
+  }
+
+  private GridLineType getGridLineType(int gridX, int gridZ) {
+    MapProfile profile = MapProfile.loadFromResources(
+      TFCRealWorldConfig.DEFAULT_MAP_PROFILE
+    );
+
+    double classicX = gridX * Units.GRID_WIDTH_IN_BLOCK;
+    double classicZ = gridZ * Units.GRID_WIDTH_IN_BLOCK;
+
+    double[] geoCoords = ProjectionManager.classicToGeographic(
+      classicX,
+      classicZ,
+      profile.horizontalTileSize(),
+      profile.verticalTileSize(),
+      profile.westEdgeLongitude(),
+      profile.eastEdgeLongitude(),
+      profile.southEdgeLatitude(),
+      profile.northEdgeLatitude(),
+      profile.mapProjection()
+    );
+
+    double longitude = geoCoords[0];
+    double latitude = geoCoords[1];
+
+    if (!Double.isFinite(longitude) || !Double.isFinite(latitude)) {
+      return GridLineType.NONE;
+    }
+
+    double gridStep10 = 10.0;
+    double gridStep30 = 30.0;
+
+    double lonRemainder10 = Math.abs(
+      ((longitude % gridStep10) + gridStep10) % gridStep10
+    );
+    double latRemainder10 = Math.abs(
+      ((latitude % gridStep10) + gridStep10) % gridStep10
+    );
+
+    double lonRemainder30 = Math.abs(
+      ((longitude % gridStep30) + gridStep30) % gridStep30
+    );
+    double latRemainder30 = Math.abs(
+      ((latitude % gridStep30) + gridStep30) % gridStep30
+    );
+
+    double tolerance = 0.3;
+
+    boolean onLongitude10 =
+      lonRemainder10 < tolerance || lonRemainder10 > (gridStep10 - tolerance);
+    boolean onLatitude10 =
+      latRemainder10 < tolerance || latRemainder10 > (gridStep10 - tolerance);
+
+    boolean onLongitude30 =
+      lonRemainder30 < tolerance || lonRemainder30 > (gridStep30 - tolerance);
+    boolean onLatitude30 =
+      latRemainder30 < tolerance || latRemainder30 > (gridStep30 - tolerance);
+
+    double lonNormalized = ((longitude % 360.0) + 360.0) % 360.0;
+    double lonAbs = Math.abs(longitude);
+    double latAbs = Math.abs(latitude);
+    boolean onLongitudeCentral =
+      lonAbs < tolerance || Math.abs(lonNormalized - 180.0) < tolerance;
+    boolean onLatitudeCentral = latAbs < tolerance;
+
+    if (
+      onLongitudeCentral || onLatitudeCentral || onLongitude30 || onLatitude30
+    ) {
+      return GridLineType.THIRTY_DEG;
+    }
+    if (onLongitude10 || onLatitude10) {
+      return GridLineType.TEN_DEG;
+    }
+
+    return GridLineType.NONE;
   }
 
   private boolean isNorthernHemisphere(int z) {
@@ -980,7 +1078,8 @@ public class RegionGeneratorTests implements TestSetup {
     RAINFALL_AFTER_RIVERS(Task.ADD_RIVERS_AND_LAKES),
     KOPPEN_AFTER_RIVERS(Task.ADD_RIVERS_AND_LAKES),
     // Visualize where things can spawn
-    KAOLINITE_CAN_SPAWN(Task.ADD_RIVERS_AND_LAKES);
+    KAOLINITE_CAN_SPAWN(Task.ADD_RIVERS_AND_LAKES),
+    PROJECTION_GRID(Task.ADD_RIVERS_AND_LAKES);
 
     final Task root;
 
