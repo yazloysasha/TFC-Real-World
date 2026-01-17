@@ -1,20 +1,15 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
 import java.lang.reflect.Field;
-import net.dries007.tfc.world.Seed;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.RegionGenerator;
-import net.dries007.tfc.world.settings.Settings;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
-import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedRainfallNoise;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedRainfallVarianceNoise;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedTemperatureNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import org.spongepowered.asm.mixin.Final;
@@ -42,11 +37,7 @@ public class RegionGeneratorMixin {
 
   @Shadow
   @Final
-  private Settings settings;
-
-  @Shadow
-  @Final
-  private Seed seed;
+  private long seed;
 
   private static final Unsafe UNSAFE;
 
@@ -61,14 +52,10 @@ public class RegionGeneratorMixin {
   }
 
   @Inject(method = "<init>", at = @At("TAIL"))
-  private void tfcrealworld$replaceNoises(
-    Settings settings,
-    Seed seed,
-    CallbackInfo ci
-  ) {
+  private void tfcrealworld$replaceNoises(CallbackInfo ci) {
     RegionGenerator instance = (RegionGenerator) (Object) this;
 
-    WorldSeedHolder.setSeed(seed.seed());
+    WorldSeedHolder.setSeed(seed);
 
     try {
       int horizontalTileSize = TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get();
@@ -93,18 +80,9 @@ public class RegionGeneratorMixin {
         initializeAltitudeMap(instance, altitudeNoise);
       }
 
-      if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
-        PNGHotspotsNoise hotspotsNoise = new PNGHotspotsNoise(
-          horizontalTileSize,
-          verticalTileSize
-        );
-        initializeHotspotsMap(instance, hotspotsNoise);
-      }
-
       if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
         initializeKoppenBasedClimateMaps(
           instance,
-          seed,
           horizontalTileSize,
           verticalTileSize
         );
@@ -123,7 +101,6 @@ public class RegionGeneratorMixin {
   ) throws NoSuchFieldException {
     Field continentField =
       RegionGenerator.class.getDeclaredField("continentNoise");
-    @SuppressWarnings("deprecation")
     long offset = UNSAFE.objectFieldOffset(continentField);
     UNSAFE.putObject(instance, offset, continentNoise);
   }
@@ -135,32 +112,8 @@ public class RegionGeneratorMixin {
     AltitudeNoiseRegistry.register(instance, altitudeNoise);
   }
 
-  private void initializeHotspotsMap(
-    RegionGenerator instance,
-    PNGHotspotsNoise hotspotsNoise
-  ) throws NoSuchFieldException {
-    Field hotspotIntensityField =
-      RegionGenerator.class.getDeclaredField("hotSpotIntensityNoise");
-    @SuppressWarnings("deprecation")
-    long intensityOffset = UNSAFE.objectFieldOffset(hotspotIntensityField);
-    UNSAFE.putObject(instance, intensityOffset, hotspotsNoise);
-    Field hotspotAgeField =
-      RegionGenerator.class.getDeclaredField("hotSpotAgeNoise");
-    @SuppressWarnings("deprecation")
-    long ageOffset = UNSAFE.objectFieldOffset(hotspotAgeField);
-    Noise2D ageNoise = new Noise2D() {
-      @Override
-      public double noise(double x, double z) {
-        return hotspotsNoise.getHotSpotAge(x, z);
-      }
-    };
-    UNSAFE.putObject(instance, ageOffset, ageNoise);
-    HotspotsNoiseRegistry.register(instance, hotspotsNoise);
-  }
-
   private void initializeKoppenBasedClimateMaps(
     RegionGenerator instance,
-    Seed seed,
     int horizontalTileSize,
     int verticalTileSize
   ) throws NoSuchFieldException {
@@ -169,10 +122,9 @@ public class RegionGeneratorMixin {
       verticalTileSize
     );
 
-    long koppenSeed = seed.next();
+    long koppenSeed = seed;
     Field tempField =
       RegionGenerator.class.getDeclaredField("temperatureNoise");
-    @SuppressWarnings("deprecation")
     long tempOffset = UNSAFE.objectFieldOffset(tempField);
     UNSAFE.putObject(
       instance,
@@ -182,22 +134,11 @@ public class RegionGeneratorMixin {
 
     Field rainfallField =
       RegionGenerator.class.getDeclaredField("rainfallNoise");
-    @SuppressWarnings("deprecation")
     long rainfallOffset = UNSAFE.objectFieldOffset(rainfallField);
     UNSAFE.putObject(
       instance,
       rainfallOffset,
       new KoppenBasedRainfallNoise(koppenNoise, koppenSeed)
-    );
-
-    Field rainfallVarianceField =
-      RegionGenerator.class.getDeclaredField("rainfallVarianceNoise");
-    @SuppressWarnings("deprecation")
-    long rainVarOffset = UNSAFE.objectFieldOffset(rainfallVarianceField);
-    UNSAFE.putObject(
-      instance,
-      rainVarOffset,
-      new KoppenBasedRainfallVarianceNoise(koppenNoise, koppenSeed)
     );
   }
 }
