@@ -23,8 +23,20 @@ public class OceanDistanceCalculator extends RegionPointCalculator {
       return;
     }
 
+    final int minX = region.minX();
+    final int minZ = region.minZ();
+    final int sizeX = region.sizeX();
+
     forEachPoint(region, point -> {
-      point.distanceToOcean = cache.getDistance(point.x, point.z, point.land());
+      final int index = findPointIndex(region.data(), point);
+      if (index == -1) return;
+
+      final int localX = index % sizeX;
+      final int localZ = index / sizeX;
+      final int gridX = minX + localX;
+      final int gridZ = minZ + localZ;
+
+      point.distanceToOcean = cache.getDistance(gridX, gridZ, point.land());
     });
 
     forEachPoint(region, point -> {
@@ -36,12 +48,28 @@ public class OceanDistanceCalculator extends RegionPointCalculator {
     });
   }
 
+  private int findPointIndex(Region.Point[] data, Region.Point point) {
+    for (int i = 0; i < data.length; i++) {
+      if (data[i] == point) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
   private boolean hasNonIslandLandNeighbor(Region region, Region.Point point) {
+    final int pointIndex = findPointIndex(region.data(), point);
+    if (pointIndex == -1) return false;
+
     for (int dx = -1; dx <= 1; dx++) {
       for (int dz = -1; dz <= 1; dz++) {
         if (dx == 0 && dz == 0) continue;
+
+        final int neighborIndex = region.offset(pointIndex, dx, dz);
+        if (neighborIndex == -1) continue;
+
         @Nullable
-        Region.Point neighbor = region.atOffset(point.index, dx, dz);
+        Region.Point neighbor = region.data()[neighborIndex];
         if (neighbor != null && neighbor.land() && !neighbor.island()) {
           return true;
         }

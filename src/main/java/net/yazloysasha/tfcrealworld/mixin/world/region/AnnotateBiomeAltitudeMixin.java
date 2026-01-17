@@ -27,13 +27,10 @@ public class AnnotateBiomeAltitudeMixin {
     }
   }
 
-  /**
-   * Calculates biomeAltitude directly based on baseLandHeight from altitude map
-   */
   private void calculateBiomeAltitudeFromMap(Region region) {
     final int WIDTH = AnnotateBiomeAltitude.WIDTH;
 
-    for (final var point : region.points()) {
+    for (final var point : region.data()) {
       if (point != null && point.land()) {
         final int baseLandHeight = Byte.toUnsignedInt(point.baseLandHeight);
 

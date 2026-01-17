@@ -30,9 +30,21 @@ public class ChooseBiomesMixin {
     final Area blobArea = context.generator().biomeArea.get();
     final long rngSeed = context.random.nextLong();
 
-    for (final var point : region.points()) {
+    final int minX = region.minX();
+    final int minZ = region.minZ();
+    final int sizeX = region.sizeX();
+
+    for (int index = 0; index < region.data().length; index++) {
+      final var point = region.data()[index];
+      if (point == null) continue;
+
+      final int localX = index % sizeX;
+      final int localZ = index / sizeX;
+      final int gridX = minX + localX;
+      final int gridZ = minZ + localZ;
+
       if (!point.land() && !point.island() && !point.mountain()) {
-        final int areaSeed = blobArea.get(point.x, point.z);
+        final int areaSeed = blobArea.get(gridX, gridZ);
 
         if (point.baseOceanDepth < 4) {
           point.biome = OCEAN;

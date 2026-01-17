@@ -17,7 +17,7 @@ public abstract class RegionPointCalculator {
     Region region,
     Consumer<Region.Point> pointConsumer
   ) {
-    for (final var point : region.points()) {
+    for (final var point : region.data()) {
       if (point != null) {
         pointConsumer.accept(point);
       }
