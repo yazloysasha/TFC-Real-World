@@ -23,10 +23,8 @@ import net.minecraft.world.level.levelgen.XoroshiroRandomSource;
 import net.yazloysasha.tfcrealworld.Artist;
 import net.yazloysasha.tfcrealworld.TestHelper;
 import org.jetbrains.annotations.Nullable;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled
 @SuppressWarnings("SameParameterValue")
 public class RegionGeneratorTest extends TestHelper {
 
