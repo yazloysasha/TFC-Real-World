@@ -1,15 +1,13 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
-import static net.dries007.tfc.world.layer.TFCLayers.DEEP_OCEAN;
-import static net.dries007.tfc.world.layer.TFCLayers.DEEP_OCEAN_TRENCH;
-import static net.dries007.tfc.world.layer.TFCLayers.OCEAN;
-import static net.dries007.tfc.world.layer.TFCLayers.OCEAN_REEF;
+import static net.dries007.tfc.world.layer.TFCLayers.*;
 
 import net.dries007.tfc.world.layer.framework.Area;
 import net.dries007.tfc.world.region.ChooseBiomes;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -17,7 +15,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = ChooseBiomes.class, remap = false)
 public class ChooseBiomesMixin {
 
-  private final int[] midDepthOceanBiomes = { OCEAN, OCEAN_REEF };
+  @Unique
+  private static final int[] midDepthOceanBiomes = new int[] {
+    OCEAN,
+    OCEAN_REEF,
+  };
 
   @Inject(method = "apply", at = @At("TAIL"))
   private void tfcrealworld$overrideOceanBiomes(
