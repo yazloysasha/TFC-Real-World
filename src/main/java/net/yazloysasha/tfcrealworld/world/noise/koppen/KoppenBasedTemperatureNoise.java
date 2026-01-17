@@ -1,20 +1,18 @@
 package net.yazloysasha.tfcrealworld.world.noise.koppen;
 
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
 
-/**
- * Generates temperature noise based on Köppen climate map.
- * Reads the Köppen climate from the map and generates procedural temperature values
- * that are valid for that climate classification.
- *
- * Uses bilinear interpolation between neighboring climates for smooth transitions,
- * and adds procedural variations that are constrained to valid parameter ranges
- * for each climate type.
- */
 public class KoppenBasedTemperatureNoise extends BaseKoppenBasedNoise {
 
-  public KoppenBasedTemperatureNoise(PNGKoppenNoise koppenNoise, long seed) {
-    super(koppenNoise, seed, 0.1f);
+  public KoppenBasedTemperatureNoise(
+    PNGKoppenNoise koppenNoise,
+    PNGTemperatureNoise temperatureNoise,
+    PNGRainfallNoise rainfallNoise,
+    long seed
+  ) {
+    super(koppenNoise, temperatureNoise, rainfallNoise, seed, 0.1f);
   }
 
   @Override

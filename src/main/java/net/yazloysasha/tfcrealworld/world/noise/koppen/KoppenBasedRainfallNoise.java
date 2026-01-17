@@ -1,20 +1,19 @@
 package net.yazloysasha.tfcrealworld.world.noise.koppen;
 
+import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
 
-/**
- * Generates rainfall noise based on Köppen climate map.
- * Reads the Köppen climate from the map and generates procedural rainfall values
- * that are valid for that climate classification.
- *
- * Uses bilinear interpolation between neighboring climates for smooth transitions,
- * and adds procedural variations that are constrained to valid parameter ranges
- * for each climate type.
- */
 public class KoppenBasedRainfallNoise extends BaseKoppenBasedNoise {
 
-  public KoppenBasedRainfallNoise(PNGKoppenNoise koppenNoise, long seed) {
-    super(koppenNoise, seed, 0.1f);
+  public KoppenBasedRainfallNoise(
+    PNGKoppenNoise koppenNoise,
+    PNGTemperatureNoise temperatureNoise,
+    PNGRainfallNoise rainfallNoise,
+    long seed
+  ) {
+    super(koppenNoise, temperatureNoise, rainfallNoise, seed, 0.1f);
   }
 
   @Override
@@ -26,6 +25,6 @@ public class KoppenBasedRainfallNoise extends BaseKoppenBasedNoise {
 
   @Override
   protected double postProcessResult(double result) {
-    return Math.clamp(result, 0.0, 500.0);
+    return Mth.clamp(result, 0.0, 500.0);
   }
 }

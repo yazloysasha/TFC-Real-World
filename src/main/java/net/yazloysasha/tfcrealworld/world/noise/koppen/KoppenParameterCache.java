@@ -7,24 +7,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
+import net.minecraft.util.Mth;
 
 /**
  * Caches valid parameter combinations for each Köppen climate classification.
- * Stores all valid combinations of (temperature, rainfall, rainVar) that lead to each climate,
- * ensuring that randomly selected parameters always produce the correct climate.
- *
- * Uses the same classification logic as KoppenClimateClassification.classify().
- * Based on the approach from maps.py: _build_climate_to_parameters_mapper().
- *
- * Memory-optimized: stores data as primitive arrays instead of objects to reduce memory footprint.
  */
 public class KoppenParameterCache {
 
-  /**
-   * Represents a valid parameter combination for a climate.
-   * Stores temperature, rainfall, and rainVar as a single valid combination.
-   * Uses float instead of double to reduce memory usage.
-   */
   public static class ParameterCombination {
 
     public final float temperature;
@@ -42,11 +31,6 @@ public class KoppenParameterCache {
     }
   }
 
-  /**
-   * Memory-efficient storage for parameter combinations.
-   * Stores data as three parallel arrays (temperatures, rainfalls, rainVars)
-   * instead of objects to reduce memory overhead.
-   */
   private static class ParameterArray {
 
     final float[] temperatures;
@@ -68,6 +52,25 @@ public class KoppenParameterCache {
     }
   }
 
+  private static class ParameterGrid {
+
+    final int gridSize;
+    final ParameterCombination[][] grid;
+
+    ParameterGrid(int gridSize) {
+      this.gridSize = gridSize;
+      this.grid = new ParameterCombination[gridSize][gridSize];
+    }
+
+    void set(int tempIndex, int rainIndex, ParameterCombination params) {
+      grid[tempIndex][rainIndex] = params;
+    }
+
+    ParameterCombination get(int tempIndex, int rainIndex) {
+      return grid[tempIndex][rainIndex];
+    }
+  }
+
   private static KoppenParameterCache instance;
   private final Map<
     KoppenClimateClassification,
@@ -80,6 +83,7 @@ public class KoppenParameterCache {
   private final Map<KoppenClimateClassification, float[]> temperatureRanges;
   private final Map<KoppenClimateClassification, float[]> rainfallRanges;
   private final Map<KoppenClimateClassification, float[]> rainVarRanges;
+  private final Map<KoppenClimateClassification, ParameterGrid> parameterGrids;
 
   private KoppenParameterCache() {
     this.climateCombinations = new HashMap<>();
@@ -89,6 +93,7 @@ public class KoppenParameterCache {
     this.temperatureRanges = new HashMap<>();
     this.rainfallRanges = new HashMap<>();
     this.rainVarRanges = new HashMap<>();
+    this.parameterGrids = new HashMap<>();
     buildCache();
   }
 
@@ -105,73 +110,34 @@ public class KoppenParameterCache {
     }
   }
 
-  /**
-   * Gets a random valid parameter combination for the given climate.
-   */
-  public ParameterCombination getRandomParameters(
+  public ParameterCombination getParametersFromGrayscale(
     KoppenClimateClassification climate,
-    long seed
+    double temperatureGrayscale,
+    double rainfallGrayscale
   ) {
-    ParameterArray combinations = climateCombinations.get(climate);
-    if (combinations == null || combinations.temperatures.length == 0) {
+    ParameterGrid grid = parameterGrids.get(climate);
+    if (grid == null) {
       return new ParameterCombination(5.0f, 100.0f, 0.0f);
     }
 
-    long currentSeed = seed;
-    currentSeed = (currentSeed * 1103515245L + 12345L) & 0x7fffffffL;
-    int index = (int) (currentSeed % combinations.temperatures.length);
-    return combinations.get(index);
-  }
+    double normalizedTemp = Mth.clamp(temperatureGrayscale / 255.0, 0.0, 1.0);
+    double normalizedRain = Mth.clamp(rainfallGrayscale / 255.0, 0.0, 1.0);
 
-  /**
-   * Gets parameter combination by index (0.0 to 1.0) for the given climate.
-   * Index represents position in sorted parameter array, considering all 3 parameters.
-   * Returns valid combination that belongs to the specified climate zone.
-   * Uses linear interpolation between adjacent parameter combinations for smoother transitions.
-   */
-  public ParameterCombination getParametersByIndex(
-    KoppenClimateClassification climate,
-    double index
-  ) {
-    ParameterArray combinations = climateCombinations.get(climate);
-    if (combinations == null || combinations.temperatures.length == 0) {
+    int tempIndex = (int) Math.round(normalizedTemp * (grid.gridSize - 1));
+    int rainIndex = (int) Math.round(normalizedRain * (grid.gridSize - 1));
+
+    tempIndex = Mth.clamp(tempIndex, 0, grid.gridSize - 1);
+    rainIndex = Mth.clamp(rainIndex, 0, grid.gridSize - 1);
+
+    ParameterCombination result = grid.get(tempIndex, rainIndex);
+
+    if (result == null) {
       return new ParameterCombination(5.0f, 100.0f, 0.0f);
     }
 
-    index = Math.clamp(index, 0.0, 1.0);
-
-    int arrayLength = combinations.temperatures.length;
-
-    if (arrayLength == 1) {
-      return combinations.get(0);
-    }
-
-    double exactPosition = index * (arrayLength - 1);
-    int lowerIndex = (int) Math.floor(exactPosition);
-    int upperIndex = Math.min(lowerIndex + 1, arrayLength - 1);
-
-    double t = exactPosition - lowerIndex;
-
-    if (t < 0.001 || lowerIndex == upperIndex) {
-      return combinations.get(lowerIndex);
-    }
-
-    ParameterCombination lower = combinations.get(lowerIndex);
-    ParameterCombination upper = combinations.get(upperIndex);
-
-    float temp = (float) (lower.temperature +
-      (upper.temperature - lower.temperature) * t);
-    float rain = (float) (lower.rainfall +
-      (upper.rainfall - lower.rainfall) * t);
-    float rainVar = (float) (lower.rainVar +
-      (upper.rainVar - lower.rainVar) * t);
-
-    return new ParameterCombination(temp, rain, rainVar);
+    return result;
   }
 
-  /**
-   * Gets the base (average) temperature for the given climate.
-   */
   public float getBaseTemperature(KoppenClimateClassification climate) {
     Float cached = baseTemperatures.get(climate);
     if (cached != null) {
@@ -180,9 +146,6 @@ public class KoppenParameterCache {
     return 5.0f;
   }
 
-  /**
-   * Gets the base (average) rainfall for the given climate.
-   */
   public float getBaseRainfall(KoppenClimateClassification climate) {
     Float cached = baseRainfalls.get(climate);
     if (cached != null) {
@@ -191,9 +154,6 @@ public class KoppenParameterCache {
     return 100.0f;
   }
 
-  /**
-   * Gets the base (average) rainfall variance for the given climate.
-   */
   public float getBaseRainVar(KoppenClimateClassification climate) {
     Float cached = baseRainVars.get(climate);
     if (cached != null) {
@@ -202,9 +162,6 @@ public class KoppenParameterCache {
     return 0.0f;
   }
 
-  /**
-   * Gets the minimum and maximum temperature values for the given climate.
-   */
   public float[] getTemperatureRange(KoppenClimateClassification climate) {
     float[] cached = temperatureRanges.get(climate);
     if (cached != null) {
@@ -213,9 +170,6 @@ public class KoppenParameterCache {
     return new float[] { -20.0f, 30.0f };
   }
 
-  /**
-   * Gets the minimum and maximum rainfall values for the given climate.
-   */
   public float[] getRainfallRange(KoppenClimateClassification climate) {
     float[] cached = rainfallRanges.get(climate);
     if (cached != null) {
@@ -224,9 +178,6 @@ public class KoppenParameterCache {
     return new float[] { 0.0f, 500.0f };
   }
 
-  /**
-   * Gets the minimum and maximum rainfall variance values for the given climate.
-   */
   public float[] getRainVarRange(KoppenClimateClassification climate) {
     float[] cached = rainVarRanges.get(climate);
     if (cached != null) {
@@ -235,22 +186,15 @@ public class KoppenParameterCache {
     return new float[] { -1.0f, 1.0f };
   }
 
-  /**
-   * Builds the cache by analyzing all possible parameter combinations
-   * and grouping them by resulting climate classification.
-   * Stores all valid combinations for each climate, ensuring that randomly selected
-   * parameters always produce the correct climate.
-   */
   private void buildCache() {
     float[] temperatures = generateRange(-20.0f, 30.0f, 1.0f);
     float[] rainfalls = generateRange(0.0f, 500.0f, 10.0f);
     float[] rainVars = generateRange(-1.0f, 1.0f, 0.1f);
+
     Map<KoppenClimateClassification, Integer> climateCounts = new HashMap<>();
     for (KoppenClimateClassification climate : KoppenClimateClassification.values()) {
       climateCounts.put(climate, 0);
     }
-
-    int processed = 0;
 
     for (float temp : temperatures) {
       for (float rain : rainfalls) {
@@ -258,7 +202,6 @@ public class KoppenParameterCache {
           KoppenClimateClassification climate =
             KoppenClimateClassification.classify(temp, rain, rainVar, true);
           climateCounts.put(climate, climateCounts.get(climate) + 1);
-          processed++;
         }
       }
     }
@@ -300,19 +243,6 @@ public class KoppenParameterCache {
       }
     }
 
-    int totalCombinations = climateCombinations
-      .values()
-      .stream()
-      .mapToInt(array -> array.temperatures.length)
-      .sum();
-
-    for (KoppenClimateClassification climate : KoppenClimateClassification.values()) {
-      ParameterArray combinations = climateCombinations.get(climate);
-      if (combinations == null || combinations.temperatures.length == 0) {
-        // No valid combinations for this climate - using defaults when needed
-      }
-    }
-
     for (KoppenClimateClassification climate : KoppenClimateClassification.values()) {
       ParameterArray combinations = climateCombinations.get(climate);
       if (combinations != null && combinations.temperatures.length > 0) {
@@ -351,6 +281,8 @@ public class KoppenParameterCache {
         }
         baseRainVars.put(climate, rainVarSum / combinations.rainVars.length);
         rainVarRanges.put(climate, new float[] { rainVarMin, rainVarMax });
+
+        parameterGrids.put(climate, buildParameterGrid(climate, combinations));
       } else {
         baseTemperatures.put(climate, 5.0f);
         temperatureRanges.put(climate, new float[] { -20.0f, 30.0f });
@@ -362,11 +294,77 @@ public class KoppenParameterCache {
     }
   }
 
-  /**
-   * Sorts parameter array by all three parameters simultaneously with equal weights.
-   * All parameters are normalized to [0, 1] range and then combined with equal weights (100 each).
-   * This ensures smooth interpolation across all parameters, not just temperature.
-   */
+  private ParameterGrid buildParameterGrid(
+    KoppenClimateClassification climate,
+    ParameterArray combinations
+  ) {
+    final int GRID_SIZE = 64;
+    ParameterGrid grid = new ParameterGrid(GRID_SIZE);
+
+    float[] tempRange = temperatureRanges.get(climate);
+    float[] rainRange = rainfallRanges.get(climate);
+
+    if (combinations.temperatures.length == 0) {
+      return grid;
+    }
+
+    for (int tempIndex = 0; tempIndex < GRID_SIZE; tempIndex++) {
+      float targetTemp =
+        tempRange[0] +
+        ((tempRange[1] - tempRange[0]) * tempIndex) / (GRID_SIZE - 1);
+
+      for (int rainIndex = 0; rainIndex < GRID_SIZE; rainIndex++) {
+        float targetRain =
+          rainRange[0] +
+          ((rainRange[1] - rainRange[0]) * rainIndex) / (GRID_SIZE - 1);
+
+        ParameterCombination closest = findClosestCombination(
+          combinations,
+          targetTemp,
+          targetRain,
+          tempRange,
+          rainRange
+        );
+
+        grid.set(tempIndex, rainIndex, closest);
+      }
+    }
+
+    return grid;
+  }
+
+  private ParameterCombination findClosestCombination(
+    ParameterArray combinations,
+    float targetTemp,
+    float targetRain,
+    float[] tempRange,
+    float[] rainRange
+  ) {
+    float minDistance = Float.MAX_VALUE;
+    int bestIndex = 0;
+
+    float tempSpan = tempRange[1] - tempRange[0];
+    float rainSpan = rainRange[1] - rainRange[0];
+
+    if (tempSpan < 0.001f) tempSpan = 1.0f;
+    if (rainSpan < 0.001f) rainSpan = 1.0f;
+
+    for (int i = 0; i < combinations.temperatures.length; i++) {
+      float normTempDiff =
+        (combinations.temperatures[i] - targetTemp) / tempSpan;
+      float normRainDiff = (combinations.rainfalls[i] - targetRain) / rainSpan;
+      float distance =
+        normTempDiff * normTempDiff + normRainDiff * normRainDiff;
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        bestIndex = i;
+      }
+    }
+
+    return combinations.get(bestIndex);
+  }
+
   private void sortParameterArray(ParameterArray array) {
     int length = array.temperatures.length;
     if (length <= 1) {

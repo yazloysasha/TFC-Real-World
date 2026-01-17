@@ -16,6 +16,8 @@ import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
 import org.spongepowered.asm.mixin.Final;
@@ -171,6 +173,15 @@ public class RegionGeneratorMixin {
       verticalTileSize
     );
 
+    PNGTemperatureNoise temperatureNoise = new PNGTemperatureNoise(
+      horizontalTileSize,
+      verticalTileSize
+    );
+    PNGRainfallNoise rainfallNoise = new PNGRainfallNoise(
+      horizontalTileSize,
+      verticalTileSize
+    );
+
     long koppenSeed = seed.next();
     Field tempField =
       RegionGenerator.class.getDeclaredField("temperatureNoise");
@@ -179,7 +190,12 @@ public class RegionGeneratorMixin {
     UNSAFE.putObject(
       instance,
       tempOffset,
-      new KoppenBasedTemperatureNoise(koppenNoise, koppenSeed)
+      new KoppenBasedTemperatureNoise(
+        koppenNoise,
+        temperatureNoise,
+        rainfallNoise,
+        koppenSeed
+      )
     );
 
     Field rainfallField =
@@ -189,7 +205,12 @@ public class RegionGeneratorMixin {
     UNSAFE.putObject(
       instance,
       rainfallOffset,
-      new KoppenBasedRainfallNoise(koppenNoise, koppenSeed)
+      new KoppenBasedRainfallNoise(
+        koppenNoise,
+        temperatureNoise,
+        rainfallNoise,
+        koppenSeed
+      )
     );
 
     Field rainfallVarianceField =
@@ -199,7 +220,12 @@ public class RegionGeneratorMixin {
     UNSAFE.putObject(
       instance,
       rainVarOffset,
-      new KoppenBasedRainfallVarianceNoise(koppenNoise, koppenSeed)
+      new KoppenBasedRainfallVarianceNoise(
+        koppenNoise,
+        temperatureNoise,
+        rainfallNoise,
+        koppenSeed
+      )
     );
   }
 }
