@@ -3,13 +3,11 @@ package net.yazloysasha.tfcrealworld.mixin.client.screen;
 import com.mojang.serialization.Codec;
 import java.util.List;
 import net.dries007.tfc.client.screen.CreateTFCWorldScreen;
-import net.dries007.tfc.world.settings.Settings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.components.OptionsList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
@@ -22,9 +20,8 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-@Mixin(value = CreateTFCWorldScreen.class, remap = false)
+@Mixin(CreateTFCWorldScreen.class)
 public class CreateTFCWorldScreenMixin {
 
   @Unique
@@ -89,9 +86,6 @@ public class CreateTFCWorldScreenMixin {
 
   @Unique
   private OptionInstance<Boolean> koppenFromMap;
-
-  @Unique
-  private OptionInstance<Boolean> emptyOption;
 
   @Unique
   private static String getCaption(String suffix) {
@@ -245,21 +239,35 @@ public class CreateTFCWorldScreenMixin {
 
   @Unique
   private void addOptionsToList(OptionsList options) {
+    options.children().clear();
+
+    OptionInstance<Boolean> emptyOption = new OptionInstance<>(
+      "",
+      OptionInstance.noTooltip(),
+      (text, value) -> Component.empty(),
+      OptionInstance.BOOLEAN_VALUES,
+      false,
+      value -> {}
+    );
+
     options.addSmall(mapProfile, spawnMode);
     options.addSmall(spawnCenterLongitude, spawnCenterLatitude);
     options.addSmall(spawnCenterX, spawnCenterZ);
     options.addSmall(spawnDistance, canyonsNotVolcanic);
-    options.addSmall(flatBedrock, continentalness);
-    options.addSmall(grassDensity, temperatureConstant);
-    options.addSmall(rainfallConstant, temperatureScale);
-    options.addSmall(rainfallScale, horizontalTileSize);
-    options.addSmall(verticalTileSize, continentFromMap);
-    options.addSmall(altitudeFromMap, hotspotsFromMap);
-    options.addSmall(koppenFromMap, emptyOption);
+    options.addSmall(flatBedrock, emptyOption);
+    options.addSmall(continentalness, grassDensity);
+    options.addSmall(temperatureConstant, rainfallConstant);
+    options.addSmall(temperatureScale, rainfallScale);
+    options.addSmall(horizontalTileSize, verticalTileSize);
+    options.addSmall(continentFromMap, altitudeFromMap);
+    options.addSmall(hotspotsFromMap, koppenFromMap);
   }
 
-  @Inject(method = "init()V", at = @At("HEAD"))
+  @Inject(method = "init", at = @At("HEAD"))
   private void tfcrealworld$initAdditionalOptions(CallbackInfo ci) {
+    final CreateTFCWorldScreenAccessor accessor =
+      (CreateTFCWorldScreenAccessor) (Object) this;
+
     List<String> availableProfiles = ProfileManager.discoverProfiles();
     String defaultProfile = TFCRealWorldConfig.MAP_PROFILE.get();
     if (!availableProfiles.contains(defaultProfile)) {
@@ -293,10 +301,6 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get(),
       value -> {}
     );
-
-    final CreateTFCWorldScreenAccessor accessor =
-      (CreateTFCWorldScreenAccessor) (Object) this;
-
     horizontalTileSize = accessor.tfcrealworld$invokeKmOption(
       getCaption("create_world.horizontal_tile_size"),
       TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.getMin(),
@@ -329,29 +333,25 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.KOPPEN_FROM_MAP.get(),
       value -> {}
     );
-    emptyOption = OptionInstance.createBoolean("", false, value -> {});
   }
 
   @Inject(
-    method = "init()V",
+    method = "init",
     at = @At(
       value = "INVOKE",
       target = "Lnet/minecraft/client/gui/components/OptionsList;addSmall(Lnet/minecraft/client/OptionInstance;Lnet/minecraft/client/OptionInstance;)V",
-      ordinal = 0,
-      shift = At.Shift.BEFORE
-    ),
-    locals = LocalCapture.CAPTURE_FAILHARD
+      ordinal = 4,
+      shift = At.Shift.AFTER
+    )
   )
-  private void tfcrealworld$addAllOptions(
-    CallbackInfo ci,
-    ChunkGenerator generator,
-    Settings settings,
-    OptionsList options
-  ) {
+  private void tfcrealworld$addAllOptions(CallbackInfo ci) {
+    final CreateTFCWorldScreenAccessor accessor =
+      (CreateTFCWorldScreenAccessor) (Object) this;
+    OptionsList options = accessor.tfcrealworld$getOptions();
     addOptionsToList(options);
   }
 
-  @Inject(method = "applySettings", at = @At("TAIL"))
+  @Inject(method = "applySettings", at = @At("TAIL"), remap = false)
   private void tfcrealworld$applyAdditionalSettings(CallbackInfo ci) {
     String previousProfile = TFCRealWorldConfig.MAP_PROFILE.get();
     String newProfile = mapProfile.get();
