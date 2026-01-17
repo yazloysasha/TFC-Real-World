@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(AddMountains.class)
+@Mixin(value = AddMountains.class, remap = false)
 public class AddMountainsMixin {
 
   @Inject(method = "apply", at = @At("HEAD"), cancellable = true)

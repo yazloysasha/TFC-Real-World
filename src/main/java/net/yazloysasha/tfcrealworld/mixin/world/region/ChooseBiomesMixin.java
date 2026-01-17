@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ChooseBiomes.class)
+@Mixin(value = ChooseBiomes.class, remap = false)
 public class ChooseBiomesMixin {
 
   private final int[] midDepthOceanBiomes = { OCEAN, OCEAN_REEF };

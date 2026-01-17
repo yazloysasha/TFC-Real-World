@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import sun.misc.Unsafe;
 
-@Mixin(RegionGenerator.class)
+@Mixin(value = RegionGenerator.class, remap = false)
 public class RegionGeneratorMixin {
 
   @Shadow

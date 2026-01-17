@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * Overrides biome altitude annotation logic when using altitude map.
  * Instead of BFS from mountains, directly calculates biomeAltitude based on baseLandHeight from map.
  */
-@Mixin(AnnotateBiomeAltitude.class)
+@Mixin(value = AnnotateBiomeAltitude.class, remap = false)
 public class AnnotateBiomeAltitudeMixin {
 
   @Inject(method = "apply", at = @At("HEAD"), cancellable = true)

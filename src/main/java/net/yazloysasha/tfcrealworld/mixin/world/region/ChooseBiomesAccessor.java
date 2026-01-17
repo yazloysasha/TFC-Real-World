@@ -4,7 +4,7 @@ import net.dries007.tfc.world.region.ChooseBiomes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
-@Mixin(ChooseBiomes.class)
+@Mixin(value = ChooseBiomes.class, remap = false)
 public interface ChooseBiomesAccessor {
   @Invoker("randomSeededFrom")
   int tfcrealworld$invokeRandomSeededFrom(

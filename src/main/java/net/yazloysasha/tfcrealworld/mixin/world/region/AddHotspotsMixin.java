@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(AddHotspots.class)
+@Mixin(value = AddHotspots.class, remap = false)
 public class AddHotspotsMixin {
 
   @Inject(method = "apply", at = @At("TAIL"))

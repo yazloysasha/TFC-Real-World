@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * When using continent map, flood fill stage is skipped
  * to preserve inland seas drawn on the map.
  */
-@Mixin(FloodFillSmallOceans.class)
+@Mixin(value = FloodFillSmallOceans.class, remap = false)
 public class FloodFillSmallOceansMixin {
 
   @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
