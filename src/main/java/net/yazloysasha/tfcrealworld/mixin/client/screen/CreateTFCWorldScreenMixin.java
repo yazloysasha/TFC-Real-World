@@ -36,37 +36,37 @@ public class CreateTFCWorldScreenMixin {
   @Unique
   private OptionInstance<Double> spawnCenterLatitude;
 
-  @Shadow
+  @Shadow(remap = false)
   private OptionInstance<Integer> spawnCenterX;
 
-  @Shadow
+  @Shadow(remap = false)
   private OptionInstance<Integer> spawnCenterZ;
 
-  @Shadow
+  @Shadow(remap = false)
   private OptionInstance<Integer> spawnDistance;
 
   @Unique
   private OptionInstance<Boolean> canyonsNotVolcanic;
 
-  @Shadow
+  @Shadow(remap = false)
   private OptionInstance<Boolean> flatBedrock;
 
-  @Shadow
+  @Shadow(remap = false)
   private OptionInstance<Double> continentalness;
 
-  @Shadow
+  @Shadow(remap = false)
   private OptionInstance<Double> grassDensity;
 
-  @Shadow
+  @Shadow(remap = false)
   private OptionInstance<Double> temperatureConstant;
 
-  @Shadow
+  @Shadow(remap = false)
   private OptionInstance<Double> rainfallConstant;
 
-  @Shadow
+  @Shadow(remap = false)
   private OptionInstance<Integer> temperatureScale;
 
-  @Shadow
+  @Shadow(remap = false)
   private OptionInstance<Integer> rainfallScale;
 
   @Unique
