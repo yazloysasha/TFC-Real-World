@@ -234,14 +234,11 @@ public class CreateTFCWorldScreenMixin {
     horizontalTileSize.set(profile.horizontalTileSize());
     verticalTileSize.set(profile.verticalTileSize());
 
-    // Пересоздаем OptionsList чтобы обновить виджеты
     final CreateTFCWorldScreenAccessor accessor =
       (CreateTFCWorldScreenAccessor) (Object) this;
     OptionsList options = accessor.tfcrealworld$getOptions();
     if (options != null) {
-      // Очищаем старые опции
       options.children().clear();
-      // Добавляем заново все опции с обновленными значениями
       addOptionsToList(options);
     }
   }
