@@ -241,7 +241,6 @@ public class KoppenParameterCache {
    * and grouping them by resulting climate classification.
    * Stores all valid combinations for each climate, ensuring that randomly selected
    * parameters always produce the correct climate.
-   * Based on _build_climate_to_parameters_mapper() from maps.py.
    */
   private void buildCache() {
     float[] temperatures = generateRange(-20.0f, 30.0f, 1.0f);
