@@ -7,7 +7,6 @@
   "mixins": [
     "world.biome.BiomeExtensionMixin",
     "world.biome.BiomeSourceExtensionMixin",
-    "world.region.AddHotspotsMixin",
     "world.region.AddMountainsMixin",
     "world.region.AnnotateBaseLandHeightMixin",
     "world.region.AnnotateBiomeAltitudeMixin",
