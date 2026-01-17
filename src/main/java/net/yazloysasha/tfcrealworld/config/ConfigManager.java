@@ -122,11 +122,6 @@ public class ConfigManager {
           "world_generation.flat_bedrock",
           TFCRealWorldConfig.FLAT_BEDROCK.get()
         ),
-        getBoolean(
-          config,
-          "world_generation.finite_continents",
-          TFCRealWorldConfig.FINITE_CONTINENTS.get()
-        ),
         getDouble(
           config,
           "world_generation.continentalness",
@@ -285,7 +280,6 @@ public class ConfigManager {
       TFCRealWorldConfig.SPAWN_DISTANCE.get(),
       TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get(),
       TFCRealWorldConfig.FLAT_BEDROCK.get(),
-      TFCRealWorldConfig.FINITE_CONTINENTS.get(),
       TFCRealWorldConfig.CONTINENTALNESS.get(),
       TFCRealWorldConfig.GRASS_DENSITY.get(),
       TFCRealWorldConfig.TEMPERATURE_CONSTANT.get(),

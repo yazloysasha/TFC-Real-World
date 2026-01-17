@@ -29,7 +29,6 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Integer> SPAWN_DISTANCE;
   public static final ConfigOption<Boolean> CANYONS_NOT_VOLCANIC;
   public static final ConfigOption<Boolean> FLAT_BEDROCK;
-  public static final ConfigOption<Boolean> FINITE_CONTINENTS;
   public static final ConfigOption<Double> CONTINENTALNESS;
   public static final ConfigOption<Double> GRASS_DENSITY;
   public static final ConfigOption<Double> TEMPERATURE_CONSTANT;
@@ -133,12 +132,6 @@ public class TFCRealWorldConfig {
       BUILDER,
       "flat_bedrock",
       "Whether bedrock is flat",
-      false
-    );
-    FINITE_CONTINENTS = new ConfigOption<>(
-      BUILDER,
-      "finite_continents",
-      "Whether continents are finite",
       false
     );
     CONTINENTALNESS = new ConfigOption<>(
@@ -252,7 +245,6 @@ public class TFCRealWorldConfig {
       SPAWN_CENTER_Z,
       SPAWN_DISTANCE,
       FLAT_BEDROCK,
-      FINITE_CONTINENTS,
       CONTINENTALNESS,
       GRASS_DENSITY,
       TEMPERATURE_CONSTANT,
@@ -279,7 +271,6 @@ public class TFCRealWorldConfig {
     int spawnDistance,
     boolean canyonsNotVolcanic,
     boolean flatBedrock,
-    boolean finiteContinents,
     double continentalness,
     double grassDensity,
     double temperatureConstant,
@@ -302,7 +293,6 @@ public class TFCRealWorldConfig {
     SPAWN_DISTANCE.setServerValue(spawnDistance);
     CANYONS_NOT_VOLCANIC.setServerValue(canyonsNotVolcanic);
     FLAT_BEDROCK.setServerValue(flatBedrock);
-    FINITE_CONTINENTS.setServerValue(finiteContinents);
     CONTINENTALNESS.setServerValue(continentalness);
     GRASS_DENSITY.setServerValue(grassDensity);
     TEMPERATURE_CONSTANT.setServerValue(temperatureConstant);

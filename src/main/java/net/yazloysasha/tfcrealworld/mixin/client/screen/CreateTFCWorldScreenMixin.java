@@ -57,8 +57,8 @@ public class CreateTFCWorldScreenMixin {
   @Shadow
   private OptionInstance<Boolean> flatBedrock;
 
-  @Shadow
-  private OptionInstance<Boolean> finiteContinents;
+  @Unique
+  private OptionInstance<Boolean> emptyOption;
 
   @Shadow
   private OptionInstance<Double> continentalness;
@@ -371,6 +371,7 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.KOPPEN_FROM_MAP.get(),
       value -> {}
     );
+    emptyOption = OptionInstance.createBoolean("", false, value -> {});
   }
 
   @Inject(
@@ -412,7 +413,7 @@ public class CreateTFCWorldScreenMixin {
       accessor.tfcrealworld$invokeSmallButton(canyonsNotVolcanic)
     );
     builder.addChild(accessor.tfcrealworld$invokeSmallButton(flatBedrock));
-    builder.addChild(accessor.tfcrealworld$invokeSmallButton(finiteContinents));
+    builder.addChild(accessor.tfcrealworld$invokeSmallButton(emptyOption));
     builder.addChild(accessor.tfcrealworld$invokeSmallButton(continentalness));
 
     optionsCount = 0;
@@ -482,7 +483,6 @@ public class CreateTFCWorldScreenMixin {
     TFCRealWorldConfig.SPAWN_DISTANCE.set(spawnDistance.get());
     TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.set(canyonsNotVolcanic.get());
     TFCRealWorldConfig.FLAT_BEDROCK.set(flatBedrock.get());
-    TFCRealWorldConfig.FINITE_CONTINENTS.set(finiteContinents.get());
     TFCRealWorldConfig.CONTINENTALNESS.set(continentalness.get());
     TFCRealWorldConfig.GRASS_DENSITY.set(grassDensity.get());
     TFCRealWorldConfig.TEMPERATURE_CONSTANT.set(

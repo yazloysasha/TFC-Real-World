@@ -59,18 +59,6 @@ public class SettingsMixin {
   }
 
   @Inject(
-    method = "finiteContinents",
-    at = @At("RETURN"),
-    cancellable = true,
-    remap = false
-  )
-  private void tfcrealworld$overrideFiniteContinents(
-    CallbackInfoReturnable<Boolean> cir
-  ) {
-    cir.setReturnValue(TFCRealWorldConfig.FINITE_CONTINENTS.get());
-  }
-
-  @Inject(
     method = "continentalness",
     at = @At("RETURN"),
     cancellable = true,
