@@ -1,5 +1,6 @@
-package net.yazloysasha.tfcrealworld.test.drawing;
+package net.yazloysasha.tfcrealworld;
 
+import com.google.common.base.Preconditions;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -15,14 +16,13 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import javax.imageio.ImageIO;
+import net.minecraft.util.Mth;
 
 /**
  * Drawing utility.
  */
 @SuppressWarnings({ "unchecked", "UnusedReturnValue" })
 public abstract class Artist<T, A extends Artist<T, A>> {
-
-  public static final String ARTIST_DIRECTORY = "../../artist";
 
   public static Artist.Raw raw() {
     return new Raw(); // An empty artist, for drawing direct pixel -> color objects
@@ -136,9 +136,9 @@ public abstract class Artist<T, A extends Artist<T, A>> {
 
   public void draw(String name, T instance) {
     try {
-      new File(ARTIST_DIRECTORY).mkdirs();
+      new File("artist").mkdirs();
 
-      final File outFile = new File(ARTIST_DIRECTORY + "/" + name + ".png");
+      final File outFile = new File("artist/" + name + ".png");
       final BufferedImage image = new BufferedImage(
         width,
         height,
@@ -301,8 +301,10 @@ public abstract class Artist<T, A extends Artist<T, A>> {
     }
 
     public static DoubleFunction<Color> multiLinearGradient(Color... colors) {
-      assert colors.length >
-      2 : "Must have at least three colors for multi-linear gradient";
+      Preconditions.checkArgument(
+        colors.length > 2,
+        "Must have at least three colors for multi-linear gradient"
+      );
       final DoubleFunction<Color>[] parts = IntStream.range(
         0,
         colors.length - 1
@@ -310,7 +312,7 @@ public abstract class Artist<T, A extends Artist<T, A>> {
         .mapToObj(i -> linearGradient(colors[i], colors[i + 1]))
         .toArray(DoubleFunction[]::new);
       return value ->
-        parts[(int) Math.floor(value * parts.length)].apply(
+        parts[Mth.floor(value * parts.length)].apply(
             (value * parts.length) % 1
           );
     }
