@@ -16,6 +16,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.inventory.TransientCraftingContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.GameData;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeAll;
@@ -45,10 +46,42 @@ public class TestHelper {
         fail("Unable to set SharedConstants#CURRENT_VERSION", e);
       }
 
+      try {
+        final Class<?> modListClass = ModList.class;
+        Field instanceField = null;
+        for (Field f : modListClass.getDeclaredFields()) {
+          if (f.getName().equals("INSTANCE") || f.getType() == modListClass) {
+            instanceField = f;
+            break;
+          }
+        }
+
+        if (instanceField != null) {
+          instanceField.setAccessible(true);
+          java.lang.reflect.Constructor<?> constructor =
+            modListClass.getDeclaredConstructor(
+              java.util.List.class,
+              java.util.List.class
+            );
+          constructor.setAccessible(true);
+          Object mockInstance = constructor.newInstance(
+            java.util.Collections.emptyList(),
+            java.util.Collections.emptyList()
+          );
+
+          Field indexedModsField = modListClass.getDeclaredField("indexedMods");
+          indexedModsField.setAccessible(true);
+          indexedModsField.set(mockInstance, new java.util.HashMap<>());
+
+          instanceField.set(null, mockInstance);
+        }
+      } catch (Exception e) {
+        fail("Unable to mock ModList", e);
+      }
+
       Bootstrap.bootStrap();
       GameData.unfreezeData();
 
-      // Various TFC bootstraps that we can do
       ItemStackModifiers.registerItemStackModifierTypes();
       TFCIngredients.registerIngredientTypes();
     }
