@@ -3,55 +3,50 @@ package net.yazloysasha.tfcrealworld.world.noise.png;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
-import net.dries007.tfc.util.climate.KoppenClimateClassification;
 import net.dries007.tfc.world.region.Units;
 import net.minecraft.util.Mth;
+import net.yazloysasha.tfcrealworld.world.climate.KoppenClimateCode;
 
 /**
  * Noise generator that reads Köppen climate classification from a PNG map.
- * The map uses indexed color with fixed colors matching KOPPEN_COLORS from maps.py.
- * Returns the Köppen climate code as a string (e.g., "AF", "BWH", etc.).
  */
 public class PNGKoppenNoise {
 
-  // Köppen climate classification colors (from maps.py)
-  private static final Map<
-    Integer,
-    KoppenClimateClassification
-  > COLOR_TO_CLIMATE = new HashMap<>();
+  private static final Map<Integer, KoppenClimateCode> COLOR_TO_CLIMATE =
+    new HashMap<>();
 
   static {
-    COLOR_TO_CLIMATE.put(rgb(0, 0, 220), KoppenClimateClassification.AF);
-    COLOR_TO_CLIMATE.put(rgb(0, 100, 240), KoppenClimateClassification.AS);
-    COLOR_TO_CLIMATE.put(rgb(0, 150, 220), KoppenClimateClassification.AW);
-    COLOR_TO_CLIMATE.put(rgb(40, 80, 200), KoppenClimateClassification.AM);
-    COLOR_TO_CLIMATE.put(rgb(210, 0, 0), KoppenClimateClassification.BWH);
-    COLOR_TO_CLIMATE.put(rgb(210, 120, 0), KoppenClimateClassification.BSH);
-    COLOR_TO_CLIMATE.put(rgb(200, 80, 80), KoppenClimateClassification.BWK);
-    COLOR_TO_CLIMATE.put(rgb(200, 120, 60), KoppenClimateClassification.BSK);
-    COLOR_TO_CLIMATE.put(rgb(250, 250, 0), KoppenClimateClassification.CSA);
-    COLOR_TO_CLIMATE.put(rgb(180, 180, 0), KoppenClimateClassification.CSB);
-    COLOR_TO_CLIMATE.put(rgb(120, 120, 0), KoppenClimateClassification.CSC);
-    COLOR_TO_CLIMATE.put(rgb(100, 240, 130), KoppenClimateClassification.CWA);
-    COLOR_TO_CLIMATE.put(rgb(80, 210, 120), KoppenClimateClassification.CWB);
-    COLOR_TO_CLIMATE.put(rgb(70, 160, 110), KoppenClimateClassification.CWC);
-    COLOR_TO_CLIMATE.put(rgb(170, 240, 90), KoppenClimateClassification.CFA);
-    COLOR_TO_CLIMATE.put(rgb(140, 200, 80), KoppenClimateClassification.CFB);
-    COLOR_TO_CLIMATE.put(rgb(110, 170, 70), KoppenClimateClassification.CFC);
-    COLOR_TO_CLIMATE.put(rgb(190, 20, 190), KoppenClimateClassification.DSA);
-    COLOR_TO_CLIMATE.put(rgb(160, 20, 180), KoppenClimateClassification.DSB);
-    COLOR_TO_CLIMATE.put(rgb(130, 20, 170), KoppenClimateClassification.DSC);
-    COLOR_TO_CLIMATE.put(rgb(100, 20, 160), KoppenClimateClassification.DSD);
-    COLOR_TO_CLIMATE.put(rgb(40, 190, 190), KoppenClimateClassification.DFA);
-    COLOR_TO_CLIMATE.put(rgb(30, 170, 170), KoppenClimateClassification.DFB);
-    COLOR_TO_CLIMATE.put(rgb(20, 150, 140), KoppenClimateClassification.DFC);
-    COLOR_TO_CLIMATE.put(rgb(10, 130, 110), KoppenClimateClassification.DFD);
-    COLOR_TO_CLIMATE.put(rgb(80, 80, 220), KoppenClimateClassification.DWA);
-    COLOR_TO_CLIMATE.put(rgb(70, 70, 190), KoppenClimateClassification.DWB);
-    COLOR_TO_CLIMATE.put(rgb(60, 60, 160), KoppenClimateClassification.DWC);
-    COLOR_TO_CLIMATE.put(rgb(60, 60, 130), KoppenClimateClassification.DWD);
-    COLOR_TO_CLIMATE.put(rgb(190, 190, 190), KoppenClimateClassification.ET);
-    COLOR_TO_CLIMATE.put(rgb(80, 80, 80), KoppenClimateClassification.EF);
+    COLOR_TO_CLIMATE.put(rgb(0, 0, 220), KoppenClimateCode.AF);
+    COLOR_TO_CLIMATE.put(rgb(0, 100, 240), KoppenClimateCode.AS);
+    COLOR_TO_CLIMATE.put(rgb(0, 150, 220), KoppenClimateCode.AW);
+    COLOR_TO_CLIMATE.put(rgb(40, 80, 200), KoppenClimateCode.AM);
+    COLOR_TO_CLIMATE.put(rgb(210, 0, 0), KoppenClimateCode.BWH);
+    COLOR_TO_CLIMATE.put(rgb(210, 120, 0), KoppenClimateCode.BSH);
+    COLOR_TO_CLIMATE.put(rgb(200, 80, 80), KoppenClimateCode.BWK);
+    COLOR_TO_CLIMATE.put(rgb(200, 120, 60), KoppenClimateCode.BSK);
+    COLOR_TO_CLIMATE.put(rgb(250, 250, 0), KoppenClimateCode.CSA);
+    COLOR_TO_CLIMATE.put(rgb(180, 180, 0), KoppenClimateCode.CSB);
+    COLOR_TO_CLIMATE.put(rgb(120, 120, 0), KoppenClimateCode.CSC);
+    COLOR_TO_CLIMATE.put(rgb(100, 240, 130), KoppenClimateCode.CWA);
+    COLOR_TO_CLIMATE.put(rgb(80, 210, 120), KoppenClimateCode.CWB);
+    COLOR_TO_CLIMATE.put(rgb(70, 160, 110), KoppenClimateCode.CWC);
+    COLOR_TO_CLIMATE.put(rgb(170, 240, 90), KoppenClimateCode.CFA);
+    COLOR_TO_CLIMATE.put(rgb(140, 200, 80), KoppenClimateCode.CFB);
+    COLOR_TO_CLIMATE.put(rgb(110, 170, 70), KoppenClimateCode.CFC);
+    COLOR_TO_CLIMATE.put(rgb(190, 20, 190), KoppenClimateCode.DSA);
+    COLOR_TO_CLIMATE.put(rgb(160, 20, 180), KoppenClimateCode.DSB);
+    COLOR_TO_CLIMATE.put(rgb(130, 20, 170), KoppenClimateCode.DSC);
+    COLOR_TO_CLIMATE.put(rgb(100, 20, 160), KoppenClimateCode.DSD);
+    COLOR_TO_CLIMATE.put(rgb(40, 190, 190), KoppenClimateCode.DFA);
+    COLOR_TO_CLIMATE.put(rgb(30, 170, 170), KoppenClimateCode.DFB);
+    COLOR_TO_CLIMATE.put(rgb(20, 150, 140), KoppenClimateCode.DFC);
+    COLOR_TO_CLIMATE.put(rgb(10, 130, 110), KoppenClimateCode.DFD);
+    COLOR_TO_CLIMATE.put(rgb(80, 80, 220), KoppenClimateCode.DWA);
+    COLOR_TO_CLIMATE.put(rgb(70, 70, 190), KoppenClimateCode.DWB);
+    COLOR_TO_CLIMATE.put(rgb(60, 60, 160), KoppenClimateCode.DWC);
+    COLOR_TO_CLIMATE.put(rgb(60, 60, 130), KoppenClimateCode.DWD);
+    COLOR_TO_CLIMATE.put(rgb(190, 190, 190), KoppenClimateCode.ET);
+    COLOR_TO_CLIMATE.put(rgb(80, 80, 80), KoppenClimateCode.EF);
   }
 
   private static int rgb(int r, int g, int b) {
@@ -98,19 +93,11 @@ public class PNGKoppenNoise {
     this.scaleZ = height / (2.0 * tileRadiusGridZ);
   }
 
-  /**
-   * Gets the Köppen climate classification at the given tile coordinates.
-   * Uses bilinear interpolation to sample from the map.
-   */
-  public KoppenClimateClassification getClimate(double x, double z) {
+  public KoppenClimateCode getClimate(double x, double z) {
     double[] imageCoords = tileToImage(x, z);
     return sampleClimate(imageCoords[0], imageCoords[1]);
   }
 
-  /**
-   * Gets information about neighboring climates for smooth interpolation.
-   * Returns the four corner climates and interpolation weights.
-   */
   public ClimateInterpolationResult getClimateInterpolation(
     double x,
     double z
@@ -119,25 +106,22 @@ public class PNGKoppenNoise {
     return sampleClimateInterpolation(imageCoords[0], imageCoords[1]);
   }
 
-  /**
-   * Result of climate interpolation with four corner climates and weights.
-   */
   public static class ClimateInterpolationResult {
 
-    public final KoppenClimateClassification climate00;
-    public final KoppenClimateClassification climate10;
-    public final KoppenClimateClassification climate01;
-    public final KoppenClimateClassification climate11;
+    public final KoppenClimateCode climate00;
+    public final KoppenClimateCode climate10;
+    public final KoppenClimateCode climate01;
+    public final KoppenClimateCode climate11;
     public final double weight00;
     public final double weight10;
     public final double weight01;
     public final double weight11;
 
     public ClimateInterpolationResult(
-      KoppenClimateClassification climate00,
-      KoppenClimateClassification climate10,
-      KoppenClimateClassification climate01,
-      KoppenClimateClassification climate11,
+      KoppenClimateCode climate00,
+      KoppenClimateCode climate10,
+      KoppenClimateCode climate01,
+      KoppenClimateCode climate11,
       double weight00,
       double weight10,
       double weight01,
@@ -163,18 +147,10 @@ public class PNGKoppenNoise {
     int x1 = Math.min(x0 + 1, width - 1);
     int z1 = Math.min(z0 + 1, height - 1);
 
-    KoppenClimateClassification climate00 = getClimateFromPixel(
-      pixels[z0 * width + x0]
-    );
-    KoppenClimateClassification climate10 = getClimateFromPixel(
-      pixels[z0 * width + x1]
-    );
-    KoppenClimateClassification climate01 = getClimateFromPixel(
-      pixels[z1 * width + x0]
-    );
-    KoppenClimateClassification climate11 = getClimateFromPixel(
-      pixels[z1 * width + x1]
-    );
+    KoppenClimateCode climate00 = getClimateFromPixel(pixels[z0 * width + x0]);
+    KoppenClimateCode climate10 = getClimateFromPixel(pixels[z0 * width + x1]);
+    KoppenClimateCode climate01 = getClimateFromPixel(pixels[z1 * width + x0]);
+    KoppenClimateCode climate11 = getClimateFromPixel(pixels[z1 * width + x1]);
     double fx = imageX - x0;
     double fz = imageZ - z0;
 
@@ -195,27 +171,16 @@ public class PNGKoppenNoise {
     );
   }
 
-  private KoppenClimateClassification sampleClimate(
-    double imageX,
-    double imageZ
-  ) {
+  private KoppenClimateCode sampleClimate(double imageX, double imageZ) {
     int x0 = (int) Math.floor(imageX);
     int z0 = (int) Math.floor(imageZ);
     int x1 = Math.min(x0 + 1, width - 1);
     int z1 = Math.min(z0 + 1, height - 1);
 
-    KoppenClimateClassification climate00 = getClimateFromPixel(
-      pixels[z0 * width + x0]
-    );
-    KoppenClimateClassification climate10 = getClimateFromPixel(
-      pixels[z0 * width + x1]
-    );
-    KoppenClimateClassification climate01 = getClimateFromPixel(
-      pixels[z1 * width + x0]
-    );
-    KoppenClimateClassification climate11 = getClimateFromPixel(
-      pixels[z1 * width + x1]
-    );
+    KoppenClimateCode climate00 = getClimateFromPixel(pixels[z0 * width + x0]);
+    KoppenClimateCode climate10 = getClimateFromPixel(pixels[z0 * width + x1]);
+    KoppenClimateCode climate01 = getClimateFromPixel(pixels[z1 * width + x0]);
+    KoppenClimateCode climate11 = getClimateFromPixel(pixels[z1 * width + x1]);
 
     if (
       climate00 == climate10 && climate00 == climate01 && climate00 == climate11
@@ -236,23 +201,23 @@ public class PNGKoppenNoise {
     }
   }
 
-  private KoppenClimateClassification getClimateFromPixel(int rgb) {
+  private KoppenClimateCode getClimateFromPixel(int rgb) {
     int r = (rgb >> 16) & 0xFF;
     int g = (rgb >> 8) & 0xFF;
     int b = rgb & 0xFF;
     int rgbKey = rgb(r, g, b);
 
-    KoppenClimateClassification climate = COLOR_TO_CLIMATE.get(rgbKey);
+    KoppenClimateCode climate = COLOR_TO_CLIMATE.get(rgbKey);
     if (climate != null) {
       return climate;
     }
 
     int minDistance = Integer.MAX_VALUE;
-    KoppenClimateClassification closestClimate = KoppenClimateClassification.EF;
+    KoppenClimateCode closestClimate = KoppenClimateCode.EF;
 
     for (Map.Entry<
       Integer,
-      KoppenClimateClassification
+      KoppenClimateCode
     > entry : COLOR_TO_CLIMATE.entrySet()) {
       int colorKey = entry.getKey();
       int cr = (colorKey >> 16) & 0xFF;

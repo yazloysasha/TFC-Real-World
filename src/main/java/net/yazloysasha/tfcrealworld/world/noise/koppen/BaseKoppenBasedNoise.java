@@ -7,8 +7,6 @@ import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
 
 /**
  * Base class for Köppen-based noise generators.
- * Provides common functionality for generating noise values based on Köppen climate maps.
- * Subclasses specify which parameter (temperature, rainfall, or rainVar) to extract.
  */
 public abstract class BaseKoppenBasedNoise implements Noise2D {
 
@@ -76,10 +74,6 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
     return t * t * (3.0 - 2.0 * t);
   }
 
-  /**
-   * Extracts the relevant parameter from a ParameterCombination.
-   * Subclasses override this to specify which parameter to use.
-   */
   protected abstract double extractParameter(
     KoppenParameterCache.ParameterCombination params
   );
