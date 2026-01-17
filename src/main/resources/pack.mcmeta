@@ -1,0 +1,8 @@
+{
+  "pack": {
+    "description": "TFC: Real World - Earth-like world generation using real-world maps",
+    "pack_format": 15,
+    "forge:resource_pack_format": 15,
+    "forge:data_pack_format": 15
+  }
+}
