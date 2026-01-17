@@ -7,16 +7,14 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(BiomeSourceExtension.class)
+@Mixin(value = BiomeSourceExtension.class, remap = false)
 public interface BiomeSourceExtensionMixin {
   @Redirect(
     method = "findSpawnBiome",
     at = @At(
       value = "INVOKE",
-      target = "Lnet/dries007/tfc/world/settings/Settings;spawnDistance()I",
-      remap = false
-    ),
-    remap = false
+      target = "Lnet/dries007/tfc/world/settings/Settings;spawnDistance()I"
+    )
   )
   private static int tfcrealworld$redirectSpawnDistance(Settings settings) {
     return SpawnCenterHelper.getSpawnDistance();
@@ -26,10 +24,8 @@ public interface BiomeSourceExtensionMixin {
     method = "findSpawnBiome",
     at = @At(
       value = "INVOKE",
-      target = "Lnet/dries007/tfc/world/settings/Settings;spawnCenterX()I",
-      remap = false
-    ),
-    remap = false
+      target = "Lnet/dries007/tfc/world/settings/Settings;spawnCenterX()I"
+    )
   )
   private static int tfcrealworld$redirectSpawnCenterX(Settings settings) {
     return SpawnCenterHelper.getSpawnCenterX();
@@ -39,10 +35,8 @@ public interface BiomeSourceExtensionMixin {
     method = "findSpawnBiome",
     at = @At(
       value = "INVOKE",
-      target = "Lnet/dries007/tfc/world/settings/Settings;spawnCenterZ()I",
-      remap = false
-    ),
-    remap = false
+      target = "Lnet/dries007/tfc/world/settings/Settings;spawnCenterZ()I"
+    )
   )
   private static int tfcrealworld$redirectSpawnCenterZ(Settings settings) {
     return SpawnCenterHelper.getSpawnCenterZ();

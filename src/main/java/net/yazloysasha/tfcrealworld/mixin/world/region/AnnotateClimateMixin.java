@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-@Mixin(AnnotateClimate.class)
+@Mixin(value = AnnotateClimate.class, remap = false)
 public class AnnotateClimateMixin {
 
   @Redirect(
