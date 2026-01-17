@@ -6,7 +6,6 @@ plugins {
 
 val minecraftVersion: String = "1.20.1"
 val forgeVersion: String = "47.1.3"
-val patchouliVersion: String = "1.20.1-81-FORGE"
 val tfcVersion: String = "3.2.20"
 
 val modId: String = "tfc_real_world"
@@ -40,7 +39,6 @@ java {
 repositories {
   mavenCentral()
   mavenLocal()
-  maven(url = "https://maven.blamejared.com") // Patchouli
   maven(url = "https://www.cursemaven.com") {
     content {
       includeGroup("curse.maven")
@@ -82,7 +80,6 @@ minecraft {
       
       mods.create(modId) {
         source(sourceSets.main.get())
-        source(sourceSets.test.get())
       }
     }
 
@@ -109,12 +106,6 @@ dependencies {
 
   // Mixin
   annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
-
-  // Test
-  testImplementation(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$tfcVersion@jar"))
-  testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
-  testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.9.2")
-  testImplementation(fg.deobf("vazkii.patchouli:Patchouli:$patchouliVersion"))
 }
 
 tasks {
@@ -126,20 +117,6 @@ tasks {
     manifest {
       attributes["Implementation-Version"] = project.version
       attributes["MixinConfigs"] = "$modId.mixins.json"
-    }
-  }
-
-  test {
-    useJUnitPlatform()
-    maxHeapSize = "4g"
-    minHeapSize = "1g"
-    outputs.upToDateWhen { false }
-    testLogging {
-      events("failed", "standardError")
-      exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
-      showCauses = true
-      showExceptions = true
-      showStackTraces = true
     }
   }
 }
