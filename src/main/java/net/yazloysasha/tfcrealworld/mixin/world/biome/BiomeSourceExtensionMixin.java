@@ -8,7 +8,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(BiomeSourceExtension.class)
-public interface BiomeSourceExtensionMixin {
+public abstract class BiomeSourceExtensionMixin {
+
   @Redirect(
     method = "findSpawnBiome",
     at = @At(
