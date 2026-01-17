@@ -9,9 +9,4 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 public interface ScreenAccessor {
   @Invoker("removeWidget")
   void tfcrealworld$invokeRemoveWidget(GuiEventListener widget);
-
-  @Invoker("addRenderableWidget")
-  <T extends GuiEventListener> T tfcrealworld$invokeAddRenderableWidget(
-    T widget
-  );
 }

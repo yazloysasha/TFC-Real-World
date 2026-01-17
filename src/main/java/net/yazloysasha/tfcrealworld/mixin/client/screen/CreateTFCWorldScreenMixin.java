@@ -2,14 +2,12 @@ package net.yazloysasha.tfcrealworld.mixin.client.screen;
 
 import com.mojang.serialization.Codec;
 import java.util.List;
-import java.util.function.Consumer;
 import net.dries007.tfc.client.screen.CreateTFCWorldScreen;
 import net.dries007.tfc.world.settings.Settings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
-import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.layouts.GridLayout;
+import net.minecraft.client.gui.components.OptionsList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
@@ -23,11 +21,10 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-@Mixin(CreateTFCWorldScreen.class)
+@Mixin(value = CreateTFCWorldScreen.class, remap = false)
 public class CreateTFCWorldScreenMixin {
 
   @Unique
@@ -56,9 +53,6 @@ public class CreateTFCWorldScreenMixin {
 
   @Shadow
   private OptionInstance<Boolean> flatBedrock;
-
-  @Unique
-  private OptionInstance<Boolean> emptyOption;
 
   @Shadow
   private OptionInstance<Double> continentalness;
@@ -97,25 +91,7 @@ public class CreateTFCWorldScreenMixin {
   private OptionInstance<Boolean> koppenFromMap;
 
   @Unique
-  private AbstractWidget spawnCenterLongitudeWidget;
-
-  @Unique
-  private AbstractWidget spawnCenterLatitudeWidget;
-
-  @Unique
-  private AbstractWidget spawnCenterXWidget;
-
-  @Unique
-  private AbstractWidget spawnCenterZWidget;
-
-  @Unique
-  private AbstractWidget horizontalTileSizeWidget;
-
-  @Unique
-  private AbstractWidget verticalTileSizeWidget;
-
-  @Unique
-  private static int optionsCount = 0;
+  private OptionInstance<Boolean> emptyOption;
 
   @Unique
   private static String getCaption(String suffix) {
@@ -258,54 +234,35 @@ public class CreateTFCWorldScreenMixin {
     horizontalTileSize.set(profile.horizontalTileSize());
     verticalTileSize.set(profile.verticalTileSize());
 
-    updateWidgets();
-  }
-
-  @Unique
-  private void updateWidget(
-    AbstractWidget currentWidget,
-    OptionInstance<?> option,
-    Consumer<AbstractWidget> setter
-  ) {
+    // Пересоздаем OptionsList чтобы обновить виджеты
     final CreateTFCWorldScreenAccessor accessor =
       (CreateTFCWorldScreenAccessor) (Object) this;
-    final ScreenAccessor screenAccessor = (ScreenAccessor) (Object) this;
-
-    AbstractWidget newWidget = accessor.tfcrealworld$invokeSmallButton(option);
-    newWidget.setPosition(currentWidget.getX(), currentWidget.getY());
-    newWidget.setWidth(currentWidget.getWidth());
-    screenAccessor.tfcrealworld$invokeRemoveWidget(currentWidget);
-    screenAccessor.tfcrealworld$invokeAddRenderableWidget(newWidget);
-    setter.accept(newWidget);
+    OptionsList options = accessor.tfcrealworld$getOptions();
+    if (options != null) {
+      // Очищаем старые опции
+      options.children().clear();
+      // Добавляем заново все опции с обновленными значениями
+      addOptionsToList(options);
+    }
   }
 
   @Unique
-  private void updateWidgets() {
-    updateWidget(spawnCenterLongitudeWidget, spawnCenterLongitude, widget ->
-      spawnCenterLongitudeWidget = widget
-    );
-    updateWidget(spawnCenterLatitudeWidget, spawnCenterLatitude, widget ->
-      spawnCenterLatitudeWidget = widget
-    );
-    updateWidget(spawnCenterXWidget, spawnCenterX, widget ->
-      spawnCenterXWidget = widget
-    );
-    updateWidget(spawnCenterZWidget, spawnCenterZ, widget ->
-      spawnCenterZWidget = widget
-    );
-    updateWidget(horizontalTileSizeWidget, horizontalTileSize, widget ->
-      horizontalTileSizeWidget = widget
-    );
-    updateWidget(verticalTileSizeWidget, verticalTileSize, widget ->
-      verticalTileSizeWidget = widget
-    );
+  private void addOptionsToList(OptionsList options) {
+    options.addSmall(mapProfile, spawnMode);
+    options.addSmall(spawnCenterLongitude, spawnCenterLatitude);
+    options.addSmall(spawnCenterX, spawnCenterZ);
+    options.addSmall(spawnDistance, canyonsNotVolcanic);
+    options.addSmall(flatBedrock, continentalness);
+    options.addSmall(grassDensity, temperatureConstant);
+    options.addSmall(rainfallConstant, temperatureScale);
+    options.addSmall(rainfallScale, horizontalTileSize);
+    options.addSmall(verticalTileSize, continentFromMap);
+    options.addSmall(altitudeFromMap, hotspotsFromMap);
+    options.addSmall(koppenFromMap, emptyOption);
   }
 
   @Inject(method = "init()V", at = @At("HEAD"))
   private void tfcrealworld$initAdditionalOptions(CallbackInfo ci) {
-    final CreateTFCWorldScreenAccessor accessor =
-      (CreateTFCWorldScreenAccessor) (Object) this;
-
     List<String> availableProfiles = ProfileManager.discoverProfiles();
     String defaultProfile = TFCRealWorldConfig.MAP_PROFILE.get();
     if (!availableProfiles.contains(defaultProfile)) {
@@ -339,6 +296,10 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get(),
       value -> {}
     );
+
+    final CreateTFCWorldScreenAccessor accessor =
+      (CreateTFCWorldScreenAccessor) (Object) this;
+
     horizontalTileSize = accessor.tfcrealworld$invokeKmOption(
       getCaption("create_world.horizontal_tile_size"),
       TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.getMin(),
@@ -378,98 +339,22 @@ public class CreateTFCWorldScreenMixin {
     method = "init()V",
     at = @At(
       value = "INVOKE",
-      target = "Lnet/dries007/tfc/client/screen/CreateTFCWorldScreen;smallButton(Lnet/minecraft/client/OptionInstance;)Lnet/minecraft/client/gui/components/AbstractWidget;",
+      target = "Lnet/minecraft/client/gui/components/OptionsList;addSmall(Lnet/minecraft/client/OptionInstance;Lnet/minecraft/client/OptionInstance;)V",
       ordinal = 0,
       shift = At.Shift.BEFORE
     ),
     locals = LocalCapture.CAPTURE_FAILHARD
   )
-  private void tfcrealworld$addAllOptionsInOrder(
+  private void tfcrealworld$addAllOptions(
     CallbackInfo ci,
     ChunkGenerator generator,
     Settings settings,
-    GridLayout grid,
-    GridLayout.RowHelper builder
+    OptionsList options
   ) {
-    final CreateTFCWorldScreenAccessor accessor =
-      (CreateTFCWorldScreenAccessor) (Object) this;
-
-    builder.addChild(accessor.tfcrealworld$invokeSmallButton(mapProfile));
-    builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnMode));
-    spawnCenterLongitudeWidget = accessor.tfcrealworld$invokeSmallButton(
-      spawnCenterLongitude
-    );
-    builder.addChild(spawnCenterLongitudeWidget);
-    spawnCenterLatitudeWidget = accessor.tfcrealworld$invokeSmallButton(
-      spawnCenterLatitude
-    );
-    builder.addChild(spawnCenterLatitudeWidget);
-    spawnCenterXWidget = accessor.tfcrealworld$invokeSmallButton(spawnCenterX);
-    builder.addChild(spawnCenterXWidget);
-    spawnCenterZWidget = accessor.tfcrealworld$invokeSmallButton(spawnCenterZ);
-    builder.addChild(spawnCenterZWidget);
-    builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnDistance));
-    builder.addChild(
-      accessor.tfcrealworld$invokeSmallButton(canyonsNotVolcanic)
-    );
-    builder.addChild(accessor.tfcrealworld$invokeSmallButton(flatBedrock));
-    builder.addChild(accessor.tfcrealworld$invokeSmallButton(emptyOption));
-    builder.addChild(accessor.tfcrealworld$invokeSmallButton(continentalness));
-
-    optionsCount = 0;
+    addOptionsToList(options);
   }
 
-  @Redirect(
-    method = "init()V",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/dries007/tfc/client/screen/CreateTFCWorldScreen;smallButton(Lnet/minecraft/client/OptionInstance;)Lnet/minecraft/client/gui/components/AbstractWidget;"
-    )
-  )
-  private AbstractWidget tfcrealworld$cancelOriginalSmallButton(
-    CreateTFCWorldScreen instance,
-    OptionInstance<?> option
-  ) {
-    optionsCount++;
-
-    final CreateTFCWorldScreenAccessor accessor =
-      (CreateTFCWorldScreenAccessor) (Object) this;
-
-    switch (optionsCount) {
-      case 1:
-        return accessor.tfcrealworld$invokeSmallButton(grassDensity);
-      case 2:
-        return accessor.tfcrealworld$invokeSmallButton(temperatureConstant);
-      case 3:
-        return accessor.tfcrealworld$invokeSmallButton(rainfallConstant);
-      case 4:
-        return accessor.tfcrealworld$invokeSmallButton(temperatureScale);
-      case 5:
-        return accessor.tfcrealworld$invokeSmallButton(rainfallScale);
-      case 6:
-        horizontalTileSizeWidget = accessor.tfcrealworld$invokeSmallButton(
-          horizontalTileSize
-        );
-        return horizontalTileSizeWidget;
-      case 7:
-        verticalTileSizeWidget = accessor.tfcrealworld$invokeSmallButton(
-          verticalTileSize
-        );
-        return verticalTileSizeWidget;
-      case 8:
-        return accessor.tfcrealworld$invokeSmallButton(continentFromMap);
-      case 9:
-        return accessor.tfcrealworld$invokeSmallButton(altitudeFromMap);
-      case 10:
-        return accessor.tfcrealworld$invokeSmallButton(hotspotsFromMap);
-      case 11:
-        return accessor.tfcrealworld$invokeSmallButton(koppenFromMap);
-      default:
-        return accessor.tfcrealworld$invokeSmallButton(option);
-    }
-  }
-
-  @Inject(method = "applySettings()V", at = @At("TAIL"))
+  @Inject(method = "applySettings", at = @At("TAIL"))
   private void tfcrealworld$applyAdditionalSettings(CallbackInfo ci) {
     String previousProfile = TFCRealWorldConfig.MAP_PROFILE.get();
     String newProfile = mapProfile.get();
