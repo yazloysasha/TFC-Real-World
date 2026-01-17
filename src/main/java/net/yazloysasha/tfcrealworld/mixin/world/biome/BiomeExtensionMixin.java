@@ -1,9 +1,12 @@
 package net.yazloysasha.tfcrealworld.mixin.world.biome;
 
+import net.dries007.tfc.world.BiomeNoiseSampler;
 import net.dries007.tfc.world.biome.BiomeExtension;
+import net.dries007.tfc.world.biome.BiomeNoise;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -40,6 +43,18 @@ public class BiomeExtensionMixin {
   ) {
     if (shouldRemoveCinderCones()) {
       cir.setReturnValue(false);
+    }
+  }
+
+  @Inject(method = "createNoiseSampler", at = @At("HEAD"), cancellable = true)
+  private void tfcrealworld$overrideCreateNoiseSampler(
+    long seed,
+    CallbackInfoReturnable<@Nullable BiomeNoiseSampler> cir
+  ) {
+    if (shouldRemoveCinderCones()) {
+      cir.setReturnValue(
+        BiomeNoiseSampler.fromHeightNoise(BiomeNoise.canyons(seed, -2, 40))
+      );
     }
   }
 }
