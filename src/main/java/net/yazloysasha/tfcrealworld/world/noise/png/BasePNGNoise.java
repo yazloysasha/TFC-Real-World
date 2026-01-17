@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.Units;
+import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
@@ -146,14 +147,14 @@ public abstract class BasePNGNoise implements Noise2D {
       localZ = -localZ;
     }
 
-    double clampedX = Math.clamp(localX, -tileRadiusGridX, tileRadiusGridX);
-    double clampedZ = Math.clamp(localZ, -tileRadiusGridZ, tileRadiusGridZ);
+    double clampedX = Mth.clamp(localX, -tileRadiusGridX, tileRadiusGridX);
+    double clampedZ = Mth.clamp(localZ, -tileRadiusGridZ, tileRadiusGridZ);
 
     double imageX = centerX + clampedX * scaleX;
     double imageZ = centerZ + clampedZ * scaleZ;
 
-    imageX = Math.clamp(imageX, 0, width - 1);
-    imageZ = Math.clamp(imageZ, 0, height - 1);
+    imageX = Mth.clamp(imageX, 0, width - 1);
+    imageZ = Mth.clamp(imageZ, 0, height - 1);
 
     return new double[] { imageX, imageZ };
   }

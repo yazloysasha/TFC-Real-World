@@ -1,11 +1,11 @@
 package net.yazloysasha.tfcrealworld.config;
 
 import java.util.function.Supplier;
-import net.neoforged.neoforge.common.ModConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public class ConfigOption<T> implements Supplier<T> {
 
-  private final ModConfigSpec.ConfigValue<T> configValue;
+  private final ForgeConfigSpec.ConfigValue<T> configValue;
   private T serverValue;
   private boolean serverConfigActive = false;
 
@@ -13,13 +13,13 @@ public class ConfigOption<T> implements Supplier<T> {
   private Class<? extends Enum> enumClass;
 
   @SuppressWarnings("rawtypes")
-  private ModConfigSpec.ConfigValue enumConfigValue;
+  private ForgeConfigSpec.ConfigValue enumConfigValue;
 
   private T minValue;
   private T maxValue;
 
   public ConfigOption(
-    ModConfigSpec.Builder builder,
+    ForgeConfigSpec.Builder builder,
     String name,
     String comment,
     T defaultValue
@@ -32,7 +32,7 @@ public class ConfigOption<T> implements Supplier<T> {
 
   @SuppressWarnings("unchecked")
   public ConfigOption(
-    ModConfigSpec.Builder builder,
+    ForgeConfigSpec.Builder builder,
     String name,
     String comment,
     T defaultValue,
@@ -46,14 +46,14 @@ public class ConfigOption<T> implements Supplier<T> {
     builder.comment(comment);
 
     if (defaultValue instanceof Double) {
-      this.configValue = (ModConfigSpec.ConfigValue<T>) builder.defineInRange(
+      this.configValue = (ForgeConfigSpec.ConfigValue<T>) builder.defineInRange(
         name,
         (Double) defaultValue,
         (Double) min,
         (Double) max
       );
     } else if (defaultValue instanceof Integer) {
-      this.configValue = (ModConfigSpec.ConfigValue<T>) builder.defineInRange(
+      this.configValue = (ForgeConfigSpec.ConfigValue<T>) builder.defineInRange(
         name,
         (Integer) defaultValue,
         (Integer) min,
@@ -68,7 +68,7 @@ public class ConfigOption<T> implements Supplier<T> {
 
   @SuppressWarnings("rawtypes")
   public <E extends Enum<E>> ConfigOption(
-    ModConfigSpec.Builder builder,
+    ForgeConfigSpec.Builder builder,
     String name,
     String comment,
     E defaultValue,
@@ -109,7 +109,7 @@ public class ConfigOption<T> implements Supplier<T> {
   @SuppressWarnings("unchecked")
   public void set(T value) {
     if (enumClass != null && enumConfigValue != null) {
-      ((ModConfigSpec.ConfigValue<T>) enumConfigValue).set(value);
+      ((ForgeConfigSpec.ConfigValue<T>) enumConfigValue).set(value);
     } else if (configValue != null) {
       configValue.set(value);
     } else {

@@ -3,6 +3,7 @@ package net.yazloysasha.tfcrealworld.util.projection;
 import java.util.HashMap;
 import java.util.Map;
 import net.dries007.tfc.world.region.Units;
+import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.types.MapProjection;
 
@@ -61,7 +62,7 @@ public class ProjectionManager {
     MapProjectionStrategy strategy = getStrategy(projection);
 
     longitude = normalizeLongitude(longitude);
-    latitude = Math.clamp(latitude, -90.0, 90.0);
+    latitude = Mth.clamp(latitude, -90.0, 90.0);
 
     double west = normalizeLongitude(westEdgeLongitude);
     double east = normalizeLongitude(eastEdgeLongitude);

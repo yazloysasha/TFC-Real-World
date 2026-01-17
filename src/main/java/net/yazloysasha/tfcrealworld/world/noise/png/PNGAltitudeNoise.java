@@ -1,5 +1,7 @@
 package net.yazloysasha.tfcrealworld.world.noise.png;
 
+import net.minecraft.util.Mth;
+
 public class PNGAltitudeNoise extends BasePNGNoise {
 
   private static final String MAP_NAME = "altitude";
@@ -30,7 +32,7 @@ public class PNGAltitudeNoise extends BasePNGNoise {
     double[] imageCoords = tileToImage(x, z);
     double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
     double height = transformBrightness(brightness);
-    return (byte) Math.clamp(Math.round(height), 0, 24);
+    return (byte) Mth.clamp(Math.round(height), 0, 24);
   }
 
   protected double transformOceanDepth(double brightness) {
@@ -49,7 +51,7 @@ public class PNGAltitudeNoise extends BasePNGNoise {
     double[] imageCoords = tileToImage(x, z);
     double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
     double depth = transformOceanDepth(brightness);
-    return (byte) Math.clamp(Math.round(depth), 0, 15);
+    return (byte) Mth.clamp(Math.round(depth), 0, 15);
   }
 
   /**
@@ -59,12 +61,12 @@ public class PNGAltitudeNoise extends BasePNGNoise {
   public AltitudeResult getAltitude(double x, double z) {
     double[] imageCoords = tileToImage(x, z);
     double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
-    byte landHeight = (byte) Math.clamp(
+    byte landHeight = (byte) Mth.clamp(
       Math.round(transformBrightness(brightness)),
       0,
       24
     );
-    byte oceanDepth = (byte) Math.clamp(
+    byte oceanDepth = (byte) Mth.clamp(
       Math.round(transformOceanDepth(brightness)),
       0,
       15

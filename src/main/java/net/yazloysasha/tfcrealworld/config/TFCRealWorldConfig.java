@@ -2,8 +2,8 @@ package net.yazloysasha.tfcrealworld.config;
 
 import java.util.Arrays;
 import java.util.List;
-import net.neoforged.fml.config.ModConfig;
-import net.neoforged.neoforge.common.ModConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.fml.config.ModConfig;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.types.MapProjection;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
@@ -12,9 +12,9 @@ import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 
 public class TFCRealWorldConfig {
 
-  public static final ModConfigSpec.Builder BUILDER =
-    new ModConfigSpec.Builder();
-  public static final ModConfigSpec SPEC;
+  public static final ForgeConfigSpec.Builder BUILDER =
+    new ForgeConfigSpec.Builder();
+  public static final ForgeConfigSpec SPEC;
 
   private static ModConfig modConfig;
 
@@ -328,10 +328,7 @@ public class TFCRealWorldConfig {
   public static void saveConfig() {
     if (modConfig != null) {
       try {
-        var loadedConfig = modConfig.getLoadedConfig();
-        if (loadedConfig != null) {
-          loadedConfig.save();
-        }
+        SPEC.save();
       } catch (Exception e) {
         TFCRealWorld.LOGGER.warn("Failed to save config to file", e);
       }

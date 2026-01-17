@@ -1,5 +1,6 @@
 package net.yazloysasha.tfcrealworld.world.noise.koppen;
 
+import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
 
 /**
@@ -32,6 +33,6 @@ public class KoppenBasedRainfallVarianceNoise extends BaseKoppenBasedNoise {
 
   @Override
   protected double postProcessResult(double result) {
-    return Math.clamp(result, -1.0, 1.0);
+    return Mth.clamp(result, -1.0, 1.0);
   }
 }

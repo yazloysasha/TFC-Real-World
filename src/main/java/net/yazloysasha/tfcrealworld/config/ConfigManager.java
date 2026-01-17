@@ -11,10 +11,11 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
+import net.minecraftforge.event.server.ServerAboutToStartEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
+import net.yazloysasha.tfcrealworld.network.PacketHandler;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
 
 public class ConfigManager {
@@ -40,6 +41,7 @@ public class ConfigManager {
       Path worldConfigDir = serverConfigFile.getParent();
       Path commonConfigFile = server
         .getServerDirectory()
+        .toPath()
         .resolve("config")
         .resolve(COMMON_CONFIG_NAME);
 
@@ -297,6 +299,10 @@ public class ConfigManager {
       TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get(),
       TFCRealWorldConfig.KOPPEN_FROM_MAP.get()
     );
-    player.connection.send(packet);
+    PacketHandler.INSTANCE.sendTo(
+      packet,
+      player.connection.connection,
+      net.minecraftforge.network.NetworkDirection.PLAY_TO_CLIENT
+    );
   }
 }

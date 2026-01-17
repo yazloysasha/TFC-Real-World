@@ -1,5 +1,7 @@
 package net.yazloysasha.tfcrealworld.util.projection;
 
+import net.minecraft.util.Mth;
+
 /**
  * Equal Earth projection implementation for converting geographic coordinates to classic coordinates.
  * Uses the exact mathematical formulas of the Equal Earth projection.
@@ -40,7 +42,7 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double[] geoCoords = inverseProjection(projX, projY, lambda0);
     double latitude = Math.toDegrees(geoCoords[1]);
 
-    return Math.clamp(latitude, -90.0, 90.0);
+    return Mth.clamp(latitude, -90.0, 90.0);
   }
 
   @Override
@@ -198,7 +200,7 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double longitude = Math.toDegrees(geoCoords[0]);
     double latitude = Math.toDegrees(geoCoords[1]);
 
-    latitude = Math.clamp(latitude, -90.0, 90.0);
+    latitude = Mth.clamp(latitude, -90.0, 90.0);
 
     return new double[] { longitude, latitude };
   }
@@ -230,7 +232,7 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
       (3.0 * denominator * projX) / (2.0 * SQRT_3 * R * cosTheta);
 
     double phi = Math.asin(
-      Math.clamp((2.0 / SQRT_3) * Math.sin(theta), -1.0, 1.0)
+      Mth.clamp((2.0 / SQRT_3) * Math.sin(theta), -1.0, 1.0)
     );
 
     double longitude = lambda0 + deltaLambda;
@@ -276,7 +278,7 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
         break;
       }
 
-      theta = Math.clamp(theta, -Math.PI / 2.0, Math.PI / 2.0);
+      theta = Mth.clamp(theta, -Math.PI / 2.0, Math.PI / 2.0);
     }
 
     return theta;

@@ -1,129 +1,168 @@
 package net.yazloysasha.tfcrealworld.network;
 
+import java.util.function.Supplier;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.network.handling.IPayloadContext;
-import net.yazloysasha.tfcrealworld.TFCRealWorld;
+import net.minecraftforge.network.NetworkEvent;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
 
-public record ConfigSyncPacket(
-  String mapProfile,
-  SpawnMode spawnMode,
-  double spawnCenterLongitude,
-  double spawnCenterLatitude,
-  int spawnCenterX,
-  int spawnCenterZ,
-  int spawnDistance,
-  boolean canyonsNotVolcanic,
-  boolean flatBedrock,
-  boolean finiteContinents,
-  double continentalness,
-  double grassDensity,
-  double temperatureConstant,
-  double rainfallConstant,
-  int temperatureScale,
-  int rainfallScale,
-  int horizontalTileSize,
-  int verticalTileSize,
-  boolean continentFromMap,
-  boolean altitudeFromMap,
-  boolean hotspotsFromMap,
-  boolean koppenFromMap
-)
-  implements CustomPacketPayload {
-  public static final Type<ConfigSyncPacket> TYPE = new Type<>(
-    ResourceLocation.fromNamespaceAndPath(TFCRealWorld.MOD_ID, "config_sync")
-  );
+public class ConfigSyncPacket {
 
-  public static final StreamCodec<
-    FriendlyByteBuf,
-    ConfigSyncPacket
-  > STREAM_CODEC = StreamCodec.of(
-    (buffer, packet) -> {
-      buffer.writeUtf(packet.mapProfile);
-      buffer.writeEnum(packet.spawnMode);
-      buffer.writeDouble(packet.spawnCenterLongitude);
-      buffer.writeDouble(packet.spawnCenterLatitude);
-      buffer.writeInt(packet.spawnCenterX);
-      buffer.writeInt(packet.spawnCenterZ);
-      buffer.writeInt(packet.spawnDistance);
-      buffer.writeBoolean(packet.canyonsNotVolcanic);
-      buffer.writeBoolean(packet.flatBedrock);
-      buffer.writeBoolean(packet.finiteContinents);
-      buffer.writeDouble(packet.continentalness);
-      buffer.writeDouble(packet.grassDensity);
-      buffer.writeDouble(packet.temperatureConstant);
-      buffer.writeDouble(packet.rainfallConstant);
-      buffer.writeInt(packet.temperatureScale);
-      buffer.writeInt(packet.rainfallScale);
-      buffer.writeInt(packet.horizontalTileSize);
-      buffer.writeInt(packet.verticalTileSize);
-      buffer.writeBoolean(packet.continentFromMap);
-      buffer.writeBoolean(packet.altitudeFromMap);
-      buffer.writeBoolean(packet.hotspotsFromMap);
-      buffer.writeBoolean(packet.koppenFromMap);
-    },
-    buffer ->
-      new ConfigSyncPacket(
-        buffer.readUtf(),
-        buffer.readEnum(SpawnMode.class),
-        buffer.readDouble(),
-        buffer.readDouble(),
-        buffer.readInt(),
-        buffer.readInt(),
-        buffer.readInt(),
-        buffer.readBoolean(),
-        buffer.readBoolean(),
-        buffer.readBoolean(),
-        buffer.readDouble(),
-        buffer.readDouble(),
-        buffer.readDouble(),
-        buffer.readDouble(),
-        buffer.readInt(),
-        buffer.readInt(),
-        buffer.readInt(),
-        buffer.readInt(),
-        buffer.readBoolean(),
-        buffer.readBoolean(),
-        buffer.readBoolean(),
-        buffer.readBoolean()
-      )
-  );
+  private final String mapProfile;
+  private final SpawnMode spawnMode;
+  private final double spawnCenterLongitude;
+  private final double spawnCenterLatitude;
+  private final int spawnCenterX;
+  private final int spawnCenterZ;
+  private final int spawnDistance;
+  private final boolean canyonsNotVolcanic;
+  private final boolean flatBedrock;
+  private final boolean finiteContinents;
+  private final double continentalness;
+  private final double grassDensity;
+  private final double temperatureConstant;
+  private final double rainfallConstant;
+  private final int temperatureScale;
+  private final int rainfallScale;
+  private final int horizontalTileSize;
+  private final int verticalTileSize;
+  private final boolean continentFromMap;
+  private final boolean altitudeFromMap;
+  private final boolean hotspotsFromMap;
+  private final boolean koppenFromMap;
 
-  @Override
-  public Type<? extends CustomPacketPayload> type() {
-    return TYPE;
+  public ConfigSyncPacket(
+    String mapProfile,
+    SpawnMode spawnMode,
+    double spawnCenterLongitude,
+    double spawnCenterLatitude,
+    int spawnCenterX,
+    int spawnCenterZ,
+    int spawnDistance,
+    boolean canyonsNotVolcanic,
+    boolean flatBedrock,
+    boolean finiteContinents,
+    double continentalness,
+    double grassDensity,
+    double temperatureConstant,
+    double rainfallConstant,
+    int temperatureScale,
+    int rainfallScale,
+    int horizontalTileSize,
+    int verticalTileSize,
+    boolean continentFromMap,
+    boolean altitudeFromMap,
+    boolean hotspotsFromMap,
+    boolean koppenFromMap
+  ) {
+    this.mapProfile = mapProfile;
+    this.spawnMode = spawnMode;
+    this.spawnCenterLongitude = spawnCenterLongitude;
+    this.spawnCenterLatitude = spawnCenterLatitude;
+    this.spawnCenterX = spawnCenterX;
+    this.spawnCenterZ = spawnCenterZ;
+    this.spawnDistance = spawnDistance;
+    this.canyonsNotVolcanic = canyonsNotVolcanic;
+    this.flatBedrock = flatBedrock;
+    this.finiteContinents = finiteContinents;
+    this.continentalness = continentalness;
+    this.grassDensity = grassDensity;
+    this.temperatureConstant = temperatureConstant;
+    this.rainfallConstant = rainfallConstant;
+    this.temperatureScale = temperatureScale;
+    this.rainfallScale = rainfallScale;
+    this.horizontalTileSize = horizontalTileSize;
+    this.verticalTileSize = verticalTileSize;
+    this.continentFromMap = continentFromMap;
+    this.altitudeFromMap = altitudeFromMap;
+    this.hotspotsFromMap = hotspotsFromMap;
+    this.koppenFromMap = koppenFromMap;
   }
 
-  public static void handle(ConfigSyncPacket packet, IPayloadContext context) {
-    context.enqueueWork(() -> {
-      TFCRealWorldConfig.setServerConfig(
-        packet.mapProfile(),
-        packet.spawnMode(),
-        packet.spawnCenterLongitude(),
-        packet.spawnCenterLatitude(),
-        packet.spawnCenterX(),
-        packet.spawnCenterZ(),
-        packet.spawnDistance(),
-        packet.canyonsNotVolcanic(),
-        packet.flatBedrock(),
-        packet.finiteContinents(),
-        packet.continentalness(),
-        packet.grassDensity(),
-        packet.temperatureConstant(),
-        packet.rainfallConstant(),
-        packet.temperatureScale(),
-        packet.rainfallScale(),
-        packet.horizontalTileSize(),
-        packet.verticalTileSize(),
-        packet.continentFromMap(),
-        packet.altitudeFromMap(),
-        packet.hotspotsFromMap(),
-        packet.koppenFromMap()
-      );
-    });
+  public static void encode(ConfigSyncPacket packet, FriendlyByteBuf buffer) {
+    buffer.writeUtf(packet.mapProfile);
+    buffer.writeEnum(packet.spawnMode);
+    buffer.writeDouble(packet.spawnCenterLongitude);
+    buffer.writeDouble(packet.spawnCenterLatitude);
+    buffer.writeInt(packet.spawnCenterX);
+    buffer.writeInt(packet.spawnCenterZ);
+    buffer.writeInt(packet.spawnDistance);
+    buffer.writeBoolean(packet.canyonsNotVolcanic);
+    buffer.writeBoolean(packet.flatBedrock);
+    buffer.writeBoolean(packet.finiteContinents);
+    buffer.writeDouble(packet.continentalness);
+    buffer.writeDouble(packet.grassDensity);
+    buffer.writeDouble(packet.temperatureConstant);
+    buffer.writeDouble(packet.rainfallConstant);
+    buffer.writeInt(packet.temperatureScale);
+    buffer.writeInt(packet.rainfallScale);
+    buffer.writeInt(packet.horizontalTileSize);
+    buffer.writeInt(packet.verticalTileSize);
+    buffer.writeBoolean(packet.continentFromMap);
+    buffer.writeBoolean(packet.altitudeFromMap);
+    buffer.writeBoolean(packet.hotspotsFromMap);
+    buffer.writeBoolean(packet.koppenFromMap);
+  }
+
+  public static ConfigSyncPacket decode(FriendlyByteBuf buffer) {
+    return new ConfigSyncPacket(
+      buffer.readUtf(),
+      buffer.readEnum(SpawnMode.class),
+      buffer.readDouble(),
+      buffer.readDouble(),
+      buffer.readInt(),
+      buffer.readInt(),
+      buffer.readInt(),
+      buffer.readBoolean(),
+      buffer.readBoolean(),
+      buffer.readBoolean(),
+      buffer.readDouble(),
+      buffer.readDouble(),
+      buffer.readDouble(),
+      buffer.readDouble(),
+      buffer.readInt(),
+      buffer.readInt(),
+      buffer.readInt(),
+      buffer.readInt(),
+      buffer.readBoolean(),
+      buffer.readBoolean(),
+      buffer.readBoolean(),
+      buffer.readBoolean()
+    );
+  }
+
+  public static void handle(
+    ConfigSyncPacket packet,
+    Supplier<NetworkEvent.Context> ctx
+  ) {
+    ctx
+      .get()
+      .enqueueWork(() -> {
+        TFCRealWorldConfig.setServerConfig(
+          packet.mapProfile,
+          packet.spawnMode,
+          packet.spawnCenterLongitude,
+          packet.spawnCenterLatitude,
+          packet.spawnCenterX,
+          packet.spawnCenterZ,
+          packet.spawnDistance,
+          packet.canyonsNotVolcanic,
+          packet.flatBedrock,
+          packet.finiteContinents,
+          packet.continentalness,
+          packet.grassDensity,
+          packet.temperatureConstant,
+          packet.rainfallConstant,
+          packet.temperatureScale,
+          packet.rainfallScale,
+          packet.horizontalTileSize,
+          packet.verticalTileSize,
+          packet.continentFromMap,
+          packet.altitudeFromMap,
+          packet.hotspotsFromMap,
+          packet.koppenFromMap
+        );
+      });
+    ctx.get().setPacketHandled(true);
   }
 }

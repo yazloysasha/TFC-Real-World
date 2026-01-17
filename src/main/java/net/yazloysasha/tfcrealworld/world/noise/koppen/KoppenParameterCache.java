@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
+import net.minecraft.util.Mth;
 
 /**
  * Caches valid parameter combinations for each Köppen climate classification.
@@ -138,7 +139,7 @@ public class KoppenParameterCache {
       return new ParameterCombination(5.0f, 100.0f, 0.0f);
     }
 
-    index = Math.clamp(index, 0.0, 1.0);
+    index = Mth.clamp(index, 0.0, 1.0);
 
     int arrayLength = combinations.temperatures.length;
 

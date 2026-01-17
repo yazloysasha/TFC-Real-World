@@ -3,21 +3,19 @@ package net.yazloysasha.tfcrealworld;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerPlayer;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.event.config.ModConfigEvent;
-import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import net.neoforged.neoforge.event.level.LevelEvent;
-import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.level.LevelEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.yazloysasha.tfcrealworld.config.ConfigManager;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
+import net.yazloysasha.tfcrealworld.network.PacketHandler;
 import net.yazloysasha.tfcrealworld.trigger.ModTriggers;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
@@ -32,76 +30,55 @@ public final class TFCRealWorld {
   public static final String MOD_NAME = "TFC: Real World";
   public static final Logger LOGGER = LogUtils.getLogger();
 
-  public TFCRealWorld(ModContainer container, IEventBus modEventBus) {
+  public TFCRealWorld() {
     ProfileManager.initialize();
 
-    container.registerConfig(
-      ModConfig.Type.COMMON,
-      TFCRealWorldConfig.SPEC,
-      MOD_ID + "/common.toml"
-    );
+    IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-    modEventBus.addListener(ModConfigEvent.Loading.class, event -> {
-      if (event.getConfig().getModId().equals(MOD_ID)) {
-        TFCRealWorldConfig.setModConfig(event.getConfig());
-      }
-    });
+    ModLoadingContext.get()
+      .registerConfig(
+        ModConfig.Type.COMMON,
+        TFCRealWorldConfig.SPEC,
+        MOD_ID + "/common.toml"
+      );
 
-    NeoForge.EVENT_BUS.register(ConfigManager.class);
+    modEventBus.addListener(this::onModConfigLoading);
 
-    ModTriggers.TRIGGERS.register(modEventBus);
+    MinecraftForge.EVENT_BUS.register(ConfigManager.class);
 
-    NeoForge.EVENT_BUS.addListener(this::onPlayerTick);
+    ModTriggers.init();
 
-    modEventBus.addListener(
-      RegisterPayloadHandlersEvent.class,
-      this::registerNetwork
-    );
+    MinecraftForge.EVENT_BUS.addListener(this::onPlayerTick);
 
-    NeoForge.EVENT_BUS.addListener(
-      PlayerEvent.PlayerLoggedInEvent.class,
-      this::onPlayerLoggedIn
-    );
+    PacketHandler.register();
 
-    NeoForge.EVENT_BUS.addListener(
-      PlayerEvent.PlayerLoggedOutEvent.class,
-      this::onPlayerLoggedOut
-    );
+    MinecraftForge.EVENT_BUS.addListener(this::onPlayerLoggedIn);
 
-    NeoForge.EVENT_BUS.addListener(
-      ClientPlayerNetworkEvent.LoggingIn.class,
-      this::onClientLoggingIn
-    );
+    MinecraftForge.EVENT_BUS.addListener(this::onPlayerLoggedOut);
 
-    NeoForge.EVENT_BUS.addListener(
-      ClientPlayerNetworkEvent.LoggingOut.class,
-      this::onClientLoggingOut
-    );
+    MinecraftForge.EVENT_BUS.addListener(this::onClientLoggingIn);
 
-    NeoForge.EVENT_BUS.addListener(
-      LevelEvent.Unload.class,
-      this::onLevelUnload
-    );
+    MinecraftForge.EVENT_BUS.addListener(this::onClientLoggingOut);
+
+    MinecraftForge.EVENT_BUS.addListener(this::onLevelUnload);
   }
 
-  private void onPlayerTick(PlayerTickEvent.Post event) {
-    if (event.getEntity() instanceof ServerPlayer serverPlayer) {
-      if (serverPlayer.tickCount % 20 == 0) {
-        ModTriggers.FIXED_HIGH_GLOBE_TROTTER_LOCATION.get()
-          .trigger(serverPlayer);
-        ModTriggers.FIXED_LOW_GLOBE_TROTTER_LOCATION.get()
-          .trigger(serverPlayer);
-      }
+  private void onModConfigLoading(ModConfigEvent.Loading event) {
+    if (event.getConfig().getModId().equals(MOD_ID)) {
+      TFCRealWorldConfig.setModConfig(event.getConfig());
     }
   }
 
-  private void registerNetwork(RegisterPayloadHandlersEvent event) {
-    final PayloadRegistrar registrar = event.registrar(TFCRealWorld.MOD_ID);
-    registrar.playToClient(
-      ConfigSyncPacket.TYPE,
-      ConfigSyncPacket.STREAM_CODEC,
-      ConfigSyncPacket::handle
-    );
+  private void onPlayerTick(TickEvent.PlayerTickEvent event) {
+    if (
+      event.phase == TickEvent.Phase.END &&
+      event.player instanceof ServerPlayer serverPlayer
+    ) {
+      if (serverPlayer.tickCount % 20 == 0) {
+        ModTriggers.FIXED_HIGH_GLOBE_TROTTER_LOCATION.trigger(serverPlayer);
+        ModTriggers.FIXED_LOW_GLOBE_TROTTER_LOCATION.trigger(serverPlayer);
+      }
+    }
   }
 
   private void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
@@ -124,7 +101,11 @@ public final class TFCRealWorld {
     }
   }
 
-  private void onClientLoggingIn(ClientPlayerNetworkEvent.LoggingIn event) {
+  private void onClientLoggingIn(PlayerEvent.PlayerLoggedInEvent event) {
+    if (!event.getEntity().level().isClientSide) {
+      return;
+    }
+
     try {
       Minecraft mc = Minecraft.getInstance();
       boolean isSingleplayer =
@@ -138,7 +119,11 @@ public final class TFCRealWorld {
     }
   }
 
-  private void onClientLoggingOut(ClientPlayerNetworkEvent.LoggingOut event) {
+  private void onClientLoggingOut(PlayerEvent.PlayerLoggedOutEvent event) {
+    if (!event.getEntity().level().isClientSide) {
+      return;
+    }
+
     TFCRealWorldConfig.clearServerConfig();
   }
 

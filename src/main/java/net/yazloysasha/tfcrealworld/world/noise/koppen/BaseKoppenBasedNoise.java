@@ -2,6 +2,7 @@ package net.yazloysasha.tfcrealworld.world.noise.koppen;
 
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.noise.OpenSimplex2D;
+import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
 
 /**
@@ -55,7 +56,7 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
 
   protected double[] calculateIndices(double x, double z) {
     double rawIndex = indexNoise.noise(x, z);
-    double baseIndex = smoothstep(Math.clamp(rawIndex, 0.0, 1.0));
+    double baseIndex = smoothstep(Mth.clamp(rawIndex, 0.0, 1.0));
 
     return new double[] {
       calculateCornerIndex(x - 0.1, z - 0.1, baseIndex),
@@ -67,7 +68,7 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
 
   private double calculateCornerIndex(double x, double z, double baseIndex) {
     return smoothstep(
-      Math.clamp(baseIndex + (indexNoise.noise(x, z) - 0.5) * 0.08, 0.0, 1.0)
+      Mth.clamp(baseIndex + (indexNoise.noise(x, z) - 0.5) * 0.08, 0.0, 1.0)
     );
   }
 
