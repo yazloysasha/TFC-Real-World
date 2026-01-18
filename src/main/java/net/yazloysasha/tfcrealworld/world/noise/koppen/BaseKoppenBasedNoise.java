@@ -13,7 +13,6 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
   protected final PNGTemperatureNoise temperatureNoise;
   protected final PNGRainfallNoise rainfallNoise;
   protected final KoppenParameterCache parameterCache;
-  protected final Noise2D variationNoise;
   protected final Noise2D indexNoise;
 
   protected BaseKoppenBasedNoise(
@@ -27,11 +26,6 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
     this.temperatureNoise = temperatureNoise;
     this.rainfallNoise = rainfallNoise;
     this.parameterCache = KoppenParameterCache.getInstance();
-
-    this.variationNoise = new OpenSimplex2D(seed + 12345L)
-      .octaves(2)
-      .spread(spread)
-      .scaled(-1.0, 1.0);
 
     this.indexNoise = new OpenSimplex2D(seed)
       .octaves(2)
@@ -57,34 +51,6 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
       rainfallNoise.getGrayscaleValue(x - 0.1, z + 0.1),
       rainfallNoise.getGrayscaleValue(x + 0.1, z + 0.1),
     };
-
-    double variationAmplitude = 32.0;
-    double[] tempVariations = new double[] {
-      variationNoise.noise(x - 0.1, z - 0.1) * variationAmplitude,
-      variationNoise.noise(x + 0.1, z - 0.1) * variationAmplitude,
-      variationNoise.noise(x - 0.1, z + 0.1) * variationAmplitude,
-      variationNoise.noise(x + 0.1, z + 0.1) * variationAmplitude,
-    };
-
-    double[] rainVariations = new double[] {
-      variationNoise.noise(x - 0.1 + 1000, z - 0.1 + 1000) * variationAmplitude,
-      variationNoise.noise(x + 0.1 + 1000, z - 0.1 + 1000) * variationAmplitude,
-      variationNoise.noise(x - 0.1 + 1000, z + 0.1 + 1000) * variationAmplitude,
-      variationNoise.noise(x + 0.1 + 1000, z + 0.1 + 1000) * variationAmplitude,
-    };
-
-    for (int i = 0; i < 4; i++) {
-      tempGrayscales[i] = Mth.clamp(
-        tempGrayscales[i] + tempVariations[i],
-        0.0,
-        255.0
-      );
-      rainGrayscales[i] = Mth.clamp(
-        rainGrayscales[i] + rainVariations[i],
-        0.0,
-        255.0
-      );
-    }
 
     KoppenParameterCache.ParameterCombination params00 =
       parameterCache.getParametersFromGrayscale(

@@ -186,6 +186,43 @@ public class KoppenParameterCache {
     return new float[] { -1.0f, 1.0f };
   }
 
+  public float[] getRainVarRangeForCombination(
+    KoppenClimateClassification climate,
+    float temperature,
+    float rainfall
+  ) {
+    ParameterArray combinations = climateCombinations.get(climate);
+    if (combinations == null || combinations.temperatures.length == 0) {
+      return new float[] { -1.0f, 1.0f };
+    }
+
+    float minRainVar = Float.MAX_VALUE;
+    float maxRainVar = Float.MIN_VALUE;
+
+    float tempTolerance = 1.0f;
+    float rainTolerance = 10.0f;
+
+    for (int i = 0; i < combinations.temperatures.length; i++) {
+      float tempDiff = Math.abs(combinations.temperatures[i] - temperature);
+      float rainDiff = Math.abs(combinations.rainfalls[i] - rainfall);
+
+      if (tempDiff <= tempTolerance && rainDiff <= rainTolerance) {
+        if (combinations.rainVars[i] < minRainVar) {
+          minRainVar = combinations.rainVars[i];
+        }
+        if (combinations.rainVars[i] > maxRainVar) {
+          maxRainVar = combinations.rainVars[i];
+        }
+      }
+    }
+
+    if (minRainVar == Float.MAX_VALUE || maxRainVar == Float.MIN_VALUE) {
+      return getRainVarRange(climate);
+    }
+
+    return new float[] { minRainVar, maxRainVar };
+  }
+
   private void buildCache() {
     float[] temperatures = generateRange(-20.0f, 30.0f, 1.0f);
     float[] rainfalls = generateRange(0.0f, 500.0f, 10.0f);
