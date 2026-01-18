@@ -10,10 +10,9 @@ public class KoppenBasedRainfallNoise extends BaseKoppenBasedNoise {
   public KoppenBasedRainfallNoise(
     PNGKoppenNoise koppenNoise,
     PNGTemperatureNoise temperatureNoise,
-    PNGRainfallNoise rainfallNoise,
-    long seed
+    PNGRainfallNoise rainfallNoise
   ) {
-    super(koppenNoise, temperatureNoise, rainfallNoise, seed, 0.1f);
+    super(koppenNoise, temperatureNoise, rainfallNoise);
   }
 
   @Override

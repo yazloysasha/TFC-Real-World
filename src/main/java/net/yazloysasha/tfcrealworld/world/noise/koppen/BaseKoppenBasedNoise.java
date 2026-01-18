@@ -1,8 +1,6 @@
 package net.yazloysasha.tfcrealworld.world.noise.koppen;
 
 import net.dries007.tfc.world.noise.Noise2D;
-import net.dries007.tfc.world.noise.OpenSimplex2D;
-import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
@@ -23,7 +21,6 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
   protected final PNGTemperatureNoise temperatureNoise;
   protected final PNGRainfallNoise rainfallNoise;
   protected final KoppenParameterCache parameterCache;
-  protected final Noise2D indexNoise;
 
   private final ThreadLocal<CornerData> cornerDataCache =
     ThreadLocal.withInitial(CornerData::new);
@@ -31,19 +28,12 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
   protected BaseKoppenBasedNoise(
     PNGKoppenNoise koppenNoise,
     PNGTemperatureNoise temperatureNoise,
-    PNGRainfallNoise rainfallNoise,
-    long seed,
-    float spread
+    PNGRainfallNoise rainfallNoise
   ) {
     this.koppenNoise = koppenNoise;
     this.temperatureNoise = temperatureNoise;
     this.rainfallNoise = rainfallNoise;
     this.parameterCache = KoppenParameterCache.getInstance();
-
-    this.indexNoise = new OpenSimplex2D(seed)
-      .octaves(2)
-      .spread(spread)
-      .scaled(0.0, 1.0);
   }
 
   @Override
@@ -123,28 +113,6 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
       data.tempGrayscales[3],
       data.rainGrayscales[3]
     );
-  }
-
-  protected double[] calculateIndices(double x, double z) {
-    double rawIndex = indexNoise.noise(x, z);
-    double baseIndex = smoothstep(Mth.clamp(rawIndex, 0.0, 1.0));
-
-    return new double[] {
-      calculateCornerIndex(x - OFFSET, z - OFFSET, baseIndex),
-      calculateCornerIndex(x + OFFSET, z - OFFSET, baseIndex),
-      calculateCornerIndex(x - OFFSET, z + OFFSET, baseIndex),
-      calculateCornerIndex(x + OFFSET, z + OFFSET, baseIndex),
-    };
-  }
-
-  private double calculateCornerIndex(double x, double z, double baseIndex) {
-    return smoothstep(
-      Mth.clamp(baseIndex + (indexNoise.noise(x, z) - 0.5) * 0.08, 0.0, 1.0)
-    );
-  }
-
-  protected double smoothstep(double t) {
-    return t * t * (3.0 - 2.0 * t);
   }
 
   protected abstract double extractParameter(

@@ -193,8 +193,7 @@ public class RegionGeneratorMixin {
       new KoppenBasedTemperatureNoise(
         koppenNoise,
         temperatureNoise,
-        rainfallNoise,
-        koppenSeed
+        rainfallNoise
       )
     );
 
@@ -205,12 +204,7 @@ public class RegionGeneratorMixin {
     UNSAFE.putObject(
       instance,
       rainfallOffset,
-      new KoppenBasedRainfallNoise(
-        koppenNoise,
-        temperatureNoise,
-        rainfallNoise,
-        koppenSeed
-      )
+      new KoppenBasedRainfallNoise(koppenNoise, temperatureNoise, rainfallNoise)
     );
 
     Field rainfallVarianceField =

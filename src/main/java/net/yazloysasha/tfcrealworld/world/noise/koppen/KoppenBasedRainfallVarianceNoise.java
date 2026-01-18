@@ -25,7 +25,7 @@ public class KoppenBasedRainfallVarianceNoise extends BaseKoppenBasedNoise {
     PNGRainfallNoise rainfallNoise,
     long seed
   ) {
-    super(koppenNoise, temperatureNoise, rainfallNoise, seed, 0.1f);
+    super(koppenNoise, temperatureNoise, rainfallNoise);
     this.variationNoise = new OpenSimplex2D(seed + 99999L)
       .octaves(2)
       .spread(0.1f)

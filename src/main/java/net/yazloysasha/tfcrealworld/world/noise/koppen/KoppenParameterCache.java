@@ -74,9 +74,6 @@ public class KoppenParameterCache {
     ParameterArray
   > climateCombinations;
 
-  private final Map<KoppenClimateClassification, Float> baseTemperatures;
-  private final Map<KoppenClimateClassification, Float> baseRainfalls;
-  private final Map<KoppenClimateClassification, Float> baseRainVars;
   private final Map<KoppenClimateClassification, float[]> temperatureRanges;
   private final Map<KoppenClimateClassification, float[]> rainfallRanges;
   private final Map<KoppenClimateClassification, float[]> rainVarRanges;
@@ -84,9 +81,6 @@ public class KoppenParameterCache {
 
   private KoppenParameterCache() {
     this.climateCombinations = new HashMap<>();
-    this.baseTemperatures = new HashMap<>();
-    this.baseRainfalls = new HashMap<>();
-    this.baseRainVars = new HashMap<>();
     this.temperatureRanges = new HashMap<>();
     this.rainfallRanges = new HashMap<>();
     this.rainVarRanges = new HashMap<>();
@@ -133,30 +127,6 @@ public class KoppenParameterCache {
     }
 
     return result;
-  }
-
-  public float getBaseTemperature(KoppenClimateClassification climate) {
-    Float cached = baseTemperatures.get(climate);
-    if (cached != null) {
-      return cached;
-    }
-    return 5.0f;
-  }
-
-  public float getBaseRainfall(KoppenClimateClassification climate) {
-    Float cached = baseRainfalls.get(climate);
-    if (cached != null) {
-      return cached;
-    }
-    return 100.0f;
-  }
-
-  public float getBaseRainVar(KoppenClimateClassification climate) {
-    Float cached = baseRainVars.get(climate);
-    if (cached != null) {
-      return cached;
-    }
-    return 0.0f;
   }
 
   public float[] getTemperatureRange(KoppenClimateClassification climate) {
@@ -283,44 +253,33 @@ public class KoppenParameterCache {
     KoppenClimateClassification climate,
     ParameterArray combinations
   ) {
-    float tempSum = 0.0f, tempMin = Float.MAX_VALUE, tempMax = Float.MIN_VALUE;
-    float rainSum = 0.0f, rainMin = Float.MAX_VALUE, rainMax = Float.MIN_VALUE;
-    float rainVarSum = 0.0f, rainVarMin = Float.MAX_VALUE, rainVarMax =
-      Float.MIN_VALUE;
+    float tempMin = Float.MAX_VALUE, tempMax = Float.MIN_VALUE;
+    float rainMin = Float.MAX_VALUE, rainMax = Float.MIN_VALUE;
+    float rainVarMin = Float.MAX_VALUE, rainVarMax = Float.MIN_VALUE;
 
     for (int i = 0; i < combinations.temperatures.length; i++) {
       float temp = combinations.temperatures[i];
       float rain = combinations.rainfalls[i];
       float rainVar = combinations.rainVars[i];
 
-      tempSum += temp;
       if (temp < tempMin) tempMin = temp;
       if (temp > tempMax) tempMax = temp;
 
-      rainSum += rain;
       if (rain < rainMin) rainMin = rain;
       if (rain > rainMax) rainMax = rain;
 
-      rainVarSum += rainVar;
       if (rainVar < rainVarMin) rainVarMin = rainVar;
       if (rainVar > rainVarMax) rainVarMax = rainVar;
     }
 
-    int length = combinations.temperatures.length;
-    baseTemperatures.put(climate, tempSum / length);
     temperatureRanges.put(climate, new float[] { tempMin, tempMax });
-    baseRainfalls.put(climate, rainSum / length);
     rainfallRanges.put(climate, new float[] { rainMin, rainMax });
-    baseRainVars.put(climate, rainVarSum / length);
     rainVarRanges.put(climate, new float[] { rainVarMin, rainVarMax });
   }
 
   private void setDefaultStatistics(KoppenClimateClassification climate) {
-    baseTemperatures.put(climate, 5.0f);
     temperatureRanges.put(climate, new float[] { -20.0f, 30.0f });
-    baseRainfalls.put(climate, 100.0f);
     rainfallRanges.put(climate, new float[] { 0.0f, 500.0f });
-    baseRainVars.put(climate, 0.0f);
     rainVarRanges.put(climate, new float[] { -1.0f, 1.0f });
   }
 
