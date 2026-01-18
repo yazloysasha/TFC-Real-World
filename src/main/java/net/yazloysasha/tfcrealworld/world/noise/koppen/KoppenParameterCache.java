@@ -1,10 +1,7 @@
 package net.yazloysasha.tfcrealworld.world.noise.koppen;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
 import net.minecraft.util.Mth;
@@ -238,11 +235,12 @@ public class KoppenParameterCache {
         for (float rainVar : rainVars) {
           KoppenClimateClassification climate =
             KoppenClimateClassification.classify(temp, rain, rainVar, true);
-          climateCounts.put(climate, climateCounts.get(climate) + 1);
+          climateCounts.merge(climate, 1, Integer::sum);
         }
       }
     }
 
+    Map<KoppenClimateClassification, Integer> climateIndices = new HashMap<>();
     for (Map.Entry<
       KoppenClimateClassification,
       Integer
@@ -251,11 +249,7 @@ public class KoppenParameterCache {
         entry.getKey(),
         new ParameterArray(entry.getValue())
       );
-    }
-
-    Map<KoppenClimateClassification, Integer> climateIndices = new HashMap<>();
-    for (KoppenClimateClassification climate : KoppenClimateClassification.values()) {
-      climateIndices.put(climate, 0);
+      climateIndices.put(entry.getKey(), 0);
     }
 
     for (float temp : temperatures) {
@@ -277,58 +271,57 @@ public class KoppenParameterCache {
       ParameterArray array = climateCombinations.get(climate);
       if (array != null && array.temperatures.length > 0) {
         sortParameterArray(array);
-      }
-    }
-
-    for (KoppenClimateClassification climate : KoppenClimateClassification.values()) {
-      ParameterArray combinations = climateCombinations.get(climate);
-      if (combinations != null && combinations.temperatures.length > 0) {
-        float tempSum = 0.0f;
-        float tempMin = Float.MAX_VALUE;
-        float tempMax = Float.MIN_VALUE;
-        for (float temp : combinations.temperatures) {
-          tempSum += temp;
-          if (temp < tempMin) tempMin = temp;
-          if (temp > tempMax) tempMax = temp;
-        }
-        baseTemperatures.put(
-          climate,
-          tempSum / combinations.temperatures.length
-        );
-        temperatureRanges.put(climate, new float[] { tempMin, tempMax });
-
-        float rainSum = 0.0f;
-        float rainMin = Float.MAX_VALUE;
-        float rainMax = Float.MIN_VALUE;
-        for (float rain : combinations.rainfalls) {
-          rainSum += rain;
-          if (rain < rainMin) rainMin = rain;
-          if (rain > rainMax) rainMax = rain;
-        }
-        baseRainfalls.put(climate, rainSum / combinations.rainfalls.length);
-        rainfallRanges.put(climate, new float[] { rainMin, rainMax });
-
-        float rainVarSum = 0.0f;
-        float rainVarMin = Float.MAX_VALUE;
-        float rainVarMax = Float.MIN_VALUE;
-        for (float rainVar : combinations.rainVars) {
-          rainVarSum += rainVar;
-          if (rainVar < rainVarMin) rainVarMin = rainVar;
-          if (rainVar > rainVarMax) rainVarMax = rainVar;
-        }
-        baseRainVars.put(climate, rainVarSum / combinations.rainVars.length);
-        rainVarRanges.put(climate, new float[] { rainVarMin, rainVarMax });
-
-        parameterGrids.put(climate, buildParameterGrid(climate, combinations));
+        computeStatistics(climate, array);
+        parameterGrids.put(climate, buildParameterGrid(climate, array));
       } else {
-        baseTemperatures.put(climate, 5.0f);
-        temperatureRanges.put(climate, new float[] { -20.0f, 30.0f });
-        baseRainfalls.put(climate, 100.0f);
-        rainfallRanges.put(climate, new float[] { 0.0f, 500.0f });
-        baseRainVars.put(climate, 0.0f);
-        rainVarRanges.put(climate, new float[] { -1.0f, 1.0f });
+        setDefaultStatistics(climate);
       }
     }
+  }
+
+  private void computeStatistics(
+    KoppenClimateClassification climate,
+    ParameterArray combinations
+  ) {
+    float tempSum = 0.0f, tempMin = Float.MAX_VALUE, tempMax = Float.MIN_VALUE;
+    float rainSum = 0.0f, rainMin = Float.MAX_VALUE, rainMax = Float.MIN_VALUE;
+    float rainVarSum = 0.0f, rainVarMin = Float.MAX_VALUE, rainVarMax =
+      Float.MIN_VALUE;
+
+    for (int i = 0; i < combinations.temperatures.length; i++) {
+      float temp = combinations.temperatures[i];
+      float rain = combinations.rainfalls[i];
+      float rainVar = combinations.rainVars[i];
+
+      tempSum += temp;
+      if (temp < tempMin) tempMin = temp;
+      if (temp > tempMax) tempMax = temp;
+
+      rainSum += rain;
+      if (rain < rainMin) rainMin = rain;
+      if (rain > rainMax) rainMax = rain;
+
+      rainVarSum += rainVar;
+      if (rainVar < rainVarMin) rainVarMin = rainVar;
+      if (rainVar > rainVarMax) rainVarMax = rainVar;
+    }
+
+    int length = combinations.temperatures.length;
+    baseTemperatures.put(climate, tempSum / length);
+    temperatureRanges.put(climate, new float[] { tempMin, tempMax });
+    baseRainfalls.put(climate, rainSum / length);
+    rainfallRanges.put(climate, new float[] { rainMin, rainMax });
+    baseRainVars.put(climate, rainVarSum / length);
+    rainVarRanges.put(climate, new float[] { rainVarMin, rainVarMax });
+  }
+
+  private void setDefaultStatistics(KoppenClimateClassification climate) {
+    baseTemperatures.put(climate, 5.0f);
+    temperatureRanges.put(climate, new float[] { -20.0f, 30.0f });
+    baseRainfalls.put(climate, 100.0f);
+    rainfallRanges.put(climate, new float[] { 0.0f, 500.0f });
+    baseRainVars.put(climate, 0.0f);
+    rainVarRanges.put(climate, new float[] { -1.0f, 1.0f });
   }
 
   private ParameterGrid buildParameterGrid(
@@ -380,16 +373,17 @@ public class KoppenParameterCache {
     float minDistance = Float.MAX_VALUE;
     int bestIndex = 0;
 
-    float tempSpan = tempRange[1] - tempRange[0];
-    float rainSpan = rainRange[1] - rainRange[0];
+    float tempSpan = Math.max(tempRange[1] - tempRange[0], 0.001f);
+    float rainSpan = Math.max(rainRange[1] - rainRange[0], 0.001f);
 
-    if (tempSpan < 0.001f) tempSpan = 1.0f;
-    if (rainSpan < 0.001f) rainSpan = 1.0f;
+    float invTempSpan = 1.0f / tempSpan;
+    float invRainSpan = 1.0f / rainSpan;
 
     for (int i = 0; i < combinations.temperatures.length; i++) {
       float normTempDiff =
-        (combinations.temperatures[i] - targetTemp) / tempSpan;
-      float normRainDiff = (combinations.rainfalls[i] - targetRain) / rainSpan;
+        (combinations.temperatures[i] - targetTemp) * invTempSpan;
+      float normRainDiff =
+        (combinations.rainfalls[i] - targetRain) * invRainSpan;
       float distance =
         normTempDiff * normTempDiff + normRainDiff * normRainDiff;
 
@@ -408,60 +402,53 @@ public class KoppenParameterCache {
       return;
     }
 
-    float tempMin = Float.MAX_VALUE;
-    float tempMax = Float.MIN_VALUE;
-    float rainMin = Float.MAX_VALUE;
-    float rainMax = Float.MIN_VALUE;
-    float rainVarMin = Float.MAX_VALUE;
-    float rainVarMax = Float.MIN_VALUE;
+    float tempMin = Float.MAX_VALUE, tempMax = Float.MIN_VALUE;
+    float rainMin = Float.MAX_VALUE, rainMax = Float.MIN_VALUE;
+    float rainVarMin = Float.MAX_VALUE, rainVarMax = Float.MIN_VALUE;
 
     for (int i = 0; i < length; i++) {
-      if (array.temperatures[i] < tempMin) tempMin = array.temperatures[i];
-      if (array.temperatures[i] > tempMax) tempMax = array.temperatures[i];
-      if (array.rainfalls[i] < rainMin) rainMin = array.rainfalls[i];
-      if (array.rainfalls[i] > rainMax) rainMax = array.rainfalls[i];
-      if (array.rainVars[i] < rainVarMin) rainVarMin = array.rainVars[i];
-      if (array.rainVars[i] > rainVarMax) rainVarMax = array.rainVars[i];
-    }
+      float temp = array.temperatures[i];
+      float rain = array.rainfalls[i];
+      float rainVar = array.rainVars[i];
 
-    float tempRange = tempMax - tempMin;
-    float rainRange = rainMax - rainMin;
-    float rainVarRange = rainVarMax - rainVarMin;
-    if (tempRange < 0.001f) tempRange = 1.0f;
-    if (rainRange < 0.001f) rainRange = 1.0f;
-    if (rainVarRange < 0.001f) rainVarRange = 1.0f;
-
-    List<Integer> indices = new ArrayList<>(length);
-    for (int i = 0; i < length; i++) {
-      indices.add(i);
+      if (temp < tempMin) tempMin = temp;
+      if (temp > tempMax) tempMax = temp;
+      if (rain < rainMin) rainMin = rain;
+      if (rain > rainMax) rainMax = rain;
+      if (rainVar < rainVarMin) rainVarMin = rainVar;
+      if (rainVar > rainVarMax) rainVarMax = rainVar;
     }
 
     final float finalTempMin = tempMin;
-    final float finalTempRange = tempRange;
+    final float finalTempRange = Math.max(tempMax - tempMin, 0.001f);
     final float finalRainMin = rainMin;
-    final float finalRainRange = rainRange;
+    final float finalRainRange = Math.max(rainMax - rainMin, 0.001f);
     final float finalRainVarMin = rainVarMin;
-    final float finalRainVarRange = rainVarRange;
+    final float finalRainVarRange = Math.max(rainVarMax - rainVarMin, 0.001f);
 
-    Collections.sort(
-      indices,
-      Comparator.comparingDouble((Integer i) -> {
-        double normTemp =
-          (array.temperatures[i] - finalTempMin) / finalTempRange;
-        double normRain = (array.rainfalls[i] - finalRainMin) / finalRainRange;
-        double normRainVar =
-          (array.rainVars[i] - finalRainVarMin) / finalRainVarRange;
+    Integer[] indices = new Integer[length];
+    for (int i = 0; i < length; i++) {
+      indices[i] = i;
+    }
 
-        return normTemp * 100.0 + normRain * 100.0 + normRainVar * 100.0;
-      })
-    );
+    Arrays.sort(indices, (i1, i2) -> {
+      double norm1 =
+        ((array.temperatures[i1] - finalTempMin) / finalTempRange) * 100.0 +
+        ((array.rainfalls[i1] - finalRainMin) / finalRainRange) * 100.0 +
+        ((array.rainVars[i1] - finalRainVarMin) / finalRainVarRange) * 100.0;
+      double norm2 =
+        ((array.temperatures[i2] - finalTempMin) / finalTempRange) * 100.0 +
+        ((array.rainfalls[i2] - finalRainMin) / finalRainRange) * 100.0 +
+        ((array.rainVars[i2] - finalRainVarMin) / finalRainVarRange) * 100.0;
+      return Double.compare(norm1, norm2);
+    });
 
     float[] tempTemps = new float[length];
     float[] tempRains = new float[length];
     float[] tempRainVars = new float[length];
 
     for (int i = 0; i < length; i++) {
-      int originalIndex = indices.get(i);
+      int originalIndex = indices[i];
       tempTemps[i] = array.temperatures[originalIndex];
       tempRains[i] = array.rainfalls[originalIndex];
       tempRainVars[i] = array.rainVars[originalIndex];
