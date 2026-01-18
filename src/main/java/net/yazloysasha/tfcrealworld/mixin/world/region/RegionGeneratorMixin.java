@@ -11,6 +11,8 @@ import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedTemperatureNoi
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -122,14 +124,26 @@ public class RegionGeneratorMixin {
       verticalTileSize
     );
 
-    long koppenSeed = seed;
+    PNGTemperatureNoise temperatureNoise = new PNGTemperatureNoise(
+      horizontalTileSize,
+      verticalTileSize
+    );
+    PNGRainfallNoise rainfallNoise = new PNGRainfallNoise(
+      horizontalTileSize,
+      verticalTileSize
+    );
+
     Field tempField =
       RegionGenerator.class.getDeclaredField("temperatureNoise");
     long tempOffset = UNSAFE.objectFieldOffset(tempField);
     UNSAFE.putObject(
       instance,
       tempOffset,
-      new KoppenBasedTemperatureNoise(koppenNoise, koppenSeed)
+      new KoppenBasedTemperatureNoise(
+        koppenNoise,
+        temperatureNoise,
+        rainfallNoise
+      )
     );
 
     Field rainfallField =
@@ -138,7 +152,7 @@ public class RegionGeneratorMixin {
     UNSAFE.putObject(
       instance,
       rainfallOffset,
-      new KoppenBasedRainfallNoise(koppenNoise, koppenSeed)
+      new KoppenBasedRainfallNoise(koppenNoise, temperatureNoise, rainfallNoise)
     );
   }
 }
