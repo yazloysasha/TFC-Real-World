@@ -114,11 +114,6 @@ public class ConfigManager {
         ),
         getBoolean(
           config,
-          "biome_modifications.canyons_not_volcanic",
-          TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get()
-        ),
-        getBoolean(
-          config,
           "world_generation.flat_bedrock",
           TFCRealWorldConfig.FLAT_BEDROCK.get()
         ),
@@ -278,7 +273,6 @@ public class ConfigManager {
       TFCRealWorldConfig.SPAWN_CENTER_X.get(),
       TFCRealWorldConfig.SPAWN_CENTER_Z.get(),
       TFCRealWorldConfig.SPAWN_DISTANCE.get(),
-      TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get(),
       TFCRealWorldConfig.FLAT_BEDROCK.get(),
       TFCRealWorldConfig.CONTINENTALNESS.get(),
       TFCRealWorldConfig.GRASS_DENSITY.get(),

@@ -10,7 +10,6 @@
   "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Spawn konumu için coğrafi boylam (coğrafi modda kullanılır).",
   "tfc_real_world.create_world.spawn_center_latitude": "Spawn Enlemi",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Spawn konumu için coğrafi enlem (coğrafi modda kullanılır).",
-  "tfc_real_world.create_world.canyons_not_volcanic": "Kanyonlar Volkanik Değil",
   "tfc_real_world.create_world.horizontal_tile_size": "Yatay Bölge Boyutu",
   "tfc_real_world.create_world.horizontal_tile_size.tooltip": "Her dünya bölgesinin blok cinsinden yatay boyutu. Gerçek dünya haritalarının dünya üzerinde nasıl gerildiğini etkiler.",
   "tfc_real_world.create_world.vertical_tile_size": "Dikey Bölge Boyutu",

@@ -27,7 +27,6 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Integer> SPAWN_CENTER_X;
   public static final ConfigOption<Integer> SPAWN_CENTER_Z;
   public static final ConfigOption<Integer> SPAWN_DISTANCE;
-  public static final ConfigOption<Boolean> CANYONS_NOT_VOLCANIC;
   public static final ConfigOption<Boolean> FLAT_BEDROCK;
   public static final ConfigOption<Double> CONTINENTALNESS;
   public static final ConfigOption<Double> GRASS_DENSITY;
@@ -113,16 +112,6 @@ public class TFCRealWorldConfig {
       100,
       100,
       20_000
-    );
-
-    BUILDER.pop();
-    BUILDER.push("biome_modifications");
-
-    CANYONS_NOT_VOLCANIC = new ConfigOption<>(
-      BUILDER,
-      "canyons_not_volcanic",
-      "Whether canyons and doline_canyons biomes should have volcanic features removed.",
-      true
     );
 
     BUILDER.pop();
@@ -256,8 +245,7 @@ public class TFCRealWorldConfig {
       CONTINENT_FROM_MAP,
       ALTITUDE_FROM_MAP,
       HOTSPOTS_FROM_MAP,
-      KOPPEN_FROM_MAP,
-      CANYONS_NOT_VOLCANIC
+      KOPPEN_FROM_MAP
     );
   }
 
@@ -269,7 +257,6 @@ public class TFCRealWorldConfig {
     int spawnCenterX,
     int spawnCenterZ,
     int spawnDistance,
-    boolean canyonsNotVolcanic,
     boolean flatBedrock,
     double continentalness,
     double grassDensity,
@@ -291,7 +278,6 @@ public class TFCRealWorldConfig {
     SPAWN_CENTER_X.setServerValue(spawnCenterX);
     SPAWN_CENTER_Z.setServerValue(spawnCenterZ);
     SPAWN_DISTANCE.setServerValue(spawnDistance);
-    CANYONS_NOT_VOLCANIC.setServerValue(canyonsNotVolcanic);
     FLAT_BEDROCK.setServerValue(flatBedrock);
     CONTINENTALNESS.setServerValue(continentalness);
     GRASS_DENSITY.setServerValue(grassDensity);

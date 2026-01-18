@@ -10,7 +10,6 @@
   "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Географічна довгота для точки появи (використовується в географічному режимі).",
   "tfc_real_world.create_world.spawn_center_latitude": "Широта появи",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Географічна широта для точки появи (використовується в географічному режимі).",
-  "tfc_real_world.create_world.canyons_not_volcanic": "Каньйони не вулканічні",
   "tfc_real_world.create_world.horizontal_tile_size": "Горизонтальний розмір області",
   "tfc_real_world.create_world.horizontal_tile_size.tooltip": "Горизонтальний розмір кожної області світу в блоках. Впливає на те, як карти реального світу розтягуються по світу.",
   "tfc_real_world.create_world.vertical_tile_size": "Вертикальний розмір області",

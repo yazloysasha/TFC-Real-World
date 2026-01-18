@@ -6,9 +6,7 @@ import net.dries007.tfc.client.screen.CreateTFCWorldScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
-import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.OptionsList;
-import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.network.chat.Component;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
@@ -46,9 +44,6 @@ public class CreateTFCWorldScreenMixin {
 
   @Shadow(remap = false)
   private OptionInstance<Integer> spawnDistance;
-
-  @Unique
-  private OptionInstance<Boolean> canyonsNotVolcanic;
 
   @Shadow(remap = false)
   private OptionInstance<Boolean> flatBedrock;
@@ -243,50 +238,16 @@ public class CreateTFCWorldScreenMixin {
   private void addOptionsToList(OptionsList options) {
     options.children().clear();
 
-    OptionInstance<Boolean> emptyOption = new OptionInstance<>(
-      "",
-      OptionInstance.noTooltip(),
-      (text, value) -> Component.empty(),
-      OptionInstance.BOOLEAN_VALUES,
-      false,
-      value -> {}
-    );
-
     options.addSmall(mapProfile, spawnMode);
     options.addSmall(spawnCenterLongitude, spawnCenterLatitude);
     options.addSmall(spawnCenterX, spawnCenterZ);
-    options.addSmall(spawnDistance, canyonsNotVolcanic);
-    options.addSmall(flatBedrock, emptyOption);
+    options.addSmall(spawnDistance, flatBedrock);
     options.addSmall(continentalness, grassDensity);
     options.addSmall(temperatureConstant, rainfallConstant);
     options.addSmall(temperatureScale, rainfallScale);
     options.addSmall(horizontalTileSize, verticalTileSize);
     options.addSmall(continentFromMap, altitudeFromMap);
     options.addSmall(hotspotsFromMap, koppenFromMap);
-
-    disablePhantomEmptyOptionWidgets(options);
-  }
-
-  @Unique
-  private static void disablePhantomEmptyOptionWidgets(OptionsList options) {
-    for (Object entry : options.children()) {
-      if (
-        !(entry instanceof
-          net.minecraft.client.gui.components.events.ContainerEventHandler handler)
-      ) {
-        continue;
-      }
-      for (GuiEventListener child : handler.children()) {
-        if (child instanceof AbstractWidget widget) {
-          final String label = widget.getMessage().getString();
-          if (label != null && label.trim().equals(":")) {
-            widget.active = false;
-            widget.visible = false;
-            widget.setMessage(Component.empty());
-          }
-        }
-      }
-    }
   }
 
   @Inject(method = "init", at = @At("HEAD"))
@@ -321,11 +282,6 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.get(),
       TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.getMin(),
       TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.getMax()
-    );
-    canyonsNotVolcanic = OptionInstance.createBoolean(
-      getCaption("create_world.canyons_not_volcanic"),
-      TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get(),
-      value -> {}
     );
     horizontalTileSize = accessor.tfcrealworld$invokeKmOption(
       getCaption("create_world.horizontal_tile_size"),
@@ -389,7 +345,6 @@ public class CreateTFCWorldScreenMixin {
     TFCRealWorldConfig.SPAWN_CENTER_X.set(spawnCenterX.get());
     TFCRealWorldConfig.SPAWN_CENTER_Z.set(spawnCenterZ.get());
     TFCRealWorldConfig.SPAWN_DISTANCE.set(spawnDistance.get());
-    TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.set(canyonsNotVolcanic.get());
     TFCRealWorldConfig.FLAT_BEDROCK.set(flatBedrock.get());
     TFCRealWorldConfig.CONTINENTALNESS.set(continentalness.get());
     TFCRealWorldConfig.GRASS_DENSITY.set(grassDensity.get());

@@ -15,7 +15,6 @@ public class ConfigSyncPacket {
   private final int spawnCenterX;
   private final int spawnCenterZ;
   private final int spawnDistance;
-  private final boolean canyonsNotVolcanic;
   private final boolean flatBedrock;
   private final double continentalness;
   private final double grassDensity;
@@ -38,7 +37,6 @@ public class ConfigSyncPacket {
     int spawnCenterX,
     int spawnCenterZ,
     int spawnDistance,
-    boolean canyonsNotVolcanic,
     boolean flatBedrock,
     double continentalness,
     double grassDensity,
@@ -60,7 +58,6 @@ public class ConfigSyncPacket {
     this.spawnCenterX = spawnCenterX;
     this.spawnCenterZ = spawnCenterZ;
     this.spawnDistance = spawnDistance;
-    this.canyonsNotVolcanic = canyonsNotVolcanic;
     this.flatBedrock = flatBedrock;
     this.continentalness = continentalness;
     this.grassDensity = grassDensity;
@@ -84,7 +81,6 @@ public class ConfigSyncPacket {
     buffer.writeInt(packet.spawnCenterX);
     buffer.writeInt(packet.spawnCenterZ);
     buffer.writeInt(packet.spawnDistance);
-    buffer.writeBoolean(packet.canyonsNotVolcanic);
     buffer.writeBoolean(packet.flatBedrock);
     buffer.writeDouble(packet.continentalness);
     buffer.writeDouble(packet.grassDensity);
@@ -109,7 +105,6 @@ public class ConfigSyncPacket {
       buffer.readInt(),
       buffer.readInt(),
       buffer.readInt(),
-      buffer.readBoolean(),
       buffer.readBoolean(),
       buffer.readDouble(),
       buffer.readDouble(),
@@ -141,7 +136,6 @@ public class ConfigSyncPacket {
           packet.spawnCenterX,
           packet.spawnCenterZ,
           packet.spawnDistance,
-          packet.canyonsNotVolcanic,
           packet.flatBedrock,
           packet.continentalness,
           packet.grassDensity,

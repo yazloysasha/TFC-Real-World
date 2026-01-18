@@ -10,7 +10,6 @@
   "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Spawn 위치의 지리적 경도 (지리 모드에서 사용).",
   "tfc_real_world.create_world.spawn_center_latitude": "Spawn 위도",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Spawn 위치의 지리적 위도 (지리 모드에서 사용).",
-  "tfc_real_world.create_world.canyons_not_volcanic": "협곡은 화산성 아님",
   "tfc_real_world.create_world.horizontal_tile_size": "수평 영역 크기",
   "tfc_real_world.create_world.horizontal_tile_size.tooltip": "각 월드 영역의 수평 크기 (블록 단위). 실제 세계 지도가 월드 위에서 어떻게 늘어나는지에 영향.",
   "tfc_real_world.create_world.vertical_tile_size": "수직 영역 크기",

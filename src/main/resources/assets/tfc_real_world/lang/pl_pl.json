@@ -10,7 +10,6 @@
   "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Długość geograficzna dla lokalizacji miejsca odradzania (używana w trybie geograficznym).",
   "tfc_real_world.create_world.spawn_center_latitude": "Szerokość Geograficzna Odradzania",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Szerokość geograficzna dla lokalizacji miejsca odradzania (używana w trybie geograficznym).",
-  "tfc_real_world.create_world.canyons_not_volcanic": "Kaniony Nie Wulkaniczne",
   "tfc_real_world.create_world.horizontal_tile_size": "Poziomy Rozmiar Regionu",
   "tfc_real_world.create_world.horizontal_tile_size.tooltip": "Poziomy rozmiar każdego regionu świata w blokach. Wpływa na to, jak mapy rzeczywistego świata są rozciągane na świecie.",
   "tfc_real_world.create_world.vertical_tile_size": "Pionowy Rozmiar Regionu",

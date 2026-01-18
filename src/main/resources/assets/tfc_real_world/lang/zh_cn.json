@@ -10,7 +10,6 @@
   "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Spawn位置的地理经度（在地理模式中使用）。",
   "tfc_real_world.create_world.spawn_center_latitude": "Spawn纬度",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Spawn位置的地理纬度（在地理模式中使用）。",
-  "tfc_real_world.create_world.canyons_not_volcanic": "峡谷非火山",
   "tfc_real_world.create_world.horizontal_tile_size": "水平区域大小",
   "tfc_real_world.create_world.horizontal_tile_size.tooltip": "每个世界区域的水平大小（以方块为单位）。影响真实世界地图在世界上的拉伸方式。",
   "tfc_real_world.create_world.vertical_tile_size": "垂直区域大小",

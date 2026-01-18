@@ -10,7 +10,6 @@
   "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Geographic longitude for spawn location (used in Geographic mode).",
   "tfc_real_world.create_world.spawn_center_latitude": "Spawn Latitude",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Geographic latitude for spawn location (used in Geographic mode).",
-  "tfc_real_world.create_world.canyons_not_volcanic": "Canyons Not Volcanic",
   "tfc_real_world.create_world.horizontal_tile_size": "Horizontal Region Size",
   "tfc_real_world.create_world.horizontal_tile_size.tooltip": "Horizontal size of each world region in blocks. Affects how real-world maps are stretched over the world.",
   "tfc_real_world.create_world.vertical_tile_size": "Vertical Region Size",

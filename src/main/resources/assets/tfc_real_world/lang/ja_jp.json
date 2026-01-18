@@ -10,7 +10,6 @@
   "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Spawn位置の地理的経度（地理モードで使用）。",
   "tfc_real_world.create_world.spawn_center_latitude": "Spawn緯度",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Spawn位置の地理的緯度（地理モードで使用）。",
-  "tfc_real_world.create_world.canyons_not_volcanic": "峡谷は非火山性",
   "tfc_real_world.create_world.horizontal_tile_size": "水平領域サイズ",
   "tfc_real_world.create_world.horizontal_tile_size.tooltip": "各ワールド領域の水平サイズ（ブロック単位）。実世界マップがワールド上でどのように伸縮されるかに影響。",
   "tfc_real_world.create_world.vertical_tile_size": "垂直領域サイズ",
