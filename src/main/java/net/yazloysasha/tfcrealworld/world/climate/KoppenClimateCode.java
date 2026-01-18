@@ -57,6 +57,75 @@ import net.minecraft.util.StringRepresentable;
  * Polar (E): Thot <= 10
  *   ET  (beck_29) -> 0 < Thot <= 10
  *   EF  (beck_30) -> Thot <= 0
+ *
+ * ==================================================================================
+ * TerraFirmaCraft 1.21.1 classification (simplified version for gameplay):
+ * Parameters: avgTemp (°C), rainfall (mm), rainVar (seasonal variation, -1 to 1)
+ *
+ * Polar (E):
+ *   EF -> avgTemp < -17 + 0.006*rainfall
+ *   ET -> avgTemp <= -12
+ *
+ * Arid (B):
+ *   BWH -> rainfall < 75, avgTemp > 18
+ *   BWK -> rainfall < 75, avgTemp <= 18
+ *   BSH -> 75 <= rainfall < 150, avgTemp > 18
+ *   BSK -> 75 <= rainfall < 150, avgTemp <= 18
+ *
+ * Tropical (A): avgTemp > 21
+ *   AM  -> rainfall*(1+rainVar) > 600
+ *   AW  -> rainVar > 0.5
+ *   AS  -> rainVar < -0.5
+ *   AF  -> else (|rainVar| <= 0.5)
+ *
+ * Temperate (C): 8 < avgTemp <= 21
+ *   Group a (avgTemp > 17):
+ *     CWA -> rainVar > 0.5
+ *     CSA -> rainVar < -0.5
+ *     CFA -> else
+ *   Group b (12 < avgTemp <= 17):
+ *     CWB -> rainVar > 0.5
+ *     CSB -> rainVar < -0.5
+ *     CFB -> else
+ *   Group c (8 < avgTemp <= 12):
+ *     CWC -> rainVar > 0.5
+ *     CSC -> rainVar < -0.5
+ *     CFC -> else
+ *
+ * Continental (D): -12 < avgTemp <= 8
+ *   Group a (avgTemp > 3):
+ *     DWA -> rainVar > 0.5
+ *     DSA -> rainVar < -0.5
+ *     DFA -> else
+ *   Group b (-2 < avgTemp <= 3):
+ *     DWB -> rainVar > 0.5
+ *     DSB -> rainVar < -0.5
+ *     DFB -> else
+ *   Group c (-8 < avgTemp <= -2):
+ *     DWC -> rainVar > 0.5
+ *     DSC -> rainVar < -0.5
+ *     DFC -> else
+ *   Group d (avgTemp <= -8):
+ *     DWD -> rainVar > 0.5
+ *     DSD -> rainVar < -0.5
+ *     DFD -> else
+ *
+ * ==================================================================================
+ * TerraFirmaCraft 1.20.1 classification (simplified regional grouping):
+ * Parameters: avgTemp (°C), rainfall (mm)
+ *
+ * ARCTIC -> avgTemp < -20
+ * TUNDRA -> -20 <= avgTemp < -14, rainfall <= 300
+ * SUBARCTIC -> -14 <= avgTemp < -5, rainfall > 300 OR avgTemp >= -5, rainfall <= 350
+ * COLD_DESERT -> rainfall < 150, avgTemp <= 4
+ * HOT_DESERT -> rainfall < 150, avgTemp > 4
+ * TEMPERATE -> 150 <= rainfall <= 350, -5 < avgTemp <= 12
+ * SUBTROPICAL -> 150 <= rainfall <= 350, avgTemp > 12
+ * HUMID_SUBTROPICAL -> rainfall > 350, avgTemp > 12
+ * HUMID_OCEANIC -> rainfall > 350, -5 < avgTemp <= 12
+ * HUMID_SUBARCTIC -> rainfall > 350, avgTemp <= -5
+ * TROPICAL_SAVANNA -> avgTemp > 18, 150 <= rainfall <= 300
+ * TROPICAL_RAINFOREST -> avgTemp > 18, rainfall > 300
  */
 
 public enum KoppenClimateCode implements StringRepresentable {
