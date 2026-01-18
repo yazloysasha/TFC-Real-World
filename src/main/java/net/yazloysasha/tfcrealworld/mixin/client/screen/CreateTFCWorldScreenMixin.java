@@ -6,7 +6,9 @@ import net.dries007.tfc.client.screen.CreateTFCWorldScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
+import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.OptionsList;
+import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.network.chat.Component;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
@@ -261,6 +263,30 @@ public class CreateTFCWorldScreenMixin {
     options.addSmall(horizontalTileSize, verticalTileSize);
     options.addSmall(continentFromMap, altitudeFromMap);
     options.addSmall(hotspotsFromMap, koppenFromMap);
+
+    disablePhantomEmptyOptionWidgets(options);
+  }
+
+  @Unique
+  private static void disablePhantomEmptyOptionWidgets(OptionsList options) {
+    for (Object entry : options.children()) {
+      if (
+        !(entry instanceof
+          net.minecraft.client.gui.components.events.ContainerEventHandler handler)
+      ) {
+        continue;
+      }
+      for (GuiEventListener child : handler.children()) {
+        if (child instanceof AbstractWidget widget) {
+          final String label = widget.getMessage().getString();
+          if (label != null && label.trim().equals(":")) {
+            widget.active = false;
+            widget.visible = false;
+            widget.setMessage(Component.empty());
+          }
+        }
+      }
+    }
   }
 
   @Inject(method = "init", at = @At("HEAD"))
