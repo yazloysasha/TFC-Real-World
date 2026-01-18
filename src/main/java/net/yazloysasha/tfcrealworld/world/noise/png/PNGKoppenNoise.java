@@ -236,6 +236,10 @@ public class PNGKoppenNoise {
   }
 
   private KoppenClimateClassification getClimateFromPixel(int rgb) {
+    return getClimateFromRgb(rgb);
+  }
+
+  public static KoppenClimateClassification getClimateFromRgb(int rgb) {
     int r = (rgb >> 16) & 0xFF;
     int g = (rgb >> 8) & 0xFF;
     int b = rgb & 0xFF;

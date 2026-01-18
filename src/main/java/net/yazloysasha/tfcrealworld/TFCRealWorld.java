@@ -21,6 +21,7 @@ import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
 import net.yazloysasha.tfcrealworld.trigger.ModTriggers;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
+import net.yazloysasha.tfcrealworld.world.noise.koppen.SmoothedKoppenParameterMaps;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
@@ -147,6 +148,7 @@ public final class TFCRealWorld {
     GlobalOceanDistanceCache.clear();
     GlobalWestCoastDistanceCache.clear();
     KoppenParameterCache.clear();
+    SmoothedKoppenParameterMaps.clear();
     BasePNGNoise.clearImageCache();
   }
 }

@@ -15,6 +15,13 @@ public class KoppenBasedTemperatureNoise extends BaseKoppenBasedNoise {
   }
 
   @Override
+  public double noise(double x, double z) {
+    double[] image = temperatureNoise.tileToImage(x, z);
+    return SmoothedKoppenParameterMaps.getInstance()
+      .sampleTemperature(image[0], image[1]);
+  }
+
+  @Override
   protected double extractParameter(
     KoppenParameterCache.ParameterCombination params
   ) {
