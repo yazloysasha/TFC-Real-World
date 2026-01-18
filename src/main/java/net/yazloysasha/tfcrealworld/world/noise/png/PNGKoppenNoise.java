@@ -6,14 +6,8 @@ import java.util.Map;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
 import net.dries007.tfc.world.region.Units;
 
-/**
- * Noise generator that reads Köppen climate classification from a PNG map.
- * The map uses indexed color with fixed colors matching KOPPEN_COLORS from maps.py.
- * Returns the Köppen climate code as a string (e.g., "AF", "BWH", etc.).
- */
 public class PNGKoppenNoise {
 
-  // Köppen climate classification colors (from maps.py)
   private static final Map<
     Integer,
     KoppenClimateClassification
@@ -97,19 +91,11 @@ public class PNGKoppenNoise {
     this.scaleZ = height / (2.0 * tileRadiusGridZ);
   }
 
-  /**
-   * Gets the Köppen climate classification at the given tile coordinates.
-   * Uses bilinear interpolation to sample from the map.
-   */
   public KoppenClimateClassification getClimate(double x, double z) {
     double[] imageCoords = tileToImage(x, z);
     return sampleClimate(imageCoords[0], imageCoords[1]);
   }
 
-  /**
-   * Gets information about neighboring climates for smooth interpolation.
-   * Returns the four corner climates and interpolation weights.
-   */
   public ClimateInterpolationResult getClimateInterpolation(
     double x,
     double z
@@ -118,9 +104,6 @@ public class PNGKoppenNoise {
     return sampleClimateInterpolation(imageCoords[0], imageCoords[1]);
   }
 
-  /**
-   * Result of climate interpolation with four corner climates and weights.
-   */
   public static class ClimateInterpolationResult {
 
     public final KoppenClimateClassification climate00;
@@ -293,14 +276,14 @@ public class PNGKoppenNoise {
       localZ = -localZ;
     }
 
-    double clampedX = Math.clamp(localX, -tileRadiusGridX, tileRadiusGridX);
-    double clampedZ = Math.clamp(localZ, -tileRadiusGridZ, tileRadiusGridZ);
+    double clampedX = clamp(localX, -tileRadiusGridX, tileRadiusGridX);
+    double clampedZ = clamp(localZ, -tileRadiusGridZ, tileRadiusGridZ);
 
     double imageX = centerX + clampedX * scaleX;
     double imageZ = centerZ + clampedZ * scaleZ;
 
-    imageX = Math.clamp(imageX, 0, width - 1);
-    imageZ = Math.clamp(imageZ, 0, height - 1);
+    imageX = clamp(imageX, 0.0, width - 1.0);
+    imageZ = clamp(imageZ, 0.0, height - 1.0);
 
     return new double[] { imageX, imageZ };
   }
@@ -311,5 +294,15 @@ public class PNGKoppenNoise {
 
   public int getHeight() {
     return height;
+  }
+
+  private static double clamp(double value, double min, double max) {
+    if (value < min) {
+      return min;
+    }
+    if (value > max) {
+      return max;
+    }
+    return value;
   }
 }

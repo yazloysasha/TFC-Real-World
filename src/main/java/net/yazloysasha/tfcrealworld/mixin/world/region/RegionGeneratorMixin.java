@@ -182,7 +182,6 @@ public class RegionGeneratorMixin {
       verticalTileSize
     );
 
-    long koppenSeed = seed.next();
     Field tempField =
       RegionGenerator.class.getDeclaredField("temperatureNoise");
     @SuppressWarnings("deprecation")
@@ -217,8 +216,7 @@ public class RegionGeneratorMixin {
       new KoppenBasedRainfallVarianceNoise(
         koppenNoise,
         temperatureNoise,
-        rainfallNoise,
-        koppenSeed
+        rainfallNoise
       )
     );
   }

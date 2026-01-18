@@ -29,9 +29,4 @@ public class KoppenBasedRainfallNoise extends BaseKoppenBasedNoise {
   ) {
     return params.rainfall;
   }
-
-  @Override
-  protected double postProcessResult(double result) {
-    return Mth.clamp(result, 0.0, 500.0);
-  }
 }
