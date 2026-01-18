@@ -1,114 +1,82 @@
 package net.yazloysasha.tfcrealworld.world.climate;
 
 import java.util.Locale;
-import net.dries007.tfc.util.climate.KoppenClimateClassification;
 import net.minecraft.util.StringRepresentable;
 
-/**
- * Detailed Köppen climate classification codes (AF, AM, AW, etc.)
- * that map to the simplified TFC climate zones (ARCTIC, TUNDRA, etc.).
- */
 public enum KoppenClimateCode implements StringRepresentable {
-  // Group A: Tropical
-  AF(KoppenClimateClassification.TROPICAL_RAINFOREST),
-  AM(KoppenClimateClassification.TROPICAL_RAINFOREST),
-  AW(KoppenClimateClassification.TROPICAL_SAVANNA),
-  AS(KoppenClimateClassification.TROPICAL_SAVANNA),
+  AF(22f, 28f, 250f, 500f),
+  AM(22f, 28f, 200f, 400f),
+  AW(20f, 28f, 100f, 250f),
+  AS(20f, 28f, 100f, 250f),
 
-  // Group B: Arid
-  BWH(KoppenClimateClassification.HOT_DESERT),
-  BWK(KoppenClimateClassification.COLD_DESERT),
-  BSH(KoppenClimateClassification.HOT_DESERT),
-  BSK(KoppenClimateClassification.COLD_DESERT),
+  BWH(18f, 30f, 0f, 50f),
+  BWK(-5f, 18f, 0f, 50f),
+  BSH(18f, 30f, 50f, 150f),
+  BSK(-5f, 18f, 50f, 150f),
 
-  // Group C: Temperate
-  CSA(KoppenClimateClassification.SUBTROPICAL),
-  CSB(KoppenClimateClassification.TEMPERATE),
-  CSC(KoppenClimateClassification.TEMPERATE),
-  CWA(KoppenClimateClassification.SUBTROPICAL),
-  CWB(KoppenClimateClassification.TEMPERATE),
-  CWC(KoppenClimateClassification.TEMPERATE),
-  CFA(KoppenClimateClassification.HUMID_SUBTROPICAL),
-  CFB(KoppenClimateClassification.HUMID_OCEANIC),
-  CFC(KoppenClimateClassification.TEMPERATE),
+  CSA(15f, 22f, 100f, 200f),
+  CSB(10f, 18f, 100f, 250f),
+  CSC(5f, 15f, 100f, 250f),
+  CWA(15f, 22f, 100f, 250f),
+  CWB(10f, 18f, 100f, 250f),
+  CWC(5f, 15f, 100f, 250f),
+  CFA(15f, 22f, 200f, 400f),
+  CFB(10f, 18f, 200f, 400f),
+  CFC(5f, 15f, 200f, 350f),
 
-  // Group D: Continental
-  DSA(KoppenClimateClassification.TEMPERATE),
-  DSB(KoppenClimateClassification.TEMPERATE),
-  DSC(KoppenClimateClassification.SUBARCTIC),
-  DSD(KoppenClimateClassification.SUBARCTIC),
-  DWA(KoppenClimateClassification.TEMPERATE),
-  DWB(KoppenClimateClassification.TEMPERATE),
-  DWC(KoppenClimateClassification.HUMID_SUBARCTIC),
-  DWD(KoppenClimateClassification.HUMID_SUBARCTIC),
-  DFA(KoppenClimateClassification.HUMID_OCEANIC),
-  DFB(KoppenClimateClassification.HUMID_OCEANIC),
-  DFC(KoppenClimateClassification.HUMID_SUBARCTIC),
-  DFD(KoppenClimateClassification.HUMID_SUBARCTIC),
+  DSA(5f, 15f, 100f, 200f),
+  DSB(0f, 12f, 100f, 200f),
+  DSC(-8f, 5f, 100f, 200f),
+  DSD(-15f, 0f, 100f, 200f),
+  DWA(5f, 15f, 100f, 250f),
+  DWB(0f, 12f, 100f, 250f),
+  DWC(-8f, 5f, 100f, 250f),
+  DWD(-15f, 0f, 100f, 250f),
+  DFA(5f, 15f, 200f, 400f),
+  DFB(0f, 12f, 200f, 400f),
+  DFC(-8f, 5f, 200f, 350f),
+  DFD(-15f, 0f, 200f, 350f),
 
-  // Group E: Polar
-  ET(KoppenClimateClassification.TUNDRA),
-  EF(KoppenClimateClassification.ARCTIC);
+  ET(-20f, -10f, 100f, 300f),
+  EF(-40f, -20f, 50f, 200f);
 
   private final String name;
-  private final KoppenClimateClassification[] tfcClimates;
+  private final float minTemp;
+  private final float maxTemp;
+  private final float minRainfall;
+  private final float maxRainfall;
 
-  KoppenClimateCode(KoppenClimateClassification... tfcClimates) {
+  KoppenClimateCode(
+    float minTemp,
+    float maxTemp,
+    float minRainfall,
+    float maxRainfall
+  ) {
     this.name = name().toLowerCase(Locale.ROOT);
-    this.tfcClimates = tfcClimates;
+    this.minTemp = minTemp;
+    this.maxTemp = maxTemp;
+    this.minRainfall = minRainfall;
+    this.maxRainfall = maxRainfall;
   }
 
-  public KoppenClimateClassification[] getTFCClimates() {
-    return tfcClimates;
+  public float getMinTemp() {
+    return minTemp;
+  }
+
+  public float getMaxTemp() {
+    return maxTemp;
+  }
+
+  public float getMinRainfall() {
+    return minRainfall;
+  }
+
+  public float getMaxRainfall() {
+    return maxRainfall;
   }
 
   @Override
   public String getSerializedName() {
     return name;
-  }
-
-  public static KoppenClimateCode classify(
-    float averageTemperature,
-    float rainfall
-  ) {
-    if (averageTemperature < -17f + 0.006 * rainfall) {
-      return EF;
-    } else if (averageTemperature <= -12f) {
-      return ET;
-    } else if (rainfall < 75f) {
-      if (averageTemperature > 18f) {
-        return BWH;
-      } else {
-        return BWK;
-      }
-    } else if (rainfall < 150f) {
-      if (averageTemperature > 18) {
-        return BSH;
-      } else {
-        return BSK;
-      }
-    } else if (averageTemperature > 21f) {
-      if (rainfall > 600f) {
-        return AM;
-      } else {
-        return AF;
-      }
-    } else if (averageTemperature > 8f) {
-      if (averageTemperature > 17f) {
-        return CFA;
-      } else if (averageTemperature > 12f) {
-        return CFB;
-      } else {
-        return CFC;
-      }
-    } else if (averageTemperature > 3f) {
-      return DFA;
-    } else if (averageTemperature > -2f) {
-      return DFB;
-    } else if (averageTemperature > -8f) {
-      return DFC;
-    } else {
-      return DFD;
-    }
   }
 }

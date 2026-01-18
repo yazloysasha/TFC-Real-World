@@ -1,29 +1,17 @@
 package net.yazloysasha.tfcrealworld.world.noise.koppen;
 
 import net.dries007.tfc.world.noise.Noise2D;
+import net.minecraft.util.Mth;
+import net.yazloysasha.tfcrealworld.world.climate.KoppenClimateCode;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
 
 public abstract class BaseKoppenBasedNoise implements Noise2D {
 
-  private static final double OFFSET = 0.1;
-
-  protected static class CornerData {
-
-    final double[] tempGrayscales = new double[4];
-    final double[] rainGrayscales = new double[4];
-    final KoppenParameterCache.ParameterCombination[] params =
-      new KoppenParameterCache.ParameterCombination[4];
-  }
-
   protected final PNGKoppenNoise koppenNoise;
   protected final PNGTemperatureNoise temperatureNoise;
   protected final PNGRainfallNoise rainfallNoise;
-  protected final KoppenParameterCache parameterCache;
-
-  private final ThreadLocal<CornerData> cornerDataCache =
-    ThreadLocal.withInitial(CornerData::new);
 
   protected BaseKoppenBasedNoise(
     PNGKoppenNoise koppenNoise,
@@ -33,7 +21,6 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
     this.koppenNoise = koppenNoise;
     this.temperatureNoise = temperatureNoise;
     this.rainfallNoise = rainfallNoise;
-    this.parameterCache = KoppenParameterCache.getInstance();
   }
 
   @Override
@@ -41,85 +28,37 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
     PNGKoppenNoise.ClimateInterpolationResult interpolation =
       koppenNoise.getClimateInterpolation(x, z);
 
-    CornerData data = cornerDataCache.get();
-    sampleCornerData(x, z, interpolation, data);
+    double temp00 = temperatureNoise.getGrayscaleValue(x, z) / 255.0;
+    double rain00 = rainfallNoise.getGrayscaleValue(x, z) / 255.0;
+
+    float value00 = getValue(interpolation.climate00, temp00, rain00);
+    float value10 = getValue(interpolation.climate10, temp00, rain00);
+    float value01 = getValue(interpolation.climate01, temp00, rain00);
+    float value11 = getValue(interpolation.climate11, temp00, rain00);
 
     double result =
-      extractParameter(data.params[0]) * interpolation.weight00 +
-      extractParameter(data.params[1]) * interpolation.weight10 +
-      extractParameter(data.params[2]) * interpolation.weight01 +
-      extractParameter(data.params[3]) * interpolation.weight11;
+      value00 * interpolation.weight00 +
+      value10 * interpolation.weight10 +
+      value01 * interpolation.weight01 +
+      value11 * interpolation.weight11;
 
-    return postProcessResult(result);
-  }
-
-  protected void sampleCornerData(
-    double x,
-    double z,
-    PNGKoppenNoise.ClimateInterpolationResult interpolation,
-    CornerData data
-  ) {
-    data.tempGrayscales[0] = temperatureNoise.getGrayscaleValue(
-      x - OFFSET,
-      z - OFFSET
-    );
-    data.tempGrayscales[1] = temperatureNoise.getGrayscaleValue(
-      x + OFFSET,
-      z - OFFSET
-    );
-    data.tempGrayscales[2] = temperatureNoise.getGrayscaleValue(
-      x - OFFSET,
-      z + OFFSET
-    );
-    data.tempGrayscales[3] = temperatureNoise.getGrayscaleValue(
-      x + OFFSET,
-      z + OFFSET
-    );
-
-    data.rainGrayscales[0] = rainfallNoise.getGrayscaleValue(
-      x - OFFSET,
-      z - OFFSET
-    );
-    data.rainGrayscales[1] = rainfallNoise.getGrayscaleValue(
-      x + OFFSET,
-      z - OFFSET
-    );
-    data.rainGrayscales[2] = rainfallNoise.getGrayscaleValue(
-      x - OFFSET,
-      z + OFFSET
-    );
-    data.rainGrayscales[3] = rainfallNoise.getGrayscaleValue(
-      x + OFFSET,
-      z + OFFSET
-    );
-
-    data.params[0] = parameterCache.getParametersFromGrayscale(
-      interpolation.climate00.getTFCClimates()[0],
-      data.tempGrayscales[0],
-      data.rainGrayscales[0]
-    );
-    data.params[1] = parameterCache.getParametersFromGrayscale(
-      interpolation.climate10.getTFCClimates()[0],
-      data.tempGrayscales[1],
-      data.rainGrayscales[1]
-    );
-    data.params[2] = parameterCache.getParametersFromGrayscale(
-      interpolation.climate01.getTFCClimates()[0],
-      data.tempGrayscales[2],
-      data.rainGrayscales[2]
-    );
-    data.params[3] = parameterCache.getParametersFromGrayscale(
-      interpolation.climate11.getTFCClimates()[0],
-      data.tempGrayscales[3],
-      data.rainGrayscales[3]
-    );
-  }
-
-  protected abstract double extractParameter(
-    KoppenParameterCache.ParameterCombination params
-  );
-
-  protected double postProcessResult(double result) {
     return result;
   }
+
+  protected float getValue(
+    KoppenClimateCode code,
+    double tempNorm,
+    double rainNorm
+  ) {
+    float minValue = getMinValue(code);
+    float maxValue = getMaxValue(code);
+    float norm = (float) (isTemperature() ? tempNorm : rainNorm);
+    return Mth.lerp(norm, minValue, maxValue);
+  }
+
+  protected abstract float getMinValue(KoppenClimateCode code);
+
+  protected abstract float getMaxValue(KoppenClimateCode code);
+
+  protected abstract boolean isTemperature();
 }
