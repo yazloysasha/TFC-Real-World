@@ -267,7 +267,7 @@ public class PNGKoppenNoise {
     }
   }
 
-  private RealKoppenClimateClassification getClimateFromPixel(int rgb) {
+  public static RealKoppenClimateClassification getClimateFromRgb(int rgb) {
     int r = (rgb >> 16) & 0xFF;
     int g = (rgb >> 8) & 0xFF;
     int b = rgb & 0xFF;
@@ -300,6 +300,10 @@ public class PNGKoppenNoise {
     }
 
     return closestClimate;
+  }
+
+  private RealKoppenClimateClassification getClimateFromPixel(int rgb) {
+    return getClimateFromRgb(rgb);
   }
 
   private double[] tileToImage(double x, double z) {

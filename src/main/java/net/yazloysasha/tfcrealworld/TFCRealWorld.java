@@ -18,6 +18,8 @@ import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.network.PacketHandler;
 import net.yazloysasha.tfcrealworld.trigger.ModTriggers;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
+import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
+import net.yazloysasha.tfcrealworld.world.noise.koppen.SmoothedKoppenParameterMaps;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import org.slf4j.Logger;
@@ -128,6 +130,8 @@ public final class TFCRealWorld {
 
   private void clearCaches() {
     GlobalOceanDistanceCache.clear();
+    KoppenParameterCache.clear();
+    SmoothedKoppenParameterMaps.clear();
     BasePNGNoise.clearImageCache();
   }
 }

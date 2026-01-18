@@ -13,6 +13,8 @@ import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
 import net.yazloysasha.tfcrealworld.util.profile.MapProfile;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
+import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
+import net.yazloysasha.tfcrealworld.world.noise.koppen.SmoothedKoppenParameterMaps;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -367,6 +369,8 @@ public class CreateTFCWorldScreenMixin {
 
     if (!newProfile.equals(previousProfile)) {
       BasePNGNoise.clearImageCache();
+      KoppenParameterCache.clear();
+      SmoothedKoppenParameterMaps.clear();
     }
   }
 }
