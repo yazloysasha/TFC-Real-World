@@ -6,10 +6,12 @@ import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedTemperatureNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
@@ -80,6 +82,14 @@ public class RegionGeneratorMixin {
           verticalTileSize
         );
         initializeAltitudeMap(instance, altitudeNoise);
+      }
+
+      if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
+        PNGHotspotsNoise hotspotsNoise = new PNGHotspotsNoise(
+          horizontalTileSize,
+          verticalTileSize
+        );
+        HotspotsNoiseRegistry.register(instance, hotspotsNoise);
       }
 
       if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {

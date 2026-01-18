@@ -1,17 +1,14 @@
 package net.yazloysasha.tfcrealworld.util.registry;
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import java.util.Collections;
 import java.util.Map;
+import java.util.WeakHashMap;
 import net.dries007.tfc.world.region.RegionGenerator;
 
-/**
- * Base class for noise registries that store noise instances per RegionGenerator.
- * Provides common registry field and structure.
- */
 public abstract class BaseNoiseRegistry<T> {
 
   protected final Map<RegionGenerator, T> registry =
-    new Object2ObjectOpenHashMap<>();
+    Collections.synchronizedMap(new WeakHashMap<>());
 
   protected void registerNoise(RegionGenerator generator, T noise) {
     registry.put(generator, noise);
