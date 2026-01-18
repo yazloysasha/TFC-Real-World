@@ -5,7 +5,6 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "tfc_real_world.refmap.json",
   "mixins": [
-    "world.biome.BiomeExtensionMixin",
     "world.biome.BiomeSourceExtensionMixin",
     "world.region.AddMountainsMixin",
     "world.region.AnnotateBaseLandHeightMixin",
