@@ -10,7 +10,7 @@
   },
   "display": {
     "icon": {
-      "id": "minecraft:map"
+      "item": "minecraft:map"
     },
     "title": {
       "translate": "tfc.advancements.world.globe_trotter.title"
@@ -22,7 +22,7 @@
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false,
-    "background": "tfc:textures/block/mud/fluvisol.png"
+    "background": "tfc:textures/block/mud/silt.png"
   },
   "requirements": [["high"], ["low"]]
 }

@@ -19,7 +19,7 @@
     "world.settings.SettingsMixin"
   ],
   "client": [
-    "client.advancement.DisplayInfoMixin",
+    "client.advancements.DisplayInfoMixin",
     "client.screen.CreateTFCWorldScreenMixin",
     "client.screen.CreateTFCWorldScreenAccessor"
   ],
