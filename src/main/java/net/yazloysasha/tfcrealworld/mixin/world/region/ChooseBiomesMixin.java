@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 public class ChooseBiomesMixin {
 
   @Unique
-  private static final float ACTIVE_VOLCANIC_BIOME_SIZE_MULTIPLIER = 1.5f;
+  private static final float ACTIVE_VOLCANIC_BIOME_SIZE_MULTIPLIER = 1.4f;
 
   @Unique
   private static final float INACTIVE_VOLCANIC_BIOME_SIZE_MULTIPLIER = 1.0f;
