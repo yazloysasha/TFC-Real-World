@@ -1,4 +1,5 @@
 {
+  "tfc_real_world.advancements.world.globe_trotter.description": "Dojdź do -%s z i %s z, dwóch biegunów najbliżej punktu odrodzenia.",
   "tfc_real_world.create_world.map_profile": "Profil Mapy",
   "tfc_real_world.create_world.map_profile.tooltip": "Profil mapy używany do generowania świata.",
   "tfc_real_world.create_world.spawn_mode": "Tryb Odradzania",

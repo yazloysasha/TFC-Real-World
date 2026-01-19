@@ -1,4 +1,5 @@
 {
+  "tfc_real_world.advancements.world.globe_trotter.description": "抵達南極與北極（z=%s 與 z=-%s）",
   "tfc_real_world.create_world.map_profile": "地圖配置檔案",
   "tfc_real_world.create_world.map_profile.tooltip": "用於世界生成的地圖配置檔案。",
   "tfc_real_world.create_world.spawn_mode": "Spawn模式",

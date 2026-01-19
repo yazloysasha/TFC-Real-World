@@ -18,7 +18,7 @@ public class DisplayInfoMixin {
 
   @Unique
   private static final String GLOBE_TROTTER_DESCRIPTION_KEY =
-    "tfc.advancements.world.globe_trotter.description";
+    "tfc_real_world.advancements.world.globe_trotter.description";
 
   @Inject(
     method = "getDescription()Lnet/minecraft/network/chat/Component;",

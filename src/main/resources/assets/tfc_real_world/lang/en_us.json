@@ -1,4 +1,5 @@
 {
+  "tfc_real_world.advancements.world.globe_trotter.description": "Travel to positive %s and -%s z, the two poles nearest to spawn",
   "tfc_real_world.create_world.map_profile": "Map Profile",
   "tfc_real_world.create_world.map_profile.tooltip": "Map profile used for world generation.",
   "tfc_real_world.create_world.spawn_mode": "Spawn Mode",

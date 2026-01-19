@@ -1,4 +1,5 @@
 {
+  "tfc_real_world.advancements.world.globe_trotter.description": "Reise zu z %s und -%s, den beiden Polen, die dem Welteinstiegspunkt am nächsten liegen.",
   "tfc_real_world.create_world.map_profile": "Kartenprofil",
   "tfc_real_world.create_world.map_profile.tooltip": "Kartenprofil für die Welterzeugung.",
   "tfc_real_world.create_world.spawn_mode": "Spawn-Modus",
