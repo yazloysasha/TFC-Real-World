@@ -1,4 +1,5 @@
 {
+  "tfc_real_world.advancements.world.globe_trotter.description": "스폰에서 가장 가까운 두 극지방인 Z 좌표 +%s과 -%s까지 탐험하세요.",
   "tfc_real_world.create_world.map_profile": "지도 프로필",
   "tfc_real_world.create_world.map_profile.tooltip": "월드 생성에 사용되는 지도 프로필.",
   "tfc_real_world.create_world.spawn_mode": "Spawn 모드",

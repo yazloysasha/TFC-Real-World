@@ -1,4 +1,5 @@
 {
+  "tfc_real_world.advancements.world.globe_trotter.description": "Doğma noktasına en yakın iki kutup olan %s ve -%s z noktalarına ulaş.",
   "tfc_real_world.create_world.map_profile": "Harita Profili",
   "tfc_real_world.create_world.map_profile.tooltip": "Dünya oluşturma için kullanılan harita profili.",
   "tfc_real_world.create_world.spawn_mode": "Spawn Modu",

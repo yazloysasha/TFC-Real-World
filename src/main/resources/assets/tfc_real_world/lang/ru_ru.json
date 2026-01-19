@@ -1,4 +1,5 @@
 {
+  "tfc_real_world.advancements.world.globe_trotter.description": "Отправьтесь на %s и -%s по Z, к двум полюсам мира",
   "tfc_real_world.create_world.map_profile": "Профиль карты",
   "tfc_real_world.create_world.map_profile.tooltip": "Профиль карты для генерации мира.",
   "tfc_real_world.create_world.spawn_mode": "Режим появления игрока",

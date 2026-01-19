@@ -16,7 +16,7 @@
       "translate": "tfc.advancements.world.globe_trotter.title"
     },
     "description": {
-      "translate": "tfc.advancements.world.globe_trotter.description"
+      "translate": "tfc_real_world.advancements.world.globe_trotter.description"
     },
     "frame": "challenge",
     "show_toast": true,

@@ -1,4 +1,5 @@
 {
+  "tfc_real_world.advancements.world.globe_trotter.description": "Z座標%sから-%sまで歩き、二つの極点を訪れる。",
   "tfc_real_world.create_world.map_profile": "マッププロファイル",
   "tfc_real_world.create_world.map_profile.tooltip": "ワールド生成に使用するマッププロファイル。",
   "tfc_real_world.create_world.spawn_mode": "Spawnモード",
