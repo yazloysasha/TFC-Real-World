@@ -38,4 +38,13 @@ public class PNGHotspotsNoise extends BasePNGNoise {
   public boolean hasHotspot(double x, double z) {
     return getHotSpotAge(x, z) > 0;
   }
+
+  public boolean hasActiveHotspot(double x, double z) {
+    double[] imageCoords = tileToImage(x, z);
+    int[] px = samplePixels(imageCoords[0], imageCoords[1]);
+    for (int rgb : px) {
+      if (getBrightness(rgb) > 223.5) return true;
+    }
+    return false;
+  }
 }

@@ -21,7 +21,10 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 public class ChooseBiomesMixin {
 
   @Unique
-  private static float VOLCANIC_BIOME_SIZE_MULTIPLIER = 1.4f;
+  private static final float ACTIVE_VOLCANIC_BIOME_SIZE_MULTIPLIER = 1.5f;
+
+  @Unique
+  private static final float INACTIVE_VOLCANIC_BIOME_SIZE_MULTIPLIER = 1.0f;
 
   @Unique
   private static final ThreadLocal<int[]> CURRENT_GRID_POS =
@@ -90,13 +93,20 @@ public class ChooseBiomesMixin {
   ) {
     if (hotspots == null) return false;
 
-    final float m = VOLCANIC_BIOME_SIZE_MULTIPLIER;
-    if (m <= 1.0f) return hotspots.hasHotspot(x, z);
+    final byte ageHere = hotspots.getHotSpotAge(x, z);
+    if (ageHere > 0) return true;
 
-    final int r = Math.max(0, (int) Math.ceil((m - 1.0f) * 2.0f));
+    final float m = ACTIVE_VOLCANIC_BIOME_SIZE_MULTIPLIER;
+
+    final int r = Math.max(
+      0,
+      (int) Math.ceil((m - INACTIVE_VOLCANIC_BIOME_SIZE_MULTIPLIER) * 2.0f)
+    );
     for (int dz = -r; dz <= r; dz++) {
       for (int dx = -r; dx <= r; dx++) {
-        if (hotspots.hasHotspot(x + dx, z + dz)) return true;
+        if (hotspots.hasActiveHotspot(x + dx, z + dz)) {
+          return true;
+        }
       }
     }
     return false;

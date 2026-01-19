@@ -46,6 +46,7 @@ public final class BiomePools {
       }
 
       if (ext.biomeBlendType() == BiomeBlendType.LAKE) continue;
+      if (ext.createNoiseSampler(0L) == null) continue;
 
       final boolean volcanic = ext.isVolcanic();
       isVolcanicLayer[id] = volcanic;
