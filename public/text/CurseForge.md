@@ -44,7 +44,7 @@ The mod works by replacing TFC's default noise generators with data sampled from
 <li><b>Volcanic Activity:</b> Hotspot maps guide the placement of TFC's volcanoes to tectonically plausible areas.</li>
 <li><b>Climate System:</b> A Köppen climate map defines temperature and rainfall belts (tropical, arid, temperate, continental, polar), which TFC's existing systems use to create biomes.</li>
 <li><b>Non-Intrusive:</b> No new blocks, items, or mobs. Uses Mixins to only redirect worldgen rules.</li>
-<li><b>Enhanced Canyon Biomes:</b> Optional config to make canyon biomes purely erosional, removing volcanic features.</li>
+<li><b>Enhanced Canyon Biomes:</b> Optional config to make canyon biomes purely erosional, removing volcanic features (1.21.1 only).</li>
 </ul>
 
 </div>
@@ -56,9 +56,9 @@ All settings are accessible directly from the <b>TFC world creation screen</b> f
 
 <ul>
 <li><b>Spawn Location Modes:</b><ul>
-  <li><code>DEFAULT</code> – Classic TFC coordinate-based spawn.</li>
   <li><code>GEOGRAPHIC</code> – Spawn using real-world longitude and latitude! Choose your starting city or region.</li>
   <li><code>RANDOM</code> – Spawn in a random location determined by the world seed.</li>
+  <li><code>CLASSIC</code> – Classic TFC coordinate-based spawn.</li>
 </ul></li>
 <li><b>World Generation Toggles:</b> Easily enable/disable the use of real-world maps for Continents, Altitude, Hotspots, and Climate.</li>
 <li><b>Parameter Adjustment:</b> Fine-tune familiar TFC worldgen values like continentalness, temperature scale, and rainfall directly in the GUI.</li>
@@ -71,8 +71,7 @@ All settings are accessible directly from the <b>TFC world creation screen</b> f
 
 <div class="spoiler">
 <ol>
-<li><b>Backport Support:</b> Bring mod to older, popular TFC versions, including 1.20.1, 1.18.2, and 1.12.2 (if possible).</li>
-<li><b>Improve Climate Transitions:</b> Smooth the blending between different climate zones for even more natural-looking biome borders.</li>
+<li><b>Backport Support:</b> Bring mod to older TFC versions, including 1.18.2 and 1.12.2 (if possible).</li>
 </ol>
 
 </div>

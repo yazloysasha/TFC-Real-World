@@ -43,7 +43,7 @@ The mod works by replacing TFC's default noise generators with data sampled from
 - **Volcanic Activity:** Hotspot maps guide the placement of TFC's volcanoes to tectonically plausible areas.
 - **Climate System:** A Köppen climate map defines temperature and rainfall belts (tropical, arid, temperate, continental, polar), which TFC's existing systems use to create biomes.
 - **Non-Intrusive:** No new blocks, items, or mobs. Uses Mixins to only redirect worldgen rules.
-- **Enhanced Canyon Biomes:** Optional config to make canyon biomes purely erosional, removing volcanic features.
+- **Enhanced Canyon Biomes:** Optional config to make canyon biomes purely erosional, removing volcanic features (1.21.1 only).
 
 </details>
 
@@ -53,9 +53,9 @@ The mod works by replacing TFC's default noise generators with data sampled from
 All settings are accessible directly from the **TFC world creation screen** for easy customization.
 
 - **Spawn Location Modes:**
-  - `DEFAULT` – Classic TFC coordinate-based spawn.
   - `GEOGRAPHIC` – Spawn using real-world longitude and latitude! Choose your starting city or region.
   - `RANDOM` – Spawn in a random location determined by the world seed.
+  - `CLASSIC` – Classic TFC coordinate-based spawn.
 - **World Generation Toggles:** Easily enable/disable the use of real-world maps for Continents, Altitude, Hotspots, and Climate.
 - **Parameter Adjustment:** Fine-tune familiar TFC worldgen values like continentalness, temperature scale, and rainfall directly in the GUI.
 - **Automatic Setup:** Default map files are provided and auto-copied to your `config` folder for easy modification.
@@ -65,8 +65,7 @@ All settings are accessible directly from the **TFC world creation screen** for 
 <details>
 <summary>Roadmap 🗺️</summary>
 
-1. **Backport Support:** Bring mod to older, popular TFC versions, including 1.20.1, 1.18.2, and 1.12.2 (if possible).
-2. **Improve Climate Transitions:** Smooth the blending between different climate zones for even more natural-looking biome borders.
+1. **Backport Support:** Bring mod to older TFC versions, including 1.18.2 and 1.12.2 (if possible).
 
 </details>
 
