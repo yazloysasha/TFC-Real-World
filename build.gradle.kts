@@ -5,7 +5,8 @@ plugins {
 val minecraftVersion: String = "1.21.1"
 val neoForgeVersion: String = "21.1.197"
 val patchouliVersion: String = "1.21.1-92-NEOFORGE"
-val tfcVersion: String = "4.0.17-beta"
+val minTfcVersion: String = "4.0.17-beta"
+val maxTfcVersion: String = "4.0.18-beta"
 
 val modId: String = "tfc_real_world"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
@@ -17,7 +18,7 @@ val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata"
     "modVersion" to modVersion,
     "minecraftVersionRange" to "[$minecraftVersion]",
     "neoForgeVersionRange" to "[$neoForgeVersion,)",
-    "tfcVersionRange" to "[$tfcVersion]",
+    "tfcVersionRange" to "[$minTfcVersion,$maxTfcVersion]",
   )
   inputs.properties(modReplacementProperties)
   expand(modReplacementProperties)
@@ -98,9 +99,9 @@ neoForge {
 }
 
 dependencies {
-  compileOnly("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$tfcVersion@jar")
+  compileOnly("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$maxTfcVersion@jar")
   
-  testImplementation("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$tfcVersion@jar")
+  testImplementation("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$maxTfcVersion@jar")
   testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
   testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.3")
   testImplementation("vazkii.patchouli:Patchouli:$patchouliVersion")
