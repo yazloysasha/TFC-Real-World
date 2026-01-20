@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(value = AnnotateClimate.class)
+@Mixin(value = AnnotateClimate.class, remap = false)
 public class AnnotateClimateMixin {
 
   @Redirect(
@@ -18,8 +18,7 @@ public class AnnotateClimateMixin {
       value = "INVOKE",
       target = "Lnet/dries007/tfc/world/noise/Noise2D;noise(FF)F",
       ordinal = 0
-    ),
-    remap = false
+    )
   )
   private float tfcrealworld$transformZForTemperature(
     Noise2D instance,
@@ -48,7 +47,7 @@ public class AnnotateClimateMixin {
     at = @At(
       value = "INVOKE",
       target = "Lnet/minecraft/util/Mth;lerp(FFF)F",
-      ordinal = 2
+      ordinal = 0
     )
   )
   private float tfcrealworld$preserveTemperatureFromMap(
@@ -70,7 +69,7 @@ public class AnnotateClimateMixin {
     at = @At(
       value = "INVOKE",
       target = "Lnet/minecraft/util/Mth;lerp(FFF)F",
-      ordinal = 3
+      ordinal = 1
     )
   )
   private float tfcrealworld$preserveRainfallFromMap(
