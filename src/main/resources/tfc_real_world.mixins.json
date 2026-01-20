@@ -18,11 +18,7 @@
     "world.region.RegionGeneratorMixin",
     "world.settings.SettingsMixin"
   ],
-  "client": [
-    "client.advancements.DisplayInfoMixin",
-    "client.screen.CreateTFCWorldScreenMixin",
-    "client.screen.CreateTFCWorldScreenAccessor"
-  ],
+  "client": ["client.advancements.DisplayInfoMixin"],
   "server": [],
   "injectors": {
     "defaultRequire": 1
