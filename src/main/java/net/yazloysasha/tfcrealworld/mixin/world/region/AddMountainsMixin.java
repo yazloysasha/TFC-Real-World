@@ -16,7 +16,7 @@ public class AddMountainsMixin {
     cancellable = true,
     remap = false
   )
-  private void tfcrealworld$disableAddMountains(Object ctx, CallbackInfo ci) {
+  private void tfcrealworld$disableAddMountains(CallbackInfo ci) {
     if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
       ci.cancel();
     }

@@ -2,6 +2,7 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 
 import net.dries007.tfc.world.region.AnnotateDistanceToOcean;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.util.helpers.RegionContextHolder;
 import net.yazloysasha.tfcrealworld.world.region.calculator.OceanDistanceCalculator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,19 +18,18 @@ public class AnnotateDistanceToOceanMixin {
     cancellable = true,
     remap = false
   )
-  private void tfcrealworld$overrideDistanceToOcean(
-    Object ctx,
-    CallbackInfo ci
-  ) {
-    RegionGeneratorContextAccessor context =
-      (RegionGeneratorContextAccessor) ctx;
-    if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
-      new OceanDistanceCalculator()
-        .calculate(
-          context.tfcrealworld$getRegion(),
-          context.tfcrealworld$invokeGenerator()
-        );
-      ci.cancel();
+  private void tfcrealworld$overrideDistanceToOcean(CallbackInfo ci) {
+    if (!TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
+      return;
     }
+
+    final var region = RegionContextHolder.getRegion();
+    final var generator = RegionContextHolder.getGenerator();
+    if (region == null || generator == null) {
+      return;
+    }
+
+    new OceanDistanceCalculator().calculate(region, generator);
+    ci.cancel();
   }
 }

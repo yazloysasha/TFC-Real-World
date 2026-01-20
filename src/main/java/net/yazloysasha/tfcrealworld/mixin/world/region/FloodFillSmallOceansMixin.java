@@ -22,7 +22,6 @@ public class FloodFillSmallOceansMixin {
     remap = false
   )
   private void tfcrealworld$skipFloodFillWhenUsingContinentMap(
-    Object ctx,
     CallbackInfo ci
   ) {
     if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {

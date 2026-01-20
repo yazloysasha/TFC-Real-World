@@ -11,14 +11,9 @@ import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedRainfallNoise;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedTemperatureNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -104,14 +99,6 @@ public class RegionGeneratorMixin {
         );
         HotspotsNoiseRegistry.register(instance, hotspotsNoise);
       }
-
-      if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
-        initializeKoppenBasedClimateMaps(
-          instance,
-          horizontalTileSize,
-          verticalTileSize
-        );
-      }
     } catch (NoSuchFieldException e) {
       throw new RuntimeException(
         "Failed to find required field in RegionGenerator. This should not happen.",
@@ -155,47 +142,5 @@ public class RegionGeneratorMixin {
       RegionGenerator.class.getDeclaredField("continentNoise");
     long offset = UNSAFE.objectFieldOffset(continentField);
     UNSAFE.putObject(instance, offset, newContinentNoise);
-  }
-
-  private void initializeKoppenBasedClimateMaps(
-    RegionGenerator instance,
-    int horizontalTileSize,
-    int verticalTileSize
-  ) throws NoSuchFieldException {
-    PNGKoppenNoise koppenNoise = new PNGKoppenNoise(
-      horizontalTileSize,
-      verticalTileSize
-    );
-
-    PNGTemperatureNoise temperatureNoise = new PNGTemperatureNoise(
-      horizontalTileSize,
-      verticalTileSize
-    );
-    PNGRainfallNoise rainfallNoise = new PNGRainfallNoise(
-      horizontalTileSize,
-      verticalTileSize
-    );
-
-    Field tempField =
-      RegionGenerator.class.getDeclaredField("temperatureNoise");
-    long tempOffset = UNSAFE.objectFieldOffset(tempField);
-    UNSAFE.putObject(
-      instance,
-      tempOffset,
-      new KoppenBasedTemperatureNoise(
-        koppenNoise,
-        temperatureNoise,
-        rainfallNoise
-      )
-    );
-
-    Field rainfallField =
-      RegionGenerator.class.getDeclaredField("rainfallNoise");
-    long rainfallOffset = UNSAFE.objectFieldOffset(rainfallField);
-    UNSAFE.putObject(
-      instance,
-      rainfallOffset,
-      new KoppenBasedRainfallNoise(koppenNoise, temperatureNoise, rainfallNoise)
-    );
   }
 }

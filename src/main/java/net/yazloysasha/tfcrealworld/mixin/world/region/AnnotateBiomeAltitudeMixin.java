@@ -3,15 +3,12 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 import net.dries007.tfc.world.region.AnnotateBiomeAltitude;
 import net.dries007.tfc.world.region.Region;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.util.helpers.RegionContextHolder;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/**
- * Overrides biome altitude annotation logic when using altitude map.
- * Instead of BFS from mountains, directly calculates biomeAltitude based on baseLandHeight from map.
- */
 @Mixin(value = AnnotateBiomeAltitude.class, remap = false)
 public class AnnotateBiomeAltitudeMixin {
 
@@ -21,13 +18,18 @@ public class AnnotateBiomeAltitudeMixin {
     cancellable = true,
     remap = false
   )
-  private void tfcrealworld$overrideBiomeAltitude(Object ctx, CallbackInfo ci) {
-    RegionGeneratorContextAccessor context =
-      (RegionGeneratorContextAccessor) ctx;
-    if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
-      calculateBiomeAltitudeFromMap(context.tfcrealworld$getRegion());
-      ci.cancel();
+  private void tfcrealworld$overrideBiomeAltitude(CallbackInfo ci) {
+    if (!TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
+      return;
     }
+
+    final Region region = RegionContextHolder.getRegion();
+    if (region == null) {
+      return;
+    }
+
+    calculateBiomeAltitudeFromMap(region);
+    ci.cancel();
   }
 
   private void calculateBiomeAltitudeFromMap(Region region) {

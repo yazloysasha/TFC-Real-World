@@ -4,6 +4,7 @@ import net.dries007.tfc.world.layer.TFCLayers;
 import net.dries007.tfc.world.layer.framework.Area;
 import net.dries007.tfc.world.region.ChooseBiomes;
 import net.dries007.tfc.world.region.Region;
+import net.yazloysasha.tfcrealworld.util.helpers.RegionContextHolder;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
 import net.yazloysasha.tfcrealworld.world.region.BiomePools;
@@ -14,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(value = ChooseBiomes.class, remap = false)
 public class ChooseBiomesMixin {
@@ -45,15 +45,12 @@ public class ChooseBiomesMixin {
     at = @At("HEAD"),
     remap = false
   )
-  private void tfcrealworld$setupVolcanicFiltering(
-    Object ctx,
-    CallbackInfo ci
-  ) {
-    RegionGeneratorContextAccessor context =
-      (RegionGeneratorContextAccessor) ctx;
-    CURRENT_HOTSPOTS.set(
-      HotspotsNoiseRegistry.get(context.tfcrealworld$invokeGenerator())
-    );
+  private void tfcrealworld$setupVolcanicFiltering(CallbackInfo ci) {
+    final var generator = RegionContextHolder.getGenerator();
+    if (generator == null) {
+      return;
+    }
+    CURRENT_HOTSPOTS.set(HotspotsNoiseRegistry.get(generator));
     tfcrealworld$ensurePoolsInitialized();
   }
 
@@ -62,32 +59,22 @@ public class ChooseBiomesMixin {
     at = @At("TAIL"),
     remap = false
   )
-  private void tfcrealworld$cleanupVolcanicFiltering(
-    Object ctx,
-    CallbackInfo ci
-  ) {
+  private void tfcrealworld$cleanupVolcanicFiltering(CallbackInfo ci) {
     CURRENT_HOTSPOTS.remove();
   }
 
-  @Inject(
+  @Redirect(
     method = "apply(Lnet/dries007/tfc/world/region/RegionGenerator$Context;)V",
     at = @At(
       value = "INVOKE",
       target = "Lnet/dries007/tfc/world/layer/framework/Area;get(II)I"
     ),
-    locals = LocalCapture.CAPTURE_FAILHARD,
     remap = false
   )
-  private void tfcrealworld$captureGridPosForHotspotMask(
-    Object ctx,
-    CallbackInfo ci,
-    Region region,
+  private int tfcrealworld$captureGridPosForHotspotMask(
     Area blobArea,
-    long rngSeed,
-    long climateSeed,
     int x,
-    int z,
-    Region.Point point
+    int z
   ) {
     final int[] pos = CURRENT_GRID_POS.get();
     pos[0] = x;
@@ -95,6 +82,8 @@ public class ChooseBiomesMixin {
 
     final PNGHotspotsNoise hotspots = CURRENT_HOTSPOTS.get();
     CURRENT_IN_HOTSPOT.set(tfcrealworld$isInHotspot(hotspots, x, z));
+
+    return blobArea.get(x, z);
   }
 
   @Unique
