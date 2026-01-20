@@ -109,8 +109,8 @@ public class TFCRealWorldConfig {
       BUILDER,
       "spawn_distance",
       "Spawn distance in blocks",
-      100,
-      100,
+      256,
+      256,
       20_000
     );
 
