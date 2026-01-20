@@ -18,7 +18,7 @@
     "description": {
       "translate": "tfc_real_world.advancements.world.globe_trotter.description"
     },
-    "frame": "challenge",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false,
