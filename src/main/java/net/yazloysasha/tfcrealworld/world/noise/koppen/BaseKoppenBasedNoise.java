@@ -37,7 +37,7 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
   }
 
   @Override
-  public double noise(double x, double z) {
+  public float noise(float x, float z) {
     PNGKoppenNoise.ClimateInterpolationResult interpolation =
       koppenNoise.getClimateInterpolation(x, z);
 
@@ -50,7 +50,7 @@ public abstract class BaseKoppenBasedNoise implements Noise2D {
       extractParameter(data.params[2]) * interpolation.weight01 +
       extractParameter(data.params[3]) * interpolation.weight11;
 
-    return postProcessResult(result);
+    return (float) postProcessResult(result);
   }
 
   protected void sampleCornerData(

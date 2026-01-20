@@ -25,7 +25,10 @@ public class AnnotateDistanceToOceanMixin {
       (RegionGeneratorContextAccessor) ctx;
     if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
       new OceanDistanceCalculator()
-        .calculate(context.region(), context.invokeGenerator());
+        .calculate(
+          context.tfcrealworld$getRegion(),
+          context.tfcrealworld$invokeGenerator()
+        );
       ci.cancel();
     }
   }

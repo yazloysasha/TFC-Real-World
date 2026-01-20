@@ -3,8 +3,8 @@ package net.yazloysasha.tfcrealworld.world.noise.png;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
-import net.dries007.tfc.world.region.Units;
 import net.minecraft.util.Mth;
+import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.world.climate.RealKoppenClimateClassification;
 
 public class PNGKoppenNoise {
@@ -116,9 +116,9 @@ public class PNGKoppenNoise {
     this.tileRadiusBlocksX = horizontalTileSize / 2;
     this.tileRadiusBlocksZ = verticalTileSize / 2;
     this.tileRadiusGridX =
-      tileRadiusBlocksX / (double) Units.GRID_WIDTH_IN_BLOCK;
+      tileRadiusBlocksX / (double) TFCRealWorld.GRID_WIDTH_IN_BLOCK;
     this.tileRadiusGridZ =
-      tileRadiusBlocksZ / (double) Units.GRID_WIDTH_IN_BLOCK;
+      tileRadiusBlocksZ / (double) TFCRealWorld.GRID_WIDTH_IN_BLOCK;
 
     BufferedImage image = BasePNGNoise.loadImage("koppen");
     if (image == null) {

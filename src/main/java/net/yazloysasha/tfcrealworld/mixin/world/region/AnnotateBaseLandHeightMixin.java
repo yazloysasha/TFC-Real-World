@@ -25,7 +25,10 @@ public class AnnotateBaseLandHeightMixin {
       (RegionGeneratorContextAccessor) ctx;
     if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
       new AltitudeCalculator()
-        .calculate(context.region(), context.invokeGenerator());
+        .calculate(
+          context.tfcrealworld$getRegion(),
+          context.tfcrealworld$invokeGenerator()
+        );
       ci.cancel();
     }
   }

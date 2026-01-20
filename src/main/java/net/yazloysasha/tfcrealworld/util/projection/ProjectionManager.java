@@ -2,8 +2,8 @@ package net.yazloysasha.tfcrealworld.util.projection;
 
 import java.util.HashMap;
 import java.util.Map;
-import net.dries007.tfc.world.region.Units;
 import net.minecraft.util.Mth;
+import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.types.MapProjection;
 
@@ -105,11 +105,13 @@ public class ProjectionManager {
 
     double tileRadiusBlocksX = horizontalTileSize / 2.0;
     double tileRadiusBlocksZ = verticalTileSize / 2.0;
-    double tileRadiusGridX = tileRadiusBlocksX / Units.GRID_WIDTH_IN_BLOCK;
-    double tileRadiusGridZ = tileRadiusBlocksZ / Units.GRID_WIDTH_IN_BLOCK;
+    double tileRadiusGridX =
+      tileRadiusBlocksX / TFCRealWorld.GRID_WIDTH_IN_BLOCK;
+    double tileRadiusGridZ =
+      tileRadiusBlocksZ / TFCRealWorld.GRID_WIDTH_IN_BLOCK;
 
-    double gridX = x / Units.GRID_WIDTH_IN_BLOCK;
-    double gridZ = z / Units.GRID_WIDTH_IN_BLOCK;
+    double gridX = x / TFCRealWorld.GRID_WIDTH_IN_BLOCK;
+    double gridZ = z / TFCRealWorld.GRID_WIDTH_IN_BLOCK;
 
     int tileX = (int) Math.floor(
       (gridX + tileRadiusGridX) / (2.0 * tileRadiusGridX)
@@ -130,8 +132,8 @@ public class ProjectionManager {
       localZ = -localZ;
     }
 
-    double unreflectedX = localX * Units.GRID_WIDTH_IN_BLOCK;
-    double unreflectedZ = localZ * Units.GRID_WIDTH_IN_BLOCK;
+    double unreflectedX = localX * TFCRealWorld.GRID_WIDTH_IN_BLOCK;
+    double unreflectedZ = localZ * TFCRealWorld.GRID_WIDTH_IN_BLOCK;
 
     double[] result = strategy.classicToGeographic(
       unreflectedX,

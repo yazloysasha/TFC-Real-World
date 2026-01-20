@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
 import net.dries007.tfc.world.noise.Noise2D;
-import net.dries007.tfc.world.region.Units;
 import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
@@ -38,9 +37,9 @@ public abstract class BasePNGNoise implements Noise2D {
     this.tileRadiusBlocksX = horizontalTileSize / 2;
     this.tileRadiusBlocksZ = verticalTileSize / 2;
     this.tileRadiusGridX =
-      tileRadiusBlocksX / (double) Units.GRID_WIDTH_IN_BLOCK;
+      tileRadiusBlocksX / (double) TFCRealWorld.GRID_WIDTH_IN_BLOCK;
     this.tileRadiusGridZ =
-      tileRadiusBlocksZ / (double) Units.GRID_WIDTH_IN_BLOCK;
+      tileRadiusBlocksZ / (double) TFCRealWorld.GRID_WIDTH_IN_BLOCK;
 
     BufferedImage image = loadImage(mapName);
     if (image == null) {
@@ -61,10 +60,10 @@ public abstract class BasePNGNoise implements Noise2D {
   }
 
   @Override
-  public double noise(double x, double z) {
+  public float noise(float x, float z) {
     double[] imageCoords = tileToImage(x, z);
     double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
-    return transformBrightness(brightness);
+    return (float) transformBrightness(brightness);
   }
 
   protected InterpolationCoords calculateInterpolationCoords(

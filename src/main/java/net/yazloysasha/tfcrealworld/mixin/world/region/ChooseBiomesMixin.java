@@ -51,7 +51,9 @@ public class ChooseBiomesMixin {
   ) {
     RegionGeneratorContextAccessor context =
       (RegionGeneratorContextAccessor) ctx;
-    CURRENT_HOTSPOTS.set(HotspotsNoiseRegistry.get(context.invokeGenerator()));
+    CURRENT_HOTSPOTS.set(
+      HotspotsNoiseRegistry.get(context.tfcrealworld$invokeGenerator())
+    );
     tfcrealworld$ensurePoolsInitialized();
   }
 

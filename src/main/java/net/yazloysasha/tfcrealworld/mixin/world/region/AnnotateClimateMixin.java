@@ -2,8 +2,8 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.AnnotateClimate;
-import net.dries007.tfc.world.region.Units;
 import net.minecraft.util.Mth;
+import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,15 +16,15 @@ public class AnnotateClimateMixin {
     method = "apply",
     at = @At(
       value = "INVOKE",
-      target = "Lnet/dries007/tfc/world/noise/Noise2D;noise(DD)D",
+      target = "Lnet/dries007/tfc/world/noise/Noise2D;noise(FF)F",
       ordinal = 0
     ),
     remap = false
   )
-  private double tfcrealworld$transformZForTemperature(
+  private float tfcrealworld$transformZForTemperature(
     Noise2D instance,
-    double x,
-    double z
+    float x,
+    float z
   ) {
     if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
       return instance.noise(x, z);
@@ -32,8 +32,8 @@ public class AnnotateClimateMixin {
 
     int temperatureScale = TFCRealWorldConfig.TEMPERATURE_SCALE.get();
     if (temperatureScale > 0) {
-      double offsetInGrid =
-        (double) (-temperatureScale / 2) / Units.GRID_WIDTH_IN_BLOCK;
+      float offsetInGrid =
+        (float) (-temperatureScale / 2) / TFCRealWorld.GRID_WIDTH_IN_BLOCK;
       return instance.noise(x, z - offsetInGrid);
     }
 

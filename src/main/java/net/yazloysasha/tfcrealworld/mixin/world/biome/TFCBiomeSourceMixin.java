@@ -1,6 +1,7 @@
 package net.yazloysasha.tfcrealworld.mixin.world.biome;
 
 import net.dries007.tfc.world.biome.BiomeSourceExtension;
+import net.dries007.tfc.world.biome.TFCBiomeSource;
 import net.dries007.tfc.world.settings.ClimateSettings;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.SpawnCenterHelper;
@@ -9,15 +10,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = BiomeSourceExtension.class, remap = false)
-public interface BiomeSourceExtensionMixin {
+@Mixin(value = TFCBiomeSource.class, remap = false)
+public class TFCBiomeSourceMixin {
+
   @Inject(
     method = "settings()Lnet/dries007/tfc/world/biome/BiomeSourceExtension$Settings;",
     at = @At("RETURN"),
     cancellable = true,
     remap = false
   )
-  default void tfcrealworld$overrideSettings(
+  private void tfcrealworld$overrideSettings(
     CallbackInfoReturnable<BiomeSourceExtension.Settings> cir
   ) {
     BiomeSourceExtension.Settings original = cir.getReturnValue();

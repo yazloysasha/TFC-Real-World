@@ -13,15 +13,15 @@ import org.spongepowered.asm.mixin.gen.Invoker;
   remap = false
 )
 public interface RegionGeneratorContextAccessor {
-  @Accessor
-  Region region();
+  @Accessor("region")
+  Region tfcrealworld$getRegion();
 
-  @Accessor
-  RandomSource random();
+  @Accessor("random")
+  RandomSource tfcrealworld$getRandom();
 
-  @Accessor
-  Cellular2D.Cell regionCell();
+  @Accessor("regionCell")
+  Cellular2D.Cell tfcrealworld$getRegionCell();
 
   @Invoker("generator")
-  RegionGenerator invokeGenerator();
+  RegionGenerator tfcrealworld$invokeGenerator();
 }

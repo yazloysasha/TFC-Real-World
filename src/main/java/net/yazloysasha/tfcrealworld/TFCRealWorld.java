@@ -1,6 +1,7 @@
 package net.yazloysasha.tfcrealworld;
 
 import com.mojang.logging.LogUtils;
+import net.dries007.tfc.world.region.Units;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.MinecraftForge;
@@ -30,6 +31,8 @@ public final class TFCRealWorld {
   public static final String MOD_ID = "tfc_real_world";
   public static final String MOD_NAME = "TFC: Real World";
   public static final Logger LOGGER = LogUtils.getLogger();
+
+  public static final int GRID_WIDTH_IN_BLOCK = 1 << Units.GRID_BITS;
 
   public TFCRealWorld() {
     ProfileManager.initialize();
