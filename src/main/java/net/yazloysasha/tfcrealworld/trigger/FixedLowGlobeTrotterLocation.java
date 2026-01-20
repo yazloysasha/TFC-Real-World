@@ -2,8 +2,8 @@ package net.yazloysasha.tfcrealworld.trigger;
 
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
-import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.DeserializationContext;
+import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,7 +26,7 @@ public class FixedLowGlobeTrotterLocation
   @Override
   protected TriggerInstance createInstance(
     JsonObject json,
-    ContextAwarePredicate predicate,
+    EntityPredicate.Composite predicate,
     DeserializationContext context
   ) {
     return new TriggerInstance(predicate);
@@ -38,7 +38,7 @@ public class FixedLowGlobeTrotterLocation
 
   public static class TriggerInstance extends AbstractCriterionTriggerInstance {
 
-    public TriggerInstance(ContextAwarePredicate predicate) {
+    public TriggerInstance(EntityPredicate.Composite predicate) {
       super(ID, predicate);
     }
 

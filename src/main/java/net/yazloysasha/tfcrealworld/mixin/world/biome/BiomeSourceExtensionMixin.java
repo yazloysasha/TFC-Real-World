@@ -1,65 +1,58 @@
 package net.yazloysasha.tfcrealworld.mixin.world.biome;
 
-import net.dries007.tfc.TerraFirmaCraft;
-import net.dries007.tfc.world.biome.BiomeExtension;
 import net.dries007.tfc.world.biome.BiomeSourceExtension;
-import net.dries007.tfc.world.settings.Settings;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.QuartPos;
-import net.minecraft.world.level.levelgen.RandomSource;
+import net.dries007.tfc.world.settings.ClimateSettings;
+import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.SpawnCenterHelper;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = BiomeSourceExtension.class, remap = false)
 public interface BiomeSourceExtensionMixin {
-  /**
-   * @author yazloysasha
-   * @reason Mixin 0.8.5 does not support injectors for interface default methods
-   */
-  @Overwrite
-  default BlockPos findSpawnBiome(Settings settings, RandomSource random) {
-    final int step = Math.max(1, SpawnCenterHelper.getSpawnDistance() / 256);
-    final int centerX = QuartPos.fromBlock(SpawnCenterHelper.getSpawnCenterX());
-    final int centerZ = QuartPos.fromBlock(SpawnCenterHelper.getSpawnCenterZ());
-    final int maxRadius = QuartPos.fromBlock(
-      SpawnCenterHelper.getSpawnDistance()
+  @Inject(
+    method = "settings()Lnet/dries007/tfc/world/biome/BiomeSourceExtension$Settings;",
+    at = @At("RETURN"),
+    cancellable = true,
+    remap = false
+  )
+  default void tfcrealworld$overrideSettings(
+    CallbackInfoReturnable<BiomeSourceExtension.Settings> cir
+  ) {
+    BiomeSourceExtension.Settings original = cir.getReturnValue();
+    if (original == null) {
+      return;
+    }
+
+    int spawnDistance = SpawnCenterHelper.getSpawnDistance();
+    int spawnCenterX = SpawnCenterHelper.getSpawnCenterX();
+    int spawnCenterZ = SpawnCenterHelper.getSpawnCenterZ();
+
+    int temperatureScale = TFCRealWorldConfig.TEMPERATURE_SCALE.get();
+    int rainfallScale = TFCRealWorldConfig.RAINFALL_SCALE.get();
+
+    ClimateSettings newTemperatureSettings = new ClimateSettings(
+      temperatureScale,
+      original.temperatureSettings().endlessPoles()
     );
 
-    BlockPos found = null;
-    int count = 0;
+    ClimateSettings newRainfallSettings = new ClimateSettings(
+      rainfallScale,
+      original.rainfallSettings().endlessPoles()
+    );
 
-    for (int radius = maxRadius; radius <= maxRadius; radius += step) {
-      for (int dx = -radius; dx <= radius; dx += step) {
-        for (int dz = -radius; dz <= radius; dz += step) {
-          final int quartX = centerX + dz;
-          final int quartZ = centerZ + dx;
-          final BiomeExtension biome =
-            ((BiomeSourceExtension) this).getBiomeExtensionNoRiver(
-                quartX,
-                quartZ
-              );
-          if (biome.isSpawnable()) {
-            if (found == null || random.nextInt(count + 1) == 0) {
-              found = new BlockPos(
-                QuartPos.toBlock(quartX),
-                0,
-                QuartPos.toBlock(quartZ)
-              );
-            }
-            count++;
-          }
-        }
-      }
-    }
-    if (found == null) {
-      TerraFirmaCraft.LOGGER.warn("Unable to find spawn biome!");
-      return new BlockPos(
-        SpawnCenterHelper.getSpawnCenterX(),
-        0,
-        SpawnCenterHelper.getSpawnCenterZ()
+    BiomeSourceExtension.Settings newSettings =
+      new BiomeSourceExtension.Settings(
+        original.seed(),
+        spawnDistance,
+        spawnCenterX,
+        spawnCenterZ,
+        original.rockLayerSettings(),
+        newTemperatureSettings,
+        newRainfallSettings
       );
-    }
-    return found;
+
+    cir.setReturnValue(newSettings);
   }
 }

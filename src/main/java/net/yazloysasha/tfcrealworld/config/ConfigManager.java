@@ -122,21 +122,6 @@ public class ConfigManager {
           "world_generation.continentalness",
           TFCRealWorldConfig.CONTINENTALNESS.get()
         ),
-        getDouble(
-          config,
-          "world_generation.grass_density",
-          TFCRealWorldConfig.GRASS_DENSITY.get()
-        ),
-        getDouble(
-          config,
-          "world_generation.temperature_constant",
-          TFCRealWorldConfig.TEMPERATURE_CONSTANT.get()
-        ),
-        getDouble(
-          config,
-          "world_generation.rainfall_constant",
-          TFCRealWorldConfig.RAINFALL_CONSTANT.get()
-        ),
         getInt(
           config,
           "world_generation.temperature_scale",
@@ -275,9 +260,6 @@ public class ConfigManager {
       TFCRealWorldConfig.SPAWN_DISTANCE.get(),
       TFCRealWorldConfig.FLAT_BEDROCK.get(),
       TFCRealWorldConfig.CONTINENTALNESS.get(),
-      TFCRealWorldConfig.GRASS_DENSITY.get(),
-      TFCRealWorldConfig.TEMPERATURE_CONSTANT.get(),
-      TFCRealWorldConfig.RAINFALL_CONSTANT.get(),
       TFCRealWorldConfig.TEMPERATURE_SCALE.get(),
       TFCRealWorldConfig.RAINFALL_SCALE.get(),
       TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get(),

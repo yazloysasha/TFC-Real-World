@@ -17,9 +17,6 @@ public class ConfigSyncPacket {
   private final int spawnDistance;
   private final boolean flatBedrock;
   private final double continentalness;
-  private final double grassDensity;
-  private final double temperatureConstant;
-  private final double rainfallConstant;
   private final int temperatureScale;
   private final int rainfallScale;
   private final int horizontalTileSize;
@@ -39,9 +36,6 @@ public class ConfigSyncPacket {
     int spawnDistance,
     boolean flatBedrock,
     double continentalness,
-    double grassDensity,
-    double temperatureConstant,
-    double rainfallConstant,
     int temperatureScale,
     int rainfallScale,
     int horizontalTileSize,
@@ -60,9 +54,6 @@ public class ConfigSyncPacket {
     this.spawnDistance = spawnDistance;
     this.flatBedrock = flatBedrock;
     this.continentalness = continentalness;
-    this.grassDensity = grassDensity;
-    this.temperatureConstant = temperatureConstant;
-    this.rainfallConstant = rainfallConstant;
     this.temperatureScale = temperatureScale;
     this.rainfallScale = rainfallScale;
     this.horizontalTileSize = horizontalTileSize;
@@ -83,9 +74,6 @@ public class ConfigSyncPacket {
     buffer.writeInt(packet.spawnDistance);
     buffer.writeBoolean(packet.flatBedrock);
     buffer.writeDouble(packet.continentalness);
-    buffer.writeDouble(packet.grassDensity);
-    buffer.writeDouble(packet.temperatureConstant);
-    buffer.writeDouble(packet.rainfallConstant);
     buffer.writeInt(packet.temperatureScale);
     buffer.writeInt(packet.rainfallScale);
     buffer.writeInt(packet.horizontalTileSize);
@@ -106,9 +94,6 @@ public class ConfigSyncPacket {
       buffer.readInt(),
       buffer.readInt(),
       buffer.readBoolean(),
-      buffer.readDouble(),
-      buffer.readDouble(),
-      buffer.readDouble(),
       buffer.readDouble(),
       buffer.readInt(),
       buffer.readInt(),
@@ -138,9 +123,6 @@ public class ConfigSyncPacket {
           packet.spawnDistance,
           packet.flatBedrock,
           packet.continentalness,
-          packet.grassDensity,
-          packet.temperatureConstant,
-          packet.rainfallConstant,
           packet.temperatureScale,
           packet.rainfallScale,
           packet.horizontalTileSize,

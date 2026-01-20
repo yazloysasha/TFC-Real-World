@@ -29,9 +29,6 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Integer> SPAWN_DISTANCE;
   public static final ConfigOption<Boolean> FLAT_BEDROCK;
   public static final ConfigOption<Double> CONTINENTALNESS;
-  public static final ConfigOption<Double> GRASS_DENSITY;
-  public static final ConfigOption<Double> TEMPERATURE_CONSTANT;
-  public static final ConfigOption<Double> RAINFALL_CONSTANT;
   public static final ConfigOption<Integer> TEMPERATURE_SCALE;
   public static final ConfigOption<Integer> RAINFALL_SCALE;
   public static final ConfigOption<Integer> HORIZONTAL_TILE_SIZE;
@@ -131,30 +128,6 @@ public class TFCRealWorldConfig {
       0.0,
       1.0
     );
-    GRASS_DENSITY = new ConfigOption<>(
-      BUILDER,
-      "grass_density",
-      "Grass density",
-      0.5,
-      0.0,
-      1.0
-    );
-    TEMPERATURE_CONSTANT = new ConfigOption<>(
-      BUILDER,
-      "temperature_constant",
-      "Temperature constant",
-      0.0,
-      -1.0,
-      1.0
-    );
-    RAINFALL_CONSTANT = new ConfigOption<>(
-      BUILDER,
-      "rainfall_constant",
-      "Rainfall constant",
-      0.0,
-      -1.0,
-      1.0
-    );
     TEMPERATURE_SCALE = new ConfigOption<>(
       BUILDER,
       "temperature_scale",
@@ -235,9 +208,6 @@ public class TFCRealWorldConfig {
       SPAWN_DISTANCE,
       FLAT_BEDROCK,
       CONTINENTALNESS,
-      GRASS_DENSITY,
-      TEMPERATURE_CONSTANT,
-      RAINFALL_CONSTANT,
       TEMPERATURE_SCALE,
       RAINFALL_SCALE,
       HORIZONTAL_TILE_SIZE,
@@ -259,9 +229,6 @@ public class TFCRealWorldConfig {
     int spawnDistance,
     boolean flatBedrock,
     double continentalness,
-    double grassDensity,
-    double temperatureConstant,
-    double rainfallConstant,
     int temperatureScale,
     int rainfallScale,
     int horizontalTileSize,
@@ -280,9 +247,6 @@ public class TFCRealWorldConfig {
     SPAWN_DISTANCE.setServerValue(spawnDistance);
     FLAT_BEDROCK.setServerValue(flatBedrock);
     CONTINENTALNESS.setServerValue(continentalness);
-    GRASS_DENSITY.setServerValue(grassDensity);
-    TEMPERATURE_CONSTANT.setServerValue(temperatureConstant);
-    RAINFALL_CONSTANT.setServerValue(rainfallConstant);
     TEMPERATURE_SCALE.setServerValue(temperatureScale);
     RAINFALL_SCALE.setServerValue(rainfallScale);
     HORIZONTAL_TILE_SIZE.setServerValue(horizontalTileSize);

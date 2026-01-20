@@ -5,7 +5,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.contents.TranslatableContents;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -27,10 +27,7 @@ public class DisplayInfoMixin {
   )
   private void modifyDescription(CallbackInfoReturnable<Component> cir) {
     Component original = cir.getReturnValue();
-    if (
-      original != null &&
-      original.getContents() instanceof TranslatableContents translatable
-    ) {
+    if (original instanceof TranslatableComponent translatable) {
       String key = translatable.getKey();
       if (GLOBE_TROTTER_DESCRIPTION_KEY.equals(key)) {
         Component modified = createGlobeTrotterComponent(key);
@@ -42,11 +39,11 @@ public class DisplayInfoMixin {
   @Unique
   private Component createGlobeTrotterComponent(String key) {
     int hemisphereScale = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get() / 2;
-    Component formattedScale = Component.literal(
+    Component formattedScale = new net.minecraft.network.chat.TextComponent(
       formatNumberWithCommas(hemisphereScale)
     );
 
-    return Component.translatable(key, formattedScale, formattedScale);
+    return new TranslatableComponent(key, formattedScale, formattedScale);
   }
 
   @Unique

@@ -1,7 +1,6 @@
 package net.yazloysasha.tfcrealworld.world.region;
 
 import it.unimi.dsi.fastutil.ints.IntArrayList;
-import net.dries007.tfc.world.biome.BiomeBlendType;
 import net.dries007.tfc.world.biome.BiomeExtension;
 import net.dries007.tfc.world.layer.TFCLayers;
 import net.dries007.tfc.world.region.Region;
@@ -45,13 +44,13 @@ public final class BiomePools {
         continue;
       }
 
-      if (ext.biomeBlendType() == BiomeBlendType.LAKE) continue;
+      if (ext.getGroup() == BiomeExtension.Group.LAKE) continue;
       if (ext.createNoiseSampler(0L) == null) continue;
 
       final boolean volcanic = ext.isVolcanic();
       isVolcanicLayer[id] = volcanic;
       final boolean oceanLike =
-        ext.isSalty() || ext.biomeBlendType() == BiomeBlendType.OCEAN;
+        ext.isSalty() || ext.getGroup() == BiomeExtension.Group.OCEAN;
 
       if (volcanic) {
         if (oceanLike) {

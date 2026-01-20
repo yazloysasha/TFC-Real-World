@@ -6,7 +6,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.level.LevelEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -89,21 +89,21 @@ public final class TFCRealWorld {
   }
 
   private void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
-    if (!event.getEntity().getLevel().isClientSide) {
+    if (!event.getEntity().level.isClientSide()) {
       return;
     }
 
     TFCRealWorldConfig.clearServerConfig();
   }
 
-  private void onLevelUnload(LevelEvent.Unload event) {
-    if (event.getLevel().isClientSide()) {
+  private void onLevelUnload(WorldEvent.Unload event) {
+    if (event.getWorld().isClientSide()) {
       TFCRealWorldConfig.clearServerConfig();
     }
   }
 
   private void onClientLoggingIn(PlayerEvent.PlayerLoggedInEvent event) {
-    if (!event.getEntity().getLevel().isClientSide) {
+    if (!event.getEntity().level.isClientSide()) {
       return;
     }
 
@@ -121,7 +121,7 @@ public final class TFCRealWorld {
   }
 
   private void onClientLoggingOut(PlayerEvent.PlayerLoggedOutEvent event) {
-    if (!event.getEntity().getLevel().isClientSide) {
+    if (!event.getEntity().level.isClientSide()) {
       return;
     }
 

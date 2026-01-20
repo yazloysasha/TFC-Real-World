@@ -1,8 +1,12 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
 import java.lang.reflect.Field;
+import net.dries007.tfc.world.noise.Cellular2D;
 import net.dries007.tfc.world.noise.Noise2D;
+import net.dries007.tfc.world.noise.OpenSimplex2D;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.minecraft.world.level.levelgen.RandomSource;
+import net.minecraft.world.level.levelgen.XoroshiroRandomSource;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
@@ -43,6 +47,10 @@ public class RegionGeneratorMixin {
   @Final
   private long seed;
 
+  @Shadow
+  @Final
+  private Cellular2D cellNoise;
+
   private static final Unsafe UNSAFE;
 
   static {
@@ -74,6 +82,11 @@ public class RegionGeneratorMixin {
         initializeContinentMap(instance, continentNoise);
 
         GlobalOceanDistanceCache.initialize(continentNoise);
+      } else {
+        initializeContinentNoiseWithContinentalness(
+          instance,
+          TFCRealWorldConfig.CONTINENTALNESS.get().floatValue() * 10f - 2.5f
+        );
       }
 
       if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
@@ -122,6 +135,26 @@ public class RegionGeneratorMixin {
     PNGAltitudeNoise altitudeNoise
   ) {
     AltitudeNoiseRegistry.register(instance, altitudeNoise);
+  }
+
+  private void initializeContinentNoiseWithContinentalness(
+    RegionGenerator instance,
+    float min
+  ) throws NoSuchFieldException {
+    RandomSource random = new XoroshiroRandomSource(seed);
+    Noise2D newContinentNoise = cellNoise
+      .then(c -> 1 - c.f1() / (0.37f + c.f2()))
+      .lazyProduct(
+        new OpenSimplex2D(random.nextLong())
+          .spread(0.24f)
+          .scaled(min, 8.7f)
+          .octaves(4)
+      );
+
+    Field continentField =
+      RegionGenerator.class.getDeclaredField("continentNoise");
+    long offset = UNSAFE.objectFieldOffset(continentField);
+    UNSAFE.putObject(instance, offset, newContinentNoise);
   }
 
   private void initializeKoppenBasedClimateMaps(
