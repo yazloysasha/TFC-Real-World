@@ -21,13 +21,6 @@ license = "MIT"
     side = "BOTH"
 
 [[dependencies.${modId}]]
-    modId = "patchouli"
-    mandatory = true
-    versionRange = "[1.20.1-81-FORGE,)"
-    ordering = "NONE"
-    side = "BOTH"
-
-[[dependencies.${modId}]]
     modId = "forge"
     mandatory = true
     versionRange = "[47.1.3,47.1.6),[47.1.81,47.2.0),[47.2.6,)"
