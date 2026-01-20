@@ -6,7 +6,6 @@
   "refmap": "tfc_real_world.refmap.json",
   "mixins": [
     "world.biome.BiomeSourceExtensionMixin",
-    "world.layer.MoreShoresLayerMixin",
     "world.region.AddMountainsMixin",
     "world.region.AnnotateBaseLandHeightMixin",
     "world.region.AnnotateBiomeAltitudeMixin",
