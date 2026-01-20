@@ -6,7 +6,7 @@ import net.dries007.tfc.world.biome.BiomeSourceExtension;
 import net.dries007.tfc.world.settings.Settings;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.QuartPos;
-import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.levelgen.RandomSource;
 import net.yazloysasha.tfcrealworld.util.helpers.SpawnCenterHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;

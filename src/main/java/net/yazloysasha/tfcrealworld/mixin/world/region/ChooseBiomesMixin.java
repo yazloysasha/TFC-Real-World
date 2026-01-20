@@ -4,7 +4,6 @@ import net.dries007.tfc.world.layer.TFCLayers;
 import net.dries007.tfc.world.layer.framework.Area;
 import net.dries007.tfc.world.region.ChooseBiomes;
 import net.dries007.tfc.world.region.Region;
-import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
 import net.yazloysasha.tfcrealworld.world.region.BiomePools;
@@ -41,33 +40,44 @@ public class ChooseBiomesMixin {
   @Unique
   private static volatile BiomePools POOLS;
 
-  @Inject(method = "apply", at = @At("HEAD"))
+  @Inject(
+    method = "apply(Lnet/dries007/tfc/world/region/RegionGenerator$Context;)V",
+    at = @At("HEAD"),
+    remap = false
+  )
   private void tfcrealworld$setupVolcanicFiltering(
-    RegionGenerator.Context context,
+    Object ctx,
     CallbackInfo ci
   ) {
-    CURRENT_HOTSPOTS.set(HotspotsNoiseRegistry.get(context.generator()));
+    RegionGeneratorContextAccessor context =
+      (RegionGeneratorContextAccessor) ctx;
+    CURRENT_HOTSPOTS.set(HotspotsNoiseRegistry.get(context.invokeGenerator()));
     tfcrealworld$ensurePoolsInitialized();
   }
 
-  @Inject(method = "apply", at = @At("TAIL"))
+  @Inject(
+    method = "apply(Lnet/dries007/tfc/world/region/RegionGenerator$Context;)V",
+    at = @At("TAIL"),
+    remap = false
+  )
   private void tfcrealworld$cleanupVolcanicFiltering(
-    RegionGenerator.Context context,
+    Object ctx,
     CallbackInfo ci
   ) {
     CURRENT_HOTSPOTS.remove();
   }
 
   @Inject(
-    method = "apply",
+    method = "apply(Lnet/dries007/tfc/world/region/RegionGenerator$Context;)V",
     at = @At(
       value = "INVOKE",
       target = "Lnet/dries007/tfc/world/layer/framework/Area;get(II)I"
     ),
-    locals = LocalCapture.CAPTURE_FAILHARD
+    locals = LocalCapture.CAPTURE_FAILHARD,
+    remap = false
   )
   private void tfcrealworld$captureGridPosForHotspotMask(
-    RegionGenerator.Context context,
+    Object ctx,
     CallbackInfo ci,
     Region region,
     Area blobArea,

@@ -89,7 +89,7 @@ public final class TFCRealWorld {
   }
 
   private void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
-    if (!event.getEntity().level().isClientSide) {
+    if (!event.getEntity().getLevel().isClientSide) {
       return;
     }
 
@@ -103,7 +103,7 @@ public final class TFCRealWorld {
   }
 
   private void onClientLoggingIn(PlayerEvent.PlayerLoggedInEvent event) {
-    if (!event.getEntity().level().isClientSide) {
+    if (!event.getEntity().getLevel().isClientSide) {
       return;
     }
 
@@ -121,7 +121,7 @@ public final class TFCRealWorld {
   }
 
   private void onClientLoggingOut(PlayerEvent.PlayerLoggedOutEvent event) {
-    if (!event.getEntity().level().isClientSide) {
+    if (!event.getEntity().getLevel().isClientSide) {
       return;
     }
 
