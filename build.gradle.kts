@@ -1,12 +1,12 @@
 plugins {
   java
-  id("net.minecraftforge.gradle") version "[6.0,6.2)"
+  id("net.minecraftforge.gradle") version "5.1.+"
   id("org.spongepowered.mixin") version "0.7.+"
 }
 
-val minecraftVersion: String = "1.20.1"
-val forgeVersion: String = "47.1.3"
-val tfcVersion: String = "3.2.20"
+val minecraftVersion: String = "1.18.2"
+val forgeVersion: String = "40.1.73"
+val tfcVersion: String = "2.2.33"
 
 val modId: String = "tfc_real_world"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
