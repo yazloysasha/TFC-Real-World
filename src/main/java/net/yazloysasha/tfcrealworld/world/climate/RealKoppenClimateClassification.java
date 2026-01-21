@@ -133,7 +133,7 @@ public enum RealKoppenClimateClassification implements StringRepresentable {
       return averageTemperature > 10f ? BWH : BWK;
     } else if (rainfall < 150f) {
       return averageTemperature > 10f ? BSH : BSK;
-    } else if (averageTemperature > 21f) {
+    } else if (averageTemperature > 18f) {
       if (rainfall * (1f + rainVar) > 500f) {
         return AM;
       } else if (rainVar < -0.5f && rainfall <= 150f) {
@@ -144,11 +144,11 @@ public enum RealKoppenClimateClassification implements StringRepresentable {
         return AW;
       }
     } else if (averageTemperature > 8f) {
-      if (averageTemperature > 17f) {
+      if (averageTemperature > 12f) {
         if (rainVar > 0.5f) return CWA;
         if (rainVar < -0.5f) return CSA;
         return CFA;
-      } else if (averageTemperature > 12f) {
+      } else if (averageTemperature > 9f) {
         if (rainVar > 0.5f) return CWB;
         if (rainVar < -0.5f) return CSB;
         return CFB;
