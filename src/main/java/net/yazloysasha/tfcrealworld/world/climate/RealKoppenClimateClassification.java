@@ -130,9 +130,9 @@ public enum RealKoppenClimateClassification implements StringRepresentable {
     ) {
       return ET;
     } else if (rainfall < 75f) {
-      return averageTemperature > 18f ? BWH : BWK;
+      return averageTemperature > 10f ? BWH : BWK;
     } else if (rainfall < 150f) {
-      return averageTemperature > 18f ? BSH : BSK;
+      return averageTemperature > 10f ? BSH : BSK;
     } else if (averageTemperature > 21f) {
       if (rainfall * (1f + rainVar) > 500f) {
         return AM;
