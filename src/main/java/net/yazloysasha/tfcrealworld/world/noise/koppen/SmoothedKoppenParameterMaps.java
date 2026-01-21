@@ -14,7 +14,7 @@ import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
  */
 public final class SmoothedKoppenParameterMaps {
 
-  private static final float TEMP_MIN = -20.0f;
+  private static final float TEMP_MIN = -30.0f;
   private static final float TEMP_MAX = 30.0f;
   private static final float RAIN_MAX = 500.0f;
 
