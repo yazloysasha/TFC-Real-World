@@ -141,11 +141,6 @@ public class KoppenParameterCache {
       ClimateConstants.RAIN_MAX,
       ClimateConstants.RAIN_STEP
     );
-    float[] rainVars = generateRange(
-      ClimateConstants.RAINVAR_MIN,
-      ClimateConstants.RAINVAR_MAX,
-      ClimateConstants.RAINVAR_STEP
-    );
 
     Map<RealKoppenClimateClassification, Integer> climateCounts =
       new HashMap<>();
@@ -155,11 +150,9 @@ public class KoppenParameterCache {
 
     for (float temp : temperatures) {
       for (float rain : rainfalls) {
-        for (float rainVar : rainVars) {
-          RealKoppenClimateClassification climate =
-            RealKoppenClimateClassification.classify(temp, rain, rainVar, true);
-          climateCounts.merge(climate, 1, Integer::sum);
-        }
+        RealKoppenClimateClassification climate =
+          RealKoppenClimateClassification.classify(temp, rain);
+        climateCounts.merge(climate, 1, Integer::sum);
       }
     }
 
@@ -178,15 +171,13 @@ public class KoppenParameterCache {
 
     for (float temp : temperatures) {
       for (float rain : rainfalls) {
-        for (float rainVar : rainVars) {
-          RealKoppenClimateClassification climate =
-            RealKoppenClimateClassification.classify(temp, rain, rainVar, true);
-          ParameterArray array = climateCombinations.get(climate);
-          int index = climateIndices.get(climate);
-          array.temperatures[index] = temp;
-          array.rainfalls[index] = rain;
-          climateIndices.put(climate, index + 1);
-        }
+        RealKoppenClimateClassification climate =
+          RealKoppenClimateClassification.classify(temp, rain);
+        ParameterArray array = climateCombinations.get(climate);
+        int index = climateIndices.get(climate);
+        array.temperatures[index] = temp;
+        array.rainfalls[index] = rain;
+        climateIndices.put(climate, index + 1);
       }
     }
 

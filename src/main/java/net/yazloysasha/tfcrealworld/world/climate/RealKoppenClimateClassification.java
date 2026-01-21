@@ -115,14 +115,8 @@ public enum RealKoppenClimateClassification implements StringRepresentable {
 
   public static RealKoppenClimateClassification classify(
     float averageTemperature,
-    float rainfall,
-    float rainVar,
-    boolean isInNorthernHemisphere
+    float rainfall
   ) {
-    if (!isInNorthernHemisphere) {
-      rainVar = -rainVar;
-    }
-
     if (averageTemperature < -20f + 0.003f * rainfall) {
       return EF;
     } else if (
@@ -134,46 +128,39 @@ public enum RealKoppenClimateClassification implements StringRepresentable {
     } else if (rainfall < 150f) {
       return averageTemperature > 10f ? BSH : BSK;
     } else if (averageTemperature > 18f) {
-      if (rainfall * (1f + rainVar) > 500f) {
-        return AM;
-      } else if (rainVar < -0.5f && rainfall <= 150f) {
-        return AS;
-      } else if (rainfall > 300f && rainVar >= -0.5f && rainVar <= 0.5f) {
-        return AF;
-      } else {
-        return AW;
-      }
+      if (rainfall > 400f) return AF;
+      if (rainfall > 300f) return AM;
+      if (rainfall > 200f) return AW;
+      return AS;
     } else if (averageTemperature > 8f) {
       if (averageTemperature > 12f) {
-        if (rainVar > 0.5f) return CWA;
-        if (rainVar < -0.5f) return CSA;
+        if (rainfall > 315f) return CWA;
+        if (rainfall < 175f) return CSA;
         return CFA;
-      } else if (averageTemperature > 9f) {
-        if (rainVar > 0.5f) return CWB;
-        if (rainVar < -0.5f) return CSB;
+      } else if (averageTemperature > 10f) {
+        if (rainfall > 315f) return CWB;
+        if (rainfall < 175f) return CSB;
         return CFB;
       } else {
-        if (rainVar > 0.5f) return CWC;
-        if (rainVar < -0.5f) return CSC;
+        if (rainfall > 315f) return CWC;
+        if (rainfall < 175f) return CSC;
         return CFC;
       }
     } else if (averageTemperature > 2f) {
-      if (rainVar > 0.5f) return DWA;
-      if (rainVar < -0.5f) return DSA;
+      if (rainfall > 315f) return DWA;
+      if (rainfall < 175f) return DSA;
       return DFA;
-    } else if (averageTemperature > -6f) {
-      if (rainVar > 0.5f) return DWB;
-      if (rainVar < -0.5f) return DSB;
+    } else if (averageTemperature > -5f) {
+      if (rainfall > 315f) return DWB;
+      if (rainfall < 175f) return DSB;
       return DFB;
     } else if (averageTemperature > -12f) {
-      if (rainVar > 0.5f) return DWC;
-      if (rainVar < -0.5f) return DSC;
+      if (rainfall > 315f) return DWC;
+      if (rainfall < 175f) return DSC;
       return DFC;
-    } else if (rainVar > 0.5f) {
-      return DWD;
-    } else if (rainVar < -0.5f) {
-      return DSD;
     } else {
+      if (rainfall > 315f) return DWD;
+      if (rainfall < 175f) return DSD;
       return DFD;
     }
   }

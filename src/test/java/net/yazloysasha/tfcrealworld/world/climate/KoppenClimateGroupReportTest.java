@@ -11,22 +11,10 @@ import java.util.List;
 import java.util.Map;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
 import net.yazloysasha.tfcrealworld.types.ClimateCategory;
-import net.yazloysasha.tfcrealworld.types.TemperatureCharacteristic;
+import net.yazloysasha.tfcrealworld.world.noise.koppen.ClimateConstants;
 import org.junit.jupiter.api.Test;
 
 public class KoppenClimateGroupReportTest {
-
-  private static final float TEMP_MIN = -30.0f;
-  private static final float TEMP_MAX = 30.0f;
-  private static final float TEMP_STEP = 1.0f;
-
-  private static final float RAIN_MIN = 0.0f;
-  private static final float RAIN_MAX = 500.0f;
-  private static final float RAIN_STEP = 10.0f;
-
-  private static final float RAIN_VAR_MIN = -1.0f;
-  private static final float RAIN_VAR_MAX = 1.0f;
-  private static final float RAIN_VAR_STEP = 0.1f;
 
   @Test
   public void printKoppenGroupPercentages() {
@@ -43,16 +31,18 @@ public class KoppenClimateGroupReportTest {
       totals.put(climate, 0L);
     }
 
-    for (float temp = TEMP_MIN; temp <= TEMP_MAX + 1e-6f; temp += TEMP_STEP) {
-      for (float rain = RAIN_MIN; rain <= RAIN_MAX + 1e-6f; rain += RAIN_STEP) {
-        for (
-          float rainVar = RAIN_VAR_MIN;
-          rainVar <= RAIN_VAR_MAX + 1e-6f;
-          rainVar += RAIN_VAR_STEP
-        ) {
-          accumulate(counts, totals, temp, rain, rainVar, true);
-          accumulate(counts, totals, temp, rain, rainVar, false);
-        }
+    for (
+      float temp = ClimateConstants.TEMP_MIN;
+      temp <= ClimateConstants.TEMP_MAX + 1e-6f;
+      temp += ClimateConstants.TEMP_STEP
+    ) {
+      for (
+        float rain = ClimateConstants.RAIN_MIN;
+        rain <= ClimateConstants.RAIN_MAX + 1e-6f;
+        rain += ClimateConstants.RAIN_STEP
+      ) {
+        accumulate(counts, totals, temp, rain);
+        accumulate(counts, totals, temp, rain);
       }
     }
 
@@ -123,17 +113,10 @@ public class KoppenClimateGroupReportTest {
     > counts,
     Map<RealKoppenClimateClassification, Long> totals,
     float temp,
-    float rain,
-    float rainVar,
-    boolean isNorthernHemisphere
+    float rain
   ) {
     final RealKoppenClimateClassification climate =
-      RealKoppenClimateClassification.classify(
-        temp,
-        rain,
-        rainVar,
-        isNorthernHemisphere
-      );
+      RealKoppenClimateClassification.classify(temp, rain);
     final KoppenClimateClassification group =
       KoppenClimateClassification.classify(temp, rain);
 
