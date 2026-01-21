@@ -132,14 +132,14 @@ public enum RealKoppenClimateClassification implements StringRepresentable {
     } else if (rainfall < 150f) {
       return averageTemperature > 18f ? BSH : BSK;
     } else if (averageTemperature > 21f) {
-      if (rainfall * (1f + rainVar) > 600f) {
+      if (rainfall * (1f + rainVar) > 500f) {
         return AM;
-      } else if (rainVar > 0.5f) {
-        return AW;
-      } else if (rainVar < -0.5f) {
+      } else if (rainVar < -0.5f && rainfall <= 150f) {
         return AS;
-      } else {
+      } else if (rainfall > 300f && rainVar >= -0.5f && rainVar <= 0.5f) {
         return AF;
+      } else {
+        return AW;
       }
     } else if (averageTemperature > 8f) {
       if (averageTemperature > 17f) {
