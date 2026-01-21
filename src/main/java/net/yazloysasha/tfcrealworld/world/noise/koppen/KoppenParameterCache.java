@@ -91,7 +91,10 @@ public class KoppenParameterCache {
   ) {
     ParameterGrid grid = parameterGrids.get(climate);
     if (grid == null) {
-      return new ParameterCombination(5.0f, 100.0f);
+      return new ParameterCombination(
+        ClimateConstants.DEFAULT_TEMP,
+        ClimateConstants.DEFAULT_RAIN
+      );
     }
 
     double normalizedTemp = Mth.clamp(temperatureGrayscale / 255.0, 0.0, 1.0);
@@ -105,25 +108,39 @@ public class KoppenParameterCache {
 
     ParameterCombination result = grid.get(tempIndex, rainIndex);
     if (result == null) {
-      return new ParameterCombination(5.0f, 100.0f);
+      return new ParameterCombination(
+        ClimateConstants.DEFAULT_TEMP,
+        ClimateConstants.DEFAULT_RAIN
+      );
     }
     return result;
   }
 
   public float[] getTemperatureRange(RealKoppenClimateClassification climate) {
     float[] cached = temperatureRanges.get(climate);
-    return cached != null ? cached : new float[] { -20.0f, 30.0f };
+    return cached != null
+      ? cached
+      : new float[] { ClimateConstants.TEMP_MIN, ClimateConstants.TEMP_MAX };
   }
 
   public float[] getRainfallRange(RealKoppenClimateClassification climate) {
     float[] cached = rainfallRanges.get(climate);
-    return cached != null ? cached : new float[] { 0.0f, 500.0f };
+    return cached != null
+      ? cached
+      : new float[] { ClimateConstants.RAIN_MIN, ClimateConstants.RAIN_MAX };
   }
 
   private void buildCache() {
-    float[] temperatures = generateRange(-20.0f, 30.0f, 1.0f);
-    float[] rainfalls = generateRange(0.0f, 500.0f, 10.0f);
-    float[] rainVars = generateRange(-1.0f, 1.0f, 0.1f);
+    float[] temperatures = generateRange(
+      ClimateConstants.TEMP_MIN,
+      ClimateConstants.TEMP_MAX,
+      ClimateConstants.TEMP_STEP
+    );
+    float[] rainfalls = generateRange(
+      ClimateConstants.RAIN_MIN,
+      ClimateConstants.RAIN_MAX,
+      ClimateConstants.RAIN_STEP
+    );
 
     Map<RealKoppenClimateClassification, Integer> climateCounts =
       new HashMap<>();
@@ -133,11 +150,9 @@ public class KoppenParameterCache {
 
     for (float temp : temperatures) {
       for (float rain : rainfalls) {
-        for (float rainVar : rainVars) {
-          RealKoppenClimateClassification climate =
-            RealKoppenClimateClassification.classify(temp, rain, rainVar, true);
-          climateCounts.merge(climate, 1, Integer::sum);
-        }
+        RealKoppenClimateClassification climate =
+          RealKoppenClimateClassification.classify(temp, rain);
+        climateCounts.merge(climate, 1, Integer::sum);
       }
     }
 
@@ -156,15 +171,13 @@ public class KoppenParameterCache {
 
     for (float temp : temperatures) {
       for (float rain : rainfalls) {
-        for (float rainVar : rainVars) {
-          RealKoppenClimateClassification climate =
-            RealKoppenClimateClassification.classify(temp, rain, rainVar, true);
-          ParameterArray array = climateCombinations.get(climate);
-          int index = climateIndices.get(climate);
-          array.temperatures[index] = temp;
-          array.rainfalls[index] = rain;
-          climateIndices.put(climate, index + 1);
-        }
+        RealKoppenClimateClassification climate =
+          RealKoppenClimateClassification.classify(temp, rain);
+        ParameterArray array = climateCombinations.get(climate);
+        int index = climateIndices.get(climate);
+        array.temperatures[index] = temp;
+        array.rainfalls[index] = rain;
+        climateIndices.put(climate, index + 1);
       }
     }
 
@@ -204,8 +217,14 @@ public class KoppenParameterCache {
   }
 
   private void setDefaultStatistics(RealKoppenClimateClassification climate) {
-    temperatureRanges.put(climate, new float[] { -20.0f, 30.0f });
-    rainfallRanges.put(climate, new float[] { 0.0f, 500.0f });
+    temperatureRanges.put(
+      climate,
+      new float[] { ClimateConstants.TEMP_MIN, ClimateConstants.TEMP_MAX }
+    );
+    rainfallRanges.put(
+      climate,
+      new float[] { ClimateConstants.RAIN_MIN, ClimateConstants.RAIN_MAX }
+    );
   }
 
   private ParameterGrid buildParameterGrid(

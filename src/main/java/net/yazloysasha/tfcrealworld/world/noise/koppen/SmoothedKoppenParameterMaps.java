@@ -14,25 +14,27 @@ import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
  */
 public final class SmoothedKoppenParameterMaps {
 
-  private static final float TEMP_MIN = -20.0f;
-  private static final float TEMP_MAX = 30.0f;
-  private static final float RAIN_MAX = 500.0f;
-
-  // Stored as discrete indices (1°C / 10mm) and enforced in index space.
   private static final int TEMP_IDX_MIN = 0;
-  private static final int TEMP_IDX_MAX = (int) (TEMP_MAX - TEMP_MIN); // 50
+  private static final int TEMP_IDX_MAX = (int) (ClimateConstants.TEMP_MAX -
+    ClimateConstants.TEMP_MIN);
   private static final int RAIN_IDX_MIN = 0;
-  private static final int RAIN_IDX_MAX = (int) (RAIN_MAX / 10.0f); // 50
+  private static final int RAIN_IDX_MAX = (int) (ClimateConstants.RAIN_MAX /
+    ClimateConstants.RAIN_STEP);
+
+  private static final int TEMP_SMOOTH_MAX_DIFF =
+    (int) (ClimateConstants.TEMP_TOLERANCE / ClimateConstants.TEMP_STEP);
+  private static final int RAIN_SMOOTH_MAX_DIFF =
+    (int) (ClimateConstants.RAIN_TOLERANCE / ClimateConstants.RAIN_STEP);
 
   // Bit-packed indices per pixel.
   private static final int TEMP_BITS = 6;
   private static final int RAIN_BITS = 6;
 
   private static final int TEMP_SHIFT = 0;
-  private static final int RAIN_SHIFT = TEMP_SHIFT + TEMP_BITS; // 6
+  private static final int RAIN_SHIFT = TEMP_SHIFT + TEMP_BITS;
 
-  private static final int TEMP_MASK = (1 << TEMP_BITS) - 1; // 0x3F
-  private static final int RAIN_MASK = (1 << RAIN_BITS) - 1; // 0x3F
+  private static final int TEMP_MASK = (1 << TEMP_BITS) - 1;
+  private static final int RAIN_MASK = (1 << RAIN_BITS) - 1;
 
   // Safety caps; fallback full scan guarantees convergence.
   private static final int MAX_SMOOTHING_DEQUEUES_MULTIPLIER = 64;
@@ -89,7 +91,7 @@ public final class SmoothedKoppenParameterMaps {
       TEMP_SHIFT,
       TEMP_MASK
     );
-    return TEMP_MIN + idx;
+    return ClimateConstants.TEMP_MIN + idx;
   }
 
   public double sampleRainfall(double imageX, double imageZ) {
@@ -100,7 +102,7 @@ public final class SmoothedKoppenParameterMaps {
       RAIN_SHIFT,
       RAIN_MASK
     );
-    return idx * 10.0;
+    return idx * ClimateConstants.RAIN_STEP;
   }
 
   private static SmoothedKoppenParameterMaps build(String profileId) {
@@ -166,8 +168,8 @@ public final class SmoothedKoppenParameterMaps {
       KoppenParameterCache.ParameterCombination params =
         cache.getParametersFromGrayscale(climate, tempGray, rainGray);
 
-      int ti = Math.round(params.temperature - TEMP_MIN);
-      int ri = Math.round(params.rainfall / 10.0f);
+      int ti = Math.round(params.temperature - ClimateConstants.TEMP_MIN);
+      int ri = Math.round(params.rainfall / ClimateConstants.RAIN_STEP);
 
       ti = Mth.clamp(ti, TEMP_IDX_MIN, TEMP_IDX_MAX);
       ri = Mth.clamp(ri, RAIN_IDX_MIN, RAIN_IDX_MAX);
@@ -385,7 +387,10 @@ public final class SmoothedKoppenParameterMaps {
     int tj = unpackTemp(pj);
     int ri = unpackRain(pi);
     int rj = unpackRain(pj);
-    return Math.abs(ti - tj) > 1 || Math.abs(ri - rj) > 1;
+    return (
+      Math.abs(ti - tj) > TEMP_SMOOTH_MAX_DIFF ||
+      Math.abs(ri - rj) > RAIN_SMOOTH_MAX_DIFF
+    );
   }
 
   private static boolean relaxAll(int[] packedIdx, int i, int j) {
@@ -399,14 +404,26 @@ public final class SmoothedKoppenParameterMaps {
 
     boolean changed = false;
 
-    long t = relaxIdxPair(ti, tj, TEMP_IDX_MIN, TEMP_IDX_MAX);
+    long t = relaxIdxPair(
+      ti,
+      tj,
+      TEMP_IDX_MIN,
+      TEMP_IDX_MAX,
+      TEMP_SMOOTH_MAX_DIFF
+    );
     if (t != NO_CHANGE) {
       changed = true;
       ti = hi32(t);
       tj = lo32(t);
     }
 
-    long r = relaxIdxPair(ri, rj, RAIN_IDX_MIN, RAIN_IDX_MAX);
+    long r = relaxIdxPair(
+      ri,
+      rj,
+      RAIN_IDX_MIN,
+      RAIN_IDX_MAX,
+      RAIN_SMOOTH_MAX_DIFF
+    );
     if (r != NO_CHANGE) {
       changed = true;
       ri = hi32(r);
@@ -495,14 +512,21 @@ public final class SmoothedKoppenParameterMaps {
 
   private static final long NO_CHANGE = Long.MIN_VALUE;
 
-  private static long relaxIdxPair(int a, int b, int min, int max) {
+  private static long relaxIdxPair(
+    int a,
+    int b,
+    int min,
+    int max,
+    int allowedAbsDiff
+  ) {
     int diff = b - a;
     int abs = Math.abs(diff);
-    if (abs <= 1) {
+    allowedAbsDiff = Math.max(0, allowedAbsDiff);
+    if (abs <= allowedAbsDiff) {
       return NO_CHANGE;
     }
 
-    int excess = abs - 1;
+    int excess = abs - allowedAbsDiff;
     int move = excess / 2;
     int remainder = excess - move * 2; // 0 or 1
 

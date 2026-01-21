@@ -2,44 +2,50 @@ package net.yazloysasha.tfcrealworld.world.climate;
 
 import java.util.Locale;
 import net.minecraft.util.StringRepresentable;
+import net.yazloysasha.tfcrealworld.types.ClimateCategory;
+import net.yazloysasha.tfcrealworld.types.TemperatureCharacteristic;
 
 public enum RealKoppenClimateClassification implements StringRepresentable {
-  AF,
-  AM,
-  AW,
-  AS,
-  BWH,
-  BWK,
-  BSH,
-  BSK,
-  CSA,
-  CSB,
-  CSC,
-  CWA,
-  CWB,
-  CWC,
-  CFA,
-  CFB,
-  CFC,
-  DSA,
-  DSB,
-  DSC,
-  DSD,
-  DWA,
-  DWB,
-  DWC,
-  DWD,
-  DFA,
-  DFB,
-  DFC,
-  DFD,
-  ET,
-  EF;
+  AF("Humid Tropical"),
+  AM("Tropical Monsoon"),
+  AW("Tropical Wet/Dry"),
+  AS("Tropical Dry/Wet"),
+  BWH("Hot Desert"),
+  BWK("Cold Desert"),
+  BSH("Hot Semi-Arid"),
+  BSK("Cold Semi-Arid"),
+  CSA("Coastal Subtropical"),
+  CSB("Coastal"),
+  CSC("Cold Coastal"),
+  CWA("Monsoonal Subtropical"),
+  CWB("Monsoonal Temperate"),
+  CWC("Cold Monsoonal Temperate"),
+  CFA("Oceanic Subtropical"),
+  CFB("Oceanic"),
+  CFC("Cold Oceanic"),
+  DSA("Coastal Continental"),
+  DSB("Cold Coastal Continental"),
+  DSC("Coastal Subarctic"),
+  DSD("Coastal Cold Subarctic"),
+  DWA("Monsoonal Continental"),
+  DWB("Cold Monsoonal Continental"),
+  DWC("Monsoonal Subarctic"),
+  DWD("Cold Monsoonal Subarctic"),
+  DFA("Continental"),
+  DFB("Cold Continental"),
+  DFC("Subarctic"),
+  DFD("Cold Subarctic"),
+  ET("Tundra"),
+  EF("Polar");
 
   private final String name;
+  private final String displayName;
+  private final ClimateCategory category;
 
-  RealKoppenClimateClassification() {
+  RealKoppenClimateClassification(String displayName) {
     this.name = name().toLowerCase(Locale.ROOT);
+    this.displayName = displayName;
+    this.category = determineCategory();
   }
 
   @Override
@@ -47,65 +53,114 @@ public enum RealKoppenClimateClassification implements StringRepresentable {
     return name;
   }
 
-  public static RealKoppenClimateClassification classify(
-    float averageTemperature,
-    float rainfall,
-    float rainVar,
-    boolean isInNorthernHemisphere
-  ) {
-    if (!isInNorthernHemisphere) {
-      rainVar = -rainVar;
+  public String getDisplayName() {
+    return displayName;
+  }
+
+  public ClimateCategory getCategory() {
+    return category;
+  }
+
+  private ClimateCategory determineCategory() {
+    String code = name();
+    if (code.startsWith("A")) {
+      return ClimateCategory.TROPICAL;
+    } else if (code.startsWith("B")) {
+      return ClimateCategory.DRY;
+    } else if (code.startsWith("C")) {
+      return ClimateCategory.TEMPERATE;
+    } else if (code.startsWith("D")) {
+      return ClimateCategory.CONTINENTAL;
+    } else if (code.startsWith("E")) {
+      return ClimateCategory.POLAR;
+    }
+    throw new IllegalStateException("Unknown climate category for " + code);
+  }
+
+  public TemperatureCharacteristic getTemperatureCharacteristic() {
+    String code = name();
+    if (code.length() < 3) {
+      return null;
     }
 
-    if (averageTemperature < -17f + 0.006f * rainfall) {
+    char thirdChar = code.charAt(2);
+
+    if (category == ClimateCategory.DRY) {
+      if (thirdChar == 'H') {
+        return TemperatureCharacteristic.HOT;
+      } else if (thirdChar == 'K') {
+        return TemperatureCharacteristic.COLD;
+      }
+    } else if (category == ClimateCategory.TEMPERATE) {
+      if (thirdChar == 'A') {
+        return TemperatureCharacteristic.HOT;
+      } else if (thirdChar == 'B') {
+        return TemperatureCharacteristic.WARM;
+      } else if (thirdChar == 'C') {
+        return TemperatureCharacteristic.COLD;
+      }
+    } else if (category == ClimateCategory.CONTINENTAL) {
+      if (thirdChar == 'A') {
+        return TemperatureCharacteristic.HOT;
+      } else if (thirdChar == 'B') {
+        return TemperatureCharacteristic.WARM;
+      } else if (thirdChar == 'C') {
+        return TemperatureCharacteristic.COLD;
+      } else if (thirdChar == 'D') {
+        return TemperatureCharacteristic.VERY_COLD;
+      }
+    }
+    return null;
+  }
+
+  public static RealKoppenClimateClassification classify(
+    float averageTemperature,
+    float rainfall
+  ) {
+    if (averageTemperature < -20f + 0.003f * rainfall) {
       return EF;
-    } else if (averageTemperature <= -12f) {
+    } else if (
+      averageTemperature < -14f && rainfall >= 140f && rainfall <= 310f
+    ) {
       return ET;
     } else if (rainfall < 75f) {
-      return averageTemperature > 18f ? BWH : BWK;
+      return averageTemperature > 10f ? BWH : BWK;
     } else if (rainfall < 150f) {
-      return averageTemperature > 18f ? BSH : BSK;
-    } else if (averageTemperature > 21f) {
-      if (rainfall * (1f + rainVar) > 600f) {
-        return AM;
-      } else if (rainVar > 0.5f) {
-        return AW;
-      } else if (rainVar < -0.5f) {
-        return AS;
-      } else {
-        return AF;
-      }
+      return averageTemperature > 10f ? BSH : BSK;
+    } else if (averageTemperature > 18f) {
+      if (rainfall > 400f) return AF;
+      if (rainfall > 300f) return AM;
+      if (rainfall > 200f) return AW;
+      return AS;
     } else if (averageTemperature > 8f) {
-      if (averageTemperature > 17f) {
-        if (rainVar > 0.5f) return CWA;
-        if (rainVar < -0.5f) return CSA;
+      if (averageTemperature > 12f) {
+        if (rainfall > 315f) return CWA;
+        if (rainfall < 175f) return CSA;
         return CFA;
-      } else if (averageTemperature > 12f) {
-        if (rainVar > 0.5f) return CWB;
-        if (rainVar < -0.5f) return CSB;
+      } else if (averageTemperature > 10f) {
+        if (rainfall > 315f) return CWB;
+        if (rainfall < 175f) return CSB;
         return CFB;
       } else {
-        if (rainVar > 0.5f) return CWC;
-        if (rainVar < -0.5f) return CSC;
+        if (rainfall > 315f) return CWC;
+        if (rainfall < 175f) return CSC;
         return CFC;
       }
-    } else if (averageTemperature > 3f) {
-      if (rainVar > 0.5f) return DWA;
-      if (rainVar < -0.5f) return DSA;
+    } else if (averageTemperature > 2f) {
+      if (rainfall > 315f) return DWA;
+      if (rainfall < 175f) return DSA;
       return DFA;
-    } else if (averageTemperature > -2f) {
-      if (rainVar > 0.5f) return DWB;
-      if (rainVar < -0.5f) return DSB;
+    } else if (averageTemperature > -5f) {
+      if (rainfall > 315f) return DWB;
+      if (rainfall < 175f) return DSB;
       return DFB;
-    } else if (averageTemperature > -8f) {
-      if (rainVar > 0.5f) return DWC;
-      if (rainVar < -0.5f) return DSC;
+    } else if (averageTemperature > -12f) {
+      if (rainfall > 315f) return DWC;
+      if (rainfall < 175f) return DSC;
       return DFC;
-    } else if (rainVar > 0.5f) {
-      return DWD;
-    } else if (rainVar < -0.5f) {
-      return DSD;
     } else {
+      if (rainfall > 315f) return DWD;
+      if (rainfall < 175f) return DSD;
       return DFD;
     }
   }

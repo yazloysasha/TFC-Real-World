@@ -1,5 +1,6 @@
 package net.yazloysasha.tfcrealworld.world.noise.koppen;
 
+import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
@@ -17,8 +18,13 @@ public class KoppenBasedRainfallNoise extends BaseKoppenBasedNoise {
   @Override
   public float noise(float x, float z) {
     double[] image = temperatureNoise.tileToImage(x, z);
-    return (float) SmoothedKoppenParameterMaps.getInstance()
+    double value = SmoothedKoppenParameterMaps.getInstance()
       .sampleRainfall(image[0], image[1]);
+    return (float) Mth.clamp(
+      value,
+      ClimateConstants.RAIN_MIN,
+      ClimateConstants.RAIN_MAX
+    );
   }
 
   @Override
