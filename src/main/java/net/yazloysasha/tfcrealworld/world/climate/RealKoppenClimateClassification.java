@@ -157,15 +157,15 @@ public enum RealKoppenClimateClassification implements StringRepresentable {
         if (rainVar < -0.5f) return CSC;
         return CFC;
       }
-    } else if (averageTemperature > 3f) {
+    } else if (averageTemperature > 2f) {
       if (rainVar > 0.5f) return DWA;
       if (rainVar < -0.5f) return DSA;
       return DFA;
-    } else if (averageTemperature > -2f) {
+    } else if (averageTemperature > -6f) {
       if (rainVar > 0.5f) return DWB;
       if (rainVar < -0.5f) return DSB;
       return DFB;
-    } else if (averageTemperature > -8f) {
+    } else if (averageTemperature > -12f) {
       if (rainVar > 0.5f) return DWC;
       if (rainVar < -0.5f) return DSC;
       return DFC;
