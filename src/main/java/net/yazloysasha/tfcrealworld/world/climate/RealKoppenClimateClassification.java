@@ -123,10 +123,10 @@ public enum RealKoppenClimateClassification implements StringRepresentable {
       rainVar = -rainVar;
     }
 
-    if (averageTemperature < -20f) {
+    if (averageTemperature < -20f + 0.003f * rainfall) {
       return EF;
     } else if (
-      averageTemperature < -14f && rainfall > 120f && rainfall <= 300f
+      averageTemperature < -14f && rainfall >= 140f && rainfall <= 310f
     ) {
       return ET;
     } else if (rainfall < 75f) {
