@@ -120,7 +120,7 @@ public enum RealKoppenClimateClassification implements StringRepresentable {
     if (averageTemperature < -20f + 0.003f * rainfall) {
       return EF;
     } else if (
-      averageTemperature < -14f && rainfall >= 140f && rainfall <= 310f
+      averageTemperature < -16f && rainfall > 135f && rainfall <= 315f
     ) {
       return ET;
     } else if (rainfall < 75f) {
@@ -146,11 +146,11 @@ public enum RealKoppenClimateClassification implements StringRepresentable {
         if (rainfall < 175f) return CSC;
         return CFC;
       }
-    } else if (averageTemperature > 2f) {
+    } else if (averageTemperature > 0f) {
       if (rainfall > 315f) return DWA;
       if (rainfall < 175f) return DSA;
       return DFA;
-    } else if (averageTemperature > -5f) {
+    } else if (averageTemperature > -6f) {
       if (rainfall > 315f) return DWB;
       if (rainfall < 175f) return DSB;
       return DFB;
