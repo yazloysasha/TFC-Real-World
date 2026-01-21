@@ -20,7 +20,11 @@ public class KoppenBasedRainfallVarianceNoise extends BaseKoppenBasedNoise {
     double[] image = temperatureNoise.tileToImage(x, z);
     double value = SmoothedKoppenParameterMaps.getInstance()
       .sampleRainVar(image[0], image[1]);
-    return Mth.clamp(value, -1.0, 1.0);
+    return Mth.clamp(
+      value,
+      ClimateConstants.RAINVAR_MIN,
+      ClimateConstants.RAINVAR_MAX
+    );
   }
 
   @Override

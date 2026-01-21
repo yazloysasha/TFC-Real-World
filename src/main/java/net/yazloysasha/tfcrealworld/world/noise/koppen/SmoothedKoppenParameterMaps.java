@@ -14,21 +14,23 @@ import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
  */
 public final class SmoothedKoppenParameterMaps {
 
-  private static final float TEMP_MIN = -20.0f;
-  private static final float TEMP_MAX = 30.0f;
-  private static final float RAIN_MAX = 500.0f;
-  private static final float RAINVAR_MIN = -1.0f;
-  private static final float RAINVAR_MAX = 1.0f;
-
-  // Stored as discrete indices (1°C / 10mm / 0.1) and enforced in index space.
   private static final int TEMP_IDX_MIN = 0;
-  private static final int TEMP_IDX_MAX = (int) (TEMP_MAX - TEMP_MIN); // 50
+  private static final int TEMP_IDX_MAX = (int) (ClimateConstants.TEMP_MAX -
+    ClimateConstants.TEMP_MIN);
   private static final int RAIN_IDX_MIN = 0;
-  private static final int RAIN_IDX_MAX = (int) (RAIN_MAX / 10.0f); // 50
+  private static final int RAIN_IDX_MAX = (int) (ClimateConstants.RAIN_MAX /
+    ClimateConstants.RAIN_STEP);
   private static final int RAINVAR_IDX_MIN = 0;
-  private static final int RAINVAR_IDX_MAX = (int) ((RAINVAR_MAX -
-      RAINVAR_MIN) /
-    0.1f); // 20
+  private static final int RAINVAR_IDX_MAX =
+    (int) ((ClimateConstants.RAINVAR_MAX - ClimateConstants.RAINVAR_MIN) /
+      ClimateConstants.RAINVAR_STEP);
+
+  private static final int TEMP_SMOOTH_MAX_DIFF =
+    (int) (ClimateConstants.TEMP_TOLERANCE / ClimateConstants.TEMP_STEP);
+  private static final int RAIN_SMOOTH_MAX_DIFF =
+    (int) (ClimateConstants.RAIN_TOLERANCE / ClimateConstants.RAIN_STEP);
+  private static final int RAINVAR_SMOOTH_MAX_DIFF =
+    (int) (ClimateConstants.RAINVAR_TOLERANCE / ClimateConstants.RAINVAR_STEP);
 
   // Bit-packed indices per pixel.
   private static final int TEMP_BITS = 6;
@@ -36,12 +38,12 @@ public final class SmoothedKoppenParameterMaps {
   private static final int RAINVAR_BITS = 5;
 
   private static final int TEMP_SHIFT = 0;
-  private static final int RAIN_SHIFT = TEMP_SHIFT + TEMP_BITS; // 6
-  private static final int RAINVAR_SHIFT = RAIN_SHIFT + RAIN_BITS; // 12
+  private static final int RAIN_SHIFT = TEMP_SHIFT + TEMP_BITS;
+  private static final int RAINVAR_SHIFT = RAIN_SHIFT + RAIN_BITS;
 
-  private static final int TEMP_MASK = (1 << TEMP_BITS) - 1; // 0x3F
-  private static final int RAIN_MASK = (1 << RAIN_BITS) - 1; // 0x3F
-  private static final int RAINVAR_MASK = (1 << RAINVAR_BITS) - 1; // 0x1F
+  private static final int TEMP_MASK = (1 << TEMP_BITS) - 1;
+  private static final int RAIN_MASK = (1 << RAIN_BITS) - 1;
+  private static final int RAINVAR_MASK = (1 << RAINVAR_BITS) - 1;
 
   // Safety caps; fallback full scan guarantees convergence.
   private static final int MAX_SMOOTHING_DEQUEUES_MULTIPLIER = 64;
@@ -98,7 +100,7 @@ public final class SmoothedKoppenParameterMaps {
       TEMP_SHIFT,
       TEMP_MASK
     );
-    return TEMP_MIN + idx;
+    return ClimateConstants.TEMP_MIN + idx;
   }
 
   public double sampleRainfall(double imageX, double imageZ) {
@@ -109,7 +111,7 @@ public final class SmoothedKoppenParameterMaps {
       RAIN_SHIFT,
       RAIN_MASK
     );
-    return idx * 10.0;
+    return idx * ClimateConstants.RAIN_STEP;
   }
 
   public double sampleRainVar(double imageX, double imageZ) {
@@ -120,7 +122,7 @@ public final class SmoothedKoppenParameterMaps {
       RAINVAR_SHIFT,
       RAINVAR_MASK
     );
-    return RAINVAR_MIN + idx * 0.1;
+    return ClimateConstants.RAINVAR_MIN + idx * ClimateConstants.RAINVAR_STEP;
   }
 
   private static SmoothedKoppenParameterMaps build(String profileId) {
@@ -187,9 +189,12 @@ public final class SmoothedKoppenParameterMaps {
       KoppenParameterCache.ParameterCombination params =
         cache.getParametersFromGrayscale(climate, tempGray, rainGray);
 
-      int ti = Math.round(params.temperature - TEMP_MIN);
-      int ri = Math.round(params.rainfall / 10.0f);
-      int vi = Math.round((params.rainVar - RAINVAR_MIN) / 0.1f);
+      int ti = Math.round(params.temperature - ClimateConstants.TEMP_MIN);
+      int ri = Math.round(params.rainfall / ClimateConstants.RAIN_STEP);
+      int vi = Math.round(
+        (params.rainVar - ClimateConstants.RAINVAR_MIN) /
+        ClimateConstants.RAINVAR_STEP
+      );
 
       ti = Mth.clamp(ti, TEMP_IDX_MIN, TEMP_IDX_MAX);
       ri = Mth.clamp(ri, RAIN_IDX_MIN, RAIN_IDX_MAX);
@@ -411,7 +416,9 @@ public final class SmoothedKoppenParameterMaps {
     int vi = unpackRainVar(pi);
     int vj = unpackRainVar(pj);
     return (
-      Math.abs(ti - tj) > 1 || Math.abs(ri - rj) > 1 || Math.abs(vi - vj) > 1
+      Math.abs(ti - tj) > TEMP_SMOOTH_MAX_DIFF ||
+      Math.abs(ri - rj) > RAIN_SMOOTH_MAX_DIFF ||
+      Math.abs(vi - vj) > RAINVAR_SMOOTH_MAX_DIFF
     );
   }
 
@@ -428,21 +435,39 @@ public final class SmoothedKoppenParameterMaps {
 
     boolean changed = false;
 
-    int[] t = relaxIdxPair(ti, tj, TEMP_IDX_MIN, TEMP_IDX_MAX);
+    int[] t = relaxIdxPair(
+      ti,
+      tj,
+      TEMP_IDX_MIN,
+      TEMP_IDX_MAX,
+      TEMP_SMOOTH_MAX_DIFF
+    );
     if (t != null) {
       changed = true;
       ti = t[0];
       tj = t[1];
     }
 
-    int[] r = relaxIdxPair(ri, rj, RAIN_IDX_MIN, RAIN_IDX_MAX);
+    int[] r = relaxIdxPair(
+      ri,
+      rj,
+      RAIN_IDX_MIN,
+      RAIN_IDX_MAX,
+      RAIN_SMOOTH_MAX_DIFF
+    );
     if (r != null) {
       changed = true;
       ri = r[0];
       rj = r[1];
     }
 
-    int[] v = relaxIdxPair(vi, vj, RAINVAR_IDX_MIN, RAINVAR_IDX_MAX);
+    int[] v = relaxIdxPair(
+      vi,
+      vj,
+      RAINVAR_IDX_MIN,
+      RAINVAR_IDX_MAX,
+      RAINVAR_SMOOTH_MAX_DIFF
+    );
     if (v != null) {
       changed = true;
       vi = v[0];
@@ -529,14 +554,21 @@ public final class SmoothedKoppenParameterMaps {
     return violations;
   }
 
-  private static int[] relaxIdxPair(int a, int b, int min, int max) {
+  private static int[] relaxIdxPair(
+    int a,
+    int b,
+    int min,
+    int max,
+    int allowedAbsDiff
+  ) {
     int diff = b - a;
     int abs = Math.abs(diff);
-    if (abs <= 1) {
+    allowedAbsDiff = Math.max(0, allowedAbsDiff);
+    if (abs <= allowedAbsDiff) {
       return null;
     }
 
-    int excess = abs - 1;
+    int excess = abs - allowedAbsDiff;
     int move = excess / 2;
     int remainder = excess - move * 2; // 0 or 1
 
