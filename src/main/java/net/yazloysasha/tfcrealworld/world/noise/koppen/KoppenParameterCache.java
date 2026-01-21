@@ -91,7 +91,10 @@ public class KoppenParameterCache {
   ) {
     ParameterGrid grid = parameterGrids.get(climate);
     if (grid == null) {
-      return new ParameterCombination(5.0f, 100.0f);
+      return new ParameterCombination(
+        ClimateConstants.DEFAULT_TEMP,
+        ClimateConstants.DEFAULT_RAIN
+      );
     }
 
     double normalizedTemp = Mth.clamp(temperatureGrayscale / 255.0, 0.0, 1.0);
@@ -105,25 +108,44 @@ public class KoppenParameterCache {
 
     ParameterCombination result = grid.get(tempIndex, rainIndex);
     if (result == null) {
-      return new ParameterCombination(5.0f, 100.0f);
+      return new ParameterCombination(
+        ClimateConstants.DEFAULT_TEMP,
+        ClimateConstants.DEFAULT_RAIN
+      );
     }
     return result;
   }
 
   public float[] getTemperatureRange(RealKoppenClimateClassification climate) {
     float[] cached = temperatureRanges.get(climate);
-    return cached != null ? cached : new float[] { -30.0f, 30.0f };
+    return cached != null
+      ? cached
+      : new float[] { ClimateConstants.TEMP_MIN, ClimateConstants.TEMP_MAX };
   }
 
   public float[] getRainfallRange(RealKoppenClimateClassification climate) {
     float[] cached = rainfallRanges.get(climate);
-    return cached != null ? cached : new float[] { 0.0f, 500.0f };
+    return cached != null
+      ? cached
+      : new float[] { ClimateConstants.RAIN_MIN, ClimateConstants.RAIN_MAX };
   }
 
   private void buildCache() {
-    float[] temperatures = generateRange(-30.0f, 30.0f, 1.0f);
-    float[] rainfalls = generateRange(0.0f, 500.0f, 10.0f);
-    float[] rainVars = generateRange(-1.0f, 1.0f, 0.1f);
+    float[] temperatures = generateRange(
+      ClimateConstants.TEMP_MIN,
+      ClimateConstants.TEMP_MAX,
+      ClimateConstants.TEMP_STEP
+    );
+    float[] rainfalls = generateRange(
+      ClimateConstants.RAIN_MIN,
+      ClimateConstants.RAIN_MAX,
+      ClimateConstants.RAIN_STEP
+    );
+    float[] rainVars = generateRange(
+      ClimateConstants.RAINVAR_MIN,
+      ClimateConstants.RAINVAR_MAX,
+      ClimateConstants.RAINVAR_STEP
+    );
 
     Map<RealKoppenClimateClassification, Integer> climateCounts =
       new HashMap<>();
@@ -204,8 +226,14 @@ public class KoppenParameterCache {
   }
 
   private void setDefaultStatistics(RealKoppenClimateClassification climate) {
-    temperatureRanges.put(climate, new float[] { -30.0f, 30.0f });
-    rainfallRanges.put(climate, new float[] { 0.0f, 500.0f });
+    temperatureRanges.put(
+      climate,
+      new float[] { ClimateConstants.TEMP_MIN, ClimateConstants.TEMP_MAX }
+    );
+    rainfallRanges.put(
+      climate,
+      new float[] { ClimateConstants.RAIN_MIN, ClimateConstants.RAIN_MAX }
+    );
   }
 
   private ParameterGrid buildParameterGrid(
