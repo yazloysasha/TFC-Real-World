@@ -101,10 +101,12 @@ mixin {
 dependencies {
   minecraft("net.minecraftforge", "forge", version = "$minecraftVersion-$forgeVersion")
 
-  // TerraFirmaCraft
   compileOnly(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$tfcVersion@jar"))
 
-  // Mixin
+  testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
+  testImplementation(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$tfcVersion@jar"))
+
   annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
 }
 
@@ -117,6 +119,16 @@ tasks {
     manifest {
       attributes["Implementation-Version"] = project.version
       attributes["MixinConfigs"] = "$modId.mixins.json"
+    }
+  }
+
+  test {
+    useJUnitPlatform()
+    testLogging {
+      events("passed", "failed", "skipped", "standardOut", "standardError")
+      showStandardStreams = true
+      showStackTraces = true
+      exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
     }
   }
 }
