@@ -45,6 +45,7 @@ public final class BiomePools {
       }
 
       if (ext.getGroup() == BiomeExtension.Group.LAKE) continue;
+      if (ext.getGroup() == BiomeExtension.Group.RIVER) continue;
       if (ext.createNoiseSampler(0L) == null) continue;
 
       final boolean volcanic = ext.isVolcanic();
