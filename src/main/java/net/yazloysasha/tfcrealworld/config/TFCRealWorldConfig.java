@@ -89,7 +89,7 @@ public class TFCRealWorldConfig {
     SPAWN_CENTER_X = new ConfigOption<>(
       BUILDER,
       "spawn_center_x",
-      "Spawn center X coordinate (used when spawn_mode is DEFAULT)",
+      "Spawn center X coordinate (used when spawn_mode is CLASSIC)",
       getSpawnCenterX(),
       -20_000,
       20_000
@@ -97,7 +97,7 @@ public class TFCRealWorldConfig {
     SPAWN_CENTER_Z = new ConfigOption<>(
       BUILDER,
       "spawn_center_z",
-      "Spawn center Z coordinate (used when spawn_mode is DEFAULT)",
+      "Spawn center Z coordinate (used when spawn_mode is CLASSIC)",
       getSpawnCenterZ(),
       -20_000,
       20_000
