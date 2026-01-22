@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
 import net.minecraft.util.Mth;
+import net.yazloysasha.tfcrealworld.world.climate.RealKoppenClimateClassification;
 
 /**
  * Caches valid parameter combinations for each Köppen climate classification.
@@ -230,7 +231,9 @@ public class KoppenParameterCache {
       for (float rain : rainfalls) {
         for (float rainVar : rainVars) {
           KoppenClimateClassification climate =
-            KoppenClimateClassification.classify(temp, rain, rainVar, true);
+            RealKoppenClimateClassification.classify(temp, rain, rainVar, true);
+          if (climate == null) continue;
+
           climateCounts.merge(climate, 1, Integer::sum);
         }
       }
@@ -252,7 +255,9 @@ public class KoppenParameterCache {
       for (float rain : rainfalls) {
         for (float rainVar : rainVars) {
           KoppenClimateClassification climate =
-            KoppenClimateClassification.classify(temp, rain, rainVar, true);
+            RealKoppenClimateClassification.classify(temp, rain, rainVar, true);
+          if (climate == null) continue;
+
           ParameterArray array = climateCombinations.get(climate);
           int index = climateIndices.get(climate);
           array.temperatures[index] = temp;
