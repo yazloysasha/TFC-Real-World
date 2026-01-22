@@ -70,9 +70,9 @@ public class RealKoppenClimateClassification {
       }
     } else if (averageTemperature > 3f) {
       return temperateClassifier.classify(
-        KoppenClimateClassification.CWA,
-        KoppenClimateClassification.CSA,
-        KoppenClimateClassification.CFA
+        KoppenClimateClassification.DWA,
+        KoppenClimateClassification.DSA,
+        KoppenClimateClassification.DFA
       );
     } else if (averageTemperature > -2f) {
       return temperateClassifier.classify(
