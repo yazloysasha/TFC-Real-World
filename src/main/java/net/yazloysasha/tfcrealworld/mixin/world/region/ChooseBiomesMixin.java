@@ -5,6 +5,7 @@ import net.dries007.tfc.world.layer.framework.Area;
 import net.dries007.tfc.world.region.ChooseBiomes;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
 import net.yazloysasha.tfcrealworld.world.region.BiomePools;
@@ -144,6 +145,11 @@ public class ChooseBiomesMixin {
     Region.Point point,
     int proposedBiome
   ) {
+    if (!TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
+      point.biome = proposedBiome;
+      return;
+    }
+
     final int[] pos = CURRENT_GRID_POS.get();
     final boolean inHotspot = CURRENT_IN_HOTSPOT.get();
 
