@@ -251,6 +251,7 @@ public class TFCRealWorldConfig {
       SPAWN_CENTER_X,
       SPAWN_CENTER_Z,
       SPAWN_DISTANCE,
+      CANYONS_NOT_VOLCANIC,
       FLAT_BEDROCK,
       FINITE_CONTINENTS,
       CONTINENTALNESS,
@@ -264,8 +265,7 @@ public class TFCRealWorldConfig {
       CONTINENT_FROM_MAP,
       ALTITUDE_FROM_MAP,
       HOTSPOTS_FROM_MAP,
-      KOPPEN_FROM_MAP,
-      CANYONS_NOT_VOLCANIC
+      KOPPEN_FROM_MAP
     );
   }
 
