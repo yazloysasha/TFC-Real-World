@@ -65,15 +65,12 @@ public class RegionGeneratorMixin {
     WorldSeedHolder.setSeed(seed);
 
     try {
-      int horizontalTileSize = TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get();
-      int verticalTileSize = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get();
+      int horizontalScale = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
+      int verticalScale = TFCRealWorldConfig.VERTICAL_SCALE.get();
 
       PNGContinentNoise continentNoise = null;
       if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
-        continentNoise = new PNGContinentNoise(
-          horizontalTileSize,
-          verticalTileSize
-        );
+        continentNoise = new PNGContinentNoise(horizontalScale, verticalScale);
         initializeContinentMap(instance, continentNoise);
 
         GlobalOceanDistanceCache.initialize(continentNoise);
@@ -86,16 +83,16 @@ public class RegionGeneratorMixin {
 
       if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
         PNGAltitudeNoise altitudeNoise = new PNGAltitudeNoise(
-          horizontalTileSize,
-          verticalTileSize
+          horizontalScale,
+          verticalScale
         );
         initializeAltitudeMap(instance, altitudeNoise);
       }
 
       if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
         PNGHotspotsNoise hotspotsNoise = new PNGHotspotsNoise(
-          horizontalTileSize,
-          verticalTileSize
+          horizontalScale,
+          verticalScale
         );
         HotspotsNoiseRegistry.register(instance, hotspotsNoise);
       }

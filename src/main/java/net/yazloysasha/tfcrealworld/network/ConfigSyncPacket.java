@@ -19,8 +19,8 @@ public class ConfigSyncPacket {
   private final double continentalness;
   private final int temperatureScale;
   private final int rainfallScale;
-  private final int horizontalTileSize;
-  private final int verticalTileSize;
+  private final int horizontalScale;
+  private final int verticalScale;
   private final boolean continentFromMap;
   private final boolean altitudeFromMap;
   private final boolean hotspotsFromMap;
@@ -38,8 +38,8 @@ public class ConfigSyncPacket {
     double continentalness,
     int temperatureScale,
     int rainfallScale,
-    int horizontalTileSize,
-    int verticalTileSize,
+    int horizontalScale,
+    int verticalScale,
     boolean continentFromMap,
     boolean altitudeFromMap,
     boolean hotspotsFromMap,
@@ -56,8 +56,8 @@ public class ConfigSyncPacket {
     this.continentalness = continentalness;
     this.temperatureScale = temperatureScale;
     this.rainfallScale = rainfallScale;
-    this.horizontalTileSize = horizontalTileSize;
-    this.verticalTileSize = verticalTileSize;
+    this.horizontalScale = horizontalScale;
+    this.verticalScale = verticalScale;
     this.continentFromMap = continentFromMap;
     this.altitudeFromMap = altitudeFromMap;
     this.hotspotsFromMap = hotspotsFromMap;
@@ -76,8 +76,8 @@ public class ConfigSyncPacket {
     buffer.writeDouble(packet.continentalness);
     buffer.writeInt(packet.temperatureScale);
     buffer.writeInt(packet.rainfallScale);
-    buffer.writeInt(packet.horizontalTileSize);
-    buffer.writeInt(packet.verticalTileSize);
+    buffer.writeInt(packet.horizontalScale);
+    buffer.writeInt(packet.verticalScale);
     buffer.writeBoolean(packet.continentFromMap);
     buffer.writeBoolean(packet.altitudeFromMap);
     buffer.writeBoolean(packet.hotspotsFromMap);
@@ -125,8 +125,8 @@ public class ConfigSyncPacket {
           packet.continentalness,
           packet.temperatureScale,
           packet.rainfallScale,
-          packet.horizontalTileSize,
-          packet.verticalTileSize,
+          packet.horizontalScale,
+          packet.verticalScale,
           packet.continentFromMap,
           packet.altitudeFromMap,
           packet.hotspotsFromMap,

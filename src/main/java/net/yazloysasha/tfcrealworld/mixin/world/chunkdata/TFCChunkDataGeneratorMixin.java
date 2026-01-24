@@ -39,21 +39,20 @@ public class TFCChunkDataGeneratorMixin {
       return;
     }
 
-    final int horizontalTileSize =
-      TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get();
-    final int verticalTileSize = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get();
+    final int horizontalScale = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
+    final int verticalScale = TFCRealWorldConfig.VERTICAL_SCALE.get();
 
     final PNGKoppenNoise koppenNoise = new PNGKoppenNoise(
-      horizontalTileSize,
-      verticalTileSize
+      horizontalScale,
+      verticalScale
     );
     final PNGTemperatureNoise temperatureMapNoise = new PNGTemperatureNoise(
-      horizontalTileSize,
-      verticalTileSize
+      horizontalScale,
+      verticalScale
     );
     final PNGRainfallNoise rainfallMapNoise = new PNGRainfallNoise(
-      horizontalTileSize,
-      verticalTileSize
+      horizontalScale,
+      verticalScale
     );
 
     final float toGrid = 1f / (float) TFCRealWorld.GRID_WIDTH_IN_BLOCK;

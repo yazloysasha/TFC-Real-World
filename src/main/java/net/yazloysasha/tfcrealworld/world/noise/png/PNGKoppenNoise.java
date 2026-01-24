@@ -112,9 +112,9 @@ public class PNGKoppenNoise {
   private final double tileRadiusGridX;
   private final double tileRadiusGridZ;
 
-  public PNGKoppenNoise(int horizontalTileSize, int verticalTileSize) {
-    this.tileRadiusBlocksX = horizontalTileSize / 2;
-    this.tileRadiusBlocksZ = verticalTileSize / 2;
+  public PNGKoppenNoise(int horizontalScale, int verticalScale) {
+    this.tileRadiusBlocksX = horizontalScale / 2;
+    this.tileRadiusBlocksZ = verticalScale / 2;
     this.tileRadiusGridX =
       tileRadiusBlocksX / (double) TFCRealWorld.GRID_WIDTH_IN_BLOCK;
     this.tileRadiusGridZ =

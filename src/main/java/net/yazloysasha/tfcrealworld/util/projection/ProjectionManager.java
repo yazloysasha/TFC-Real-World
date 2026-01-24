@@ -41,7 +41,7 @@ public class ProjectionManager {
 
     return strategy.getLatitudeByZ(
       z,
-      TFCRealWorldConfig.VERTICAL_TILE_SIZE.get(),
+      TFCRealWorldConfig.VERTICAL_SCALE.get(),
       TFCRealWorldConfig.getSouthEdgeLatitude(),
       TFCRealWorldConfig.getNorthEdgeLatitude(),
       tileCenterLongitude
@@ -51,8 +51,8 @@ public class ProjectionManager {
   public static double[] geographicToClassic(
     double longitude,
     double latitude,
-    int horizontalTileSize,
-    int verticalTileSize,
+    int horizontalScale,
+    int verticalScale,
     double westEdgeLongitude,
     double eastEdgeLongitude,
     double southEdgeLatitude,
@@ -73,8 +73,8 @@ public class ProjectionManager {
     return strategy.geographicToClassic(
       longitude,
       latitude,
-      horizontalTileSize,
-      verticalTileSize,
+      horizontalScale,
+      verticalScale,
       west,
       east,
       southEdgeLatitude,
@@ -87,8 +87,8 @@ public class ProjectionManager {
   public static double[] classicToGeographic(
     double x,
     double z,
-    int horizontalTileSize,
-    int verticalTileSize,
+    int horizontalScale,
+    int verticalScale,
     double westEdgeLongitude,
     double eastEdgeLongitude,
     double southEdgeLatitude,
@@ -103,8 +103,8 @@ public class ProjectionManager {
     double tileCenterLongitude = (west + east) / 2.0;
     double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
 
-    double tileRadiusBlocksX = horizontalTileSize / 2.0;
-    double tileRadiusBlocksZ = verticalTileSize / 2.0;
+    double tileRadiusBlocksX = horizontalScale / 2.0;
+    double tileRadiusBlocksZ = verticalScale / 2.0;
     double tileRadiusGridX =
       tileRadiusBlocksX / TFCRealWorld.GRID_WIDTH_IN_BLOCK;
     double tileRadiusGridZ =
@@ -138,8 +138,8 @@ public class ProjectionManager {
     double[] result = strategy.classicToGeographic(
       unreflectedX,
       unreflectedZ,
-      horizontalTileSize,
-      verticalTileSize,
+      horizontalScale,
+      verticalScale,
       west,
       east,
       southEdgeLatitude,
@@ -159,8 +159,8 @@ public class ProjectionManager {
     return geographicToClassic(
       longitude,
       latitude,
-      TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get(),
-      TFCRealWorldConfig.VERTICAL_TILE_SIZE.get(),
+      TFCRealWorldConfig.HORIZONTAL_SCALE.get(),
+      TFCRealWorldConfig.VERTICAL_SCALE.get(),
       TFCRealWorldConfig.getWestEdgeLongitude(),
       TFCRealWorldConfig.getEastEdgeLongitude(),
       TFCRealWorldConfig.getSouthEdgeLatitude(),
@@ -173,8 +173,8 @@ public class ProjectionManager {
     return classicToGeographic(
       x,
       z,
-      TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get(),
-      TFCRealWorldConfig.VERTICAL_TILE_SIZE.get(),
+      TFCRealWorldConfig.HORIZONTAL_SCALE.get(),
+      TFCRealWorldConfig.VERTICAL_SCALE.get(),
       TFCRealWorldConfig.getWestEdgeLongitude(),
       TFCRealWorldConfig.getEastEdgeLongitude(),
       TFCRealWorldConfig.getSouthEdgeLatitude(),
