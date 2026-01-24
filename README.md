@@ -95,9 +95,9 @@ Fine-tune familiar TFC world generation values.
 - **Flat Bedrock**: If enabled, the bottom of the world is a single, flat bedrock layer.
 - **Finite Continents**: If enabled, the world has a limited number of continents surrounded by a vast, deep ocean (1.21.1 only).
 - **Continentalness**: Controls landmass size. Lower values = more fragmented land and islands. Higher values = larger, solid continents (if continents and altitude from map is disabled).
-- **Grass Density**: Affects the amount of grass coverage globally.
-- **Temperature Constant**: A number representing the temperature for an entire world, where -1.0 is polar and 1.0 is tropical (if climate from map is disabled).
-- **Rainfall Constant**: A number representing the rainfall for an entire world, where -1.0 is arid and 1.0 is tropical (if climate from map is disabled).
+- **Grass Density**: Affects the amount of grass coverage globally (1.20.1+).
+- **Temperature Constant**: A number representing the temperature for an entire world, where -1.0 is polar and 1.0 is tropical (if climate from map is disabled, 1.20.1+).
+- **Rainfall Constant**: A number representing the rainfall for an entire world, where -1.0 is arid and 1.0 is tropical (if climate from map is disabled, 1.20.1+).
 - **Temperature Scale**: The distance (in blocks) between the hottest and coldest climate zones (if climate from map is disabled).
 - **Rainfall Scale**: The distance (in blocks) between the wettest and driest climate zones (if climate from map is disabled).
 
