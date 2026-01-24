@@ -29,13 +29,13 @@ public abstract class BasePNGNoise implements Noise2D {
   protected final double tileRadiusGridZ;
 
   protected BasePNGNoise(
-    int horizontalTileSize,
-    int verticalTileSize,
+    int horizontalScale,
+    int verticalScale,
     String mapName,
     String errorMessage
   ) {
-    this.tileRadiusBlocksX = horizontalTileSize / 2;
-    this.tileRadiusBlocksZ = verticalTileSize / 2;
+    this.tileRadiusBlocksX = horizontalScale;
+    this.tileRadiusBlocksZ = verticalScale;
     this.tileRadiusGridX =
       tileRadiusBlocksX / (double) Units.GRID_WIDTH_IN_BLOCK;
     this.tileRadiusGridZ =

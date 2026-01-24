@@ -39,7 +39,7 @@ public class FixedHighGlobeTrotterLocation
     public boolean matches(ServerPlayer player) {
       return (
         player.blockPosition().getZ() >=
-        TFCRealWorldConfig.VERTICAL_TILE_SIZE.get() / 2
+        TFCRealWorldConfig.VERTICAL_SCALE.get()
       );
     }
   }

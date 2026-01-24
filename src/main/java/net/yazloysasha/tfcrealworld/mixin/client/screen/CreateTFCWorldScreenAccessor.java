@@ -12,10 +12,12 @@ public interface CreateTFCWorldScreenAccessor {
   AbstractWidget tfcrealworld$invokeSmallButton(OptionInstance<?> option);
 
   @Invoker("kmOption")
-  OptionInstance<Integer> tfcrealworld$invokeKmOption(
+  static OptionInstance<Integer> tfcrealworld$invokeKmOption(
     String caption,
     int min,
     int max,
     int defaultValue
-  );
+  ) {
+    throw new AssertionError();
+  }
 }

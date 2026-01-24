@@ -2,10 +2,10 @@ package net.yazloysasha.tfcrealworld.world.noise.png;
 
 public class PNGRainfallNoise extends BasePNGNoise {
 
-  public PNGRainfallNoise(int horizontalTileSize, int verticalTileSize) {
+  public PNGRainfallNoise(int horizontalScale, int verticalScale) {
     super(
-      horizontalTileSize,
-      verticalTileSize,
+      horizontalScale,
+      verticalScale,
       "rainfall",
       "Failed to load rainfall map. Map file is required when using PNG-based rainfall."
     );

@@ -26,8 +26,8 @@ public record ConfigSyncPacket(
   double rainfallConstant,
   int temperatureScale,
   int rainfallScale,
-  int horizontalTileSize,
-  int verticalTileSize,
+  int horizontalScale,
+  int verticalScale,
   boolean continentFromMap,
   boolean altitudeFromMap,
   boolean hotspotsFromMap,
@@ -59,8 +59,8 @@ public record ConfigSyncPacket(
       buffer.writeDouble(packet.rainfallConstant);
       buffer.writeInt(packet.temperatureScale);
       buffer.writeInt(packet.rainfallScale);
-      buffer.writeInt(packet.horizontalTileSize);
-      buffer.writeInt(packet.verticalTileSize);
+      buffer.writeInt(packet.horizontalScale);
+      buffer.writeInt(packet.verticalScale);
       buffer.writeBoolean(packet.continentFromMap);
       buffer.writeBoolean(packet.altitudeFromMap);
       buffer.writeBoolean(packet.hotspotsFromMap);
@@ -117,8 +117,8 @@ public record ConfigSyncPacket(
         packet.rainfallConstant(),
         packet.temperatureScale(),
         packet.rainfallScale(),
-        packet.horizontalTileSize(),
-        packet.verticalTileSize(),
+        packet.horizontalScale(),
+        packet.verticalScale(),
         packet.continentFromMap(),
         packet.altitudeFromMap(),
         packet.hotspotsFromMap(),

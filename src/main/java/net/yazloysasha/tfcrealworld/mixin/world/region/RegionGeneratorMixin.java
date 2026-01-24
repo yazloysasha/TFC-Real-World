@@ -74,14 +74,14 @@ public class RegionGeneratorMixin {
     WorldSeedHolder.setSeed(seed.seed());
 
     try {
-      int horizontalTileSize = TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get();
-      int verticalTileSize = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get();
+      int horizontalScale = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
+      int verticalScale = TFCRealWorldConfig.VERTICAL_SCALE.get();
 
       PNGContinentNoise continentNoise = null;
       if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
         continentNoise = new PNGContinentNoise(
-          horizontalTileSize,
-          verticalTileSize
+          horizontalScale,
+          verticalScale
         );
         initializeContinentMap(instance, continentNoise);
 
@@ -91,16 +91,16 @@ public class RegionGeneratorMixin {
 
       if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
         PNGAltitudeNoise altitudeNoise = new PNGAltitudeNoise(
-          horizontalTileSize,
-          verticalTileSize
+          horizontalScale,
+          verticalScale
         );
         initializeAltitudeMap(instance, altitudeNoise);
       }
 
       if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
         PNGHotspotsNoise hotspotsNoise = new PNGHotspotsNoise(
-          horizontalTileSize,
-          verticalTileSize
+          horizontalScale,
+          verticalScale
         );
         initializeHotspotsMap(instance, hotspotsNoise);
       }
@@ -109,8 +109,8 @@ public class RegionGeneratorMixin {
         initializeKoppenBasedClimateMaps(
           instance,
           seed,
-          horizontalTileSize,
-          verticalTileSize
+          horizontalScale,
+          verticalScale
         );
       }
     } catch (NoSuchFieldException e) {
@@ -165,21 +165,21 @@ public class RegionGeneratorMixin {
   private void initializeKoppenBasedClimateMaps(
     RegionGenerator instance,
     Seed seed,
-    int horizontalTileSize,
-    int verticalTileSize
+    int horizontalScale,
+    int verticalScale
   ) throws NoSuchFieldException {
     PNGKoppenNoise koppenNoise = new PNGKoppenNoise(
-      horizontalTileSize,
-      verticalTileSize
+      horizontalScale,
+      verticalScale
     );
 
     PNGTemperatureNoise temperatureNoise = new PNGTemperatureNoise(
-      horizontalTileSize,
-      verticalTileSize
+      horizontalScale,
+      verticalScale
     );
     PNGRainfallNoise rainfallNoise = new PNGRainfallNoise(
-      horizontalTileSize,
-      verticalTileSize
+      horizontalScale,
+      verticalScale
     );
 
     Field tempField =

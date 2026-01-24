@@ -157,13 +157,13 @@ public class ConfigManager {
         ),
         getInt(
           config,
-          "generation_modes.horizontal_tile_size",
-          TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get()
+          "generation_modes.horizontal_scale",
+          TFCRealWorldConfig.HORIZONTAL_SCALE.get()
         ),
         getInt(
           config,
-          "generation_modes.vertical_tile_size",
-          TFCRealWorldConfig.VERTICAL_TILE_SIZE.get()
+          "generation_modes.vertical_scale",
+          TFCRealWorldConfig.VERTICAL_SCALE.get()
         ),
         getBoolean(
           config,
@@ -290,8 +290,8 @@ public class ConfigManager {
       TFCRealWorldConfig.RAINFALL_CONSTANT.get(),
       TFCRealWorldConfig.TEMPERATURE_SCALE.get(),
       TFCRealWorldConfig.RAINFALL_SCALE.get(),
-      TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get(),
-      TFCRealWorldConfig.VERTICAL_TILE_SIZE.get(),
+      TFCRealWorldConfig.HORIZONTAL_SCALE.get(),
+      TFCRealWorldConfig.VERTICAL_SCALE.get(),
       TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
       TFCRealWorldConfig.ALTITUDE_FROM_MAP.get(),
       TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get(),

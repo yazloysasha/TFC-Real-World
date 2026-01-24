@@ -409,8 +409,8 @@ public class RegionGeneratorTests implements TestSetup {
     double[] geoCoords = ProjectionManager.classicToGeographic(
       classicX,
       classicZ,
-      profile.horizontalTileSize(),
-      profile.verticalTileSize(),
+      profile.horizontalScale(),
+      profile.verticalScale(),
       profile.westEdgeLongitude(),
       profile.eastEdgeLongitude(),
       profile.southEdgeLatitude(),
@@ -484,8 +484,8 @@ public class RegionGeneratorTests implements TestSetup {
     double[] geoCoords = ProjectionManager.classicToGeographic(
       classicX,
       classicZ,
-      profile.horizontalTileSize(),
-      profile.verticalTileSize(),
+      profile.horizontalScale(),
+      profile.verticalScale(),
       profile.westEdgeLongitude(),
       profile.eastEdgeLongitude(),
       profile.southEdgeLatitude(),

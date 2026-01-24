@@ -5,10 +5,10 @@ public class PNGAltitudeNoise extends BasePNGNoise {
   private static final String MAP_NAME = "altitude";
   private static final double SEA_LEVEL_GRAYSCALE = 128.0;
 
-  public PNGAltitudeNoise(int horizontalTileSize, int verticalTileSize) {
+  public PNGAltitudeNoise(int horizontalScale, int verticalScale) {
     super(
-      horizontalTileSize,
-      verticalTileSize,
+      horizontalScale,
+      verticalScale,
       MAP_NAME,
       "Failed to load altitude map. Map file is required when generating altitude from map."
     );

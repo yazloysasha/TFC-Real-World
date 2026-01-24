@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
+import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.types.CachedClassicCoords;
 import net.yazloysasha.tfcrealworld.types.MapProjection;
 import net.yazloysasha.tfcrealworld.util.projection.ProjectionManager;
@@ -18,8 +19,8 @@ public record MapProfile(
   int index,
   double spawnCenterLongitude,
   double spawnCenterLatitude,
-  int horizontalTileSize,
-  int verticalTileSize,
+  int horizontalScale,
+  int verticalScale,
   double westEdgeLongitude,
   double eastEdgeLongitude,
   double southEdgeLatitude,
@@ -37,8 +38,10 @@ public record MapProfile(
   private static final Integer DEFAULT_INDEX = Integer.MAX_VALUE;
   private static final double DEFAULT_SPAWN_CENTER_LONGITUDE = 12.4964;
   private static final double DEFAULT_SPAWN_CENTER_LATITUDE = 41.9028;
-  private static final int DEFAULT_HORIZONTAL_TILE_SIZE = 80_000;
-  private static final int DEFAULT_VERTICAL_TILE_SIZE = 40_000;
+  private static final int DEFAULT_HORIZONTAL_SCALE =
+    TFCRealWorldConfig.DEFAULT_SCALE * 2;
+  private static final int DEFAULT_VERTICAL_SCALE =
+    TFCRealWorldConfig.DEFAULT_SCALE;
   private static final double DEFAULT_WEST_EDGE_LONGITUDE = -170.0;
   private static final double DEFAULT_EAST_EDGE_LONGITUDE = 190.0;
   private static final double DEFAULT_SOUTH_EDGE_LATITUDE = -90.0;
@@ -135,12 +138,12 @@ public record MapProfile(
       json.has("spawn_center_latitude")
         ? json.get("spawn_center_latitude").getAsDouble()
         : DEFAULT_SPAWN_CENTER_LATITUDE,
-      json.has("horizontal_tile_size")
-        ? json.get("horizontal_tile_size").getAsInt()
-        : DEFAULT_HORIZONTAL_TILE_SIZE,
-      json.has("vertical_tile_size")
-        ? json.get("vertical_tile_size").getAsInt()
-        : DEFAULT_VERTICAL_TILE_SIZE,
+      json.has("horizontal_scale")
+        ? json.get("horizontal_scale").getAsInt()
+        : DEFAULT_HORIZONTAL_SCALE,
+      json.has("vertical_scale")
+        ? json.get("vertical_scale").getAsInt()
+        : DEFAULT_VERTICAL_SCALE,
       json.has("west_edge_longitude")
         ? json.get("west_edge_longitude").getAsDouble()
         : DEFAULT_WEST_EDGE_LONGITUDE,
@@ -169,8 +172,8 @@ public record MapProfile(
       DEFAULT_INDEX,
       DEFAULT_SPAWN_CENTER_LONGITUDE,
       DEFAULT_SPAWN_CENTER_LATITUDE,
-      DEFAULT_HORIZONTAL_TILE_SIZE,
-      DEFAULT_VERTICAL_TILE_SIZE,
+      DEFAULT_HORIZONTAL_SCALE,
+      DEFAULT_VERTICAL_SCALE,
       DEFAULT_WEST_EDGE_LONGITUDE,
       DEFAULT_EAST_EDGE_LONGITUDE,
       DEFAULT_SOUTH_EDGE_LATITUDE,
@@ -186,8 +189,8 @@ public record MapProfile(
       cached != null &&
       cached.spawnCenterLongitude() == spawnCenterLongitude &&
       cached.spawnCenterLatitude() == spawnCenterLatitude &&
-      cached.horizontalTileSize() == this.horizontalTileSize &&
-      cached.verticalTileSize() == this.verticalTileSize
+      cached.horizontalScale() == this.horizontalScale &&
+      cached.verticalScale() == this.verticalScale
     ) {
       return new int[] { cached.spawnCenterX(), cached.spawnCenterZ() };
     }
@@ -195,8 +198,8 @@ public record MapProfile(
     double[] classicCoords = ProjectionManager.geographicToClassic(
       spawnCenterLongitude,
       spawnCenterLatitude,
-      this.horizontalTileSize,
-      this.verticalTileSize,
+      this.horizontalScale,
+      this.verticalScale,
       westEdgeLongitude,
       eastEdgeLongitude,
       southEdgeLatitude,
@@ -213,8 +216,8 @@ public record MapProfile(
         spawnCenterLatitude,
         spawnCenterX,
         spawnCenterZ,
-        horizontalTileSize,
-        verticalTileSize
+        horizontalScale,
+        verticalScale
       )
     );
 
