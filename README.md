@@ -68,18 +68,18 @@ Choose where you start your adventure:
   - `CLASSIC`: Use TFC's original coordinate-based spawning system.
 - **Geographic Spawn Center (Longitude/Latitude)**: When using `GEOGRAPHIC` mode, set the exact center of the area where you can spawn. The game will pick a suitable nearby location.
 
-#### 📍 TFC Spawn Settings
+#### 🎯 TFC Spawn Settings
 
 TFC's original coordinate-based spawning options (used in `CLASSIC` mode):
 
 - **Classic Spawn Center (X/Z)**: When using `CLASSIC` mode, these TFC options define the center point for spawning.
 - **Spawn Distance**: Maximum spawn radius from the spawn center. Applies to both `GEOGRAPHIC` and `CLASSIC` modes.
 
-#### 🏞️ Biome Modifications
+#### 🌿 Biome Modifications
 
 - **Canyons Not Volcanic**: When enabled (default), removes volcanic rock and features from Canyon and Doline Canyon biomes, making them purely erosional landscapes.
 
-#### 🏔️ TFC World Parameters
+#### ⛰️ TFC World Parameters
 
 Fine-tune familiar TFC world generation values.
 
@@ -101,7 +101,7 @@ These two values are **crucial** for maintaining correct map proportions. They c
 
 **Important:** The **ratio between Horizontal Scale and Vertical Scale must match the original map data's aspect ratio**. If these values are set to disproportionate sizes, the world will appear **stretched or squashed**. The default values are correctly calibrated.
 
-#### 🌍 World Generation Modes
+#### 🌐 World Generation Modes
 
 Toggle which aspects of the world are shaped by real data. Disabling a mode will revert that feature to TFC's standard procedural generation.
 
@@ -119,7 +119,7 @@ Toggle which aspects of the world are shaped by real data. Disabling a mode will
 </details>
 
 <details>
-<summary><b>Roadmap 🗺️</b></summary>
+<summary><b>Roadmap 🧭</b></summary>
 
 1. A similar mod for vanilla Minecraft.
 2. A version with a larger and more detailed world map.
