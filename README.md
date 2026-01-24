@@ -50,7 +50,7 @@ The mod works by replacing TFC's default noise generators with data sampled from
 <details>
 <summary><b>Configuration Guide 🛠️</b></summary>
 
-**Important Version Notice:** This configuration guide applies to **TFC: Real World v4.0.2+ (1.21.1), v3.0.3+ (1.20.1), and v2.0.1+ (1.18.2)**. If you are using an older version, I strongly recommend updating to the latest version for access to these improved configuration options. Legacy versions use a different configuration system and are no longer supported with guides.
+**Important Version Notice:** This configuration guide applies to **TFC: Real World v4.0.3+ (1.21.1), v3.0.4+ (1.20.1), and v2.0.2+ (1.18.2)**. If you are using an older version, I strongly recommend updating to the latest version for access to these improved configuration options. Legacy versions use a different configuration system and are no longer supported with guides.
 
 All configuration is accessible directly from the **TFC world creation screen** for easy adjustment. Advanced users can also modify the config files manually.
 
