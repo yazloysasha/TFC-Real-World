@@ -71,7 +71,9 @@ All settings are accessible directly from the <b>TFC world creation screen</b> f
 
 <div class="spoiler">
 <ol>
-<li><b>Backport Support:</b> Bring mod to older TFC versions, including 1.18.2 and 1.12.2 (if possible).</li>
+<li><b>Vanilla Minecraft Version:</b> A similar mod for vanilla Minecraft.</li>
+<li><b>High-Resolution World Map:</b> A version with a larger and more detailed world map.</li>
+<li><b>Backport to 1.12.2:</b> Port the mod to TFC 1.12.2 (though this will be challenging).</li>
 </ol>
 
 </div>
