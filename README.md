@@ -6,17 +6,17 @@
 
 **TerraFirmaCraft** meets **real-world geography**! 🌄
 
-Ever dreamed of surviving and thriving in a world that feels truly familiar? A world where vast oceans separate iconic continents, majestic mountain ranges scrape the sky, and sweeping deserts give way to frozen tundras—all governed by TFC's deep and authentic survival systems?
+Ever dreamed of surviving and thriving in a world that feels truly familiar? A world where vast oceans separate iconic continents, majestic mountain ranges scrape the sky, and sweeping deserts give way to frozen tundras - all governed by TFC's deep and authentic survival systems?
 
 **TFC: Real World** makes that dream a reality. ✨
 
-This mod reshapes your TFC world using the very layout of our own planet. Experience the ultimate exploration adventure on a grand, believable scale, where every journey feels like charting undiscovered territory on Earth itself—complete with TerraFirmaCraft's signature realism and progression. ⛏️🌱
+This mod reshapes your TFC world using the very layout of our own planet. Experience the ultimate exploration adventure on a grand, believable scale, where every journey feels like charting undiscovered territory on Earth itself - complete with TerraFirmaCraft's signature realism and progression. ⛏️🌱
 
 ---
 
 ### What This Mod Does
 
-**TFC: Real World** transforms the foundation of your world—not the gameplay. All the beloved TFC mechanics, resources, and challenges remain perfectly intact. What changes is the _stage_ on which you play. 🗺️
+**TFC: Real World** transforms the foundation of your world - not the gameplay. All the beloved TFC mechanics, resources, and challenges remain perfectly intact. What changes is the _stage_ on which you play. 🗺️
 
 Instead of random generation, the world's continents, mountains, oceans, and climate zones are guided by real-world data. This creates a uniquely immersive and logical geography for your survival saga.
 
@@ -24,7 +24,7 @@ Instead of random generation, the world's continents, mountains, oceans, and cli
 
 - **Sail Across Familiar Waters:** Navigate vast oceans and coastlines that mirror Earth's great seas. ⛵
 - **Conquer Legendary Peaks:** Trek through towering mountain ranges and descend into deep oceanic trenches. 🏔️
-- **Traverse Global Climates:** Journey from lush equatorial rainforests, through arid deserts and vast grasslands, into temperate woodlands, all the way to the frozen poles—each with TFC's authentic seasonal effects. ☀️❄️
+- **Traverse Global Climates:** Journey from lush equatorial rainforests, through arid deserts and vast grasslands, into temperate woodlands, all the way to the frozen poles - each with TFC's authentic seasonal effects. ☀️❄️
 - **Discover Logical Landscapes:** Find volcanoes where tectonic forces would place them, and experience climate transitions that make geographical sense. 🌋
 
 **The core TFC experience is unchanged.** I simply use map data to tell the game _where_ to place these incredible landscapes, making every world feel coherent, vast, and ripe for exploration.
