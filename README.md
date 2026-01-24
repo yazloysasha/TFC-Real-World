@@ -121,9 +121,9 @@ Toggle which aspects of the world are shaped by real data. Disabling a mode will
 <details>
 <summary><b>Roadmap 🗺️</b></summary>
 
-1. **Vanilla Minecraft Version:** A similar mod for vanilla Minecraft.
-2. **High-Resolution World Map:** A version with a larger and more detailed world map.
-3. **Backport to 1.12.2:** Port the mod to TFC 1.12.2 (though this will be challenging).
+1. A similar mod for vanilla Minecraft.
+2. A version with a larger and more detailed world map.
+3. Port the mod to TFC 1.12.2 (though this will be challenging).
 
 </details>
 
