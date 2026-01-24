@@ -258,7 +258,7 @@ Here's a minimal example for creating a basic island map profile:
 
 6. **Rainfall Map:** Create a 1280x640 grayscale image with a gradient from `140` (drier) at the edges to `200` (wetter) at the center, representing rainfall variation across the island.
 
-7. **Settings:** Create `settings.json` with `horizontal_scale` = `40000` and `vertical_scale` = `20000` to match the 2:1 aspect ratio of the maps. Note that due to the Equal Earth projection, a circular island in your map will appear as an oval in the generated world.
+7. **Settings:** Create `settings.json` with `horizontal_scale` = `40000` and `vertical_scale` = `20000` to match the 2:1 aspect ratio of the maps. Note that due to the 2:1, a circular island in your map will appear as an oval in the generated world.
 
 All six maps must be exactly 1280x640 pixels and saved as PNG files in the profile's `maps/` directory.
 
