@@ -90,7 +90,7 @@ These two values are **crucial** for maintaining correct map proportions. They c
 
 #### 🏔️ TFC World Parameters
 
-Fine-tune familiar TFC world generation values. These work in tandem with the map data.
+Fine-tune familiar TFC world generation values.
 
 - **Continentalness**: Controls landmass size. Lower values = more fragmented land and islands. Higher values = larger, solid continents.
 - **Temperature Scale**: The distance (in blocks) between the hottest and coldest climate zones.
