@@ -54,11 +54,11 @@ The mod works by replacing TFC's default noise generators with data sampled from
 
 All configuration is accessible directly from the **TFC world creation screen** for easy adjustment. Advanced users can also modify the config files manually.
 
-## 📁 Map Profiles
+#### 📁 Map Profiles
 
 - **Map Profile**: Select which set of map images to use for world generation. Profiles are folders located in `config/tfcrealworld/profiles/`. The default profile contains all necessary Earth map data.
 
-## 📍 Spawn Settings
+#### 📍 Spawn Settings
 
 Choose where you start your adventure:
 
@@ -70,7 +70,7 @@ Choose where you start your adventure:
 - **Classic Spawn Center (X/Z)**: When using `CLASSIC` mode, these TFC options define the center point for spawning.
 - **Spawn Distance**: Maximum spawn radius from the spawn center. Applies to both `GEOGRAPHIC` and `CLASSIC` modes.
 
-## 🌍 World Generation Modes
+#### 🌍 World Generation Modes
 
 Toggle which aspects of the world are shaped by real data. Disabling a mode will revert that feature to TFC's standard procedural generation.
 
@@ -79,7 +79,7 @@ Toggle which aspects of the world are shaped by real data. Disabling a mode will
 - **Generate Hotspots from Map**: Places TFC's volcanoes in tectonically plausible areas.
 - **Generate Climate from Map**: Uses the Köppen climate map to create logical temperature and rainfall belts (tropical, arid, temperate, etc.).
 
-## ⚠️ Critical Scaling Settings
+#### ⚠️ Critical Scaling Settings
 
 These two values are **crucial** for maintaining correct map proportions. They control how many Minecraft blocks represent the real-world data.
 
@@ -88,7 +88,7 @@ These two values are **crucial** for maintaining correct map proportions. They c
 
 **Important:** The **ratio between Horizontal Scale and Vertical Scale must match the original map data's aspect ratio**. If these values are set to disproportionate sizes, the world will appear **stretched or squashed**. The default values are correctly calibrated.
 
-## 🏔️ TFC World Parameters
+#### 🏔️ TFC World Parameters
 
 Fine-tune familiar TFC world generation values. These work in tandem with the map data.
 
@@ -99,11 +99,11 @@ Fine-tune familiar TFC world generation values. These work in tandem with the ma
 - **Flat Bedrock**: If enabled, the bottom of the world is a single, flat bedrock layer.
 - **Finite Continents**: If enabled, the world has a limited number of continents surrounded by a vast, deep ocean.
 
-## 🏞️ Biome Modifications
+#### 🏞️ Biome Modifications
 
 - **Canyons Not Volcanic**: When enabled (default), removes volcanic rock and features from Canyon and Doline Canyon biomes, making them purely erosional landscapes.
 
-## 💡 Quick Tips
+#### 💡 Quick Tips
 
 1. **For an authentic Earth experience**, keep all four `Generate ... from Map` options enabled.
 2. Use **Geographic Spawn** to start in a specific country or near famous landmarks.
