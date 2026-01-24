@@ -62,17 +62,14 @@ public class TFCRealWorldConfig {
     SPAWN_MODE = new ConfigOption<>(
       BUILDER,
       "spawn_mode",
-      "Spawn mode. Affects spawn location\n" +
-      "  GEOGRAPHIC - spawn_center_longitude/latitude\n" +
-      "  RANDOM - generate from seed\n" +
-      "  CLASSIC - use spawn_center_x/z",
+      "Spawn location mode: GEOGRAPHIC (use longitude/latitude), RANDOM (from seed), or CLASSIC (use coordinates)",
       SpawnMode.GEOGRAPHIC,
       SpawnMode.class
     );
     SPAWN_CENTER_LONGITUDE = new ConfigOption<>(
       BUILDER,
       "spawn_center_longitude",
-      "Geographic longitude for spawn location (used when spawn_mode is GEOGRAPHIC)",
+      "Geographic longitude for the center position around which the spawn position is chosen (used in GEOGRAPHIC mode)",
       getSpawnCenterLongitude(),
       -360.0,
       360.0
@@ -80,7 +77,7 @@ public class TFCRealWorldConfig {
     SPAWN_CENTER_LATITUDE = new ConfigOption<>(
       BUILDER,
       "spawn_center_latitude",
-      "Geographic latitude for spawn location (used when spawn_mode is GEOGRAPHIC)",
+      "Geographic latitude for the center position around which the spawn position is chosen (used in GEOGRAPHIC mode)",
       getSpawnCenterLatitude(),
       -90.0,
       90.0
@@ -92,7 +89,7 @@ public class TFCRealWorldConfig {
     SPAWN_CENTER_X = new ConfigOption<>(
       BUILDER,
       "spawn_center_x",
-      "Spawn center X coordinate (used when spawn_mode is CLASSIC)",
+      "TFC option. The center X position around which the spawn position is chosen (used in CLASSIC mode)",
       getSpawnCenterX(),
       -MAX_SCALE,
       MAX_SCALE
@@ -100,7 +97,7 @@ public class TFCRealWorldConfig {
     SPAWN_CENTER_Z = new ConfigOption<>(
       BUILDER,
       "spawn_center_z",
-      "Spawn center Z coordinate (used when spawn_mode is CLASSIC)",
+      "TFC option. The center Z position around which the spawn position is chosen (used in CLASSIC mode)",
       getSpawnCenterZ(),
       -MAX_SCALE,
       MAX_SCALE
@@ -108,7 +105,7 @@ public class TFCRealWorldConfig {
     SPAWN_DISTANCE = new ConfigOption<>(
       BUILDER,
       "spawn_distance",
-      "Spawn distance in blocks",
+      "TFC option. The maximum distance from the spawn center the spawn position will be chosen",
       MIN_SCALE,
       MIN_SCALE,
       MAX_SCALE
@@ -120,13 +117,13 @@ public class TFCRealWorldConfig {
     FLAT_BEDROCK = new ConfigOption<>(
       BUILDER,
       "flat_bedrock",
-      "Whether bedrock is flat",
+      "TFC option. If the bottom of the world is a single layer of flat bedrock, or random like vanilla",
       false
     );
     CONTINENTALNESS = new ConfigOption<>(
       BUILDER,
       "continentalness",
-      "Continentalness value",
+      "TFC option. Determines the nature of continents. Smaller values create smaller continents and more islands, larger values create larger, blobbier continents",
       0.5,
       0.0,
       1.0
@@ -134,7 +131,7 @@ public class TFCRealWorldConfig {
     TEMPERATURE_SCALE = new ConfigOption<>(
       BUILDER,
       "temperature_scale",
-      "Temperature scale in blocks",
+      "TFC option. The distance between two temperature extremes, in blocks",
       DEFAULT_SCALE,
       MIN_SCALE,
       MAX_SCALE
@@ -142,7 +139,7 @@ public class TFCRealWorldConfig {
     RAINFALL_SCALE = new ConfigOption<>(
       BUILDER,
       "rainfall_scale",
-      "Rainfall scale in blocks",
+      "TFC option. The distance between two rainfall extremes, in blocks",
       DEFAULT_SCALE,
       MIN_SCALE,
       MAX_SCALE
@@ -154,7 +151,7 @@ public class TFCRealWorldConfig {
     HORIZONTAL_SCALE = new ConfigOption<>(
       BUILDER,
       "horizontal_scale",
-      "Horizontal map radius in blocks.",
+      "Horizontal map radius in blocks",
       getHorizontalScale(),
       MIN_SCALE,
       MAX_SCALE
@@ -162,7 +159,7 @@ public class TFCRealWorldConfig {
     VERTICAL_SCALE = new ConfigOption<>(
       BUILDER,
       "vertical_scale",
-      "Vertical map radius in blocks.",
+      "Vertical map radius in blocks",
       getVerticalScale(),
       MIN_SCALE,
       MAX_SCALE
@@ -170,31 +167,25 @@ public class TFCRealWorldConfig {
     CONTINENT_FROM_MAP = new ConfigOption<>(
       BUILDER,
       "continent_from_map",
-      "Whether to generate continents from map (true) or procedurally (false)",
+      "Generate continents from map or procedurally",
       true
     );
     ALTITUDE_FROM_MAP = new ConfigOption<>(
       BUILDER,
       "altitude_from_map",
-      "Whether to generate base land height and ocean depth from altitude map (true) or procedurally (false). " +
-      "Uses grayscale altitude.png where brightness 128 = sea level (0m), brightness 255 = highest elevation. " +
-      "For land: values below sea level (brightness < 128) are treated as 0. " +
-      "Land elevations (brightness >= 128) are mapped to baseLandHeight range (0-24). " +
-      "For ocean: underwater areas (brightness < 128) are mapped to baseOceanDepth range (0-15), " +
-      "where lower brightness (deeper) = higher depth value.",
+      "Generate base land height and ocean depth from altitude map or procedurally",
       true
     );
     HOTSPOTS_FROM_MAP = new ConfigOption<>(
       BUILDER,
       "hotspots_from_map",
-      "Whether to generate hotspots from map (true) or procedurally (false). Uses hotspots.png with grayscale values: 0 (NoActivity), 64 (Ancient), 127 (Extinct), 192 (Dormant), 255 (Active).",
+      "Generate hotspots from map or procedurally",
       true
     );
     KOPPEN_FROM_MAP = new ConfigOption<>(
       BUILDER,
       "koppen_from_map",
-      "Whether to generate climate parameters (temperature, rainfall, rainfall variance) from Köppen climate map (true) or procedurally (false). " +
-      "When enabled, reads koppen.png map and generates procedural parameter values that are valid for each Köppen climate classification.",
+      "Generate climate parameters (temperature, rainfall, rainfall variance) from Köppen climate map or procedurally",
       true
     );
 
