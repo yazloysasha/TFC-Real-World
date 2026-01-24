@@ -67,17 +67,26 @@ Choose where you start your adventure:
   - `RANDOM`: A random location determined by the world seed.
   - `CLASSIC`: Use TFC's original coordinate-based spawning system.
 - **Geographic Spawn Center (Longitude/Latitude)**: When using `GEOGRAPHIC` mode, set the exact center of the area where you can spawn. The game will pick a suitable nearby location.
-
-#### 📍 TFC Spawn Settings
-
-TFC-specific spawn configuration options:
-
 - **Classic Spawn Center (X/Z)**: When using `CLASSIC` mode, these TFC options define the center point for spawning.
 - **Spawn Distance**: Maximum spawn radius from the spawn center. Applies to both `GEOGRAPHIC` and `CLASSIC` modes.
 
-#### 🏞️ Biome Modifications
+#### 🌍 World Generation Modes
 
-- **Canyons Not Volcanic**: When enabled (default), removes volcanic rock and features from Canyon and Doline Canyon biomes, making them purely erosional landscapes.
+Toggle which aspects of the world are shaped by real data. Disabling a mode will revert that feature to TFC's standard procedural generation.
+
+- **Generate Continents from Map**: Shapes landmasses and oceans using the world map.
+- **Generate Altitude from Map**: Creates realistic mountains, hills, plains, and ocean depth.
+- **Generate Hotspots from Map**: Places TFC's volcanoes in tectonically plausible areas.
+- **Generate Climate from Map**: Uses the Köppen climate map to create logical temperature and rainfall belts (tropical, arid, temperate, etc.).
+
+#### ⚠️ Critical Scaling Settings
+
+These two values are **crucial** for maintaining correct map proportions. They control how many Minecraft blocks represent the real-world data.
+
+- **Horizontal Scale**: The radius of the world map in blocks.
+- **Vertical Scale**: The height limit for terrain in blocks.
+
+**Important:** The **ratio between Horizontal Scale and Vertical Scale must match the original map data's aspect ratio**. If these values are set to disproportionate sizes, the world will appear **stretched or squashed**. The default values are correctly calibrated.
 
 #### 🏔️ TFC World Parameters
 
@@ -92,19 +101,9 @@ Fine-tune familiar TFC world generation values.
 - **Temperature Scale**: The distance (in blocks) between the hottest and coldest climate zones (if climate from map is disabled).
 - **Rainfall Scale**: The distance (in blocks) between the wettest and driest climate zones (if climate from map is disabled).
 
-#### 🌍 World Generation Modes
+#### 🏞️ Biome Modifications
 
-Toggle which aspects of the world are shaped by real data. Disabling a mode will revert that feature to TFC's standard procedural generation.
-
-- **Horizontal Scale**: The radius of the world map in blocks. This value is **crucial** for maintaining correct map proportions.
-- **Vertical Scale**: The height limit for terrain in blocks. This value is **crucial** for maintaining correct map proportions.
-
-**Important:** The **ratio between Horizontal Scale and Vertical Scale must match the original map data's aspect ratio**. If these values are set to disproportionate sizes, the world will appear **stretched or squashed**. The default values are correctly calibrated.
-
-- **Generate Continents from Map**: Shapes landmasses and oceans using the world map.
-- **Generate Altitude from Map**: Creates realistic mountains, hills, plains, and ocean depth.
-- **Generate Hotspots from Map**: Places TFC's volcanoes in tectonically plausible areas.
-- **Generate Climate from Map**: Uses the Köppen climate map to create logical temperature and rainfall belts (tropical, arid, temperate, etc.).
+- **Canyons Not Volcanic**: When enabled (default), removes volcanic rock and features from Canyon and Doline Canyon biomes, making them purely erosional landscapes.
 
 #### 💡 Quick Tips
 
