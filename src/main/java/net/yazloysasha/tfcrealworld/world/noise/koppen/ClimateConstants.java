@@ -7,13 +7,13 @@ public final class ClimateConstants {
 
   private ClimateConstants() {}
 
-  public static final float TEMP_MIN = -30.0f;
+  public static final float TEMP_MIN = -25.0f;
   public static final float TEMP_MAX = 30.0f;
 
   public static final float RAIN_MIN = 0.0f;
   public static final float RAIN_MAX = 500.0f;
 
-  public static final float DEFAULT_TEMP = 5.0f;
+  public static final float DEFAULT_TEMP = 2.5f;
   public static final float DEFAULT_RAIN = 250.0f;
 
   public static final float TEMP_STEP = 1.0f;
