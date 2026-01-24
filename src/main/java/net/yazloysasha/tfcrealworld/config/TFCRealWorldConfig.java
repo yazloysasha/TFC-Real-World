@@ -52,7 +52,7 @@ public class TFCRealWorldConfig {
       "map_profile",
       "Map profile ID. Profiles are loaded from config/" +
       TFCRealWorld.MOD_ID +
-      "/profiles/<namespace>/<id>/**",
+      "/profiles/",
       DEFAULT_MAP_PROFILE
     );
 
