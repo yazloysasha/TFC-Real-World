@@ -27,7 +27,7 @@ Instead of random generation, the world's continents, mountains, oceans, and cli
 - **Traverse Global Climates:** Journey from lush equatorial rainforests, through arid deserts and vast grasslands, into temperate woodlands, all the way to the frozen poles—each with TFC's authentic seasonal effects. ☀️❄️
 - **Discover Logical Landscapes:** Find volcanoes where tectonic forces would place them, and experience climate transitions that make geographical sense. 🌋
 
-**The core TFC experience is unchanged.** We simply use map data to tell the game _where_ to place these incredible landscapes, making every world feel coherent, vast, and ripe for exploration.
+**The core TFC experience is unchanged.** I simply use map data to tell the game _where_ to place these incredible landscapes, making every world feel coherent, vast, and ripe for exploration.
 
 ---
 
@@ -48,17 +48,66 @@ The mod works by replacing TFC's default noise generators with data sampled from
 </details>
 
 <details>
-<summary><b>Easy In-Game Configuration 🛠️</b></summary>
+<summary><b>Configuration Guide 🛠️</b></summary>
 
-All settings are accessible directly from the **TFC world creation screen** for easy customization.
+**Important Version Notice:** This configuration guide applies to **TFC: Real World v4.0.2+ (1.21.1), v3.0.3+ (1.20.1), and v2.0.1+ (1.18.2)**. If you are using an older version, I strongly recommend updating to the latest version for access to these improved configuration options. Legacy versions use a different configuration system and are no longer supported with guides.
 
-- **Spawn Location Modes:**
-  - `GEOGRAPHIC` – Spawn using real-world longitude and latitude! Choose your starting city or region.
-  - `RANDOM` – Spawn in a random location determined by the world seed.
-  - `CLASSIC` – Classic TFC coordinate-based spawn.
-- **World Generation Toggles:** Easily enable/disable the use of real-world maps for Continents, Altitude, Hotspots, and Climate.
-- **Parameter Adjustment:** Fine-tune familiar TFC worldgen values like continentalness, temperature scale, and rainfall directly in the GUI.
-- **Automatic Setup:** Default map files are provided and auto-copied to your `config` folder for easy modification.
+All configuration is accessible directly from the **TFC world creation screen** for easy adjustment. Advanced users can also modify the config files manually.
+
+## 📁 Map Profiles
+
+- **Map Profile**: Select which set of map images to use for world generation. Profiles are folders located in `config/tfcrealworld/profiles/`. The default profile contains all necessary Earth map data.
+
+## 📍 Spawn Settings
+
+Choose where you start your adventure:
+
+- **Spawn Mode**:
+  - `GEOGRAPHIC`: Spawn using real-world coordinates! Set a latitude and longitude.
+  - `RANDOM`: A random location determined by the world seed.
+  - `CLASSIC`: Use TFC's original coordinate-based spawning system.
+- **Geographic Spawn Center (Longitude/Latitude)**: When using `GEOGRAPHIC` mode, set the exact center of the area where you can spawn. The game will pick a suitable nearby location.
+- **Classic Spawn Center (X/Z)**: When using `CLASSIC` mode, these TFC options define the center point for spawning.
+- **Spawn Distance**: Maximum spawn radius from the spawn center. Applies to both `GEOGRAPHIC` and `CLASSIC` modes.
+
+## 🌍 World Generation Modes
+
+Toggle which aspects of the world are shaped by real data. Disabling a mode will revert that feature to TFC's standard procedural generation.
+
+- **Generate Continents from Map**: Shapes landmasses and oceans using the world map.
+- **Generate Altitude from Map**: Creates realistic mountains, hills, plains, and ocean depth.
+- **Generate Hotspots from Map**: Places TFC's volcanoes in tectonically plausible areas.
+- **Generate Climate from Map**: Uses the Köppen climate map to create logical temperature and rainfall belts (tropical, arid, temperate, etc.).
+
+## ⚠️ Critical Scaling Settings
+
+These two values are **crucial** for maintaining correct map proportions. They control how many Minecraft blocks represent the real-world data.
+
+- **Horizontal Scale**: The radius of the world map in blocks.
+- **Vertical Scale**: The height limit for terrain in blocks.
+
+**Important:** The **ratio between Horizontal Scale and Vertical Scale must match the original map data's aspect ratio**. If these values are set to disproportionate sizes, the world will appear **stretched or squashed**. The default values are correctly calibrated.
+
+## 🏔️ TFC World Parameters
+
+Fine-tune familiar TFC world generation values. These work in tandem with the map data.
+
+- **Continentalness**: Controls landmass size. Lower values = more fragmented land and islands. Higher values = larger, solid continents.
+- **Temperature Scale**: The distance (in blocks) between the hottest and coldest climate zones.
+- **Rainfall Scale**: The distance (in blocks) between the wettest and driest climate zones.
+- **Grass Density**: Affects the amount of grass coverage globally.
+- **Flat Bedrock**: If enabled, the bottom of the world is a single, flat bedrock layer.
+- **Finite Continents**: If enabled, the world has a limited number of continents surrounded by a vast, deep ocean.
+
+## 🏞️ Biome Modifications
+
+- **Canyons Not Volcanic**: When enabled (default), removes volcanic rock and features from Canyon and Doline Canyon biomes, making them purely erosional landscapes.
+
+## 💡 Quick Tips
+
+1. **For an authentic Earth experience**, keep all four `Generate ... from Map` options enabled.
+2. Use **Geographic Spawn** to start in a specific country or near famous landmarks.
+3. **Do not change `Horizontal Scale` or `Vertical Scale`** unless you understand the map's proportions and want a deliberately distorted world.
 
 </details>
 
