@@ -69,10 +69,10 @@ public class CreateTFCWorldScreenMixin {
   private OptionInstance<Integer> rainfallScale;
 
   @Unique
-  private OptionInstance<Integer> horizontalTileSize;
+  private OptionInstance<Integer> horizontalScale;
 
   @Unique
-  private OptionInstance<Integer> verticalTileSize;
+  private OptionInstance<Integer> verticalScale;
 
   @Unique
   private OptionInstance<Boolean> continentFromMap;
@@ -220,12 +220,28 @@ public class CreateTFCWorldScreenMixin {
   private void applyProfileSpawnSettings(String profileId) {
     MapProfile profile = ProfileManager.getProfile(profileId);
 
-    spawnCenterLongitude.set(profile.spawnCenterLongitude());
-    spawnCenterLatitude.set(profile.spawnCenterLatitude());
+    double westEdge = profile.westEdgeLongitude();
+    double eastEdge = profile.eastEdgeLongitude();
+    double southEdge = profile.southEdgeLatitude();
+    double northEdge = profile.northEdgeLatitude();
+
+    spawnCenterLongitude = doubleOption(
+      getCaption("create_world.spawn_center_longitude"),
+      profile.spawnCenterLongitude(),
+      westEdge,
+      eastEdge
+    );
+    spawnCenterLatitude = doubleOption(
+      getCaption("create_world.spawn_center_latitude"),
+      profile.spawnCenterLatitude(),
+      southEdge,
+      northEdge
+    );
     spawnCenterX.set(profile.getSpawnCenterX());
     spawnCenterZ.set(profile.getSpawnCenterZ());
-    horizontalTileSize.set(profile.horizontalTileSize());
-    verticalTileSize.set(profile.verticalTileSize());
+
+    horizontalScale.set(profile.horizontalScale());
+    verticalScale.set(profile.verticalScale());
 
     final CreateTFCWorldScreenAccessor accessor =
       (CreateTFCWorldScreenAccessor) (Object) this;
@@ -247,16 +263,13 @@ public class CreateTFCWorldScreenMixin {
     options.addSmall(continentalness, grassDensity);
     options.addSmall(temperatureConstant, rainfallConstant);
     options.addSmall(temperatureScale, rainfallScale);
-    options.addSmall(horizontalTileSize, verticalTileSize);
+    options.addSmall(horizontalScale, verticalScale);
     options.addSmall(continentFromMap, altitudeFromMap);
     options.addSmall(hotspotsFromMap, koppenFromMap);
   }
 
   @Inject(method = "init", at = @At("HEAD"))
   private void tfcrealworld$initAdditionalOptions(CallbackInfo ci) {
-    final CreateTFCWorldScreenAccessor accessor =
-      (CreateTFCWorldScreenAccessor) (Object) this;
-
     List<String> availableProfiles = ProfileManager.discoverProfiles();
     String defaultProfile = TFCRealWorldConfig.MAP_PROFILE.get();
     if (!availableProfiles.contains(defaultProfile)) {
@@ -276,26 +289,26 @@ public class CreateTFCWorldScreenMixin {
     spawnCenterLongitude = doubleOption(
       getCaption("create_world.spawn_center_longitude"),
       TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.get(),
-      TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.getMin(),
-      TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.getMax()
+      TFCRealWorldConfig.getWestEdgeLongitude(),
+      TFCRealWorldConfig.getEastEdgeLongitude()
     );
     spawnCenterLatitude = doubleOption(
       getCaption("create_world.spawn_center_latitude"),
       TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.get(),
-      TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.getMin(),
-      TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.getMax()
+      TFCRealWorldConfig.getSouthEdgeLatitude(),
+      TFCRealWorldConfig.getNorthEdgeLatitude()
     );
-    horizontalTileSize = accessor.tfcrealworld$invokeKmOption(
-      getCaption("create_world.horizontal_tile_size"),
-      TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.getMin(),
-      TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.getMax(),
-      TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get()
+    horizontalScale = CreateTFCWorldScreenAccessor.tfcrealworld$invokeKmOption(
+      getCaption("create_world.horizontal_scale"),
+      TFCRealWorldConfig.HORIZONTAL_SCALE.getMin(),
+      TFCRealWorldConfig.HORIZONTAL_SCALE.getMax(),
+      TFCRealWorldConfig.HORIZONTAL_SCALE.get()
     );
-    verticalTileSize = accessor.tfcrealworld$invokeKmOption(
-      getCaption("create_world.vertical_tile_size"),
-      TFCRealWorldConfig.VERTICAL_TILE_SIZE.getMin(),
-      TFCRealWorldConfig.VERTICAL_TILE_SIZE.getMax(),
-      TFCRealWorldConfig.VERTICAL_TILE_SIZE.get()
+    verticalScale = CreateTFCWorldScreenAccessor.tfcrealworld$invokeKmOption(
+      getCaption("create_world.vertical_scale"),
+      TFCRealWorldConfig.VERTICAL_SCALE.getMin(),
+      TFCRealWorldConfig.VERTICAL_SCALE.getMax(),
+      TFCRealWorldConfig.VERTICAL_SCALE.get()
     );
     continentFromMap = OptionInstance.createBoolean(
       getCaption("create_world.continent_from_map"),
@@ -358,8 +371,8 @@ public class CreateTFCWorldScreenMixin {
     );
     TFCRealWorldConfig.TEMPERATURE_SCALE.set(temperatureScale.get());
     TFCRealWorldConfig.RAINFALL_SCALE.set(rainfallScale.get());
-    TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.set(horizontalTileSize.get());
-    TFCRealWorldConfig.VERTICAL_TILE_SIZE.set(verticalTileSize.get());
+    TFCRealWorldConfig.HORIZONTAL_SCALE.set(horizontalScale.get());
+    TFCRealWorldConfig.VERTICAL_SCALE.set(verticalScale.get());
     TFCRealWorldConfig.CONTINENT_FROM_MAP.set(continentFromMap.get());
     TFCRealWorldConfig.ALTITUDE_FROM_MAP.set(altitudeFromMap.get());
     TFCRealWorldConfig.HOTSPOTS_FROM_MAP.set(hotspotsFromMap.get());

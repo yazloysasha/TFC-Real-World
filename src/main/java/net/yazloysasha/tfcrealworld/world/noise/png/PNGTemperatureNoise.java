@@ -2,10 +2,10 @@ package net.yazloysasha.tfcrealworld.world.noise.png;
 
 public class PNGTemperatureNoise extends BasePNGNoise {
 
-  public PNGTemperatureNoise(int horizontalTileSize, int verticalTileSize) {
+  public PNGTemperatureNoise(int horizontalScale, int verticalScale) {
     super(
-      horizontalTileSize,
-      verticalTileSize,
+      horizontalScale,
+      verticalScale,
       "temperature",
       "Failed to load temperature map. Map file is required when using PNG-based temperature."
     );

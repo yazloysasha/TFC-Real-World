@@ -18,12 +18,13 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
   @Override
   public double getLatitudeByZ(
     double z,
-    int verticalTileSize,
+    int verticalScale,
     double southEdgeLatitude,
     double northEdgeLatitude,
     double tileCenterLongitude
   ) {
-    double normalizedY = 1.0 - (z + verticalTileSize / 2.0) / verticalTileSize;
+    double tileDiameter = verticalScale * 2;
+    double normalizedY = 1.0 - (z + verticalScale) / tileDiameter;
 
     double southLatRad = Math.toRadians(southEdgeLatitude);
     double northLatRad = Math.toRadians(northEdgeLatitude);
@@ -49,8 +50,8 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
   public double[] geographicToClassic(
     double longitude,
     double latitude,
-    int horizontalTileSize,
-    int verticalTileSize,
+    int horizontalScale,
+    int verticalScale,
     double westEdgeLongitude,
     double eastEdgeLongitude,
     double southEdgeLatitude,
@@ -108,8 +109,10 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double normalizedX = (projX - westProjX) / projWidth;
     double normalizedY = 1.0 - (projY - southProjY) / projHeight;
 
-    double x = (normalizedX * horizontalTileSize - horizontalTileSize / 2.0);
-    double z = (normalizedY * verticalTileSize - verticalTileSize / 2.0);
+    double horizontalDiameter = horizontalScale * 2;
+    double verticalDiameter = verticalScale * 2;
+    double x = (normalizedX * horizontalDiameter - horizontalScale);
+    double z = (normalizedY * verticalDiameter - verticalScale);
 
     return new double[] { x, z };
   }
@@ -144,8 +147,8 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
   public double[] classicToGeographic(
     double x,
     double z,
-    int horizontalTileSize,
-    int verticalTileSize,
+    int horizontalScale,
+    int verticalScale,
     double westEdgeLongitude,
     double eastEdgeLongitude,
     double southEdgeLatitude,
@@ -189,8 +192,10 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double projWidth = Math.abs(eastProjX - westProjX);
     double projHeight = Math.abs(northProjY - southProjY);
 
-    double normalizedX = (x + horizontalTileSize / 2.0) / horizontalTileSize;
-    double normalizedY = 1.0 - (z + verticalTileSize / 2.0) / verticalTileSize;
+    double horizontalDiameter = horizontalScale * 2;
+    double verticalDiameter = verticalScale * 2;
+    double normalizedX = (x + horizontalScale) / horizontalDiameter;
+    double normalizedY = 1.0 - (z + verticalScale) / verticalDiameter;
 
     double projX = westProjX + normalizedX * projWidth;
     double projY = southProjY + normalizedY * projHeight;

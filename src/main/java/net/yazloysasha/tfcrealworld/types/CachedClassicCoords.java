@@ -5,6 +5,6 @@ public record CachedClassicCoords(
   double spawnCenterLatitude,
   int spawnCenterX,
   int spawnCenterZ,
-  int horizontalTileSize,
-  int verticalTileSize
+  int horizontalScale,
+  int verticalScale
 ) {}

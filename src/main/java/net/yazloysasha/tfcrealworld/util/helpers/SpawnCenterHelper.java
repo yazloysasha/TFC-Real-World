@@ -16,9 +16,9 @@ public class SpawnCenterHelper {
     int value = TFCRealWorldConfig.SPAWN_DISTANCE.get();
 
     if (mode == SpawnMode.RANDOM) {
-      int halfX = TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get() / 2;
-      int halfZ = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get() / 2;
-      value = Math.min(halfX, halfZ);
+      int scaleX = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
+      int scaleZ = TFCRealWorldConfig.VERTICAL_SCALE.get();
+      value = Math.min(scaleX, scaleZ);
     }
 
     return value;
@@ -36,16 +36,16 @@ public class SpawnCenterHelper {
 
   private static int[] generateRandomSpawnCenter(long seed) {
     Random rng = new Random(seed ^ 0x1234ABCDL);
-    int halfX = TFCRealWorldConfig.HORIZONTAL_TILE_SIZE.get() / 2;
-    int halfZ = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get() / 2;
+    int scaleX = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
+    int scaleZ = TFCRealWorldConfig.VERTICAL_SCALE.get();
 
     // For RANDOM mode, SPAWN_DISTANCE is a square movement radius
-    int spawnDistance = Math.min(halfX, halfZ);
+    int spawnDistance = Math.min(scaleX, scaleZ);
 
-    // Ensure SPAWN_CENTER ± SPAWN_DISTANCE stays within half of the tile size:
-    // |center| + spawnDistance <= halfSize on each axis
-    int maxCenterX = Math.max(0, halfX - spawnDistance);
-    int maxCenterZ = Math.max(0, halfZ - spawnDistance);
+    // Ensure SPAWN_CENTER ± SPAWN_DISTANCE stays within scale:
+    // |center| + spawnDistance <= scale on each axis
+    int maxCenterX = Math.max(0, scaleX - spawnDistance);
+    int maxCenterZ = Math.max(0, scaleZ - spawnDistance);
 
     int x = maxCenterX == 0 ? 0 : rng.nextInt(maxCenterX * 2 + 1) - maxCenterX;
     int z = maxCenterZ == 0 ? 0 : rng.nextInt(maxCenterZ * 2 + 1) - maxCenterZ;

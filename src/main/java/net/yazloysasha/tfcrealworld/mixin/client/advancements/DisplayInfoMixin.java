@@ -41,7 +41,7 @@ public class DisplayInfoMixin {
 
   @Unique
   private Component createGlobeTrotterComponent(String key) {
-    int hemisphereScale = TFCRealWorldConfig.VERTICAL_TILE_SIZE.get() / 2;
+    int hemisphereScale = TFCRealWorldConfig.VERTICAL_SCALE.get();
     Component formattedScale = Component.literal(
       formatNumberWithCommas(hemisphereScale)
     );

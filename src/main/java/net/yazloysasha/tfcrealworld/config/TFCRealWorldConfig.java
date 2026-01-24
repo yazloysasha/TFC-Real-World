@@ -18,6 +18,9 @@ public class TFCRealWorldConfig {
 
   private static ModConfig modConfig;
 
+  public static final int MIN_SCALE = 256;
+  public static final int MAX_SCALE = 100_000;
+  public static final int DEFAULT_SCALE = 20_000;
   public static final String DEFAULT_MAP_PROFILE = "DEFAULT:FULL_EQUAL_EARTH";
 
   public static final ConfigOption<String> MAP_PROFILE;
@@ -34,8 +37,8 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Double> RAINFALL_CONSTANT;
   public static final ConfigOption<Integer> TEMPERATURE_SCALE;
   public static final ConfigOption<Integer> RAINFALL_SCALE;
-  public static final ConfigOption<Integer> HORIZONTAL_TILE_SIZE;
-  public static final ConfigOption<Integer> VERTICAL_TILE_SIZE;
+  public static final ConfigOption<Integer> HORIZONTAL_SCALE;
+  public static final ConfigOption<Integer> VERTICAL_SCALE;
   public static final ConfigOption<Boolean> CONTINENT_FROM_MAP;
   public static final ConfigOption<Boolean> ALTITUDE_FROM_MAP;
   public static final ConfigOption<Boolean> HOTSPOTS_FROM_MAP;
@@ -94,24 +97,24 @@ public class TFCRealWorldConfig {
       "spawn_center_x",
       "Spawn center X coordinate (used when spawn_mode is CLASSIC)",
       getSpawnCenterX(),
-      -20_000,
-      20_000
+      -MAX_SCALE,
+      MAX_SCALE
     );
     SPAWN_CENTER_Z = new ConfigOption<>(
       BUILDER,
       "spawn_center_z",
       "Spawn center Z coordinate (used when spawn_mode is CLASSIC)",
       getSpawnCenterZ(),
-      -20_000,
-      20_000
+      -MAX_SCALE,
+      MAX_SCALE
     );
     SPAWN_DISTANCE = new ConfigOption<>(
       BUILDER,
       "spawn_distance",
       "Spawn distance in blocks",
-      256,
-      256,
-      20_000
+      MIN_SCALE,
+      MIN_SCALE,
+      MAX_SCALE
     );
 
     BUILDER.pop();
@@ -159,37 +162,37 @@ public class TFCRealWorldConfig {
       BUILDER,
       "temperature_scale",
       "Temperature scale in blocks",
-      20_000,
-      0,
-      40_000
+      DEFAULT_SCALE,
+      MIN_SCALE,
+      MAX_SCALE
     );
     RAINFALL_SCALE = new ConfigOption<>(
       BUILDER,
       "rainfall_scale",
       "Rainfall scale in blocks",
-      20_000,
-      0,
-      40_000
+      DEFAULT_SCALE,
+      MIN_SCALE,
+      MAX_SCALE
     );
 
     BUILDER.pop();
     BUILDER.push("generation_modes");
 
-    HORIZONTAL_TILE_SIZE = new ConfigOption<>(
+    HORIZONTAL_SCALE = new ConfigOption<>(
       BUILDER,
-      "horizontal_tile_size",
-      "Horizontal tile size (diameter) in blocks. Affects horizontal map stretching when generating from map.",
-      getHorizontalTileSize(),
-      0,
-      200_000
+      "horizontal_scale",
+      "Horizontal map radius in blocks.",
+      getHorizontalScale(),
+      MIN_SCALE,
+      MAX_SCALE
     );
-    VERTICAL_TILE_SIZE = new ConfigOption<>(
+    VERTICAL_SCALE = new ConfigOption<>(
       BUILDER,
-      "vertical_tile_size",
-      "Vertical tile size (diameter) in blocks. Affects vertical map stretching when generating from map.",
-      getVerticalTileSize(),
-      0,
-      200_000
+      "vertical_scale",
+      "Vertical map radius in blocks.",
+      getVerticalScale(),
+      MIN_SCALE,
+      MAX_SCALE
     );
     CONTINENT_FROM_MAP = new ConfigOption<>(
       BUILDER,
@@ -240,8 +243,8 @@ public class TFCRealWorldConfig {
       RAINFALL_CONSTANT,
       TEMPERATURE_SCALE,
       RAINFALL_SCALE,
-      HORIZONTAL_TILE_SIZE,
-      VERTICAL_TILE_SIZE,
+      HORIZONTAL_SCALE,
+      VERTICAL_SCALE,
       CONTINENT_FROM_MAP,
       ALTITUDE_FROM_MAP,
       HOTSPOTS_FROM_MAP,
@@ -264,8 +267,8 @@ public class TFCRealWorldConfig {
     double rainfallConstant,
     int temperatureScale,
     int rainfallScale,
-    int horizontalTileSize,
-    int verticalTileSize,
+    int horizontalScale,
+    int verticalScale,
     boolean continentFromMap,
     boolean altitudeFromMap,
     boolean hotspotsFromMap,
@@ -285,8 +288,8 @@ public class TFCRealWorldConfig {
     RAINFALL_CONSTANT.setServerValue(rainfallConstant);
     TEMPERATURE_SCALE.setServerValue(temperatureScale);
     RAINFALL_SCALE.setServerValue(rainfallScale);
-    HORIZONTAL_TILE_SIZE.setServerValue(horizontalTileSize);
-    VERTICAL_TILE_SIZE.setServerValue(verticalTileSize);
+    HORIZONTAL_SCALE.setServerValue(horizontalScale);
+    VERTICAL_SCALE.setServerValue(verticalScale);
     CONTINENT_FROM_MAP.setServerValue(continentFromMap);
     ALTITUDE_FROM_MAP.setServerValue(altitudeFromMap);
     HOTSPOTS_FROM_MAP.setServerValue(hotspotsFromMap);
@@ -327,12 +330,12 @@ public class TFCRealWorldConfig {
     return getProfile().getSpawnCenterZ();
   }
 
-  private static int getHorizontalTileSize() {
-    return getProfile().horizontalTileSize();
+  private static int getHorizontalScale() {
+    return getProfile().horizontalScale();
   }
 
-  private static int getVerticalTileSize() {
-    return getProfile().verticalTileSize();
+  private static int getVerticalScale() {
+    return getProfile().verticalScale();
   }
 
   public static double getWestEdgeLongitude() {

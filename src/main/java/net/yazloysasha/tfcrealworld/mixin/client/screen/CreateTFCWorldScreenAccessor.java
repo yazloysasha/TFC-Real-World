@@ -13,10 +13,12 @@ public interface CreateTFCWorldScreenAccessor {
   OptionsList tfcrealworld$getOptions();
 
   @Invoker("kmOption")
-  OptionInstance<Integer> tfcrealworld$invokeKmOption(
+  static OptionInstance<Integer> tfcrealworld$invokeKmOption(
     String caption,
     int min,
     int max,
     int defaultValue
-  );
+  ) {
+    throw new AssertionError();
+  }
 }
