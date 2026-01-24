@@ -56,7 +56,7 @@ All configuration is accessible directly from the **TFC world creation screen** 
 
 #### 📁 Map Profiles
 
-- **Map Profile**: Select which set of map images to use for world generation. Profiles are folders located in `config/tfcrealworld/profiles/`. The default profile contains all necessary Earth map data.
+- **Map Profile**: Select which set of map images to use for world generation (e.g., Full World, Old World). The default profile contains all necessary Earth map data.
 
 #### 📍 Spawn Settings
 
@@ -92,12 +92,14 @@ These two values are **crucial** for maintaining correct map proportions. They c
 
 Fine-tune familiar TFC world generation values.
 
-- **Continentalness**: Controls landmass size. Lower values = more fragmented land and islands. Higher values = larger, solid continents.
-- **Temperature Scale**: The distance (in blocks) between the hottest and coldest climate zones.
-- **Rainfall Scale**: The distance (in blocks) between the wettest and driest climate zones.
-- **Grass Density**: Affects the amount of grass coverage globally.
 - **Flat Bedrock**: If enabled, the bottom of the world is a single, flat bedrock layer.
-- **Finite Continents**: If enabled, the world has a limited number of continents surrounded by a vast, deep ocean.
+- **Finite Continents**: If enabled, the world has a limited number of continents surrounded by a vast, deep ocean (1.21.1 only).
+- **Continentalness**: Controls landmass size. Lower values = more fragmented land and islands. Higher values = larger, solid continents (if continents and altitude from map is disabled).
+- **Grass Density**: Affects the amount of grass coverage globally.
+- **Temperature Constant**: A number representing the temperature for an entire world, where -1.0 is polar and 1.0 is tropical (if climate from map is disabled).
+- **Rainfall Constant**: A number representing the rainfall for an entire world, where -1.0 is arid and 1.0 is tropical (if climate from map is disabled).
+- **Temperature Scale**: The distance (in blocks) between the hottest and coldest climate zones (if climate from map is disabled).
+- **Rainfall Scale**: The distance (in blocks) between the wettest and driest climate zones (if climate from map is disabled).
 
 #### 🏞️ Biome Modifications
 
