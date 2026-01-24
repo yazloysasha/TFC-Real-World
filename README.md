@@ -54,7 +54,7 @@ The mod works by replacing TFC's default noise generators with data sampled from
 
 All configuration is accessible directly from the **TFC world creation screen** for easy adjustment. Advanced users can also modify the config files manually.
 
-#### 📁 Map Profiles
+#### 📋 Map Profiles
 
 - **Map Profile**: Select which set of map images to use for world generation (e.g., Full World, Old World). The default profile contains all necessary Earth map data.
 
@@ -119,7 +119,153 @@ Toggle which aspects of the world are shaped by real data. Disabling a mode will
 </details>
 
 <details>
-<summary><b>Roadmap 🧭</b></summary>
+<summary><b>Advanced: Custom Map Profiles 🎨</b></summary>
+
+This guide explains how to create custom map profiles for advanced users who want to generate worlds using their own geographic data.
+
+#### 🏗️ Map Profile Structure
+
+Map profiles organize all the map images needed for world generation. Each profile must have a `maps/` directory containing the required map files:
+
+```
+{namespace}/{profile_name}/
+├─ maps/
+│  ├── continent.png
+│  ├── altitude.png
+│  ├── hotspots.png
+│  ├── koppen.png
+│  ├── temperature.png
+│  └── rainfall.png
+└── settings.json
+```
+
+Profiles can be placed in two locations:
+
+- **Mod JAR resources:** `data/tfc_real_world/profiles/{namespace}/{profile_name}/`
+- **External config directory:** `config/tfc_real_world/profiles/{namespace}/{profile_name}/` (or as ZIP files in this directory)
+
+External profiles take priority over JAR profiles with the same namespace and name.
+
+#### 🔧 Profile Settings (`settings.json`)
+
+Each map profile requires a `settings.json` file that defines the profile's configuration. All fields are optional and will use default values if omitted.
+
+**Display Settings:**
+
+- **Index** (Integer, default: `2147483647`): Display order in the profile selection list. Lower values appear first.
+- **Lang** (Object, default: `{}`): Localized display names for the profile. Keys are language codes (e.g., `"en_us"`, `"ru_ru"`), values are display strings.
+
+**Spawn Settings:**
+
+- **Spawn Center Longitude** (Double, default: `12.4964`): Geographic longitude for the default spawn center (Rome, Italy).
+- **Spawn Center Latitude** (Double, default: `41.9028`): Geographic latitude for the default spawn center (Rome, Italy).
+
+**Scaling Settings:**
+
+- **Horizontal Scale** (Integer, default: `40000`): The radius of the world map in blocks.
+- **Vertical Scale** (Integer, default: `20000`): The height limit for terrain in blocks.
+
+**Important:** The ratio between `horizontal_scale` and `vertical_scale` should match your map's aspect ratio to avoid stretching or squashing.
+
+**Map Boundaries:**
+
+- **West Edge Longitude** (Double, default: `-170.0`): Western edge of the map in degrees longitude.
+- **East Edge Longitude** (Double, default: `190.0`): Eastern edge of the map in degrees longitude.
+- **South Edge Latitude** (Double, default: `-90.0`): Southern edge of the map in degrees latitude.
+- **North Edge Latitude** (Double, default: `90.0`): Northern edge of the map in degrees latitude.
+
+**Projection:**
+
+- **Map Projection** (String, default: `"EQUAL_EARTH"`): Map projection type. Currently only `"EQUAL_EARTH"` is supported.
+
+#### 🖼️ Required Map Images
+
+All maps must be PNG format and have identical dimensions. Maps should use an equal-area projection (e.g., Equal Earth) to maintain proper proportions.
+
+**Continent Map (`continent.png`):** Defines landmass distribution and continental boundaries. Format: Grayscale PNG. Legend: `0` (black) = Ocean, `255` (white) = Land. This map shapes the basic layout of continents and oceans in your world.
+
+**Altitude Map (`altitude.png`):** Defines terrain elevation and ocean depth. Format: Grayscale PNG. Legend: `0-127` = Ocean depth (darker = deeper), `128-255` = Land elevation (brighter = higher). Creates realistic mountains, hills, plains, and ocean floors. Example values: `0` = Deepest ocean, `64` = Shallow ocean, `128` = Sea level (coastline), `192` = Hills, `255` = Highest mountains.
+
+**Hotspots Map (`hotspots.png`):** Defines volcanic hotspot locations and ages. Format: Grayscale PNG. Legend: `0` = No hotspot (age 0), `64` = Age 4 (oldest), `128` = Age 3, `192` = Age 2, `255` = Age 1 (youngest). Places TFC volcanoes in tectonically plausible areas.
+
+**Köppen Climate Map (`koppen.png`):** Defines climate zones using the Köppen climate classification system. Format: RGB Color PNG. Each climate type has a specific RGB color that must match exactly.
+
+Climate types and their RGB colors:
+
+- **AF** (Humid Tropical): `(0, 0, 220)`
+- **AS** (Tropical Dry/Wet): `(0, 100, 240)`
+- **AW** (Tropical Wet/Dry): `(0, 150, 220)`
+- **AM** (Tropical Monsoon): `(40, 80, 200)`
+- **BWH** (Hot Desert): `(210, 0, 0)`
+- **BSH** (Hot Semi-Arid): `(210, 120, 0)`
+- **BWK** (Cold Desert): `(200, 80, 80)`
+- **BSK** (Cold Semi-Arid): `(200, 120, 60)`
+- **CSA** (Coastal Subtropical): `(250, 250, 0)`
+- **CSB** (Coastal): `(180, 180, 0)`
+- **CSC** (Cold Coastal): `(120, 120, 0)`
+- **CWA** (Monsoonal Subtropical): `(100, 240, 130)`
+- **CWB** (Monsoonal Temperate): `(80, 210, 120)`
+- **CWC** (Cold Monsoonal Temperate): `(70, 160, 110)`
+- **CFA** (Oceanic Subtropical): `(170, 240, 90)`
+- **CFB** (Oceanic): `(140, 200, 80)`
+- **CFC** (Cold Oceanic): `(110, 170, 70)`
+- **DSA** (Coastal Continental): `(190, 20, 190)`
+- **DSB** (Cold Coastal Continental): `(160, 20, 180)`
+- **DSC** (Coastal Subarctic): `(130, 20, 170)`
+- **DSD** (Coastal Cold Subarctic): `(100, 20, 160)`
+- **DFA** (Continental): `(40, 190, 190)`
+- **DFB** (Cold Continental): `(30, 170, 170)`
+- **DFC** (Subarctic): `(20, 150, 140)`
+- **DFD** (Cold Subarctic): `(10, 130, 110)`
+- **DWA** (Monsoonal Continental): `(80, 80, 220)`
+- **DWB** (Cold Monsoonal Continental): `(70, 70, 190)`
+- **DWC** (Monsoonal Subarctic): `(60, 60, 160)`
+- **DWD** (Cold Monsoonal Subarctic): `(60, 60, 130)`
+- **ET** (Tundra): `(190, 190, 190)`
+- **EF** (Polar): `(80, 80, 80)`
+
+**Temperature Map (`temperature.png`):** Provides temperature data used in conjunction with the Köppen map. Format: Grayscale PNG. Legend: `0` (black) = Coldest, `255` (white) = Hottest. Each Köppen climate zone interprets grayscale values within its own temperature range, so higher brightness indicates warmer temperatures for that specific climate type.
+
+**Rainfall Map (`rainfall.png`):** Provides rainfall data used in conjunction with the Köppen map. Format: Grayscale PNG. Legend: `0` (black) = Driest, `255` (white) = Wettest. Each Köppen climate zone interprets grayscale values within its own rainfall range, so higher brightness indicates more rainfall for that specific climate type.
+
+#### ✅ Best Practices
+
+1. **Consistency:** Ensure all maps align properly - continents should match altitude, climate should match temperature/rainfall patterns.
+
+2. **Smooth Transitions:** Use gradual gradients rather than sharp boundaries to avoid visual artifacts in the generated world.
+
+3. **Sea Level:** In the altitude map, keep the sea level boundary (128) consistent with your continent map - ocean areas should have values below 128.
+
+4. **Color Accuracy:** For the Köppen map, use the exact RGB values provided. Even small deviations will cause the mod to use the nearest matching climate type.
+
+5. **Testing:** Test your maps with a small world first to verify proportions and alignment before creating large-scale maps.
+
+6. **Map Dimensions:** All maps in a profile must have identical width and height. Use an equal-area projection to maintain proper proportions across the entire map.
+
+#### 🏝️ Example: Creating a Simple Island Map
+
+Here's a minimal example for creating a basic island map profile:
+
+1. **Continent Map:** Create a 1280x640 grayscale image with most of the map at `0` (ocean) and a circular island in the center at `255` (land).
+
+2. **Altitude Map:** Create a matching 1280x640 grayscale image with ocean areas at `64` (shallow ocean), island edges at `128` (sea level), and island center at `200` (hills).
+
+3. **Hotspots Map:** Create a 1280x640 grayscale image with most areas at `0` (no volcanoes) and a small hotspot on the island at `192` (age 2).
+
+4. **Köppen Map:** Create a 1280x640 RGB image using `(140, 200, 80)` for CFB (Oceanic climate).
+
+5. **Temperature Map:** Create a 1280x640 grayscale image with a gradient from `120` (cooler) at the edges to `180` (warmer) at the center, representing temperature variation across the island.
+
+6. **Rainfall Map:** Create a 1280x640 grayscale image with a gradient from `140` (drier) at the edges to `200` (wetter) at the center, representing rainfall variation across the island.
+
+7. **Settings:** Create `settings.json` with `horizontal_scale` = `40000` and `vertical_scale` = `20000` to match the 2:1 aspect ratio of the maps. Note that due to the Equal Earth projection, a circular island in your map will appear as an oval in the generated world.
+
+All six maps must be exactly 1280x640 pixels and saved as PNG files in the profile's `maps/` directory.
+
+</details>
+
+<details>
+<summary><b>Roadmap 🗓️</b></summary>
 
 1. A similar mod for vanilla Minecraft.
 2. A version with a larger and more detailed world map.
