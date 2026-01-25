@@ -292,4 +292,13 @@ All six maps must be exactly 1280x640 pixels and saved as PNG files in the profi
 
 ---
 
+### 📎 Links
+
+- [Download on Modrinth](https://modrinth.com/mod/tfc-real-world)
+- [Create issue on GitHub](https://github.com/yazloysasha/TFC-Real-World/issues/new)
+
+If you have suggestions or want to report a bug, please create an issue and I will definitely respond.
+
+---
+
 **Dive into the ultimate survival exploration mod for TerraFirmaCraft. Start your journey on a world that feels like home, yet is filled with endless discovery.** 🚀
