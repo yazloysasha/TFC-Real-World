@@ -275,4 +275,11 @@ All six maps must be exactly 1280x640 pixels and saved as PNG files in the profi
 
 ---
 
+### 📎 Links
+
+- [Download on CurseForge](https://www.curseforge.com/minecraft/mc-mods/tfc-real-world)
+- [Download on Modrinth](https://modrinth.com/mod/tfc-real-world)
+
+---
+
 **Dive into the ultimate survival exploration mod for TerraFirmaCraft. Start your journey on a world that feels like home, yet is filled with endless discovery.** 🚀
