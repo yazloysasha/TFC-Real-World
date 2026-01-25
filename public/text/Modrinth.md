@@ -278,7 +278,7 @@ All six maps must be exactly 1280x640 pixels and saved as PNG files in the profi
 ### 📎 Links
 
 - [Explore GutHub](https://github.com/yazloysasha/TFC-Real-World)
-- [Create issue on GitHub](https://github.com/yazloysasha/TFC-Real-World/issues/new)
+- [Create issue](https://github.com/yazloysasha/TFC-Real-World/issues/new)
 
 If you have suggestions or want to report a bug, please create an issue and I will definitely respond.
 
