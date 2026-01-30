@@ -28,7 +28,7 @@ val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata"
 
 base {
   archivesName.set("TFC-Real-World-Forge-$minecraftVersion")
-  group = "net.dries007.tfc"
+  group = "net.yazloysasha.tfcrealworld"
   version = modVersion
 }
 
