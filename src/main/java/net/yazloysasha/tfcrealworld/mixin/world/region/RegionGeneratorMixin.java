@@ -3,8 +3,11 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 import java.lang.reflect.Field;
 import net.dries007.tfc.world.Seed;
 import net.dries007.tfc.world.noise.Noise2D;
+import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.dries007.tfc.world.region.Units;
 import net.dries007.tfc.world.settings.Settings;
+import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
@@ -26,6 +29,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import sun.misc.Unsafe;
 
 @Mixin(value = RegionGenerator.class, remap = false)
@@ -79,10 +83,7 @@ public class RegionGeneratorMixin {
 
       PNGContinentNoise continentNoise = null;
       if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
-        continentNoise = new PNGContinentNoise(
-          horizontalScale,
-          verticalScale
-        );
+        continentNoise = new PNGContinentNoise(horizontalScale, verticalScale);
         initializeContinentMap(instance, continentNoise);
 
         GlobalOceanDistanceCache.initialize(continentNoise);
@@ -118,6 +119,33 @@ public class RegionGeneratorMixin {
         "Failed to find required field in RegionGenerator. This should not happen.",
         e
       );
+    }
+  }
+
+  @Inject(
+    method = "continentFactor(Lnet/dries007/tfc/world/region/Region$Point;)F",
+    at = @At("HEAD"),
+    cancellable = true
+  )
+  private void tfcrealworld$continentFactorFromMap(
+    Region.Point point,
+    CallbackInfoReturnable<Float> cir
+  ) {
+    if (settings.finiteContinents()) {
+      int scaleX = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
+      int scaleZ = TFCRealWorldConfig.VERTICAL_SCALE.get();
+      float blockX = Units.gridToBlock(point.x);
+      float blockZ = Units.gridToBlock(point.z);
+      float multiplier = TFCRealWorldConfig.CONTINENT_FROM_MAP.get()
+        ? 1.01f
+        : 1.2f;
+      float factorX = scaleX == 0
+        ? 1f
+        : Mth.clampedMap(Math.abs(blockX), scaleX, multiplier * scaleX, 1, 0);
+      float factorZ = scaleZ == 0
+        ? 1f
+        : Mth.clampedMap(Math.abs(blockZ), scaleZ, multiplier * scaleZ, 1, 0);
+      cir.setReturnValue(Math.min(factorX, factorZ));
     }
   }
 
