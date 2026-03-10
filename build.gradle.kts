@@ -6,7 +6,8 @@ plugins {
 
 val minecraftVersion: String = "1.20.1"
 val forgeVersion: String = "47.1.3"
-val tfcVersion: String = "3.2.20"
+val minTfcVersion: String = "3.2.20"
+val maxTfcVersion: String = "3.2.21"
 
 val modId: String = "tfc_real_world"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
@@ -18,7 +19,7 @@ val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata"
     "modVersion" to modVersion,
     "minecraftVersionRange" to "[$minecraftVersion]",
     "forgeVersionRange" to "[$forgeVersion,)",
-    "tfcVersionRange" to "[$tfcVersion]",
+    "tfcVersionRange" to "[$minTfcVersion,$maxTfcVersion]",
   )
   inputs.properties(modReplacementProperties)
   expand(modReplacementProperties)
@@ -101,11 +102,11 @@ mixin {
 dependencies {
   minecraft("net.minecraftforge", "forge", version = "$minecraftVersion-$forgeVersion")
 
-  compileOnly(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$tfcVersion@jar"))
+  compileOnly(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$maxTfcVersion@jar"))
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
-  testImplementation(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$tfcVersion@jar"))
+  testImplementation(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$maxTfcVersion@jar"))
 
   annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
 }
