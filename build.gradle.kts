@@ -6,7 +6,7 @@ val minecraftVersion: String = "1.21.1"
 val neoForgeVersion: String = "21.1.197"
 val patchouliVersion: String = "1.21.1-92-NEOFORGE"
 val minTfcVersion: String = "4.0.17-beta"
-val maxTfcVersion: String = "4.0.19-beta"
+val maxTfcVersion: String = "4.1.2"
 
 val modId: String = "tfc_real_world"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
