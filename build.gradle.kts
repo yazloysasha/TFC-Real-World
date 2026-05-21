@@ -7,7 +7,7 @@ plugins {
 val minecraftVersion: String = "1.20.1"
 val forgeVersion: String = "47.1.3"
 val minTfcVersion: String = "3.2.20"
-val maxTfcVersion: String = "3.2.21"
+val maxTfcVersion: String = "3.2.22"
 
 val modId: String = "tfc_real_world"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
@@ -19,7 +19,7 @@ val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata"
     "modVersion" to modVersion,
     "minecraftVersionRange" to "[$minecraftVersion]",
     "forgeVersionRange" to "[$forgeVersion,)",
-    "tfcVersionRange" to "[$minTfcVersion,$maxTfcVersion]",
+    "tfcVersionRange" to "[$minTfcVersion,)",
   )
   inputs.properties(modReplacementProperties)
   expand(modReplacementProperties)
