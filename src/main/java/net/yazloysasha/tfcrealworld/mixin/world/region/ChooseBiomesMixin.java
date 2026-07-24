@@ -36,11 +36,11 @@ public class ChooseBiomesMixin {
       if (!point.land() && !point.island() && !point.mountain()) {
         final int areaSeed = blobArea.get(point.x, point.z);
 
-        if (point.baseOceanDepth < 4) {
+        if (point.oceanDepth < 4) {
           point.biome = OCEAN;
-        } else if (point.baseOceanDepth > 9) {
+        } else if (point.oceanDepth > 9) {
           point.biome = DEEP_OCEAN_TRENCH;
-        } else if (point.baseOceanDepth > 6) {
+        } else if (point.oceanDepth > 6) {
           point.biome = DEEP_OCEAN;
         } else {
           point.biome = accessor.tfcrealworld$invokeRandomSeededFrom(
