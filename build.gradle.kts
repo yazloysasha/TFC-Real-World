@@ -6,7 +6,7 @@ val minecraftVersion: String = "1.21.1"
 val neoForgeVersion: String = "21.1.197"
 val patchouliVersion: String = "1.21.1-92-NEOFORGE"
 val minTfcVersion: String = "4.0.17-beta"
-val maxTfcVersion: String = "4.1.2"
+val maxTfcVersion: String = "4.2.6"
 
 val modId: String = "tfc_real_world"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
@@ -100,7 +100,7 @@ neoForge {
 
 dependencies {
   compileOnly("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$maxTfcVersion@jar")
-  
+
   testImplementation("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$maxTfcVersion@jar")
   testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
   testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.3")
