@@ -25,14 +25,11 @@ public class AltitudeCalculator extends RegionPointCalculator {
     forEachPoint(region, point -> {
       if (point.land()) {
         point.baseLandHeight = altitudeNoise.getBaseLandHeight(
-          (double) point.x,
-          (double) point.z
+          point.x,
+          point.z
         );
       } else {
-        point.baseOceanDepth = altitudeNoise.getBaseOceanDepth(
-          (double) point.x,
-          (double) point.z
-        );
+        point.oceanDepth = altitudeNoise.getBaseOceanDepth(point.x, point.z);
       }
     });
   }

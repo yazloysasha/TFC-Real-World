@@ -600,8 +600,8 @@ public class RegionGeneratorTests implements TestSetup {
 
   private Color continentColor(Region.Point point) {
     if (point.land()) return green.apply(point.baseLandHeight / 24f);
-    if (point.baseOceanDepth < 4) return new Color(150, 160, 255);
-    if (point.baseOceanDepth < 8) return new Color(120, 120, 240);
+    if (point.oceanDepth < 4) return new Color(150, 160, 255);
+    if (point.oceanDepth < 8) return new Color(120, 120, 240);
     return new Color(100, 100, 200);
   }
 
