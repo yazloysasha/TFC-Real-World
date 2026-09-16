@@ -28,6 +28,13 @@ public class PNGAltitudeNoise extends BasePNGNoise {
     return normalized * 24.0;
   }
 
+  @Override
+  protected double sampleBrightness(double imageX, double imageZ) {
+    final int x = (int) Math.round(Math.clamp(imageX, 0, width - 1));
+    final int z = (int) Math.round(Math.clamp(imageZ, 0, height - 1));
+    return getBrightness(pixels[z * width + x]);
+  }
+
   public byte getBaseLandHeight(double x, double z) {
     double[] imageCoords = tileToImage(x, z);
     double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);

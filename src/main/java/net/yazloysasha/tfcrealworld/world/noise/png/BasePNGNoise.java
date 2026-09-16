@@ -1,6 +1,8 @@
 package net.yazloysasha.tfcrealworld.world.noise.png;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.IndexColorModel;
+import java.awt.image.Raster;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -48,9 +50,7 @@ public abstract class BasePNGNoise implements Noise2D {
 
     this.width = image.getWidth();
     this.height = image.getHeight();
-    this.pixels = new int[width * height];
-
-    image.getRGB(0, 0, width, height, pixels, 0, width);
+    this.pixels = copyPixelsWithoutColorManagement(image);
 
     this.centerX = width / 2.0;
     this.centerZ = height / 2.0;
@@ -160,10 +160,36 @@ public abstract class BasePNGNoise implements Noise2D {
 
   protected abstract double transformBrightness(double brightness);
 
+  /**
+   * {@code ImageIO.getRGB} on gray PNGs applies sRGB and skews mid-tones.
+   */
+  private static int[] copyPixelsWithoutColorManagement(BufferedImage image) {
+    final int width = image.getWidth();
+    final int height = image.getHeight();
+    final int[] pixels = new int[width * height];
+    final Raster raster = image.getRaster();
+    if (
+      raster.getNumBands() == 1 &&
+      !(image.getColorModel() instanceof IndexColorModel)
+    ) {
+      final int[] samples = raster.getPixels(0, 0, width, height, (int[]) null);
+      for (int i = 0; i < samples.length; i++) {
+        final int gray = samples[i] & 0xFF;
+        pixels[i] = 0xFF000000 | (gray << 16) | (gray << 8) | gray;
+      }
+      return pixels;
+    }
+    image.getRGB(0, 0, width, height, pixels, 0, width);
+    return pixels;
+  }
+
   protected double getBrightness(int rgb) {
     int r = (rgb >> 16) & 0xFF;
     int g = (rgb >> 8) & 0xFF;
     int b = rgb & 0xFF;
+    if (r == g && g == b) {
+      return r;
+    }
     return 0.299 * r + 0.587 * g + 0.114 * b;
   }
 

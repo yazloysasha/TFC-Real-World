@@ -11,6 +11,7 @@
     "world.region.AddHotspotsMixin",
     "world.region.AddMountainsAndBarrierIslandsAccessor",
     "world.region.AddMountainsAndBarrierIslandsMixin",
+    "world.region.RegionPointAccessor",
     "world.region.AnnotateBoundaryTypesMixin",
     "world.region.AnnotateBaseLandHeightMixin",
     "world.region.AnnotateBiomeAltitudeMixin",

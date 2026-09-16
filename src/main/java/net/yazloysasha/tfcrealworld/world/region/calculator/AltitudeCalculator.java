@@ -6,9 +6,6 @@ import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
 
-/**
- * Calculator for land height and water depth based on altitude map.
- */
 public class AltitudeCalculator extends RegionPointCalculator {
 
   @Override
@@ -17,19 +14,21 @@ public class AltitudeCalculator extends RegionPointCalculator {
       return;
     }
 
-    final PNGAltitudeNoise altitudeNoise = AltitudeNoiseRegistry.get(generator);
+    PNGAltitudeNoise altitudeNoise = AltitudeNoiseRegistry.get(generator);
     if (altitudeNoise == null) {
-      return;
+      altitudeNoise = new PNGAltitudeNoise(
+        TFCRealWorldConfig.HORIZONTAL_SCALE.get(),
+        TFCRealWorldConfig.VERTICAL_SCALE.get()
+      );
+      AltitudeNoiseRegistry.register(generator, altitudeNoise);
     }
 
+    final PNGAltitudeNoise noise = altitudeNoise;
     forEachPoint(region, point -> {
       if (point.land()) {
-        point.baseLandHeight = altitudeNoise.getBaseLandHeight(
-          point.x,
-          point.z
-        );
+        point.baseLandHeight = noise.getBaseLandHeight(point.x, point.z);
       } else {
-        point.oceanDepth = altitudeNoise.getBaseOceanDepth(point.x, point.z);
+        point.oceanDepth = noise.getBaseOceanDepth(point.x, point.z);
       }
     });
   }
