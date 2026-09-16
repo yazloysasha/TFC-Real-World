@@ -14,6 +14,7 @@ import net.dries007.tfc.common.blocks.SandstoneBlockType;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.rock.Rock;
 import net.dries007.tfc.common.blocks.soil.SandBlockType;
+import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.world.TFCChunkGenerator;
 import net.dries007.tfc.world.biome.RegionBiomeSource;
 import net.dries007.tfc.world.settings.RockLayerSettings;
@@ -21,9 +22,13 @@ import net.dries007.tfc.world.settings.RockLayerSettings.Data;
 import net.dries007.tfc.world.settings.RockLayerSettings.LayerData;
 import net.dries007.tfc.world.settings.RockSettings;
 import net.dries007.tfc.world.settings.Settings;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSource;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterLists;
 import net.minecraft.world.level.biome.TheEndBiomeSource;
@@ -43,6 +48,9 @@ public final class BuiltinWorldPreset {
     final HolderGetter<NoiseGeneratorSettings> noiseSettings = context.lookup(
       Registries.NOISE_SETTINGS
     );
+    final HolderGetter<RockSettings> rockSettings = context.lookup(
+      RockSettings.KEY
+    );
 
     context.register(
       TerraFirmaCraft.PRESET,
@@ -54,7 +62,7 @@ public final class BuiltinWorldPreset {
             new TFCChunkGenerator(
               new RegionBiomeSource(context.lookup(Registries.BIOME)),
               noiseSettings.getOrThrow(NoiseGeneratorSettings.OVERWORLD),
-              defaultSettings()
+              defaultSettings(rockSettings)
             )
           ),
           LevelStem.NETHER,
@@ -82,7 +90,9 @@ public final class BuiltinWorldPreset {
     );
   }
 
-  public static Settings defaultSettings() {
+  public static Settings defaultSettings(
+    HolderGetter<RockSettings> rockSettings
+  ) {
     return new Settings(
       false,
       4_000,
@@ -92,10 +102,39 @@ public final class BuiltinWorldPreset {
       0,
       20_000,
       0,
-      rockLayerSettings(),
+      rockLayerSettings(rockSettings),
       0.5f,
       0.5f,
       false
+    );
+  }
+
+  public static Settings defaultSettings() {
+    return defaultSettings(
+      new HolderGetter<>() {
+        final Map<
+          ResourceKey<RockSettings>,
+          Holder.Reference<RockSettings>
+        > values = Arrays.stream(Rock.values()).collect(
+          Collectors.toMap(BuiltinWorldPreset::rockKey, r ->
+            Holder.Reference.createIntrusive(null, rockOf(r))
+          )
+        );
+
+        @Override
+        public Optional<Holder.Reference<RockSettings>> get(
+          ResourceKey<RockSettings> resourceKey
+        ) {
+          return Optional.ofNullable(values.get(resourceKey));
+        }
+
+        @Override
+        public Optional<HolderSet.Named<RockSettings>> get(
+          TagKey<RockSettings> tagKey
+        ) {
+          return Optional.empty();
+        }
+      }
     );
   }
 
@@ -151,7 +190,6 @@ public final class BuiltinWorldPreset {
     .put(MARBLE, Boolean.TRUE)
     .build();
 
-  // Used by badlands to determine whether they should have black sand
   private static final Map<Rock, Boolean> ROCK_SET_MAFIC = ImmutableMap.<
     Rock,
     Boolean
@@ -182,6 +220,7 @@ public final class BuiltinWorldPreset {
   private static final String BOTTOM = "bottom";
   private static final String IGNEOUS_EXTRUSIVE = "igneous_extrusive";
   private static final String IGNEOUS_EXTRUSIVE_X2 = "igneous_extrusive_x2";
+  private static final String IGNEOUS_INTRUSIVE = "igneous_intrusive";
   private static final String SEDIMENTARY = "sedimentary";
   private static final String UPLIFT = "uplift";
   private static final String FELSIC = "felsic";
@@ -192,11 +231,15 @@ public final class BuiltinWorldPreset {
   private static final String MM_MARBLE = "marble";
   private static final String MM_QUARTZITE = "quartzite";
 
-  private static RockLayerSettings rockLayerSettings() {
+  private static RockLayerSettings rockLayerSettings(
+    HolderGetter<RockSettings> rockSettings
+  ) {
     return RockLayerSettings.decode(
       new Data(
         Arrays.stream(Rock.values()).collect(
-          Collectors.toMap(Rock::getSerializedName, BuiltinWorldPreset::rockOf)
+          Collectors.toMap(Rock::getSerializedName, r ->
+            rockSettings.getOrThrow(rockKey(r))
+          )
         ),
         namesOf(GNEISS, SCHIST, DIORITE, GRANITE, GABBRO),
         List.of(
@@ -228,6 +271,10 @@ public final class BuiltinWorldPreset {
               BASALT,
               IGNEOUS_EXTRUSIVE
             )
+          ),
+          layerOf(
+            IGNEOUS_INTRUSIVE,
+            Map.of(GRANITE, FELSIC, DIORITE, INTERMEDIATE, GABBRO, MAFIC)
           ),
           layerOf(MM_HIGH_GRADE, Map.of(SCHIST, BOTTOM, GNEISS, BOTTOM)),
           layerOf(
@@ -262,6 +309,10 @@ public final class BuiltinWorldPreset {
               MM_HIGH_GRADE,
               PHYLLITE,
               MM_HIGH_GRADE,
+              SCHIST,
+              MM_HIGH_GRADE,
+              GNEISS,
+              MM_HIGH_GRADE,
               MARBLE,
               BOTTOM,
               QUARTZITE,
@@ -275,11 +326,10 @@ public final class BuiltinWorldPreset {
             )
           )
         ),
-        // List of layers that can be the top layer for each variety of rock region
         List.of(IGNEOUS_EXTRUSIVE),
-        List.of(IGNEOUS_EXTRUSIVE, SEDIMENTARY),
-        List.of(IGNEOUS_EXTRUSIVE, IGNEOUS_EXTRUSIVE_X2),
-        List.of(SEDIMENTARY, UPLIFT)
+        List.of(SEDIMENTARY, SEDIMENTARY, SEDIMENTARY, IGNEOUS_EXTRUSIVE),
+        List.of(IGNEOUS_EXTRUSIVE, IGNEOUS_EXTRUSIVE_X2, IGNEOUS_INTRUSIVE),
+        List.of(UPLIFT, UPLIFT, UPLIFT, SEDIMENTARY)
       )
     ).getOrThrow();
   }
@@ -300,6 +350,13 @@ public final class BuiltinWorldPreset {
             Map.Entry::getValue
           )
         )
+    );
+  }
+
+  public static ResourceKey<RockSettings> rockKey(Rock rock) {
+    return ResourceKey.create(
+      RockSettings.KEY,
+      Helpers.identifier(rock.getSerializedName())
     );
   }
 
