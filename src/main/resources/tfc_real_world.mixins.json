@@ -7,8 +7,10 @@
   "mixins": [
     "world.biome.BiomeExtensionMixin",
     "world.biome.BiomeSourceExtensionMixin",
+    "world.region.AddContinentsAndSetOceanDepthsMixin",
     "world.region.AddHotspotsMixin",
     "world.region.AddMountainsAndBarrierIslandsMixin",
+    "world.region.AnnotateBoundaryTypesMixin",
     "world.region.AnnotateBaseLandHeightMixin",
     "world.region.AnnotateBiomeAltitudeMixin",
     "world.region.AnnotateClimateMixin",
