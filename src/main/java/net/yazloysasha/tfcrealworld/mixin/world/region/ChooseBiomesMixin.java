@@ -30,9 +30,6 @@ public class ChooseBiomesMixin {
   };
 
   @Unique
-  private static final int[] SHALLOW_OCEAN_BIOMES = { OCEAN, OCEAN_REEF };
-
-  @Unique
   private static final int[] LAND_RIFT_SPAWN_ROLL = { 1, 0 };
 
   @Unique
@@ -126,54 +123,75 @@ public class ChooseBiomesMixin {
       }
 
       if (altitudeFromMap && !tfcrealworld$skipOceanBiome(point)) {
-        final int rawDepth = Byte.toUnsignedInt(point.oceanDepth);
-        if (rawDepth >= 10) {
-          point.biome = DEEP_OCEAN_TRENCH;
-        } else {
-          final int depth = Byte.toUnsignedInt(
-            PNGAltitudeNoise.bucketFromRawOceanDepth(rawDepth)
-          );
-          final int areaSeed = blobArea.get(point.x, point.z);
-
-          if (depth <= 1) {
-            point.biome = OCEAN_REEF;
-          } else if (depth == 2) {
-            point.biome = point.temperature > 12 && point.distanceToLand > 4
-              ? OCEAN_ATOLLS
-              : OCEAN;
-          } else if (depth == PNGAltitudeNoise.ABYSSAL_OCEAN_DEPTH) {
-            point.biome = DEEP_OCEAN;
-          } else if (depth >= 4) {
-            point.biome = point.temperature > 12 && point.distanceToLand > 3
-              ? DEEP_OCEAN_ATOLLS
-              : DEEP_OCEAN;
-          } else {
-            point.biome = accessor.tfcrealworld$invokeRandomSeededFrom(
-              rngSeed,
-              areaSeed,
-              SHALLOW_OCEAN_BIOMES
-            );
-          }
-
-          if (
-            divergenceNoise != null &&
-            MapTectonics.isNearOceanRidge(divergenceNoise, point.x, point.z)
-          ) {
-            point.biome = OCEAN_RIDGE;
-          } else if (
-            divergenceNoise != null &&
-            depth <= 2 &&
-            tfcrealworld$mapVolcanicArcShelf(region, divergenceNoise, point)
-          ) {
-            point.biome = accessor.tfcrealworld$invokeRandomSeededFrom(
-              rngSeed,
-              areaSeed,
-              VOLCANIC_ARC_BIOMES
-            );
-          }
-        }
+        tfcrealworld$assignMapOceanBiome(
+          point,
+          region,
+          divergenceNoise,
+          accessor,
+          blobArea,
+          rngSeed
+        );
       }
     }
+  }
+
+  @Unique
+  private static void tfcrealworld$assignMapOceanBiome(
+    Region.Point point,
+    Region region,
+    PNGDivergenceNoise divergenceNoise,
+    ChooseBiomesAccessor accessor,
+    Area blobArea,
+    long rngSeed
+  ) {
+    final int rawDepth = Byte.toUnsignedInt(point.oceanDepth);
+    if (rawDepth >= PNGAltitudeNoise.MAP_OCEAN_TRENCH_RAW_DEPTH) {
+      point.biome = DEEP_OCEAN_TRENCH;
+      return;
+    }
+
+    final int areaSeed = blobArea.get(point.x, point.z);
+    final int depthBucket = tfcrealworld$mapOceanDepthBucket(rawDepth);
+
+    if (rawDepth == PNGAltitudeNoise.REEF_OCEAN_DEPTH) {
+      point.biome = point.volcanic() ? OCEANIC_VOLCANIC_ARC : OCEAN_REEF;
+    } else if (depthBucket <= 2) {
+      point.biome = point.temperature > 12 && point.distanceToLand > 4
+        ? OCEAN_ATOLLS
+        : OCEAN;
+    } else if (depthBucket == PNGAltitudeNoise.ABYSSAL_OCEAN_DEPTH) {
+      point.biome = DEEP_OCEAN;
+    } else if (depthBucket >= 4) {
+      point.biome = point.temperature > 12 && point.distanceToLand > 3
+        ? DEEP_OCEAN_ATOLLS
+        : DEEP_OCEAN;
+    } else {
+      point.biome = OCEAN;
+    }
+
+    if (
+      divergenceNoise != null &&
+      MapTectonics.isNearOceanRidge(divergenceNoise, point.x, point.z)
+    ) {
+      point.biome = OCEAN_RIDGE;
+    } else if (
+      divergenceNoise != null &&
+      depthBucket <= 2 &&
+      tfcrealworld$mapVolcanicArcShelf(region, divergenceNoise, point)
+    ) {
+      point.biome = accessor.tfcrealworld$invokeRandomSeededFrom(
+        rngSeed,
+        areaSeed,
+        VOLCANIC_ARC_BIOMES
+      );
+    }
+  }
+
+  @Unique
+  private static int tfcrealworld$mapOceanDepthBucket(int rawDepth) {
+    return rawDepth == PNGAltitudeNoise.REEF_OCEAN_DEPTH
+      ? PNGAltitudeNoise.REEF_OCEAN_DEPTH
+      : Byte.toUnsignedInt(PNGAltitudeNoise.bucketFromRawOceanDepth(rawDepth));
   }
 
   @Unique

@@ -15,4 +15,18 @@ public interface AddMountainsAndBarrierIslandsAccessor {
     RandomSource random,
     int originIndex
   );
+
+  @Invoker("placeBarrier")
+  IntSet tfcrealworld$invokePlaceBarrier(
+    Region region,
+    RandomSource random,
+    int originIndex
+  );
+
+  @Invoker("placeVolcanicArc")
+  IntSet tfcrealworld$invokePlaceVolcanicArc(
+    Region region,
+    RandomSource random,
+    int originIndex
+  );
 }

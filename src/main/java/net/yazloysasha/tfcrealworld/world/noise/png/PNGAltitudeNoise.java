@@ -3,6 +3,10 @@ package net.yazloysasha.tfcrealworld.world.noise.png;
 public class PNGAltitudeNoise extends BasePNGNoise {
 
   public static final byte ABYSSAL_OCEAN_DEPTH = 7;
+  public static final byte REEF_OCEAN_DEPTH = 1;
+  public static final byte SHELF_OCEAN_DEPTH = 2;
+  public static final byte MIN_MAP_OCEAN_DEPTH = 2;
+  public static final int MAP_OCEAN_TRENCH_RAW_DEPTH = 10;
 
   private static final String MAP_NAME = "altitude";
   private static final double SEA_LEVEL_GRAYSCALE = 128.0;
@@ -58,7 +62,21 @@ public class PNGAltitudeNoise extends BasePNGNoise {
     double[] imageCoords = tileToImage(x, z);
     double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
     double depth = transformOceanDepth(brightness);
-    return (byte) Math.clamp(Math.round(depth), 0, 15);
+    if (depth <= 0) {
+      return 0;
+    }
+    return (byte) Math.clamp(Math.round(depth), MIN_MAP_OCEAN_DEPTH, 15);
+  }
+
+  public static byte normalizeMapOceanDepth(byte depth) {
+    final int raw = Byte.toUnsignedInt(depth);
+    if (raw <= 0) {
+      return 0;
+    }
+    if (raw <= 5) {
+      return SHELF_OCEAN_DEPTH;
+    }
+    return depth;
   }
 
   public static byte bucketFromRawOceanDepth(int rawDepth) {
