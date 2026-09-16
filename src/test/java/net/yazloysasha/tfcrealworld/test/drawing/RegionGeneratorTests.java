@@ -19,7 +19,10 @@ import java.util.function.DoubleFunction;
 import java.util.stream.Collectors;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
 import net.dries007.tfc.world.Seed;
+import net.dries007.tfc.world.biome.BiomeExtension;
 import net.dries007.tfc.world.layer.TFCLayers;
+import net.dries007.tfc.world.layer.framework.Area;
+import net.dries007.tfc.world.layer.framework.AreaFactory;
 import net.dries007.tfc.world.region.ChooseRocks;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
@@ -27,6 +30,7 @@ import net.dries007.tfc.world.region.RegionGenerator.Task;
 import net.dries007.tfc.world.region.RiverEdge;
 import net.dries007.tfc.world.region.Units;
 import net.dries007.tfc.world.settings.Settings;
+import net.minecraft.core.QuartPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.levelgen.RandomSupport;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
@@ -125,8 +129,6 @@ public class RegionGeneratorTests implements TestSetup {
     );
 
     final Map<Integer, Integer> biomeCounts = new HashMap<>();
-    final Set<String> processedKoppenPoints = new HashSet<>();
-    final Set<String> processedBiomePoints = new HashSet<>();
 
     for (int dx = 0; dx < size; dx++) for (int dz = 0; dz < size; dz++) if (
       taskData[(dx + size * dz) * taskIndex] == -1
@@ -134,9 +136,6 @@ public class RegionGeneratorTests implements TestSetup {
       centerX - radius + dx,
       centerZ - radius + dz,
       (task, region) -> {
-        // TFC 4.2: CHOOSE_BIOMES runs after ADD_RIVERS_AND_LAKES (final biomes + post-river rainfall).
-        final boolean countFinalStats = task == Task.CHOOSE_BIOMES;
-
         for (DrawnTask drawnTask : taskParent.getOrDefault(
           task,
           List.of()
@@ -151,29 +150,19 @@ public class RegionGeneratorTests implements TestSetup {
               point.x,
               point.z
             ).getRGB();
-
-            if (countFinalStats) {
-              final String pointKey = point.x + "," + point.z;
-              if (point.land() && !processedKoppenPoints.contains(pointKey)) {
-                processedKoppenPoints.add(pointKey);
-                final KoppenClimateClassification koppen =
-                  KoppenClimateClassification.classify(
-                    point.temperature,
-                    point.rainfall,
-                    point.rainfallVariance,
-                    isNorthernHemisphere(point.z)
-                  );
-                koppenCounts.put(koppen, koppenCounts.get(koppen) + 1);
-              }
-              if (!processedBiomePoints.contains(pointKey)) {
-                processedBiomePoints.add(pointKey);
-                final int biome = point.biome;
-                biomeCounts.put(biome, biomeCounts.getOrDefault(biome, 0) + 1);
-              }
-            }
           }
         }
       }
+    );
+
+    collectFinalRegionStatistics(
+      generator,
+      seed,
+      centerX,
+      centerZ,
+      size,
+      koppenCounts,
+      biomeCounts
     );
 
     for (DrawnTask task : tasksToDraw) Draw.draw(
@@ -204,9 +193,7 @@ public class RegionGeneratorTests implements TestSetup {
         for (RiverEdge edge : generator
           .getOrCreatePartitionPoint(x, z)
           .rivers()) {
-          if (
-            edge.fractal().intersect(xf, zf, 0.1f)
-          ) { // Use a slightly larger distance than is typical, so we draw it more visibly
+          if (edge.fractal().intersect(xf, zf, 0.1f)) { // Use a slightly larger distance than is typical, so we draw it more visibly
             return new Color(100, 210, 250);
           }
         }
@@ -496,11 +483,90 @@ public class RegionGeneratorTests implements TestSetup {
     return normalizedZ > poleToPoleDistance;
   }
 
+  /**
+   * Köppen uses region climate after the full region pipeline. Biome counts use the same
+   * resolution as in-game {@link net.dries007.tfc.world.biome.BiomeSourceExtension}:
+   * zoomed biome layers plus river fractals ( {@code RIVER} is never stored on {@link Region.Point#biome}).
+   */
+  private void collectFinalRegionStatistics(
+    RegionGenerator generator,
+    long seed,
+    int centerX,
+    int centerZ,
+    int size,
+    Map<KoppenClimateClassification, Integer> koppenCounts,
+    Map<Integer, Integer> biomeCounts
+  ) {
+    final AreaFactory biomeLayerFactory = TFCLayers.createRegionBiomeLayer(
+      generator,
+      Seed.of(seed)
+    );
+    final Area biomeLayer = biomeLayerFactory.get();
+    final int radius = size >> 1;
+
+    for (int dx = 0; dx < size; dx++) {
+      for (int dz = 0; dz < size; dz++) {
+        final int gridX = centerX - radius + dx;
+        final int gridZ = centerZ - radius + dz;
+        final Region.Point point = generator.getOrCreateRegionPoint(
+          gridX,
+          gridZ
+        );
+        if (point.land()) {
+          final KoppenClimateClassification koppen =
+            KoppenClimateClassification.classify(
+              point.temperature,
+              point.rainfall,
+              point.rainfallVariance,
+              isNorthernHemisphere(gridZ)
+            );
+          koppenCounts.put(koppen, koppenCounts.get(koppen) + 1);
+        }
+        final int biome = resolveWorldBiomeLayerId(
+          generator,
+          biomeLayer,
+          gridX,
+          gridZ
+        );
+        biomeCounts.put(biome, biomeCounts.getOrDefault(biome, 0) + 1);
+      }
+    }
+  }
+
+  /** Matches {@link net.dries007.tfc.world.biome.BiomeSourceExtension#getBiomeExtension(int, int)} at cell center. */
+  private int resolveWorldBiomeLayerId(
+    RegionGenerator generator,
+    Area biomeLayer,
+    int gridX,
+    int gridZ
+  ) {
+    final int blockX =
+      Units.gridToBlock(gridX) + (Units.GRID_WIDTH_IN_BLOCK >> 1);
+    final int blockZ =
+      Units.gridToBlock(gridZ) + (Units.GRID_WIDTH_IN_BLOCK >> 1);
+    final int quartX = QuartPos.fromBlock(blockX);
+    final int quartZ = QuartPos.fromBlock(blockZ);
+    final int layerId = biomeLayer.get(quartX, quartZ);
+    final BiomeExtension biome = TFCLayers.getFromLayerId(layerId);
+    if (biome.hasRivers()) {
+      final double exactGridX = Units.blockToGridExact(blockX);
+      final double exactGridZ = Units.blockToGridExact(blockZ);
+      for (RiverEdge edge : generator
+        .getOrCreatePartitionPoint(gridX, gridZ)
+        .rivers()) {
+        if (edge.fractal().intersect(exactGridX, exactGridZ, 0.08f)) {
+          return RIVER;
+        }
+      }
+    }
+    return layerId;
+  }
+
   private void logKoppenStatistics(
     Map<KoppenClimateClassification, Integer> koppenCounts
   ) {
     LOGGER.info(
-      "=== Koppen Climate Statistics (land, after rivers, at choose biomes) ==="
+      "=== Koppen Climate Statistics (land, after full region generation) ==="
     );
     final int totalLandCells = koppenCounts
       .values()
@@ -526,7 +592,9 @@ public class RegionGeneratorTests implements TestSetup {
   }
 
   private void logBiomeStatistics(Map<Integer, Integer> biomeCounts) {
-    LOGGER.info("=== Biome Statistics (final, choose biomes) ===");
+    LOGGER.info(
+      "=== Biome Statistics (in-game: biome layers + rivers, cell center) ==="
+    );
     final int totalBiomeCells = biomeCounts
       .values()
       .stream()
