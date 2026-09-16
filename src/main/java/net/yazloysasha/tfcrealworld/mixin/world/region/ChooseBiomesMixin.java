@@ -35,6 +35,15 @@ public class ChooseBiomesMixin {
   @Unique
   private static final int[] LAND_RIFT_SPAWN_ROLL = { 1, 0 };
 
+  @Unique
+  private static final int[] VOLCANIC_ARC_BIOMES = {
+    VOLCANIC_OCEANIC_MOUNTAINS,
+    VOLCANIC_OCEANIC_MOUNTAINS,
+    VOLCANIC_OCEANIC_MOUNTAINS,
+    VOLCANIC_ISLAND,
+    OCEANIC_VOLCANIC_ARC,
+  };
+
   @Inject(method = "apply", at = @At("HEAD"))
   private void tfcrealworld$prepareMapDivergenceForChooseBiomes(
     RegionGenerator.Context context,
@@ -153,15 +162,50 @@ public class ChooseBiomesMixin {
             point.biome = OCEAN_RIDGE;
           } else if (
             divergenceNoise != null &&
-            (point.barrierIsland() ||
-              MapTectonics.isNearTrench(divergenceNoise, point.x, point.z)) &&
-            depth <= 2
+            depth <= 2 &&
+            tfcrealworld$mapVolcanicArcShelf(region, divergenceNoise, point)
           ) {
-            point.biome = OCEANIC_VOLCANIC_ARC;
+            point.biome = accessor.tfcrealworld$invokeRandomSeededFrom(
+              rngSeed,
+              areaSeed,
+              VOLCANIC_ARC_BIOMES
+            );
           }
         }
       }
     }
+  }
+
+  @Unique
+  private static boolean tfcrealworld$mapVolcanicArcShelf(
+    Region region,
+    PNGDivergenceNoise divergenceNoise,
+    Region.Point point
+  ) {
+    final int rawDepth = Byte.toUnsignedInt(point.oceanDepth);
+    if (
+      rawDepth == 0 || PNGAltitudeNoise.bucketFromRawOceanDepth(rawDepth) != 2
+    ) {
+      return false;
+    }
+    if (
+      point.divergence < 0f ||
+      MapTectonics.isNearTrench(divergenceNoise, point.x, point.z)
+    ) {
+      return true;
+    }
+    for (int dz = -3; dz <= 3; dz++) {
+      for (int dx = -3; dx <= 3; dx++) {
+        final Region.Point neighbor = region.atOffset(point.index, dx, dz);
+        if (
+          neighbor != null &&
+          MapTectonics.isNearTrench(divergenceNoise, neighbor.x, neighbor.z)
+        ) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   @Unique
