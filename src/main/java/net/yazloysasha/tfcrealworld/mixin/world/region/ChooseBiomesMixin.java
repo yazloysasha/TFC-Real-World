@@ -36,15 +36,30 @@ public class ChooseBiomesMixin {
   private static final int[] LAND_RIFT_SPAWN_ROLL = { 1, 0 };
 
   @Inject(method = "apply", at = @At("HEAD"))
-  private void tfcrealworld$disableVanillaCellEdgeRifts(
+  private void tfcrealworld$prepareMapDivergenceForChooseBiomes(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
     if (!MapTectonics.isActive(context.generator())) {
       return;
     }
+    final PNGDivergenceNoise divergenceNoise = DivergenceNoiseRegistry.get(
+      context.generator()
+    );
+    if (divergenceNoise == null) {
+      return;
+    }
     for (final Region.Point point : context.region.points()) {
-      point.divergence = 0f;
+      float divergence = divergenceNoise.getDivergence(point.x, point.z);
+      if (
+        point.land() &&
+        point.distanceToEdge < 3 &&
+        !MapTectonics.isLandRiftCore(divergenceNoise, point.x, point.z) &&
+        divergence > 0
+      ) {
+        divergence = 0f;
+      }
+      point.divergence = divergence;
     }
   }
 
@@ -101,46 +116,50 @@ public class ChooseBiomesMixin {
         }
       }
 
-      if (!altitudeFromMap || tfcrealworld$skipOceanBiome(point)) {
-        continue;
-      }
+      if (altitudeFromMap && !tfcrealworld$skipOceanBiome(point)) {
+        final int rawDepth = Byte.toUnsignedInt(point.oceanDepth);
+        if (rawDepth >= 10) {
+          point.biome = DEEP_OCEAN_TRENCH;
+        } else {
+          final int depth = Byte.toUnsignedInt(
+            PNGAltitudeNoise.bucketFromRawOceanDepth(rawDepth)
+          );
+          final int areaSeed = blobArea.get(point.x, point.z);
 
-      final int rawDepth = Byte.toUnsignedInt(point.oceanDepth);
-      if (rawDepth >= 10) {
-        point.biome = DEEP_OCEAN_TRENCH;
-        continue;
-      }
+          if (depth <= 1) {
+            point.biome = OCEAN_REEF;
+          } else if (depth == 2) {
+            point.biome = point.temperature > 12 && point.distanceToLand > 4
+              ? OCEAN_ATOLLS
+              : OCEAN;
+          } else if (depth == PNGAltitudeNoise.ABYSSAL_OCEAN_DEPTH) {
+            point.biome = DEEP_OCEAN;
+          } else if (depth >= 4) {
+            point.biome = point.temperature > 12 && point.distanceToLand > 3
+              ? DEEP_OCEAN_ATOLLS
+              : DEEP_OCEAN;
+          } else {
+            point.biome = accessor.tfcrealworld$invokeRandomSeededFrom(
+              rngSeed,
+              areaSeed,
+              SHALLOW_OCEAN_BIOMES
+            );
+          }
 
-      final int depth = Byte.toUnsignedInt(
-        PNGAltitudeNoise.bucketFromRawOceanDepth(rawDepth)
-      );
-      final int areaSeed = blobArea.get(point.x, point.z);
-
-      if (depth <= 1) {
-        point.biome = OCEAN_REEF;
-      } else if (depth == 2) {
-        point.biome = point.temperature > 12 && point.distanceToLand > 4
-          ? OCEAN_ATOLLS
-          : OCEAN;
-      } else if (depth == PNGAltitudeNoise.ABYSSAL_OCEAN_DEPTH) {
-        point.biome = DEEP_OCEAN;
-      } else if (depth >= 4) {
-        point.biome = point.temperature > 12 && point.distanceToLand > 3
-          ? DEEP_OCEAN_ATOLLS
-          : DEEP_OCEAN;
-      } else {
-        point.biome = accessor.tfcrealworld$invokeRandomSeededFrom(
-          rngSeed,
-          areaSeed,
-          SHALLOW_OCEAN_BIOMES
-        );
-      }
-
-      if (
-        divergenceNoise != null &&
-        MapTectonics.isNearOceanRidge(divergenceNoise, point.x, point.z)
-      ) {
-        point.biome = OCEAN_RIDGE;
+          if (
+            divergenceNoise != null &&
+            MapTectonics.isNearOceanRidge(divergenceNoise, point.x, point.z)
+          ) {
+            point.biome = OCEAN_RIDGE;
+          } else if (
+            divergenceNoise != null &&
+            (point.barrierIsland() ||
+              MapTectonics.isNearTrench(divergenceNoise, point.x, point.z)) &&
+            depth <= 2
+          ) {
+            point.biome = OCEANIC_VOLCANIC_ARC;
+          }
+        }
       }
     }
   }

@@ -9,6 +9,7 @@
     "world.biome.BiomeSourceExtensionMixin",
     "world.region.AddContinentsAndSetOceanDepthsMixin",
     "world.region.AddHotspotsMixin",
+    "world.region.AddMountainsAndBarrierIslandsAccessor",
     "world.region.AddMountainsAndBarrierIslandsMixin",
     "world.region.AnnotateBoundaryTypesMixin",
     "world.region.AnnotateBaseLandHeightMixin",

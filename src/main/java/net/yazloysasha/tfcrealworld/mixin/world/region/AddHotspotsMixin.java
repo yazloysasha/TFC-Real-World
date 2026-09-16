@@ -13,30 +13,32 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = AddHotspots.class, remap = false)
 public class AddHotspotsMixin {
 
-  @Inject(method = "apply", at = @At("TAIL"))
-  private void tfcrealworld$applyHotspotAgeFromMap(
+  @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
+  private void tfcrealworld$applyHotspotsFromMapOnly(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
-      final PNGHotspotsNoise hotspotsNoise = HotspotsNoiseRegistry.get(
-        context.generator()
-      );
-      if (hotspotsNoise == null) {
-        return;
-      }
+    if (!TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
+      return;
+    }
+    final PNGHotspotsNoise hotspotsNoise = HotspotsNoiseRegistry.get(
+      context.generator()
+    );
+    if (hotspotsNoise == null) {
+      return;
+    }
 
-      for (final var point : context.region.points()) {
-        if (point != null) {
-          byte mapAge = hotspotsNoise.getHotSpotAge(
-            (double) point.x,
-            (double) point.z
-          );
-          if (mapAge > 0) {
-            point.hotSpotAge = mapAge;
-          }
+    for (final var point : context.region.points()) {
+      if (point != null) {
+        byte mapAge = hotspotsNoise.getHotSpotAge(
+          (double) point.x,
+          (double) point.z
+        );
+        if (mapAge > 0) {
+          point.hotSpotAge = mapAge;
         }
       }
     }
+    ci.cancel();
   }
 }
