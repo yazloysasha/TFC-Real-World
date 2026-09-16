@@ -184,6 +184,11 @@ public class ConfigManager {
           config,
           "generation_modes.koppen_from_map",
           TFCRealWorldConfig.KOPPEN_FROM_MAP.get()
+        ),
+        getBoolean(
+          config,
+          "generation_modes.tectonics_from_map",
+          TFCRealWorldConfig.TECTONICS_FROM_MAP.get()
         )
       );
 
@@ -295,7 +300,8 @@ public class ConfigManager {
       TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
       TFCRealWorldConfig.ALTITUDE_FROM_MAP.get(),
       TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get(),
-      TFCRealWorldConfig.KOPPEN_FROM_MAP.get()
+      TFCRealWorldConfig.KOPPEN_FROM_MAP.get(),
+      TFCRealWorldConfig.TECTONICS_FROM_MAP.get()
     );
     player.connection.send(packet);
   }

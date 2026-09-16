@@ -12,14 +12,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = AnnotateBaseLandHeight.class, remap = false)
 public class AnnotateBaseLandHeightMixin {
 
-  @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
+  /**
+   * Keep vanilla {@code distanceToLand} BFS (atolls need it), then overwrite
+   * land height / ocean depth from the altitude map.
+   */
+  @Inject(method = "apply", at = @At("TAIL"))
   private void tfcrealworld$overrideBaseLandHeight(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
-      new AltitudeCalculator().calculate(context.region, context.generator());
-      ci.cancel();
+    if (!TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
+      return;
     }
+    new AltitudeCalculator().calculate(context.region, context.generator());
   }
 }

@@ -2,6 +2,8 @@ package net.yazloysasha.tfcrealworld.world.noise.png;
 
 public class PNGAltitudeNoise extends BasePNGNoise {
 
+  public static final byte ABYSSAL_OCEAN_DEPTH = 7;
+
   private static final String MAP_NAME = "altitude";
   private static final double SEA_LEVEL_GRAYSCALE = 128.0;
 
@@ -52,10 +54,25 @@ public class PNGAltitudeNoise extends BasePNGNoise {
     return (byte) Math.clamp(Math.round(depth), 0, 15);
   }
 
-  /**
-   * Get both land height and ocean depth for the same coordinates efficiently.
-   * Avoids duplicate coordinate transformation and brightness sampling.
-   */
+  public static byte bucketFromRawOceanDepth(int rawDepth) {
+    if (rawDepth <= 0) {
+      return 0;
+    }
+    if (rawDepth <= 1) {
+      return 1;
+    }
+    if (rawDepth <= 5) {
+      return 2;
+    }
+    if (rawDepth <= 7) {
+      return 4;
+    }
+    if (rawDepth <= 13) {
+      return ABYSSAL_OCEAN_DEPTH;
+    }
+    return 4;
+  }
+
   public AltitudeResult getAltitude(double x, double z) {
     double[] imageCoords = tileToImage(x, z);
     double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
@@ -72,9 +89,6 @@ public class PNGAltitudeNoise extends BasePNGNoise {
     return new AltitudeResult(landHeight, oceanDepth);
   }
 
-  /**
-   * Result containing both land height and ocean depth for the same coordinates.
-   */
   public static class AltitudeResult {
 
     public final byte landHeight;

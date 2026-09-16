@@ -17,7 +17,13 @@
   "tfc_real_world.create_world.vertical_scale": "수직 지도 반경",
   "tfc_real_world.create_world.vertical_scale.tooltip": "수직 지도 반경 (블록 단위).",
   "tfc_real_world.create_world.continent_from_map": "지도에서 대륙",
+  "tfc_real_world.create_world.continent_from_map.tooltip": "대륙 지도에서 육지와 바다를 생성하거나 절차적 생성.",
   "tfc_real_world.create_world.altitude_from_map": "지도에서 고도",
+  "tfc_real_world.create_world.altitude_from_map.tooltip": "고도 지도에서 지형 높이와 해양 깊이를 생성하거나 절차적 생성.",
   "tfc_real_world.create_world.hotspots_from_map": "지도에서 핫스팟",
-  "tfc_real_world.create_world.koppen_from_map": "지도에서 기후"
+  "tfc_real_world.create_world.hotspots_from_map.tooltip": "지도에서 화산 핫스팟을 생성하거나 절차적 생성.",
+  "tfc_real_world.create_world.koppen_from_map": "지도에서 기후",
+  "tfc_real_world.create_world.koppen_from_map.tooltip": "쾨펜 기후 지도에서 온도, 강수, 강수 변동을 생성하거나 절차적 생성.",
+  "tfc_real_world.create_world.rifts_from_map": "지도에서 리프트",
+  "tfc_real_world.create_world.rifts_from_map.tooltip": "판 경계 지도에서 육상 리프트 계곡과 중앙해령, 또는 절차적 생성."
 }

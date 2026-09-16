@@ -10,6 +10,7 @@ import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.layouts.GridLayout;
+import net.minecraft.client.gui.layouts.LayoutElement;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
@@ -97,6 +98,9 @@ public class CreateTFCWorldScreenMixin {
   private OptionInstance<Boolean> koppenFromMap;
 
   @Unique
+  private OptionInstance<Boolean> tectonicsFromMap;
+
+  @Unique
   private AbstractWidget spawnCenterLongitudeWidget;
 
   @Unique
@@ -121,14 +125,38 @@ public class CreateTFCWorldScreenMixin {
   private boolean updatingScales = false;
 
   @Unique
-  private static int optionsCount = 0;
+  private int tfcrealworld$optionsCount;
 
   @Unique
-  private static int kmOptionCount = 0;
+  private int tfcrealworld$kmOptionCount;
+
+  @Unique
+  private GridLayout.RowHelper tfcrealworld$rowHelper;
 
   @Unique
   private static String getCaption(String suffix) {
     return TFCRealWorld.MOD_ID + "." + suffix;
+  }
+
+  @Unique
+  private static OptionInstance<Boolean> booleanOption(
+    String caption,
+    boolean defaultValue,
+    Consumer<Boolean> onChange
+  ) {
+    return new OptionInstance<>(
+      caption,
+      OptionInstance.cachedConstantTooltip(
+        Component.translatable(caption + ".tooltip")
+      ),
+      (text, value) ->
+        value
+          ? Component.translatable("options.on")
+          : Component.translatable("options.off"),
+      OptionInstance.BOOLEAN_VALUES,
+      defaultValue,
+      onChange
+    );
   }
 
   @Unique
@@ -414,7 +442,8 @@ public class CreateTFCWorldScreenMixin {
 
   @Inject(method = "init()V", at = @At("HEAD"))
   private void tfcrealworld$initAdditionalOptions(CallbackInfo ci) {
-    kmOptionCount = 0;
+    tfcrealworld$kmOptionCount = 0;
+    tfcrealworld$optionsCount = 0;
 
     List<String> availableProfiles = ProfileManager.discoverProfiles();
     String defaultProfile = TFCRealWorldConfig.MAP_PROFILE.get();
@@ -468,24 +497,29 @@ public class CreateTFCWorldScreenMixin {
       initialVerticalScale,
       this::updateHorizontalScaleFromVertical
     );
-    continentFromMap = OptionInstance.createBoolean(
+    continentFromMap = booleanOption(
       getCaption("create_world.continent_from_map"),
       TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
       value -> {}
     );
-    altitudeFromMap = OptionInstance.createBoolean(
+    altitudeFromMap = booleanOption(
       getCaption("create_world.altitude_from_map"),
       TFCRealWorldConfig.ALTITUDE_FROM_MAP.get(),
       value -> {}
     );
-    hotspotsFromMap = OptionInstance.createBoolean(
+    hotspotsFromMap = booleanOption(
       getCaption("create_world.hotspots_from_map"),
       TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get(),
       value -> {}
     );
-    koppenFromMap = OptionInstance.createBoolean(
+    koppenFromMap = booleanOption(
       getCaption("create_world.koppen_from_map"),
       TFCRealWorldConfig.KOPPEN_FROM_MAP.get(),
+      value -> {}
+    );
+    tectonicsFromMap = booleanOption(
+      getCaption("create_world.rifts_from_map"),
+      TFCRealWorldConfig.TECTONICS_FROM_MAP.get(),
       value -> {}
     );
   }
@@ -510,6 +544,8 @@ public class CreateTFCWorldScreenMixin {
     final CreateTFCWorldScreenAccessor accessor =
       (CreateTFCWorldScreenAccessor) (Object) this;
 
+    tfcrealworld$rowHelper = builder;
+
     builder.addChild(accessor.tfcrealworld$invokeSmallButton(mapProfile));
     builder.addChild(accessor.tfcrealworld$invokeSmallButton(spawnMode));
     spawnCenterLongitudeWidget = accessor.tfcrealworld$invokeSmallButton(
@@ -532,7 +568,29 @@ public class CreateTFCWorldScreenMixin {
     builder.addChild(accessor.tfcrealworld$invokeSmallButton(finiteContinents));
     builder.addChild(accessor.tfcrealworld$invokeSmallButton(continentalness));
 
-    optionsCount = 0;
+    tfcrealworld$optionsCount = 0;
+  }
+
+  @Redirect(
+    method = "init()V",
+    at = @At(
+      value = "INVOKE",
+      target = "Lnet/minecraft/client/gui/layouts/GridLayout$RowHelper;addChild(Lnet/minecraft/client/gui/layouts/LayoutElement;)Lnet/minecraft/client/gui/layouts/LayoutElement;",
+      ordinal = 10
+    )
+  )
+  private LayoutElement tfcrealworld$addRiftsAndWideClimateRow(
+    GridLayout.RowHelper instance,
+    LayoutElement widget
+  ) {
+    final CreateTFCWorldScreenAccessor accessor =
+      (CreateTFCWorldScreenAccessor) (Object) this;
+    instance.addChild(
+      accessor.tfcrealworld$invokeSmallButton(tectonicsFromMap)
+    );
+    AbstractWidget climateButton = (AbstractWidget) widget;
+    climateButton.setWidth(400);
+    return instance.addChild(climateButton, 2);
   }
 
   @Redirect(
@@ -548,9 +606,9 @@ public class CreateTFCWorldScreenMixin {
     int max,
     int defaultValue
   ) {
-    kmOptionCount++;
+    tfcrealworld$kmOptionCount++;
 
-    switch (kmOptionCount) {
+    switch (tfcrealworld$kmOptionCount) {
       case 1:
         return CreateTFCWorldScreenAccessor.tfcrealworld$invokeKmOption(
           caption,
@@ -607,12 +665,12 @@ public class CreateTFCWorldScreenMixin {
     CreateTFCWorldScreen instance,
     OptionInstance<?> option
   ) {
-    optionsCount++;
+    tfcrealworld$optionsCount++;
 
     final CreateTFCWorldScreenAccessor accessor =
       (CreateTFCWorldScreenAccessor) (Object) this;
 
-    switch (optionsCount) {
+    switch (tfcrealworld$optionsCount) {
       case 1:
         return accessor.tfcrealworld$invokeSmallButton(grassDensity);
       case 2:
@@ -677,6 +735,7 @@ public class CreateTFCWorldScreenMixin {
     TFCRealWorldConfig.ALTITUDE_FROM_MAP.set(altitudeFromMap.get());
     TFCRealWorldConfig.HOTSPOTS_FROM_MAP.set(hotspotsFromMap.get());
     TFCRealWorldConfig.KOPPEN_FROM_MAP.set(koppenFromMap.get());
+    TFCRealWorldConfig.TECTONICS_FROM_MAP.set(tectonicsFromMap.get());
 
     TFCRealWorldConfig.saveConfig();
 

@@ -4,16 +4,12 @@ import net.dries007.tfc.world.region.AddContinentsAndSetOceanDepths;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.world.region.MapTectonics;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/**
- * Replaces tectonic continent logic when generating from a map: land mask from the
- * continent map only, without rift seas or divergence-based ocean depth classes.
- * Ocean depth from ETOPO is applied later when {@code ALTITUDE_FROM_MAP} is enabled.
- */
 @Mixin(value = AddContinentsAndSetOceanDepths.class, remap = false)
 public class AddContinentsAndSetOceanDepthsMixin {
 
@@ -31,16 +27,29 @@ public class AddContinentsAndSetOceanDepthsMixin {
 
     final RegionGenerator generator = context.generator();
     final boolean altitudeFromMap = TFCRealWorldConfig.ALTITUDE_FROM_MAP.get();
+    final boolean mapTectonics = MapTectonics.isActive(generator);
 
     for (final Region.Point point : context.region.points()) {
+      final double tectonicFeatures = mapTectonics
+        ? MapTectonics.continentRiftAdjustment(point.divergence)
+        : 0;
+
       final double continent =
-        generator.continentNoise.noise(point.x, point.z) *
+        (generator.continentNoise.noise(point.x, point.z) + tectonicFeatures) *
         generator.continentFactor(point);
 
       if (continent > LAND_THRESHOLD) {
         point.setLand();
       } else if (!altitudeFromMap) {
-        if (continent > CONTINENTAL_SHELF_THRESHOLD) {
+        if (
+          mapTectonics && point.divergence > MapTectonics.OCEAN_RIDGE_DIVERGENCE
+        ) {
+          point.oceanDepth = 3;
+        } else if (
+          mapTectonics && point.divergence < MapTectonics.TRENCH_DIVERGENCE
+        ) {
+          point.oceanDepth = 5;
+        } else if (continent > CONTINENTAL_SHELF_THRESHOLD) {
           point.oceanDepth = 2;
         } else {
           point.oceanDepth = 4;

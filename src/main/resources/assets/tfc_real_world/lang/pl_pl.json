@@ -17,7 +17,13 @@
   "tfc_real_world.create_world.vertical_scale": "Pionowy Promień Mapy",
   "tfc_real_world.create_world.vertical_scale.tooltip": "Pionowy promień mapy w blokach.",
   "tfc_real_world.create_world.continent_from_map": "Kontynent Z Mapy",
+  "tfc_real_world.create_world.continent_from_map.tooltip": "Układ lądów i oceanów z mapy kontynentów lub generacja proceduralna.",
   "tfc_real_world.create_world.altitude_from_map": "Wysokość Z Mapy",
+  "tfc_real_world.create_world.altitude_from_map.tooltip": "Wysokość lądu i głębokość oceanu z mapy wysokości lub generacja proceduralna.",
   "tfc_real_world.create_world.hotspots_from_map": "Gorące Punkty Z Mapy",
-  "tfc_real_world.create_world.koppen_from_map": "Klimat Z Mapy"
+  "tfc_real_world.create_world.hotspots_from_map.tooltip": "Wulkaniczne hotspoty z mapy lub generacja proceduralna.",
+  "tfc_real_world.create_world.koppen_from_map": "Klimat Z Mapy",
+  "tfc_real_world.create_world.koppen_from_map.tooltip": "Temperatura, opady i wariancja opadów z mapy Köppen lub generacja proceduralna.",
+  "tfc_real_world.create_world.rifts_from_map": "Rifty Z Mapy",
+  "tfc_real_world.create_world.rifts_from_map.tooltip": "Lądowe doliny ryftowe i grzbiety oceaniczne z mapy granic płyt lub generacja proceduralna."
 }

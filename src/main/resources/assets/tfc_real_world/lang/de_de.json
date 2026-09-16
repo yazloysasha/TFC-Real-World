@@ -17,7 +17,13 @@
   "tfc_real_world.create_world.vertical_scale": "Vertikaler Kartenradius",
   "tfc_real_world.create_world.vertical_scale.tooltip": "Vertikaler Kartenradius in Blöcken.",
   "tfc_real_world.create_world.continent_from_map": "Kontinent von Karte",
+  "tfc_real_world.create_world.continent_from_map.tooltip": "Land und Ozeane aus Kontinentenkarte oder prozedural.",
   "tfc_real_world.create_world.altitude_from_map": "Höhe von Karte",
+  "tfc_real_world.create_world.altitude_from_map.tooltip": "Landhöhe und Meerestiefe aus Höhenkarte oder prozedural.",
   "tfc_real_world.create_world.hotspots_from_map": "Hotspots von Karte",
-  "tfc_real_world.create_world.koppen_from_map": "Klima von Karte"
+  "tfc_real_world.create_world.hotspots_from_map.tooltip": "Vulkanische Hotspots aus Karte oder prozedural.",
+  "tfc_real_world.create_world.koppen_from_map": "Klima von Karte",
+  "tfc_real_world.create_world.koppen_from_map.tooltip": "Temperatur, Niederschlag und Varianz aus Köppen-Klimakarte oder prozedural.",
+  "tfc_real_world.create_world.rifts_from_map": "Rifte von Karte",
+  "tfc_real_world.create_world.rifts_from_map.tooltip": "Land-Grabenbrüche und mittelozeanische Rücken aus der Plattengrenzen-Karte oder prozedurale Generierung."
 }

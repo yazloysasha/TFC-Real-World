@@ -144,6 +144,7 @@ Map profiles organize all the map images needed for world generation. Each profi
 ├─ maps/<br>
 │ ├── continent.png<br>
 │ ├── altitude.png<br>
+│ ├── divergence.png<br>
 │ ├── hotspots.png<br>
 │ ├── koppen.png<br>
 │ ├── temperature.png<br>

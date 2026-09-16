@@ -132,6 +132,7 @@ Map profiles organize all the map images needed for world generation. Each profi
 ├─ maps/
 │  ├── continent.png
 │  ├── altitude.png
+│  ├── divergence.png
 │  ├── hotspots.png
 │  ├── koppen.png
 │  ├── temperature.png
@@ -185,6 +186,8 @@ All maps must be PNG format and have identical dimensions. Maps should use an eq
 **Continent Map (`continent.png`):** Defines landmass distribution and continental boundaries. Format: Grayscale PNG. Legend: `0` (black) = Ocean, `255` (white) = Land. This map shapes the basic layout of continents and oceans in your world.
 
 **Altitude Map (`altitude.png`):** Defines terrain elevation and ocean depth. Format: Grayscale PNG. Legend: `0-127` = Ocean depth (darker = deeper), `128-255` = Land elevation (brighter = higher). Creates realistic mountains, hills, plains, and ocean floors. Example values: `0` = Deepest ocean, `64` = Shallow ocean, `128` = Sea level (coastline), `192` = Hills, `255` = Highest mountains.
+
+**Divergence Map (`divergence.png`):** Plate boundaries from PB2002 (Peter Bird). Format: Grayscale PNG. Legend: `128` = neutral, `129-255` = divergent (rifts / spreading ridges, brighter = stronger), `0-127` = convergent (subduction, darker = stronger). Used for rift valleys, ocean ridges, and trenches when **Tectonics From Map** is enabled. Generated per map profile (extent and pixel size match `settings.json` and the other maps) by `data/maps.py` (`divergence()`).
 
 **Hotspots Map (`hotspots.png`):** Defines volcanic hotspot locations and ages. Format: Grayscale PNG. Legend: `0` = No hotspot (age 0), `64` = Age 4 (oldest), `128` = Age 3, `192` = Age 2, `255` = Age 1 (youngest). Places TFC volcanoes in tectonically plausible areas.
 

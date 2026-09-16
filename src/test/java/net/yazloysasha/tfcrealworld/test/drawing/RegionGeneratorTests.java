@@ -24,6 +24,7 @@ import net.dries007.tfc.world.region.ChooseRocks;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.dries007.tfc.world.region.RegionGenerator.Task;
+import net.dries007.tfc.world.region.RiverEdge;
 import net.dries007.tfc.world.region.Units;
 import net.dries007.tfc.world.settings.Settings;
 import net.minecraft.util.Mth;
@@ -43,9 +44,9 @@ public class RegionGeneratorTests implements TestSetup {
   );
 
   private static final double[][] CITIES_GEOGRAPHIC_COORDS = {
-    { 12.4964, 41.9028 }, // Rome
-    { -77.0369, 38.9072 }, // Washington
-    { 38.7225, 14.1211 }, // Aksum
+    { 12.4964, 41.9028 },
+    { -77.0369, 38.9072 },
+    { 38.7225, 14.1211 },
   };
 
   final DoubleFunction<Color> blue = Artist.Colors.linearGradient(
@@ -56,6 +57,11 @@ public class RegionGeneratorTests implements TestSetup {
   final DoubleFunction<Color> green = Artist.Colors.linearGradient(
     new Color(0, 100, 0),
     new Color(80, 200, 80)
+  );
+
+  final DoubleFunction<Color> teal = Artist.Colors.linearGradient(
+    new Color(0, 150, 150),
+    new Color(40, 250, 250)
   );
 
   final DoubleFunction<Color> temperature = Artist.Colors.multiLinearGradient(
@@ -109,17 +115,17 @@ public class RegionGeneratorTests implements TestSetup {
       Seed.of(seed)
     );
 
-    // Counting Koppen climates
+    LOGGER.info("RegionGenerator artist seed: {}", seed);
+
     final Map<KoppenClimateClassification, Integer> koppenCounts =
       new EnumMap<>(KoppenClimateClassification.class);
-    // Initialize all climates to 0
-    for (KoppenClimateClassification climate : KoppenClimateClassification.values()) {
-      koppenCounts.put(climate, 0);
-    }
-    // Counting biomes
+    for (KoppenClimateClassification climate : KoppenClimateClassification.values()) koppenCounts.put(
+      climate,
+      0
+    );
+
     final Map<Integer, Integer> biomeCounts = new HashMap<>();
-    // Track already processed points to avoid double counting
-    final Set<String> processedPoints = new HashSet<>();
+    final Set<String> processedKoppenPoints = new HashSet<>();
     final Set<String> processedBiomePoints = new HashSet<>();
 
     for (int dx = 0; dx < size; dx++) for (int dz = 0; dz < size; dz++) if (
@@ -128,8 +134,8 @@ public class RegionGeneratorTests implements TestSetup {
       centerX - radius + dx,
       centerZ - radius + dz,
       (task, region) -> {
-        // Koppen climate counting only happens after adding rivers
-        final boolean shouldCountKoppen = task == Task.ADD_RIVERS_AND_LAKES;
+        // TFC 4.2: CHOOSE_BIOMES runs after ADD_RIVERS_AND_LAKES (final biomes + post-river rainfall).
+        final boolean countFinalStats = task == Task.CHOOSE_BIOMES;
 
         for (DrawnTask drawnTask : taskParent.getOrDefault(
           task,
@@ -146,11 +152,10 @@ public class RegionGeneratorTests implements TestSetup {
               point.z
             ).getRGB();
 
-            // Count Koppen climates and biomes for land after adding rivers
-            if (shouldCountKoppen) {
+            if (countFinalStats) {
               final String pointKey = point.x + "," + point.z;
-              if (point.land() && !processedPoints.contains(pointKey)) {
-                processedPoints.add(pointKey);
+              if (point.land() && !processedKoppenPoints.contains(pointKey)) {
+                processedKoppenPoints.add(pointKey);
                 final KoppenClimateClassification koppen =
                   KoppenClimateClassification.classify(
                     point.temperature,
@@ -160,10 +165,8 @@ public class RegionGeneratorTests implements TestSetup {
                   );
                 koppenCounts.put(koppen, koppenCounts.get(koppen) + 1);
               }
-              // Count biomes for all points (including water)
-              final String biomePointKey = point.x + "," + point.z;
-              if (!processedBiomePoints.contains(biomePointKey)) {
-                processedBiomePoints.add(biomePointKey);
+              if (!processedBiomePoints.contains(pointKey)) {
+                processedBiomePoints.add(pointKey);
                 final int biome = point.biome;
                 biomeCounts.put(biome, biomeCounts.getOrDefault(biome, 0) + 1);
               }
@@ -181,74 +184,35 @@ public class RegionGeneratorTests implements TestSetup {
         taskData[(x + size * z) * taskIndex + taskOffset[task.ordinal()]]
     );
 
-    // Log Koppen climate statistics
-    LOGGER.info("=== Koppen Climate Statistics ===");
-    final int totalLandCells = koppenCounts
-      .values()
-      .stream()
-      .mapToInt(Integer::intValue)
-      .sum();
-    LOGGER.info("Total land cells: {}", totalLandCells);
-    LOGGER.info("Distribution by climate:");
-    for (KoppenClimateClassification climate : KoppenClimateClassification.values()) {
-      final int count = koppenCounts.get(climate);
-      final double percentage = totalLandCells > 0
-        ? ((count * 100.0) / totalLandCells)
-        : 0.0;
-      LOGGER.info(
-        "  {}: {} cells ({})",
-        climate,
-        count,
-        String.format(Locale.ROOT, "%.2f%%", percentage)
-      );
-    }
-    LOGGER.info("===================================");
+    logKoppenStatistics(koppenCounts);
+    logBiomeStatistics(biomeCounts);
+  }
 
-    // Log biome statistics
-    LOGGER.info("=== Biome Statistics ===");
-    final int totalBiomeCells = biomeCounts
-      .values()
-      .stream()
-      .mapToInt(Integer::intValue)
-      .sum();
-    LOGGER.info("Total cells: {}", totalBiomeCells);
-    LOGGER.info("Distribution by biome:");
-    biomeCounts
-      .entrySet()
-      .stream()
-      .sorted(Map.Entry.<Integer, Integer>comparingByValue().reversed())
-      .forEach(entry -> {
-        final int biome = entry.getKey();
-        final int count = entry.getValue();
-        final double percentage = totalBiomeCells > 0
-          ? ((count * 100.0) / totalBiomeCells)
-          : 0.0;
-        LOGGER.info(
-          "  {}: {} cells ({})",
-          getBiomeName(biome),
-          count,
-          String.format(Locale.ROOT, "%.2f%%", percentage)
-        );
-      });
-    final int uniqueBiomesOnMap = biomeCounts.size();
-    final int totalPossibleBiomes = getTotalBiomeCount();
-    LOGGER.info(
-      "Unique biomes on map: {} out of {} total biomes",
-      uniqueBiomesOnMap,
-      totalPossibleBiomes
-    );
-    // Find missing biomes
-    final Set<Integer> allPossibleBiomes = getAllPossibleBiomes();
-    final Set<Integer> missingBiomes = new HashSet<>(allPossibleBiomes);
-    missingBiomes.removeAll(biomeCounts.keySet());
-    if (!missingBiomes.isEmpty()) {
-      LOGGER.info("Missing biomes ({}):", missingBiomes.size());
-      missingBiomes
-        .stream()
-        .sorted()
-        .forEach(biome -> LOGGER.info("  {}", getBiomeName(biome)));
-    }
-    LOGGER.info("===================================");
+  private Artist.Pixel<Color> drawWithRivers(
+    RegionGenerator generator,
+    DrawnTask task
+  ) {
+    // Unused for now until I figure out a better way to hook it into drawing that doesn't explode memory usage
+    return (xi, zi) -> {
+      final int x = (int) xi, z = (int) zi;
+      final float xf = (float) xi, zf = (float) zi;
+      final Region region = generator.getOrCreateRegion(x, z);
+      final Region.Point point = generator.getOrCreateRegionPoint(x, z);
+
+      // Early exit - we don't draw rivers over oceans
+      if (point.land() || point.shore()) {
+        for (RiverEdge edge : generator
+          .getOrCreatePartitionPoint(x, z)
+          .rivers()) {
+          if (
+            edge.fractal().intersect(xf, zf, 0.1f)
+          ) { // Use a slightly larger distance than is typical, so we draw it more visibly
+            return new Color(100, 210, 250);
+          }
+        }
+      }
+      return taskColor(task, region, x, z);
+    };
   }
 
   private String taskName(String name, DrawnTask task) {
@@ -265,20 +229,17 @@ public class RegionGeneratorTests implements TestSetup {
     return switch (task) {
       case ADD_CONTINENTS, FLOOD_FILL_SMALL_OCEANS, ADD_ISLANDS -> point.land()
         ? new Color(0, 130, 0)
-        : cellColor(region);
+        : oceanDepthColor(point);
       case ANNOTATE_DISTANCE_TO_CELL_EDGE -> blue.apply(
         point.distanceToEdge / 24f
       );
-      case ANNOTATE_DISTANCE_TO_OCEAN -> point.land()
+      case ANNOTATE_DISTANCE_TO_OCEAN_AND_DEEP_OCEAN -> point.land()
         ? green.apply(point.distanceToOcean / 20f)
-        : cellColor(region);
+        : point.oceanDepth == 2
+          ? teal.apply(1 - point.distanceToDeepOcean / 20f)
+          : cellColor(region);
       case ANNOTATE_BASE_LAND_HEIGHT -> continentColor(point);
-      case ADD_MOUNTAINS -> {
-        if (!point.mountain()) yield continentColor(point);
-        yield point.baseLandHeight <= 2
-          ? new Color(240, 110, 50)
-          : new Color(150, 150, 150);
-      }
+      case ADD_MOUNTAINS -> mountainColor(point);
       case ANNOTATE_DISTANCE_TO_WEST_COAST -> point.land()
         ? green.apply(point.distanceToWestCoast / 100f)
         : cellColor(region);
@@ -292,6 +253,11 @@ public class RegionGeneratorTests implements TestSetup {
             Mth.clampedMap(point.discreteBiomeAltitude(), 0, 3, 0, 1)
           )
           : continentColor(point);
+      case ANNOTATE_BOUNDARY_TYPES -> point.distanceToEdge < 2
+        ? point.divergence > 0 ? Color.MAGENTA : Color.RED
+        : point.land()
+          ? green.apply(0.5 * point.divergence + 0.5)
+          : point.divergence > 0 ? Color.BLUE : Color.ORANGE;
       case TEMPERATURE -> temperatureGradient(
         point,
         point.temperature,
@@ -339,16 +305,17 @@ public class RegionGeneratorTests implements TestSetup {
           yield new Color(200, 200, 10);
         }
       }
+      case ADD_RIVERS_AND_LAKES -> {
+        if (point.river()) yield new Color(100, 210, 250);
+        if (point.shore()) yield new Color(240, 224, 120);
+        if (point.lake()) yield new Color(150, 160, 255);
+        yield continentColor(point);
+      }
       case CHOOSE_BIOMES -> biomeColor(point.biome);
       case ANNOTATE_BIOMES_BY_HEIGHT -> heightBiomeColor(point.biome);
       case ANNOTATE_KARST_BIOMES -> karstBiomeColor(point.biome);
       case ANNOTATE_GLACIAL_BIOMES -> glaciatedBiomeColor(point.biome);
-      case ADD_RIVERS_AND_LAKES -> {
-        if (point.river()) yield new Color(120, 120, 240);
-        if (point.shore()) yield new Color(120, 120, 240);
-        if (point.lake()) yield new Color(150, 160, 255);
-        yield continentColor(point);
-      }
+      case ANNOTATE_TECTONIC_BIOMES -> tectonicBiomeColor(point.biome);
       case KAOLINITE_CAN_SPAWN -> point.temperature > 18f &&
         point.rainfall > 300 &&
         point.land()
@@ -382,8 +349,7 @@ public class RegionGeneratorTests implements TestSetup {
         if (isCityLocation(x, y)) {
           yield Color.WHITE;
         }
-        GridLineType gridLineType = getGridLineType(x, y);
-        yield switch (gridLineType) {
+        yield switch (getGridLineType(x, y)) {
           case THIRTY_DEG -> Color.YELLOW;
           case TEN_DEG -> Color.BLACK;
           case NONE -> baseColor;
@@ -530,22 +496,90 @@ public class RegionGeneratorTests implements TestSetup {
     return normalizedZ > poleToPoleDistance;
   }
 
+  private void logKoppenStatistics(
+    Map<KoppenClimateClassification, Integer> koppenCounts
+  ) {
+    LOGGER.info(
+      "=== Koppen Climate Statistics (land, after rivers, at choose biomes) ==="
+    );
+    final int totalLandCells = koppenCounts
+      .values()
+      .stream()
+      .mapToInt(Integer::intValue)
+      .sum();
+    LOGGER.info("Total land cells: {}", totalLandCells);
+    LOGGER.info("Distribution by climate:");
+    for (KoppenClimateClassification climate : KoppenClimateClassification.values()) {
+      final int count = koppenCounts.get(climate);
+      if (count == 0) continue;
+      final double percentage = totalLandCells > 0
+        ? ((count * 100.0) / totalLandCells)
+        : 0.0;
+      LOGGER.info(
+        "  {}: {} cells ({})",
+        climate,
+        count,
+        String.format(Locale.ROOT, "%.2f%%", percentage)
+      );
+    }
+    LOGGER.info("====================================================");
+  }
+
+  private void logBiomeStatistics(Map<Integer, Integer> biomeCounts) {
+    LOGGER.info("=== Biome Statistics (final, choose biomes) ===");
+    final int totalBiomeCells = biomeCounts
+      .values()
+      .stream()
+      .mapToInt(Integer::intValue)
+      .sum();
+    LOGGER.info("Total cells: {}", totalBiomeCells);
+    LOGGER.info("Distribution by biome:");
+    biomeCounts
+      .entrySet()
+      .stream()
+      .sorted(Map.Entry.<Integer, Integer>comparingByValue().reversed())
+      .forEach(entry -> {
+        final int biome = entry.getKey();
+        final int count = entry.getValue();
+        final double percentage = totalBiomeCells > 0
+          ? ((count * 100.0) / totalBiomeCells)
+          : 0.0;
+        LOGGER.info(
+          "  {}: {} cells ({})",
+          getBiomeName(biome),
+          count,
+          String.format(Locale.ROOT, "%.2f%%", percentage)
+        );
+      });
+    final int uniqueBiomesOnMap = biomeCounts.size();
+    final int totalPossibleBiomes = getAllPossibleBiomes().size();
+    LOGGER.info(
+      "Unique biomes on map: {} out of {} total biomes",
+      uniqueBiomesOnMap,
+      totalPossibleBiomes
+    );
+    final Set<Integer> missingBiomes = new HashSet<>(getAllPossibleBiomes());
+    missingBiomes.removeAll(biomeCounts.keySet());
+    if (!missingBiomes.isEmpty()) {
+      LOGGER.info("Missing biomes ({}):", missingBiomes.size());
+      missingBiomes
+        .stream()
+        .sorted()
+        .forEach(biome -> LOGGER.info("  {}", getBiomeName(biome)));
+    }
+    LOGGER.info("============================================");
+  }
+
   private static Set<Integer> allPossibleBiomesCache;
   private static Map<Integer, String> biomeNameCache;
 
-  private int getTotalBiomeCount() {
-    return getAllPossibleBiomes().size();
-  }
-
   private Set<Integer> getAllPossibleBiomes() {
-    if (allPossibleBiomesCache != null) {
-      return allPossibleBiomesCache;
-    }
+    if (allPossibleBiomesCache != null) return allPossibleBiomesCache;
+
     final Set<Integer> biomes = new HashSet<>();
     final Map<Integer, String> names = new HashMap<>();
     try {
-      final Field[] fields = TFCLayers.class.getDeclaredFields();
-      for (final Field field : fields) {
+      for (final Field field : TFCLayers.class.getDeclaredFields()) {
         if (
           Modifier.isStatic(field.getModifiers()) &&
           Modifier.isFinal(field.getModifiers()) &&
@@ -559,7 +593,6 @@ public class RegionGeneratorTests implements TestSetup {
       }
     } catch (IllegalAccessException e) {
       LOGGER.error("Failed to get all biomes from TFCLayers", e);
-      // Fallback to empty set
       return Set.of();
     }
     allPossibleBiomesCache = Set.copyOf(biomes);
@@ -568,29 +601,24 @@ public class RegionGeneratorTests implements TestSetup {
   }
 
   private String getBiomeName(int biome) {
-    // First try to get name from cache (populated by getAllPossibleBiomes)
-    if (biomeNameCache != null && biomeNameCache.containsKey(biome)) {
-      return biomeNameCache.get(biome);
-    }
-    // Fallback: try to get name via reflection
+    if (
+      biomeNameCache != null && biomeNameCache.containsKey(biome)
+    ) return biomeNameCache.get(biome);
+
     try {
-      final Field[] fields = TFCLayers.class.getDeclaredFields();
-      for (final Field field : fields) {
+      for (final Field field : TFCLayers.class.getDeclaredFields()) {
         if (
           Modifier.isStatic(field.getModifiers()) &&
           Modifier.isFinal(field.getModifiers()) &&
           field.getType() == int.class
         ) {
           field.setAccessible(true);
-          if (field.getInt(null) == biome) {
-            return field.getName();
-          }
+          if (field.getInt(null) == biome) return field.getName();
         }
       }
     } catch (IllegalAccessException e) {
       LOGGER.debug("Failed to get biome name for ID {}", biome, e);
     }
-    // Last resort: return unknown biome
     return "UNKNOWN_BIOME_" + biome;
   }
 
@@ -600,9 +628,36 @@ public class RegionGeneratorTests implements TestSetup {
 
   private Color continentColor(Region.Point point) {
     if (point.land()) return green.apply(point.baseLandHeight / 24f);
-    if (point.oceanDepth < 4) return new Color(150, 160, 255);
-    if (point.oceanDepth < 8) return new Color(120, 120, 240);
-    return new Color(100, 100, 200);
+    return oceanDepthColor(point);
+  }
+
+  private Color oceanDepthColor(Region.Point point) {
+    return switch (point.oceanDepth) {
+      case 1 -> new Color(150, 160, 255);
+      case 2 -> new Color(120, 120, 240);
+      case 3 -> new Color(105, 105, 210);
+      case 4 -> new Color(90, 90, 180);
+      case 5 -> new Color(60, 60, 120);
+      default -> new Color(255, 100, 100); // Error detection
+    };
+  }
+
+  private Color mountainColor(Region.Point point) {
+    if (point.mountain()) {
+      return point.volcanic()
+        ? point.coastalMountain()
+          ? new Color(200, 90, 40)
+          : new Color(240, 110, 50)
+        : point.coastalMountain()
+          ? new Color(140, 140, 140)
+          : new Color(180, 180, 180);
+    } else if (point.barrierIsland()) {
+      return point.volcanic()
+        ? new Color(200, 40, 40)
+        : new Color(220, 140, 140);
+    } else {
+      return continentColor(point);
+    }
   }
 
   private Color temperatureGradient(
@@ -629,10 +684,19 @@ public class RegionGeneratorTests implements TestSetup {
 
   // Default biome color scheme, Karst Biomes invisible
   private Color biomeColor(int biome) {
-    if (biome == OCEAN) return new Color(0, 0, 220);
-    if (biome == OCEAN_REEF) return new Color(70, 160, 250);
-    if (biome == DEEP_OCEAN) return new Color(0, 0, 160);
-    if (biome == DEEP_OCEAN_TRENCH) return new Color(0, 0, 80);
+    if (biome == OCEAN_REEF) return new Color(150, 160, 255);
+    if (biome == OCEAN || biome == OCEAN_ATOLLS) return new Color(
+      120,
+      120,
+      240
+    );
+    if (biome == OCEAN_RIDGE) return new Color(105, 105, 210);
+    if (biome == DEEP_OCEAN || biome == DEEP_OCEAN_ATOLLS) return new Color(
+      90,
+      90,
+      180
+    );
+    if (biome == DEEP_OCEAN_TRENCH) return new Color(60, 60, 120);
     if (biome == LAKE) return new Color(30, 30, 255);
     if (
       biome == MOUNTAIN_LAKE ||
@@ -641,7 +705,13 @@ public class RegionGeneratorTests implements TestSetup {
       biome == VOLCANIC_MOUNTAIN_LAKE ||
       biome == PLATEAU_LAKE
     ) return new Color(20, 180, 255);
-    if (biome == RIVER) return new Color(0, 200, 255);
+    if (biome == RIVER || biome == RIVER_VALLEY) return new Color(0, 200, 255);
+    if (biome == GUANO_ISLAND) return new Color(170, 170, 170);
+    if (biome == VOLCANIC_ISLAND) return new Color(120, 50, 70);
+    if (biome == VOLCANIC_MOUNTAIN_ISLANDS) return new Color(150, 60, 90);
+
+    if (biome == RIFT_VALLEY) return new Color(80, 0, 80);
+    if (biome == RIFT_LAKE) return new Color(80, 0, 160);
 
     if (
       biome == OCEANIC_MOUNTAINS || biome == VOLCANIC_OCEANIC_MOUNTAINS
@@ -661,6 +731,8 @@ public class RegionGeneratorTests implements TestSetup {
       biome == TOWER_KARST_LAKE
     ) return new Color(220, 150, 230);
 
+    if (biome == OCEANIC_VOLCANIC_ARC) return new Color(100, 10, 10);
+    if (biome == COLLISIONAL_MOUNTAINS) return new Color(215, 20, 20);
     if (biome == MOUNTAINS || biome == VOLCANIC_MOUNTAINS) return new Color(
       255,
       50,
@@ -671,6 +743,7 @@ public class RegionGeneratorTests implements TestSetup {
     ) return new Color(240, 100, 100);
     if (
       biome == PLATEAU ||
+      biome == PLATEAU_WIDE ||
       biome == EXTREME_DOLINE_PLATEAU ||
       biome == CENOTE_PLATEAU ||
       biome == DOLINE_PLATEAU ||
@@ -698,7 +771,7 @@ public class RegionGeneratorTests implements TestSetup {
     if (biome == SALT_FLATS) return new Color(190, 190, 190);
     if (biome == MUD_FLATS) return new Color(190, 120, 100);
 
-    if (biome == SHORE) return new Color(230, 210, 130);
+    if (biome == SHORE || biome == TIDAL_FLATS) return new Color(230, 210, 130);
 
     if (
       biome == HIGHLANDS ||
@@ -743,11 +816,14 @@ public class RegionGeneratorTests implements TestSetup {
     if (biome == ICE_SHEET_OCEANIC) return new Color(215, 215, 215);
     if (biome == ICE_SHEET_TUYAS) return new Color(235, 235, 235);
     if (
-      biome == ICE_SHEET_MOUNTAINS || biome == ICE_SHEET_MOUNTAINS_EDGE
+      biome == ICE_SHEET_MOUNTAINS ||
+      biome == ICE_SHEET_MOUNTAINS_EDGE ||
+      biome == ICE_SHEET_VOLCANIC_MOUNTAINS
     ) return new Color(255, 195, 195);
     if (
       biome == ICE_SHEET_OCEANIC_MOUNTAINS ||
-      biome == ICE_SHEET_OCEANIC_MOUNTAINS_EDGE
+      biome == ICE_SHEET_OCEANIC_MOUNTAINS_EDGE ||
+      biome == ICE_SHEET_VOLCANIC_OCEANIC_MOUNTAINS
     ) return new Color(255, 195, 255);
     if (biome == ICE_SHEET_SHIELD_VOLCANO) return new Color(255, 215, 185);
 
@@ -769,34 +845,46 @@ public class RegionGeneratorTests implements TestSetup {
       135
     );
     if (biome == TUYAS) return new Color(115, 145, 115);
-    if (biome == GLACIATED_MOUNTAINS) return new Color(255, 165, 165);
-    if (biome == GLACIATED_OCEANIC_MOUNTAINS) return new Color(255, 165, 255);
+    if (
+      biome == GLACIATED_MOUNTAINS || biome == GLACIATED_VOLCANIC_MOUNTAINS
+    ) return new Color(255, 165, 165);
+    if (
+      biome == GLACIATED_OCEANIC_MOUNTAINS ||
+      biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS
+    ) return new Color(255, 165, 255);
     if (biome == GLACIATED_SHIELD_VOLCANO) return new Color(255, 185, 125);
-    if (biome == GLACIALLY_CARVED_MOUNTAINS) return new Color(255, 135, 135);
-    if (biome == GLACIALLY_CARVED_OCEANIC_MOUNTAINS) return new Color(
-      255,
-      135,
-      255
-    );
+    if (
+      biome == GLACIALLY_CARVED_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_VOLCANIC_MOUNTAINS
+    ) return new Color(255, 135, 135);
+    if (
+      biome == GLACIALLY_CARVED_OCEANIC_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS
+    ) return new Color(255, 135, 255);
 
     return Color.BLACK;
   }
 
   // Only shows Karst biomes and water biomes, color coded by Karst Variety
   private Color karstBiomeColor(int biome) {
-    if (
-      biome == OCEAN ||
-      biome == OCEAN_REEF ||
-      biome == DEEP_OCEAN ||
-      biome == DEEP_OCEAN_TRENCH ||
-      biome == LAKE ||
-      biome == RIVER ||
-      biome == MOUNTAIN_LAKE ||
-      biome == OCEANIC_MOUNTAIN_LAKE ||
-      biome == OLD_MOUNTAIN_LAKE ||
-      biome == VOLCANIC_MOUNTAIN_LAKE ||
-      biome == PLATEAU_LAKE
-    ) return Color.GRAY;
+    if (biome == OCEAN_REEF || biome == OCEANIC_VOLCANIC_ARC) return new Color(
+      150,
+      160,
+      255
+    );
+    if (biome == OCEAN || biome == OCEAN_ATOLLS) return new Color(
+      120,
+      120,
+      240
+    );
+    if (biome == OCEAN_RIDGE) return new Color(105, 105, 210);
+    if (biome == DEEP_OCEAN || biome == DEEP_OCEAN_ATOLLS) return new Color(
+      90,
+      90,
+      180
+    );
+    if (biome == DEEP_OCEAN_TRENCH) return new Color(60, 60, 120);
+    if (biome == RIVER || biome == RIVER_VALLEY) return new Color(0, 200, 255);
 
     if (biome == TOWER_KARST_BAY) return new Color(230, 120, 220);
     if (biome == TOWER_KARST_LAKE) return new Color(230, 100, 220);
@@ -838,10 +926,23 @@ public class RegionGeneratorTests implements TestSetup {
 
   // Shows only ice sheets, biomes effected by past ice sheets
   private Color glaciatedBiomeColor(int biome) {
-    if (biome == OCEAN) return new Color(0, 0, 220);
-    if (biome == OCEAN_REEF) return new Color(70, 160, 250);
-    if (biome == DEEP_OCEAN) return new Color(0, 0, 160);
-    if (biome == DEEP_OCEAN_TRENCH) return new Color(0, 0, 80);
+    if (biome == OCEAN_REEF || biome == OCEANIC_VOLCANIC_ARC) return new Color(
+      150,
+      160,
+      255
+    );
+    if (biome == OCEAN || biome == OCEAN_ATOLLS) return new Color(
+      120,
+      120,
+      240
+    );
+    if (biome == OCEAN_RIDGE) return new Color(105, 105, 210);
+    if (biome == DEEP_OCEAN || biome == DEEP_OCEAN_ATOLLS) return new Color(
+      90,
+      90,
+      180
+    );
+    if (biome == DEEP_OCEAN_TRENCH) return new Color(60, 60, 120);
     if (biome == LAKE) return new Color(30, 30, 255);
     if (
       biome == MOUNTAIN_LAKE ||
@@ -850,7 +951,7 @@ public class RegionGeneratorTests implements TestSetup {
       biome == VOLCANIC_MOUNTAIN_LAKE ||
       biome == PLATEAU_LAKE
     ) return new Color(20, 180, 255);
-    if (biome == RIVER) return new Color(0, 200, 255);
+    if (biome == RIVER || biome == RIVER_VALLEY) return new Color(0, 200, 255);
 
     if (biome == ICE_SHEET || biome == SUBGLACIAL_LAKE) return new Color(
       255,
@@ -859,8 +960,13 @@ public class RegionGeneratorTests implements TestSetup {
     );
     if (biome == ICE_SHEET_OCEANIC) return new Color(215, 215, 215);
     if (biome == ICE_SHEET_TUYAS) return new Color(235, 235, 235);
-    if (biome == ICE_SHEET_MOUNTAINS) return new Color(255, 195, 195);
-    if (biome == ICE_SHEET_OCEANIC_MOUNTAINS) return new Color(255, 195, 255);
+    if (
+      biome == ICE_SHEET_MOUNTAINS || biome == ICE_SHEET_VOLCANIC_MOUNTAINS
+    ) return new Color(255, 195, 195);
+    if (
+      biome == ICE_SHEET_OCEANIC_MOUNTAINS ||
+      biome == ICE_SHEET_VOLCANIC_OCEANIC_MOUNTAINS
+    ) return new Color(255, 195, 255);
     if (biome == ICE_SHEET_SHIELD_VOLCANO) return new Color(255, 195, 145);
 
     if (
@@ -879,14 +985,100 @@ public class RegionGeneratorTests implements TestSetup {
       135
     );
     if (biome == TUYAS) return new Color(115, 145, 115);
-    if (biome == GLACIATED_MOUNTAINS) return new Color(255, 165, 165);
-    if (biome == GLACIATED_OCEANIC_MOUNTAINS) return new Color(255, 165, 255);
+    if (
+      biome == GLACIATED_MOUNTAINS || biome == GLACIATED_VOLCANIC_MOUNTAINS
+    ) return new Color(255, 165, 165);
+    if (
+      biome == GLACIATED_OCEANIC_MOUNTAINS ||
+      biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS
+    ) return new Color(255, 165, 255);
     if (biome == GLACIATED_SHIELD_VOLCANO) return new Color(255, 185, 125);
-    if (biome == GLACIALLY_CARVED_MOUNTAINS) return new Color(255, 135, 135);
-    if (biome == GLACIALLY_CARVED_OCEANIC_MOUNTAINS) return new Color(
-      255,
-      135,
-      255
+    if (
+      biome == GLACIALLY_CARVED_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_VOLCANIC_MOUNTAINS
+    ) return new Color(255, 135, 135);
+    if (
+      biome == GLACIALLY_CARVED_OCEANIC_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS
+    ) return new Color(255, 135, 255);
+
+    return Color.BLACK;
+  }
+
+  // Shows only ice sheets, biomes effected by past ice sheets
+  private Color tectonicBiomeColor(int biome) {
+    if (biome == OCEAN_REEF) return new Color(150, 160, 255);
+    if (biome == OCEAN || biome == OCEAN_ATOLLS) return new Color(
+      120,
+      120,
+      240
+    );
+    if (biome == OCEAN_RIDGE) return new Color(105, 105, 210);
+    if (biome == DEEP_OCEAN || biome == DEEP_OCEAN_ATOLLS) return new Color(
+      90,
+      90,
+      180
+    );
+    if (biome == DEEP_OCEAN_TRENCH) return new Color(60, 60, 120);
+    if (biome == LAKE) return new Color(30, 30, 255);
+    if (
+      biome == MOUNTAIN_LAKE ||
+      biome == OCEANIC_MOUNTAIN_LAKE ||
+      biome == OLD_MOUNTAIN_LAKE ||
+      biome == VOLCANIC_MOUNTAIN_LAKE ||
+      biome == PLATEAU_LAKE
+    ) return new Color(20, 180, 255);
+    if (biome == RIVER || biome == RIVER_VALLEY) return new Color(0, 200, 255);
+
+    // Convergent Biomes - Note that these show up as regular mtns if they are glaciated
+    if (biome == COLLISIONAL_MOUNTAINS) return new Color(205, 160, 200);
+
+    // Volcanic Biomes
+    if (
+      biome == VOLCANIC_MOUNTAINS ||
+      biome == ICE_SHEET_VOLCANIC_MOUNTAINS ||
+      biome == GLACIATED_VOLCANIC_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_VOLCANIC_MOUNTAINS
+    ) return new Color(255, 80, 80);
+    if (
+      biome == VOLCANIC_OCEANIC_MOUNTAINS ||
+      biome == ICE_SHEET_VOLCANIC_OCEANIC_MOUNTAINS ||
+      biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS
+    ) return new Color(165, 40, 40);
+    if (biome == VOLCANIC_ISLAND) return new Color(185, 160, 30);
+    if (biome == VOLCANIC_MOUNTAIN_ISLANDS) return new Color(185, 120, 30);
+    if (biome == OCEANIC_VOLCANIC_ARC) return new Color(135, 100, 20);
+
+    // Hotspots
+    if (
+      biome == ACTIVE_SHIELD_VOLCANO ||
+      biome == DORMANT_SHIELD_VOLCANO ||
+      biome == EXTINCT_SHIELD_VOLCANO ||
+      biome == ANCIENT_SHIELD_VOLCANO ||
+      biome == SUNKEN_SHIELD_VOLCANO
+    ) return new Color(255, 155, 0);
+
+    // Other Mountain Biomes
+    if (
+      biome == MOUNTAINS ||
+      biome == GLACIATED_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_MOUNTAINS ||
+      biome == ICE_SHEET_MOUNTAINS
+    ) return new Color(0, 220, 40);
+    if (
+      biome == OCEANIC_MOUNTAINS ||
+      biome == GLACIATED_OCEANIC_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_OCEANIC_MOUNTAINS ||
+      biome == ICE_SHEET_OCEANIC_MOUNTAINS
+    ) return new Color(0, 150, 10);
+    if (biome == OLD_MOUNTAINS) return new Color(0, 70, 10);
+
+    // Divergent Biomes
+    if (biome == RIFT_VALLEY || biome == RIFT_LAKE) return new Color(
+      130,
+      0,
+      110
     );
 
     return Color.BLACK;
@@ -895,13 +1087,29 @@ public class RegionGeneratorTests implements TestSetup {
   // Default biome color scheme, Karst Biomes invisible
   private Color heightBiomeColor(int biome) {
     // Oceans
-    if (biome == OCEAN) return new Color(0, 0, 220);
-    if (biome == OCEAN_REEF) return new Color(0, 80, 250);
-    if (biome == DEEP_OCEAN) return new Color(0, 0, 160);
-    if (biome == DEEP_OCEAN_TRENCH) return new Color(0, 0, 80);
+    if (biome == OCEAN_REEF || biome == OCEANIC_VOLCANIC_ARC) return new Color(
+      150,
+      160,
+      255
+    );
+    if (biome == OCEAN || biome == OCEAN_ATOLLS) return new Color(
+      120,
+      120,
+      240
+    );
+    if (biome == OCEAN_RIDGE) return new Color(105, 105, 210);
+    if (biome == DEEP_OCEAN || biome == DEEP_OCEAN_ATOLLS) return new Color(
+      90,
+      90,
+      180
+    );
+    if (biome == DEEP_OCEAN_TRENCH) return new Color(60, 60, 120);
     if (biome == LAKE) return new Color(30, 30, 255);
-
-    if (biome == SHORE) return new Color(255, 230, 200);
+    if (biome == SHORE || biome == TIDAL_FLATS) return new Color(230, 210, 130);
+    if (biome == GUANO_ISLAND) return new Color(170, 170, 170);
+    if (
+      biome == VOLCANIC_ISLAND || biome == VOLCANIC_MOUNTAIN_ISLANDS
+    ) return new Color(210, 90, 60);
 
     // Freshwater
     if (
@@ -909,9 +1117,10 @@ public class RegionGeneratorTests implements TestSetup {
       biome == OCEANIC_MOUNTAIN_LAKE ||
       biome == OLD_MOUNTAIN_LAKE ||
       biome == VOLCANIC_MOUNTAIN_LAKE ||
-      biome == PLATEAU_LAKE
+      biome == PLATEAU_LAKE ||
+      biome == RIFT_LAKE
     ) return new Color(120, 170, 200);
-    if (biome == RIVER) return new Color(100, 140, 180);
+    if (biome == RIVER || biome == RIVER_VALLEY) return new Color(0, 200, 255);
 
     // Lowland / Mixed Water
     if (biome == LOWLANDS || biome == TOWER_KARST_LAKE) return new Color(
@@ -941,6 +1150,7 @@ public class RegionGeneratorTests implements TestSetup {
       biome == STONE_CIRCLES ||
       biome == KNOB_AND_KETTLE
     ) return new Color(110, 190, 110);
+    if (biome == RIFT_VALLEY) return new Color(80, 0, 80);
 
     // Hills
     if (
@@ -997,9 +1207,11 @@ public class RegionGeneratorTests implements TestSetup {
     // Plateau
     if (
       biome == PLATEAU ||
+      biome == PLATEAU_WIDE ||
       biome == EXTREME_DOLINE_PLATEAU ||
       biome == CENOTE_PLATEAU ||
       biome == DOLINE_PLATEAU ||
+      biome == BURREN_PLATEAU ||
       biome == SHILIN_PLATEAU ||
       biome == ROCKY_PLATEAU
     ) return new Color(200, 60, 60);
@@ -1016,6 +1228,7 @@ public class RegionGeneratorTests implements TestSetup {
       10,
       250
     );
+    if (biome == COLLISIONAL_MOUNTAINS) return new Color(255, 100, 200);
 
     // Shield Volcanoes
     if (
@@ -1039,13 +1252,19 @@ public class RegionGeneratorTests implements TestSetup {
       biome == ICE_SHEET_SHIELD_VOLCANO ||
       biome == GLACIATED_SHIELD_VOLCANO ||
       biome == GLACIATED_MOUNTAINS ||
-      biome == GLACIALLY_CARVED_MOUNTAINS
+      biome == GLACIALLY_CARVED_MOUNTAINS ||
+      biome == ICE_SHEET_VOLCANIC_MOUNTAINS ||
+      biome == GLACIATED_VOLCANIC_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_VOLCANIC_MOUNTAINS
     ) return new Color(250, 160, 250);
     if (
       biome == ICE_SHEET_OCEANIC_MOUNTAINS ||
+      biome == ICE_SHEET_VOLCANIC_OCEANIC_MOUNTAINS ||
       biome == ICE_SHEET_OCEANIC_MOUNTAINS_EDGE ||
       biome == GLACIATED_OCEANIC_MOUNTAINS ||
-      biome == GLACIALLY_CARVED_OCEANIC_MOUNTAINS
+      biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_OCEANIC_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS
     ) return new Color(250, 180, 250);
     if (biome == ICE_SHEET_EDGE) return new Color(185, 185, 185);
 
@@ -1107,9 +1326,12 @@ public class RegionGeneratorTests implements TestSetup {
     ADD_CONTINENTS(Task.ADD_CONTINENTS),
     ANNOTATE_DISTANCE_TO_CELL_EDGE(Task.ANNOTATE_DISTANCE_TO_CELL_EDGE),
     FLOOD_FILL_SMALL_OCEANS(Task.FLOOD_FILL_SMALL_OCEANS),
+    ANNOTATE_BOUNDARY_TYPES(Task.FLOOD_FILL_SMALL_OCEANS),
     ANNOTATE_HOT_SPOT_AGE(Task.ADD_HOTSPOTS),
     ADD_ISLANDS(Task.ADD_ISLANDS),
-    ANNOTATE_DISTANCE_TO_OCEAN(Task.ANNOTATE_DISTANCE_TO_OCEAN),
+    ANNOTATE_DISTANCE_TO_OCEAN_AND_DEEP_OCEAN(
+      Task.ANNOTATE_DISTANCE_TO_DEEP_OCEAN
+    ),
     ANNOTATE_BASE_LAND_HEIGHT(Task.ANNOTATE_BASE_LAND_HEIGHT),
     ANNOTATE_DISTANCE_TO_WEST_COAST(Task.ANNOTATE_DISTANCE_TO_WEST_COAST),
     ADD_MOUNTAINS(Task.ADD_MOUNTAINS),
@@ -1125,6 +1347,7 @@ public class RegionGeneratorTests implements TestSetup {
     ANNOTATE_BIOMES_BY_HEIGHT(Task.CHOOSE_BIOMES),
     ANNOTATE_KARST_BIOMES(Task.CHOOSE_BIOMES),
     ANNOTATE_GLACIAL_BIOMES(Task.CHOOSE_BIOMES),
+    ANNOTATE_TECTONIC_BIOMES(Task.CHOOSE_BIOMES),
     ADD_RIVERS_AND_LAKES(Task.ADD_RIVERS_AND_LAKES),
     // Draw climate visualizations again after rivers, which modify rainfall
     RAINFALL_AFTER_RIVERS(Task.ADD_RIVERS_AND_LAKES),

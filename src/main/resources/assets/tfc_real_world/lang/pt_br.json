@@ -17,7 +17,13 @@
   "tfc_real_world.create_world.vertical_scale": "Raio Vertical do Mapa",
   "tfc_real_world.create_world.vertical_scale.tooltip": "Raio vertical do mapa em blocos.",
   "tfc_real_world.create_world.continent_from_map": "Continente do Mapa",
+  "tfc_real_world.create_world.continent_from_map.tooltip": "Terra e oceano a partir do mapa de continentes ou geração procedural.",
   "tfc_real_world.create_world.altitude_from_map": "Altitude do Mapa",
+  "tfc_real_world.create_world.altitude_from_map.tooltip": "Altura do terreno e profundidade oceânica a partir do mapa de altitude ou geração procedural.",
   "tfc_real_world.create_world.hotspots_from_map": "Pontos Quentes do Mapa",
-  "tfc_real_world.create_world.koppen_from_map": "Clima do Mapa"
+  "tfc_real_world.create_world.hotspots_from_map.tooltip": "Hotspots vulcânicos a partir do mapa ou geração procedural.",
+  "tfc_real_world.create_world.koppen_from_map": "Clima do Mapa",
+  "tfc_real_world.create_world.koppen_from_map.tooltip": "Temperatura, chuva e variação de chuva a partir do mapa Köppen ou geração procedural.",
+  "tfc_real_world.create_world.rifts_from_map": "Rifts do Mapa",
+  "tfc_real_world.create_world.rifts_from_map.tooltip": "Vales de rift terrestres e dorsais oceânicas a partir do mapa de limites de placas ou geração procedural."
 }

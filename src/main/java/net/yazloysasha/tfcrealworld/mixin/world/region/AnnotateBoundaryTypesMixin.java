@@ -4,20 +4,19 @@ import net.dries007.tfc.world.region.AnnotateBoundaryTypes;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.util.registry.DivergenceNoiseRegistry;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGDivergenceNoise;
+import net.yazloysasha.tfcrealworld.world.region.MapTectonics;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/**
- * When using a continent map, procedural plate-boundary divergence (Voronoi cell
- * edges) must not run — it conflicts with real-world coastlines and creates fake rifts.
- */
 @Mixin(value = AnnotateBoundaryTypes.class, remap = false)
 public class AnnotateBoundaryTypesMixin {
 
   @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
-  private void tfcrealworld$neutralizeDivergenceFromMap(
+  private void tfcrealworld$applyDivergenceFromMap(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
@@ -25,9 +24,20 @@ public class AnnotateBoundaryTypesMixin {
       return;
     }
 
-    for (final Region.Point point : context.region.points()) {
-      point.divergence = 0f;
+    if (!TFCRealWorldConfig.TECTONICS_FROM_MAP.get()) {
+      return;
     }
-    ci.cancel();
+
+    final RegionGenerator generator = context.generator();
+
+    if (MapTectonics.isActive(generator)) {
+      final PNGDivergenceNoise divergenceNoise = DivergenceNoiseRegistry.get(
+        generator
+      );
+      for (final Region.Point point : context.region.points()) {
+        point.divergence = divergenceNoise.getDivergence(point.x, point.z);
+      }
+      ci.cancel();
+    }
   }
 }

@@ -8,15 +8,18 @@ import net.dries007.tfc.world.region.RegionGenerator;
 import net.dries007.tfc.world.region.Units;
 import net.dries007.tfc.world.settings.Settings;
 import net.minecraft.util.Mth;
+import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.DivergenceNoiseRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedRainfallVarianceNoise;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedTemperatureNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGDivergenceNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
@@ -88,6 +91,21 @@ public class RegionGeneratorMixin {
 
         GlobalOceanDistanceCache.initialize(continentNoise);
         GlobalWestCoastDistanceCache.initialize(continentNoise);
+
+        if (TFCRealWorldConfig.TECTONICS_FROM_MAP.get()) {
+          PNGDivergenceNoise divergenceNoise = PNGDivergenceNoise.tryCreate(
+            horizontalScale,
+            verticalScale
+          );
+          if (divergenceNoise != null) {
+            DivergenceNoiseRegistry.register(instance, divergenceNoise);
+          } else {
+            TFCRealWorld.LOGGER.warn(
+              "Tectonics from map enabled but divergence.png is missing for profile {}",
+              TFCRealWorldConfig.MAP_PROFILE.get()
+            );
+          }
+        }
       }
 
       if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {

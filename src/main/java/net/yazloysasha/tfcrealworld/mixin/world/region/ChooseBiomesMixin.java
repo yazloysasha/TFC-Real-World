@@ -7,6 +7,10 @@ import net.dries007.tfc.world.region.ChooseBiomes;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.util.registry.DivergenceNoiseRegistry;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGDivergenceNoise;
+import net.yazloysasha.tfcrealworld.world.region.MapTectonics;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,39 +21,99 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ChooseBiomesMixin {
 
   @Unique
-  private static final int[] shallowOceanBiomes = new int[] {
-    OCEAN,
-    OCEAN_REEF,
+  private static final int[] RIFT_VALLEY_BIOMES = {
+    RIFT_VALLEY,
+    RIFT_VALLEY,
+    RIFT_VALLEY,
+    RIFT_LAKE,
+    RIFT_LAKE,
   };
 
-  /**
-   * Maps ETOPO-derived ocean depth (1–15) to TFC 4.2 ocean biomes, aligned with vanilla
-   * discrete {@code oceanDepth} classes where possible.
-   */
-  @Inject(method = "apply", at = @At("TAIL"))
-  private void tfcrealworld$overrideOceanBiomesFromAltitudeMap(
+  @Unique
+  private static final int[] SHALLOW_OCEAN_BIOMES = { OCEAN, OCEAN_REEF };
+
+  @Unique
+  private static final int[] LAND_RIFT_SPAWN_ROLL = { 1, 0 };
+
+  @Inject(method = "apply", at = @At("HEAD"))
+  private void tfcrealworld$disableVanillaCellEdgeRifts(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    if (!TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
+    if (!MapTectonics.isActive(context.generator())) {
+      return;
+    }
+    for (final Region.Point point : context.region.points()) {
+      point.divergence = 0f;
+    }
+  }
+
+  @Inject(method = "apply", at = @At("TAIL"))
+  private void tfcrealworld$applyMapBiomes(
+    RegionGenerator.Context context,
+    CallbackInfo ci
+  ) {
+    final RegionGenerator generator = context.generator();
+    final boolean altitudeFromMap = TFCRealWorldConfig.ALTITUDE_FROM_MAP.get();
+    final PNGDivergenceNoise divergenceNoise = MapTectonics.isActive(generator)
+      ? DivergenceNoiseRegistry.get(generator)
+      : null;
+
+    if (divergenceNoise == null && !altitudeFromMap) {
       return;
     }
 
     final ChooseBiomesAccessor accessor = (ChooseBiomesAccessor) this;
-
     final Region region = context.region;
-    final Area blobArea = context.generator().biomeArea.get();
+    final Area blobArea = divergenceNoise != null || altitudeFromMap
+      ? context.generator().biomeArea.get()
+      : null;
     final long rngSeed = context.random.nextLong();
 
     for (final Region.Point point : region.points()) {
-      if (point.land() || point.island() || point.mountain()) {
-        continue;
+      if (divergenceNoise != null) {
+        point.divergence = divergenceNoise.getDivergence(point.x, point.z);
+        if (
+          point.land() &&
+          !point.island() &&
+          point.hotSpotAge == 0 &&
+          MapTectonics.isLandRiftCore(divergenceNoise, point.x, point.z)
+        ) {
+          final int areaSeed = blobArea.get(point.x, point.z);
+          if (
+            accessor.tfcrealworld$invokeRandomSeededFrom(
+              rngSeed,
+              areaSeed,
+              LAND_RIFT_SPAWN_ROLL
+            ) ==
+            1
+          ) {
+            if (point.distanceToOcean > 2) {
+              point.biome = accessor.tfcrealworld$invokeRandomSeededFrom(
+                rngSeed,
+                areaSeed ^ 0x5f3759df,
+                RIFT_VALLEY_BIOMES
+              );
+            } else {
+              point.biome = RIFT_VALLEY;
+            }
+          }
+        }
       }
-      if (point.hotSpotAge > 0 || point.barrierIsland()) {
+
+      if (!altitudeFromMap || tfcrealworld$skipOceanBiome(point)) {
         continue;
       }
 
-      final int depth = Byte.toUnsignedInt(point.oceanDepth);
+      final int rawDepth = Byte.toUnsignedInt(point.oceanDepth);
+      if (rawDepth >= 10) {
+        point.biome = DEEP_OCEAN_TRENCH;
+        continue;
+      }
+
+      final int depth = Byte.toUnsignedInt(
+        PNGAltitudeNoise.bucketFromRawOceanDepth(rawDepth)
+      );
       final int areaSeed = blobArea.get(point.x, point.z);
 
       if (depth <= 1) {
@@ -58,23 +122,37 @@ public class ChooseBiomesMixin {
         point.biome = point.temperature > 12 && point.distanceToLand > 4
           ? OCEAN_ATOLLS
           : OCEAN;
-      } else if (depth == 3) {
-        point.biome = OCEAN_RIDGE;
-      } else if (depth >= 10) {
-        point.biome = DEEP_OCEAN_TRENCH;
-      } else if (depth >= 7) {
+      } else if (depth == PNGAltitudeNoise.ABYSSAL_OCEAN_DEPTH) {
+        point.biome = DEEP_OCEAN;
+      } else if (depth >= 4) {
         point.biome = point.temperature > 12 && point.distanceToLand > 3
           ? DEEP_OCEAN_ATOLLS
           : DEEP_OCEAN;
-      } else if (depth >= 4) {
-        point.biome = DEEP_OCEAN;
       } else {
         point.biome = accessor.tfcrealworld$invokeRandomSeededFrom(
           rngSeed,
           areaSeed,
-          shallowOceanBiomes
+          SHALLOW_OCEAN_BIOMES
         );
       }
+
+      if (
+        divergenceNoise != null &&
+        MapTectonics.isNearOceanRidge(divergenceNoise, point.x, point.z)
+      ) {
+        point.biome = OCEAN_RIDGE;
+      }
     }
+  }
+
+  @Unique
+  private static boolean tfcrealworld$skipOceanBiome(Region.Point point) {
+    return (
+      point.land() ||
+      point.island() ||
+      point.mountain() ||
+      point.hotSpotAge > 0 ||
+      point.barrierIsland()
+    );
   }
 }

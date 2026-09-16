@@ -17,7 +17,13 @@
   "tfc_real_world.create_world.vertical_scale": "垂直地图半径",
   "tfc_real_world.create_world.vertical_scale.tooltip": "垂直地图半径（以方块为单位）。",
   "tfc_real_world.create_world.continent_from_map": "从地图生成大陆",
+  "tfc_real_world.create_world.continent_from_map.tooltip": "按大陆地图生成陆海分布，或程序化生成。",
   "tfc_real_world.create_world.altitude_from_map": "从地图生成海拔",
+  "tfc_real_world.create_world.altitude_from_map.tooltip": "按海拔地图生成陆地高度与海洋深度，或程序化生成。",
   "tfc_real_world.create_world.hotspots_from_map": "从地图生成热点",
-  "tfc_real_world.create_world.koppen_from_map": "从地图生成气候"
+  "tfc_real_world.create_world.hotspots_from_map.tooltip": "按地图生成火山热点，或程序化生成。",
+  "tfc_real_world.create_world.koppen_from_map": "从地图生成气候",
+  "tfc_real_world.create_world.koppen_from_map.tooltip": "按柯本气候地图生成温度、降水和降水变化，或程序化生成。",
+  "tfc_real_world.create_world.rifts_from_map": "从地图生成裂谷",
+  "tfc_real_world.create_world.rifts_from_map.tooltip": "按板块边界地图生成陆地裂谷与大洋中脊，或程序化生成。"
 }

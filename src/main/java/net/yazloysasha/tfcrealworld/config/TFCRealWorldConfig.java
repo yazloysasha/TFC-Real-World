@@ -45,6 +45,7 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Boolean> ALTITUDE_FROM_MAP;
   public static final ConfigOption<Boolean> HOTSPOTS_FROM_MAP;
   public static final ConfigOption<Boolean> KOPPEN_FROM_MAP;
+  public static final ConfigOption<Boolean> TECTONICS_FROM_MAP;
 
   private static final List<ConfigOption<?>> allOptions;
 
@@ -233,6 +234,12 @@ public class TFCRealWorldConfig {
       "Generate climate parameters (temperature, rainfall, rainfall variance) from Köppen climate map or procedurally",
       true
     );
+    TECTONICS_FROM_MAP = new ConfigOption<>(
+      BUILDER,
+      "tectonics_from_map",
+      "Generate land rift valleys and mid-ocean ridges from plate-boundary map or procedurally",
+      true
+    );
 
     BUILDER.pop();
     SPEC = BUILDER.build();
@@ -259,7 +266,8 @@ public class TFCRealWorldConfig {
       CONTINENT_FROM_MAP,
       ALTITUDE_FROM_MAP,
       HOTSPOTS_FROM_MAP,
-      KOPPEN_FROM_MAP
+      KOPPEN_FROM_MAP,
+      TECTONICS_FROM_MAP
     );
   }
 
@@ -285,7 +293,8 @@ public class TFCRealWorldConfig {
     boolean continentFromMap,
     boolean altitudeFromMap,
     boolean hotspotsFromMap,
-    boolean koppenFromMap
+    boolean koppenFromMap,
+    boolean tectonicsFromMap
   ) {
     MAP_PROFILE.setServerValue(mapProfile);
     SPAWN_MODE.setServerValue(spawnMode);
@@ -309,6 +318,7 @@ public class TFCRealWorldConfig {
     ALTITUDE_FROM_MAP.setServerValue(altitudeFromMap);
     HOTSPOTS_FROM_MAP.setServerValue(hotspotsFromMap);
     KOPPEN_FROM_MAP.setServerValue(koppenFromMap);
+    TECTONICS_FROM_MAP.setServerValue(tectonicsFromMap);
   }
 
   public static void clearServerConfig() {

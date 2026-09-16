@@ -17,7 +17,13 @@
   "tfc_real_world.create_world.vertical_scale": "Vertical Map Radius",
   "tfc_real_world.create_world.vertical_scale.tooltip": "Vertical map radius in blocks.",
   "tfc_real_world.create_world.continent_from_map": "Continent From Map",
+  "tfc_real_world.create_world.continent_from_map.tooltip": "Land and ocean layout from continent map, or procedural generation.",
   "tfc_real_world.create_world.altitude_from_map": "Altitude From Map",
+  "tfc_real_world.create_world.altitude_from_map.tooltip": "Land height and ocean depth from altitude map, or procedural generation.",
   "tfc_real_world.create_world.hotspots_from_map": "Hotspots From Map",
-  "tfc_real_world.create_world.koppen_from_map": "Climate From Map"
+  "tfc_real_world.create_world.hotspots_from_map.tooltip": "Volcanic hotspots from map, or procedural generation.",
+  "tfc_real_world.create_world.koppen_from_map": "Climate From Map",
+  "tfc_real_world.create_world.koppen_from_map.tooltip": "Temperature, rainfall, and rainfall variance from Köppen climate map, or procedural generation.",
+  "tfc_real_world.create_world.rifts_from_map": "Rifts From Map",
+  "tfc_real_world.create_world.rifts_from_map.tooltip": "Land rift valleys and mid-ocean ridges from the plate-boundary map, or procedural generation."
 }

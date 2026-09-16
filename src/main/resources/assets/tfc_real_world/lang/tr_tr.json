@@ -17,7 +17,13 @@
   "tfc_real_world.create_world.vertical_scale": "Dikey Harita Yarıçapı",
   "tfc_real_world.create_world.vertical_scale.tooltip": "Dikey harita yarıçapı (blok cinsinden).",
   "tfc_real_world.create_world.continent_from_map": "Haritadan Kıta",
+  "tfc_real_world.create_world.continent_from_map.tooltip": "Kara ve okyanus düzeni kıta haritasından veya prosedürel üretim.",
   "tfc_real_world.create_world.altitude_from_map": "Haritadan Yükseklik",
+  "tfc_real_world.create_world.altitude_from_map.tooltip": "Kara yüksekliği ve okyanus derinliği yükseklik haritasından veya prosedürel üretim.",
   "tfc_real_world.create_world.hotspots_from_map": "Haritadan Sıcak Noktalar",
-  "tfc_real_world.create_world.koppen_from_map": "Haritadan İklim"
+  "tfc_real_world.create_world.hotspots_from_map.tooltip": "Volkanik sıcak noktalar haritadan veya prosedürel üretim.",
+  "tfc_real_world.create_world.koppen_from_map": "Haritadan İklim",
+  "tfc_real_world.create_world.koppen_from_map.tooltip": "Sıcaklık, yağış ve yağış değişkenliği Köppen iklim haritasından veya prosedürel üretim.",
+  "tfc_real_world.create_world.rifts_from_map": "Haritadan Riftler",
+  "tfc_real_world.create_world.rifts_from_map.tooltip": "Kara rift vadileri ve okyanus sırtları plaka sınır haritasından veya prosedürel üretim."
 }
