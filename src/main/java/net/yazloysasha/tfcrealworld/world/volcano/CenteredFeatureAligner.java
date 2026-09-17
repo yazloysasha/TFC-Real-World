@@ -68,6 +68,9 @@ public final class CenteredFeatureAligner {
       if (isShieldHotspotBiome(center.biome)) {
         continue;
       }
+      if (isLake(center.biome)) {
+        continue;
+      }
       center.biome = entry.getIntValue();
     }
   }

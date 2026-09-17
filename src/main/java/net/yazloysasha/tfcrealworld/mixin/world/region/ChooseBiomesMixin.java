@@ -49,6 +49,62 @@ public class ChooseBiomesMixin {
     OCEANIC_VOLCANIC_ARC,
   };
 
+  @Unique
+  private static final double ICE_SHEET_EDGE_MELTWATER_LAKE_CHANCE = 0.05;
+
+  @Unique
+  private static final float LAKE_RAINFALL_BOOST = 0.09f;
+
+  @Unique
+  private static void tfcrealworld$rollMeltwaterLakesOnIceSheetEdge(
+    Region region,
+    long worldSeed
+  ) {
+    if (!TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
+      return;
+    }
+    for (final Region.Point point : region.points()) {
+      if (point == null || !point.land() || point.biome != ICE_SHEET_EDGE) {
+        continue;
+      }
+      if (
+        tfcrealworld$seededChance(
+          worldSeed,
+          point.x,
+          point.z,
+          0x7a4f2c91e83b05d6L,
+          ICE_SHEET_EDGE_MELTWATER_LAKE_CHANCE
+        )
+      ) {
+        point.setLake();
+        point.rainfall += LAKE_RAINFALL_BOOST * (500f - point.rainfall);
+        point.biome = lakeFor(ICE_SHEET_EDGE);
+      }
+    }
+  }
+
+  @Unique
+  private static boolean tfcrealworld$seededChance(
+    long worldSeed,
+    int gridX,
+    int gridZ,
+    long salt,
+    double chance
+  ) {
+    long hash = worldSeed ^ salt;
+    hash ^= (long) gridX * 0x9E3779B97F4A7C15L;
+    hash ^= (long) gridZ * 0x6C078965L;
+    hash = tfcrealworld$mix64(hash);
+    return (hash >>> 11) * (1.0 / (1L << 53)) < chance;
+  }
+
+  @Unique
+  private static long tfcrealworld$mix64(long z) {
+    z = (z ^ (z >>> 33)) * 0xff51afd7ed558ccdL;
+    z = (z ^ (z >>> 33)) * 0xc4ceb9fe1a85ec53L;
+    return z ^ (z >>> 33);
+  }
+
   @Redirect(
     method = "apply",
     at = @At(
@@ -147,6 +203,11 @@ public class ChooseBiomesMixin {
       }
     }
 
+    tfcrealworld$rollMeltwaterLakesOnIceSheetEdge(
+      context.region,
+      generator.seed().seed()
+    );
+
     if (
       tfcrealworld$shouldAlignCenteredVolcanoes(
         altitudeFromMap,
@@ -182,6 +243,8 @@ public class ChooseBiomesMixin {
       !point.land() ||
       point.island() ||
       point.hotSpotAge > 0 ||
+      point.lake() ||
+      isLake(point.biome) ||
       !MapTectonics.isLandRiftCore(divergenceNoise, point.x, point.z)
     ) {
       return;
