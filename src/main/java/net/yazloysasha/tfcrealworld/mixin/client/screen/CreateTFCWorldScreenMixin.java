@@ -2,12 +2,14 @@ package net.yazloysasha.tfcrealworld.mixin.client.screen;
 
 import com.mojang.serialization.Codec;
 import java.util.List;
+import java.util.function.Consumer;
 import net.dries007.tfc.client.screen.CreateTFCWorldScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.components.OptionsList;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
@@ -21,6 +23,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CreateTFCWorldScreen.class)
@@ -85,6 +88,15 @@ public class CreateTFCWorldScreenMixin {
 
   @Unique
   private OptionInstance<Boolean> koppenFromMap;
+
+  @Unique
+  private double scaleRatio = 2.0;
+
+  @Unique
+  private boolean updatingScales = false;
+
+  @Unique
+  private int tfcrealworld$kmOptionCount;
 
   @Unique
   private static String getCaption(String suffix) {
@@ -184,6 +196,73 @@ public class CreateTFCWorldScreenMixin {
   }
 
   @Unique
+  private static OptionInstance<Integer> kmOptionWithCallback(
+    String caption,
+    int min,
+    int max,
+    int defaultValue,
+    Consumer<Integer> callback
+  ) {
+    return new OptionInstance<>(
+      caption,
+      OptionInstance.cachedConstantTooltip(
+        Component.translatable(caption + ".tooltip")
+      ),
+      (text, value) ->
+        Options.genericValueLabel(
+          text,
+          Component.translatable(
+            "tfc.settings.km",
+            String.format("%.1f", value / 1000.0)
+          )
+        ),
+      new OptionInstance.IntRange(min, max),
+      defaultValue,
+      callback
+    );
+  }
+
+  @Unique
+  private void updateVerticalScaleFromHorizontal(int newHorizontalScale) {
+    if (updatingScales || verticalScale == null) {
+      return;
+    }
+    updatingScales = true;
+    try {
+      int newVerticalScale = Mth.clamp(
+        (int) Math.round(newHorizontalScale / scaleRatio),
+        TFCRealWorldConfig.VERTICAL_SCALE.getMin(),
+        TFCRealWorldConfig.VERTICAL_SCALE.getMax()
+      );
+      if (verticalScale.get() != newVerticalScale) {
+        verticalScale.set(newVerticalScale);
+      }
+    } finally {
+      updatingScales = false;
+    }
+  }
+
+  @Unique
+  private void updateHorizontalScaleFromVertical(int newVerticalScale) {
+    if (updatingScales || horizontalScale == null) {
+      return;
+    }
+    updatingScales = true;
+    try {
+      int newHorizontalScale = Mth.clamp(
+        (int) Math.round(newVerticalScale * scaleRatio),
+        TFCRealWorldConfig.HORIZONTAL_SCALE.getMin(),
+        TFCRealWorldConfig.HORIZONTAL_SCALE.getMax()
+      );
+      if (horizontalScale.get() != newHorizontalScale) {
+        horizontalScale.set(newHorizontalScale);
+      }
+    } finally {
+      updatingScales = false;
+    }
+  }
+
+  @Unique
   private OptionInstance<String> stringOptionWithProfileCallback(
     String caption,
     List<String> values,
@@ -237,11 +316,28 @@ public class CreateTFCWorldScreenMixin {
       southEdge,
       northEdge
     );
-    spawnCenterX.set(profile.getSpawnCenterX());
-    spawnCenterZ.set(profile.getSpawnCenterZ());
+    if (spawnCenterX != null) {
+      spawnCenterX.set(profile.getSpawnCenterX());
+    }
+    if (spawnCenterZ != null) {
+      spawnCenterZ.set(profile.getSpawnCenterZ());
+    }
 
-    horizontalScale.set(profile.horizontalScale());
-    verticalScale.set(profile.verticalScale());
+    int profileHorizontalScale = profile.horizontalScale();
+    int profileVerticalScale = profile.verticalScale();
+    scaleRatio = (double) profileHorizontalScale / profileVerticalScale;
+
+    updatingScales = true;
+    try {
+      if (horizontalScale != null) {
+        horizontalScale.set(profileHorizontalScale);
+      }
+      if (verticalScale != null) {
+        verticalScale.set(profileVerticalScale);
+      }
+    } finally {
+      updatingScales = false;
+    }
 
     final CreateTFCWorldScreenAccessor accessor =
       (CreateTFCWorldScreenAccessor) (Object) this;
@@ -268,8 +364,65 @@ public class CreateTFCWorldScreenMixin {
     options.addSmall(hotspotsFromMap, koppenFromMap);
   }
 
-  @Inject(method = "init", at = @At("HEAD"))
+  @Redirect(
+    method = "init()V",
+    at = @At(
+      value = "INVOKE",
+      target = "Lnet/dries007/tfc/client/screen/CreateTFCWorldScreen;kmOption(Ljava/lang/String;III)Lnet/minecraft/client/OptionInstance;",
+      remap = false
+    )
+  )
+  private OptionInstance<Integer> tfcrealworld$expandTfcKmOptionRange(
+    String caption,
+    int min,
+    int max,
+    int defaultValue
+  ) {
+    tfcrealworld$kmOptionCount++;
+    return switch (tfcrealworld$kmOptionCount) {
+      case 1 -> CreateTFCWorldScreenAccessor.tfcrealworld$invokeKmOption(
+        caption,
+        TFCRealWorldConfig.SPAWN_DISTANCE.getMin(),
+        TFCRealWorldConfig.SPAWN_DISTANCE.getMax(),
+        TFCRealWorldConfig.SPAWN_DISTANCE.get()
+      );
+      case 2 -> CreateTFCWorldScreenAccessor.tfcrealworld$invokeKmOption(
+        caption,
+        TFCRealWorldConfig.SPAWN_CENTER_X.getMin(),
+        TFCRealWorldConfig.SPAWN_CENTER_X.getMax(),
+        TFCRealWorldConfig.SPAWN_CENTER_X.get()
+      );
+      case 3 -> CreateTFCWorldScreenAccessor.tfcrealworld$invokeKmOption(
+        caption,
+        TFCRealWorldConfig.SPAWN_CENTER_Z.getMin(),
+        TFCRealWorldConfig.SPAWN_CENTER_Z.getMax(),
+        TFCRealWorldConfig.SPAWN_CENTER_Z.get()
+      );
+      case 4 -> CreateTFCWorldScreenAccessor.tfcrealworld$invokeKmOption(
+        caption,
+        TFCRealWorldConfig.TEMPERATURE_SCALE.getMin(),
+        TFCRealWorldConfig.TEMPERATURE_SCALE.getMax(),
+        TFCRealWorldConfig.TEMPERATURE_SCALE.get()
+      );
+      case 5 -> CreateTFCWorldScreenAccessor.tfcrealworld$invokeKmOption(
+        caption,
+        TFCRealWorldConfig.RAINFALL_SCALE.getMin(),
+        TFCRealWorldConfig.RAINFALL_SCALE.getMax(),
+        TFCRealWorldConfig.RAINFALL_SCALE.get()
+      );
+      default -> CreateTFCWorldScreenAccessor.tfcrealworld$invokeKmOption(
+        caption,
+        min,
+        max,
+        defaultValue
+      );
+    };
+  }
+
+  @Inject(method = "init()V", at = @At("HEAD"))
   private void tfcrealworld$initAdditionalOptions(CallbackInfo ci) {
+    tfcrealworld$kmOptionCount = 0;
+
     List<String> availableProfiles = ProfileManager.discoverProfiles();
     String defaultProfile = TFCRealWorldConfig.MAP_PROFILE.get();
     if (!availableProfiles.contains(defaultProfile)) {
@@ -298,17 +451,24 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.getSouthEdgeLatitude(),
       TFCRealWorldConfig.getNorthEdgeLatitude()
     );
-    horizontalScale = CreateTFCWorldScreenAccessor.tfcrealworld$invokeKmOption(
+
+    int initialHorizontalScale = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
+    int initialVerticalScale = TFCRealWorldConfig.VERTICAL_SCALE.get();
+    scaleRatio = (double) initialHorizontalScale / initialVerticalScale;
+
+    horizontalScale = kmOptionWithCallback(
       getCaption("create_world.horizontal_scale"),
       TFCRealWorldConfig.HORIZONTAL_SCALE.getMin(),
       TFCRealWorldConfig.HORIZONTAL_SCALE.getMax(),
-      TFCRealWorldConfig.HORIZONTAL_SCALE.get()
+      initialHorizontalScale,
+      this::updateVerticalScaleFromHorizontal
     );
-    verticalScale = CreateTFCWorldScreenAccessor.tfcrealworld$invokeKmOption(
+    verticalScale = kmOptionWithCallback(
       getCaption("create_world.vertical_scale"),
       TFCRealWorldConfig.VERTICAL_SCALE.getMin(),
       TFCRealWorldConfig.VERTICAL_SCALE.getMax(),
-      TFCRealWorldConfig.VERTICAL_SCALE.get()
+      initialVerticalScale,
+      this::updateHorizontalScaleFromVertical
     );
     continentFromMap = OptionInstance.createBoolean(
       getCaption("create_world.continent_from_map"),
@@ -333,7 +493,7 @@ public class CreateTFCWorldScreenMixin {
   }
 
   @Inject(
-    method = "init",
+    method = "init()V",
     at = @At(
       value = "INVOKE",
       target = "Lnet/minecraft/client/gui/components/OptionsList;addSmall(Lnet/minecraft/client/OptionInstance;Lnet/minecraft/client/OptionInstance;)V",
