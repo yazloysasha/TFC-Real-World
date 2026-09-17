@@ -508,6 +508,9 @@ public class RegionGeneratorTests implements TestSetup {
       for (int dz = 0; dz < size; dz++) {
         final int gridX = centerX - radius + dx;
         final int gridZ = centerZ - radius + dz;
+        if (!MapTileGridBounds.isInsidePrimaryMapTile(gridX, gridZ)) {
+          continue;
+        }
         final Region.Point point = generator.getOrCreateRegionPoint(
           gridX,
           gridZ
@@ -593,7 +596,7 @@ public class RegionGeneratorTests implements TestSetup {
 
   private void logBiomeStatistics(Map<Integer, Integer> biomeCounts) {
     LOGGER.info(
-      "=== Biome Statistics (in-game: biome layers + rivers, cell center) ==="
+      "=== Biome Statistics (biome layers + rivers, cell center) ==="
     );
     final int totalBiomeCells = biomeCounts
       .values()

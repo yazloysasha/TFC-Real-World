@@ -229,6 +229,9 @@ public class BiomeCoverageContinuousTest implements TestSetup {
         for (int dz = 0; dz < size; dz++) {
           final int gridX = centerX - radius + dx;
           final int gridZ = centerZ - radius + dz;
+          if (!MapTileGridBounds.isInsidePrimaryMapTile(gridX, gridZ)) {
+            continue;
+          }
           present.add(
             resolveWorldBiomeLayerId(generator, biomeLayer, gridX, gridZ)
           );
