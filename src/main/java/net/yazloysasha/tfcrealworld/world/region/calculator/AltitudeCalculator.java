@@ -17,44 +17,36 @@ public class AltitudeCalculator extends RegionPointCalculator {
       return;
     }
 
-    final PNGAltitudeNoise altitudeNoise = AltitudeNoiseRegistry.get(generator);
-    if (altitudeNoise == null) {
-      return;
-    }
-
+    final PNGAltitudeNoise noise = resolveNoise(generator);
+    final Region.Point[] data = region.data();
     final int minX = region.minX();
     final int minZ = region.minZ();
     final int sizeX = region.sizeX();
 
-    forEachPoint(region, point -> {
-      final int index = findPointIndex(region.data(), point);
-      if (index == -1) return;
-
-      final int localX = index % sizeX;
-      final int localZ = index / sizeX;
-      final int gridX = minX + localX;
-      final int gridZ = minZ + localZ;
-
-      if (point.land()) {
-        point.baseLandHeight = altitudeNoise.getBaseLandHeight(
-          (double) gridX,
-          (double) gridZ
-        );
-      } else {
-        point.baseOceanDepth = altitudeNoise.getBaseOceanDepth(
-          (double) gridX,
-          (double) gridZ
-        );
-      }
-    });
-  }
-
-  private int findPointIndex(Region.Point[] data, Region.Point point) {
     for (int i = 0; i < data.length; i++) {
-      if (data[i] == point) {
-        return i;
+      final Region.Point point = data[i];
+      if (point == null) {
+        continue;
+      }
+      final int gridX = minX + (i % sizeX);
+      final int gridZ = minZ + (i / sizeX);
+      if (point.land()) {
+        point.baseLandHeight = noise.getBaseLandHeight(gridX, gridZ);
+      } else {
+        point.baseOceanDepth = noise.getBaseOceanDepth(gridX, gridZ);
       }
     }
-    return -1;
+  }
+
+  private static PNGAltitudeNoise resolveNoise(RegionGenerator generator) {
+    PNGAltitudeNoise altitudeNoise = AltitudeNoiseRegistry.get(generator);
+    if (altitudeNoise == null) {
+      altitudeNoise = new PNGAltitudeNoise(
+        TFCRealWorldConfig.HORIZONTAL_SCALE.get(),
+        TFCRealWorldConfig.VERTICAL_SCALE.get()
+      );
+      AltitudeNoiseRegistry.register(generator, altitudeNoise);
+    }
+    return altitudeNoise;
   }
 }

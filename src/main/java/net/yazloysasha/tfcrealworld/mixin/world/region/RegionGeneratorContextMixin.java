@@ -2,6 +2,7 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.minecraft.world.level.levelgen.RandomSource;
 import net.yazloysasha.tfcrealworld.util.helpers.RegionContextHolder;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,6 +22,10 @@ public abstract class RegionGeneratorContextMixin {
   @Final
   Region region;
 
+  @Shadow
+  @Final
+  RandomSource random;
+
   @Invoker("generator")
   public abstract RegionGenerator tfcrealworld$invokeGenerator();
 
@@ -32,7 +37,7 @@ public abstract class RegionGeneratorContextMixin {
     RegionGenerator.Task task,
     CallbackInfo ci
   ) {
-    RegionContextHolder.set(region, tfcrealworld$invokeGenerator());
+    RegionContextHolder.set(region, tfcrealworld$invokeGenerator(), random);
   }
 
   @Inject(

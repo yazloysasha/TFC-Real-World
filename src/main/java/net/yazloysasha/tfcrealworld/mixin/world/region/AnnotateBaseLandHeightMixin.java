@@ -14,8 +14,7 @@ public class AnnotateBaseLandHeightMixin {
 
   @Inject(
     method = "apply(Lnet/dries007/tfc/world/region/RegionGenerator$Context;)V",
-    at = @At("HEAD"),
-    cancellable = true,
+    at = @At("TAIL"),
     remap = false
   )
   private void tfcrealworld$overrideBaseLandHeight(CallbackInfo ci) {
@@ -30,6 +29,5 @@ public class AnnotateBaseLandHeightMixin {
     }
 
     new AltitudeCalculator().calculate(region, generator);
-    ci.cancel();
   }
 }

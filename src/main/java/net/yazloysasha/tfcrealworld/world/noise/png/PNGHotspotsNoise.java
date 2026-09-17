@@ -18,25 +18,24 @@ public class PNGHotspotsNoise extends BasePNGNoise {
     return brightness / 255.0;
   }
 
-  public byte getHotSpotAge(double x, double z) {
-    double[] imageCoords = tileToImage(x, z);
-    double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
-
+  public static byte ageFromBrightness(double brightness) {
     if (brightness <= 32.0) {
       return 0;
-    } else if (brightness <= 95.5) {
-      return 4;
-    } else if (brightness <= 159.5) {
-      return 3;
-    } else if (brightness <= 223.5) {
-      return 2;
-    } else {
-      return 1;
     }
+    if (brightness <= 95.5) {
+      return 4;
+    }
+    if (brightness <= 159.5) {
+      return 3;
+    }
+    if (brightness <= 223.5) {
+      return 2;
+    }
+    return 1;
   }
 
-  public boolean hasHotspot(double x, double z) {
-    return getHotSpotAge(x, z) > 0;
+  public byte getHotSpotAge(double x, double z) {
+    return ageFromBrightness(sampleBrightnessAtWorld(x, z));
   }
 
   public boolean hasActiveHotspot(double x, double z) {

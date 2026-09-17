@@ -103,8 +103,8 @@ public class ProjectionManager {
     double tileCenterLongitude = (west + east) / 2.0;
     double tileCenterLatitude = (southEdgeLatitude + northEdgeLatitude) / 2.0;
 
-    double tileRadiusBlocksX = horizontalScale / 2.0;
-    double tileRadiusBlocksZ = verticalScale / 2.0;
+    double tileRadiusBlocksX = horizontalScale;
+    double tileRadiusBlocksZ = verticalScale;
     double tileRadiusGridX =
       tileRadiusBlocksX / TFCRealWorld.GRID_WIDTH_IN_BLOCK;
     double tileRadiusGridZ =

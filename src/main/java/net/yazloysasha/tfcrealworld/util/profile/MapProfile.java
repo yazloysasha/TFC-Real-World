@@ -38,10 +38,8 @@ public record MapProfile(
   private static final Integer DEFAULT_INDEX = Integer.MAX_VALUE;
   private static final double DEFAULT_SPAWN_CENTER_LONGITUDE = 12.4964;
   private static final double DEFAULT_SPAWN_CENTER_LATITUDE = 41.9028;
-  private static final int DEFAULT_HORIZONTAL_SCALE =
-    TFCRealWorldConfig.DEFAULT_SCALE * 2;
-  private static final int DEFAULT_VERTICAL_SCALE =
-    TFCRealWorldConfig.DEFAULT_SCALE;
+  private static final int DEFAULT_HORIZONTAL_SCALE = 40_000;
+  private static final int DEFAULT_VERTICAL_SCALE = 20_000;
   private static final double DEFAULT_WEST_EDGE_LONGITUDE = -170.0;
   private static final double DEFAULT_EAST_EDGE_LONGITUDE = 190.0;
   private static final double DEFAULT_SOUTH_EDGE_LATITUDE = -90.0;
@@ -140,10 +138,14 @@ public record MapProfile(
         : DEFAULT_SPAWN_CENTER_LATITUDE,
       json.has("horizontal_scale")
         ? json.get("horizontal_scale").getAsInt()
-        : DEFAULT_HORIZONTAL_SCALE,
+        : json.has("horizontal_tile_size")
+          ? json.get("horizontal_tile_size").getAsInt() / 2
+          : DEFAULT_HORIZONTAL_SCALE,
       json.has("vertical_scale")
         ? json.get("vertical_scale").getAsInt()
-        : DEFAULT_VERTICAL_SCALE,
+        : json.has("vertical_tile_size")
+          ? json.get("vertical_tile_size").getAsInt() / 2
+          : DEFAULT_VERTICAL_SCALE,
       json.has("west_edge_longitude")
         ? json.get("west_edge_longitude").getAsDouble()
         : DEFAULT_WEST_EDGE_LONGITUDE,

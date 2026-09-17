@@ -6,7 +6,8 @@ plugins {
 
 val minecraftVersion: String = "1.18.2"
 val forgeVersion: String = "40.1.73"
-val tfcVersion: String = "2.2.33"
+val minTfcVersion: String = "2.2.25"
+val maxTfcVersion: String = "2.2.33"
 
 val modId: String = "tfc_real_world"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
@@ -18,7 +19,7 @@ val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata"
     "modVersion" to modVersion,
     "minecraftVersionRange" to "[$minecraftVersion]",
     "forgeVersionRange" to "[$forgeVersion,)",
-    "tfcVersionRange" to "[$tfcVersion]",
+    "tfcVersionRange" to "[$minTfcVersion,)",
   )
   inputs.properties(modReplacementProperties)
   expand(modReplacementProperties)
@@ -102,7 +103,7 @@ dependencies {
   minecraft("net.minecraftforge", "forge", version = "$minecraftVersion-$forgeVersion")
 
   // TerraFirmaCraft
-  compileOnly(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$tfcVersion@jar"))
+  compileOnly(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$maxTfcVersion@jar"))
 
   // Mixin
   annotationProcessor("org.spongepowered:mixin:0.8.5:processor")

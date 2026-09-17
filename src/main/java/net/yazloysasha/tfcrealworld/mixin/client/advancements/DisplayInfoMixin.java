@@ -38,7 +38,7 @@ public class DisplayInfoMixin {
 
   @Unique
   private Component createGlobeTrotterComponent(String key) {
-    int hemisphereScale = TFCRealWorldConfig.VERTICAL_SCALE.get() / 2;
+    int hemisphereScale = TFCRealWorldConfig.VERTICAL_SCALE.get();
     Component formattedScale = new net.minecraft.network.chat.TextComponent(
       formatNumberWithCommas(hemisphereScale)
     );
