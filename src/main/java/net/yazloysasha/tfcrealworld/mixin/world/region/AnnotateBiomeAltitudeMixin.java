@@ -24,6 +24,15 @@ public class AnnotateBiomeAltitudeMixin {
   @Unique
   private static final short FLAG_MOUNTAIN = 0b10000;
 
+  @Unique
+  private static final int MAP_MID_LAND_HEIGHT = 5;
+
+  @Unique
+  private static final int MAP_HIGH_LAND_HEIGHT = 11;
+
+  @Unique
+  private static final int MAP_MOUNTAIN_CAP_LAND_HEIGHT = 16;
+
   @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
   private void tfcrealworld$overrideBiomeAltitude(
     RegionGenerator.Context context,
@@ -118,13 +127,13 @@ public class AnnotateBiomeAltitudeMixin {
   private static int tfcrealworld$maxDiscreteAltitudeForLandHeight(
     int baseLandHeight
   ) {
-    if (baseLandHeight >= 16) {
+    if (baseLandHeight >= MAP_MOUNTAIN_CAP_LAND_HEIGHT) {
       return 3;
     }
-    if (baseLandHeight >= 11) {
+    if (baseLandHeight >= MAP_HIGH_LAND_HEIGHT) {
       return 2;
     }
-    if (baseLandHeight >= 4) {
+    if (baseLandHeight >= MAP_MID_LAND_HEIGHT) {
       return 1;
     }
     return 0;
@@ -254,10 +263,13 @@ public class AnnotateBiomeAltitudeMixin {
         continue;
       }
       final int baseLandHeight = Byte.toUnsignedInt(point.baseLandHeight);
-      if (baseLandHeight >= 4) {
+      if (baseLandHeight >= MAP_MID_LAND_HEIGHT) {
         point.biomeAltitude = (byte) width;
       }
-      if (point.discreteBiomeAltitude() == 1 && baseLandHeight >= 11) {
+      if (
+        point.discreteBiomeAltitude() == 1 &&
+        baseLandHeight >= MAP_HIGH_LAND_HEIGHT
+      ) {
         point.biomeAltitude = (byte) (2 * width);
       }
     }
