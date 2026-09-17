@@ -40,8 +40,7 @@ public class PNGAltitudeNoise extends BasePNGNoise {
   }
 
   public byte getBaseLandHeight(double x, double z) {
-    double[] imageCoords = tileToImage(x, z);
-    double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
+    double brightness = sampleBrightnessAtWorld(x, z);
     double height = transformBrightness(brightness);
     return (byte) Math.clamp(Math.round(height), 0, 24);
   }
@@ -59,8 +58,7 @@ public class PNGAltitudeNoise extends BasePNGNoise {
   }
 
   public byte getBaseOceanDepth(double x, double z) {
-    double[] imageCoords = tileToImage(x, z);
-    double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
+    double brightness = sampleBrightnessAtWorld(x, z);
     double depth = transformOceanDepth(brightness);
     if (depth <= 0) {
       return 0;
@@ -99,8 +97,7 @@ public class PNGAltitudeNoise extends BasePNGNoise {
   }
 
   public AltitudeResult getAltitude(double x, double z) {
-    double[] imageCoords = tileToImage(x, z);
-    double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
+    double brightness = sampleBrightnessAtWorld(x, z);
     byte landHeight = (byte) Math.clamp(
       Math.round(transformBrightness(brightness)),
       0,

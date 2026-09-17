@@ -33,11 +33,24 @@ public final class MapTectonics {
     return MAX_RIFT_CONTINENT_ADJUST * strength;
   }
 
-  public static boolean isLandRiftCore(PNGDivergenceNoise noise, int x, int z) {
-    if (noise.getDivergence(x, z) <= RIFT_BIOME_THRESHOLD) {
+  public static boolean isLandRiftCore(
+    PNGDivergenceNoise noise,
+    int x,
+    int z,
+    float centerDivergence
+  ) {
+    if (centerDivergence <= RIFT_BIOME_THRESHOLD) {
       return false;
     }
     return allBeyond(noise, x, z, LAND_RIFT_CORE_RADIUS, LAND_RIFT_BELT_MIN);
+  }
+
+  public static boolean isLandRiftCore(PNGDivergenceNoise noise, int x, int z) {
+    return isLandRiftCore(noise, x, z, noise.getDivergence(x, z));
+  }
+
+  public static boolean isNearOceanRidge(float divergence) {
+    return divergence > OCEAN_RIDGE_DIVERGENCE;
   }
 
   public static boolean isNearOceanRidge(
@@ -45,11 +58,15 @@ public final class MapTectonics {
     int x,
     int z
   ) {
-    return noise.getDivergence(x, z) > OCEAN_RIDGE_DIVERGENCE;
+    return isNearOceanRidge(noise.getDivergence(x, z));
+  }
+
+  public static boolean isNearTrench(float divergence) {
+    return divergence < TRENCH_DIVERGENCE;
   }
 
   public static boolean isNearTrench(PNGDivergenceNoise noise, int x, int z) {
-    return noise.getDivergence(x, z) < TRENCH_DIVERGENCE;
+    return isNearTrench(noise.getDivergence(x, z));
   }
 
   public static boolean isNearTrenchInfluence(
@@ -60,7 +77,7 @@ public final class MapTectonics {
   ) {
     for (int dz = -radius; dz <= radius; dz++) {
       for (int dx = -radius; dx <= radius; dx++) {
-        if (isNearTrench(noise, x + dx, z + dz)) {
+        if (noise.getDivergence(x + dx, z + dz) < TRENCH_DIVERGENCE) {
           return true;
         }
       }

@@ -67,10 +67,7 @@ public class AnnotateBiomeAltitudeMixin {
       if (point.distanceToOcean < 3) {
         point.setCoastalMountain();
       }
-      if (
-        MapTectonics.isNearTrench(divergenceNoise, point.x, point.z) ||
-        divergence < MapTectonics.TRENCH_DIVERGENCE
-      ) {
+      if (point.divergence < MapTectonics.TRENCH_DIVERGENCE) {
         point.setVolcanic();
       }
     }
@@ -149,44 +146,39 @@ public class AnnotateBiomeAltitudeMixin {
       return true;
     }
     if (baseLandHeight >= 15) {
-      if (tfcrealworld$countLandNeighborsAtLeastHeight(region, point, 16) > 0) {
-        return true;
-      }
-      if (
-        tfcrealworld$countLandNeighborsAtLeastHeight(region, point, 15) >= 2
-      ) {
-        return true;
-      }
-    }
-    if (baseLandHeight < 16) {
-      return false;
-    }
-    return tfcrealworld$countLandNeighborsAtLeastHeight(region, point, 14) > 0;
-  }
-
-  @Unique
-  private static int tfcrealworld$countLandNeighborsAtLeastHeight(
-    Region region,
-    Region.Point point,
-    int minHeight
-  ) {
-    int count = 0;
-    for (int dz = -1; dz <= 1; dz++) {
-      for (int dx = -1; dx <= 1; dx++) {
-        if (dx == 0 && dz == 0) {
-          continue;
-        }
-        final Region.Point neighbor = region.atOffset(point.index, dx, dz);
-        if (
-          neighbor != null &&
-          neighbor.land() &&
-          Byte.toUnsignedInt(neighbor.baseLandHeight) >= minHeight
-        ) {
-          count++;
+      int countAtLeast15 = 0;
+      boolean anyAtLeast16 = false;
+      boolean anyAtLeast14 = false;
+      for (int dz = -1; dz <= 1; dz++) {
+        for (int dx = -1; dx <= 1; dx++) {
+          if (dx == 0 && dz == 0) {
+            continue;
+          }
+          final Region.Point neighbor = region.atOffset(point.index, dx, dz);
+          if (neighbor == null || !neighbor.land()) {
+            continue;
+          }
+          final int height = Byte.toUnsignedInt(neighbor.baseLandHeight);
+          if (height >= 16) {
+            anyAtLeast16 = true;
+          }
+          if (height >= 15) {
+            countAtLeast15++;
+          }
+          if (height >= 14) {
+            anyAtLeast14 = true;
+          }
         }
       }
+      if (anyAtLeast16 || countAtLeast15 >= 2) {
+        return true;
+      }
+      if (baseLandHeight < 16) {
+        return false;
+      }
+      return anyAtLeast14;
     }
-    return count;
+    return false;
   }
 
   @Unique

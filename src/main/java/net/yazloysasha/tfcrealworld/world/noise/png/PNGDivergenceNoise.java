@@ -36,13 +36,7 @@ public class PNGDivergenceNoise extends BasePNGNoise {
   }
 
   public float getDivergence(double x, double z) {
-    double[] imageCoords = tileToImage(x, z);
-    int ix = (int) Math.round(imageCoords[0]);
-    int iz = (int) Math.round(imageCoords[1]);
-    ix = Math.clamp(ix, 0, width - 1);
-    iz = Math.clamp(iz, 0, height - 1);
-    int gray = (pixels[iz * width + ix] >> 16) & 0xFF;
-    return grayToDivergence(gray);
+    return grayToDivergence(sampleGrayAtWorldRounded(x, z));
   }
 
   private static float grayToDivergence(int gray) {

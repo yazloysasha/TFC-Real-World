@@ -4,7 +4,6 @@ import static net.dries007.tfc.world.layer.TFCLayers.*;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
-import java.util.function.Predicate;
 import net.dries007.tfc.world.layer.framework.Area;
 import net.dries007.tfc.world.region.ChooseBiomes;
 import net.dries007.tfc.world.region.Region;
@@ -88,61 +87,53 @@ public class ChooseBiomesMixin {
   private static final double VOLCANIC_OCEANIC_GLACIAL_ECOTONE_CHANCE = 0.5;
 
   @Unique
-  private static void tfcrealworld$rollMeltwaterLakesOnIceSheetEdge(
-    Region region,
-    long worldSeed
-  ) {
-    if (!TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
+  private static void tfcrealworld$rollMapLakes(Region region, long worldSeed) {
+    final boolean koppenFromMap = TFCRealWorldConfig.KOPPEN_FROM_MAP.get();
+    final boolean altitudeFromMap = TFCRealWorldConfig.ALTITUDE_FROM_MAP.get();
+    if (!koppenFromMap && !altitudeFromMap) {
       return;
     }
-    for (final Region.Point point : region.points()) {
-      if (point == null || !point.land() || point.biome != ICE_SHEET_EDGE) {
-        continue;
-      }
-      if (
-        tfcrealworld$seededChance(
-          worldSeed,
-          point.x,
-          point.z,
-          0x7a4f2c91e83b05d6L,
-          ICE_SHEET_EDGE_MELTWATER_LAKE_CHANCE
-        )
-      ) {
-        point.setLake();
-        point.rainfall += LAKE_RAINFALL_BOOST * (500f - point.rainfall);
-        point.biome = lakeFor(ICE_SHEET_EDGE);
-      }
-    }
-  }
 
-  @Unique
-  private static void tfcrealworld$rollOceanicMountainLakes(
-    Region region,
-    long worldSeed
-  ) {
-    if (!TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
-      return;
-    }
     for (final Region.Point point : region.points()) {
-      if (point == null || !point.land() || point.lake()) {
+      if (point == null || !point.land()) {
         continue;
       }
-      final int biome = point.biome;
-      if (biome != OCEANIC_MOUNTAINS && biome != VOLCANIC_OCEANIC_MOUNTAINS) {
-        continue;
+      if (koppenFromMap && point.biome == ICE_SHEET_EDGE && !point.lake()) {
+        if (
+          tfcrealworld$seededChance(
+            worldSeed,
+            point.x,
+            point.z,
+            0x7a4f2c91e83b05d6L,
+            ICE_SHEET_EDGE_MELTWATER_LAKE_CHANCE
+          )
+        ) {
+          point.setLake();
+          point.rainfall += LAKE_RAINFALL_BOOST * (500f - point.rainfall);
+          point.biome = lakeFor(ICE_SHEET_EDGE);
+          continue;
+        }
       }
       if (
-        tfcrealworld$seededChance(
-          worldSeed,
-          point.x,
-          point.z,
-          0x3c9e2b71a4d805f1L,
-          OCEANIC_MOUNTAIN_LAKE_CHANCE
-        )
+        altitudeFromMap &&
+        !point.lake() &&
+        (point.biome == OCEANIC_MOUNTAINS ||
+          point.biome == VOLCANIC_OCEANIC_MOUNTAINS)
       ) {
-        point.setLake();
-        point.rainfall += LAKE_RAINFALL_BOOST * (500f - point.rainfall);
-        point.biome = lakeFor(biome);
+        if (
+          tfcrealworld$seededChance(
+            worldSeed,
+            point.x,
+            point.z,
+            0x3c9e2b71a4d805f1L,
+            OCEANIC_MOUNTAIN_LAKE_CHANCE
+          )
+        ) {
+          final int biome = point.biome;
+          point.setLake();
+          point.rainfall += LAKE_RAINFALL_BOOST * (500f - point.rainfall);
+          point.biome = lakeFor(biome);
+        }
       }
     }
   }
@@ -280,14 +271,52 @@ public class ChooseBiomesMixin {
     Region region,
     Region.Point point
   ) {
-    return tfcrealworld$anyCardinalNeighbor(region, point, neighbor -> {
+    final int index = point.index;
+    Region.Point neighbor = region.atOffset(index, 1, 0);
+    if (neighbor != null && neighbor.land()) {
       final int biome = neighbor.biome;
-      return (
+      if (
         biome == VOLCANIC_OCEANIC_MOUNTAINS ||
         biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS ||
         biome == GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS
-      );
-    });
+      ) {
+        return true;
+      }
+    }
+    neighbor = region.atOffset(index, -1, 0);
+    if (neighbor != null && neighbor.land()) {
+      final int biome = neighbor.biome;
+      if (
+        biome == VOLCANIC_OCEANIC_MOUNTAINS ||
+        biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS ||
+        biome == GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS
+      ) {
+        return true;
+      }
+    }
+    neighbor = region.atOffset(index, 0, 1);
+    if (neighbor != null && neighbor.land()) {
+      final int biome = neighbor.biome;
+      if (
+        biome == VOLCANIC_OCEANIC_MOUNTAINS ||
+        biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS ||
+        biome == GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS
+      ) {
+        return true;
+      }
+    }
+    neighbor = region.atOffset(index, 0, -1);
+    if (neighbor != null && neighbor.land()) {
+      final int biome = neighbor.biome;
+      if (
+        biome == VOLCANIC_OCEANIC_MOUNTAINS ||
+        biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS ||
+        biome == GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS
+      ) {
+        return true;
+      }
+    }
+    return false;
   }
 
   @Unique
@@ -295,39 +324,48 @@ public class ChooseBiomesMixin {
     Region region,
     Region.Point point
   ) {
-    return tfcrealworld$anyCardinalNeighbor(region, point, neighbor -> {
+    final int index = point.index;
+    Region.Point neighbor = region.atOffset(index, 1, 0);
+    if (neighbor != null && neighbor.land()) {
       final int biome = neighbor.biome;
-      return (
+      if (
         biome == ICE_SHEET_VOLCANIC_OCEANIC_MOUNTAINS ||
         biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS
-      );
-    });
-  }
-
-  @Unique
-  private static boolean tfcrealworld$anyCardinalNeighbor(
-    Region region,
-    Region.Point point,
-    Predicate<Region.Point> match
-  ) {
-    final Region.Point east = region.atOffset(point.index, 1, 0);
-    final Region.Point west = region.atOffset(point.index, -1, 0);
-    final Region.Point south = region.atOffset(point.index, 0, 1);
-    final Region.Point north = region.atOffset(point.index, 0, -1);
-    return (
-      tfcrealworld$matchesLand(east, match) ||
-      tfcrealworld$matchesLand(west, match) ||
-      tfcrealworld$matchesLand(south, match) ||
-      tfcrealworld$matchesLand(north, match)
-    );
-  }
-
-  @Unique
-  private static boolean tfcrealworld$matchesLand(
-    Region.Point neighbor,
-    Predicate<Region.Point> match
-  ) {
-    return neighbor != null && neighbor.land() && match.test(neighbor);
+      ) {
+        return true;
+      }
+    }
+    neighbor = region.atOffset(index, -1, 0);
+    if (neighbor != null && neighbor.land()) {
+      final int biome = neighbor.biome;
+      if (
+        biome == ICE_SHEET_VOLCANIC_OCEANIC_MOUNTAINS ||
+        biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS
+      ) {
+        return true;
+      }
+    }
+    neighbor = region.atOffset(index, 0, 1);
+    if (neighbor != null && neighbor.land()) {
+      final int biome = neighbor.biome;
+      if (
+        biome == ICE_SHEET_VOLCANIC_OCEANIC_MOUNTAINS ||
+        biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS
+      ) {
+        return true;
+      }
+    }
+    neighbor = region.atOffset(index, 0, -1);
+    if (neighbor != null && neighbor.land()) {
+      final int biome = neighbor.biome;
+      if (
+        biome == ICE_SHEET_VOLCANIC_OCEANIC_MOUNTAINS ||
+        biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS
+      ) {
+        return true;
+      }
+    }
+    return false;
   }
 
   @Unique
@@ -482,7 +520,12 @@ public class ChooseBiomesMixin {
       if (
         point.land() &&
         point.distanceToEdge < 3 &&
-        !MapTectonics.isLandRiftCore(divergenceNoise, point.x, point.z) &&
+        !MapTectonics.isLandRiftCore(
+          divergenceNoise,
+          point.x,
+          point.z,
+          divergence
+        ) &&
         divergence > 0
       ) {
         divergence = 0f;
@@ -535,15 +578,7 @@ public class ChooseBiomesMixin {
       generator.seed().seed()
     );
 
-    tfcrealworld$rollMeltwaterLakesOnIceSheetEdge(
-      context.region,
-      generator.seed().seed()
-    );
-
-    tfcrealworld$rollOceanicMountainLakes(
-      context.region,
-      generator.seed().seed()
-    );
+    tfcrealworld$rollMapLakes(context.region, generator.seed().seed());
 
     if (
       tfcrealworld$shouldAlignCenteredVolcanoes(
@@ -595,13 +630,17 @@ public class ChooseBiomesMixin {
     Area blobArea,
     long rngSeed
   ) {
-    point.divergence = divergenceNoise.getDivergence(point.x, point.z);
     if (
       !point.land() ||
       point.island() ||
       point.hotSpotAge > 0 ||
       tfcrealworld$skipLandRiftBiomeReplace(point) ||
-      !MapTectonics.isLandRiftCore(divergenceNoise, point.x, point.z)
+      !MapTectonics.isLandRiftCore(
+        divergenceNoise,
+        point.x,
+        point.z,
+        point.divergence
+      )
     ) {
       return;
     }
@@ -649,7 +688,7 @@ public class ChooseBiomesMixin {
       return;
     }
 
-    if (MapTectonics.isNearOceanRidge(divergenceNoise, point.x, point.z)) {
+    if (MapTectonics.isNearOceanRidge(point.divergence)) {
       point.biome = OCEAN_RIDGE;
       return;
     }

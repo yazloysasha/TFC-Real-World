@@ -18,6 +18,9 @@ public abstract class BasePNGNoise implements Noise2D {
 
   private static final Map<String, BufferedImage> imageCache = new HashMap<>();
 
+  private static final ThreadLocal<double[]> TILE_IMAGE_SCRATCH =
+    ThreadLocal.withInitial(() -> new double[2]);
+
   protected final int[] pixels;
   protected final int width;
   protected final int height;
@@ -61,9 +64,27 @@ public abstract class BasePNGNoise implements Noise2D {
 
   @Override
   public double noise(double x, double z) {
-    double[] imageCoords = tileToImage(x, z);
-    double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
-    return transformBrightness(brightness);
+    return transformBrightness(sampleBrightnessAtWorld(x, z));
+  }
+
+  protected double sampleBrightnessAtWorld(double x, double z) {
+    final double[] imageCoords = tileImageScratch();
+    fillTileImageCoords(x, z, imageCoords);
+    return sampleBrightness(imageCoords[0], imageCoords[1]);
+  }
+
+  protected int sampleGrayAtWorldRounded(double x, double z) {
+    final double[] imageCoords = tileImageScratch();
+    fillTileImageCoords(x, z, imageCoords);
+    int ix = (int) Math.round(imageCoords[0]);
+    int iz = (int) Math.round(imageCoords[1]);
+    ix = Math.clamp(ix, 0, width - 1);
+    iz = Math.clamp(iz, 0, height - 1);
+    return (pixels[iz * width + ix] >> 16) & 0xFF;
+  }
+
+  protected double[] tileImageScratch() {
+    return TILE_IMAGE_SCRATCH.get();
   }
 
   protected InterpolationCoords calculateInterpolationCoords(
@@ -127,6 +148,12 @@ public abstract class BasePNGNoise implements Noise2D {
   }
 
   public double[] tileToImage(double x, double z) {
+    final double[] out = new double[2];
+    fillTileImageCoords(x, z, out);
+    return out;
+  }
+
+  protected void fillTileImageCoords(double x, double z, double[] out) {
     int tileX = (int) Math.floor(
       (x + tileRadiusGridX) / (2.0 * tileRadiusGridX)
     );
@@ -149,13 +176,8 @@ public abstract class BasePNGNoise implements Noise2D {
     double clampedX = Math.clamp(localX, -tileRadiusGridX, tileRadiusGridX);
     double clampedZ = Math.clamp(localZ, -tileRadiusGridZ, tileRadiusGridZ);
 
-    double imageX = centerX + clampedX * scaleX;
-    double imageZ = centerZ + clampedZ * scaleZ;
-
-    imageX = Math.clamp(imageX, 0, width - 1);
-    imageZ = Math.clamp(imageZ, 0, height - 1);
-
-    return new double[] { imageX, imageZ };
+    out[0] = Math.clamp(centerX + clampedX * scaleX, 0, width - 1);
+    out[1] = Math.clamp(centerZ + clampedZ * scaleZ, 0, height - 1);
   }
 
   protected abstract double transformBrightness(double brightness);
