@@ -23,6 +23,7 @@ import net.dries007.tfc.world.settings.Settings;
 import net.minecraft.core.QuartPos;
 import net.minecraft.world.level.levelgen.RandomSupport;
 import net.yazloysasha.tfcrealworld.test.TestSetup;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.slf4j.Logger;
@@ -31,7 +32,11 @@ import org.slf4j.LoggerFactory;
 /**
  * Runs world generation in a loop and prints cumulative counts of how often each
  * biome was absent from the map. Stop manually when the sample is large enough.
+ *
+ * <p>Not part of {@code ./gradlew test} / build — tagged {@code manual}. Run with
+ * {@code ./gradlew test -PcontinuousBiomeCoverage} (stop with Ctrl+C).
  */
+@Tag("manual")
 public class BiomeCoverageContinuousTest implements TestSetup {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(
