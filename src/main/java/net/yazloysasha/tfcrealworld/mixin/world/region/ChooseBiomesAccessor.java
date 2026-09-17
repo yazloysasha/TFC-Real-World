@@ -12,4 +12,7 @@ public interface ChooseBiomesAccessor {
     int areaSeed,
     int[] choices
   );
+
+  @Invoker("getHotSpotBiome")
+  int tfcrealworld$invokeGetHotSpotBiome(int age);
 }

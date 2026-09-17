@@ -2,20 +2,24 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 
 import static net.dries007.tfc.world.layer.TFCLayers.*;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import net.dries007.tfc.world.layer.framework.Area;
 import net.dries007.tfc.world.region.ChooseBiomes;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.DivergenceNoiseRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGDivergenceNoise;
 import net.yazloysasha.tfcrealworld.world.region.MapTectonics;
 import net.yazloysasha.tfcrealworld.world.volcano.CenteredFeatureAligner;
+import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = ChooseBiomes.class, remap = false)
@@ -45,11 +49,42 @@ public class ChooseBiomesMixin {
     OCEANIC_VOLCANIC_ARC,
   };
 
+  @Redirect(
+    method = "apply",
+    at = @At(
+      value = "INVOKE",
+      target = "Lnet/dries007/tfc/world/region/ChooseBiomes;getHotSpotBiome(I)I"
+    )
+  )
+  private int tfcrealworld$mapHotspotBiomeOrKeepVanillaMountain(
+    ChooseBiomes instance,
+    int age,
+    @Local Region.Point point
+  ) {
+    final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
+    if (layout != null && layout.keepMountainBiome(point)) {
+      return point.biome;
+    }
+    return (
+      (ChooseBiomesAccessor) (Object) instance
+    ).tfcrealworld$invokeGetHotSpotBiome(age);
+  }
+
   @Inject(method = "apply", at = @At("HEAD"))
   private void tfcrealworld$prepareMapDivergenceForChooseBiomes(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
+    if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
+      final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
+      if (layout != null) {
+        layout.prepareChooseBiomes(
+          context.region,
+          context.generator().seed().seed()
+        );
+      }
+    }
+
     if (!MapTectonics.isActive(context.generator())) {
       return;
     }

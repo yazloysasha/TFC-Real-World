@@ -5,7 +5,6 @@ import net.dries007.tfc.world.noise.Noise2D;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -18,7 +17,7 @@ public class BiomeNoiseMixin {
     long seed,
     CallbackInfoReturnable<Noise2D> cir
   ) {
-    tfcrealworld$replaceHotspotIntensity((byte) 1, seed, cir);
+    tfcrealworld$hotspotIntensityFromMap((byte) 1, seed, cir);
   }
 
   @Inject(method = "dormantHotSpots", at = @At("HEAD"), cancellable = true)
@@ -26,7 +25,7 @@ public class BiomeNoiseMixin {
     long seed,
     CallbackInfoReturnable<Noise2D> cir
   ) {
-    tfcrealworld$replaceHotspotIntensity((byte) 2, seed, cir);
+    tfcrealworld$hotspotIntensityFromMap((byte) 2, seed, cir);
   }
 
   @Inject(method = "extinctHotSpots", at = @At("HEAD"), cancellable = true)
@@ -34,7 +33,7 @@ public class BiomeNoiseMixin {
     long seed,
     CallbackInfoReturnable<Noise2D> cir
   ) {
-    tfcrealworld$replaceHotspotIntensity((byte) 3, seed, cir);
+    tfcrealworld$hotspotIntensityFromMap((byte) 3, seed, cir);
   }
 
   @Inject(method = "ancientHotSpots", at = @At("HEAD"), cancellable = true)
@@ -42,11 +41,10 @@ public class BiomeNoiseMixin {
     long seed,
     CallbackInfoReturnable<Noise2D> cir
   ) {
-    tfcrealworld$replaceHotspotIntensity((byte) 4, seed, cir);
+    tfcrealworld$hotspotIntensityFromMap((byte) 4, seed, cir);
   }
 
-  @Unique
-  private static void tfcrealworld$replaceHotspotIntensity(
+  private static void tfcrealworld$hotspotIntensityFromMap(
     byte age,
     long seed,
     CallbackInfoReturnable<Noise2D> cir

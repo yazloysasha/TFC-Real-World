@@ -4,7 +4,7 @@ import net.dries007.tfc.world.region.AddHotspots;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
+import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -21,14 +21,13 @@ public class AddHotspotsMixin {
     if (!TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
       return;
     }
-    final PNGHotspotsNoise hotspotsNoise = HotspotsNoiseRegistry.get(
-      context.generator()
-    );
-    if (hotspotsNoise == null) {
+    if (HotspotsNoiseRegistry.get(context.generator()) == null) {
       return;
     }
-
-    final var layout = hotspotsNoise.layout();
+    final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
+    if (layout == null) {
+      return;
+    }
     for (final var point : context.region.points()) {
       if (point == null) {
         continue;

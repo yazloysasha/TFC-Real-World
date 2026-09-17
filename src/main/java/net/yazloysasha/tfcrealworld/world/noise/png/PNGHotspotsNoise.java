@@ -8,14 +8,18 @@ public class PNGHotspotsNoise extends BasePNGNoise {
 
   private final MapHotspotLayout layout;
 
-  public PNGHotspotsNoise(int horizontalScale, int verticalScale) {
+  public PNGHotspotsNoise(
+    int horizontalScale,
+    int verticalScale,
+    long worldSeed
+  ) {
     super(
       horizontalScale,
       verticalScale,
       MAP_NAME,
       "Failed to load hotspots map. Map file is required when generating hotspots from map."
     );
-    this.layout = MapHotspotLayout.create(this);
+    this.layout = MapHotspotLayout.create(this, worldSeed);
   }
 
   public MapHotspotLayout layout() {
@@ -46,9 +50,5 @@ public class PNGHotspotsNoise extends BasePNGNoise {
   public byte getHotSpotAge(double x, double z) {
     double[] imageCoords = tileToImage(x, z);
     return ageFromBrightness(sampleBrightness(imageCoords[0], imageCoords[1]));
-  }
-
-  public boolean hasHotspot(double x, double z) {
-    return getHotSpotAge(x, z) > 0;
   }
 }

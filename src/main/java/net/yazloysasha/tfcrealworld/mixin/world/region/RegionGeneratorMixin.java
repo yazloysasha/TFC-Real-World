@@ -119,7 +119,8 @@ public class RegionGeneratorMixin {
       if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
         PNGHotspotsNoise hotspotsNoise = new PNGHotspotsNoise(
           horizontalScale,
-          verticalScale
+          verticalScale,
+          seed.seed()
         );
         initializeHotspotsMap(instance, hotspotsNoise);
       } else {
