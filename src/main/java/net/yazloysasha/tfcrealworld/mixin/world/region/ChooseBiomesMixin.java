@@ -145,7 +145,7 @@ public class ChooseBiomesMixin {
   /**
    * Vanilla already maps {@code SALT_MARSH → TOWER_KARST_BAY} inside
    * {@code getTowerKarstBiome}, but paints mangrove marshes after karst.
-   * Feed coastal lowlands into that vanilla call so climate stays in TFC.
+   * Feed drowned coastal karst into that vanilla call so climate stays in TFC.
    */
   @ModifyArg(
     method = "apply",
@@ -158,8 +158,44 @@ public class ChooseBiomesMixin {
     int biome,
     @Local Region.Point point
   ) {
-    if (biome == LOWLANDS && point.distanceToOcean <= 2) {
+    if (
+      point.distanceToOcean <= 2 &&
+      (biome == LOWLANDS || biome == PLAINS || biome == LOW_CANYONS)
+    ) {
       return SALT_MARSH;
+    }
+    return biome;
+  }
+
+  /**
+   * Vanilla Burren only remaps a few bases. Paleo ice-margin biomes,
+   * ice-sheet rim, humid-high {@code OLD_MOUNTAINS}, and mesa/canyon leftovers
+   * fall through. Climate is already decided by TFC before this call.
+   */
+  @ModifyArg(
+    method = "apply",
+    at = @At(
+      value = "INVOKE",
+      target = "Lnet/dries007/tfc/world/region/ChooseBiomes;getBurrenBiome(I)I"
+    )
+  )
+  private int tfcrealworld$burrenBasesForVanilla(int biome) {
+    if (
+      biome == KNOB_AND_KETTLE ||
+      biome == PATTERNED_GROUND ||
+      biome == INVERTED_PATTERNED_GROUND ||
+      biome == ICE_SHEET_EDGE
+    ) {
+      return DRUMLINS;
+    }
+    if (biome == LOW_CANYONS || biome == LOWLANDS) {
+      return PLAINS;
+    }
+    if (biome == OLD_MOUNTAINS) {
+      return HIGHLANDS;
+    }
+    if (biome == STAIR_STEP_CANYONS || biome == MESAS || biome == BUTTES) {
+      return PLATEAU;
     }
     return biome;
   }
