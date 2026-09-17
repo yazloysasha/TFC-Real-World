@@ -52,6 +52,22 @@ public final class MapTectonics {
     return noise.getDivergence(x, z) < TRENCH_DIVERGENCE;
   }
 
+  public static boolean isNearTrenchInfluence(
+    PNGDivergenceNoise noise,
+    int x,
+    int z,
+    int radius
+  ) {
+    for (int dz = -radius; dz <= radius; dz++) {
+      for (int dx = -radius; dx <= radius; dx++) {
+        if (isNearTrench(noise, x + dx, z + dz)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   private static boolean allBeyond(
     PNGDivergenceNoise noise,
     int x,

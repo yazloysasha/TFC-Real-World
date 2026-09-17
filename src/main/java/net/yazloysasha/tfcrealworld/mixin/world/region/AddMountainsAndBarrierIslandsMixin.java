@@ -96,15 +96,8 @@ public class AddMountainsAndBarrierIslandsMixin {
           origin.index
         );
         if (range.size() > MIN_ISLE_CHAIN_SIZE) {
-          final byte originContour = origin.distanceToDeepOcean;
           range.forEach(index -> {
             final Region.Point point = region.atIndex(index);
-            if (
-              point.distanceToDeepOcean >= originContour &&
-              point.distanceToDeepOcean <= originContour + 1
-            ) {
-              point.setBarrierIsland();
-            }
             point.setVolcanic();
             point.oceanDepth = PNGAltitudeNoise.REEF_OCEAN_DEPTH;
           });
@@ -123,13 +116,9 @@ public class AddMountainsAndBarrierIslandsMixin {
           random,
           origin.index
         );
-        final byte startContour = (byte) Math.max(1, origin.distanceToLand);
         if (range.size() > MIN_ISLE_CHAIN_SIZE) {
           range.forEach(index -> {
             final Region.Point point = region.atIndex(index);
-            if (point.distanceToLand == startContour) {
-              point.setBarrierIsland();
-            }
             point.oceanDepth = PNGAltitudeNoise.REEF_OCEAN_DEPTH;
           });
           islesPlaced++;
