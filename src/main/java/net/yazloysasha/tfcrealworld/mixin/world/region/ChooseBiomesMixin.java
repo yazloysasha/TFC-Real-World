@@ -11,6 +11,7 @@ import net.yazloysasha.tfcrealworld.util.registry.DivergenceNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGDivergenceNoise;
 import net.yazloysasha.tfcrealworld.world.region.MapTectonics;
+import net.yazloysasha.tfcrealworld.world.volcano.CenteredFeatureAligner;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -83,35 +84,54 @@ public class ChooseBiomesMixin {
       ? DivergenceNoiseRegistry.get(generator)
       : null;
 
-    if (divergenceNoise == null && !altitudeFromMap) {
-      return;
-    }
+    if (divergenceNoise != null || altitudeFromMap) {
+      final ChooseBiomesAccessor accessor = (ChooseBiomesAccessor) this;
+      final Area blobArea = context.generator().biomeArea.get();
+      final long rngSeed = context.random.nextLong();
 
-    final ChooseBiomesAccessor accessor = (ChooseBiomesAccessor) this;
-    final Area blobArea = context.generator().biomeArea.get();
-    final long rngSeed = context.random.nextLong();
+      for (final Region.Point point : context.region.points()) {
+        if (divergenceNoise != null) {
+          tfcrealworld$applyLandRiftBiomes(
+            point,
+            divergenceNoise,
+            accessor,
+            blobArea,
+            rngSeed
+          );
+        }
 
-    for (final Region.Point point : context.region.points()) {
-      if (divergenceNoise != null) {
-        tfcrealworld$applyLandRiftBiomes(
-          point,
-          divergenceNoise,
-          accessor,
-          blobArea,
-          rngSeed
-        );
-      }
-
-      if (altitudeFromMap && !tfcrealworld$skipOceanBiome(point)) {
-        tfcrealworld$assignMapOceanBiome(
-          point,
-          divergenceNoise,
-          accessor,
-          blobArea,
-          rngSeed
-        );
+        if (altitudeFromMap && !tfcrealworld$skipOceanBiome(point)) {
+          tfcrealworld$assignMapOceanBiome(
+            point,
+            divergenceNoise,
+            accessor,
+            blobArea,
+            rngSeed
+          );
+        }
       }
     }
+
+    if (
+      tfcrealworld$shouldAlignCenteredVolcanoes(
+        altitudeFromMap,
+        divergenceNoise != null
+      )
+    ) {
+      CenteredFeatureAligner.align(context.region, generator.seed().seed());
+    }
+  }
+
+  @Unique
+  private static boolean tfcrealworld$shouldAlignCenteredVolcanoes(
+    boolean altitudeFromMap,
+    boolean mapTectonics
+  ) {
+    return (
+      TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get() ||
+      altitudeFromMap ||
+      mapTectonics
+    );
   }
 
   @Unique

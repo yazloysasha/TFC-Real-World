@@ -28,14 +28,16 @@ public class AddHotspotsMixin {
       return;
     }
 
+    final var layout = hotspotsNoise.layout();
     for (final var point : context.region.points()) {
-      if (point != null) {
-        byte mapAge = hotspotsNoise.getHotSpotAge(
-          (double) point.x,
-          (double) point.z
-        );
-        if (mapAge > 0) {
-          point.hotSpotAge = mapAge;
+      if (point == null) {
+        continue;
+      }
+      final byte mapAge = layout.ageAtGrid(point.x, point.z);
+      if (mapAge > 0) {
+        point.hotSpotAge = mapAge;
+        if (mapAge != 4) {
+          point.setLand();
         }
       }
     }

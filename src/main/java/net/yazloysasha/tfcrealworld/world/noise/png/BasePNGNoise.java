@@ -232,6 +232,14 @@ public abstract class BasePNGNoise implements Noise2D {
     return tileRadiusGridZ;
   }
 
+  public int getTileRadiusBlocksX() {
+    return tileRadiusBlocksX;
+  }
+
+  public int getTileRadiusBlocksZ() {
+    return tileRadiusBlocksZ;
+  }
+
   public static BufferedImage loadImage(String mapName) {
     String cacheKey = getProfileId() + ":" + mapName;
     synchronized (imageCache) {

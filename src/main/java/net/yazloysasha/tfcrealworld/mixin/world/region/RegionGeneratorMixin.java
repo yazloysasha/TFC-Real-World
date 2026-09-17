@@ -122,6 +122,8 @@ public class RegionGeneratorMixin {
           verticalScale
         );
         initializeHotspotsMap(instance, hotspotsNoise);
+      } else {
+        HotspotsNoiseRegistry.clearBiomeLayout();
       }
 
       if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
