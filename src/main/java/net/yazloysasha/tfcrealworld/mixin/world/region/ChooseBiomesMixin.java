@@ -20,6 +20,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
@@ -139,6 +140,28 @@ public class ChooseBiomesMixin {
     z = (z ^ (z >>> 33)) * 0xff51afd7ed558ccdL;
     z = (z ^ (z >>> 33)) * 0xc4ceb9fe1a85ec53L;
     return z ^ (z >>> 33);
+  }
+
+  /**
+   * Vanilla already maps {@code SALT_MARSH → TOWER_KARST_BAY} inside
+   * {@code getTowerKarstBiome}, but paints mangrove marshes after karst.
+   * Feed coastal lowlands into that vanilla call so climate stays in TFC.
+   */
+  @ModifyArg(
+    method = "apply",
+    at = @At(
+      value = "INVOKE",
+      target = "Lnet/dries007/tfc/world/region/ChooseBiomes;getTowerKarstBiome(I)I"
+    )
+  )
+  private int tfcrealworld$coastalLowlandsAsMarshForTowerKarst(
+    int biome,
+    @Local Region.Point point
+  ) {
+    if (biome == LOWLANDS && point.distanceToOcean <= 2) {
+      return SALT_MARSH;
+    }
+    return biome;
   }
 
   @Redirect(

@@ -22,7 +22,6 @@ public final class CoverageRareBiomes {
 
   private static boolean preserveVolcanicAndMountainLakes(int biome) {
     return (
-      biome == COLLISIONAL_MOUNTAINS ||
       biome == OCEANIC_MOUNTAIN_LAKE ||
       biome == VOLCANIC_OCEANIC_MOUNTAIN_LAKE ||
       biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS ||
@@ -46,7 +45,8 @@ public final class CoverageRareBiomes {
       biome == BURREN_BADLANDS ||
       biome == BURREN_BADLANDS_TALL ||
       biome == BURREN_PLATEAU ||
-      biome == BURREN_ROCHE_MOUTONEE
+      biome == BURREN_ROCHE_MOUTONEE ||
+      biome == TOWER_KARST_BAY
     );
   }
 }
