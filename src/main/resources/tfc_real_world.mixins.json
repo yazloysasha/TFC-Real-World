@@ -13,7 +13,6 @@
     "world.region.AnnotateClimateMixin",
     "world.region.AnnotateDistanceToOceanMixin",
     "world.region.ChooseBiomesMixin",
-    "world.region.ChooseBiomesAccessor",
     "world.region.FloodFillSmallOceansMixin",
     "world.region.RegionGeneratorMixin",
     "world.settings.SettingsMixin"

@@ -145,6 +145,12 @@ public class ChooseBiomesMixin {
     Region.Point point,
     int proposedBiome
   ) {
+    if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get() && point.mountain()) {
+      proposedBiome = point.coastalMountain()
+        ? TFCLayers.OCEANIC_MOUNTAINS
+        : TFCLayers.MOUNTAINS;
+    }
+
     if (!TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
       point.biome = proposedBiome;
       return;

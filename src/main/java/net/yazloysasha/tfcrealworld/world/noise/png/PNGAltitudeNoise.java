@@ -4,6 +4,8 @@ import net.minecraft.util.Mth;
 
 public class PNGAltitudeNoise extends BasePNGNoise {
 
+  private static final byte MIN_MAP_OCEAN_DEPTH = 2;
+
   private static final String MAP_NAME = "altitude";
   private static final double SEA_LEVEL_GRAYSCALE = 128.0;
 
@@ -28,9 +30,15 @@ public class PNGAltitudeNoise extends BasePNGNoise {
     return normalized * 24.0;
   }
 
+  @Override
+  protected double sampleBrightness(double imageX, double imageZ) {
+    final int x = (int) Math.round(Mth.clamp(imageX, 0, width - 1));
+    final int z = (int) Math.round(Mth.clamp(imageZ, 0, height - 1));
+    return getBrightness(pixels[z * width + x]);
+  }
+
   public byte getBaseLandHeight(double x, double z) {
-    double[] imageCoords = tileToImage(x, z);
-    double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
+    double brightness = sampleBrightnessAtWorld(x, z);
     double height = transformBrightness(brightness);
     return (byte) Mth.clamp(Math.round(height), 0, 24);
   }
@@ -48,43 +56,15 @@ public class PNGAltitudeNoise extends BasePNGNoise {
   }
 
   public byte getBaseOceanDepth(double x, double z) {
-    double[] imageCoords = tileToImage(x, z);
-    double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
+    double brightness = sampleBrightnessAtWorld(x, z);
     double depth = transformOceanDepth(brightness);
-    return (byte) Mth.clamp(Math.round(depth), 0, 15);
-  }
-
-  /**
-   * Get both land height and ocean depth for the same coordinates efficiently.
-   * Avoids duplicate coordinate transformation and brightness sampling.
-   */
-  public AltitudeResult getAltitude(double x, double z) {
-    double[] imageCoords = tileToImage(x, z);
-    double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
-    byte landHeight = (byte) Mth.clamp(
-      Math.round(transformBrightness(brightness)),
-      0,
-      24
-    );
-    byte oceanDepth = (byte) Mth.clamp(
-      Math.round(transformOceanDepth(brightness)),
-      0,
-      15
-    );
-    return new AltitudeResult(landHeight, oceanDepth);
-  }
-
-  /**
-   * Result containing both land height and ocean depth for the same coordinates.
-   */
-  public static class AltitudeResult {
-
-    public final byte landHeight;
-    public final byte oceanDepth;
-
-    public AltitudeResult(byte landHeight, byte oceanDepth) {
-      this.landHeight = landHeight;
-      this.oceanDepth = oceanDepth;
+    if (depth <= 0) {
+      return 0;
     }
+    final int raw = (int) Mth.clamp(Math.round(depth), MIN_MAP_OCEAN_DEPTH, 15);
+    if (raw == 5 || raw == 6) {
+      return 2;
+    }
+    return (byte) raw;
   }
 }

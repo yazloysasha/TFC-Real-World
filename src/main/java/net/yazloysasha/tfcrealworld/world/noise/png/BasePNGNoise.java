@@ -1,6 +1,8 @@
 package net.yazloysasha.tfcrealworld.world.noise.png;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.IndexColorModel;
+import java.awt.image.Raster;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -16,6 +18,9 @@ import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 public abstract class BasePNGNoise implements Noise2D {
 
   private static final Map<String, BufferedImage> imageCache = new HashMap<>();
+
+  private static final ThreadLocal<double[]> TILE_IMAGE_SCRATCH =
+    ThreadLocal.withInitial(() -> new double[2]);
 
   protected final int[] pixels;
   protected final int width;
@@ -49,9 +54,7 @@ public abstract class BasePNGNoise implements Noise2D {
 
     this.width = image.getWidth();
     this.height = image.getHeight();
-    this.pixels = new int[width * height];
-
-    image.getRGB(0, 0, width, height, pixels, 0, width);
+    this.pixels = copyPixelsWithoutColorManagement(image);
 
     this.centerX = width / 2.0;
     this.centerZ = height / 2.0;
@@ -62,9 +65,17 @@ public abstract class BasePNGNoise implements Noise2D {
 
   @Override
   public double noise(double x, double z) {
-    double[] imageCoords = tileToImage(x, z);
-    double brightness = sampleBrightness(imageCoords[0], imageCoords[1]);
-    return transformBrightness(brightness);
+    return transformBrightness(sampleBrightnessAtWorld(x, z));
+  }
+
+  protected double sampleBrightnessAtWorld(double x, double z) {
+    final double[] imageCoords = tileImageScratch();
+    fillTileImageCoords(x, z, imageCoords);
+    return sampleBrightness(imageCoords[0], imageCoords[1]);
+  }
+
+  protected double[] tileImageScratch() {
+    return TILE_IMAGE_SCRATCH.get();
   }
 
   protected InterpolationCoords calculateInterpolationCoords(
@@ -128,6 +139,12 @@ public abstract class BasePNGNoise implements Noise2D {
   }
 
   public double[] tileToImage(double x, double z) {
+    final double[] out = new double[2];
+    fillTileImageCoords(x, z, out);
+    return out;
+  }
+
+  protected void fillTileImageCoords(double x, double z, double[] out) {
     int tileX = (int) Math.floor(
       (x + tileRadiusGridX) / (2.0 * tileRadiusGridX)
     );
@@ -150,21 +167,42 @@ public abstract class BasePNGNoise implements Noise2D {
     double clampedX = Mth.clamp(localX, -tileRadiusGridX, tileRadiusGridX);
     double clampedZ = Mth.clamp(localZ, -tileRadiusGridZ, tileRadiusGridZ);
 
-    double imageX = centerX + clampedX * scaleX;
-    double imageZ = centerZ + clampedZ * scaleZ;
-
-    imageX = Mth.clamp(imageX, 0, width - 1);
-    imageZ = Mth.clamp(imageZ, 0, height - 1);
-
-    return new double[] { imageX, imageZ };
+    out[0] = Mth.clamp(centerX + clampedX * scaleX, 0, width - 1);
+    out[1] = Mth.clamp(centerZ + clampedZ * scaleZ, 0, height - 1);
   }
 
   protected abstract double transformBrightness(double brightness);
+
+  /**
+   * {@code ImageIO.getRGB} on gray PNGs applies sRGB and skews mid-tones.
+   */
+  private static int[] copyPixelsWithoutColorManagement(BufferedImage image) {
+    final int width = image.getWidth();
+    final int height = image.getHeight();
+    final int[] pixels = new int[width * height];
+    final Raster raster = image.getRaster();
+    if (
+      raster.getNumBands() == 1 &&
+      !(image.getColorModel() instanceof IndexColorModel)
+    ) {
+      final int[] samples = raster.getPixels(0, 0, width, height, (int[]) null);
+      for (int i = 0; i < samples.length; i++) {
+        final int gray = samples[i] & 0xFF;
+        pixels[i] = 0xFF000000 | (gray << 16) | (gray << 8) | gray;
+      }
+      return pixels;
+    }
+    image.getRGB(0, 0, width, height, pixels, 0, width);
+    return pixels;
+  }
 
   protected double getBrightness(int rgb) {
     int r = (rgb >> 16) & 0xFF;
     int g = (rgb >> 8) & 0xFF;
     int b = rgb & 0xFF;
+    if (r == g && g == b) {
+      return r;
+    }
     return 0.299 * r + 0.587 * g + 0.114 * b;
   }
 
@@ -205,6 +243,14 @@ public abstract class BasePNGNoise implements Noise2D {
 
   public double getTileRadiusGridZ() {
     return tileRadiusGridZ;
+  }
+
+  public int getTileRadiusBlocksX() {
+    return tileRadiusBlocksX;
+  }
+
+  public int getTileRadiusBlocksZ() {
+    return tileRadiusBlocksZ;
   }
 
   public static BufferedImage loadImage(String mapName) {

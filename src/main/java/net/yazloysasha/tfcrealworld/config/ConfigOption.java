@@ -117,6 +117,7 @@ public class ConfigOption<T> implements Supplier<T> {
         "Cannot set value: ConfigOption is not properly initialized"
       );
     }
+    setServerValue(value);
   }
 
   public T getMin() {

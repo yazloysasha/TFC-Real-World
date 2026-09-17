@@ -17,7 +17,6 @@ public class PNGRainfallNoise extends BasePNGNoise {
   }
 
   public double getGrayscaleValue(double x, double z) {
-    double[] imageCoords = tileToImage(x, z);
-    return sampleBrightness(imageCoords[0], imageCoords[1]);
+    return sampleBrightnessAtWorld(x, z);
   }
 }
