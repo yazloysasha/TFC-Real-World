@@ -6,7 +6,7 @@ plugins {
 
 val minecraftVersion: String = "1.20.1"
 val forgeVersion: String = "47.1.3"
-val minTfcVersion: String = "3.2.20"
+val minTfcVersion: String = "3.2.4"
 val maxTfcVersion: String = "3.2.25"
 
 val modId: String = "tfc_real_world"
