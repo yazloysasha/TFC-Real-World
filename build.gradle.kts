@@ -119,12 +119,9 @@ tasks {
   }
 
   test {
-    useJUnitPlatform {
-      if (project.hasProperty("continuousBiomeCoverage")) {
-        includeTags("manual")
-      } else {
-        excludeTags("manual")
-      }
+    useJUnitPlatform()
+    if (project.hasProperty("continuousBiomeCoverage")) {
+      systemProperty("continuousBiomeCoverage", "true")
     }
     maxHeapSize = "4g"
     minHeapSize = "1g"
