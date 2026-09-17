@@ -124,7 +124,7 @@ tasks {
     minHeapSize = "1g"
     outputs.upToDateWhen { false }
     testLogging {
-      events("failed", "standardError")
+      events("failed", "standardError", "standardOut")
       exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
       showCauses = true
       showExceptions = true
