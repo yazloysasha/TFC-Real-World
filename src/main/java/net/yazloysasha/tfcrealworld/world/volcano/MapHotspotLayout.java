@@ -11,8 +11,13 @@ import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
 
 public final class MapHotspotLayout {
 
-  private static final double MAP_PLACEMENT_CHANCE = 0.75;
-  private static final double MOUNTAIN_STRATOVOLCANO_CHANCE = 0.5;
+  private static final double POLE_CURVE_EXPONENT = 1.25;
+  private static final double MAP_PLACEMENT_CHANCE_EQUATOR = 0.75;
+  private static final double MAP_PLACEMENT_CHANCE_POLE = 1.0;
+  private static final double MOUNTAIN_STRATOVOLCANO_CHANCE_EQUATOR = 0.5;
+  private static final double MOUNTAIN_STRATOVOLCANO_CHANCE_POLE = 1.0;
+  private static final double INV_GRID_WIDTH_IN_BLOCK =
+    1.0 / Units.GRID_WIDTH_IN_BLOCK;
   private static final double MIN_RADIUS_BLOCKS = 384;
   private static final double BIOME_RADIUS_SCALE = 1.05;
   private static final double HALF_GRID_BLOCK = Units.GRID_WIDTH_IN_BLOCK * 0.5;
@@ -67,7 +72,10 @@ public final class MapHotspotLayout {
     final List<Center> placed = new ArrayList<>();
     int nextId = 0;
     for (final Center center : scanned) {
-      if (shouldPlaceFromMap(worldSeed, center)) {
+      if (
+        seededChance(worldSeed, center, 0x9e3779b97f4a7c15L) <
+        center.placementChance()
+      ) {
         placed.add(center.withId(nextId++));
       }
     }
@@ -102,15 +110,36 @@ public final class MapHotspotLayout {
   public Center nearestCenterAtGrid(int gridX, int gridZ) {
     final double blockX = Units.gridToBlock(gridX) + HALF_GRID_BLOCK;
     final double blockZ = Units.gridToBlock(gridZ) + HALF_GRID_BLOCK;
+    final double[] image = noise.tileToImage(
+      blockX * INV_GRID_WIDTH_IN_BLOCK,
+      blockZ * INV_GRID_WIDTH_IN_BLOCK
+    );
+    final double imageX = image[0];
+    final double imageZ = image[1];
+
     Center nearest = null;
-    double nearestDist = Double.MAX_VALUE;
+    double nearestDistSq = Double.MAX_VALUE;
     for (final Center center : centers) {
-      final double maxDist = center.radiusBlocks() * BIOME_RADIUS_SCALE;
-      final double dist = distanceBlocks(blockX, blockZ, center);
-      if (dist < maxDist && dist < nearestDist) {
-        nearestDist = dist;
-        nearest = center;
+      final int dxGrid = gridX - center.gridX();
+      final int dzGrid = gridZ - center.gridZ();
+      if (
+        dxGrid > center.maxGridRadius() ||
+        dxGrid < -center.maxGridRadius() ||
+        dzGrid > center.maxGridRadius() ||
+        dzGrid < -center.maxGridRadius()
+      ) {
+        continue;
       }
+      final double dx = (imageX - center.imageX()) * blocksPerPixelX;
+      final double dz = (imageZ - center.imageZ()) * blocksPerPixelZ;
+      final double distSq = dx * dx + dz * dz;
+      final double maxDist = center.radiusBlocks() * BIOME_RADIUS_SCALE;
+      final double maxDistSq = maxDist * maxDist;
+      if (distSq >= maxDistSq || distSq >= nearestDistSq) {
+        continue;
+      }
+      nearestDistSq = distSq;
+      nearest = center;
     }
     return nearest;
   }
@@ -136,7 +165,7 @@ public final class MapHotspotLayout {
           center,
           0x6c622b72L
         ) <
-        MOUNTAIN_STRATOVOLCANO_CHANCE
+        center.stratovolcanoChance()
         ? MountainStyle.STRATOVOLCANO
         : MountainStyle.NATURAL_MOUNTAIN;
     }
@@ -156,7 +185,7 @@ public final class MapHotspotLayout {
       final Center center = nearestCenterAtGrid(point.x, point.z);
       if (
         center != null &&
-        mountainStyle(center.id()) == MountainStyle.STRATOVOLCANO
+        mountainStyles[center.id()] == MountainStyle.STRATOVOLCANO
       ) {
         point.setVolcanic();
       }
@@ -171,10 +200,11 @@ public final class MapHotspotLayout {
     if (center == null) {
       return false;
     }
-    return switch (mountainStyle(center.id())) {
-      case NATURAL_MOUNTAIN, STRATOVOLCANO -> true;
-      case SHIELD -> false;
-    };
+    final MountainStyle style = mountainStyles[center.id()];
+    return (
+      style == MountainStyle.NATURAL_MOUNTAIN ||
+      style == MountainStyle.STRATOVOLCANO
+    );
   }
 
   private double peakAt(
@@ -183,13 +213,21 @@ public final class MapHotspotLayout {
     List<Center> scoped,
     double warp
   ) {
+    final double[] image = noise.tileToImage(
+      blockX * INV_GRID_WIDTH_IN_BLOCK,
+      blockZ * INV_GRID_WIDTH_IN_BLOCK
+    );
+    final double imageX = image[0];
+    final double imageZ = image[1];
     double best = 0;
     for (final Center center : scoped) {
       final double radius = center.radiusBlocks() * (1 + warp);
       if (radius <= 0) {
         continue;
       }
-      final double dist = distanceBlocks(blockX, blockZ, center);
+      final double dx = (imageX - center.imageX()) * blocksPerPixelX;
+      final double dz = (imageZ - center.imageZ()) * blocksPerPixelZ;
+      final double dist = Math.hypot(dx, dz);
       if (dist >= radius) {
         continue;
       }
@@ -200,23 +238,6 @@ public final class MapHotspotLayout {
       }
     }
     return best;
-  }
-
-  private double distanceBlocks(double blockX, double blockZ, Center center) {
-    final double[] image = noise.tileToImage(
-      blockX / Units.GRID_WIDTH_IN_BLOCK,
-      blockZ / Units.GRID_WIDTH_IN_BLOCK
-    );
-    final double dx = (image[0] - center.imageX()) * blocksPerPixelX;
-    final double dz = (image[1] - center.imageZ()) * blocksPerPixelZ;
-    return Math.hypot(dx, dz);
-  }
-
-  private static boolean shouldPlaceFromMap(long worldSeed, Center center) {
-    return (
-      seededChance(worldSeed, center, 0x9e3779b97f4a7c15L) <
-      MAP_PLACEMENT_CHANCE
-    );
   }
 
   private static double seededChance(long worldSeed, Center center, long salt) {
@@ -259,7 +280,18 @@ public final class MapHotspotLayout {
           continue;
         }
         centers.add(
-          floodFill(noise, visited, x, z, age, blocksPerPixelX, blocksPerPixelZ)
+          withPoleChances(
+            floodFill(
+              noise,
+              visited,
+              x,
+              z,
+              age,
+              blocksPerPixelX,
+              blocksPerPixelZ
+            ),
+            height
+          )
         );
       }
     }
@@ -313,7 +345,49 @@ public final class MapHotspotLayout {
     final int gridZ = (int) Math.round(
       (imageZ - noise.getCenterZ()) / noise.getScaleZ()
     );
-    return new Center(0, age, imageX, imageZ, radius, gridX, gridZ);
+    return new Center(0, age, imageX, imageZ, radius, gridX, gridZ, 0, 0, 0);
+  }
+
+  private static Center withPoleChances(Center center, int mapHeight) {
+    final double w = poleCurveWeight(center.imageZ(), mapHeight);
+    final double placement =
+      MAP_PLACEMENT_CHANCE_EQUATOR +
+      (MAP_PLACEMENT_CHANCE_POLE - MAP_PLACEMENT_CHANCE_EQUATOR) * w;
+    final double stratovolcano =
+      MOUNTAIN_STRATOVOLCANO_CHANCE_EQUATOR +
+      (MOUNTAIN_STRATOVOLCANO_CHANCE_POLE -
+        MOUNTAIN_STRATOVOLCANO_CHANCE_EQUATOR) *
+      w;
+    final int maxGrid = (int) Math.ceil(
+      center.radiusBlocks() * BIOME_RADIUS_SCALE * INV_GRID_WIDTH_IN_BLOCK
+    );
+    return new Center(
+      center.id(),
+      center.age(),
+      center.imageX(),
+      center.imageZ(),
+      center.radiusBlocks(),
+      center.gridX(),
+      center.gridZ(),
+      placement,
+      stratovolcano,
+      maxGrid
+    );
+  }
+
+  private static double poleCurveWeight(double imageZ, int mapHeight) {
+    if (mapHeight <= 1) {
+      return 1.0;
+    }
+    final double equatorZ = mapHeight * 0.5;
+    final double t = Math.min(1.0, Math.abs(imageZ - equatorZ) / equatorZ);
+    if (t <= 0.0) {
+      return 0.0;
+    }
+    if (t >= 1.0) {
+      return 1.0;
+    }
+    return Math.pow(t, POLE_CURVE_EXPONENT);
   }
 
   private static void enqueueIfSameAge(
@@ -347,10 +421,24 @@ public final class MapHotspotLayout {
     double imageZ,
     double radiusBlocks,
     int gridX,
-    int gridZ
+    int gridZ,
+    double placementChance,
+    double stratovolcanoChance,
+    int maxGridRadius
   ) {
     Center withId(int newId) {
-      return new Center(newId, age, imageX, imageZ, radiusBlocks, gridX, gridZ);
+      return new Center(
+        newId,
+        age,
+        imageX,
+        imageZ,
+        radiusBlocks,
+        gridX,
+        gridZ,
+        placementChance,
+        stratovolcanoChance,
+        maxGridRadius
+      );
     }
   }
 }
