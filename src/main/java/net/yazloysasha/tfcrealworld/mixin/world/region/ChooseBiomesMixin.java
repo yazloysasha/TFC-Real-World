@@ -3,6 +3,8 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 import static net.dries007.tfc.world.layer.TFCLayers.*;
 
 import com.llamalad7.mixinextras.sugar.Local;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import java.util.function.Predicate;
 import net.dries007.tfc.world.layer.framework.Area;
 import net.dries007.tfc.world.region.ChooseBiomes;
 import net.dries007.tfc.world.region.Region;
@@ -59,6 +61,31 @@ public class ChooseBiomesMixin {
 
   @Unique
   private static final float LAKE_RAINFALL_BOOST = 0.09f;
+
+  /**
+   * Vanilla coastal volcanic ice-sheet cutoff. Kept identical; only the
+   * comparison temperature is jittered for map Köppen discreteness.
+   */
+  @Unique
+  private static final float COASTAL_VOLCANIC_ICE_SHEET_BASE_TEMP = -16f;
+
+  @Unique
+  private static final float COASTAL_VOLCANIC_ICE_SHEET_RAIN_SCALE = 0.006f;
+
+  @Unique
+  private static final float COASTAL_VOLCANIC_ICE_SHEET_TEMP_OFFSET = 2f;
+
+  @Unique
+  private static final float COASTAL_VOLCANIC_GLACIATED_TEMP_OFFSET = 6f;
+
+  @Unique
+  private static final float COASTAL_VOLCANIC_CARVED_TEMP_OFFSET = 10f;
+
+  @Unique
+  private static final float VOLCANIC_OCEANIC_GLACIAL_TEMP_CHAOS = 1f;
+
+  @Unique
+  private static final double VOLCANIC_OCEANIC_GLACIAL_ECOTONE_CHANCE = 0.5;
 
   @Unique
   private static void tfcrealworld$rollMeltwaterLakesOnIceSheetEdge(
@@ -121,6 +148,189 @@ public class ChooseBiomesMixin {
   }
 
   @Unique
+  private static void tfcrealworld$applyVolcanicOceanicGlacialBands(
+    Region region,
+    long worldSeed
+  ) {
+    if (!TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
+      return;
+    }
+
+    for (final Region.Point point : region.points()) {
+      if (
+        point == null ||
+        !point.land() ||
+        point.lake() ||
+        isLake(point.biome) ||
+        !tfcrealworld$isVolcanicOceanicMountainFamily(point.biome)
+      ) {
+        continue;
+      }
+
+      final float maxIceSheetTemp =
+        COASTAL_VOLCANIC_ICE_SHEET_BASE_TEMP +
+        COASTAL_VOLCANIC_ICE_SHEET_RAIN_SCALE * point.rainfall;
+      final float biomeTemp =
+        point.temperature +
+        VOLCANIC_OCEANIC_GLACIAL_TEMP_CHAOS *
+        tfcrealworld$seededSignedUnit(
+          worldSeed,
+          point.x,
+          point.z,
+          0x51c3e90a7b6d24f8L
+        );
+      point.biome = tfcrealworld$coastalVolcanicOceanicBiomeForTemp(
+        biomeTemp,
+        maxIceSheetTemp
+      );
+    }
+
+    tfcrealworld$paintVolcanicOceanicGlacialEcotone(region, worldSeed);
+  }
+
+  /**
+   * Köppen EF/ET often abuts DFC with no DFD strip. Paint a one-cell glaciated
+   * / glacially-carved pair on that volcanic oceanic contact so both biomes
+   * can exist without changing stored climate.
+   */
+  @Unique
+  private static void tfcrealworld$paintVolcanicOceanicGlacialEcotone(
+    Region region,
+    long worldSeed
+  ) {
+    final IntArrayList toGlaciated = new IntArrayList();
+    final IntArrayList toCarved = new IntArrayList();
+
+    for (final Region.Point point : region.points()) {
+      if (
+        point == null || !point.land() || point.lake() || isLake(point.biome)
+      ) {
+        continue;
+      }
+      if (
+        !tfcrealworld$seededChance(
+          worldSeed,
+          point.x,
+          point.z,
+          0x2e9b14c86a70d5f3L,
+          VOLCANIC_OCEANIC_GLACIAL_ECOTONE_CHANCE
+        )
+      ) {
+        continue;
+      }
+
+      if (
+        point.biome == ICE_SHEET_VOLCANIC_OCEANIC_MOUNTAINS &&
+        tfcrealworld$touchesWarmerVolcanicOceanic(region, point)
+      ) {
+        toGlaciated.add(point.index);
+      } else if (
+        point.biome == VOLCANIC_OCEANIC_MOUNTAINS &&
+        tfcrealworld$touchesIceOrGlaciatedVolcanicOceanic(region, point)
+      ) {
+        toCarved.add(point.index);
+      }
+    }
+
+    for (int i = 0; i < toGlaciated.size(); i++) {
+      final Region.Point point = region.atIndex(toGlaciated.getInt(i));
+      if (point != null) {
+        point.biome = GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS;
+      }
+    }
+    for (int i = 0; i < toCarved.size(); i++) {
+      final Region.Point point = region.atIndex(toCarved.getInt(i));
+      if (point != null) {
+        point.biome = GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS;
+      }
+    }
+  }
+
+  @Unique
+  private static int tfcrealworld$coastalVolcanicOceanicBiomeForTemp(
+    float temp,
+    float maxIceSheetTemp
+  ) {
+    if (temp < maxIceSheetTemp + COASTAL_VOLCANIC_ICE_SHEET_TEMP_OFFSET) {
+      return ICE_SHEET_VOLCANIC_OCEANIC_MOUNTAINS;
+    }
+    if (temp < maxIceSheetTemp + COASTAL_VOLCANIC_GLACIATED_TEMP_OFFSET) {
+      return GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS;
+    }
+    if (temp < maxIceSheetTemp + COASTAL_VOLCANIC_CARVED_TEMP_OFFSET) {
+      return GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS;
+    }
+    return VOLCANIC_OCEANIC_MOUNTAINS;
+  }
+
+  @Unique
+  private static boolean tfcrealworld$isVolcanicOceanicMountainFamily(
+    int biome
+  ) {
+    return (
+      biome == VOLCANIC_OCEANIC_MOUNTAINS ||
+      biome == ICE_SHEET_VOLCANIC_OCEANIC_MOUNTAINS ||
+      biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS
+    );
+  }
+
+  @Unique
+  private static boolean tfcrealworld$touchesWarmerVolcanicOceanic(
+    Region region,
+    Region.Point point
+  ) {
+    return tfcrealworld$anyCardinalNeighbor(region, point, neighbor -> {
+      final int biome = neighbor.biome;
+      return (
+        biome == VOLCANIC_OCEANIC_MOUNTAINS ||
+        biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS ||
+        biome == GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS
+      );
+    });
+  }
+
+  @Unique
+  private static boolean tfcrealworld$touchesIceOrGlaciatedVolcanicOceanic(
+    Region region,
+    Region.Point point
+  ) {
+    return tfcrealworld$anyCardinalNeighbor(region, point, neighbor -> {
+      final int biome = neighbor.biome;
+      return (
+        biome == ICE_SHEET_VOLCANIC_OCEANIC_MOUNTAINS ||
+        biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS
+      );
+    });
+  }
+
+  @Unique
+  private static boolean tfcrealworld$anyCardinalNeighbor(
+    Region region,
+    Region.Point point,
+    Predicate<Region.Point> match
+  ) {
+    final Region.Point east = region.atOffset(point.index, 1, 0);
+    final Region.Point west = region.atOffset(point.index, -1, 0);
+    final Region.Point south = region.atOffset(point.index, 0, 1);
+    final Region.Point north = region.atOffset(point.index, 0, -1);
+    return (
+      tfcrealworld$matchesLand(east, match) ||
+      tfcrealworld$matchesLand(west, match) ||
+      tfcrealworld$matchesLand(south, match) ||
+      tfcrealworld$matchesLand(north, match)
+    );
+  }
+
+  @Unique
+  private static boolean tfcrealworld$matchesLand(
+    Region.Point neighbor,
+    Predicate<Region.Point> match
+  ) {
+    return neighbor != null && neighbor.land() && match.test(neighbor);
+  }
+
+  @Unique
   private static boolean tfcrealworld$seededChance(
     long worldSeed,
     int gridX,
@@ -128,11 +338,33 @@ public class ChooseBiomesMixin {
     long salt,
     double chance
   ) {
+    return tfcrealworld$seededUnit(worldSeed, gridX, gridZ, salt) < chance;
+  }
+
+  @Unique
+  private static float tfcrealworld$seededSignedUnit(
+    long worldSeed,
+    int gridX,
+    int gridZ,
+    long salt
+  ) {
+    return (float) (tfcrealworld$seededUnit(worldSeed, gridX, gridZ, salt) *
+        2.0 -
+      1.0);
+  }
+
+  @Unique
+  private static double tfcrealworld$seededUnit(
+    long worldSeed,
+    int gridX,
+    int gridZ,
+    long salt
+  ) {
     long hash = worldSeed ^ salt;
     hash ^= (long) gridX * 0x9E3779B97F4A7C15L;
     hash ^= (long) gridZ * 0x6C078965L;
     hash = tfcrealworld$mix64(hash);
-    return (hash >>> 11) * (1.0 / (1L << 53)) < chance;
+    return (hash >>> 11) * (1.0 / (1L << 53));
   }
 
   @Unique
@@ -297,6 +529,11 @@ public class ChooseBiomesMixin {
         }
       }
     }
+
+    tfcrealworld$applyVolcanicOceanicGlacialBands(
+      context.region,
+      generator.seed().seed()
+    );
 
     tfcrealworld$rollMeltwaterLakesOnIceSheetEdge(
       context.region,

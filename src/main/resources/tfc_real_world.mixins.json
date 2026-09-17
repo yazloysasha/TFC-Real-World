@@ -9,6 +9,7 @@
     "world.biome.BiomeNoiseMixin",
     "world.biome.BiomeSourceExtensionMixin",
     "world.layer.IceSheetEdgeLayerMixin",
+    "world.layer.TFCLayersMixin",
     "world.region.AddContinentsAndSetOceanDepthsMixin",
     "world.region.AddHotspotsMixin",
     "world.region.AddMountainsAndBarrierIslandsAccessor",
