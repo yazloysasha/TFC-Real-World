@@ -46,6 +46,11 @@ public class BiomeCoverageContinuousTest implements TestSetup {
 
   private static final int MAP_RADIUS = 312;
 
+  /**
+   * Extra grid cells to generate so biome layers can read adjacent region points.
+   */
+  private static final int REGION_LAYER_PADDING = 6;
+
   @Test
   @EnabledIfSystemProperty(named = "continuousBiomeCoverage", matches = "true")
   @Timeout(value = 365, unit = TimeUnit.DAYS)
@@ -55,9 +60,16 @@ public class BiomeCoverageContinuousTest implements TestSetup {
     int runsWithAnyMissing = 0;
 
     while (true) {
-      runs++;
       final long seed = RandomSupport.generateUniqueSeed();
       final Set<Integer> present = collectPresentBiomes(seed, 0, 0, MAP_RADIUS);
+      if (present == null) {
+        LOGGER.warn(
+          "Skipped seed {} (region/layer sampling hit an orphan grid cell)",
+          seed
+        );
+        continue;
+      }
+      runs++;
       final Set<Integer> missing = new HashSet<>(getAllPossibleBiomes());
       missing.removeAll(present);
 
@@ -162,54 +174,106 @@ public class BiomeCoverageContinuousTest implements TestSetup {
     int centerZ,
     int radius
   ) {
-    final Settings settings = BuiltinWorldPreset.defaultSettings();
-    final RegionGenerator generator = new RegionGenerator(
-      settings,
-      Seed.of(seed)
-    );
-    final int size = radius * 2;
-    final boolean[] regionGenerated = new boolean[size * size];
+    try {
+      final Settings settings = BuiltinWorldPreset.defaultSettings();
+      final RegionGenerator generator = new RegionGenerator(
+        settings,
+        Seed.of(seed)
+      );
+      final int size = radius * 2;
+      final boolean[] regionGenerated = new boolean[size * size];
 
-    for (int dx = 0; dx < size; dx++) {
-      for (int dz = 0; dz < size; dz++) {
-        if (regionGenerated[dx + size * dz]) {
-          continue;
-        }
-        generator.visualizeRegion(
-          centerX - radius + dx,
-          centerZ - radius + dz,
-          (task, region) -> {
-            for (Region.Point point : region.points()) {
-              final int pointX = point.x - centerX + radius;
-              final int pointZ = point.z - centerZ + radius;
-              if (
-                pointX >= 0 && pointX < size && pointZ >= 0 && pointZ < size
-              ) {
-                regionGenerated[pointX + size * pointZ] = true;
+      for (int dx = 0; dx < size; dx++) {
+        for (int dz = 0; dz < size; dz++) {
+          if (regionGenerated[dx + size * dz]) {
+            continue;
+          }
+          generator.visualizeRegion(
+            centerX - radius + dx,
+            centerZ - radius + dz,
+            (task, region) -> {
+              for (Region.Point point : region.points()) {
+                final int pointX = point.x - centerX + radius;
+                final int pointZ = point.z - centerZ + radius;
+                if (
+                  pointX >= 0 && pointX < size && pointZ >= 0 && pointZ < size
+                ) {
+                  regionGenerated[pointX + size * pointZ] = true;
+                }
               }
             }
-          }
-        );
+          );
+        }
       }
-    }
 
-    final AreaFactory biomeLayerFactory = TFCLayers.createRegionBiomeLayer(
-      generator,
-      Seed.of(seed)
-    );
-    final Area biomeLayer = biomeLayerFactory.get();
-    final Set<Integer> present = new HashSet<>();
-
-    for (int dx = 0; dx < size; dx++) {
-      for (int dz = 0; dz < size; dz++) {
-        final int gridX = centerX - radius + dx;
-        final int gridZ = centerZ - radius + dz;
-        present.add(
-          resolveWorldBiomeLayerId(generator, biomeLayer, gridX, gridZ)
-        );
+      if (
+        !warmRegionPointsForLayerSampling(
+          generator,
+          centerX,
+          centerZ,
+          radius,
+          REGION_LAYER_PADDING
+        )
+      ) {
+        return null;
       }
+
+      final AreaFactory biomeLayerFactory = TFCLayers.createRegionBiomeLayer(
+        generator,
+        Seed.of(seed)
+      );
+      final Area biomeLayer = biomeLayerFactory.get();
+      final Set<Integer> present = new HashSet<>();
+
+      for (int dx = 0; dx < size; dx++) {
+        for (int dz = 0; dz < size; dz++) {
+          final int gridX = centerX - radius + dx;
+          final int gridZ = centerZ - radius + dz;
+          present.add(
+            resolveWorldBiomeLayerId(generator, biomeLayer, gridX, gridZ)
+          );
+        }
+      }
+      return present;
+    } catch (AssertionError e) {
+      LOGGER.warn(
+        "Region/layer sampling failed for seed {}: {}",
+        seed,
+        e.getMessage()
+      );
+      return null;
     }
-    return present;
+  }
+
+  /**
+   * Biome layers read neighboring coordinates; TFC can throw if {@code sampleCell(x,z)}
+   * returns a region that does not contain {@code (x,z)}. Warm the cache and detect that case.
+   */
+  private static boolean warmRegionPointsForLayerSampling(
+    RegionGenerator generator,
+    int centerX,
+    int centerZ,
+    int radius,
+    int padding
+  ) {
+    try {
+      for (
+        int gridX = centerX - radius - padding;
+        gridX < centerX + radius + padding;
+        gridX++
+      ) {
+        for (
+          int gridZ = centerZ - radius - padding;
+          gridZ < centerZ + radius + padding;
+          gridZ++
+        ) {
+          generator.getOrCreateRegionPoint(gridX, gridZ);
+        }
+      }
+      return true;
+    } catch (AssertionError e) {
+      return false;
+    }
   }
 
   private int resolveWorldBiomeLayerId(

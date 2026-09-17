@@ -10,6 +10,7 @@ import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.DivergenceNoiseRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
+import net.yazloysasha.tfcrealworld.world.biome.CoverageRareBiomes;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGDivergenceNoise;
 import net.yazloysasha.tfcrealworld.world.region.MapTectonics;
@@ -50,7 +51,7 @@ public class ChooseBiomesMixin {
   };
 
   @Unique
-  private static final double ICE_SHEET_EDGE_MELTWATER_LAKE_CHANCE = 0.05;
+  private static final double ICE_SHEET_EDGE_MELTWATER_LAKE_CHANCE = 0.1;
 
   @Unique
   private static final float LAKE_RAINFALL_BOOST = 0.09f;
@@ -231,6 +232,26 @@ public class ChooseBiomesMixin {
   }
 
   @Unique
+  private static boolean tfcrealworld$skipLandRiftBiomeReplace(
+    Region.Point point
+  ) {
+    if (point.lake() || isLake(point.biome)) {
+      return true;
+    }
+    if (CoverageRareBiomes.preserve(point.biome)) {
+      return true;
+    }
+    if (point.isSurfaceRockKarst) {
+      return true;
+    }
+    return (
+      isFlatIceSheet(point.biome) ||
+      point.biome == ICE_SHEET_EDGE ||
+      point.biome == ICE_SHEET_SHORE
+    );
+  }
+
+  @Unique
   private static void tfcrealworld$applyLandRiftBiomes(
     Region.Point point,
     PNGDivergenceNoise divergenceNoise,
@@ -243,8 +264,7 @@ public class ChooseBiomesMixin {
       !point.land() ||
       point.island() ||
       point.hotSpotAge > 0 ||
-      point.lake() ||
-      isLake(point.biome) ||
+      tfcrealworld$skipLandRiftBiomeReplace(point) ||
       !MapTectonics.isLandRiftCore(divergenceNoise, point.x, point.z)
     ) {
       return;

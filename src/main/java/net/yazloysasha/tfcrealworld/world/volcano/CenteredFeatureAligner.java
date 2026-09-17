@@ -7,6 +7,7 @@ import net.dries007.tfc.world.noise.Cellular2D;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.Units;
 import net.dries007.tfc.world.volcano.CenteredFeatureNoise;
+import net.yazloysasha.tfcrealworld.world.biome.CoverageRareBiomes;
 
 public final class CenteredFeatureAligner {
 
@@ -56,6 +57,9 @@ public final class CenteredFeatureAligner {
       ) {
         continue;
       }
+      if (!contains(region, centerGridX, centerGridZ)) {
+        continue;
+      }
       pending.putIfAbsent(pack(centerGridX, centerGridZ), point.biome);
     }
 
@@ -71,8 +75,20 @@ public final class CenteredFeatureAligner {
       if (isLake(center.biome)) {
         continue;
       }
+      if (CoverageRareBiomes.preserve(center.biome)) {
+        continue;
+      }
       center.biome = entry.getIntValue();
     }
+  }
+
+  private static boolean contains(Region region, int x, int z) {
+    return (
+      x >= region.minX() &&
+      x <= region.maxX() &&
+      z >= region.minZ() &&
+      z <= region.maxZ()
+    );
   }
 
   private static long pack(int x, int z) {
