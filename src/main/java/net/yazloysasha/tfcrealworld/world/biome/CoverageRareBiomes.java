@@ -11,10 +11,10 @@ public final class CoverageRareBiomes {
   private CoverageRareBiomes() {}
 
   public static boolean preserve(int biome) {
-    if (preserveVolcanicAndMountainLakes(biome)) {
+    if (biome == TUYAS) {
       return true;
     }
-    if (preserveTuyas(biome)) {
+    if (preserveVolcanicAndMountainLakes(biome)) {
       return true;
     }
     return preserveBurrenAndGlacialKarst(biome);
@@ -27,14 +27,6 @@ public final class CoverageRareBiomes {
       biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS ||
       biome == GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS ||
       biome == MELTWATER_LAKE
-    );
-  }
-
-  private static boolean preserveTuyas(int biome) {
-    return (
-      biome == TUYAS ||
-      biome == ICE_SHEET_TUYAS ||
-      biome == ICE_SHEET_TUYAS_EDGE
     );
   }
 
