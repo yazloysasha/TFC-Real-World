@@ -54,6 +54,9 @@ public class ChooseBiomesMixin {
   private static final double ICE_SHEET_EDGE_MELTWATER_LAKE_CHANCE = 0.16;
 
   @Unique
+  private static final double OCEANIC_MOUNTAIN_LAKE_CHANCE = 0.05;
+
+  @Unique
   private static final float LAKE_RAINFALL_BOOST = 0.09f;
 
   @Unique
@@ -80,6 +83,38 @@ public class ChooseBiomesMixin {
         point.setLake();
         point.rainfall += LAKE_RAINFALL_BOOST * (500f - point.rainfall);
         point.biome = lakeFor(ICE_SHEET_EDGE);
+      }
+    }
+  }
+
+  @Unique
+  private static void tfcrealworld$rollOceanicMountainLakes(
+    Region region,
+    long worldSeed
+  ) {
+    if (!TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
+      return;
+    }
+    for (final Region.Point point : region.points()) {
+      if (point == null || !point.land() || point.lake()) {
+        continue;
+      }
+      final int biome = point.biome;
+      if (biome != OCEANIC_MOUNTAINS && biome != VOLCANIC_OCEANIC_MOUNTAINS) {
+        continue;
+      }
+      if (
+        tfcrealworld$seededChance(
+          worldSeed,
+          point.x,
+          point.z,
+          0x3c9e2b71a4d805f1L,
+          OCEANIC_MOUNTAIN_LAKE_CHANCE
+        )
+      ) {
+        point.setLake();
+        point.rainfall += LAKE_RAINFALL_BOOST * (500f - point.rainfall);
+        point.biome = lakeFor(biome);
       }
     }
   }
@@ -205,6 +240,11 @@ public class ChooseBiomesMixin {
     }
 
     tfcrealworld$rollMeltwaterLakesOnIceSheetEdge(
+      context.region,
+      generator.seed().seed()
+    );
+
+    tfcrealworld$rollOceanicMountainLakes(
       context.region,
       generator.seed().seed()
     );
