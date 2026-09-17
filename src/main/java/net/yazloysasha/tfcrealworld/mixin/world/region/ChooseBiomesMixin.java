@@ -55,7 +55,7 @@ public class ChooseBiomesMixin {
   private static final double ICE_SHEET_EDGE_MELTWATER_LAKE_CHANCE = 0.16;
 
   @Unique
-  private static final double OCEANIC_MOUNTAIN_LAKE_CHANCE = 0.05;
+  private static final double OCEANIC_MOUNTAIN_LAKE_CHANCE = 0.1;
 
   @Unique
   private static final float LAKE_RAINFALL_BOOST = 0.09f;
