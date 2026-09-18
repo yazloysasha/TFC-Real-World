@@ -13,7 +13,8 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Scans the hotspot PNG into discrete volcanic centers. Used to keep map
- * mountain cells from being overwritten by TFG/TFC shield-volcano overlay.
+ * mountain cells from being overwritten by TFG shield-volcano overlay, and to
+ * paint TFC 3 volcanic mountains instead of canyons on those cores.
  */
 public final class MapHotspotLayout {
 
@@ -183,6 +184,14 @@ public final class MapHotspotLayout {
     return style == null ? MountainStyle.SHIELD : style;
   }
 
+  public MountainStyle styleAtGrid(int gridX, int gridZ) {
+    final Center center = nearestCenterAtGrid(gridX, gridZ);
+    if (center == null) {
+      return MountainStyle.SHIELD;
+    }
+    return mountainStyle(center.id());
+  }
+
   public void prepareChooseBiomes(Region region, long worldSeed) {
     resolveMountainStyles(region, worldSeed);
   }
@@ -196,14 +205,38 @@ public final class MapHotspotLayout {
     if (hotSpotAge <= 0 || !mountain) {
       return false;
     }
-    final Center center = nearestCenterAtGrid(gridX, gridZ);
-    if (center == null) {
-      return false;
-    }
-    final MountainStyle style = mountainStyles[center.id()];
+    final MountainStyle style = styleAtGrid(gridX, gridZ);
     return (
       style == MountainStyle.NATURAL_MOUNTAIN ||
       style == MountainStyle.STRATOVOLCANO
+    );
+  }
+
+  public boolean keepMountainBiome(
+    Region region,
+    Region.Point point,
+    byte hotSpotAge
+  ) {
+    final int index = RegionCoords.indexOf(region, point);
+    if (index < 0) {
+      return false;
+    }
+    return keepMountainBiome(
+      RegionCoords.gridX(region, index),
+      RegionCoords.gridZ(region, index),
+      point.mountain(),
+      hotSpotAge
+    );
+  }
+
+  public MountainStyle styleAt(Region region, Region.Point point) {
+    final int index = RegionCoords.indexOf(region, point);
+    if (index < 0) {
+      return MountainStyle.SHIELD;
+    }
+    return styleAtGrid(
+      RegionCoords.gridX(region, index),
+      RegionCoords.gridZ(region, index)
     );
   }
 

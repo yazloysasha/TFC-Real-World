@@ -5,6 +5,7 @@ import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
+import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotBiomes;
 import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -45,7 +46,7 @@ public class TfgAddHotspotsMixin {
       );
       if (mapAge > 0) {
         ((IRegionPoint) point).tfg$setHotSpotAge(mapAge);
-        if (mapAge != 4) {
+        if (MapHotspotBiomes.shouldSetLandForMapAge(mapAge)) {
           point.setLand();
         }
       }

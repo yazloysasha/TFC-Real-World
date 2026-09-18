@@ -9,8 +9,10 @@ import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.region.MapBiomeLakeRolls;
 import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
-import net.yazloysasha.tfcrealworld.world.volcano.CenteredFeatureAligner;
+import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotBiomes;
 import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
+import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout.MountainStyle;
+import net.yazloysasha.tfcrealworld.world.volcano.TfgCenteredFeatureAligner;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -25,8 +27,10 @@ import su.terrafirmagreg.core.world.new_ow_wg.region.TFGChooseBiomesTask;
 /**
  * TFG still chooses biomes. Map mountain cores follow TFC 4
  * {@code ChooseBiomes} ({@code mountain()} → ice / {@code MOUNTAINS} /
- * oceanic, never the high-land table). Burren/tower-karst extra bases match
- * 1.21.1 {@code ChooseBiomesMixin}. Centered volcano cells align to TFG noise.
+ * oceanic, never the high-land table). Stratovolcano mountain hotspots paint
+ * {@code VOLCANIC_MOUNTAINS} instead of shield or canyons. Burren/tower-karst
+ * extra bases match 1.21.1 {@code ChooseBiomesMixin}. Centered volcano cells
+ * align to TFG noise.
  */
 @Mixin(value = TFGChooseBiomesTask.class, remap = false)
 public class TfgChooseBiomesMixin {
@@ -83,7 +87,10 @@ public class TfgChooseBiomesMixin {
       TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get() ||
       TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()
     ) {
-      CenteredFeatureAligner.align(context.region, WorldSeedHolder.getSeed());
+      TfgCenteredFeatureAligner.align(
+        context.region,
+        WorldSeedHolder.getSeed()
+      );
     }
     CURRENT_REGION.remove();
     CURRENT_POINT.remove();
@@ -177,7 +184,15 @@ public class TfgChooseBiomesMixin {
         Boolean.TRUE.equals(ASSIGNING_HOTSPOT_BIOME.get()) &&
         tfcrealworld$shouldKeepMountainBiome(point)
       ) {
-        return;
+        if (tfcrealworld$shouldPaintStratovolcano(point)) {
+          proposedBiome = MapHotspotBiomes.volcanicMountainFor(
+            point,
+            VOLCANIC_MOUNTAINS,
+            VOLCANIC_OCEANIC_MOUNTAINS
+          );
+        } else {
+          return;
+        }
       }
       point.biome = proposedBiome;
     } finally {
@@ -239,16 +254,37 @@ public class TfgChooseBiomesMixin {
     if (layout == null || region == null) {
       return false;
     }
-    final int index = RegionCoords.indexOf(region, point);
-    if (index < 0) {
+    return layout.keepMountainBiome(
+      region,
+      point,
+      ((IRegionPoint) point).tfg$getHotSpotAge()
+    );
+  }
+
+  @Unique
+  private static boolean tfcrealworld$shouldPaintStratovolcano(
+    Region.Point point
+  ) {
+    if (tfcrealworld$isIceMountain(point.biome)) {
       return false;
     }
-    final IRegionPoint extra = (IRegionPoint) point;
-    return layout.keepMountainBiome(
-      RegionCoords.gridX(region, index),
-      RegionCoords.gridZ(region, index),
-      point.mountain(),
-      extra.tfg$getHotSpotAge()
+    final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
+    final Region region = CURRENT_REGION.get();
+    if (layout == null || region == null) {
+      return false;
+    }
+    return layout.styleAt(region, point) == MountainStyle.STRATOVOLCANO;
+  }
+
+  @Unique
+  private static boolean tfcrealworld$isIceMountain(int biome) {
+    return (
+      biome == ICE_SHEET_MOUNTAINS ||
+      biome == ICE_SHEET_OCEANIC_MOUNTAINS ||
+      biome == GLACIATED_MOUNTAINS ||
+      biome == GLACIATED_OCEANIC_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_OCEANIC_MOUNTAINS
     );
   }
 
