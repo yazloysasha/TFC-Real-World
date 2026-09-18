@@ -23,7 +23,7 @@ license = "MIT"
 [[dependencies.${modId}]]
     modId = "tfg"
     mandatory = false
-    versionRange = "[0.9.23,)"
+    versionRange = "[0.9.15,)"
     ordering = "AFTER"
     side = "BOTH"
 
