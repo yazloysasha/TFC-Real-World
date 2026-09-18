@@ -9,7 +9,7 @@ import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
  */
 public final class MapBiomeLakeRolls {
 
-  private static final double OCEANIC_MOUNTAIN_LAKE_CHANCE = 0.16;
+  private static final double OCEANIC_MOUNTAIN_LAKE_CHANCE = 0.1;
   private static final float LAKE_RAINFALL_BOOST = 0.09f;
   private static final long OCEANIC_MOUNTAIN_LAKE_SALT = 0x3c9e2b71a4d805f1L;
 

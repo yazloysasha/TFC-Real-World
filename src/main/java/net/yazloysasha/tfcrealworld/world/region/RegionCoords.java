@@ -1,6 +1,7 @@
 package net.yazloysasha.tfcrealworld.world.region;
 
 import net.dries007.tfc.world.region.Region;
+import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -17,6 +18,10 @@ public final class RegionCoords {
 
   public static int gridZ(Region region, int index) {
     return region.minZ() + (index / region.sizeX());
+  }
+
+  public static int gridToBlock(int grid) {
+    return grid * TFCRealWorld.GRID_WIDTH_IN_BLOCK;
   }
 
   public static int indexOf(Region region, Region.Point point) {

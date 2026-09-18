@@ -8,31 +8,22 @@ import net.dries007.tfc.world.region.Region;
 public final class BiomePools {
 
   public final boolean[] isVolcanicLayer;
-  final int[] volcanicOcean;
-  final int[] volcanicLand;
 
   final int[] nonVolcanicOcean;
   final int[] nonVolcanicLand;
 
   private BiomePools(
     boolean[] isVolcanicLayer,
-    int[] volcanicOcean,
-    int[] volcanicLand,
     int[] nonVolcanicOcean,
     int[] nonVolcanicLand
   ) {
     this.isVolcanicLayer = isVolcanicLayer;
-    this.volcanicOcean = volcanicOcean;
-    this.volcanicLand = volcanicLand;
     this.nonVolcanicOcean = nonVolcanicOcean;
     this.nonVolcanicLand = nonVolcanicLand;
   }
 
   public static BiomePools build() {
     final boolean[] isVolcanicLayer = new boolean[64];
-    final IntArrayList volcOcean = new IntArrayList();
-    final IntArrayList volcLand = new IntArrayList();
-
     final IntArrayList nonOcean = new IntArrayList();
     final IntArrayList nonLand = new IntArrayList();
 
@@ -50,40 +41,24 @@ public final class BiomePools {
 
       final boolean volcanic = ext.isVolcanic();
       isVolcanicLayer[id] = volcanic;
+      if (volcanic) {
+        continue;
+      }
+
       final boolean oceanLike =
         ext.isSalty() || ext.getGroup() == BiomeExtension.Group.OCEAN;
-
-      if (volcanic) {
-        if (oceanLike) {
-          volcOcean.add(id);
-        } else {
-          volcLand.add(id);
-        }
+      if (oceanLike) {
+        nonOcean.add(id);
       } else {
-        if (oceanLike) {
-          nonOcean.add(id);
-        } else {
-          nonLand.add(id);
-        }
+        nonLand.add(id);
       }
     }
 
     return new BiomePools(
       isVolcanicLayer,
-      volcOcean.toIntArray(),
-      volcLand.toIntArray(),
       nonOcean.toIntArray(),
       nonLand.toIntArray()
     );
-  }
-
-  public int pickVolcanic(Region.Point point, int x, int z, int originalBiome) {
-    final int altitude = point.discreteBiomeAltitude();
-    if (!point.land()) {
-      return pickOrOriginal(volcanicOcean, x, z, 11, originalBiome);
-    }
-
-    return pickOrOriginal(volcanicLand, x, z, 20 + altitude, originalBiome);
   }
 
   public int pickNonVolcanic(

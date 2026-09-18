@@ -8,9 +8,12 @@ import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.RegionContextHolder;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
 import net.yazloysasha.tfcrealworld.world.region.BiomePools;
 import net.yazloysasha.tfcrealworld.world.region.MapBiomeLakeRolls;
+import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
+import net.yazloysasha.tfcrealworld.world.volcano.CenteredFeatureAligner;
+import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotBiomes;
+import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -23,22 +26,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ChooseBiomesMixin {
 
   @Unique
-  private static final float ACTIVE_VOLCANIC_BIOME_SIZE_MULTIPLIER = 1.4f;
-
-  @Unique
-  private static final float INACTIVE_VOLCANIC_BIOME_SIZE_MULTIPLIER = 1.0f;
-
-  @Unique
   private static final ThreadLocal<int[]> CURRENT_GRID_POS =
     ThreadLocal.withInitial(() -> new int[] { 0, 0 });
 
   @Unique
   private static final ThreadLocal<Boolean> CURRENT_IN_HOTSPOT =
     ThreadLocal.withInitial(() -> Boolean.FALSE);
-
-  @Unique
-  private static final ThreadLocal<PNGHotspotsNoise> CURRENT_HOTSPOTS =
-    new ThreadLocal<>();
 
   @Unique
   private static volatile BiomePools POOLS;
@@ -49,12 +42,45 @@ public class ChooseBiomesMixin {
     remap = false
   )
   private void tfcrealworld$setupVolcanicFiltering(CallbackInfo ci) {
-    final var generator = RegionContextHolder.getGenerator();
-    if (generator == null) {
+    tfcrealworld$ensurePoolsInitialized();
+    if (!TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
       return;
     }
-    CURRENT_HOTSPOTS.set(HotspotsNoiseRegistry.get(generator));
-    tfcrealworld$ensurePoolsInitialized();
+    final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
+    if (layout == null) {
+      return;
+    }
+    final Region region = RegionContextHolder.getRegion();
+    if (region == null) {
+      return;
+    }
+    layout.prepareChooseBiomes(region, WorldSeedHolder.getSeed());
+    tfcrealworld$applyMapHotspotLand(region, layout);
+  }
+
+  /**
+   * TFC 2 has no {@code AddHotspots} task; mirror 1.21.1 {@code AddHotspotsMixin}
+   * so young map hotspots become land before biome paint (age 4 stays ocean).
+   */
+  @Unique
+  private static void tfcrealworld$applyMapHotspotLand(
+    Region region,
+    MapHotspotLayout layout
+  ) {
+    final Region.Point[] data = region.data();
+    for (int index = 0; index < data.length; index++) {
+      final Region.Point point = data[index];
+      if (point == null) {
+        continue;
+      }
+      final byte age = layout.ageAtGrid(
+        RegionCoords.gridX(region, index),
+        RegionCoords.gridZ(region, index)
+      );
+      if (MapHotspotBiomes.shouldSetLandForMapAge(age)) {
+        point.setLand();
+      }
+    }
   }
 
   @Inject(
@@ -72,8 +98,15 @@ public class ChooseBiomesMixin {
         TFCLayers.VOLCANIC_OCEANIC_MOUNTAINS,
         TFCLayers::lakeFor
       );
+      if (
+        TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get() ||
+        TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()
+      ) {
+        CenteredFeatureAligner.alignTfc(region, WorldSeedHolder.getSeed());
+      }
     }
-    CURRENT_HOTSPOTS.remove();
+    CURRENT_GRID_POS.remove();
+    CURRENT_IN_HOTSPOT.remove();
   }
 
   @Redirect(
@@ -92,38 +125,37 @@ public class ChooseBiomesMixin {
     final int[] pos = CURRENT_GRID_POS.get();
     pos[0] = x;
     pos[1] = z;
-
-    final PNGHotspotsNoise hotspots = CURRENT_HOTSPOTS.get();
-    CURRENT_IN_HOTSPOT.set(tfcrealworld$isInHotspot(hotspots, x, z));
-
+    CURRENT_IN_HOTSPOT.set(tfcrealworld$isInHotspot(x, z));
     return blobArea.get(x, z);
   }
 
   @Unique
-  private static boolean tfcrealworld$isInHotspot(
-    PNGHotspotsNoise hotspots,
-    int x,
-    int z
-  ) {
-    if (hotspots == null) return false;
-
-    final byte ageHere = hotspots.getHotSpotAge(x, z);
-    if (ageHere > 0) return true;
-
-    final float m = ACTIVE_VOLCANIC_BIOME_SIZE_MULTIPLIER;
-
-    final int r = Math.max(
-      0,
-      (int) Math.ceil((m - INACTIVE_VOLCANIC_BIOME_SIZE_MULTIPLIER) * 2.0f)
-    );
-    for (int dz = -r; dz <= r; dz++) {
-      for (int dx = -r; dx <= r; dx++) {
-        if (hotspots.hasActiveHotspot(x + dx, z + dz)) {
-          return true;
+  private static int tfcrealworld$altitudeMountainBiome(Region.Point point) {
+    if (
+      TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get() && CURRENT_IN_HOTSPOT.get()
+    ) {
+      final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
+      if (layout != null) {
+        final int[] pos = CURRENT_GRID_POS.get();
+        final byte age = layout.ageAtGrid(pos[0], pos[1]);
+        if (MapHotspotBiomes.shouldUseVolcanicMountainForMapAge(age)) {
+          return MapHotspotBiomes.volcanicMountainFor(
+            point,
+            TFCLayers.VOLCANIC_MOUNTAINS,
+            TFCLayers.VOLCANIC_OCEANIC_MOUNTAINS
+          );
         }
       }
     }
-    return false;
+    return point.coastalMountain()
+      ? TFCLayers.OCEANIC_MOUNTAINS
+      : TFCLayers.MOUNTAINS;
+  }
+
+  @Unique
+  private static boolean tfcrealworld$isInHotspot(int x, int z) {
+    final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
+    return layout != null && layout.ageAtGrid(x, z) > 0;
   }
 
   @Unique
@@ -163,30 +195,35 @@ public class ChooseBiomesMixin {
       point.mountain() &&
       !TFCLayers.isLake(proposedBiome)
     ) {
-      proposedBiome = point.coastalMountain()
-        ? TFCLayers.OCEANIC_MOUNTAINS
-        : TFCLayers.MOUNTAINS;
+      proposedBiome = tfcrealworld$altitudeMountainBiome(point);
     }
 
-    if (
-      !TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get() ||
-      TFCLayers.isLake(proposedBiome)
-    ) {
+    if (!TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
+      point.biome = proposedBiome;
+      return;
+    }
+
+    final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
+    if (layout == null) {
       point.biome = proposedBiome;
       return;
     }
 
     final int[] pos = CURRENT_GRID_POS.get();
     final boolean inHotspot = CURRENT_IN_HOTSPOT.get();
-
     final boolean proposedIsVolcanic = tfcrealworld$isVolcanicLayer(
       proposedBiome
     );
 
     if (inHotspot) {
-      point.biome = proposedIsVolcanic
-        ? proposedBiome
-        : POOLS.pickVolcanic(point, pos[0], pos[1], proposedBiome);
+      point.biome = MapHotspotBiomes.assignTfc(
+        point,
+        proposedBiome,
+        proposedIsVolcanic,
+        pos[0],
+        pos[1],
+        layout
+      );
     } else {
       point.biome = proposedIsVolcanic
         ? POOLS.pickNonVolcanic(point, pos[0], pos[1], proposedBiome)

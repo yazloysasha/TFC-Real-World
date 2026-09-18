@@ -95,6 +95,8 @@ public class RegionGeneratorMixin {
           verticalScale
         );
         HotspotsNoiseRegistry.register(instance, hotspotsNoise);
+      } else {
+        HotspotsNoiseRegistry.clearBiomeLayout();
       }
     } catch (NoSuchFieldException e) {
       throw new RuntimeException(
