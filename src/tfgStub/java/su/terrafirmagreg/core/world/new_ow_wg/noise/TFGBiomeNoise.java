@@ -22,4 +22,12 @@ public class TFGBiomeNoise {
   public static Noise2D ancientHotSpots(long seed) {
     return (x, z) -> 0;
   }
+
+  public static Noise2D bowlDolines(
+    long seed,
+    Noise2D baseTerrainNoise,
+    double scale
+  ) {
+    return baseTerrainNoise;
+  }
 }

@@ -102,6 +102,9 @@ public class AnnotateBiomeAltitudeMixin {
   private static int tfcrealworld$maxDiscreteAltitudeForLandHeight(
     int baseLandHeight
   ) {
+    if (baseLandHeight >= MAP_MOUNTAIN_CAP_LAND_HEIGHT) {
+      return 3;
+    }
     if (baseLandHeight >= MAP_HIGH_LAND_HEIGHT) {
       return 2;
     }

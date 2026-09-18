@@ -24,8 +24,8 @@ import su.terrafirmagreg.core.world.new_ow_wg.region.TFGChooseBiomesTask;
 /**
  * TFG still chooses biomes. Map mountain cores follow TFC 4
  * {@code ChooseBiomes} ({@code mountain()} → ice / {@code MOUNTAINS} /
- * oceanic, never the high-land table). Burren/tower-karst get the same extra
- * bases as 1.21.1, and centered volcano cells are aligned to TFG's own noise.
+ * oceanic, never the high-land table). Burren/tower-karst extra bases match
+ * 1.21.1 {@code ChooseBiomesMixin}. Centered volcano cells align to TFG noise.
  */
 @Mixin(value = TFGChooseBiomesTask.class, remap = false)
 public class TfgChooseBiomesMixin {
@@ -70,8 +70,6 @@ public class TfgChooseBiomesMixin {
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    tfcrealworld$applyMapKarstRims(context.region);
-    tfcrealworld$paintTuyasEdge(context.region);
     tfcrealworld$rollMapLakes(context.region, WorldSeedHolder.getSeed());
     if (
       TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get() ||
@@ -117,6 +115,11 @@ public class TfgChooseBiomesMixin {
     ).tfcrealworld$invokeGetBurrenBiome(tfcrealworld$burrenBase(biome));
   }
 
+  /**
+   * Vanilla already maps {@code SALT_MARSH → TOWER_KARST_BAY} inside
+   * {@code getTowerKarstBiome}, but paints mangrove marshes after karst.
+   * Feed drowned coastal karst into that vanilla call so climate stays in TFC.
+   */
   @Redirect(
     method = "apply",
     at = @At(
@@ -174,14 +177,18 @@ public class TfgChooseBiomesMixin {
     }
   }
 
+  /**
+   * Vanilla Burren only remaps a few bases. Paleo ice-margin biomes,
+   * ice-sheet rim, humid-high {@code OLD_MOUNTAINS}, and mesa/canyon leftovers
+   * fall through. Climate is already decided by TFC before this call.
+   */
   @Unique
   private static int tfcrealworld$burrenBase(int biome) {
     if (
       biome == KNOB_AND_KETTLE ||
       biome == PATTERNED_GROUND ||
       biome == INVERTED_PATTERNED_GROUND ||
-      biome == ICE_SHEET_EDGE ||
-      biome == TUYAS
+      biome == ICE_SHEET_EDGE
     ) {
       return DRUMLINS;
     }
@@ -195,135 +202,6 @@ public class TfgChooseBiomesMixin {
       return PLATEAU;
     }
     return biome;
-  }
-
-  /**
-   * Vanilla paints SALT_MARSH after karst, and Burren only remaps DRUMLINS.
-   * Köppen cells skip those exact bases, so re-apply the 1.21.1 extra bases
-   * on the finished region instead of trusting the in-loop ThreadLocal point.
-   */
-  @Unique
-  private static void tfcrealworld$applyMapKarstRims(Region region) {
-    final Region.Point[] data = region.data();
-    for (final Region.Point point : data) {
-      if (point == null || !point.land()) {
-        continue;
-      }
-      final IRegionPoint extra = (IRegionPoint) point;
-      if (!extra.tfg$getIsSurfaceRockKarst()) {
-        continue;
-      }
-      final float rainfall = point.rainfall;
-      final float temperature = point.temperature;
-      final boolean towerKarst =
-        rainfall > 425f && rainfall + 10f * temperature > 500f;
-      if (towerKarst && point.distanceToOcean <= 2) {
-        if (tfcrealworld$isTowerKarstBayBase(point.biome)) {
-          point.biome = TOWER_KARST_BAY;
-        }
-        continue;
-      }
-      if (rainfall > 375f && temperature < 0f && !towerKarst) {
-        if (tfcrealworld$isBurrenRocheBase(point.biome)) {
-          point.biome = BURREN_ROCHE_MOUTONEE;
-        }
-      }
-    }
-  }
-
-  @Unique
-  private static boolean tfcrealworld$isTowerKarstBayBase(int biome) {
-    return (
-      biome == SALT_MARSH ||
-      biome == LOWLANDS ||
-      biome == PLAINS ||
-      biome == LOW_CANYONS ||
-      biome == TOWER_KARST_PLAINS ||
-      biome == TOWER_KARST_LAKE
-    );
-  }
-
-  @Unique
-  private static boolean tfcrealworld$isBurrenRocheBase(int biome) {
-    return (
-      biome == DRUMLINS ||
-      biome == TUYAS ||
-      biome == KNOB_AND_KETTLE ||
-      biome == PATTERNED_GROUND ||
-      biome == INVERTED_PATTERNED_GROUND ||
-      biome == ICE_SHEET_EDGE
-    );
-  }
-
-  @Unique
-  private static void tfcrealworld$paintTuyasEdge(Region region) {
-    final Region.Point[] data = region.data();
-    final boolean[] paint = new boolean[data.length];
-    for (int index = 0; index < data.length; index++) {
-      final Region.Point point = data[index];
-      if (
-        point == null ||
-        !point.land() ||
-        point.biome == ICE_SHEET_TUYAS ||
-        !tfcrealworld$isTuyasEdgeRim(point.biome)
-      ) {
-        continue;
-      }
-      if (tfcrealworld$touchesIceSheetTuyas(region, index)) {
-        paint[index] = true;
-      }
-    }
-    for (int index = 0; index < data.length; index++) {
-      if (paint[index]) {
-        data[index].biome = ICE_SHEET_TUYAS_EDGE;
-      }
-    }
-  }
-
-  @Unique
-  private static boolean tfcrealworld$touchesIceSheetTuyas(
-    Region region,
-    int index
-  ) {
-    return (
-      tfcrealworld$neighborIsIceSheetTuyas(region, index, 0, -1) ||
-      tfcrealworld$neighborIsIceSheetTuyas(region, index, 1, 0) ||
-      tfcrealworld$neighborIsIceSheetTuyas(region, index, 0, 1) ||
-      tfcrealworld$neighborIsIceSheetTuyas(region, index, -1, 0)
-    );
-  }
-
-  @Unique
-  private static boolean tfcrealworld$neighborIsIceSheetTuyas(
-    Region region,
-    int index,
-    int dx,
-    int dz
-  ) {
-    final Region.Point neighbor = RegionCoords.atOffset(region, index, dx, dz);
-    return neighbor != null && neighbor.biome == ICE_SHEET_TUYAS;
-  }
-
-  @Unique
-  private static boolean tfcrealworld$isTuyasEdgeRim(int biome) {
-    return (
-      biome == ICE_SHEET_EDGE ||
-      biome == ICE_SHEET_SHORE ||
-      biome == ICE_SHEET_OCEANIC ||
-      biome == MELTWATER_LAKE ||
-      biome == KNOB_AND_KETTLE ||
-      biome == PATTERNED_GROUND ||
-      biome == INVERTED_PATTERNED_GROUND ||
-      biome == STONE_CIRCLES ||
-      biome == DRUMLINS ||
-      biome == TUYAS ||
-      biome == SHORE ||
-      biome == TIDAL_FLATS ||
-      biome == PLAINS ||
-      biome == HILLS ||
-      biome == LOWLANDS ||
-      biome == ROLLING_HILLS
-    );
   }
 
   /**
