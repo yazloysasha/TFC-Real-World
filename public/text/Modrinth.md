@@ -1,6 +1,6 @@
 # TFC: Real World 🌍
 
-> ## 🎉 Now compatible with **TerraFirmaGreg** on Minecraft **1.20.1**!
+> ## 🎉 Now compatible with **[TerraFirmaGreg Modern](https://www.curseforge.com/minecraft/modpacks/terrafirmagreg-modern)** on Minecraft **1.20.1**!
 
 ![Earth Maps](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
 
