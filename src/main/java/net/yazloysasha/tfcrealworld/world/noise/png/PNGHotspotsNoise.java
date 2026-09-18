@@ -1,16 +1,34 @@
 package net.yazloysasha.tfcrealworld.world.noise.png;
 
+import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
+import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
+
 public class PNGHotspotsNoise extends BasePNGNoise {
 
   private static final String MAP_NAME = "hotspots";
 
+  private final MapHotspotLayout layout;
+
   public PNGHotspotsNoise(int horizontalScale, int verticalScale) {
+    this(horizontalScale, verticalScale, WorldSeedHolder.getSeed());
+  }
+
+  public PNGHotspotsNoise(
+    int horizontalScale,
+    int verticalScale,
+    long worldSeed
+  ) {
     super(
       horizontalScale,
       verticalScale,
       MAP_NAME,
       "Failed to load hotspots map. Map file is required when generating hotspots from map."
     );
+    this.layout = MapHotspotLayout.create(this, worldSeed);
+  }
+
+  public MapHotspotLayout layout() {
+    return layout;
   }
 
   @Override

@@ -30,6 +30,7 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Integer> SPAWN_CENTER_X;
   public static final ConfigOption<Integer> SPAWN_CENTER_Z;
   public static final ConfigOption<Integer> SPAWN_DISTANCE;
+  public static final ConfigOption<Boolean> CANYONS_NOT_VOLCANIC;
   public static final ConfigOption<Boolean> FLAT_BEDROCK;
   public static final ConfigOption<Double> CONTINENTALNESS;
   public static final ConfigOption<Double> GRASS_DENSITY;
@@ -112,6 +113,16 @@ public class TFCRealWorldConfig {
       MIN_SCALE,
       MIN_SCALE,
       MAX_SCALE
+    );
+
+    BUILDER.pop();
+    BUILDER.push("biome_modifications");
+
+    CANYONS_NOT_VOLCANIC = new ConfigOption<>(
+      BUILDER,
+      "canyons_not_volcanic",
+      "TFG only. When Core-Modern (tfg) is loaded, strip cinder cones from Canyons and Doline Canyons. Without TFG this option does nothing: TFC 3 Canyons stay volcanic",
+      true
     );
 
     BUILDER.pop();
@@ -227,6 +238,7 @@ public class TFCRealWorldConfig {
       SPAWN_CENTER_X,
       SPAWN_CENTER_Z,
       SPAWN_DISTANCE,
+      CANYONS_NOT_VOLCANIC,
       FLAT_BEDROCK,
       CONTINENTALNESS,
       GRASS_DENSITY,

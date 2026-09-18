@@ -57,7 +57,13 @@ repositories {
 }
 
 sourceSets {
+  create("tfgStub") {
+    java.srcDir("src/tfgStub/java")
+    compileClasspath += sourceSets["main"].compileClasspath
+  }
+
   main {
+    compileClasspath += sourceSets["tfgStub"].output
     resources {
       srcDir(generateModMetadata)
     }
@@ -72,8 +78,7 @@ minecraft {
       args("-mixin.config=$modId.mixins.json")
       
       property("forge.logging.console.level", "debug")
-      property("forge.enabledGameTestNamespaces", modId)
-      
+
       property("mixin.env.remapRefMap", "true")
       property("mixin.env.refMapRemappingFile", "$projectDir/build/createSrgToMcp/output.srg")
       
@@ -117,6 +122,7 @@ tasks {
   }
 
   jar {
+    exclude("su/terrafirmagreg/**")
     manifest {
       attributes["Implementation-Version"] = project.version
       attributes["MixinConfigs"] = "$modId.mixins.json"

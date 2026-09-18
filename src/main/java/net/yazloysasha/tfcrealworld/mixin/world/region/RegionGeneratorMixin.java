@@ -3,6 +3,7 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 import java.lang.reflect.Field;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.yazloysasha.tfcrealworld.compat.TfgCompat;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
@@ -16,6 +17,7 @@ import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
+import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -71,6 +73,7 @@ public class RegionGeneratorMixin {
         initializeContinentMap(instance, continentNoise);
 
         GlobalOceanDistanceCache.initialize(continentNoise);
+        GlobalWestCoastDistanceCache.initialize(continentNoise);
       }
 
       if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
@@ -84,9 +87,13 @@ public class RegionGeneratorMixin {
       if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
         PNGHotspotsNoise hotspotsNoise = new PNGHotspotsNoise(
           horizontalScale,
-          verticalScale
+          verticalScale,
+          seed
         );
         HotspotsNoiseRegistry.register(instance, hotspotsNoise);
+        overwriteTfgHotspotNoises(instance, hotspotsNoise);
+      } else {
+        HotspotsNoiseRegistry.clearBiomeLayout();
       }
 
       if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
@@ -119,6 +126,59 @@ public class RegionGeneratorMixin {
     PNGAltitudeNoise altitudeNoise
   ) {
     AltitudeNoiseRegistry.register(instance, altitudeNoise);
+  }
+
+  /**
+   * TFG stores hotspot noises as Unique fields on RegionGenerator. Overwrite
+   * them when present so later TFG terrain samples the map; skip silently if
+   * Core-Modern renames the fields.
+   */
+  private void overwriteTfgHotspotNoises(
+    RegionGenerator instance,
+    PNGHotspotsNoise hotspotsNoise
+  ) {
+    if (!TfgCompat.isModPresent()) {
+      return;
+    }
+    try {
+      Field intensityField = findDeclaredField(
+        instance.getClass(),
+        "tfg$hotSpotIntensityNoise"
+      );
+      if (intensityField != null) {
+        UNSAFE.putObject(
+          instance,
+          UNSAFE.objectFieldOffset(intensityField),
+          hotspotsNoise
+        );
+      }
+      Field ageField = findDeclaredField(
+        instance.getClass(),
+        "tfg$hotSpotAgeNoise"
+      );
+      if (ageField != null) {
+        Noise2D ageNoise = (x, z) -> hotspotsNoise.getHotSpotAge(x, z);
+        UNSAFE.putObject(
+          instance,
+          UNSAFE.objectFieldOffset(ageField),
+          ageNoise
+        );
+      }
+    } catch (Exception ignored) {
+      // TFG pipeline still receives hotspot ages via TfgAddHotspotsMixin.
+    }
+  }
+
+  private static Field findDeclaredField(Class<?> type, String name) {
+    Class<?> cursor = type;
+    while (cursor != null && cursor != Object.class) {
+      try {
+        return cursor.getDeclaredField(name);
+      } catch (NoSuchFieldException ignored) {
+        cursor = cursor.getSuperclass();
+      }
+    }
+    return null;
   }
 
   private void initializeKoppenBasedClimateMaps(
