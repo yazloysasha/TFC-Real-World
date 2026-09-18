@@ -16,7 +16,8 @@
     "world.region.ChooseBiomesMixin",
     "world.region.FloodFillSmallOceansMixin",
     "world.region.RegionGeneratorContextMixin",
-    "world.region.RegionGeneratorMixin"
+    "world.region.RegionGeneratorMixin",
+    "world.region.RegionPointAccessor"
   ],
   "client": ["client.advancements.DisplayInfoMixin"],
   "server": [],

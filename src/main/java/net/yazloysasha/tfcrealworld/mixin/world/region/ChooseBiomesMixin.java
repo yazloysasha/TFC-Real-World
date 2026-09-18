@@ -6,9 +6,11 @@ import net.dries007.tfc.world.region.ChooseBiomes;
 import net.dries007.tfc.world.region.Region;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.RegionContextHolder;
+import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
 import net.yazloysasha.tfcrealworld.world.region.BiomePools;
+import net.yazloysasha.tfcrealworld.world.region.MapBiomeLakeRolls;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -60,7 +62,17 @@ public class ChooseBiomesMixin {
     at = @At("TAIL"),
     remap = false
   )
-  private void tfcrealworld$cleanupVolcanicFiltering(CallbackInfo ci) {
+  private void tfcrealworld$afterChooseBiomes(CallbackInfo ci) {
+    final Region region = RegionContextHolder.getRegion();
+    if (region != null) {
+      MapBiomeLakeRolls.rollOceanicMountainLakes(
+        region,
+        WorldSeedHolder.getSeed(),
+        TFCLayers.OCEANIC_MOUNTAINS,
+        TFCLayers.VOLCANIC_OCEANIC_MOUNTAINS,
+        TFCLayers::lakeFor
+      );
+    }
     CURRENT_HOTSPOTS.remove();
   }
 
@@ -146,13 +158,20 @@ public class ChooseBiomesMixin {
     Region.Point point,
     int proposedBiome
   ) {
-    if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get() && point.mountain()) {
+    if (
+      TFCRealWorldConfig.ALTITUDE_FROM_MAP.get() &&
+      point.mountain() &&
+      !TFCLayers.isLake(proposedBiome)
+    ) {
       proposedBiome = point.coastalMountain()
         ? TFCLayers.OCEANIC_MOUNTAINS
         : TFCLayers.MOUNTAINS;
     }
 
-    if (!TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
+    if (
+      !TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get() ||
+      TFCLayers.isLake(proposedBiome)
+    ) {
       point.biome = proposedBiome;
       return;
     }

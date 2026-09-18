@@ -17,6 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class AnnotateBiomeAltitudeMixin {
 
   @Unique
+  private static final short FLAG_MOUNTAIN = 0b10000;
+
+  @Unique
   private static final int MAP_MID_LAND_HEIGHT = 5;
 
   @Unique
@@ -77,6 +80,7 @@ public class AnnotateBiomeAltitudeMixin {
         point.setMountain();
         point.biomeAltitude = (byte) (3 * width);
       } else {
+        tfcrealworld$clearMountain(point);
         point.biomeAltitude = 0;
       }
     }
@@ -108,6 +112,9 @@ public class AnnotateBiomeAltitudeMixin {
   private static int tfcrealworld$maxDiscreteAltitudeForLandHeight(
     int baseLandHeight
   ) {
+    if (baseLandHeight >= MAP_MOUNTAIN_CAP_LAND_HEIGHT) {
+      return 3;
+    }
     if (baseLandHeight >= MAP_HIGH_LAND_HEIGHT) {
       return 2;
     }
@@ -164,6 +171,17 @@ public class AnnotateBiomeAltitudeMixin {
       return anyAtLeast14;
     }
     return false;
+  }
+
+  @Unique
+  private static void tfcrealworld$clearMountain(Region.Point point) {
+    if (!point.mountain()) {
+      return;
+    }
+    final RegionPointAccessor flags = (RegionPointAccessor) (Object) point;
+    flags.tfcrealworld$setFlags(
+      (short) (flags.tfcrealworld$getFlags() & ~FLAG_MOUNTAIN)
+    );
   }
 
   @Unique
