@@ -7,6 +7,8 @@
   "tfc_real_world.create_world.spawn_mode.classic": "Clássico",
   "tfc_real_world.create_world.spawn_mode.geographic": "Geográfico",
   "tfc_real_world.create_world.spawn_mode.random": "Aleatório",
+  "tfc_real_world.create_world.spawn_location": "TFC Real World",
+  "tfc_real_world.create_world.spawn_location.tooltip": "Usa as configurações de spawn do TFC Real World nas opções de mundo do TFC: geográfico, aleatório ou clássico.",
   "tfc_real_world.create_world.spawn_center_longitude": "Longitude do Spawn",
   "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Longitude geográfica para localização do spawn (usada no modo geográfico).",
   "tfc_real_world.create_world.spawn_center_latitude": "Latitude do Spawn",

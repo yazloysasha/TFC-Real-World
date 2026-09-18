@@ -34,12 +34,14 @@
     "world.region.tfg.TfgAnnotateDistanceToWestCoastMixin",
     "world.region.tfg.TfgChooseBiomesAccessor",
     "world.region.tfg.TfgChooseBiomesMixin",
-    "world.settings.SettingsMixin"
+    "world.settings.SettingsMixin",
+    "tfg.TfgCustomSpawnHelperMixin"
   ],
   "client": [
     "client.advancements.DisplayInfoMixin",
     "client.screen.CreateTFCWorldScreenMixin",
-    "client.screen.CreateTFCWorldScreenAccessor"
+    "client.screen.CreateTFCWorldScreenAccessor",
+    "tfg.TfgCreateWorldSpawnCycleMixin"
   ],
   "server": [],
   "injectors": {

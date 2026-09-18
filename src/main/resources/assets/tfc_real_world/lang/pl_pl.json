@@ -7,6 +7,8 @@
   "tfc_real_world.create_world.spawn_mode.classic": "Klasyczny",
   "tfc_real_world.create_world.spawn_mode.geographic": "Geograficzny",
   "tfc_real_world.create_world.spawn_mode.random": "Losowy",
+  "tfc_real_world.create_world.spawn_location": "TFC Real World",
+  "tfc_real_world.create_world.spawn_location.tooltip": "Używa ustawień odradzania TFC Real World z opcji świata TFC: geograficzny, losowy lub klasyczny.",
   "tfc_real_world.create_world.spawn_center_longitude": "Długość Geograficzna Odradzania",
   "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Długość geograficzna dla lokalizacji miejsca odradzania (używana w trybie geograficznym).",
   "tfc_real_world.create_world.spawn_center_latitude": "Szerokość Geograficzna Odradzania",

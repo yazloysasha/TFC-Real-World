@@ -7,6 +7,8 @@
   "tfc_real_world.create_world.spawn_mode.classic": "クラシック",
   "tfc_real_world.create_world.spawn_mode.geographic": "地理的",
   "tfc_real_world.create_world.spawn_mode.random": "ランダム",
+  "tfc_real_world.create_world.spawn_location": "TFC Real World",
+  "tfc_real_world.create_world.spawn_location.tooltip": "TFCのワールド設定にあるTFC Real Worldのスポーン設定（地理的・ランダム・クラシック）を使用します。",
   "tfc_real_world.create_world.spawn_center_longitude": "Spawn経度",
   "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Spawn位置の地理的経度（地理モードで使用）。",
   "tfc_real_world.create_world.spawn_center_latitude": "Spawn緯度",

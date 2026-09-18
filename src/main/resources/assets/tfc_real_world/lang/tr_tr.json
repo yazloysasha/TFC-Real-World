@@ -7,6 +7,8 @@
   "tfc_real_world.create_world.spawn_mode.classic": "Klasik",
   "tfc_real_world.create_world.spawn_mode.geographic": "Coğrafi",
   "tfc_real_world.create_world.spawn_mode.random": "Rastgele",
+  "tfc_real_world.create_world.spawn_location": "TFC Real World",
+  "tfc_real_world.create_world.spawn_location.tooltip": "TFC dünya seçeneklerindeki TFC Real World doğma ayarlarını kullanır: coğrafi, rastgele veya klasik.",
   "tfc_real_world.create_world.spawn_center_longitude": "Spawn Boylamı",
   "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Spawn konumu için coğrafi boylam (coğrafi modda kullanılır).",
   "tfc_real_world.create_world.spawn_center_latitude": "Spawn Enlemi",

@@ -7,6 +7,8 @@
   "tfc_real_world.create_world.spawn_mode.classic": "Классический",
   "tfc_real_world.create_world.spawn_mode.geographic": "Географический",
   "tfc_real_world.create_world.spawn_mode.random": "Случайный",
+  "tfc_real_world.create_world.spawn_location": "TFC Real World",
+  "tfc_real_world.create_world.spawn_location.tooltip": "Использует настройки появления TFC Real World из опций мира TFC: географический, случайный или классический.",
   "tfc_real_world.create_world.spawn_center_longitude": "Долгота появления игрока",
   "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Географическая долгота для точки появления игрока (используется в географическом режиме).",
   "tfc_real_world.create_world.spawn_center_latitude": "Широта появления игрока",

@@ -7,6 +7,8 @@
   "tfc_real_world.create_world.spawn_mode.classic": "經典",
   "tfc_real_world.create_world.spawn_mode.geographic": "地理",
   "tfc_real_world.create_world.spawn_mode.random": "隨機",
+  "tfc_real_world.create_world.spawn_location": "TFC Real World",
+  "tfc_real_world.create_world.spawn_location.tooltip": "使用 TFC 世界選項中的 TFC Real World 出生設定：地理、隨機或經典。",
   "tfc_real_world.create_world.spawn_center_longitude": "Spawn經度",
   "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Spawn位置的地理經度（在地理模式中使用）。",
   "tfc_real_world.create_world.spawn_center_latitude": "Spawn緯度",

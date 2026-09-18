@@ -7,6 +7,8 @@
   "tfc_real_world.create_world.spawn_mode.classic": "클래식",
   "tfc_real_world.create_world.spawn_mode.geographic": "지리적",
   "tfc_real_world.create_world.spawn_mode.random": "무작위",
+  "tfc_real_world.create_world.spawn_location": "TFC Real World",
+  "tfc_real_world.create_world.spawn_location.tooltip": "TFC 월드 옵션의 TFC Real World 스폰 설정(지리적, 무작위, 클래식)을 사용합니다.",
   "tfc_real_world.create_world.spawn_center_longitude": "Spawn 경도",
   "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Spawn 위치의 지리적 경도 (지리 모드에서 사용).",
   "tfc_real_world.create_world.spawn_center_latitude": "Spawn 위도",

@@ -7,6 +7,8 @@
   "tfc_real_world.create_world.spawn_mode.classic": "Класичний",
   "tfc_real_world.create_world.spawn_mode.geographic": "Географічний",
   "tfc_real_world.create_world.spawn_mode.random": "Випадковий",
+  "tfc_real_world.create_world.spawn_location": "TFC Real World",
+  "tfc_real_world.create_world.spawn_location.tooltip": "Використовує налаштування появи TFC Real World з опцій світу TFC: географічний, випадковий або класичний.",
   "tfc_real_world.create_world.spawn_center_longitude": "Довгота появи",
   "tfc_real_world.create_world.spawn_center_longitude.tooltip": "Географічна довгота для точки появи (використовується в географічному режимі).",
   "tfc_real_world.create_world.spawn_center_latitude": "Широта появи",
