@@ -7,6 +7,7 @@ import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
+import net.yazloysasha.tfcrealworld.world.region.MapBiomeLakeRolls;
 import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
 import net.yazloysasha.tfcrealworld.world.volcano.CenteredFeatureAligner;
 import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
@@ -32,9 +33,6 @@ public class TfgChooseBiomesMixin {
 
   @Unique
   private static final double ICE_SHEET_EDGE_MELTWATER_LAKE_CHANCE = 0.16;
-
-  @Unique
-  private static final double OCEANIC_MOUNTAIN_LAKE_CHANCE = 0.1;
 
   @Unique
   private static final float LAKE_RAINFALL_BOOST = 0.09f;
@@ -70,7 +68,17 @@ public class TfgChooseBiomesMixin {
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    tfcrealworld$rollMapLakes(context.region, WorldSeedHolder.getSeed());
+    tfcrealworld$rollIceSheetEdgeLakes(
+      context.region,
+      WorldSeedHolder.getSeed()
+    );
+    MapBiomeLakeRolls.rollOceanicMountainLakes(
+      context.region,
+      WorldSeedHolder.getSeed(),
+      OCEANIC_MOUNTAINS,
+      VOLCANIC_OCEANIC_MOUNTAINS,
+      TFGLayers::lakeFor
+    );
     if (
       TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get() ||
       TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()
@@ -245,58 +253,39 @@ public class TfgChooseBiomesMixin {
   }
 
   @Unique
-  private static void tfcrealworld$rollMapLakes(Region region, long worldSeed) {
-    final boolean koppenFromMap = TFCRealWorldConfig.KOPPEN_FROM_MAP.get();
-    final boolean altitudeFromMap = TFCRealWorldConfig.ALTITUDE_FROM_MAP.get();
-    if (!koppenFromMap && !altitudeFromMap) {
+  private static void tfcrealworld$rollIceSheetEdgeLakes(
+    Region region,
+    long worldSeed
+  ) {
+    if (!TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
       return;
     }
 
     final Region.Point[] data = region.data();
     for (int index = 0; index < data.length; index++) {
       final Region.Point point = data[index];
-      if (point == null || !point.land()) {
+      if (point == null || !point.land() || point.lake()) {
+        continue;
+      }
+      if (point.biome != ICE_SHEET_EDGE) {
         continue;
       }
       final int gridX = RegionCoords.gridX(region, index);
       final int gridZ = RegionCoords.gridZ(region, index);
-      if (koppenFromMap && point.biome == ICE_SHEET_EDGE && !point.lake()) {
-        if (
-          tfcrealworld$seededChance(
-            worldSeed,
-            gridX,
-            gridZ,
-            0x7a4f2c91e83b05d6L,
-            ICE_SHEET_EDGE_MELTWATER_LAKE_CHANCE
-          )
-        ) {
-          point.setLake();
-          point.rainfall += LAKE_RAINFALL_BOOST * (500f - point.rainfall);
-          point.biome = TFGLayers.lakeFor(ICE_SHEET_EDGE);
-          continue;
-        }
-      }
       if (
-        altitudeFromMap &&
-        !point.lake() &&
-        (point.biome == OCEANIC_MOUNTAINS ||
-          point.biome == VOLCANIC_OCEANIC_MOUNTAINS)
+        !tfcrealworld$seededChance(
+          worldSeed,
+          gridX,
+          gridZ,
+          0x7a4f2c91e83b05d6L,
+          ICE_SHEET_EDGE_MELTWATER_LAKE_CHANCE
+        )
       ) {
-        if (
-          tfcrealworld$seededChance(
-            worldSeed,
-            gridX,
-            gridZ,
-            0x3c9e2b71a4d805f1L,
-            OCEANIC_MOUNTAIN_LAKE_CHANCE
-          )
-        ) {
-          final int biome = point.biome;
-          point.setLake();
-          point.rainfall += LAKE_RAINFALL_BOOST * (500f - point.rainfall);
-          point.biome = TFGLayers.lakeFor(biome);
-        }
+        continue;
       }
+      point.setLake();
+      point.rainfall += LAKE_RAINFALL_BOOST * (500f - point.rainfall);
+      point.biome = TFGLayers.lakeFor(ICE_SHEET_EDGE);
     }
   }
 

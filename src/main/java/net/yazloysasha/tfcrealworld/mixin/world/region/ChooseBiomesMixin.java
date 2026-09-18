@@ -6,9 +6,11 @@ import net.dries007.tfc.world.region.ChooseBiomes;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
 import net.yazloysasha.tfcrealworld.world.region.BiomePools;
+import net.yazloysasha.tfcrealworld.world.region.MapBiomeLakeRolls;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -52,10 +54,17 @@ public class ChooseBiomesMixin {
   }
 
   @Inject(method = "apply", at = @At("TAIL"))
-  private void tfcrealworld$cleanupVolcanicFiltering(
+  private void tfcrealworld$afterChooseBiomes(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
+    MapBiomeLakeRolls.rollOceanicMountainLakes(
+      context.region,
+      WorldSeedHolder.getSeed(),
+      TFCLayers.OCEANIC_MOUNTAINS,
+      TFCLayers.VOLCANIC_OCEANIC_MOUNTAINS,
+      TFCLayers::lakeFor
+    );
     CURRENT_HOTSPOTS.remove();
   }
 
