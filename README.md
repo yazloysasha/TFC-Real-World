@@ -1,5 +1,7 @@
 # TFC: Real World 🌍
 
+> ## 🎉 Now compatible with **TerraFirmaGreg** on Minecraft **1.20.1**!
+
 ![Earth Maps](public/img/collage.png)
 
 ### Explore a World You Know
