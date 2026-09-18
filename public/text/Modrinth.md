@@ -1,5 +1,7 @@
 # TFC: Real World 🌍
 
+**🎉 Since v3.1.1 compatible with [TerraFirmaGreg Modern](https://www.curseforge.com/minecraft/modpacks/terrafirmagreg-modern) on Minecraft 1.20.1!**
+
 ![Earth Maps](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
 
 ### Explore a World You Know
@@ -132,6 +134,7 @@ Map profiles organize all the map images needed for world generation. Each profi
 ├─ maps/
 │  ├── continent.png
 │  ├── altitude.png
+│  ├── divergence.png
 │  ├── hotspots.png
 │  ├── koppen.png
 │  ├── temperature.png
