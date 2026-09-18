@@ -15,7 +15,24 @@ public final class MapHotspotBiomes {
   /** Oldest hotspot age on the map PNG (TFC {@code hotSpotAge == 4}). */
   public static final byte ANCIENT_AGE = 4;
 
+  /**
+   * Brightest hotspot blob on the map (TFC active / {@code hotSpotAge == 1}).
+   */
+  public static final byte ACTIVE_AGE = 1;
+
+  /**
+   * TFC dormant hotspot age ({@code hotSpotAge == 2}).
+   */
+  public static final byte DORMANT_AGE = 2;
+
   private MapHotspotBiomes() {}
+
+  /**
+   * TFC 3 only: active/d dormant hotspots use volcanic mountain layers, not canyons.
+   */
+  public static boolean shouldUseVolcanicMountainForMapAge(byte age) {
+    return age == ACTIVE_AGE || age == DORMANT_AGE;
+  }
 
   /** {@code AddHotspots}: {@code if (age != 4) point.setLand()}. */
   public static boolean shouldSetLandForMapAge(byte age) {
@@ -55,6 +72,17 @@ public final class MapHotspotBiomes {
     final byte age = layout == null ? 0 : layout.ageAtGrid(gridX, gridZ);
     if (keepOceanBiomeForAncient(age, point)) {
       return proposedBiome;
+    }
+
+    if (shouldUseVolcanicMountainForMapAge(age)) {
+      if (!point.land()) {
+        return TFCLayers.VOLCANIC_OCEANIC_MOUNTAINS;
+      }
+      return volcanicMountainFor(
+        point,
+        TFCLayers.VOLCANIC_MOUNTAINS,
+        TFCLayers.VOLCANIC_OCEANIC_MOUNTAINS
+      );
     }
 
     if (point.mountain()) {

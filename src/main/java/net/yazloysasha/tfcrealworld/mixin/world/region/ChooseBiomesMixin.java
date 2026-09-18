@@ -130,6 +130,29 @@ public class ChooseBiomesMixin {
   }
 
   @Unique
+  private static int tfcrealworld$altitudeMountainBiome(Region.Point point) {
+    if (
+      TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get() && CURRENT_IN_HOTSPOT.get()
+    ) {
+      final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
+      if (layout != null) {
+        final int[] pos = CURRENT_GRID_POS.get();
+        final byte age = layout.ageAtGrid(pos[0], pos[1]);
+        if (MapHotspotBiomes.shouldUseVolcanicMountainForMapAge(age)) {
+          return MapHotspotBiomes.volcanicMountainFor(
+            point,
+            TFCLayers.VOLCANIC_MOUNTAINS,
+            TFCLayers.VOLCANIC_OCEANIC_MOUNTAINS
+          );
+        }
+      }
+    }
+    return point.coastalMountain()
+      ? TFCLayers.OCEANIC_MOUNTAINS
+      : TFCLayers.MOUNTAINS;
+  }
+
+  @Unique
   private static boolean tfcrealworld$isInHotspot(int x, int z) {
     final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
     return layout != null && layout.ageAtGrid(x, z) > 0;
@@ -168,9 +191,7 @@ public class ChooseBiomesMixin {
     int proposedBiome
   ) {
     if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get() && point.mountain()) {
-      proposedBiome = point.coastalMountain()
-        ? TFCLayers.OCEANIC_MOUNTAINS
-        : TFCLayers.MOUNTAINS;
+      proposedBiome = tfcrealworld$altitudeMountainBiome(point);
     }
 
     if (!TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
