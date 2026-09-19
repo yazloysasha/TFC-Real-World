@@ -21,6 +21,13 @@ license = "MIT"
     side = "BOTH"
 
 [[dependencies.${modId}]]
+    modId = "auroras"
+    mandatory = false
+    versionRange = "[1.6,)"
+    ordering = "AFTER"
+    side = "CLIENT"
+
+[[dependencies.${modId}]]
     modId = "tfccaelum"
     mandatory = false
     versionRange = "[1.0,)"

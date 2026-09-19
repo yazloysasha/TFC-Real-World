@@ -7,11 +7,7 @@
   "plugin": "net.yazloysasha.tfcrealworld.mixin.TFCRealWorldMixinPlugin",
   "mixins": [
     "world.biome.BiomeSourceExtensionMixin",
-    "world.biome.tfg.TfgBiomeExtensionMixin",
-    "world.biome.tfg.TfgBiomeNoiseMixin",
     "world.layer.MoreShoresLayerMixin",
-    "world.layer.tfg.TfgIceSheetEdgeLayerMixin",
-    "world.layer.tfg.TfgShoreLayerMixin",
     "world.region.AddMountainsAccessor",
     "world.region.AddMountainsMixin",
     "world.region.AddRiversAndLakesMixin",
@@ -25,6 +21,11 @@
     "world.region.FloodFillSmallOceansMixin",
     "world.region.RegionGeneratorMixin",
     "world.region.RegionPointAccessor",
+    "world.settings.SettingsMixin",
+    "world.biome.tfg.TfgBiomeExtensionMixin",
+    "world.biome.tfg.TfgBiomeNoiseMixin",
+    "world.layer.tfg.TfgIceSheetEdgeLayerMixin",
+    "world.layer.tfg.TfgShoreLayerMixin",
     "world.region.tfg.TfgAddRiversAndLakesMixin",
     "world.region.tfg.TfgRegionRiverGeneratorAccessor",
     "world.region.tfg.TfgRegionRiverGeneratorMixin",
@@ -34,15 +35,16 @@
     "world.region.tfg.TfgAnnotateDistanceToWestCoastMixin",
     "world.region.tfg.TfgChooseBiomesAccessor",
     "world.region.tfg.TfgChooseBiomesMixin",
-    "world.settings.SettingsMixin",
     "tfg.TfgCustomSpawnHelperMixin"
   ],
   "client": [
     "client.advancements.DisplayInfoMixin",
+    "client.auroras.AHelpersMixin",
+    "client.auroras.AuroraRendererMixin",
     "client.caelum.CaelumSkyUtilsMixin",
+    "tfg.TfgCreateWorldSpawnCycleMixin",
     "client.screen.CreateTFCWorldScreenMixin",
-    "client.screen.CreateTFCWorldScreenAccessor",
-    "tfg.TfgCreateWorldSpawnCycleMixin"
+    "client.screen.CreateTFCWorldScreenAccessor"
   ],
   "server": [],
   "injectors": {

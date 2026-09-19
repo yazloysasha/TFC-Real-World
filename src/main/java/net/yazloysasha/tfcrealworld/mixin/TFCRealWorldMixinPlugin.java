@@ -2,6 +2,7 @@ package net.yazloysasha.tfcrealworld.mixin;
 
 import java.util.List;
 import java.util.Set;
+import net.yazloysasha.tfcrealworld.compat.AurorasCompat;
 import net.yazloysasha.tfcrealworld.compat.CaelumCompat;
 import net.yazloysasha.tfcrealworld.compat.TfgCompat;
 import org.jetbrains.annotations.Nullable;
@@ -10,8 +11,8 @@ import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 /**
- * Drops TFG-targeted mixins when Core-Modern is absent so the dedicated
- * {@code tfg} package never resolves missing classes.
+ * Drops optional-integration mixins when their mod is absent so
+ * stub-backed packages never resolve missing classes.
  */
 public final class TFCRealWorldMixinPlugin implements IMixinConfigPlugin {
 
@@ -57,10 +58,14 @@ public final class TFCRealWorldMixinPlugin implements IMixinConfigPlugin {
 
   @Nullable
   private static String mixinDisableReason(String mixinClassName) {
-    String reason = TfgCompat.mixinDisableReason(mixinClassName);
+    String reason = AurorasCompat.mixinDisableReason(mixinClassName);
     if (reason != null) {
       return reason;
     }
-    return CaelumCompat.mixinDisableReason(mixinClassName);
+    reason = CaelumCompat.mixinDisableReason(mixinClassName);
+    if (reason != null) {
+      return reason;
+    }
+    return TfgCompat.mixinDisableReason(mixinClassName);
   }
 }

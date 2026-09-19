@@ -59,9 +59,10 @@ repositories {
 sourceSets {
   create("stub") {
     java.srcDirs(
-      "src/stub/tfg/java",
+      "src/stub/auroras/java",
       "src/stub/caelum/java",
       "src/stub/tfccaelum/java",
+      "src/stub/tfg/java",
     )
     compileClasspath += sourceSets["main"].compileClasspath
   }
@@ -126,8 +127,9 @@ tasks {
   }
 
   jar {
-    exclude("tfccaelum/**")
+    exclude("auroras/**")
     exclude("nuparu/caelum/**")
+    exclude("tfccaelum/**")
     exclude("su/terrafirmagreg/**")
     manifest {
       attributes["Implementation-Version"] = project.version
