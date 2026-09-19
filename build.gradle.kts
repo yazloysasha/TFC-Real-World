@@ -59,7 +59,13 @@ repositories {
 }
 
 sourceSets {
+  create("stub") {
+    java.srcDirs("src/stub/auroras/java")
+    compileClasspath += sourceSets["main"].compileClasspath
+  }
+
   main {
+    compileClasspath += sourceSets["stub"].output
     resources {
       srcDir(generateModMetadata)
     }
@@ -100,7 +106,7 @@ neoForge {
 
 dependencies {
   compileOnly("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$maxTfcVersion@jar")
-  
+
   testImplementation("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$maxTfcVersion@jar")
   testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
   testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.3")
@@ -109,9 +115,14 @@ dependencies {
 
 tasks {
   jar {
+    exclude("auroras/**")
     manifest {
       attributes["Implementation-Version"] = project.version
     }
+  }
+
+  named<JavaCompile>("compileJava") {
+    dependsOn("compileStubJava")
   }
 
   named("neoForgeIdeSync") {

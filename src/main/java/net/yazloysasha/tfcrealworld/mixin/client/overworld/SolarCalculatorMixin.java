@@ -11,24 +11,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(SolarCalculator.class)
 public class SolarCalculatorMixin {
 
-  private static int transformCoordForLatitude(int value, int scale) {
-    int tileRadius = scale;
-    int tileDiameter = scale * 2;
-    int tileValue = (int) Math.floor(
-      (value + tileRadius) / (double) tileDiameter
-    );
-    int localValue = value - tileValue * tileDiameter;
-
-    if (Math.floorMod(tileValue, 2) != 0) {
-      localValue = -localValue;
-    }
-
-    return Math.clamp(localValue, -tileRadius, tileRadius);
-  }
-
   private static double getLatitudeByZ(int z) {
     return ProjectionManager.getLatitudeByZ(
-      transformCoordForLatitude(z, TFCRealWorldConfig.VERTICAL_SCALE.get())
+      ProjectionManager.transformWorldZToLocal(
+        z,
+        TFCRealWorldConfig.VERTICAL_SCALE.get()
+      )
     );
   }
 

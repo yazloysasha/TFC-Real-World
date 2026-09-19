@@ -4,6 +4,7 @@
   "package": "net.yazloysasha.tfcrealworld.mixin",
   "compatibilityLevel": "JAVA_21",
   "refmap": "tfc_real_world.refmap.json",
+  "plugin": "net.yazloysasha.tfcrealworld.mixin.TFCRealWorldMixinPlugin",
   "mixins": [
     "world.biome.BiomeExtensionMixin",
     "world.biome.BiomeNoiseMixin",
@@ -33,6 +34,8 @@
   ],
   "client": [
     "client.advancement.DisplayInfoMixin",
+    "client.auroras.AHelpersMixin",
+    "client.auroras.AuroraRendererMixin",
     "client.screen.CreateTFCWorldScreenMixin",
     "client.screen.CreateTFCWorldScreenAccessor",
     "client.screen.ScreenAccessor"
