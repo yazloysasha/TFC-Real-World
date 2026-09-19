@@ -2,6 +2,8 @@
 
 **🎉 Since v3.1.1 compatible with [TerraFirmaGreg Modern](https://www.curseforge.com/minecraft/modpacks/terrafirmagreg-modern) on Minecraft 1.20.1!**
 
+Since v2.1.2/v3.1.2/v4.1.2 also compatible with [Auroras](https://modrinth.com/mod/auroras), [TFC Caelum](https://modrinth.com/mod/tfc-caelum) and [Firma: Civilization](https://modrinth.com/mod/firmaciv).
+
 ![Earth Maps](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
 
 ### Explore a World You Know
