@@ -4,6 +4,7 @@
   "package": "net.yazloysasha.tfcrealworld.mixin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "tfc_real_world.refmap.json",
+  "plugin": "net.yazloysasha.tfcrealworld.mixin.TfcRealWorldMixinPlugin",
   "mixins": [
     "world.TFCChunkGeneratorMixin",
     "world.biome.TFCBiomeSourceMixin",
@@ -20,7 +21,8 @@
     "world.region.FloodFillSmallOceansMixin",
     "world.region.RegionGeneratorContextMixin",
     "world.region.RegionGeneratorMixin",
-    "world.region.RegionPointAccessor"
+    "world.region.RegionPointAccessor",
+    "firmaciv.AbstractNavItemMixin"
   ],
   "client": ["client.advancements.DisplayInfoMixin"],
   "server": [],

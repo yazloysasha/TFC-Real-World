@@ -21,6 +21,13 @@ license = "MIT"
     side = "BOTH"
 
 [[dependencies.${modId}]]
+    modId = "firmaciv"
+    mandatory = false
+    versionRange = "[0.0.41,)"
+    ordering = "AFTER"
+    side = "BOTH"
+
+[[dependencies.${modId}]]
     modId = "forge"
     mandatory = true
     versionRange = "[40.1.73,)"

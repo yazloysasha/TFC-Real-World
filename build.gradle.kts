@@ -57,7 +57,13 @@ repositories {
 }
 
 sourceSets {
+  create("stub") {
+    java.srcDirs("src/stub/firmaciv/java")
+    compileClasspath += sourceSets["main"].compileClasspath
+  }
+
   main {
+    compileClasspath += sourceSets["stub"].output
     resources {
       srcDir(generateModMetadata)
     }
@@ -115,6 +121,7 @@ tasks {
   }
 
   jar {
+    exclude("com/hyperdash/firmaciv/**")
     manifest {
       attributes["Implementation-Version"] = project.version
       attributes["MixinConfigs"] = "$modId.mixins.json"
