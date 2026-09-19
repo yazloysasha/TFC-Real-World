@@ -62,6 +62,7 @@ sourceSets {
       "src/stub/auroras/java",
       "src/stub/caelum/java",
       "src/stub/tfccaelum/java",
+      "src/stub/firmaciv/java",
       "src/stub/tfg/java",
     )
     compileClasspath += sourceSets["main"].compileClasspath
@@ -130,6 +131,7 @@ tasks {
     exclude("auroras/**")
     exclude("nuparu/caelum/**")
     exclude("tfccaelum/**")
+    exclude("com/alekiponi/firmaciv/**")
     exclude("su/terrafirmagreg/**")
     manifest {
       attributes["Implementation-Version"] = project.version

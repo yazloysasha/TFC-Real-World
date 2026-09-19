@@ -22,6 +22,7 @@
     "world.region.RegionGeneratorMixin",
     "world.region.RegionPointAccessor",
     "world.settings.SettingsMixin",
+    "firmaciv.AbstractNavItemMixin",
     "world.biome.tfg.TfgBiomeExtensionMixin",
     "world.biome.tfg.TfgBiomeNoiseMixin",
     "world.layer.tfg.TfgIceSheetEdgeLayerMixin",

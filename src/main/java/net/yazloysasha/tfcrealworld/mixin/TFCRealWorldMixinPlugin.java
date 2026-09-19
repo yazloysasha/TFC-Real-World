@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 import net.yazloysasha.tfcrealworld.compat.AurorasCompat;
 import net.yazloysasha.tfcrealworld.compat.CaelumCompat;
+import net.yazloysasha.tfcrealworld.compat.FirmaCivCompat;
 import net.yazloysasha.tfcrealworld.compat.TfgCompat;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.tree.ClassNode;
@@ -63,6 +64,10 @@ public final class TFCRealWorldMixinPlugin implements IMixinConfigPlugin {
       return reason;
     }
     reason = CaelumCompat.mixinDisableReason(mixinClassName);
+    if (reason != null) {
+      return reason;
+    }
+    reason = FirmaCivCompat.mixinDisableReason(mixinClassName);
     if (reason != null) {
       return reason;
     }

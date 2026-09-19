@@ -35,6 +35,13 @@ license = "MIT"
     side = "CLIENT"
 
 [[dependencies.${modId}]]
+    modId = "firmaciv"
+    mandatory = false
+    versionRange = "[1.0.0,)"
+    ordering = "AFTER"
+    side = "BOTH"
+
+[[dependencies.${modId}]]
     modId = "tfg"
     mandatory = false
     versionRange = "[0.9.15,)"
