@@ -2,7 +2,7 @@
 
 <p align="center"><b>🎉 Since v3.1.1 compatible with <a href="https://www.curseforge.com/minecraft/modpacks/terrafirmagreg-modern">TerraFirmaGreg Modern</a> on Minecraft 1.20.1!</b></p>
 
-<p align="center">Since v2.1.2/v3.1.2/v4.1.2 also compatible with <a href="https://www.curseforge.com/minecraft/mc-mods/auroras">Auroras</a>, <a href="https://www.curseforge.com/minecraft/mc-mods/tfc-caelum">TFC Caelum</a> and <a href="https://www.curseforge.com/minecraft/mc-mods/firmaciv">Firma: Civilization</a> on Minecraft 1.18.2/1.20.1/1.21.1.</p>
+<p align="center">Since v2.1.2/v3.1.2/v4.1.2 also compatible with <a href="https://www.curseforge.com/minecraft/mc-mods/auroras">Auroras</a>, <a href="https://www.curseforge.com/minecraft/mc-mods/tfc-caelum">TFC Caelum</a> and <a href="https://www.curseforge.com/minecraft/mc-mods/firmaciv">Firma: Civilization</a>.</p>
 
 ![Earth Maps](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
 
