@@ -15,13 +15,4 @@ public final class AHelpers {
   ) {
     return 0.0;
   }
-
-  public static double angleFromPole(
-    AuroraData data,
-    Level level,
-    double worldZ,
-    double offset
-  ) {
-    return 0.0;
-  }
 }
