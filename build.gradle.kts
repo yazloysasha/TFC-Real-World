@@ -57,13 +57,17 @@ repositories {
 }
 
 sourceSets {
-  create("tfgStub") {
-    java.srcDir("src/tfgStub/java")
+  create("stub") {
+    java.srcDirs(
+      "src/stub/tfg/java",
+      "src/stub/caelum/java",
+      "src/stub/tfccaelum/java",
+    )
     compileClasspath += sourceSets["main"].compileClasspath
   }
 
   main {
-    compileClasspath += sourceSets["tfgStub"].output
+    compileClasspath += sourceSets["stub"].output
     resources {
       srcDir(generateModMetadata)
     }
@@ -122,6 +126,8 @@ tasks {
   }
 
   jar {
+    exclude("tfccaelum/**")
+    exclude("nuparu/caelum/**")
     exclude("su/terrafirmagreg/**")
     manifest {
       attributes["Implementation-Version"] = project.version

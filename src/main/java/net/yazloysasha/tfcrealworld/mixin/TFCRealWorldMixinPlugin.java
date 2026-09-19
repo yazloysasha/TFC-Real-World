@@ -2,7 +2,9 @@ package net.yazloysasha.tfcrealworld.mixin;
 
 import java.util.List;
 import java.util.Set;
+import net.yazloysasha.tfcrealworld.compat.CaelumCompat;
 import net.yazloysasha.tfcrealworld.compat.TfgCompat;
+import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -26,7 +28,7 @@ public final class TFCRealWorldMixinPlugin implements IMixinConfigPlugin {
     String targetClassName,
     String mixinClassName
   ) {
-    return TfgCompat.mixinDisableReason(mixinClassName) == null;
+    return mixinDisableReason(mixinClassName) == null;
   }
 
   @Override
@@ -52,4 +54,13 @@ public final class TFCRealWorldMixinPlugin implements IMixinConfigPlugin {
     String mixinClassName,
     IMixinInfo mixinInfo
   ) {}
+
+  @Nullable
+  private static String mixinDisableReason(String mixinClassName) {
+    String reason = TfgCompat.mixinDisableReason(mixinClassName);
+    if (reason != null) {
+      return reason;
+    }
+    return CaelumCompat.mixinDisableReason(mixinClassName);
+  }
 }

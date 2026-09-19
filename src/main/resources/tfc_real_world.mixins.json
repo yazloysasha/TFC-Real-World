@@ -39,6 +39,7 @@
   ],
   "client": [
     "client.advancements.DisplayInfoMixin",
+    "client.caelum.CaelumSkyUtilsMixin",
     "client.screen.CreateTFCWorldScreenMixin",
     "client.screen.CreateTFCWorldScreenAccessor",
     "tfg.TfgCreateWorldSpawnCycleMixin"
