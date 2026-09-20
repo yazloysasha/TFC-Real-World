@@ -4,6 +4,8 @@
 
 <p align="center">Since v2.1.2/v3.1.2/v4.1.2 also compatible with <a href="https://www.curseforge.com/minecraft/mc-mods/auroras">Auroras</a>, <a href="https://www.curseforge.com/minecraft/mc-mods/tfc-caelum">TFC Caelum</a> and <a href="https://www.curseforge.com/minecraft/mc-mods/firmaciv">Firma: Civilization</a>.</p>
 
+<p align="center">Since v3.1.3 compatible with <a href="https://www.curseforge.com/minecraft/mc-mods/terrafirmaearth">TerraFirmaEarth</a> on Minecraft 1.20.1.</p>
+
 ![Earth Maps](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
 
 ### Explore a World You Know
