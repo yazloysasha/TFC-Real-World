@@ -13,8 +13,8 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * TFC 3 ocean biomes from {@code baseOceanDepth} when altitude comes from the
- * map. TFE uses {@code MapOceanBiomeFromAltitude} instead; vanilla
- * {@code ChooseBiomes} thresholds do not match map depth encoding.
+ * map on pure TFC 3 ({@code ChooseBiomes}). TFG uses {@code TFGChooseBiomesTask};
+ * TFE uses {@code MapOceanBiomeFromAltitude}.
  */
 public final class TfcMapOceanBiomes {
 

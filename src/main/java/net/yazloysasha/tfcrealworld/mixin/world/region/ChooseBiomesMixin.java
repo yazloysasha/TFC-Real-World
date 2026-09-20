@@ -5,6 +5,7 @@ import net.dries007.tfc.world.layer.framework.Area;
 import net.dries007.tfc.world.region.ChooseBiomes;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.yazloysasha.tfcrealworld.compat.TfgCompat;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
@@ -85,7 +86,9 @@ public class ChooseBiomesMixin {
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    TfcMapOceanBiomes.apply(context);
+    if (!TfgCompat.isModPresent()) {
+      TfcMapOceanBiomes.apply(context);
+    }
     MapBiomeLakeRolls.rollOceanicMountainLakes(
       context.region,
       WorldSeedHolder.getSeed(),

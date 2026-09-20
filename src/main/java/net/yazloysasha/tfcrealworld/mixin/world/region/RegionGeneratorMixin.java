@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
+import net.yazloysasha.tfcrealworld.compat.TfeCompat;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
@@ -79,7 +80,10 @@ public class RegionGeneratorMixin {
         GlobalOceanDistanceCache.initialize(continentNoise);
         GlobalWestCoastDistanceCache.initialize(continentNoise);
 
-        if (TFCRealWorldConfig.TECTONICS_FROM_MAP.get()) {
+        if (
+          TFCRealWorldConfig.TECTONICS_FROM_MAP.get() &&
+          TfeCompat.isModPresent()
+        ) {
           PNGDivergenceNoise divergenceNoise = PNGDivergenceNoise.tryCreate(
             horizontalScale,
             verticalScale

@@ -47,17 +47,11 @@ public final class HotspotGeneratorNoises {
     PNGHotspotsNoise hotspotsNoise
   ) {
     if (TfgCompat.isModPresent()) {
-      final MapHotspotLayout layout = hotspotsNoise.layout();
-      final long worldSeed = WorldSeedHolder.getSeed();
-      overwriteField(
-        regionGenerator,
-        TFG_INTENSITY,
-        (Noise2D) (x, z) -> layout.combinedIntensity(x, z, worldSeed)
-      );
+      overwriteField(regionGenerator, TFG_INTENSITY, hotspotsNoise);
       overwriteField(
         regionGenerator,
         TFG_AGE,
-        (Noise2D) (x, z) -> layout.dominantAgeAtBlock(x, z, worldSeed)
+        (Noise2D) (x, z) -> hotspotsNoise.getHotSpotAge(x, z)
       );
     }
     if (TfeCompat.isModPresent()) {
