@@ -64,6 +64,7 @@ sourceSets {
       "src/stub/tfccaelum/java",
       "src/stub/firmaciv/java",
       "src/stub/tfg/java",
+      "src/stub/tfe/java",
     )
     compileClasspath += sourceSets["main"].compileClasspath
   }
@@ -133,6 +134,7 @@ tasks {
     exclude("tfccaelum/**")
     exclude("com/alekiponi/firmaciv/**")
     exclude("su/terrafirmagreg/**")
+    exclude("com/newterraearth/**")
     manifest {
       attributes["Implementation-Version"] = project.version
       attributes["MixinConfigs"] = "$modId.mixins.json"

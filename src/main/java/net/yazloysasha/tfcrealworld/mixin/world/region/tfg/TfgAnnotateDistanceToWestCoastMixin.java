@@ -1,10 +1,7 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region.tfg;
 
-import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
-import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
-import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
+import net.yazloysasha.tfcrealworld.world.backport.WestCoastFromMap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -20,29 +17,12 @@ public class TfgAnnotateDistanceToWestCoastMixin {
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    if (!TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
-      return;
+    if (
+      WestCoastFromMap.apply(context.region, (point, dist) ->
+        ((IRegionPoint) point).tfg$setDistanceToWestCoast(dist)
+      )
+    ) {
+      ci.cancel();
     }
-    final GlobalWestCoastDistanceCache cache =
-      GlobalWestCoastDistanceCache.getInstance();
-    if (cache == null) {
-      return;
-    }
-
-    final Region region = context.region;
-    final Region.Point[] data = region.data();
-    for (int index = 0; index < data.length; index++) {
-      final Region.Point point = data[index];
-      if (point == null) {
-        continue;
-      }
-      ((IRegionPoint) point).tfg$setDistanceToWestCoast(
-          cache.getDistance(
-            RegionCoords.gridX(region, index),
-            RegionCoords.gridZ(region, index)
-          )
-        );
-    }
-    ci.cancel();
   }
 }

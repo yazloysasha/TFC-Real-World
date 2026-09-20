@@ -7,7 +7,7 @@ import net.yazloysasha.tfcrealworld.TFCRealWorld;
 
 public class PacketHandler {
 
-  private static final String PROTOCOL_VERSION = "1";
+  private static final String PROTOCOL_VERSION = "3";
   public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
     new ResourceLocation(TFCRealWorld.MOD_ID, "main"),
     () -> PROTOCOL_VERSION,

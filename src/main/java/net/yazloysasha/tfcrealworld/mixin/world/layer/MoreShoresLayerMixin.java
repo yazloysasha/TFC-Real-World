@@ -5,12 +5,21 @@ import java.util.function.Predicate;
 import net.dries007.tfc.world.layer.MoreShoresLayer;
 import net.dries007.tfc.world.layer.TFCLayers;
 import net.dries007.tfc.world.layer.framework.AreaContext;
+import net.yazloysasha.tfcrealworld.compat.TfeCompat;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * TFC 3 {@code MoreShoresLayer} paints tidal flats into ocean next to
+ * {@code SHORE}. Shrink that when continents come from the map.
+ *
+ * <p>TFE {@code @Overwrite}s this layer to the 1.21.1 contract: default coasts
+ * are {@code TIDAL_FLATS}, and cells next to tidal flats become {@code SHORE}.
+ * Cancelling that overwrite removes the shore biome. Leave TFE's body alone.
+ */
 @Mixin(value = MoreShoresLayer.class, remap = false)
 public class MoreShoresLayerMixin {
 
@@ -26,6 +35,9 @@ public class MoreShoresLayerMixin {
     int center,
     CallbackInfoReturnable<Integer> cir
   ) {
+    if (TfeCompat.isModPresent()) {
+      return;
+    }
     if (!TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) return;
 
     Predicate<IntPredicate> any = p ->

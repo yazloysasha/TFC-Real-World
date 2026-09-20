@@ -4,7 +4,11 @@ import net.minecraft.util.Mth;
 
 public class PNGAltitudeNoise extends BasePNGNoise {
 
-  private static final byte MIN_MAP_OCEAN_DEPTH = 2;
+  public static final byte ABYSSAL_OCEAN_DEPTH = 7;
+  public static final byte REEF_OCEAN_DEPTH = 1;
+  public static final byte SHELF_OCEAN_DEPTH = 2;
+  public static final byte MIN_MAP_OCEAN_DEPTH = 2;
+  public static final int MAP_OCEAN_TRENCH_RAW_DEPTH = 10;
 
   private static final String MAP_NAME = "altitude";
   private static final double SEA_LEVEL_GRAYSCALE = 128.0;
@@ -61,10 +65,55 @@ public class PNGAltitudeNoise extends BasePNGNoise {
     if (depth <= 0) {
       return 0;
     }
-    final int raw = (int) Mth.clamp(Math.round(depth), MIN_MAP_OCEAN_DEPTH, 15);
-    if (raw == 5 || raw == 6) {
+    return (byte) Mth.clamp(Math.round(depth), MIN_MAP_OCEAN_DEPTH, 15);
+  }
+
+  /**
+   * Same as 1.21.1 before choose-biomes / shelf pass (reefs keep depth {@code 1}).
+   */
+  public static byte normalizeMapOceanDepth(byte depth) {
+    final int raw = Byte.toUnsignedInt(depth);
+    if (raw <= 0) {
+      return 0;
+    }
+    if (raw <= 5) {
+      return SHELF_OCEAN_DEPTH;
+    }
+    return depth;
+  }
+
+  public static byte bucketFromRawOceanDepth(int rawDepth) {
+    if (rawDepth <= 0) {
+      return 0;
+    }
+    if (rawDepth <= 1) {
+      return 1;
+    }
+    if (rawDepth <= 5) {
       return 2;
     }
-    return (byte) raw;
+    if (rawDepth <= 7) {
+      return 4;
+    }
+    if (rawDepth <= 13) {
+      return ABYSSAL_OCEAN_DEPTH;
+    }
+    return 4;
+  }
+
+  /**
+   * TFE stores 1.21-style ocean depth as 0–5 on {@code NTEPointAccess}.
+   */
+  public static byte tfeDepthFromRaw(int rawDepth) {
+    if (rawDepth <= 0) {
+      return 0;
+    }
+    if (rawDepth >= MAP_OCEAN_TRENCH_RAW_DEPTH) {
+      return 5;
+    }
+    if (rawDepth <= 5) {
+      return 2;
+    }
+    return 4;
   }
 }

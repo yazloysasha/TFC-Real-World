@@ -74,6 +74,16 @@ public abstract class BasePNGNoise implements Noise2D {
     return sampleBrightness(imageCoords[0], imageCoords[1]);
   }
 
+  protected int sampleGrayAtWorldRounded(double x, double z) {
+    final double[] imageCoords = tileImageScratch();
+    fillTileImageCoords(x, z, imageCoords);
+    int ix = (int) Math.round(imageCoords[0]);
+    int iz = (int) Math.round(imageCoords[1]);
+    ix = Mth.clamp(ix, 0, width - 1);
+    iz = Mth.clamp(iz, 0, height - 1);
+    return (pixels[iz * width + ix] >> 16) & 0xFF;
+  }
+
   protected double[] tileImageScratch() {
     return TILE_IMAGE_SCRATCH.get();
   }

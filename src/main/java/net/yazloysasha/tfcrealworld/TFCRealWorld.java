@@ -21,6 +21,8 @@ import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.SmoothedKoppenParameterMaps;
+import net.yazloysasha.tfcrealworld.world.noise.koppen.TfeKoppenParameterCache;
+import net.yazloysasha.tfcrealworld.world.noise.koppen.TfeSmoothedKoppenParameterMaps;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
@@ -136,6 +138,8 @@ public final class TFCRealWorld {
     HotspotsNoiseRegistry.clearBiomeLayout();
     KoppenParameterCache.clear();
     SmoothedKoppenParameterMaps.clear();
+    TfeKoppenParameterCache.clear();
+    TfeSmoothedKoppenParameterMaps.clear();
     BasePNGNoise.clearImageCache();
   }
 }

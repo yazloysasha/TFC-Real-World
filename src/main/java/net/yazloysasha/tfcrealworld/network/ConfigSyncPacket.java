@@ -15,7 +15,9 @@ public class ConfigSyncPacket {
   private final int spawnCenterX;
   private final int spawnCenterZ;
   private final int spawnDistance;
+  private final boolean canyonsNotVolcanic;
   private final boolean flatBedrock;
+  private final boolean finiteContinents;
   private final double continentalness;
   private final double grassDensity;
   private final double temperatureConstant;
@@ -28,6 +30,7 @@ public class ConfigSyncPacket {
   private final boolean altitudeFromMap;
   private final boolean hotspotsFromMap;
   private final boolean koppenFromMap;
+  private final boolean tectonicsFromMap;
 
   public ConfigSyncPacket(
     String mapProfile,
@@ -37,7 +40,9 @@ public class ConfigSyncPacket {
     int spawnCenterX,
     int spawnCenterZ,
     int spawnDistance,
+    boolean canyonsNotVolcanic,
     boolean flatBedrock,
+    boolean finiteContinents,
     double continentalness,
     double grassDensity,
     double temperatureConstant,
@@ -49,7 +54,8 @@ public class ConfigSyncPacket {
     boolean continentFromMap,
     boolean altitudeFromMap,
     boolean hotspotsFromMap,
-    boolean koppenFromMap
+    boolean koppenFromMap,
+    boolean tectonicsFromMap
   ) {
     this.mapProfile = mapProfile;
     this.spawnMode = spawnMode;
@@ -58,7 +64,9 @@ public class ConfigSyncPacket {
     this.spawnCenterX = spawnCenterX;
     this.spawnCenterZ = spawnCenterZ;
     this.spawnDistance = spawnDistance;
+    this.canyonsNotVolcanic = canyonsNotVolcanic;
     this.flatBedrock = flatBedrock;
+    this.finiteContinents = finiteContinents;
     this.continentalness = continentalness;
     this.grassDensity = grassDensity;
     this.temperatureConstant = temperatureConstant;
@@ -71,6 +79,7 @@ public class ConfigSyncPacket {
     this.altitudeFromMap = altitudeFromMap;
     this.hotspotsFromMap = hotspotsFromMap;
     this.koppenFromMap = koppenFromMap;
+    this.tectonicsFromMap = tectonicsFromMap;
   }
 
   public static void encode(ConfigSyncPacket packet, FriendlyByteBuf buffer) {
@@ -81,7 +90,9 @@ public class ConfigSyncPacket {
     buffer.writeInt(packet.spawnCenterX);
     buffer.writeInt(packet.spawnCenterZ);
     buffer.writeInt(packet.spawnDistance);
+    buffer.writeBoolean(packet.canyonsNotVolcanic);
     buffer.writeBoolean(packet.flatBedrock);
+    buffer.writeBoolean(packet.finiteContinents);
     buffer.writeDouble(packet.continentalness);
     buffer.writeDouble(packet.grassDensity);
     buffer.writeDouble(packet.temperatureConstant);
@@ -94,6 +105,7 @@ public class ConfigSyncPacket {
     buffer.writeBoolean(packet.altitudeFromMap);
     buffer.writeBoolean(packet.hotspotsFromMap);
     buffer.writeBoolean(packet.koppenFromMap);
+    buffer.writeBoolean(packet.tectonicsFromMap);
   }
 
   public static ConfigSyncPacket decode(FriendlyByteBuf buffer) {
@@ -106,6 +118,8 @@ public class ConfigSyncPacket {
       buffer.readInt(),
       buffer.readInt(),
       buffer.readBoolean(),
+      buffer.readBoolean(),
+      buffer.readBoolean(),
       buffer.readDouble(),
       buffer.readDouble(),
       buffer.readDouble(),
@@ -114,6 +128,7 @@ public class ConfigSyncPacket {
       buffer.readInt(),
       buffer.readInt(),
       buffer.readInt(),
+      buffer.readBoolean(),
       buffer.readBoolean(),
       buffer.readBoolean(),
       buffer.readBoolean(),
@@ -136,7 +151,9 @@ public class ConfigSyncPacket {
           packet.spawnCenterX,
           packet.spawnCenterZ,
           packet.spawnDistance,
+          packet.canyonsNotVolcanic,
           packet.flatBedrock,
+          packet.finiteContinents,
           packet.continentalness,
           packet.grassDensity,
           packet.temperatureConstant,
@@ -148,7 +165,8 @@ public class ConfigSyncPacket {
           packet.continentFromMap,
           packet.altitudeFromMap,
           packet.hotspotsFromMap,
-          packet.koppenFromMap
+          packet.koppenFromMap,
+          packet.tectonicsFromMap
         );
       });
     ctx.get().setPacketHandled(true);

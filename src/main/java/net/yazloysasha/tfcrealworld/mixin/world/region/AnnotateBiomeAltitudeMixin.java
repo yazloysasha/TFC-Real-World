@@ -7,6 +7,7 @@ import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.minecraft.util.RandomSource;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.world.region.calculator.AltitudeCalculator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -34,6 +35,7 @@ public class AnnotateBiomeAltitudeMixin {
     CallbackInfo ci
   ) {
     if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
+      new AltitudeCalculator().calculate(context.region, context.generator());
       tfcrealworld$annotateFromMap(context.region, context.random);
       tfcrealworld$applyCoastalMountainFlags(context.region);
       ci.cancel();

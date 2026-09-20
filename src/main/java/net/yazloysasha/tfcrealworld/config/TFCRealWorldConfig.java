@@ -32,6 +32,7 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Integer> SPAWN_DISTANCE;
   public static final ConfigOption<Boolean> CANYONS_NOT_VOLCANIC;
   public static final ConfigOption<Boolean> FLAT_BEDROCK;
+  public static final ConfigOption<Boolean> FINITE_CONTINENTS;
   public static final ConfigOption<Double> CONTINENTALNESS;
   public static final ConfigOption<Double> GRASS_DENSITY;
   public static final ConfigOption<Double> TEMPERATURE_CONSTANT;
@@ -44,6 +45,7 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Boolean> ALTITUDE_FROM_MAP;
   public static final ConfigOption<Boolean> HOTSPOTS_FROM_MAP;
   public static final ConfigOption<Boolean> KOPPEN_FROM_MAP;
+  public static final ConfigOption<Boolean> TECTONICS_FROM_MAP;
 
   private static final List<ConfigOption<?>> allOptions;
 
@@ -121,7 +123,7 @@ public class TFCRealWorldConfig {
     CANYONS_NOT_VOLCANIC = new ConfigOption<>(
       BUILDER,
       "canyons_not_volcanic",
-      "TFG only. When Core-Modern (tfg) is loaded, strip cinder cones from Canyons and Doline Canyons. Without TFG this option does nothing: TFC 3 Canyons stay volcanic",
+      "When Core-Modern (tfg) or TerraFirmaEarth (tfe) is loaded, strip cinder cones from Canyons and Doline Canyons. Without those backports this option does nothing: TFC 3 Canyons stay volcanic",
       true
     );
 
@@ -132,6 +134,12 @@ public class TFCRealWorldConfig {
       BUILDER,
       "flat_bedrock",
       "TFC option. If the bottom of the world is a single layer of flat bedrock, or random like vanilla",
+      false
+    );
+    FINITE_CONTINENTS = new ConfigOption<>(
+      BUILDER,
+      "finite_continents",
+      "TFC option. When true, fades land/ocean past the map radius so continents stay finite. When false, continent noise tiles (infinite). Used with TerraFirmaEarth (tfe)",
       false
     );
     CONTINENTALNESS = new ConfigOption<>(
@@ -226,6 +234,12 @@ public class TFCRealWorldConfig {
       "Generate climate parameters (temperature, rainfall, rainfall variance) from Köppen climate map or procedurally",
       true
     );
+    TECTONICS_FROM_MAP = new ConfigOption<>(
+      BUILDER,
+      "tectonics_from_map",
+      "Generate land rift valleys and mid-ocean ridges from plate-boundary map or procedurally",
+      true
+    );
 
     BUILDER.pop();
     SPEC = BUILDER.build();
@@ -240,6 +254,7 @@ public class TFCRealWorldConfig {
       SPAWN_DISTANCE,
       CANYONS_NOT_VOLCANIC,
       FLAT_BEDROCK,
+      FINITE_CONTINENTS,
       CONTINENTALNESS,
       GRASS_DENSITY,
       TEMPERATURE_CONSTANT,
@@ -251,7 +266,8 @@ public class TFCRealWorldConfig {
       CONTINENT_FROM_MAP,
       ALTITUDE_FROM_MAP,
       HOTSPOTS_FROM_MAP,
-      KOPPEN_FROM_MAP
+      KOPPEN_FROM_MAP,
+      TECTONICS_FROM_MAP
     );
   }
 
@@ -263,7 +279,9 @@ public class TFCRealWorldConfig {
     int spawnCenterX,
     int spawnCenterZ,
     int spawnDistance,
+    boolean canyonsNotVolcanic,
     boolean flatBedrock,
+    boolean finiteContinents,
     double continentalness,
     double grassDensity,
     double temperatureConstant,
@@ -275,7 +293,8 @@ public class TFCRealWorldConfig {
     boolean continentFromMap,
     boolean altitudeFromMap,
     boolean hotspotsFromMap,
-    boolean koppenFromMap
+    boolean koppenFromMap,
+    boolean tectonicsFromMap
   ) {
     MAP_PROFILE.setServerValue(mapProfile);
     SPAWN_MODE.setServerValue(spawnMode);
@@ -284,7 +303,9 @@ public class TFCRealWorldConfig {
     SPAWN_CENTER_X.setServerValue(spawnCenterX);
     SPAWN_CENTER_Z.setServerValue(spawnCenterZ);
     SPAWN_DISTANCE.setServerValue(spawnDistance);
+    CANYONS_NOT_VOLCANIC.setServerValue(canyonsNotVolcanic);
     FLAT_BEDROCK.setServerValue(flatBedrock);
+    FINITE_CONTINENTS.setServerValue(finiteContinents);
     CONTINENTALNESS.setServerValue(continentalness);
     GRASS_DENSITY.setServerValue(grassDensity);
     TEMPERATURE_CONSTANT.setServerValue(temperatureConstant);
@@ -297,6 +318,7 @@ public class TFCRealWorldConfig {
     ALTITUDE_FROM_MAP.setServerValue(altitudeFromMap);
     HOTSPOTS_FROM_MAP.setServerValue(hotspotsFromMap);
     KOPPEN_FROM_MAP.setServerValue(koppenFromMap);
+    TECTONICS_FROM_MAP.setServerValue(tectonicsFromMap);
   }
 
   public static void clearServerConfig() {

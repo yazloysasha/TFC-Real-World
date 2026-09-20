@@ -114,8 +114,18 @@ public class ConfigManager {
         ),
         getBoolean(
           config,
+          "biome_modifications.canyons_not_volcanic",
+          TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get()
+        ),
+        getBoolean(
+          config,
           "world_generation.flat_bedrock",
           TFCRealWorldConfig.FLAT_BEDROCK.get()
+        ),
+        getBoolean(
+          config,
+          "world_generation.finite_continents",
+          TFCRealWorldConfig.FINITE_CONTINENTS.get()
         ),
         getDouble(
           config,
@@ -176,6 +186,11 @@ public class ConfigManager {
           config,
           "generation_modes.koppen_from_map",
           TFCRealWorldConfig.KOPPEN_FROM_MAP.get()
+        ),
+        getBoolean(
+          config,
+          "generation_modes.tectonics_from_map",
+          TFCRealWorldConfig.TECTONICS_FROM_MAP.get()
         )
       );
 
@@ -273,7 +288,9 @@ public class ConfigManager {
       TFCRealWorldConfig.SPAWN_CENTER_X.get(),
       TFCRealWorldConfig.SPAWN_CENTER_Z.get(),
       TFCRealWorldConfig.SPAWN_DISTANCE.get(),
+      TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get(),
       TFCRealWorldConfig.FLAT_BEDROCK.get(),
+      TFCRealWorldConfig.FINITE_CONTINENTS.get(),
       TFCRealWorldConfig.CONTINENTALNESS.get(),
       TFCRealWorldConfig.GRASS_DENSITY.get(),
       TFCRealWorldConfig.TEMPERATURE_CONSTANT.get(),
@@ -285,7 +302,8 @@ public class ConfigManager {
       TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
       TFCRealWorldConfig.ALTITUDE_FROM_MAP.get(),
       TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get(),
-      TFCRealWorldConfig.KOPPEN_FROM_MAP.get()
+      TFCRealWorldConfig.KOPPEN_FROM_MAP.get(),
+      TFCRealWorldConfig.TECTONICS_FROM_MAP.get()
     );
     PacketHandler.INSTANCE.sendTo(
       packet,

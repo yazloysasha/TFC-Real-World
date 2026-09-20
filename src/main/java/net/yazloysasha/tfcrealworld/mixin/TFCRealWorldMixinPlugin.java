@@ -2,9 +2,11 @@ package net.yazloysasha.tfcrealworld.mixin;
 
 import java.util.List;
 import java.util.Set;
+import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.compat.AurorasCompat;
 import net.yazloysasha.tfcrealworld.compat.CaelumCompat;
 import net.yazloysasha.tfcrealworld.compat.FirmaCivCompat;
+import net.yazloysasha.tfcrealworld.compat.TfeCompat;
 import net.yazloysasha.tfcrealworld.compat.TfgCompat;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.tree.ClassNode;
@@ -30,7 +32,7 @@ public final class TFCRealWorldMixinPlugin implements IMixinConfigPlugin {
     String targetClassName,
     String mixinClassName
   ) {
-    return mixinDisableReason(mixinClassName) == null;
+    return mixinDisableReason(targetClassName, mixinClassName) == null;
   }
 
   @Override
@@ -58,7 +60,10 @@ public final class TFCRealWorldMixinPlugin implements IMixinConfigPlugin {
   ) {}
 
   @Nullable
-  private static String mixinDisableReason(String mixinClassName) {
+  private static String mixinDisableReason(
+    String targetClassName,
+    String mixinClassName
+  ) {
     String reason = AurorasCompat.mixinDisableReason(mixinClassName);
     if (reason != null) {
       return reason;
@@ -71,6 +76,23 @@ public final class TFCRealWorldMixinPlugin implements IMixinConfigPlugin {
     if (reason != null) {
       return reason;
     }
-    return TfgCompat.mixinDisableReason(mixinClassName);
+    reason = TfgCompat.mixinDisableReason(mixinClassName);
+    if (reason != null) {
+      return reason;
+    }
+    reason = TfeCompat.mixinDisableReason(mixinClassName);
+    if (reason != null) {
+      return reason;
+    }
+    reason = TfeCompat.tfc3DisableReason(targetClassName, mixinClassName);
+    if (reason != null) {
+      TFCRealWorld.LOGGER.debug(
+        "Mixin plugin skipping {} (target {}): {}",
+        mixinClassName,
+        targetClassName,
+        reason
+      );
+    }
+    return reason;
   }
 }

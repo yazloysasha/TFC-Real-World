@@ -7,8 +7,8 @@ import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
+import net.yazloysasha.tfcrealworld.world.backport.ChooseBiomesSupport;
 import net.yazloysasha.tfcrealworld.world.region.MapBiomeLakeRolls;
-import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
 import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotBiomes;
 import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
 import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout.MountainStyle;
@@ -34,12 +34,6 @@ import su.terrafirmagreg.core.world.new_ow_wg.region.TFGChooseBiomesTask;
  */
 @Mixin(value = TFGChooseBiomesTask.class, remap = false)
 public class TfgChooseBiomesMixin {
-
-  @Unique
-  private static final double ICE_SHEET_EDGE_MELTWATER_LAKE_CHANCE = 0.16;
-
-  @Unique
-  private static final float LAKE_RAINFALL_BOOST = 0.09f;
 
   @Unique
   private static final ThreadLocal<Boolean> ASSIGNING_HOTSPOT_BIOME =
@@ -72,9 +66,11 @@ public class TfgChooseBiomesMixin {
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    tfcrealworld$rollIceSheetEdgeLakes(
+    ChooseBiomesSupport.rollIceSheetEdgeLakes(
       context.region,
-      WorldSeedHolder.getSeed()
+      WorldSeedHolder.getSeed(),
+      ICE_SHEET_EDGE,
+      TFGLayers::lakeFor
     );
     MapBiomeLakeRolls.rollOceanicMountainLakes(
       context.region,
@@ -286,64 +282,5 @@ public class TfgChooseBiomesMixin {
       biome == GLACIALLY_CARVED_MOUNTAINS ||
       biome == GLACIALLY_CARVED_OCEANIC_MOUNTAINS
     );
-  }
-
-  @Unique
-  private static void tfcrealworld$rollIceSheetEdgeLakes(
-    Region region,
-    long worldSeed
-  ) {
-    if (!TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
-      return;
-    }
-
-    final Region.Point[] data = region.data();
-    for (int index = 0; index < data.length; index++) {
-      final Region.Point point = data[index];
-      if (point == null || !point.land() || point.lake()) {
-        continue;
-      }
-      if (point.biome != ICE_SHEET_EDGE) {
-        continue;
-      }
-      final int gridX = RegionCoords.gridX(region, index);
-      final int gridZ = RegionCoords.gridZ(region, index);
-      if (
-        !tfcrealworld$seededChance(
-          worldSeed,
-          gridX,
-          gridZ,
-          0x7a4f2c91e83b05d6L,
-          ICE_SHEET_EDGE_MELTWATER_LAKE_CHANCE
-        )
-      ) {
-        continue;
-      }
-      point.setLake();
-      point.rainfall += LAKE_RAINFALL_BOOST * (500f - point.rainfall);
-      point.biome = TFGLayers.lakeFor(ICE_SHEET_EDGE);
-    }
-  }
-
-  @Unique
-  private static boolean tfcrealworld$seededChance(
-    long worldSeed,
-    int gridX,
-    int gridZ,
-    long salt,
-    double chance
-  ) {
-    long hash = worldSeed ^ salt;
-    hash ^= (long) gridX * 0x9E3779B97F4A7C15L;
-    hash ^= (long) gridZ * 0x6C078965L;
-    hash = tfcrealworld$mix64(hash);
-    return (hash >>> 11) * (1.0 / (1L << 53)) < chance;
-  }
-
-  @Unique
-  private static long tfcrealworld$mix64(long z) {
-    z = (z ^ (z >>> 33)) * 0xff51afd7ed558ccdL;
-    z = (z ^ (z >>> 33)) * 0xc4ceb9fe1a85ec53L;
-    return z ^ (z >>> 33);
   }
 }
