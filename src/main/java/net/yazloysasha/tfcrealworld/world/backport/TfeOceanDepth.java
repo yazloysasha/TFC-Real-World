@@ -58,7 +58,7 @@ public final class TfeOceanDepth {
       }
       access.nte$setOceanDepth(
         PNGAltitudeNoise.tfeDepthFromRaw(
-          noise.getBaseOceanDepth(
+          noise.getRawOceanDepth(
             RegionCoords.gridX(region, index),
             RegionCoords.gridZ(region, index)
           )

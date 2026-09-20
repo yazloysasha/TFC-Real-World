@@ -394,13 +394,22 @@ public class CreateTFCWorldScreenMixin {
     } else {
       options.addSmall(spawnDistance, flatBedrock);
     }
-    options.addSmall(continentalness, tectonicsFromMap);
-    options.addSmall(grassDensity, temperatureConstant);
-    options.addSmall(rainfallConstant, temperatureScale);
-    options.addSmall(rainfallScale, horizontalScale);
-    options.addSmall(verticalScale, continentFromMap);
-    options.addSmall(altitudeFromMap, hotspotsFromMap);
-    options.addBig(koppenFromMap);
+    if (TfeCompat.isModPresent()) {
+      options.addSmall(continentalness, tectonicsFromMap);
+      options.addSmall(grassDensity, temperatureConstant);
+      options.addSmall(rainfallConstant, temperatureScale);
+      options.addSmall(rainfallScale, horizontalScale);
+      options.addSmall(verticalScale, continentFromMap);
+      options.addSmall(altitudeFromMap, hotspotsFromMap);
+      options.addBig(koppenFromMap);
+    } else {
+      options.addSmall(continentalness, grassDensity);
+      options.addSmall(temperatureConstant, rainfallConstant);
+      options.addSmall(temperatureScale, rainfallScale);
+      options.addSmall(horizontalScale, verticalScale);
+      options.addSmall(continentFromMap, altitudeFromMap);
+      options.addSmall(hotspotsFromMap, koppenFromMap);
+    }
   }
 
   @Redirect(
@@ -529,11 +538,13 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.KOPPEN_FROM_MAP.get(),
       value -> {}
     );
-    tectonicsFromMap = booleanOption(
-      getCaption("create_world.rifts_from_map"),
-      TFCRealWorldConfig.TECTONICS_FROM_MAP.get(),
-      value -> {}
-    );
+    if (TfeCompat.isModPresent()) {
+      tectonicsFromMap = booleanOption(
+        getCaption("create_world.rifts_from_map"),
+        TFCRealWorldConfig.TECTONICS_FROM_MAP.get(),
+        value -> {}
+      );
+    }
     canyonsNotVolcanic = OptionInstance.createBoolean(
       getCaption("create_world.canyons_not_volcanic"),
       TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get(),
@@ -601,7 +612,9 @@ public class CreateTFCWorldScreenMixin {
     TFCRealWorldConfig.ALTITUDE_FROM_MAP.set(altitudeFromMap.get());
     TFCRealWorldConfig.HOTSPOTS_FROM_MAP.set(hotspotsFromMap.get());
     TFCRealWorldConfig.KOPPEN_FROM_MAP.set(koppenFromMap.get());
-    TFCRealWorldConfig.TECTONICS_FROM_MAP.set(tectonicsFromMap.get());
+    if (tectonicsFromMap != null) {
+      TFCRealWorldConfig.TECTONICS_FROM_MAP.set(tectonicsFromMap.get());
+    }
 
     TFCRealWorldConfig.saveConfig();
 

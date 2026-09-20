@@ -59,13 +59,32 @@ public class PNGAltitudeNoise extends BasePNGNoise {
     return MIN_OCEAN_DEPTH + normalized * (MAX_OCEAN_DEPTH - MIN_OCEAN_DEPTH);
   }
 
-  public byte getBaseOceanDepth(double x, double z) {
+  /**
+   * Full map depth (2–15) for TFE {@code nte$oceanDepth} conversion.
+   */
+  public byte getRawOceanDepth(double x, double z) {
     double brightness = sampleBrightnessAtWorld(x, z);
     double depth = transformOceanDepth(brightness);
     if (depth <= 0) {
       return 0;
     }
     return (byte) Mth.clamp(Math.round(depth), MIN_MAP_OCEAN_DEPTH, 15);
+  }
+
+  /**
+   * Depth stored on {@link net.dries007.tfc.world.region.Region.Point} for TFC 3
+   * {@code ChooseBiomes}. Shelf-like samples (5–6) fold to {@code 2} so they
+   * stay shallow ocean, not abyssal.
+   */
+  public byte getBaseOceanDepth(double x, double z) {
+    final int raw = Byte.toUnsignedInt(getRawOceanDepth(x, z));
+    if (raw == 0) {
+      return 0;
+    }
+    if (raw == 5 || raw == 6) {
+      return 2;
+    }
+    return (byte) raw;
   }
 
   /**

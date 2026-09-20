@@ -11,6 +11,7 @@ import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.region.BiomePools;
 import net.yazloysasha.tfcrealworld.world.region.MapBiomeLakeRolls;
 import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
+import net.yazloysasha.tfcrealworld.world.region.TfcMapOceanBiomes;
 import net.yazloysasha.tfcrealworld.world.volcano.CenteredFeatureAligner;
 import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotBiomes;
 import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
@@ -84,6 +85,7 @@ public class ChooseBiomesMixin {
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
+    TfcMapOceanBiomes.apply(context);
     MapBiomeLakeRolls.rollOceanicMountainLakes(
       context.region,
       WorldSeedHolder.getSeed(),
