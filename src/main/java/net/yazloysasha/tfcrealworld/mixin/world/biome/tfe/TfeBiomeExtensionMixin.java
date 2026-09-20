@@ -41,15 +41,6 @@ public abstract class TfeBiomeExtensionMixin {
     );
   }
 
-  @Inject(method = "hasCinderCones", at = @At("HEAD"), cancellable = true)
-  private void tfcrealworld$overrideHasCinderCones(
-    CallbackInfoReturnable<Boolean> cir
-  ) {
-    if (tfcrealworld$shouldStripCanyonVolcanoes()) {
-      cir.setReturnValue(false);
-    }
-  }
-
   @Inject(method = "isVolcanic", at = @At("HEAD"), cancellable = true)
   private void tfcrealworld$overrideIsVolcanic(
     CallbackInfoReturnable<Boolean> cir
