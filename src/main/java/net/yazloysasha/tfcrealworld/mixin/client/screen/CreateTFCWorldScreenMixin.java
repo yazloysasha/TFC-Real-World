@@ -394,20 +394,15 @@ public class CreateTFCWorldScreenMixin {
     } else {
       options.addSmall(spawnDistance, flatBedrock);
     }
+    options.addSmall(continentalness, grassDensity);
+    options.addSmall(temperatureConstant, rainfallConstant);
+    options.addSmall(temperatureScale, rainfallScale);
+    options.addSmall(horizontalScale, verticalScale);
+    options.addSmall(continentFromMap, altitudeFromMap);
     if (TfeCompat.isModPresent()) {
-      options.addSmall(continentalness, tectonicsFromMap);
-      options.addSmall(grassDensity, temperatureConstant);
-      options.addSmall(rainfallConstant, temperatureScale);
-      options.addSmall(rainfallScale, horizontalScale);
-      options.addSmall(verticalScale, continentFromMap);
-      options.addSmall(altitudeFromMap, hotspotsFromMap);
+      options.addSmall(hotspotsFromMap, tectonicsFromMap);
       options.addBig(koppenFromMap);
     } else {
-      options.addSmall(continentalness, grassDensity);
-      options.addSmall(temperatureConstant, rainfallConstant);
-      options.addSmall(temperatureScale, rainfallScale);
-      options.addSmall(horizontalScale, verticalScale);
-      options.addSmall(continentFromMap, altitudeFromMap);
       options.addSmall(hotspotsFromMap, koppenFromMap);
     }
   }
