@@ -38,6 +38,7 @@
     "world.region.tfg.TfgChooseBiomesMixin",
     "tfg.TfgCustomSpawnHelperMixin",
     "world.biome.tfe.TfeBiomeExtensionMixin",
+    "world.terrain.tfe.TfeTerrainUpliftSamplerMixin",
     "world.layer.tfe.TfeIceSheetEdgeLayerMixin",
     "world.layer.tfe.TfeRiverShoreLayerMixin",
     "world.layer.tfe.TfeTFCLayersMixin",
@@ -51,7 +52,7 @@
     "world.region.tfe.TfeContinentFactorMixin",
     "world.region.tfe.TfeRegionFeatureAnnotationsMixin",
     "world.region.tfe.TfeRegionGeneratorContextMixin",
-    "world.region.tfe.TfeRegionNoiseMixin",
+    "world.region.tfe.TfeRegionGeneratorReapplyHotspotsMixin",
     "world.region.tfe.TfeWestCoastHelpersMixin"
   ],
   "client": [

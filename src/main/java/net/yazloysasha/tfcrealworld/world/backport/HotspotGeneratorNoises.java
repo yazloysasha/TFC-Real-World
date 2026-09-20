@@ -3,16 +3,19 @@ package net.yazloysasha.tfcrealworld.world.backport;
 import java.lang.reflect.Field;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.dries007.tfc.world.region.Units;
 import net.yazloysasha.tfcrealworld.compat.TfeCompat;
 import net.yazloysasha.tfcrealworld.compat.TfgCompat;
 import net.yazloysasha.tfcrealworld.compat.tfe.TfeBindings;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedRainfallVarianceNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
+import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
 import sun.misc.Unsafe;
 
 /**
@@ -44,23 +47,31 @@ public final class HotspotGeneratorNoises {
     PNGHotspotsNoise hotspotsNoise
   ) {
     if (TfgCompat.isModPresent()) {
-      overwriteField(regionGenerator, TFG_INTENSITY, hotspotsNoise);
+      final MapHotspotLayout layout = hotspotsNoise.layout();
+      final long worldSeed = WorldSeedHolder.getSeed();
+      overwriteField(
+        regionGenerator,
+        TFG_INTENSITY,
+        (Noise2D) (x, z) -> layout.combinedIntensity(x, z, worldSeed)
+      );
       overwriteField(
         regionGenerator,
         TFG_AGE,
-        (Noise2D) (x, z) -> hotspotsNoise.getHotSpotAge(x, z)
+        (Noise2D) (x, z) -> layout.dominantAgeAtBlock(x, z, worldSeed)
       );
     }
     if (TfeCompat.isModPresent()) {
+      final MapHotspotLayout layout = hotspotsNoise.layout();
+      final long worldSeed = WorldSeedHolder.getSeed();
       overwriteField(
         regionGenerator,
         TfeBindings.HOTSPOT_INTENSITY_FIELD,
-        hotspotsNoise
+        tfeGridHotSpotIntensityNoise(layout, worldSeed)
       );
       overwriteField(
         regionGenerator,
         TfeBindings.HOTSPOT_AGE_FIELD,
-        (Noise2D) (x, z) -> hotspotsNoise.getHotSpotAge(x, z)
+        tfeGridHotSpotAgeNoise(layout, worldSeed)
       );
     }
   }
@@ -107,7 +118,26 @@ public final class HotspotGeneratorNoises {
     );
   }
 
-  private static void overwriteField(
+  private static Noise2D tfeGridHotSpotIntensityNoise(
+    MapHotspotLayout layout,
+    long worldSeed
+  ) {
+    return (x, z) -> layout.combinedIntensityAtGridCoords(x, z, worldSeed);
+  }
+
+  private static Noise2D tfeGridHotSpotAgeNoise(
+    MapHotspotLayout layout,
+    long worldSeed
+  ) {
+    return (x, z) ->
+      layout.dominantAgeAtBlock(
+        x * Units.GRID_WIDTH_IN_BLOCK,
+        z * Units.GRID_WIDTH_IN_BLOCK,
+        worldSeed
+      );
+  }
+
+  private static boolean overwriteField(
     Object instance,
     String name,
     Object value
@@ -115,11 +145,13 @@ public final class HotspotGeneratorNoises {
     try {
       final Field field = findDeclaredField(instance.getClass(), name);
       if (field == null) {
-        return;
+        return false;
       }
       UNSAFE.putObject(instance, UNSAFE.objectFieldOffset(field), value);
+      return true;
     } catch (Exception ignored) {
       // Later mixins still feed map ages / climate through task hooks.
+      return false;
     }
   }
 

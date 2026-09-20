@@ -6,4 +6,10 @@ public interface NTEBiomeExtensionAccess {
   NTECenteredFeatureBlendType tfe$getCenteredFeatureBlendType();
 
   void tfe$setCenteredFeatureBlendType(NTECenteredFeatureBlendType blendType);
+
+  int tfe$getCenteredFeatureRarity();
+
+  int tfe$getCenteredFeatureBaseHeight();
+
+  int tfe$getCenteredFeatureScaleHeight();
 }

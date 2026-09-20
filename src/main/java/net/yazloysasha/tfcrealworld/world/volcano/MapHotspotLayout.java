@@ -98,20 +98,115 @@ public final class MapHotspotLayout {
     if (age < 1 || age > 4) {
       return (x, z) -> 0;
     }
-    final List<Center> scoped = centersByAge[age];
-    if (scoped.isEmpty()) {
-      return (x, z) -> 0;
+    final OpenSimplex2D warp = warpForAge(age, seed);
+    return (x, z) -> intensityAtBlock(x, z, age, warp);
+  }
+
+  /**
+   * Block-space sample for lazy {@link HotspotIntensityFromMap} delegates.
+   */
+  public double sampleIntensityForAge(
+    byte age,
+    long seed,
+    double blockX,
+    double blockZ
+  ) {
+    if (age < 1 || age > 4) {
+      return 0;
     }
-    final OpenSimplex2D warp = new OpenSimplex2D(seed + 7919L * age)
-      .octaves(2)
-      .spread(0.004)
-      .scaled(-0.1, 0.1);
-    return (x, z) -> peakAt(x, z, scoped, warp.noise(x, z));
+    return intensityAtBlock(blockX, blockZ, age, warpForAge(age, seed));
+  }
+
+  /**
+   * Max hotspot intensity across all ages at block coordinates. Matches TFC 4
+   * {@code NTERegionNoise#hotSpotIntensity} input for shield heightmaps.
+   */
+  public double combinedIntensity(double blockX, double blockZ, long seed) {
+    double best = 0;
+    for (byte age = 1; age <= 4; age++) {
+      best = Math.max(
+        best,
+        intensityAtBlock(blockX, blockZ, age, warpForAge(age, seed))
+      );
+    }
+    return best;
+  }
+
+  /**
+   * Sample intensity where TFE passes grid coordinates (often {@code grid + 0.5})
+   * into {@code Noise2D} after {@code spread(GRID_WIDTH_IN_BLOCK)} was replaced
+   * on the region generator field.
+   */
+  public double combinedIntensityAtGridCoords(
+    double gridX,
+    double gridZ,
+    long seed
+  ) {
+    return combinedIntensity(
+      gridX * Units.GRID_WIDTH_IN_BLOCK,
+      gridZ * Units.GRID_WIDTH_IN_BLOCK,
+      seed
+    );
+  }
+
+  public double combinedIntensityAtGrid(int gridX, int gridZ, long seed) {
+    return combinedIntensityAtGridCoords(gridX + 0.5, gridZ + 0.5, seed);
+  }
+
+  /**
+   * Age whose map intensity wins at this grid cell (same rule as procedural
+   * {@code mapAges}, but per PNG hotspot layer).
+   */
+  public byte dominantAgeAtGrid(int gridX, int gridZ, long seed) {
+    final double blockX = RegionCoords.gridToBlock(gridX) + HALF_GRID_BLOCK;
+    final double blockZ = RegionCoords.gridToBlock(gridZ) + HALF_GRID_BLOCK;
+    return dominantAgeAtBlock(blockX, blockZ, seed);
+  }
+
+  public byte dominantAgeAtBlock(double blockX, double blockZ, long seed) {
+    double best = 0;
+    byte result = 0;
+    for (byte age = 1; age <= 4; age++) {
+      final double value = intensityAtBlock(
+        blockX,
+        blockZ,
+        age,
+        warpForAge(age, seed)
+      );
+      if (value > best) {
+        best = value;
+        result = age;
+      }
+    }
+    return result;
   }
 
   public byte ageAtGrid(int gridX, int gridZ) {
     final Center center = nearestCenterAtGrid(gridX, gridZ);
     return center == null ? 0 : center.age();
+  }
+
+  private OpenSimplex2D warpForAge(byte age, long seed) {
+    return new OpenSimplex2D(seed + 7919L * age)
+      .octaves(2)
+      .spread(0.004)
+      .scaled(-0.1, 0.1);
+  }
+
+  private double intensityAtBlock(
+    double blockX,
+    double blockZ,
+    byte age,
+    OpenSimplex2D warp
+  ) {
+    if (age < 1 || age > 4) {
+      return 0;
+    }
+    final List<Center> scoped = centersByAge[age];
+    if (scoped.isEmpty()) {
+      return 0;
+    }
+    return peakAt(blockX, blockZ, scoped, warp.noise(blockX, blockZ));
   }
 
   @Nullable
@@ -254,7 +349,8 @@ public final class MapHotspotLayout {
     final double imageZ = image[1];
     double best = 0;
     for (final Center center : scoped) {
-      final double radius = center.radiusBlocks() * (1 + warp);
+      final double radius =
+        center.radiusBlocks() * BIOME_RADIUS_SCALE * (1 + warp);
       if (radius <= 0) {
         continue;
       }

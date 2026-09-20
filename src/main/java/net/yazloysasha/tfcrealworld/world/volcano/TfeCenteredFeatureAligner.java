@@ -18,19 +18,21 @@ public final class TfeCenteredFeatureAligner {
   public static void align(Region region, long seed) {
     CenteredFeatureAligner.stamp(
       region,
-      cellLookup(new NTECellular2D(seed, 2).spread(0.0024f)),
+      cellLookup(
+        new NTECellular2D(seed, 2).spread(
+          (float) VolcanoCenteredConstants.STRATOVOLCANO_SPREAD
+        )
+      ),
       TfeCenteredFeatureAligner::isStratovolcanoBiome,
       TfeCenteredFeatureAligner::skipCenter
     );
     CenteredFeatureAligner.stamp(
       region,
-      cellLookup(new NTECellular2D(seed, 0.2f, 1).spread(0.003f)),
-      TfeCenteredFeatureAligner::isTuffRingBiome,
-      TfeCenteredFeatureAligner::skipCenter
-    );
-    CenteredFeatureAligner.stamp(
-      region,
-      cellLookup(new NTECellular2D(seed).spread(0.009f)),
+      cellLookup(
+        new NTECellular2D(seed).spread(
+          (float) VolcanoCenteredConstants.SHIELD_CINDER_SPREAD
+        )
+      ),
       TfeCenteredFeatureAligner::isShieldCinderBiome,
       TfeCenteredFeatureAligner::skipCenter
     );
@@ -46,30 +48,13 @@ public final class TfeCenteredFeatureAligner {
   }
 
   private static boolean skipCenter(Region.Point center, int sourceBiome) {
-    if (isShieldHotspotBiome(center.biome)) {
-      return true;
-    }
-    if (isIceMountainBiome(center.biome)) {
+    if (TfeVolcanoMapPipeline.isShieldHotspotBiome(center.biome)) {
       return true;
     }
     if (TfeBiomeQueries.isLake(center.biome) || center.lake()) {
       return true;
     }
     return CoverageRareBiomes.preserve(center.biome);
-  }
-
-  private static boolean isShieldHotspotBiome(int biome) {
-    return (
-      biome == ACTIVE_SHIELD_VOLCANO ||
-      biome == DORMANT_SHIELD_VOLCANO ||
-      biome == EXTINCT_SHIELD_VOLCANO ||
-      biome == ANCIENT_SHIELD_VOLCANO ||
-      biome == SUNKEN_SHIELD_VOLCANO ||
-      biome == ICE_SHEET_SHIELD_VOLCANO ||
-      biome == GLACIATED_SHIELD_VOLCANO ||
-      biome == SHIELD_VOLCANO_SHORE ||
-      biome == OLD_SHIELD_VOLCANO_SHORE
-    );
   }
 
   private static boolean isStratovolcanoBiome(int biome) {
@@ -89,30 +74,7 @@ public final class TfeCenteredFeatureAligner {
     );
   }
 
-  private static boolean isTuffRingBiome(int biome) {
-    return (
-      biome == DORMANT_SHIELD_VOLCANO ||
-      biome == EXTINCT_SHIELD_VOLCANO ||
-      biome == ANCIENT_SHIELD_VOLCANO ||
-      biome == SUNKEN_SHIELD_VOLCANO ||
-      biome == OLD_SHIELD_VOLCANO_SHORE
-    );
-  }
-
   private static boolean isShieldCinderBiome(int biome) {
-    return (
-      biome == ACTIVE_SHIELD_VOLCANO || biome == VOLCANIC_MOUNTAIN_ISLANDS
-    );
-  }
-
-  private static boolean isIceMountainBiome(int biome) {
-    return (
-      biome == ICE_SHEET_MOUNTAINS ||
-      biome == ICE_SHEET_OCEANIC_MOUNTAINS ||
-      biome == GLACIATED_MOUNTAINS ||
-      biome == GLACIATED_OCEANIC_MOUNTAINS ||
-      biome == GLACIALLY_CARVED_MOUNTAINS ||
-      biome == GLACIALLY_CARVED_OCEANIC_MOUNTAINS
-    );
+    return biome == ACTIVE_SHIELD_VOLCANO || biome == VOLCANIC_MOUNTAIN_ISLANDS;
   }
 }

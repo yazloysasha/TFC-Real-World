@@ -20,7 +20,6 @@ import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.DivergenceNoiseRegistry;
-import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.backport.ChooseBiomesSupport;
 import net.yazloysasha.tfcrealworld.world.backport.GridSeededRandom;
 import net.yazloysasha.tfcrealworld.world.backport.MapOceanBiomeFromAltitude;
@@ -33,9 +32,7 @@ import net.yazloysasha.tfcrealworld.world.region.MapBiomeLakeRolls;
 import net.yazloysasha.tfcrealworld.world.region.MapTectonics;
 import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
 import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotBiomes;
-import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
-import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout.MountainStyle;
-import net.yazloysasha.tfcrealworld.world.volcano.TfeCenteredFeatureAligner;
+import net.yazloysasha.tfcrealworld.world.volcano.TfeVolcanoMapPipeline;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -89,27 +86,16 @@ public class TfeChooseBiomesMixin {
   @Unique
   private static final double VOLCANIC_OCEANIC_GLACIAL_ECOTONE_CHANCE = 0.5;
 
-  @Unique
-  private static final ThreadLocal<Region> CURRENT_REGION = new ThreadLocal<>();
-
-  @Unique
-  private static final ThreadLocal<Boolean> ASSIGNING_HOTSPOT_BIOME =
-    ThreadLocal.withInitial(() -> Boolean.FALSE);
-
   @Inject(method = "apply", at = @At("HEAD"))
   private void tfcrealworld$prepareMapChooseBiomes(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    CURRENT_REGION.set(context.region);
     TfeMapDivergence.stampFromMapAndSuppressDefaultRifts(context);
-    if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
-      final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
-      if (layout != null) {
-        layout.prepareChooseBiomes(context.region, WorldSeedHolder.getSeed());
-        tfcrealworld$markStratovolcanoVolcanic(context.region, layout);
-      }
-    }
+    TfeVolcanoMapPipeline.onChooseBiomesHead(
+      context,
+      WorldSeedHolder.getSeed()
+    );
     tfcrealworld$markTrenchMountainsVolcanic(context);
   }
 
@@ -118,7 +104,6 @@ public class TfeChooseBiomesMixin {
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    tfcrealworld$adjustMountainAndHotspotBiomes(context.region);
     final long worldSeed = WorldSeedHolder.getSeed();
     tfcrealworld$applyMapOceanAndRiftBiomes(context);
     tfcrealworld$applyVolcanicOceanicGlacialBands(context.region, worldSeed);
@@ -135,16 +120,7 @@ public class TfeChooseBiomesMixin {
       VOLCANIC_OCEANIC_MOUNTAINS,
       TFCLayers::lakeFor
     );
-    if (
-      TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get() ||
-      TFCRealWorldConfig.ALTITUDE_FROM_MAP.get() ||
-      MapTectonics.isActive(context.generator())
-    ) {
-      TfeCenteredFeatureAligner.align(context.region, worldSeed);
-    }
-    CURRENT_REGION.remove();
-    ASSIGNING_HOTSPOT_BIOME.remove();
-    ChooseBiomesSupport.CURRENT_POINT.remove();
+    TfeVolcanoMapPipeline.onChooseBiomesTail(context, worldSeed, this);
   }
 
   @Redirect(
@@ -158,11 +134,7 @@ public class TfeChooseBiomesMixin {
     ChooseBiomes instance,
     int age
   ) {
-    ASSIGNING_HOTSPOT_BIOME.set(Boolean.TRUE);
-    final Region.Point point = ChooseBiomesSupport.CURRENT_POINT.get();
-    if (point != null && tfcrealworld$shouldKeepMountainBiome(point)) {
-      return point.biome;
-    }
+    TfeVolcanoMapPipeline.beginHotspotBiomeAssignment();
     return TfeKarstBiomeInvoke.hotSpotBiome(instance, age);
   }
 
@@ -180,8 +152,18 @@ public class TfeChooseBiomesMixin {
   ) {
     ChooseBiomesSupport.CURRENT_POINT.set(point);
     try {
-      if (tfcrealworld$tfeHotspotWouldReplaceMountain(point, proposedBiome)) {
-        if (tfcrealworld$shouldPaintStratovolcano(point)) {
+      if (
+        TFCRealWorldConfig.ALTITUDE_FROM_MAP.get() &&
+        point.mountain() &&
+        tfcrealworld$isSoftMountainFill(proposedBiome)
+      ) {
+        proposedBiome = point.coastalMountain() ? OCEANIC_MOUNTAINS : MOUNTAINS;
+      }
+      if (
+        TfeVolcanoMapPipeline.isAssigningHotspotBiome() &&
+        TfeVolcanoMapPipeline.shouldKeepMountainBiome(point)
+      ) {
+        if (TfeVolcanoMapPipeline.shouldPaintStratovolcano(point)) {
           proposedBiome = MapHotspotBiomes.volcanicMountainFor(
             point,
             VOLCANIC_MOUNTAINS,
@@ -193,69 +175,21 @@ public class TfeChooseBiomesMixin {
       }
       point.biome = proposedBiome;
     } finally {
-      ASSIGNING_HOTSPOT_BIOME.set(Boolean.FALSE);
+      TfeVolcanoMapPipeline.clearHotspotBiomeAssignment();
     }
   }
 
   @Unique
-  private static void tfcrealworld$adjustMountainAndHotspotBiomes(
-    Region region
-  ) {
-    final Region.Point[] data = region.data();
-    for (int index = 0; index < data.length; index++) {
-      final Region.Point point = data[index];
-      if (point == null) {
-        continue;
-      }
-      int biome = point.biome;
-      if (tfcrealworld$tfeHotspotWouldReplaceMountain(point, biome)) {
-        biome = tfcrealworld$shouldPaintStratovolcano(point)
-          ? MapHotspotBiomes.volcanicMountainFor(
-            point,
-            VOLCANIC_MOUNTAINS,
-            VOLCANIC_OCEANIC_MOUNTAINS
-          )
-          : (point.coastalMountain() ? OCEANIC_MOUNTAINS : MOUNTAINS);
-      } else if (
-        TFCRealWorldConfig.ALTITUDE_FROM_MAP.get() &&
-        point.mountain() &&
-        ChooseBiomesSupport.isSoftMountainFill(
-          biome,
-          OLD_MOUNTAINS,
-          PLATEAU,
-          PLATEAU_WIDE,
-          HIGHLANDS,
-          ROLLING_HILLS,
-          ROCKY_PLATEAU
-        )
-      ) {
-        biome = point.coastalMountain() ? OCEANIC_MOUNTAINS : MOUNTAINS;
-      }
-      point.biome = biome;
-    }
-  }
-
-  @Unique
-  private static void tfcrealworld$markStratovolcanoVolcanic(
-    Region region,
-    MapHotspotLayout layout
-  ) {
-    final Region.Point[] data = region.data();
-    for (int index = 0; index < data.length; index++) {
-      final Region.Point point = data[index];
-      if (point == null || !point.mountain()) {
-        continue;
-      }
-      if (
-        layout.styleAtGrid(
-          RegionCoords.gridX(region, index),
-          RegionCoords.gridZ(region, index)
-        ) ==
-        MountainStyle.STRATOVOLCANO
-      ) {
-        ((NTEPointAccess) point).nte$setVolcanic(true);
-      }
-    }
+  private static boolean tfcrealworld$isSoftMountainFill(int biome) {
+    return ChooseBiomesSupport.isSoftMountainFill(
+      biome,
+      OLD_MOUNTAINS,
+      PLATEAU,
+      PLATEAU_WIDE,
+      HIGHLANDS,
+      ROLLING_HILLS,
+      ROCKY_PLATEAU
+    );
   }
 
   @Unique
@@ -278,84 +212,6 @@ public class TfeChooseBiomesMixin {
         access.nte$setVolcanic(true);
       }
     }
-  }
-
-  @Unique
-  private static boolean tfcrealworld$tfeHotspotWouldReplaceMountain(
-    Region.Point point,
-    int proposedBiome
-  ) {
-    if (!tfcrealworld$shouldKeepMountainBiome(point)) {
-      return false;
-    }
-    return (
-      Boolean.TRUE.equals(ASSIGNING_HOTSPOT_BIOME.get()) ||
-      tfcrealworld$isShieldHotspotBiome(proposedBiome)
-    );
-  }
-
-  @Unique
-  private static boolean tfcrealworld$isShieldHotspotBiome(int biome) {
-    return (
-      biome == ACTIVE_SHIELD_VOLCANO ||
-      biome == DORMANT_SHIELD_VOLCANO ||
-      biome == EXTINCT_SHIELD_VOLCANO ||
-      biome == ANCIENT_SHIELD_VOLCANO ||
-      biome == SUNKEN_SHIELD_VOLCANO ||
-      biome == ICE_SHEET_SHIELD_VOLCANO ||
-      biome == GLACIATED_SHIELD_VOLCANO ||
-      biome == SHIELD_VOLCANO_SHORE ||
-      biome == OLD_SHIELD_VOLCANO_SHORE
-    );
-  }
-
-  @Unique
-  private static boolean tfcrealworld$shouldKeepMountainBiome(
-    Region.Point point
-  ) {
-    final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
-    final Region region = CURRENT_REGION.get();
-    if (layout == null || region == null) {
-      return false;
-    }
-    return layout.keepMountainBiome(
-      region,
-      point,
-      ((NTEPointAccess) point).nte$getHotSpotAge()
-    );
-  }
-
-  @Unique
-  private static boolean tfcrealworld$shouldPaintStratovolcano(
-    Region.Point point
-  ) {
-    if (tfcrealworld$isIceMountain(point.biome)) {
-      return false;
-    }
-    final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
-    final Region region = CURRENT_REGION.get();
-    if (layout == null || region == null) {
-      return false;
-    }
-    return layout.styleAt(region, point) == MountainStyle.STRATOVOLCANO;
-  }
-
-  @Unique
-  private static boolean tfcrealworld$isIceMountain(int biome) {
-    return (
-      biome == ICE_SHEET_MOUNTAINS ||
-      biome == ICE_SHEET_OCEANIC_MOUNTAINS ||
-      biome == ICE_SHEET_VOLCANIC_MOUNTAINS ||
-      biome == ICE_SHEET_VOLCANIC_OCEANIC_MOUNTAINS ||
-      biome == GLACIATED_MOUNTAINS ||
-      biome == GLACIATED_OCEANIC_MOUNTAINS ||
-      biome == GLACIATED_VOLCANIC_MOUNTAINS ||
-      biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS ||
-      biome == GLACIALLY_CARVED_MOUNTAINS ||
-      biome == GLACIALLY_CARVED_OCEANIC_MOUNTAINS ||
-      biome == GLACIALLY_CARVED_VOLCANIC_MOUNTAINS ||
-      biome == GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS
-    );
   }
 
   @Unique

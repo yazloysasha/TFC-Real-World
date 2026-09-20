@@ -17,8 +17,8 @@ public final class TfeBindings {
     PKG + ".world.region.NTEAddHotspots";
   public static final String FEATURE_ANNOTATIONS =
     PKG + ".world.region.NTERegionFeatureAnnotations";
-  public static final String REGION_NOISE =
-    PKG + ".world.region.NTERegionNoise";
+  public static final String TERRAIN_UPLIFT =
+    PKG + ".world.terrain.NTETerrainUpliftSampler";
   public static final String ICE_SHEET_EDGE =
     PKG + ".world.layer.NTEIceSheetEdgeLayer";
   public static final String RIVER_SHORE =

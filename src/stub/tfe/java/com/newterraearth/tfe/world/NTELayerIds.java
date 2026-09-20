@@ -62,9 +62,6 @@ public final class NTELayerIds {
   public static int KNOB_AND_KETTLE;
   public static int PATTERNED_GROUND;
   public static int INVERTED_PATTERNED_GROUND;
-  public static int HIGHLANDS;
-  public static int OLD_MOUNTAINS;
-  public static int ROLLING_HILLS;
 
   private NTELayerIds() {}
 }

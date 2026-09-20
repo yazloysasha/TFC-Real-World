@@ -6,11 +6,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import su.terrafirmagreg.core.world.new_ow_wg.region.TFGAddRiversAndLakes$RegionRiverGenerator;
 
-@Mixin(
-  targets = "su.terrafirmagreg.core.world.new_ow_wg.region.TFGAddRiversAndLakes$RegionRiverGenerator",
-  remap = false
-)
+@Mixin(value = TFGAddRiversAndLakes$RegionRiverGenerator.class, remap = false)
 public class TfgRegionRiverGeneratorMixin {
 
   @Inject(method = "isLegal", at = @At("HEAD"), cancellable = true)

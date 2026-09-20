@@ -12,8 +12,9 @@ import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
  * the map hotspot, matching 1.21.1 {@code CenteredFeatureAligner}.
  *
  * <p>TFC 3 {@code VolcanoNoise} uses {@code Cellular2D(seed).spread(0.009)}.
- * TFG cinder/tuff alignment lives in {@link TfgCenteredFeatureAligner} so this
- * class loads without Core-Modern.
+ * TFE/TFG cinder and stratovolcano alignment use {@link #stamp} via
+ * {@link TfeCenteredFeatureAligner} and {@link TfgCenteredFeatureAligner} so
+ * this class loads without TerraFirmaEarth or Core-Modern.
  */
 public final class CenteredFeatureAligner {
 

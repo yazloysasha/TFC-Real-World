@@ -95,8 +95,8 @@ public final class TfeCompat {
     ) {
       return TfeBindings.POINT_ACCESS;
     }
-    if (name.endsWith("TfeRegionNoiseMixin")) {
-      return TfeBindings.REGION_NOISE;
+    if (name.endsWith("TfeTerrainUpliftSamplerMixin")) {
+      return TfeBindings.TERRAIN_UPLIFT;
     }
     if (name.endsWith("TfeIceSheetEdgeLayerMixin")) {
       return TfeBindings.ICE_SHEET_EDGE;
