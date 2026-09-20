@@ -4,6 +4,8 @@
 
 Since v2.1.2/v3.1.2/v4.1.2 also compatible with [Auroras](https://modrinth.com/mod/auroras), [TFC Caelum](https://modrinth.com/mod/tfc-caelum) and [Firma: Civilization](https://modrinth.com/mod/firmaciv).
 
+Since v3.1.3 compatible with [TerraFirmaEarth](https://www.curseforge.com/minecraft/mc-mods/terrafirmaearth) on Minecraft 1.20.1.
+
 ![Earth Maps](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
 
 ### Explore a World You Know
