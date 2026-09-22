@@ -9,13 +9,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(value = AddMountainsAndBarrierIslands.class, remap = false)
 public interface AddMountainsAndBarrierIslandsAccessor {
-  @Invoker("placeRange")
-  IntSet tfcrealworld$invokePlaceRange(
-    Region region,
-    RandomSource random,
-    int originIndex
-  );
-
   @Invoker("placeBarrier")
   IntSet tfcrealworld$invokePlaceBarrier(
     Region region,

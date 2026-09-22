@@ -1,5 +1,7 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
 import net.dries007.tfc.world.region.AddMountainsAndBarrierIslands;
@@ -13,7 +15,6 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = AddMountainsAndBarrierIslands.class, remap = false)
@@ -32,7 +33,7 @@ public class AddMountainsAndBarrierIslandsMixin {
       .prepareOceanForBarrierIslands(context.region, context.generator());
   }
 
-  @Redirect(
+  @WrapOperation(
     method = "apply",
     at = @At(
       value = "INVOKE",
@@ -43,14 +44,13 @@ public class AddMountainsAndBarrierIslandsMixin {
     AddMountainsAndBarrierIslands instance,
     Region region,
     RandomSource random,
-    int originIndex
+    int originIndex,
+    Operation<IntSet> original
   ) {
     if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
       return new IntOpenHashSet();
     }
-    return (
-      (AddMountainsAndBarrierIslandsAccessor) (Object) instance
-    ).tfcrealworld$invokePlaceRange(region, random, originIndex);
+    return original.call(instance, region, random, originIndex);
   }
 
   @Inject(method = "apply", at = @At("TAIL"))
