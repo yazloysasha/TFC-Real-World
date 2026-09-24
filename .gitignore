@@ -49,9 +49,6 @@ __pycache__/
 /.idea/
 /src/generated/resources/.cache/**
 
-# Waypoints
-!/waypoints/**
-
 # Local storage
 /data
 
