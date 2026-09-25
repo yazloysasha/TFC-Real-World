@@ -1,0 +1,33 @@
+{
+  "continent": "pacific",
+  "title_lang": {
+    "de_de": "Nordwestpazifik",
+    "en_us": "Northwestern Pacific",
+    "es_es": "Pacífico Noroccidental",
+    "ja_jp": "北西太平洋",
+    "ko_kr": "북서태평양",
+    "pl_pl": "Północno-zachodni Pacyfik",
+    "pt_br": "Pacífico Noroeste",
+    "ru_ru": "Северо-запад Тихого океана",
+    "tr_tr": "Kuzeybatı Pasifik",
+    "uk_ua": "Північний захід Тихого океану",
+    "zh_cn": "西北太平洋",
+    "zh_hk": "西北太平洋",
+    "zh_tw": "西北太平洋"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie den Nordwestpazifik",
+    "en_us": "Visit the Northwestern Pacific",
+    "es_es": "Visita el Pacífico Noroccidental",
+    "ja_jp": "北西太平洋を訪れよう",
+    "ko_kr": "북서태평양을 방문하세요",
+    "pl_pl": "Odwiedź północno-zachodni Pacyfik",
+    "pt_br": "Visite o Pacífico Noroeste",
+    "ru_ru": "Посетите северо-запад Тихого океана",
+    "tr_tr": "Kuzeybatı Pasifik'i Ziyaret Edin",
+    "uk_ua": "Відвідайте північний захід Тихого океану",
+    "zh_cn": "访问西北太平洋",
+    "zh_hk": "遊覽西北太平洋",
+    "zh_tw": "造訪西北太平洋"
+  }
+}

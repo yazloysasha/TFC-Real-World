@@ -1,0 +1,33 @@
+{
+  "continent": "pacific",
+  "title_lang": {
+    "de_de": "Nordzentralpazifik",
+    "en_us": "North-Central Pacific",
+    "es_es": "Pacífico Centro-norte",
+    "ja_jp": "北中部太平洋",
+    "ko_kr": "중북태평양",
+    "pl_pl": "Północno-środkowy Pacyfik",
+    "pt_br": "Pacífico Centro-Norte",
+    "ru_ru": "Северный центр Тихого океана",
+    "tr_tr": "Kuzey-Orta Pasifik",
+    "uk_ua": "Північний центр Тихого океану",
+    "zh_cn": "中北太平洋",
+    "zh_hk": "中北太平洋",
+    "zh_tw": "中北太平洋"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie den Nordzentralpazifik",
+    "en_us": "Visit the North-Central Pacific",
+    "es_es": "Visita el Pacífico Centro-norte",
+    "ja_jp": "北中部太平洋を訪れよう",
+    "ko_kr": "중북태평양을 방문하세요",
+    "pl_pl": "Odwiedź północno-środkowy Pacyfik",
+    "pt_br": "Visite o Pacífico Centro-Norte",
+    "ru_ru": "Посетите северный центр Тихого океана",
+    "tr_tr": "Kuzey-Orta Pasifik'i Ziyaret Edin",
+    "uk_ua": "Відвідайте північний центр Тихого океану",
+    "zh_cn": "访问中北太平洋",
+    "zh_hk": "遊覽中北太平洋",
+    "zh_tw": "造訪中北太平洋"
+  }
+}

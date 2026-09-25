@@ -1,0 +1,33 @@
+{
+  "continent": "africa",
+  "title_lang": {
+    "de_de": "Südliches tropisches Afrika",
+    "en_us": "South Tropical Africa",
+    "es_es": "África Tropical Meridional",
+    "ja_jp": "南熱帯アフリカ",
+    "ko_kr": "남부 열대 아프리카",
+    "pl_pl": "Południowa Afryka tropikalna",
+    "pt_br": "África Tropical Meridional",
+    "ru_ru": "Южная тропическая Африка",
+    "tr_tr": "Güney Tropikal Afrika",
+    "uk_ua": "Південна тропічна Африка",
+    "zh_cn": "南部热带非洲",
+    "zh_hk": "南部熱帶非洲",
+    "zh_tw": "南部熱帶非洲"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie das südliche tropische Afrika",
+    "en_us": "Visit South Tropical Africa",
+    "es_es": "Visita África Tropical Meridional",
+    "ja_jp": "南熱帯アフリカを訪れよう",
+    "ko_kr": "남부 열대 아프리카를 방문하세요",
+    "pl_pl": "Odwiedź południową Afrykę tropikalną",
+    "pt_br": "Visite a África Tropical Meridional",
+    "ru_ru": "Посетите Южную тропическую Африку",
+    "tr_tr": "Güney Tropikal Afrika'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Південну тропічну Африку",
+    "zh_cn": "访问南部热带非洲",
+    "zh_hk": "遊覽南部熱帶非洲",
+    "zh_tw": "造訪南部熱帶非洲"
+  }
+}

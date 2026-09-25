@@ -1,0 +1,33 @@
+{
+  "continent": "europe",
+  "title_lang": {
+    "de_de": "Osteuropa",
+    "en_us": "Eastern Europe",
+    "es_es": "Europa Oriental",
+    "ja_jp": "東ヨーロッパ",
+    "ko_kr": "동유럽",
+    "pl_pl": "Europa Wschodnia",
+    "pt_br": "Europa Oriental",
+    "ru_ru": "Восточная Европа",
+    "tr_tr": "Doğu Avrupa",
+    "uk_ua": "Східна Європа",
+    "zh_cn": "东欧",
+    "zh_hk": "東歐",
+    "zh_tw": "東歐"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Osteuropa",
+    "en_us": "Visit Eastern Europe",
+    "es_es": "Visita Europa Oriental",
+    "ja_jp": "東ヨーロッパを訪れよう",
+    "ko_kr": "동유럽을 방문하세요",
+    "pl_pl": "Odwiedź Europę Wschodnią",
+    "pt_br": "Visite a Europa Oriental",
+    "ru_ru": "Посетите Восточную Европу",
+    "tr_tr": "Doğu Avrupa'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Східну Європу",
+    "zh_cn": "访问东欧",
+    "zh_hk": "遊覽東歐",
+    "zh_tw": "造訪東歐"
+  }
+}

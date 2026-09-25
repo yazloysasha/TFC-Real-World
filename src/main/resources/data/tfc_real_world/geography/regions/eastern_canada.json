@@ -1,0 +1,33 @@
+{
+  "continent": "northern_america",
+  "title_lang": {
+    "de_de": "Ostkanada",
+    "en_us": "Eastern Canada",
+    "es_es": "Canadá Oriental",
+    "ja_jp": "カナダ東部",
+    "ko_kr": "캐나다 동부",
+    "pl_pl": "Kanada Wschodnia",
+    "pt_br": "Canadá Oriental",
+    "ru_ru": "Восточная Канада",
+    "tr_tr": "Doğu Kanada",
+    "uk_ua": "Східна Канада",
+    "zh_cn": "加拿大东部",
+    "zh_hk": "加拿大東部",
+    "zh_tw": "加拿大東部"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Ostkanada",
+    "en_us": "Visit Eastern Canada",
+    "es_es": "Visita Canadá Oriental",
+    "ja_jp": "カナダ東部を訪れよう",
+    "ko_kr": "캐나다 동부를 방문하세요",
+    "pl_pl": "Odwiedź Kanadę Wschodnią",
+    "pt_br": "Visite o Canadá Oriental",
+    "ru_ru": "Посетите Восточную Канаду",
+    "tr_tr": "Doğu Kanada'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Східну Канаду",
+    "zh_cn": "访问加拿大东部",
+    "zh_hk": "遊覽加拿大東部",
+    "zh_tw": "造訪加拿大東部"
+  }
+}

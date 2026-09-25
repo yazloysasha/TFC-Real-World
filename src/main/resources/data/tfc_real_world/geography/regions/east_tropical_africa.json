@@ -1,0 +1,33 @@
+{
+  "continent": "africa",
+  "title_lang": {
+    "de_de": "Östliches tropisches Afrika",
+    "en_us": "East Tropical Africa",
+    "es_es": "África Tropical Oriental",
+    "ja_jp": "東熱帯アフリカ",
+    "ko_kr": "동부 열대 아프리카",
+    "pl_pl": "Wschodnia Afryka tropikalna",
+    "pt_br": "África Tropical Oriental",
+    "ru_ru": "Восточная тропическая Африка",
+    "tr_tr": "Doğu Tropikal Afrika",
+    "uk_ua": "Східна тропічна Африка",
+    "zh_cn": "东部热带非洲",
+    "zh_hk": "東部熱帶非洲",
+    "zh_tw": "東部熱帶非洲"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie das östliche tropische Afrika",
+    "en_us": "Visit East Tropical Africa",
+    "es_es": "Visita África Tropical Oriental",
+    "ja_jp": "東熱帯アフリカを訪れよう",
+    "ko_kr": "동부 열대 아프리카를 방문하세요",
+    "pl_pl": "Odwiedź wschodnią Afrykę tropikalną",
+    "pt_br": "Visite a África Tropical Oriental",
+    "ru_ru": "Посетите Восточную тропическую Африку",
+    "tr_tr": "Doğu Tropikal Afrika'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Східну тропічну Африку",
+    "zh_cn": "访问东部热带非洲",
+    "zh_hk": "遊覽東部熱帶非洲",
+    "zh_tw": "造訪東部熱帶非洲"
+  }
+}

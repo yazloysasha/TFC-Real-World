@@ -1,0 +1,33 @@
+{
+  "continent": "asia_tropical",
+  "title_lang": {
+    "de_de": "Indischer Subkontinent",
+    "en_us": "Indian Subcontinent",
+    "es_es": "Subcontinente Indio",
+    "ja_jp": "インド亜大陸",
+    "ko_kr": "인도 아대륙",
+    "pl_pl": "Subkontynent indyjski",
+    "pt_br": "Subcontinente Indiano",
+    "ru_ru": "Индийский субконтинент",
+    "tr_tr": "Hint Alt Kıtası",
+    "uk_ua": "Індійський субконтинент",
+    "zh_cn": "印度次大陆",
+    "zh_hk": "印度次大陸",
+    "zh_tw": "印度次大陸"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie den indischen Subkontinent",
+    "en_us": "Visit the Indian Subcontinent",
+    "es_es": "Visita el Subcontinente Indio",
+    "ja_jp": "インド亜大陸を訪れよう",
+    "ko_kr": "인도 아대륙을 방문하세요",
+    "pl_pl": "Odwiedź subkontynent indyjski",
+    "pt_br": "Visite o Subcontinente Indiano",
+    "ru_ru": "Посетите Индийский субконтинент",
+    "tr_tr": "Hint Alt Kıtası'nı Ziyaret Edin",
+    "uk_ua": "Відвідайте Індійський субконтинент",
+    "zh_cn": "访问印度次大陆",
+    "zh_hk": "遊覽印度次大陸",
+    "zh_tw": "造訪印度次大陸"
+  }
+}

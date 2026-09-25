@@ -1,0 +1,33 @@
+{
+  "continent": "australasia",
+  "title_lang": {
+    "de_de": "Neuseeland",
+    "en_us": "New Zealand",
+    "es_es": "Nueva Zelanda",
+    "ja_jp": "ニュージーランド",
+    "ko_kr": "뉴질랜드",
+    "pl_pl": "Nowa Zelandia",
+    "pt_br": "Nova Zelândia",
+    "ru_ru": "Новая Зеландия",
+    "tr_tr": "Yeni Zelanda",
+    "uk_ua": "Нова Зеландія",
+    "zh_cn": "新西兰",
+    "zh_hk": "紐西蘭",
+    "zh_tw": "紐西蘭"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Neuseeland",
+    "en_us": "Visit New Zealand",
+    "es_es": "Visita Nueva Zelanda",
+    "ja_jp": "ニュージーランドを訪れよう",
+    "ko_kr": "뉴질랜드를 방문하세요",
+    "pl_pl": "Odwiedź Nową Zelandię",
+    "pt_br": "Visite a Nova Zelândia",
+    "ru_ru": "Посетите Новую Зеландию",
+    "tr_tr": "Yeni Zelanda'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Нову Зеландію",
+    "zh_cn": "访问新西兰",
+    "zh_hk": "遊覽紐西蘭",
+    "zh_tw": "造訪紐西蘭"
+  }
+}

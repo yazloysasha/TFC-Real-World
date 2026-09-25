@@ -1,0 +1,33 @@
+{
+  "continent": "asia_tropical",
+  "title_lang": {
+    "de_de": "Malesien",
+    "en_us": "Malesia",
+    "es_es": "Malesia",
+    "ja_jp": "マレシア",
+    "ko_kr": "말레시아",
+    "pl_pl": "Malesja",
+    "pt_br": "Malesia",
+    "ru_ru": "Малезия",
+    "tr_tr": "Malesya",
+    "uk_ua": "Малезія",
+    "zh_cn": "马来区",
+    "zh_hk": "馬來區",
+    "zh_tw": "馬來區"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Malesien",
+    "en_us": "Visit Malesia",
+    "es_es": "Visita Malesia",
+    "ja_jp": "マレシアを訪れよう",
+    "ko_kr": "말레시아를 방문하세요",
+    "pl_pl": "Odwiedź Malesję",
+    "pt_br": "Visite a Malesia",
+    "ru_ru": "Посетите Малезию",
+    "tr_tr": "Malesya'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Малезію",
+    "zh_cn": "访问马来区",
+    "zh_hk": "遊覽馬來區",
+    "zh_tw": "造訪馬來區"
+  }
+}

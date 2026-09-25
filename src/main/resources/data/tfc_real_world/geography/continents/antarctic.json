@@ -1,0 +1,32 @@
+{
+  "title_lang": {
+    "de_de": "Antarktis",
+    "en_us": "Antarctic",
+    "es_es": "Antártida",
+    "ja_jp": "南極",
+    "ko_kr": "남극",
+    "pl_pl": "Antarktyka",
+    "pt_br": "Antártida",
+    "ru_ru": "Антарктика",
+    "tr_tr": "Antarktika",
+    "uk_ua": "Антарктика",
+    "zh_cn": "南极",
+    "zh_hk": "南極",
+    "zh_tw": "南極"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Antarktis",
+    "en_us": "Visit the Antarctic",
+    "es_es": "Visita la Antártida",
+    "ja_jp": "南極を訪れよう",
+    "ko_kr": "남극을 방문하세요",
+    "pl_pl": "Odwiedź Antarktykę",
+    "pt_br": "Visite a Antártida",
+    "ru_ru": "Посетите Антарктику",
+    "tr_tr": "Antarktika'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Антарктику",
+    "zh_cn": "访问南极",
+    "zh_hk": "訪問南極",
+    "zh_tw": "造訪南極"
+  }
+}

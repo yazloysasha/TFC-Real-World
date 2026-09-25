@@ -1,0 +1,33 @@
+{
+  "continent": "asia_temperate",
+  "title_lang": {
+    "de_de": "Mittelasien",
+    "en_us": "Middle Asia",
+    "es_es": "Asia Central",
+    "ja_jp": "中央アジア",
+    "ko_kr": "중앙아시아",
+    "pl_pl": "Azja Środkowa",
+    "pt_br": "Ásia Central",
+    "ru_ru": "Средняя Азия",
+    "tr_tr": "Orta Asya",
+    "uk_ua": "Середня Азія",
+    "zh_cn": "中亚",
+    "zh_hk": "中亞",
+    "zh_tw": "中亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Mittelasien",
+    "en_us": "Visit Middle Asia",
+    "es_es": "Visita Asia Central",
+    "ja_jp": "中央アジアを訪れよう",
+    "ko_kr": "중앙아시아를 방문하세요",
+    "pl_pl": "Odwiedź Azję Środkową",
+    "pt_br": "Visite a Ásia Central",
+    "ru_ru": "Посетите Среднюю Азию",
+    "tr_tr": "Orta Asya'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Середню Азію",
+    "zh_cn": "访问中亚",
+    "zh_hk": "遊覽中亞",
+    "zh_tw": "造訪中亞"
+  }
+}

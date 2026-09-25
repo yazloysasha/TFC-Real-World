@@ -1,0 +1,33 @@
+{
+  "continent": "asia_temperate",
+  "title_lang": {
+    "de_de": "Arabische Halbinsel",
+    "en_us": "Arabian Peninsula",
+    "es_es": "Península Arábiga",
+    "ja_jp": "アラビア半島",
+    "ko_kr": "아라비아 반도",
+    "pl_pl": "Półwysep Arabski",
+    "pt_br": "Península Arábica",
+    "ru_ru": "Аравийский полуостров",
+    "tr_tr": "Arap Yarımadası",
+    "uk_ua": "Аравійський півострів",
+    "zh_cn": "阿拉伯半岛",
+    "zh_hk": "阿拉伯半島",
+    "zh_tw": "阿拉伯半島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Arabische Halbinsel",
+    "en_us": "Visit the Arabian Peninsula",
+    "es_es": "Visita la Península Arábiga",
+    "ja_jp": "アラビア半島を訪れよう",
+    "ko_kr": "아라비아 반도를 방문하세요",
+    "pl_pl": "Odwiedź Półwysep Arabski",
+    "pt_br": "Visite a Península Arábica",
+    "ru_ru": "Посетите Аравийский полуостров",
+    "tr_tr": "Arap Yarımadası'nı Ziyaret Edin",
+    "uk_ua": "Відвідайте Аравійський півострів",
+    "zh_cn": "访问阿拉伯半岛",
+    "zh_hk": "遊覽阿拉伯半島",
+    "zh_tw": "造訪阿拉伯半島"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "continent": "asia_temperate",
+  "title_lang": {
+    "de_de": "Russischer Ferner Osten",
+    "en_us": "Russian Far East",
+    "es_es": "Extremo Oriente Ruso",
+    "ja_jp": "ロシア極東",
+    "ko_kr": "러시아 극동",
+    "pl_pl": "Rosyjski Daleki Wschód",
+    "pt_br": "Extremo Oriente Russo",
+    "ru_ru": "Дальний Восток России",
+    "tr_tr": "Rus Uzak Doğusu",
+    "uk_ua": "Далекий Схід Росії",
+    "zh_cn": "俄罗斯远东",
+    "zh_hk": "俄羅斯遠東",
+    "zh_tw": "俄羅斯遠東"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie den russischen Fernen Osten",
+    "en_us": "Visit the Russian Far East",
+    "es_es": "Visita el Extremo Oriente Ruso",
+    "ja_jp": "ロシア極東を訪れよう",
+    "ko_kr": "러시아 극동을 방문하세요",
+    "pl_pl": "Odwiedź rosyjski Daleki Wschód",
+    "pt_br": "Visite o Extremo Oriente Russo",
+    "ru_ru": "Посетите Дальний Восток России",
+    "tr_tr": "Rus Uzak Doğusu'nu Ziyaret Edin",
+    "uk_ua": "Відвідайте Далекий Схід Росії",
+    "zh_cn": "访问俄罗斯远东",
+    "zh_hk": "遊覽俄羅斯遠東",
+    "zh_tw": "造訪俄羅斯遠東"
+  }
+}

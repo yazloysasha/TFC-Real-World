@@ -1,0 +1,33 @@
+{
+  "continent": "europe",
+  "title_lang": {
+    "de_de": "Mitteleuropa",
+    "en_us": "Middle Europe",
+    "es_es": "Europa Central",
+    "ja_jp": "中央ヨーロッパ",
+    "ko_kr": "중유럽",
+    "pl_pl": "Europa Środkowa",
+    "pt_br": "Europa Central",
+    "ru_ru": "Центральная Европа",
+    "tr_tr": "Orta Avrupa",
+    "uk_ua": "Центральна Європа",
+    "zh_cn": "中欧",
+    "zh_hk": "中歐",
+    "zh_tw": "中歐"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Mitteleuropa",
+    "en_us": "Visit Middle Europe",
+    "es_es": "Visita Europa Central",
+    "ja_jp": "中央ヨーロッパを訪れよう",
+    "ko_kr": "중유럽을 방문하세요",
+    "pl_pl": "Odwiedź Europę Środkową",
+    "pt_br": "Visite a Europa Central",
+    "ru_ru": "Посетите Центральную Европу",
+    "tr_tr": "Orta Avrupa'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Центральну Європу",
+    "zh_cn": "访问中欧",
+    "zh_hk": "遊覽中歐",
+    "zh_tw": "造訪中歐"
+  }
+}

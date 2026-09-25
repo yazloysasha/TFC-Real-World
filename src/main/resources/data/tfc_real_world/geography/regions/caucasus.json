@@ -1,0 +1,33 @@
+{
+  "continent": "asia_temperate",
+  "title_lang": {
+    "de_de": "Kaukasus",
+    "en_us": "Caucasus",
+    "es_es": "Cáucaso",
+    "ja_jp": "コーカサス",
+    "ko_kr": "카프카스",
+    "pl_pl": "Kaukaz",
+    "pt_br": "Cáucaso",
+    "ru_ru": "Кавказ",
+    "tr_tr": "Kafkasya",
+    "uk_ua": "Кавказ",
+    "zh_cn": "高加索",
+    "zh_hk": "高加索",
+    "zh_tw": "高加索"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie den Kaukasus",
+    "en_us": "Visit the Caucasus",
+    "es_es": "Visita el Cáucaso",
+    "ja_jp": "コーカサスを訪れよう",
+    "ko_kr": "카프카스를 방문하세요",
+    "pl_pl": "Odwiedź Kaukaz",
+    "pt_br": "Visite o Cáucaso",
+    "ru_ru": "Посетите Кавказ",
+    "tr_tr": "Kafkasya'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Кавказ",
+    "zh_cn": "访问高加索",
+    "zh_hk": "遊覽高加索",
+    "zh_tw": "造訪高加索"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "continent": "asia_temperate",
+  "title_lang": {
+    "de_de": "Sibirien",
+    "en_us": "Siberia",
+    "es_es": "Siberia",
+    "ja_jp": "シベリア",
+    "ko_kr": "시베리아",
+    "pl_pl": "Syberia",
+    "pt_br": "Sibéria",
+    "ru_ru": "Сибирь",
+    "tr_tr": "Sibirya",
+    "uk_ua": "Сибір",
+    "zh_cn": "西伯利亚",
+    "zh_hk": "西伯利亞",
+    "zh_tw": "西伯利亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Sibirien",
+    "en_us": "Visit Siberia",
+    "es_es": "Visita Siberia",
+    "ja_jp": "シベリアを訪れよう",
+    "ko_kr": "시베리아를 방문하세요",
+    "pl_pl": "Odwiedź Syberię",
+    "pt_br": "Visite a Sibéria",
+    "ru_ru": "Посетите Сибирь",
+    "tr_tr": "Sibirya'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Сибір",
+    "zh_cn": "访问西伯利亚",
+    "zh_hk": "遊覽西伯利亞",
+    "zh_tw": "造訪西伯利亞"
+  }
+}
