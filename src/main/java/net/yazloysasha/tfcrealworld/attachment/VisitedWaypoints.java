@@ -20,10 +20,6 @@ public final class VisitedWaypoints implements INBTSerializable<CompoundTag> {
     return visited.containsKey(ref.toLowerCase());
   }
 
-  public Long getVisitedAt(String ref) {
-    return visited.get(ref.toLowerCase());
-  }
-
   /** @return true if newly marked */
   public boolean markVisited(String ref, long epochMillis) {
     String key = ref.toLowerCase();
@@ -36,13 +32,6 @@ public final class VisitedWaypoints implements INBTSerializable<CompoundTag> {
 
   public Map<String, Long> asMap() {
     return Collections.unmodifiableMap(visited);
-  }
-
-  public void replaceAll(Map<String, Long> data) {
-    visited.clear();
-    for (Map.Entry<String, Long> e : data.entrySet()) {
-      visited.put(e.getKey().toLowerCase(), e.getValue());
-    }
   }
 
   @Override

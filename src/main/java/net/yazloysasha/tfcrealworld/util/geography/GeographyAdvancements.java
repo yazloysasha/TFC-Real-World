@@ -170,21 +170,6 @@ public final class GeographyAdvancements {
   }
 
   /**
-   * Ensure geography root is granted (silent). Waypoint backfill is skipped —
-   * awarding hundreds of toasting advancements on login would spam the client.
-   * New visits grant advancements live via {@link #onWaypointVisited}.
-   */
-  public static void syncFromVisited(
-    ServerPlayer player,
-    java.util.Map<String, Long> visited
-  ) {
-    AdvancementHolder root = player.server.getAdvancements().get(ROOT_ID);
-    if (root != null) {
-      player.getAdvancements().award(root, "auto");
-    }
-  }
-
-  /**
    * Duck-typed setters implemented by mixin.
    */
   public interface GeographyAdvancementAccessor {

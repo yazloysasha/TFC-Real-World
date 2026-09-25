@@ -33,10 +33,6 @@ public final class ClientVisitedWaypoints {
     return visited.get(ref.toLowerCase());
   }
 
-  public static Map<String, Long> asMap() {
-    return visited;
-  }
-
   public static void clear() {
     visited = Map.of();
   }

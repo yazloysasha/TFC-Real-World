@@ -50,13 +50,6 @@ public final class GeographyManager {
     return NODES.get(normalizeRef(ref));
   }
 
-  public static @Nullable GeographyNode getWaypoint(
-    String namespace,
-    String slug
-  ) {
-    return get(namespace + ":" + slug);
-  }
-
   public static java.util.Collection<GeographyNode> allNodes() {
     if (!initialized) {
       initialize();

@@ -28,9 +28,6 @@ public final class WaypointVisitTracker {
   private WaypointVisitTracker() {}
 
   public static void tickPlayer(ServerPlayer player) {
-    if (player.tickCount % 20 != 0) {
-      return;
-    }
     ensureCache();
 
     VisitedWaypoints data = player.getData(ModAttachments.VISITED_WAYPOINTS);

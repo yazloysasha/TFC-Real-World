@@ -22,7 +22,7 @@ public class GeographyInventoryTabButton extends Button {
   public static final int TAB_Y_IN = 119;
 
   private static final ResourceLocation GLOBE_ICON = TFCRealWorld.id(
-    "textures/gui/icons/globe_tab.png"
+    "textures/item/globe.png"
   );
 
   private int iconX;
@@ -30,7 +30,6 @@ public class GeographyInventoryTabButton extends Button {
   private int prevGuiLeft;
   private int prevGuiTop;
   private final boolean active;
-  private final boolean detached;
   private final int textureU;
   private Runnable tickCallback = () -> {};
 
@@ -73,7 +72,6 @@ public class GeographyInventoryTabButton extends Button {
       ? (guiTop + TAB_Y_IN + 4 + 4)
       : (guiTop + TAB_Y_IN + 3);
     this.active = active;
-    this.detached = detached;
   }
 
   public GeographyInventoryTabButton setRecipeBookCallback(

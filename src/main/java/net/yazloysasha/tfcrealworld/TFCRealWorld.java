@@ -30,7 +30,6 @@ import net.yazloysasha.tfcrealworld.network.OpenGeographyTabPacket;
 import net.yazloysasha.tfcrealworld.network.VisitedWaypointUpdatePacket;
 import net.yazloysasha.tfcrealworld.network.VisitedWaypointsSyncPacket;
 import net.yazloysasha.tfcrealworld.trigger.ModTriggers;
-import net.yazloysasha.tfcrealworld.util.geography.GeographyAdvancements;
 import net.yazloysasha.tfcrealworld.util.geography.GeographyManager;
 import net.yazloysasha.tfcrealworld.util.geography.WaypointVisitTracker;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
@@ -166,8 +165,6 @@ public final class TFCRealWorld {
         serverPlayer,
         new VisitedWaypointsSyncPacket(data.asMap())
       );
-      GeographyAdvancements.syncFromVisited(serverPlayer, data.asMap());
-      WaypointVisitTracker.rebuildCache();
     }
   }
 
