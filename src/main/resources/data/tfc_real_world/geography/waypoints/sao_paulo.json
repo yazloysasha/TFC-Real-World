@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/brazil_southeast",
+  "title_lang": {
+    "de_de": "São Paulo",
+    "en_us": "São Paulo",
+    "es_es": "São Paulo",
+    "ja_jp": "サンパウロ",
+    "ko_kr": "상파울루",
+    "pl_pl": "São Paulo",
+    "pt_br": "São Paulo",
+    "ru_ru": "Сан-Паулу",
+    "tr_tr": "São Paulo",
+    "uk_ua": "Сан-Паулу",
+    "zh_cn": "圣保罗",
+    "zh_hk": "聖保羅",
+    "zh_tw": "聖保羅"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie São Paulo",
+    "en_us": "Visit São Paulo",
+    "es_es": "Visita São Paulo",
+    "ja_jp": "サンパウロを訪れよう",
+    "ko_kr": "상파울루를 방문하세요",
+    "pl_pl": "Odwiedź São Paulo",
+    "pt_br": "Visite São Paulo",
+    "ru_ru": "Посетите Сан-Паулу",
+    "tr_tr": "São Paulo'yu ziyaret edin",
+    "uk_ua": "Відвідайте Сан-Паулу",
+    "zh_cn": "访问圣保罗",
+    "zh_hk": "遊覽聖保羅",
+    "zh_tw": "造訪聖保羅"
+  },
+  "latitude": -23.5475,
+  "longitude": -46.63611
+}

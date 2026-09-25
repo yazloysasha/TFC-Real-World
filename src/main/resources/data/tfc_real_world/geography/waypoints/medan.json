@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/sumatra",
+  "title_lang": {
+    "de_de": "Medan",
+    "en_us": "Medan",
+    "es_es": "Medan",
+    "ja_jp": "メダン",
+    "ko_kr": "메단",
+    "pl_pl": "Medan",
+    "pt_br": "Medan",
+    "ru_ru": "Медан",
+    "tr_tr": "Medan",
+    "uk_ua": "Медан",
+    "zh_cn": "棉兰",
+    "zh_hk": "棉蘭",
+    "zh_tw": "棉蘭"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Medan",
+    "en_us": "Visit Medan",
+    "es_es": "Visita Medan",
+    "ja_jp": "メダンを訪れよう",
+    "ko_kr": "메단을 방문하세요",
+    "pl_pl": "Odwiedź Medan",
+    "pt_br": "Visite Medan",
+    "ru_ru": "Посетите Медан",
+    "tr_tr": "Medan'ı ziyaret edin",
+    "uk_ua": "Відвідайте Медан",
+    "zh_cn": "访问棉兰",
+    "zh_hk": "遊覽棉蘭",
+    "zh_tw": "造訪棉蘭"
+  },
+  "latitude": 3.58333,
+  "longitude": 98.66667
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/alaska",
+  "title_lang": {
+    "de_de": "Juneau",
+    "en_us": "Juneau",
+    "es_es": "Juneau",
+    "ja_jp": "ジュノー",
+    "ko_kr": "주노",
+    "pl_pl": "Juneau",
+    "pt_br": "Juneau",
+    "ru_ru": "Джуно",
+    "tr_tr": "Juneau",
+    "uk_ua": "Джуно",
+    "zh_cn": "朱诺",
+    "zh_hk": "朱諾",
+    "zh_tw": "朱諾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Juneau",
+    "en_us": "Visit Juneau",
+    "es_es": "Visita Juneau",
+    "ja_jp": "ジュノーを訪れよう",
+    "ko_kr": "주노를 방문하세요",
+    "pl_pl": "Odwiedź Juneau",
+    "pt_br": "Visite Juneau",
+    "ru_ru": "Посетите Джуно",
+    "tr_tr": "Juneau'yu ziyaret edin",
+    "uk_ua": "Відвідайте Джуно",
+    "zh_cn": "访问朱诺",
+    "zh_hk": "遊覽朱諾",
+    "zh_tw": "造訪朱諾"
+  },
+  "latitude": 58.30194,
+  "longitude": -134.41972
+}

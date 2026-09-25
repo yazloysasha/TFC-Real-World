@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/malawi",
+  "title_lang": {
+    "de_de": "Lilongwe",
+    "en_us": "Lilongwe",
+    "es_es": "Lilongüe",
+    "ja_jp": "リロングウェ",
+    "ko_kr": "릴롱궤",
+    "pl_pl": "Lilongwe",
+    "pt_br": "Lilongué",
+    "ru_ru": "Лилонгве",
+    "tr_tr": "Lilongwe",
+    "uk_ua": "Лілонгве",
+    "zh_cn": "利隆圭",
+    "zh_hk": "利隆圭",
+    "zh_tw": "利隆圭"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Malawi",
+    "en_us": "Visit the capital of the Republic of Malawi",
+    "es_es": "Visita la capital de la República de Malaui",
+    "ja_jp": "マラウイ共和国の首都を訪れよう",
+    "ko_kr": "말라위 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Malawi",
+    "pt_br": "Visite a capital da República do Malawi",
+    "ru_ru": "Посетите столицу Республики Малави",
+    "tr_tr": "Malavi Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Малаві",
+    "zh_cn": "访问马拉维共和国的首都",
+    "zh_hk": "遊覽馬拉維共和國的首都",
+    "zh_tw": "造訪馬拉維共和國的首都"
+  },
+  "latitude": -13.96692,
+  "longitude": 33.78725,
+  "capital": 1
+}

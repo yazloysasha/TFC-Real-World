@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/illinois",
+  "title_lang": {
+    "de_de": "Springfield",
+    "en_us": "Springfield",
+    "es_es": "Springfield",
+    "ja_jp": "スプリングフィールド",
+    "ko_kr": "스프링필드",
+    "pl_pl": "Springfield",
+    "pt_br": "Springfield",
+    "ru_ru": "Спрингфилд",
+    "tr_tr": "Springfield",
+    "uk_ua": "Спрингфілд",
+    "zh_cn": "斯普林菲尔德",
+    "zh_hk": "斯普林菲爾德",
+    "zh_tw": "春田市"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Springfield",
+    "en_us": "Visit Springfield",
+    "es_es": "Visita Springfield",
+    "ja_jp": "スプリングフィールドを訪れよう",
+    "ko_kr": "스프링필드를 방문하세요",
+    "pl_pl": "Odwiedź Springfield",
+    "pt_br": "Visite Springfield",
+    "ru_ru": "Посетите Спрингфилд",
+    "tr_tr": "Springfield'i ziyaret edin",
+    "uk_ua": "Відвідайте Спрингфілд",
+    "zh_cn": "访问斯普林菲尔德",
+    "zh_hk": "遊覽斯普林菲爾德",
+    "zh_tw": "造訪春田市"
+  },
+  "latitude": 39.80172,
+  "longitude": -89.64371
+}

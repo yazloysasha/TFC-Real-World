@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/baltic_states",
+  "title_lang": {
+    "de_de": "Riga",
+    "en_us": "Riga",
+    "es_es": "Riga",
+    "ja_jp": "リガ",
+    "ko_kr": "리가",
+    "pl_pl": "Ryga",
+    "pt_br": "Riga",
+    "ru_ru": "Рига",
+    "tr_tr": "Riga",
+    "uk_ua": "Рига",
+    "zh_cn": "里加",
+    "zh_hk": "里加",
+    "zh_tw": "里加"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Lettland",
+    "en_us": "Visit the capital of the Republic of Latvia",
+    "es_es": "Visita la capital de la República de Letonia",
+    "ja_jp": "ラトビア共和国の首都を訪れよう",
+    "ko_kr": "라트비아 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Łotwy",
+    "pt_br": "Visite a capital da República da Letônia",
+    "ru_ru": "Посетите столицу Республики Латвия",
+    "tr_tr": "Letonya Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Латвія",
+    "zh_cn": "访问拉脱维亚共和国的首都",
+    "zh_hk": "遊覽拉脫維亞共和國的首都",
+    "zh_tw": "造訪拉脫維亞共和國的首都"
+  },
+  "latitude": 56.946,
+  "longitude": 24.10589,
+  "capital": 1
+}

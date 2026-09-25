@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/california",
+  "title_lang": {
+    "de_de": "Sacramento",
+    "en_us": "Sacramento",
+    "es_es": "Sacramento",
+    "ja_jp": "サクラメント",
+    "ko_kr": "새크라멘토",
+    "pl_pl": "Sacramento",
+    "pt_br": "Sacramento",
+    "ru_ru": "Сакраменто",
+    "tr_tr": "Sacramento",
+    "uk_ua": "Сакраменто",
+    "zh_cn": "萨克拉门托",
+    "zh_hk": "沙加緬度",
+    "zh_tw": "沙加緬度"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Sacramento",
+    "en_us": "Visit Sacramento",
+    "es_es": "Visita Sacramento",
+    "ja_jp": "サクラメントを訪れよう",
+    "ko_kr": "새크라멘토를 방문하세요",
+    "pl_pl": "Odwiedź Sacramento",
+    "pt_br": "Visite Sacramento",
+    "ru_ru": "Посетите Сакраменто",
+    "tr_tr": "Sacramento'yu ziyaret edin",
+    "uk_ua": "Відвідайте Сакраменто",
+    "zh_cn": "访问萨克拉门托",
+    "zh_hk": "遊覽沙加緬度",
+    "zh_tw": "造訪沙加緬度"
+  },
+  "latitude": 38.58157,
+  "longitude": -121.4944
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/northern_provinces",
+  "title_lang": {
+    "de_de": "Pretoria",
+    "en_us": "Pretoria",
+    "es_es": "Pretoria",
+    "ja_jp": "プレトリア",
+    "ko_kr": "프리토리아",
+    "pl_pl": "Pretoria",
+    "pt_br": "Pretória",
+    "ru_ru": "Претория",
+    "tr_tr": "Pretoria",
+    "uk_ua": "Преторія",
+    "zh_cn": "比勒陀利亚",
+    "zh_hk": "比勒陀利亞",
+    "zh_tw": "比勒陀利亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Südafrika",
+    "en_us": "Visit the capital of South Africa",
+    "es_es": "Visita la capital de Sudáfrica",
+    "ja_jp": "南アフリカの首都を訪れよう",
+    "ko_kr": "남아프리카 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Południowej Afryki",
+    "pt_br": "Visite a capital da África do Sul",
+    "ru_ru": "Посетите столицу ЮАР",
+    "tr_tr": "Güney Afrika'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Південної Африки",
+    "zh_cn": "访问南非的首都",
+    "zh_hk": "遊覽南非的首都",
+    "zh_tw": "造訪南非的首都"
+  },
+  "latitude": -25.74486,
+  "longitude": 28.18783,
+  "capital": 1
+}

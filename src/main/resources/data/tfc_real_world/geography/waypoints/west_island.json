@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/cocos_keeling_islands",
+  "title_lang": {
+    "de_de": "West Island",
+    "en_us": "West Island",
+    "es_es": "Isla West",
+    "ja_jp": "ウェスト島",
+    "ko_kr": "웨스트섬",
+    "pl_pl": "Wyspa Zachodnia",
+    "pt_br": "Ilha Ocidental",
+    "ru_ru": "Западный остров",
+    "tr_tr": "Batı Ada",
+    "uk_ua": "Західний острів",
+    "zh_cn": "西岛",
+    "zh_hk": "西島",
+    "zh_tw": "西島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie West Island",
+    "en_us": "Visit West Island",
+    "es_es": "Visita Isla West",
+    "ja_jp": "ウェスト島を訪れよう",
+    "ko_kr": "웨스트섬을 방문하세요",
+    "pl_pl": "Odwiedź Wyspa Zachodnia",
+    "pt_br": "Visite Ilha Ocidental",
+    "ru_ru": "Посетите Западный остров",
+    "tr_tr": "Batı Ada'yı ziyaret edin",
+    "uk_ua": "Відвідайте Західний острів",
+    "zh_cn": "访问西岛",
+    "zh_hk": "遊覽西島",
+    "zh_tw": "造訪西島"
+  },
+  "latitude": -12.15681,
+  "longitude": 96.82251
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/nigeria",
+  "title_lang": {
+    "de_de": "Abuja",
+    "en_us": "Abuja",
+    "es_es": "Abuya",
+    "ja_jp": "アブジャ",
+    "ko_kr": "아부자",
+    "pl_pl": "Abudża",
+    "pt_br": "Abuja",
+    "ru_ru": "Абуджа",
+    "tr_tr": "Abuja",
+    "uk_ua": "Абуджа",
+    "zh_cn": "阿布贾",
+    "zh_hk": "阿布賈",
+    "zh_tw": "阿布加"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Bundesrepublik Nigeria",
+    "en_us": "Visit the capital of the Federal Republic of Nigeria",
+    "es_es": "Visita la capital de la República Federal de Nigeria",
+    "ja_jp": "ナイジェリア連邦共和国の首都を訪れよう",
+    "ko_kr": "나이지리아 연방공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Federalnej Nigerii",
+    "pt_br": "Visite a capital da República Federal de Nigéria",
+    "ru_ru": "Посетите столицу Федеративной Республики Нигерия",
+    "tr_tr": "Nijerya Federal Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Федеративної Республіки Нігерія",
+    "zh_cn": "访问尼日利亚联邦共和国的首都",
+    "zh_hk": "遊覽尼日利亞聯邦共和國的首都",
+    "zh_tw": "造訪尼日利亞聯邦共和國的首都"
+  },
+  "latitude": 9.05785,
+  "longitude": 7.49508,
+  "capital": 1
+}

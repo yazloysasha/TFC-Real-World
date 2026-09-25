@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/tasmania",
+  "title_lang": {
+    "de_de": "Hobart",
+    "en_us": "Hobart",
+    "es_es": "Hobart",
+    "ja_jp": "ホバート",
+    "ko_kr": "호바트",
+    "pl_pl": "Hobart",
+    "pt_br": "Hobart",
+    "ru_ru": "Хобарт",
+    "tr_tr": "Hobart",
+    "uk_ua": "Гобарт",
+    "zh_cn": "霍巴特",
+    "zh_hk": "荷伯特",
+    "zh_tw": "荷巴特"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Hobart",
+    "en_us": "Visit Hobart",
+    "es_es": "Visita Hobart",
+    "ja_jp": "ホバートを訪れよう",
+    "ko_kr": "호바트를 방문하세요",
+    "pl_pl": "Odwiedź Hobart",
+    "pt_br": "Visite Hobart",
+    "ru_ru": "Посетите Хобарт",
+    "tr_tr": "Hobart'ı ziyaret edin",
+    "uk_ua": "Відвідайте Гобарт",
+    "zh_cn": "访问霍巴特",
+    "zh_hk": "遊覽荷伯特",
+    "zh_tw": "造訪荷巴特"
+  },
+  "latitude": -42.87936,
+  "longitude": 147.32941
+}

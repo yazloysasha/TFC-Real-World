@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/laccadive_islands",
+  "title_lang": {
+    "de_de": "Kavaratti",
+    "en_us": "Kavaratti",
+    "es_es": "Kavaratti",
+    "ja_jp": "カバラティ",
+    "ko_kr": "카바라티",
+    "pl_pl": "Kavaratti",
+    "pt_br": "Kavaratti",
+    "ru_ru": "Каваратти",
+    "tr_tr": "Kavaratti",
+    "uk_ua": "Каваратті",
+    "zh_cn": "卡瓦拉蒂",
+    "zh_hk": "卡瓦拉蒂",
+    "zh_tw": "卡瓦拉蒂"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Kavaratti",
+    "en_us": "Visit Kavaratti",
+    "es_es": "Visita Kavaratti",
+    "ja_jp": "カバラティを訪れよう",
+    "ko_kr": "카바라티를 방문하세요",
+    "pl_pl": "Odwiedź Kavaratti",
+    "pt_br": "Visite Kavaratti",
+    "ru_ru": "Посетите Каваратти",
+    "tr_tr": "Kavaratti'yi ziyaret edin",
+    "uk_ua": "Відвідайте Каваратті",
+    "zh_cn": "访问卡瓦拉蒂",
+    "zh_hk": "遊覽卡瓦拉蒂",
+    "zh_tw": "造訪卡瓦拉蒂"
+  },
+  "latitude": 10.56688,
+  "longitude": 72.64203
+}

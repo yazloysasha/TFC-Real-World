@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/khabarovsk",
+  "title_lang": {
+    "de_de": "Chabarowsk",
+    "en_us": "Khabarovsk",
+    "es_es": "Jabárovsk",
+    "ja_jp": "ハバロフスク",
+    "ko_kr": "하바롭스크",
+    "pl_pl": "Chabarowsk",
+    "pt_br": "Khabarovsk",
+    "ru_ru": "Хабаровск",
+    "tr_tr": "Habarovsk",
+    "uk_ua": "Хабаровськ",
+    "zh_cn": "伯力",
+    "zh_hk": "伯力",
+    "zh_tw": "伯力"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Chabarowsk",
+    "en_us": "Visit Khabarovsk",
+    "es_es": "Visita Jabárovsk",
+    "ja_jp": "ハバロフスクを訪れよう",
+    "ko_kr": "하바롭스크를 방문하세요",
+    "pl_pl": "Odwiedź Chabarowsk",
+    "pt_br": "Visite Khabarovsk",
+    "ru_ru": "Посетите Хабаровск",
+    "tr_tr": "Habarovsk'u ziyaret edin",
+    "uk_ua": "Відвідайте Хабаровськ",
+    "zh_cn": "访问伯力",
+    "zh_hk": "遊覽伯力",
+    "zh_tw": "造訪伯力"
+  },
+  "latitude": 48.46204,
+  "longitude": 135.0971
+}

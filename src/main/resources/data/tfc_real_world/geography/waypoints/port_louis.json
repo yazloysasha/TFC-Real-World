@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/mauritius",
+  "title_lang": {
+    "de_de": "Port Louis",
+    "en_us": "Port Louis",
+    "es_es": "Port Louis",
+    "ja_jp": "ポートルイス",
+    "ko_kr": "포트루이스",
+    "pl_pl": "Port Louis",
+    "pt_br": "Port Louis",
+    "ru_ru": "Порт-Луи",
+    "tr_tr": "Port Louis",
+    "uk_ua": "Порт-Луї",
+    "zh_cn": "路易港",
+    "zh_hk": "路易港",
+    "zh_tw": "路易港"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Mauritius",
+    "en_us": "Visit the capital of the Republic of Mauritius",
+    "es_es": "Visita la capital de la República de Mauricio",
+    "ja_jp": "モーリシャス共和国の首都を訪れよう",
+    "ko_kr": "모리셔스 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Mauritiusu",
+    "pt_br": "Visite a capital da República das Maurício",
+    "ru_ru": "Посетите столицу Республики Маврикий",
+    "tr_tr": "Mauritius Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Маврикій",
+    "zh_cn": "访问毛里求斯共和国的首都",
+    "zh_hk": "遊覽毛裏求斯共和國的首都",
+    "zh_tw": "造訪毛裏求斯共和國的首都"
+  },
+  "latitude": -20.16194,
+  "longitude": 57.49889,
+  "capital": 1
+}

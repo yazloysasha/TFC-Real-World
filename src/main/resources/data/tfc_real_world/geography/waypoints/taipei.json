@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/taiwan",
+  "title_lang": {
+    "de_de": "Taipeh",
+    "en_us": "Taipei",
+    "es_es": "Taipéi",
+    "ja_jp": "台北",
+    "ko_kr": "타이베이",
+    "pl_pl": "Tajpej",
+    "pt_br": "Taipé",
+    "ru_ru": "Тайбэй",
+    "tr_tr": "Taipei",
+    "uk_ua": "Тайбей",
+    "zh_cn": "台北",
+    "zh_hk": "臺北",
+    "zh_tw": "臺北"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Taipeh",
+    "en_us": "Visit Taipei",
+    "es_es": "Visita Taipéi",
+    "ja_jp": "台北を訪れよう",
+    "ko_kr": "타이베이를 방문하세요",
+    "pl_pl": "Odwiedź Tajpej",
+    "pt_br": "Visite Taipé",
+    "ru_ru": "Посетите Тайбэй",
+    "tr_tr": "Taipei'yi ziyaret edin",
+    "uk_ua": "Відвідайте Тайбей",
+    "zh_cn": "访问台北",
+    "zh_hk": "遊覽臺北",
+    "zh_tw": "造訪臺北"
+  },
+  "latitude": 25.05306,
+  "longitude": 121.52639
+}

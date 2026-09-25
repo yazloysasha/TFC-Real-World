@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/bulgaria",
+  "title_lang": {
+    "de_de": "Sofia",
+    "en_us": "Sofia",
+    "es_es": "Sofía",
+    "ja_jp": "ソフィア",
+    "ko_kr": "소피아",
+    "pl_pl": "Sofia",
+    "pt_br": "Sófia",
+    "ru_ru": "София",
+    "tr_tr": "Sofya",
+    "uk_ua": "Софія",
+    "zh_cn": "索非亚",
+    "zh_hk": "索菲亞",
+    "zh_tw": "索菲亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Bulgarien",
+    "en_us": "Visit the capital of the Republic of Bulgaria",
+    "es_es": "Visita la capital de la República de Bulgaria",
+    "ja_jp": "ブルガリア共和国の首都を訪れよう",
+    "ko_kr": "불가리아 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Bułgarii",
+    "pt_br": "Visite a capital da República da Bulgária",
+    "ru_ru": "Посетите столицу Республики Болгария",
+    "tr_tr": "Bulgaristan Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Болгарія",
+    "zh_cn": "访问保加利亚共和国的首都",
+    "zh_hk": "遊覽保加利亞共和國的首都",
+    "zh_tw": "造訪保加利亞共和國的首都"
+  },
+  "latitude": 42.69751,
+  "longitude": 23.32415,
+  "capital": 1
+}

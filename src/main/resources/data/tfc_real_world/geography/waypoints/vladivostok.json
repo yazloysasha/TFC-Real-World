@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/primorye",
+  "title_lang": {
+    "de_de": "Wladiwostok",
+    "en_us": "Vladivostok",
+    "es_es": "Vladivostok",
+    "ja_jp": "ウラジオストク",
+    "ko_kr": "블라디보스토크",
+    "pl_pl": "Władywostok",
+    "pt_br": "Vladivostok",
+    "ru_ru": "Владивосток",
+    "tr_tr": "Vladivostok",
+    "uk_ua": "Владивосток",
+    "zh_cn": "海参崴",
+    "zh_hk": "海參崴",
+    "zh_tw": "海參崴"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Wladiwostok",
+    "en_us": "Visit Vladivostok",
+    "es_es": "Visita Vladivostok",
+    "ja_jp": "ウラジオストクを訪れよう",
+    "ko_kr": "블라디보스토크를 방문하세요",
+    "pl_pl": "Odwiedź Władywostok",
+    "pt_br": "Visite Vladivostok",
+    "ru_ru": "Посетите Владивосток",
+    "tr_tr": "Vladivostok'u ziyaret edin",
+    "uk_ua": "Відвідайте Владивосток",
+    "zh_cn": "访问海参崴",
+    "zh_hk": "遊覽海參崴",
+    "zh_tw": "造訪海參崴"
+  },
+  "latitude": 43.10562,
+  "longitude": 131.87353
+}

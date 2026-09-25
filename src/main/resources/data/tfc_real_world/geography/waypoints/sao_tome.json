@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/gulf_of_guinea_islands",
+  "title_lang": {
+    "de_de": "São Tomé",
+    "en_us": "São Tomé",
+    "es_es": "Santo Tomé",
+    "ja_jp": "サントメ",
+    "ko_kr": "상투메",
+    "pl_pl": "São Tomé",
+    "pt_br": "São Tomé",
+    "ru_ru": "Сан-Томе",
+    "tr_tr": "São Tomé",
+    "uk_ua": "Сан-Томе",
+    "zh_cn": "圣多美",
+    "zh_hk": "聖多美",
+    "zh_tw": "聖多美"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von São Tomé und Príncipe",
+    "en_us": "Visit the capital of Sao Tome and Principe",
+    "es_es": "Visita la capital de Santo Tomé y Príncipe",
+    "ja_jp": "サントメ・プリンシペの首都を訪れよう",
+    "ko_kr": "상투메 프린시페의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Wysp Świętego Tomasza i Książęcej",
+    "pt_br": "Visite a capital de São Tomé e Príncipe",
+    "ru_ru": "Посетите столицу Сан-Томе и Принсипи",
+    "tr_tr": "São Tomé ve Príncipe'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Сан-Томе і Принсіпі",
+    "zh_cn": "访问圣多美和普林西比的首都",
+    "zh_hk": "遊覽聖多美和普林西比的首都",
+    "zh_tw": "造訪聖多美和普林西比的首都"
+  },
+  "latitude": 0.33756,
+  "longitude": 6.7299,
+  "capital": 1
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/yemen",
+  "title_lang": {
+    "de_de": "Sanaa",
+    "en_us": "Sanaa",
+    "es_es": "Saná",
+    "ja_jp": "サヌア",
+    "ko_kr": "사나",
+    "pl_pl": "Sana",
+    "pt_br": "Sana",
+    "ru_ru": "Сана",
+    "tr_tr": "Sana'a",
+    "uk_ua": "Сана",
+    "zh_cn": "萨那",
+    "zh_hk": "薩那",
+    "zh_tw": "沙那"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Jemen",
+    "en_us": "Visit the capital of the Republic of Yemen",
+    "es_es": "Visita la capital de la República de Yemen",
+    "ja_jp": "イエメン共和国の首都を訪れよう",
+    "ko_kr": "예멘 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Jemenu",
+    "pt_br": "Visite a capital da República do Iêmen",
+    "ru_ru": "Посетите столицу Республики Йемен",
+    "tr_tr": "Yemen Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Ємен",
+    "zh_cn": "访问也门共和国的首都",
+    "zh_hk": "遊覽也門共和國的首都",
+    "zh_tw": "造訪也門共和國的首都"
+  },
+  "latitude": 15.35452,
+  "longitude": 44.20646,
+  "capital": 1
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/east_aegean_islands",
+  "title_lang": {
+    "de_de": "Mytilini",
+    "en_us": "Mytilene",
+    "es_es": "Mitilene",
+    "ja_jp": "ミティリーニ",
+    "ko_kr": "미틸리니",
+    "pl_pl": "Mitylena",
+    "pt_br": "Mitilene",
+    "ru_ru": "Митилини",
+    "tr_tr": "Midilli",
+    "uk_ua": "Мітилена",
+    "zh_cn": "米蒂利尼",
+    "zh_hk": "米蒂利尼",
+    "zh_tw": "米蒂利尼"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Mytilini",
+    "en_us": "Visit Mytilene",
+    "es_es": "Visita Mitilene",
+    "ja_jp": "ミティリーニを訪れよう",
+    "ko_kr": "미틸리니를 방문하세요",
+    "pl_pl": "Odwiedź Mitylena",
+    "pt_br": "Visite Mitilene",
+    "ru_ru": "Посетите Митилини",
+    "tr_tr": "Midilli'yi ziyaret edin",
+    "uk_ua": "Відвідайте Мітилена",
+    "zh_cn": "访问米蒂利尼",
+    "zh_hk": "遊覽米蒂利尼",
+    "zh_tw": "造訪米蒂利尼"
+  },
+  "latitude": 39.10772,
+  "longitude": 26.55529
+}

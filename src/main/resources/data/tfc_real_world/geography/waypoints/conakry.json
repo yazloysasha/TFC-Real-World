@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/guinea",
+  "title_lang": {
+    "de_de": "Conakry",
+    "en_us": "Conakry",
+    "es_es": "Conakri",
+    "ja_jp": "コナクリ",
+    "ko_kr": "코나크리",
+    "pl_pl": "Konakry",
+    "pt_br": "Conacri",
+    "ru_ru": "Конакри",
+    "tr_tr": "Konakri",
+    "uk_ua": "Конакрі",
+    "zh_cn": "科纳克里",
+    "zh_hk": "科納克里",
+    "zh_tw": "柯那克里"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Guinea",
+    "en_us": "Visit the capital of the Republic of Guinea",
+    "es_es": "Visita la capital de la República de Guinea",
+    "ja_jp": "ギニア共和国の首都を訪れよう",
+    "ko_kr": "기니 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Gwinei",
+    "pt_br": "Visite a capital da República da Guiné",
+    "ru_ru": "Посетите столицу Республики Гвинея",
+    "tr_tr": "Gine Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Гвінея",
+    "zh_cn": "访问几内亚共和国的首都",
+    "zh_hk": "遊覽幾內亞共和國的首都",
+    "zh_tw": "造訪幾內亞共和國的首都"
+  },
+  "latitude": 9.53795,
+  "longitude": -13.67729,
+  "capital": 1
+}

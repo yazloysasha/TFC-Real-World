@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/netherlands",
+  "title_lang": {
+    "de_de": "Amsterdam",
+    "en_us": "Amsterdam",
+    "es_es": "Ámsterdam",
+    "ja_jp": "アムステルダム",
+    "ko_kr": "암스테르담",
+    "pl_pl": "Amsterdam",
+    "pt_br": "Amsterdã",
+    "ru_ru": "Амстердам",
+    "tr_tr": "Amsterdam",
+    "uk_ua": "Амстердам",
+    "zh_cn": "阿姆斯特丹",
+    "zh_hk": "阿姆斯特丹",
+    "zh_tw": "阿姆斯特丹"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Niederlande",
+    "en_us": "Visit the capital of the Netherlands",
+    "es_es": "Visita la capital de los Países Bajos",
+    "ja_jp": "オランダの首都を訪れよう",
+    "ko_kr": "네덜란드의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Holandii",
+    "pt_br": "Visite a capital dos Países Baixos",
+    "ru_ru": "Посетите столицу Нидерландов",
+    "tr_tr": "Hollanda'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Нідерландів",
+    "zh_cn": "访问荷兰的首都",
+    "zh_hk": "遊覽荷蘭的首都",
+    "zh_tw": "造訪荷蘭的首都"
+  },
+  "latitude": 52.37403,
+  "longitude": 4.88969,
+  "capital": 1
+}

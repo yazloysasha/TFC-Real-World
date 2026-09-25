@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/tanzania",
+  "title_lang": {
+    "de_de": "Dodoma",
+    "en_us": "Dodoma",
+    "es_es": "Dodoma",
+    "ja_jp": "ドドマ",
+    "ko_kr": "도도마",
+    "pl_pl": "Dodoma",
+    "pt_br": "Dodoma",
+    "ru_ru": "Додома",
+    "tr_tr": "Dodoma",
+    "uk_ua": "Додома",
+    "zh_cn": "多多马",
+    "zh_hk": "多多馬",
+    "zh_tw": "多多馬"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Vereinigten Republik Tansania",
+    "en_us": "Visit the capital of the United Republic of Tanzania",
+    "es_es": "Visita la capital de la República Unida de Tanzania",
+    "ja_jp": "タンザニア連合共和国の首都を訪れよう",
+    "ko_kr": "탄자니아 연합공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Zjednoczonej Republiki Tanzanii",
+    "pt_br": "Visite a capital da República Unida da Tanzânia",
+    "ru_ru": "Посетите столицу Объединённой Республики Танзания",
+    "tr_tr": "Tanzanya Birleşik Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Об'єднаної Республіки Танзанія",
+    "zh_cn": "访问坦桑尼亚联合共和国的首都",
+    "zh_hk": "遊覽坦桑尼亞聯合共和國的首都",
+    "zh_tw": "造訪坦桑尼亞聯合共和國的首都"
+  },
+  "latitude": -6.17221,
+  "longitude": 35.73947,
+  "capital": 1
+}

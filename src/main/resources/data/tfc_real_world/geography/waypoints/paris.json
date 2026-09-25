@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/france",
+  "title_lang": {
+    "de_de": "Paris",
+    "en_us": "Paris",
+    "es_es": "París",
+    "ja_jp": "パリ",
+    "ko_kr": "파리",
+    "pl_pl": "Paryż",
+    "pt_br": "Paris",
+    "ru_ru": "Париж",
+    "tr_tr": "Paris",
+    "uk_ua": "Париж",
+    "zh_cn": "巴黎",
+    "zh_hk": "巴黎",
+    "zh_tw": "巴黎"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Frankreich",
+    "en_us": "Visit the capital of the Republic of France",
+    "es_es": "Visita la capital de la República de Francia",
+    "ja_jp": "フランス共和国の首都を訪れよう",
+    "ko_kr": "프랑스 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Francji",
+    "pt_br": "Visite a capital da República da França",
+    "ru_ru": "Посетите столицу Республики Франция",
+    "tr_tr": "Fransa Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Франція",
+    "zh_cn": "访问法国共和国的首都",
+    "zh_hk": "遊覽法國共和國的首都",
+    "zh_tw": "造訪法國共和國的首都"
+  },
+  "latitude": 48.85341,
+  "longitude": 2.3488,
+  "capital": 1
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/sakhalin",
+  "title_lang": {
+    "de_de": "Juschno-Sachalinsk",
+    "en_us": "Yuzhno-Sakhalinsk",
+    "es_es": "Yuzhno-Sajalinsk",
+    "ja_jp": "ユジノサハリンスク",
+    "ko_kr": "유즈노사할린스크",
+    "pl_pl": "Jużnosachalińsk",
+    "pt_br": "Iujno-Sakhalinsk",
+    "ru_ru": "Южно-Сахалинск",
+    "tr_tr": "Yujno-Sahalinsk",
+    "uk_ua": "Южно-Сахалінськ",
+    "zh_cn": "南萨哈林斯克",
+    "zh_hk": "南薩哈林斯克",
+    "zh_tw": "南薩哈林斯克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Juschno-Sachalinsk",
+    "en_us": "Visit Yuzhno-Sakhalinsk",
+    "es_es": "Visita Yuzhno-Sajalinsk",
+    "ja_jp": "ユジノサハリンスクを訪れよう",
+    "ko_kr": "유즈노사할린스크를 방문하세요",
+    "pl_pl": "Odwiedź Jużnosachalińsk",
+    "pt_br": "Visite Iujno-Sakhalinsk",
+    "ru_ru": "Посетите Южно-Сахалинск",
+    "tr_tr": "Yujno-Sahalinsk'i ziyaret edin",
+    "uk_ua": "Відвідайте Южно-Сахалінськ",
+    "zh_cn": "访问南萨哈林斯克",
+    "zh_hk": "遊覽南薩哈林斯克",
+    "zh_tw": "造訪南薩哈林斯克"
+  },
+  "latitude": 46.9543,
+  "longitude": 142.73559
+}

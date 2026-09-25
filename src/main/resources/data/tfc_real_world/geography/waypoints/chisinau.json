@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/ukraine",
+  "title_lang": {
+    "de_de": "Kischinau",
+    "en_us": "Chișinău",
+    "es_es": "Chisináu",
+    "ja_jp": "キシナウ",
+    "ko_kr": "키시너우",
+    "pl_pl": "Kiszyniów",
+    "pt_br": "Chișinău",
+    "ru_ru": "Кишинёв",
+    "tr_tr": "Kişinev",
+    "uk_ua": "Кишинів",
+    "zh_cn": "基希讷乌",
+    "zh_hk": "基施紐",
+    "zh_tw": "奇西瑙"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Moldau",
+    "en_us": "Visit the capital of the Republic of Moldova",
+    "es_es": "Visita la capital de la República de Moldavia",
+    "ja_jp": "モルドバ共和国の首都を訪れよう",
+    "ko_kr": "몰도바 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Mołdawii",
+    "pt_br": "Visite a capital da República da Moldávia",
+    "ru_ru": "Посетите столицу Республики Молдавия",
+    "tr_tr": "Moldova Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Молдова",
+    "zh_cn": "访问摩尔多瓦共和国的首都",
+    "zh_hk": "遊覽摩爾多瓦共和國的首都",
+    "zh_tw": "造訪摩爾多瓦共和國的首都"
+  },
+  "latitude": 47.00902,
+  "longitude": 28.85938,
+  "capital": 1
+}

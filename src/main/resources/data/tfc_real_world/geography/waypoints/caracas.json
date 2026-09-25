@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/venezuela",
+  "title_lang": {
+    "de_de": "Caracas",
+    "en_us": "Caracas",
+    "es_es": "Caracas",
+    "ja_jp": "カラカス",
+    "ko_kr": "카라카스",
+    "pl_pl": "Caracas",
+    "pt_br": "Caracas",
+    "ru_ru": "Каракас",
+    "tr_tr": "Caracas",
+    "uk_ua": "Каракас",
+    "zh_cn": "加拉加斯",
+    "zh_hk": "卡拉卡斯",
+    "zh_tw": "加拉加斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Bolivarischen Republik Venezuela",
+    "en_us": "Visit the capital of the Bolivarian Republic of Venezuela",
+    "es_es": "Visita la capital de la República Bolivariana de Venezuela",
+    "ja_jp": "ベネズエラ・ボリバル共和国の首都を訪れよう",
+    "ko_kr": "베네수엘라 볼리바르 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Boliwariańskiej Republiki Wenezueli",
+    "pt_br": "Visite a capital da República Bolivariana da Venezuela",
+    "ru_ru": "Посетите столицу Боливарианской Республики Венесуэла",
+    "tr_tr": "Venezuela Bolivar Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Боліваріанської Республіки Венесуела",
+    "zh_cn": "访问委内瑞拉玻利瓦尔共和国的首都",
+    "zh_hk": "遊覽委內瑞拉玻利瓦爾共和國的首都",
+    "zh_tw": "造訪委內瑞拉玻利瓦爾共和國的首都"
+  },
+  "latitude": 10.48801,
+  "longitude": -66.87919,
+  "capital": 1
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/portugal",
+  "title_lang": {
+    "de_de": "Lissabon",
+    "en_us": "Lisbon",
+    "es_es": "Lisboa",
+    "ja_jp": "リスボン",
+    "ko_kr": "리스본",
+    "pl_pl": "Lizbona",
+    "pt_br": "Lisboa",
+    "ru_ru": "Лиссабон",
+    "tr_tr": "Lizbon",
+    "uk_ua": "Лісабон",
+    "zh_cn": "里斯本",
+    "zh_hk": "里斯本",
+    "zh_tw": "里斯本"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Portugiesischen Republik",
+    "en_us": "Visit the capital of the Portuguese Republic",
+    "es_es": "Visita la capital de la República Portuguesa",
+    "ja_jp": "ポルトガル共和国の首都を訪れよう",
+    "ko_kr": "포르투갈 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Portugalskiej",
+    "pt_br": "Visite a capital da República Portuguesa",
+    "ru_ru": "Посетите столицу Португальской Республики",
+    "tr_tr": "Portekiz Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Португальської Республіки",
+    "zh_cn": "访问葡萄牙共和国的首都",
+    "zh_hk": "遊覽葡萄牙共和國的首都",
+    "zh_tw": "造訪葡萄牙共和國的首都"
+  },
+  "latitude": 38.72509,
+  "longitude": -9.1498,
+  "capital": 1
+}

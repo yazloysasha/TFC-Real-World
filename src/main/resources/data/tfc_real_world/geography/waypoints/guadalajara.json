@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/mexico_southwest",
+  "title_lang": {
+    "de_de": "Guadalajara",
+    "en_us": "Guadalajara",
+    "es_es": "Guadalajara",
+    "ja_jp": "グアダラハラ",
+    "ko_kr": "과달라하라",
+    "pl_pl": "Guadalajara",
+    "pt_br": "Guadalajara",
+    "ru_ru": "Гвадалахара",
+    "tr_tr": "Guadalajara",
+    "uk_ua": "Гвадалахара",
+    "zh_cn": "瓜达拉哈拉",
+    "zh_hk": "瓜達拉哈拉",
+    "zh_tw": "瓜達拉哈拉"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Guadalajara",
+    "en_us": "Visit Guadalajara",
+    "es_es": "Visita Guadalajara",
+    "ja_jp": "グアダラハラを訪れよう",
+    "ko_kr": "과달라하라를 방문하세요",
+    "pl_pl": "Odwiedź Guadalajara",
+    "pt_br": "Visite Guadalajara",
+    "ru_ru": "Посетите Гвадалахара",
+    "tr_tr": "Guadalajara'yı ziyaret edin",
+    "uk_ua": "Відвідайте Гвадалахара",
+    "zh_cn": "访问瓜达拉哈拉",
+    "zh_hk": "遊覽瓜達拉哈拉",
+    "zh_tw": "造訪瓜達拉哈拉"
+  },
+  "latitude": 20.67738,
+  "longitude": -103.34749
+}

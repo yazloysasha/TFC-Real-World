@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/turkey",
+  "title_lang": {
+    "de_de": "Ankara",
+    "en_us": "Ankara",
+    "es_es": "Ankara",
+    "ja_jp": "アンカラ",
+    "ko_kr": "앙카라",
+    "pl_pl": "Ankara",
+    "pt_br": "Ancara",
+    "ru_ru": "Анкара",
+    "tr_tr": "Ankara",
+    "uk_ua": "Анкара",
+    "zh_cn": "安卡拉",
+    "zh_hk": "安卡拉",
+    "zh_tw": "安卡拉"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Türkei",
+    "en_us": "Visit the capital of the Republic of Turkey",
+    "es_es": "Visita la capital de la República de Turquía",
+    "ja_jp": "トルコ共和国の首都を訪れよう",
+    "ko_kr": "튀르키예 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Turcji",
+    "pt_br": "Visite a capital da República da Turquia",
+    "ru_ru": "Посетите столицу Республики Турция",
+    "tr_tr": "Türkiye Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Туреччина",
+    "zh_cn": "访问土耳其共和国的首都",
+    "zh_hk": "遊覽土耳其共和國的首都",
+    "zh_tw": "造訪土耳其共和國的首都"
+  },
+  "latitude": 39.91987,
+  "longitude": 32.85427,
+  "capital": 1
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/burkina_faso",
+  "title_lang": {
+    "de_de": "Ouagadougou",
+    "en_us": "Ouagadougou",
+    "es_es": "Uagadugú",
+    "ja_jp": "ワガドゥグー",
+    "ko_kr": "와가두구",
+    "pl_pl": "Wagadugu",
+    "pt_br": "Uagadugu",
+    "ru_ru": "Уагадугу",
+    "tr_tr": "Ouagadougou",
+    "uk_ua": "Уагадугу",
+    "zh_cn": "瓦加杜古",
+    "zh_hk": "瓦加杜古",
+    "zh_tw": "瓦加杜古"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Burkina Faso",
+    "en_us": "Visit the capital of Burkina Faso",
+    "es_es": "Visita la capital de Burkina Faso",
+    "ja_jp": "ブルキナファソの首都を訪れよう",
+    "ko_kr": "부르키나파소의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Burkina Faso",
+    "pt_br": "Visite a capital de Burquina Fasso",
+    "ru_ru": "Посетите столицу Буркина-Фасо",
+    "tr_tr": "Burkina Faso'nun başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Буркіна-Фасо",
+    "zh_cn": "访问布基纳法索的首都",
+    "zh_hk": "遊覽布基納法索的首都",
+    "zh_tw": "造訪布基納法索的首都"
+  },
+  "latitude": 12.36566,
+  "longitude": -1.53388,
+  "capital": 1
+}

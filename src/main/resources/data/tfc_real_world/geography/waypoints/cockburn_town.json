@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/turks_and_caicos_islands",
+  "title_lang": {
+    "de_de": "Cockburn Town",
+    "en_us": "Cockburn Town",
+    "es_es": "Cockburn Town",
+    "ja_jp": "コックバーンタウン",
+    "ko_kr": "코크번타운",
+    "pl_pl": "Cockburn Town",
+    "pt_br": "Cockburn Town",
+    "ru_ru": "Коберн-Таун",
+    "tr_tr": "Cockburn Town",
+    "uk_ua": "Коберн-Таун",
+    "zh_cn": "科伯恩城",
+    "zh_hk": "科伯恩城",
+    "zh_tw": "科伯恩城"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Cockburn Town",
+    "en_us": "Visit Cockburn Town",
+    "es_es": "Visita Cockburn Town",
+    "ja_jp": "コックバーンタウンを訪れよう",
+    "ko_kr": "코크번타운을 방문하세요",
+    "pl_pl": "Odwiedź Cockburn Town",
+    "pt_br": "Visite Cockburn Town",
+    "ru_ru": "Посетите Коберн-Таун",
+    "tr_tr": "Cockburn Town'u ziyaret edin",
+    "uk_ua": "Відвідайте Коберн-Таун",
+    "zh_cn": "访问科伯恩城",
+    "zh_hk": "遊覽科伯恩城",
+    "zh_tw": "造訪科伯恩城"
+  },
+  "latitude": 21.46122,
+  "longitude": -71.14188
+}

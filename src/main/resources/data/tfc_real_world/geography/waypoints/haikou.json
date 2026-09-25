@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/hainan",
+  "title_lang": {
+    "de_de": "Haikou",
+    "en_us": "Haikou",
+    "es_es": "Haikou",
+    "ja_jp": "海口市",
+    "ko_kr": "하이커우시",
+    "pl_pl": "Haikou",
+    "pt_br": "Haikou",
+    "ru_ru": "Хайкоу",
+    "tr_tr": "Haikou",
+    "uk_ua": "Хайкоу",
+    "zh_cn": "海口市",
+    "zh_hk": "海口",
+    "zh_tw": "海口市"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Haikou",
+    "en_us": "Visit Haikou",
+    "es_es": "Visita Haikou",
+    "ja_jp": "海口市を訪れよう",
+    "ko_kr": "하이커우시를 방문하세요",
+    "pl_pl": "Odwiedź Haikou",
+    "pt_br": "Visite Haikou",
+    "ru_ru": "Посетите Хайкоу",
+    "tr_tr": "Haikou'yu ziyaret edin",
+    "uk_ua": "Відвідайте Хайкоу",
+    "zh_cn": "访问海口市",
+    "zh_hk": "遊覽海口",
+    "zh_tw": "造訪海口市"
+  },
+  "latitude": 20.03421,
+  "longitude": 110.34651
+}

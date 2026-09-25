@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/society_islands",
+  "title_lang": {
+    "de_de": "Papeete",
+    "en_us": "Papeete",
+    "es_es": "Papeete",
+    "ja_jp": "パペーテ",
+    "ko_kr": "파페에테",
+    "pl_pl": "Papeete",
+    "pt_br": "Papeete",
+    "ru_ru": "Папеэте",
+    "tr_tr": "Papeete",
+    "uk_ua": "Папеете",
+    "zh_cn": "帕皮提",
+    "zh_hk": "巴比提",
+    "zh_tw": "巴比提"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Papeete",
+    "en_us": "Visit Papeete",
+    "es_es": "Visita Papeete",
+    "ja_jp": "パペーテを訪れよう",
+    "ko_kr": "파페에테를 방문하세요",
+    "pl_pl": "Odwiedź Papeete",
+    "pt_br": "Visite Papeete",
+    "ru_ru": "Посетите Папеэте",
+    "tr_tr": "Papeete'yi ziyaret edin",
+    "uk_ua": "Відвідайте Папеете",
+    "zh_cn": "访问帕皮提",
+    "zh_hk": "遊覽巴比提",
+    "zh_tw": "造訪巴比提"
+  },
+  "latitude": -17.5347,
+  "longitude": -149.56843
+}

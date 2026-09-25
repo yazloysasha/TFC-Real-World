@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/the_gambia",
+  "title_lang": {
+    "de_de": "Banjul",
+    "en_us": "Banjul",
+    "es_es": "Banjul",
+    "ja_jp": "バンジュール",
+    "ko_kr": "반줄",
+    "pl_pl": "Bandżul",
+    "pt_br": "Banjul",
+    "ru_ru": "Банжул",
+    "tr_tr": "Banjul",
+    "uk_ua": "Банжул",
+    "zh_cn": "班珠尔",
+    "zh_hk": "班珠爾",
+    "zh_tw": "斑竹"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Gambia",
+    "en_us": "Visit the capital of Gambia",
+    "es_es": "Visita la capital de Gambia",
+    "ja_jp": "ガンビアの首都を訪れよう",
+    "ko_kr": "감비아의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Gambii",
+    "pt_br": "Visite a capital da Gâmbia",
+    "ru_ru": "Посетите столицу Гамбии",
+    "tr_tr": "Gambiya'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Гамбії",
+    "zh_cn": "访问冈比亚的首都",
+    "zh_hk": "遊覽岡比亞的首都",
+    "zh_tw": "造訪岡比亞的首都"
+  },
+  "latitude": 13.45274,
+  "longitude": -16.57803,
+  "capital": 1
+}

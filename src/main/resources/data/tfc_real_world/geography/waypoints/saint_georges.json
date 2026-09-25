@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/windward_islands",
+  "title_lang": {
+    "de_de": "St. George’s",
+    "en_us": "St. George's",
+    "es_es": "Saint George",
+    "ja_jp": "セントジョージズ",
+    "ko_kr": "세인트조지스",
+    "pl_pl": "Saint George's",
+    "pt_br": "São Jorge",
+    "ru_ru": "Сент-Джорджес",
+    "tr_tr": "Saint George's",
+    "uk_ua": "Сент-Джорджес",
+    "zh_cn": "圣乔治",
+    "zh_hk": "聖喬治",
+    "zh_tw": "聖喬治"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Grenada",
+    "en_us": "Visit the capital of Grenada",
+    "es_es": "Visita la capital de Granada",
+    "ja_jp": "グレナダの首都を訪れよう",
+    "ko_kr": "그레나다의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Grenady",
+    "pt_br": "Visite a capital de Granada",
+    "ru_ru": "Посетите столицу Гренады",
+    "tr_tr": "Grenada'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Гренади",
+    "zh_cn": "访问格林纳达的首都",
+    "zh_hk": "遊覽格林納達的首都",
+    "zh_tw": "造訪格林納達的首都"
+  },
+  "latitude": 12.05288,
+  "longitude": -61.75226,
+  "capital": 1
+}

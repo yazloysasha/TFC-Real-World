@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/romania",
+  "title_lang": {
+    "de_de": "Bukarest",
+    "en_us": "Bucharest",
+    "es_es": "Bucarest",
+    "ja_jp": "ブカレスト",
+    "ko_kr": "부쿠레슈티",
+    "pl_pl": "Bukareszt",
+    "pt_br": "Bucareste",
+    "ru_ru": "Бухарест",
+    "tr_tr": "Bükreş",
+    "uk_ua": "Бухарест",
+    "zh_cn": "布加勒斯特",
+    "zh_hk": "布加勒斯特",
+    "zh_tw": "布加勒斯特"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Rumänien",
+    "en_us": "Visit the capital of Romania",
+    "es_es": "Visita la capital de Rumanía",
+    "ja_jp": "ルーマニアの首都を訪れよう",
+    "ko_kr": "루마니아의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Rumunii",
+    "pt_br": "Visite a capital da Romênia",
+    "ru_ru": "Посетите столицу Румынии",
+    "tr_tr": "Romanya'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Румунії",
+    "zh_cn": "访问罗马尼亚的首都",
+    "zh_hk": "遊覽羅馬尼亞的首都",
+    "zh_tw": "造訪羅馬尼亞的首都"
+  },
+  "latitude": 44.43225,
+  "longitude": 26.10626,
+  "capital": 1
+}

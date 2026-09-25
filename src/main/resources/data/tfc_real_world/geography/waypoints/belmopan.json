@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/belize",
+  "title_lang": {
+    "de_de": "Belmopan",
+    "en_us": "Belmopan",
+    "es_es": "Belmopán",
+    "ja_jp": "ベルモパン",
+    "ko_kr": "벨모판",
+    "pl_pl": "Belmopan",
+    "pt_br": "Belmopan",
+    "ru_ru": "Бельмопан",
+    "tr_tr": "Belmopán",
+    "uk_ua": "Бельмопан",
+    "zh_cn": "贝尔墨邦",
+    "zh_hk": "貝爾墨邦",
+    "zh_tw": "貝爾墨邦"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Belize",
+    "en_us": "Visit the capital of Belize",
+    "es_es": "Visita la capital de Belice",
+    "ja_jp": "ベリーズの首都を訪れよう",
+    "ko_kr": "벨리즈의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Belize",
+    "pt_br": "Visite a capital de Belize",
+    "ru_ru": "Посетите столицу Белиза",
+    "tr_tr": "Belize'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Белізу",
+    "zh_cn": "访问伯利兹的首都",
+    "zh_hk": "遊覽伯利茲的首都",
+    "zh_tw": "造訪伯利茲的首都"
+  },
+  "latitude": 17.25376,
+  "longitude": -88.76401,
+  "capital": 1
+}

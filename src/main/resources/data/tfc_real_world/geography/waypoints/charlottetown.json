@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/prince_edward_island",
+  "title_lang": {
+    "de_de": "Charlottetown",
+    "en_us": "Charlottetown",
+    "es_es": "Charlottetown",
+    "ja_jp": "シャーロットタウン",
+    "ko_kr": "샬럿타운",
+    "pl_pl": "Charlottetown",
+    "pt_br": "Charlottetown",
+    "ru_ru": "Шарлоттаун",
+    "tr_tr": "Charlottetown",
+    "uk_ua": "Шарлоттаун",
+    "zh_cn": "夏洛特顿",
+    "zh_hk": "夏洛特頓",
+    "zh_tw": "夏洛特頓"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Charlottetown",
+    "en_us": "Visit Charlottetown",
+    "es_es": "Visita Charlottetown",
+    "ja_jp": "シャーロットタウンを訪れよう",
+    "ko_kr": "샬럿타운을 방문하세요",
+    "pl_pl": "Odwiedź Charlottetown",
+    "pt_br": "Visite Charlottetown",
+    "ru_ru": "Посетите Шарлоттаун",
+    "tr_tr": "Charlottetown'u ziyaret edin",
+    "uk_ua": "Відвідайте Шарлоттаун",
+    "zh_cn": "访问夏洛特顿",
+    "zh_hk": "遊覽夏洛特頓",
+    "zh_tw": "造訪夏洛特頓"
+  },
+  "latitude": 46.23459,
+  "longitude": -63.1256
+}

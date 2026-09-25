@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/panama",
+  "title_lang": {
+    "de_de": "Panama-Stadt",
+    "en_us": "Panama City",
+    "es_es": "Ciudad de Panamá",
+    "ja_jp": "パナマ市",
+    "ko_kr": "파나마시티",
+    "pl_pl": "Panama",
+    "pt_br": "Cidade do Panamá",
+    "ru_ru": "Панама",
+    "tr_tr": "Panama",
+    "uk_ua": "Панама",
+    "zh_cn": "巴拿马城",
+    "zh_hk": "巴拿馬城",
+    "zh_tw": "巴拿馬城"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Panama",
+    "en_us": "Visit the capital of the Republic of Panama",
+    "es_es": "Visita la capital de la República de Panamá",
+    "ja_jp": "パナマ共和国の首都を訪れよう",
+    "ko_kr": "파나마 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Panamy",
+    "pt_br": "Visite a capital da República do Panamá",
+    "ru_ru": "Посетите столицу Республики Панама",
+    "tr_tr": "Panama Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Панама",
+    "zh_cn": "访问巴拿马共和国的首都",
+    "zh_hk": "遊覽巴拿馬共和國的首都",
+    "zh_tw": "造訪巴拿馬共和國的首都"
+  },
+  "latitude": 8.9936,
+  "longitude": -79.51973,
+  "capital": 1
+}

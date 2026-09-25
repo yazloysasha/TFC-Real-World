@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/transcaucasus",
+  "title_lang": {
+    "de_de": "Baku",
+    "en_us": "Baku",
+    "es_es": "Bakú",
+    "ja_jp": "バクー",
+    "ko_kr": "바쿠",
+    "pl_pl": "Baku",
+    "pt_br": "Baku",
+    "ru_ru": "Баку",
+    "tr_tr": "Bakü",
+    "uk_ua": "Баку",
+    "zh_cn": "巴库",
+    "zh_hk": "巴庫",
+    "zh_tw": "巴庫"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Aserbaidschan",
+    "en_us": "Visit the capital of the Republic of Azerbaijan",
+    "es_es": "Visita la capital de la República de Azerbaiyán",
+    "ja_jp": "アゼルバイジャン共和国の首都を訪れよう",
+    "ko_kr": "아제르바이잔 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Azerbejdżanu",
+    "pt_br": "Visite a capital da República do Azerbaijão",
+    "ru_ru": "Посетите столицу Республики Азербайджан",
+    "tr_tr": "Azerbaycan Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Азербайджан",
+    "zh_cn": "访问阿塞拜疆共和国的首都",
+    "zh_hk": "遊覽阿塞拜疆共和國的首都",
+    "zh_tw": "造訪阿塞拜疆共和國的首都"
+  },
+  "latitude": 40.37767,
+  "longitude": 49.89201,
+  "capital": 1
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/alabama",
+  "title_lang": {
+    "de_de": "Montgomery",
+    "en_us": "Montgomery",
+    "es_es": "Montgomery",
+    "ja_jp": "モンゴメリー",
+    "ko_kr": "몽고메리",
+    "pl_pl": "Montgomery",
+    "pt_br": "Montgomery",
+    "ru_ru": "Монтгомери",
+    "tr_tr": "Montgomery",
+    "uk_ua": "Монтгомері",
+    "zh_cn": "蒙哥马利",
+    "zh_hk": "蒙哥馬利",
+    "zh_tw": "蒙哥馬利"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Montgomery",
+    "en_us": "Visit Montgomery",
+    "es_es": "Visita Montgomery",
+    "ja_jp": "モンゴメリーを訪れよう",
+    "ko_kr": "몽고메리를 방문하세요",
+    "pl_pl": "Odwiedź Montgomery",
+    "pt_br": "Visite Montgomery",
+    "ru_ru": "Посетите Монтгомери",
+    "tr_tr": "Montgomery'i ziyaret edin",
+    "uk_ua": "Відвідайте Монтгомері",
+    "zh_cn": "访问蒙哥马利",
+    "zh_hk": "遊覽蒙哥馬利",
+    "zh_tw": "造訪蒙哥馬利"
+  },
+  "latitude": 32.36681,
+  "longitude": -86.29997
+}

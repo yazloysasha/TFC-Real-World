@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/manitoba",
+  "title_lang": {
+    "de_de": "Winnipeg",
+    "en_us": "Winnipeg",
+    "es_es": "Winnipeg",
+    "ja_jp": "ウィニペグ",
+    "ko_kr": "위니펙",
+    "pl_pl": "Winnipeg",
+    "pt_br": "Winnipeg",
+    "ru_ru": "Виннипег",
+    "tr_tr": "Winnipeg",
+    "uk_ua": "Вінніпег",
+    "zh_cn": "温尼伯",
+    "zh_hk": "溫尼辟",
+    "zh_tw": "溫尼伯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Winnipeg",
+    "en_us": "Visit Winnipeg",
+    "es_es": "Visita Winnipeg",
+    "ja_jp": "ウィニペグを訪れよう",
+    "ko_kr": "위니펙을 방문하세요",
+    "pl_pl": "Odwiedź Winnipeg",
+    "pt_br": "Visite Winnipeg",
+    "ru_ru": "Посетите Виннипег",
+    "tr_tr": "Winnipeg'i ziyaret edin",
+    "uk_ua": "Відвідайте Вінніпег",
+    "zh_cn": "访问温尼伯",
+    "zh_hk": "遊覽溫尼辟",
+    "zh_tw": "造訪溫尼伯"
+  },
+  "latitude": 49.8844,
+  "longitude": -97.14704
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/brazil_north",
+  "title_lang": {
+    "de_de": "Manaus",
+    "en_us": "Manaus",
+    "es_es": "Manaos",
+    "ja_jp": "マナウス",
+    "ko_kr": "마나우스",
+    "pl_pl": "Manaus",
+    "pt_br": "Manaus",
+    "ru_ru": "Манаус",
+    "tr_tr": "Manaus",
+    "uk_ua": "Манаус",
+    "zh_cn": "马瑙斯",
+    "zh_hk": "馬瑙斯",
+    "zh_tw": "馬瑙斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Manaus",
+    "en_us": "Visit Manaus",
+    "es_es": "Visita Manaos",
+    "ja_jp": "マナウスを訪れよう",
+    "ko_kr": "마나우스를 방문하세요",
+    "pl_pl": "Odwiedź Manaus",
+    "pt_br": "Visite Manaus",
+    "ru_ru": "Посетите Манаус",
+    "tr_tr": "Manaus'u ziyaret edin",
+    "uk_ua": "Відвідайте Манаус",
+    "zh_cn": "访问马瑙斯",
+    "zh_hk": "遊覽馬瑙斯",
+    "zh_tw": "造訪馬瑙斯"
+  },
+  "latitude": -3.10194,
+  "longitude": -60.025
+}

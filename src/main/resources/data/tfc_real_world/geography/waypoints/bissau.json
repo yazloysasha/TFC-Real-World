@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/guinea_bissau",
+  "title_lang": {
+    "de_de": "Bissau",
+    "en_us": "Bissau",
+    "es_es": "Bisáu",
+    "ja_jp": "ビサウ",
+    "ko_kr": "비사우",
+    "pl_pl": "Bissau",
+    "pt_br": "Bissau",
+    "ru_ru": "Бисау",
+    "tr_tr": "Bissau",
+    "uk_ua": "Бісау",
+    "zh_cn": "比绍",
+    "zh_hk": "比索",
+    "zh_tw": "比紹"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Guinea-Bissau",
+    "en_us": "Visit the capital of the Republic of Guinea-Bissau",
+    "es_es": "Visita la capital de la República de Guinea-Bisáu",
+    "ja_jp": "ギニアビサウ共和国の首都を訪れよう",
+    "ko_kr": "기니비사우 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Gwinei Bissau",
+    "pt_br": "Visite a capital da República da Guiné-Bissau",
+    "ru_ru": "Посетите столицу Республики Гвинея-Бисау",
+    "tr_tr": "Gine-Bissau Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Гвінея-Бісау",
+    "zh_cn": "访问几内亚比绍共和国的首都",
+    "zh_hk": "遊覽幾內亞比紹共和國的首都",
+    "zh_tw": "造訪幾內亞比紹共和國的首都"
+  },
+  "latitude": 11.86357,
+  "longitude": -15.59767,
+  "capital": 1
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/line_islands",
+  "title_lang": {
+    "de_de": "Palmyra",
+    "en_us": "Palmyra",
+    "es_es": "Palmira",
+    "ja_jp": "パルミラ",
+    "ko_kr": "팔미라",
+    "pl_pl": "Palmyra",
+    "pt_br": "Palmyra",
+    "ru_ru": "Пальмира",
+    "tr_tr": "Palmira",
+    "uk_ua": "Пальміра",
+    "zh_cn": "帕尔米拉",
+    "zh_hk": "帕爾米拉",
+    "zh_tw": "帕爾米拉"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Palmyra",
+    "en_us": "Visit Palmyra",
+    "es_es": "Visita Palmira",
+    "ja_jp": "パルミラを訪れよう",
+    "ko_kr": "팔미라를 방문하세요",
+    "pl_pl": "Odwiedź Palmyra",
+    "pt_br": "Visite Palmyra",
+    "ru_ru": "Посетите Пальмира",
+    "tr_tr": "Palmira'yı ziyaret edin",
+    "uk_ua": "Відвідайте Пальміра",
+    "zh_cn": "访问帕尔米拉",
+    "zh_hk": "遊覽帕爾米拉",
+    "zh_tw": "造訪帕爾米拉"
+  },
+  "latitude": 5.88977,
+  "longitude": -162.07563
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/macquarie_islands",
+  "title_lang": {
+    "de_de": "Macquarie-Station",
+    "en_us": "Macquarie Station",
+    "es_es": "Base Macquarie",
+    "ja_jp": "マッコーリー基地",
+    "ko_kr": "맥쿼리 기지",
+    "pl_pl": "Stacja Macquarie",
+    "pt_br": "Estação Macquarie",
+    "ru_ru": "Станция Маккуори",
+    "tr_tr": "Macquarie Üssü",
+    "uk_ua": "Станція Маккуорі",
+    "zh_cn": "麦夸里站",
+    "zh_hk": "麥誇里站",
+    "zh_tw": "麥誇里站"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Macquarie-Station",
+    "en_us": "Visit Macquarie Station",
+    "es_es": "Visita Base Macquarie",
+    "ja_jp": "マッコーリー基地を訪れよう",
+    "ko_kr": "맥쿼리 기지를 방문하세요",
+    "pl_pl": "Odwiedź Stacja Macquarie",
+    "pt_br": "Visite Estação Macquarie",
+    "ru_ru": "Посетите Станция Маккуори",
+    "tr_tr": "Macquarie Üssü'yü ziyaret edin",
+    "uk_ua": "Відвідайте Станція Маккуорі",
+    "zh_cn": "访问麦夸里站",
+    "zh_hk": "遊覽麥誇里站",
+    "zh_tw": "造訪麥誇里站"
+  },
+  "latitude": -54.49995,
+  "longitude": 158.9356
+}

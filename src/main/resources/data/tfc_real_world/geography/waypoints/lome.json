@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/togo",
+  "title_lang": {
+    "de_de": "Lomé",
+    "en_us": "Lomé",
+    "es_es": "Lomé",
+    "ja_jp": "ロメ",
+    "ko_kr": "로메",
+    "pl_pl": "Lomé",
+    "pt_br": "Lomé",
+    "ru_ru": "Ломе",
+    "tr_tr": "Lomé",
+    "uk_ua": "Ломе",
+    "zh_cn": "洛美",
+    "zh_hk": "洛美",
+    "zh_tw": "洛美"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Togolesischen Republik",
+    "en_us": "Visit the capital of the Togolese Republic",
+    "es_es": "Visita la capital de la República Togolesa",
+    "ja_jp": "トーゴ共和国の首都を訪れよう",
+    "ko_kr": "토고 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Togijskiej",
+    "pt_br": "Visite a capital da República Togolesa",
+    "ru_ru": "Посетите столицу Тоголезской Республики",
+    "tr_tr": "Togo Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Тоголезької Республіки",
+    "zh_cn": "访问多哥共和国的首都",
+    "zh_hk": "遊覽多哥共和國的首都",
+    "zh_tw": "造訪多哥共和國的首都"
+  },
+  "latitude": 6.12874,
+  "longitude": 1.22154,
+  "capital": 1
+}

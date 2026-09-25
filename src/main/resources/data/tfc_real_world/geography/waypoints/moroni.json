@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/comoros",
+  "title_lang": {
+    "de_de": "Moroni",
+    "en_us": "Moroni",
+    "es_es": "Moroni",
+    "ja_jp": "モロニ",
+    "ko_kr": "모로니",
+    "pl_pl": "Moroni",
+    "pt_br": "Moroni",
+    "ru_ru": "Морони",
+    "tr_tr": "Moroni",
+    "uk_ua": "Мороні",
+    "zh_cn": "莫洛尼",
+    "zh_hk": "莫洛尼",
+    "zh_tw": "莫洛尼"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Union der Komoren",
+    "en_us": "Visit the capital of the Union of the Comoros",
+    "es_es": "Visita la capital de la Unión de las Comoras",
+    "ja_jp": "コモロ連合の首都を訪れよう",
+    "ko_kr": "코모로 연합의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Związku Komorów",
+    "pt_br": "Visite a capital da União das Comores",
+    "ru_ru": "Посетите столицу Союза Коморских Островов",
+    "tr_tr": "Komorlar Birliği'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Союзу Коморських Островів",
+    "zh_cn": "访问科摩罗联盟的首都",
+    "zh_hk": "遊覽科摩羅聯盟的首都",
+    "zh_tw": "造訪科摩羅聯盟的首都"
+  },
+  "latitude": -11.70216,
+  "longitude": 43.25506,
+  "capital": 1
+}

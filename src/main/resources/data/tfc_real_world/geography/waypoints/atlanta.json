@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/georgia",
+  "title_lang": {
+    "de_de": "Atlanta",
+    "en_us": "Atlanta",
+    "es_es": "Atlanta",
+    "ja_jp": "アトランタ",
+    "ko_kr": "애틀랜타",
+    "pl_pl": "Atlanta",
+    "pt_br": "Atlanta",
+    "ru_ru": "Атланта",
+    "tr_tr": "Atlanta",
+    "uk_ua": "Атланта",
+    "zh_cn": "亚特兰大",
+    "zh_hk": "亞特蘭大",
+    "zh_tw": "亞特蘭大"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Atlanta",
+    "en_us": "Visit Atlanta",
+    "es_es": "Visita Atlanta",
+    "ja_jp": "アトランタを訪れよう",
+    "ko_kr": "애틀랜타를 방문하세요",
+    "pl_pl": "Odwiedź Atlanta",
+    "pt_br": "Visite Atlanta",
+    "ru_ru": "Посетите Атланта",
+    "tr_tr": "Atlanta'yı ziyaret edin",
+    "uk_ua": "Відвідайте Атланта",
+    "zh_cn": "访问亚特兰大",
+    "zh_hk": "遊覽亞特蘭大",
+    "zh_tw": "造訪亞特蘭大"
+  },
+  "latitude": 33.749,
+  "longitude": -84.38798
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/magadan",
+  "title_lang": {
+    "de_de": "Magadan",
+    "en_us": "Magadan",
+    "es_es": "Magadán",
+    "ja_jp": "マガダン",
+    "ko_kr": "마가단",
+    "pl_pl": "Magadan",
+    "pt_br": "Magadan",
+    "ru_ru": "Магадан",
+    "tr_tr": "Magadan",
+    "uk_ua": "Магадан",
+    "zh_cn": "马加丹",
+    "zh_hk": "馬加丹",
+    "zh_tw": "馬加丹"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Magadan",
+    "en_us": "Visit Magadan",
+    "es_es": "Visita Magadán",
+    "ja_jp": "マガダンを訪れよう",
+    "ko_kr": "마가단을 방문하세요",
+    "pl_pl": "Odwiedź Magadan",
+    "pt_br": "Visite Magadan",
+    "ru_ru": "Посетите Магадан",
+    "tr_tr": "Magadan'ı ziyaret edin",
+    "uk_ua": "Відвідайте Магадан",
+    "zh_cn": "访问马加丹",
+    "zh_hk": "遊覽馬加丹",
+    "zh_tw": "造訪馬加丹"
+  },
+  "latitude": 59.56274,
+  "longitude": 150.80211
+}

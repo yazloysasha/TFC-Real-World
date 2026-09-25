@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/korea",
+  "title_lang": {
+    "de_de": "Seoul",
+    "en_us": "Seoul",
+    "es_es": "Seúl",
+    "ja_jp": "ソウル",
+    "ko_kr": "서울",
+    "pl_pl": "Seul",
+    "pt_br": "Seul",
+    "ru_ru": "Сеул",
+    "tr_tr": "Seul",
+    "uk_ua": "Сеул",
+    "zh_cn": "首尔",
+    "zh_hk": "首爾",
+    "zh_tw": "首爾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Korea",
+    "en_us": "Visit the capital of the Republic of Korea",
+    "es_es": "Visita la capital de la República de Corea",
+    "ja_jp": "大韓民国の首都を訪れよう",
+    "ko_kr": "대한민국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Korei",
+    "pt_br": "Visite a capital da República da Coreia",
+    "ru_ru": "Посетите столицу Республики Корея",
+    "tr_tr": "Kore Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Корея",
+    "zh_cn": "访问大韩民国的首都",
+    "zh_hk": "遊覽大韓民國的首都",
+    "zh_tw": "造訪大韓民國的首都"
+  },
+  "latitude": 37.566,
+  "longitude": 126.9784,
+  "capital": 1
+}

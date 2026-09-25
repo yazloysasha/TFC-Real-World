@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/new_york",
+  "title_lang": {
+    "de_de": "Albany",
+    "en_us": "Albany",
+    "es_es": "Albany",
+    "ja_jp": "オールバニ",
+    "ko_kr": "올버니",
+    "pl_pl": "Albany",
+    "pt_br": "Albany",
+    "ru_ru": "Олбани",
+    "tr_tr": "Albany",
+    "uk_ua": "Олбані",
+    "zh_cn": "奥尔巴尼",
+    "zh_hk": "雅賓利",
+    "zh_tw": "奧爾巴尼"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Albany",
+    "en_us": "Visit Albany",
+    "es_es": "Visita Albany",
+    "ja_jp": "オールバニを訪れよう",
+    "ko_kr": "올버니를 방문하세요",
+    "pl_pl": "Odwiedź Albany",
+    "pt_br": "Visite Albany",
+    "ru_ru": "Посетите Олбани",
+    "tr_tr": "Albany'ı ziyaret edin",
+    "uk_ua": "Відвідайте Олбані",
+    "zh_cn": "访问奥尔巴尼",
+    "zh_hk": "遊覽雅賓利",
+    "zh_tw": "造訪奧爾巴尼"
+  },
+  "latitude": 42.65258,
+  "longitude": -73.75623
+}

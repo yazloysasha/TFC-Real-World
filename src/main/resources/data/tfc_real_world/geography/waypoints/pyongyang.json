@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/korea",
+  "title_lang": {
+    "de_de": "Pjöngjang",
+    "en_us": "Pyongyang",
+    "es_es": "Pionyang",
+    "ja_jp": "平壌",
+    "ko_kr": "평양",
+    "pl_pl": "Pjongjang",
+    "pt_br": "Pyongyang",
+    "ru_ru": "Пхеньян",
+    "tr_tr": "Pyongyang",
+    "uk_ua": "Пхеньян",
+    "zh_cn": "平壤",
+    "zh_hk": "平壤",
+    "zh_tw": "平壤"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Demokratischen Volksrepublik Korea",
+    "en_us": "Visit the capital of the Democratic People’s Republic of Korea",
+    "es_es": "Visita la capital de la República Popular Democrática de Corea",
+    "ja_jp": "朝鮮民主主義人民共和国の首都を訪れよう",
+    "ko_kr": "조선민주주의인민공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Koreańskiej Republiki Ludowo-Demokratycznej",
+    "pt_br": "Visite a capital da República Popular Democrática da Coreia",
+    "ru_ru": "Посетите столицу Корейской Народно-Демократической Республики",
+    "tr_tr": "Kore Demokratik Halk Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Корейської Народно-Демократичної Республіки",
+    "zh_cn": "访问朝鲜民主主义人民共和国的首都",
+    "zh_hk": "遊覽朝鮮民主主義人民共和國的首都",
+    "zh_tw": "造訪朝鮮民主主義人民共和國的首都"
+  },
+  "latitude": 39.03385,
+  "longitude": 125.75432,
+  "capital": 1
+}

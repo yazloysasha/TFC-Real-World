@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/xinjiang",
+  "title_lang": {
+    "de_de": "Ürümqi",
+    "en_us": "Ürümqi",
+    "es_es": "Urumqi",
+    "ja_jp": "ウルムチ市",
+    "ko_kr": "우루무치시",
+    "pl_pl": "Urumczi",
+    "pt_br": "Ürümqi",
+    "ru_ru": "Урумчи",
+    "tr_tr": "Urumçi",
+    "uk_ua": "Урумчі",
+    "zh_cn": "乌鲁木齐市",
+    "zh_hk": "烏魯木齊市",
+    "zh_tw": "烏魯木齊市"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Ürümqi",
+    "en_us": "Visit Ürümqi",
+    "es_es": "Visita Urumqi",
+    "ja_jp": "ウルムチ市を訪れよう",
+    "ko_kr": "우루무치시를 방문하세요",
+    "pl_pl": "Odwiedź Urumczi",
+    "pt_br": "Visite Ürümqi",
+    "ru_ru": "Посетите Урумчи",
+    "tr_tr": "Urumçi'yi ziyaret edin",
+    "uk_ua": "Відвідайте Урумчі",
+    "zh_cn": "访问乌鲁木齐市",
+    "zh_hk": "遊覽烏魯木齊市",
+    "zh_tw": "造訪烏魯木齊市"
+  },
+  "latitude": 43.80096,
+  "longitude": 87.60046
+}

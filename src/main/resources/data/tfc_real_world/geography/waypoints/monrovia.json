@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/liberia",
+  "title_lang": {
+    "de_de": "Monrovia",
+    "en_us": "Monrovia",
+    "es_es": "Monrovia",
+    "ja_jp": "モンロビア",
+    "ko_kr": "몬로비아",
+    "pl_pl": "Monrovia",
+    "pt_br": "Monróvia",
+    "ru_ru": "Монровия",
+    "tr_tr": "Monrovia",
+    "uk_ua": "Монровія",
+    "zh_cn": "蒙罗维亚",
+    "zh_hk": "蒙羅維亞",
+    "zh_tw": "蒙羅維亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Liberia",
+    "en_us": "Visit the capital of the Republic of Liberia",
+    "es_es": "Visita la capital de la República de Liberia",
+    "ja_jp": "リベリア共和国の首都を訪れよう",
+    "ko_kr": "라이베리아 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Liberii",
+    "pt_br": "Visite a capital da República da Libéria",
+    "ru_ru": "Посетите столицу Республики Либерия",
+    "tr_tr": "Liberya Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Ліберія",
+    "zh_cn": "访问利比里亚共和国的首都",
+    "zh_hk": "遊覽利比裏亞共和國的首都",
+    "zh_tw": "造訪利比裏亞共和國的首都"
+  },
+  "latitude": 6.30054,
+  "longitude": -10.7969,
+  "capital": 1
+}

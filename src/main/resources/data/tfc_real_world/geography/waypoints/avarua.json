@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/cook_islands",
+  "title_lang": {
+    "de_de": "Avarua",
+    "en_us": "Avarua",
+    "es_es": "Avarua",
+    "ja_jp": "アバルア",
+    "ko_kr": "아바루아",
+    "pl_pl": "Avarua",
+    "pt_br": "Avarua",
+    "ru_ru": "Аваруа",
+    "tr_tr": "Avarua",
+    "uk_ua": "Аваруа",
+    "zh_cn": "阿瓦鲁阿",
+    "zh_hk": "阿瓦魯阿",
+    "zh_tw": "阿瓦魯阿"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Avarua",
+    "en_us": "Visit Avarua",
+    "es_es": "Visita Avarua",
+    "ja_jp": "アバルアを訪れよう",
+    "ko_kr": "아바루아를 방문하세요",
+    "pl_pl": "Odwiedź Avarua",
+    "pt_br": "Visite Avarua",
+    "ru_ru": "Посетите Аваруа",
+    "tr_tr": "Avarua'yı ziyaret edin",
+    "uk_ua": "Відвідайте Аваруа",
+    "zh_cn": "访问阿瓦鲁阿",
+    "zh_hk": "遊覽阿瓦魯阿",
+    "zh_tw": "造訪阿瓦魯阿"
+  },
+  "latitude": -21.2075,
+  "longitude": -159.77546
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/east_european_russia",
+  "title_lang": {
+    "de_de": "Nischni Nowgorod",
+    "en_us": "Nizhny Novgorod",
+    "es_es": "Nizhni Nóvgorod",
+    "ja_jp": "ニジニ・ノヴゴロド",
+    "ko_kr": "니즈니노브고로드",
+    "pl_pl": "Niżny Nowogród",
+    "pt_br": "Níjni Novgorod",
+    "ru_ru": "Нижний Новгород",
+    "tr_tr": "Nijni Novgorod",
+    "uk_ua": "Нижній Новгород",
+    "zh_cn": "下诺夫哥罗德",
+    "zh_hk": "下諾夫哥羅德",
+    "zh_tw": "下諾夫哥羅德"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Nischni Nowgorod",
+    "en_us": "Visit Nizhny Novgorod",
+    "es_es": "Visita Nizhni Nóvgorod",
+    "ja_jp": "ニジニ・ノヴゴロドを訪れよう",
+    "ko_kr": "니즈니노브고로드를 방문하세요",
+    "pl_pl": "Odwiedź Niżny Nowogród",
+    "pt_br": "Visite Níjni Novgorod",
+    "ru_ru": "Посетите Нижний Новгород",
+    "tr_tr": "Nijni Novgorod'u ziyaret edin",
+    "uk_ua": "Відвідайте Нижній Новгород",
+    "zh_cn": "访问下诺夫哥罗德",
+    "zh_hk": "遊覽下諾夫哥羅德",
+    "zh_tw": "造訪下諾夫哥羅德"
+  },
+  "latitude": 56.32867,
+  "longitude": 44.00205
+}

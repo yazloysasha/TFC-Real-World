@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/somalia",
+  "title_lang": {
+    "de_de": "Mogadischu",
+    "en_us": "Mogadishu",
+    "es_es": "Mogadiscio",
+    "ja_jp": "モガディシュ",
+    "ko_kr": "모가디슈",
+    "pl_pl": "Mogadiszu",
+    "pt_br": "Mogadixo",
+    "ru_ru": "Могадишо",
+    "tr_tr": "Mogadişu",
+    "uk_ua": "Могадішо",
+    "zh_cn": "摩加迪休",
+    "zh_hk": "摩加迪沙",
+    "zh_tw": "摩加迪休"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Somalia",
+    "en_us": "Visit the capital of Somalia",
+    "es_es": "Visita la capital de Somalia",
+    "ja_jp": "ソマリアの首都を訪れよう",
+    "ko_kr": "소말리아의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Somalii",
+    "pt_br": "Visite a capital da Somália",
+    "ru_ru": "Посетите столицу Сомали",
+    "tr_tr": "Somali'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Сомалі",
+    "zh_cn": "访问索马里的首都",
+    "zh_hk": "遊覽索馬裏的首都",
+    "zh_tw": "造訪索馬裏的首都"
+  },
+  "latitude": 2.03711,
+  "longitude": 45.34375,
+  "capital": 1
+}

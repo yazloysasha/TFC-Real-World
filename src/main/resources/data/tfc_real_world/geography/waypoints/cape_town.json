@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/cape_provinces",
+  "title_lang": {
+    "de_de": "Kapstadt",
+    "en_us": "Cape Town",
+    "es_es": "Ciudad del Cabo",
+    "ja_jp": "ケープタウン",
+    "ko_kr": "케이프타운",
+    "pl_pl": "Kapsztad",
+    "pt_br": "Cidade do Cabo",
+    "ru_ru": "Кейптаун",
+    "tr_tr": "Kap Şehri",
+    "uk_ua": "Кейптаун",
+    "zh_cn": "开普敦",
+    "zh_hk": "開普敦",
+    "zh_tw": "開普敦"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Kapstadt",
+    "en_us": "Visit Cape Town",
+    "es_es": "Visita Ciudad del Cabo",
+    "ja_jp": "ケープタウンを訪れよう",
+    "ko_kr": "케이프타운을 방문하세요",
+    "pl_pl": "Odwiedź Kapsztad",
+    "pt_br": "Visite Cidade do Cabo",
+    "ru_ru": "Посетите Кейптаун",
+    "tr_tr": "Kap Şehri'yi ziyaret edin",
+    "uk_ua": "Відвідайте Кейптаун",
+    "zh_cn": "访问开普敦",
+    "zh_hk": "遊覽開普敦",
+    "zh_tw": "造訪開普敦"
+  },
+  "latitude": -33.92584,
+  "longitude": 18.42322
+}

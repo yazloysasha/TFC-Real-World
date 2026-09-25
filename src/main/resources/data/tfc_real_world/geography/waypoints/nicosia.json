@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/cyprus",
+  "title_lang": {
+    "de_de": "Nikosia",
+    "en_us": "Nicosia",
+    "es_es": "Nicosia",
+    "ja_jp": "ニコシア",
+    "ko_kr": "니코시아",
+    "pl_pl": "Nikozja",
+    "pt_br": "Nicósia",
+    "ru_ru": "Никосия",
+    "tr_tr": "Lefkoşa",
+    "uk_ua": "Нікосія",
+    "zh_cn": "尼科西亚",
+    "zh_hk": "尼科西亞",
+    "zh_tw": "尼古西亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Zypern",
+    "en_us": "Visit the capital of the Republic of Cyprus",
+    "es_es": "Visita la capital de la República de Chipre",
+    "ja_jp": "キプロス共和国の首都を訪れよう",
+    "ko_kr": "키프로스 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Cypru",
+    "pt_br": "Visite a capital da República do Chipre",
+    "ru_ru": "Посетите столицу Республики Кипр",
+    "tr_tr": "Kıbrıs Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Кіпр",
+    "zh_cn": "访问塞浦路斯共和国的首都",
+    "zh_hk": "遊覽塞浦路斯共和國的首都",
+    "zh_tw": "造訪塞浦路斯共和國的首都"
+  },
+  "latitude": 35.17284,
+  "longitude": 33.35397,
+  "capital": 1
+}

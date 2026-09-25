@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/krasnoyarsk",
+  "title_lang": {
+    "de_de": "Krasnojarsk",
+    "en_us": "Krasnoyarsk",
+    "es_es": "Krasnoyarsk",
+    "ja_jp": "クラスノヤルスク",
+    "ko_kr": "크라스노야르스크",
+    "pl_pl": "Krasnojarsk",
+    "pt_br": "Krasnoyarsk",
+    "ru_ru": "Красноярск",
+    "tr_tr": "Kızılyar",
+    "uk_ua": "Красноярськ",
+    "zh_cn": "克拉斯诺亚尔斯克",
+    "zh_hk": "克拉斯諾雅斯克",
+    "zh_tw": "克拉斯諾亞爾斯克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Krasnojarsk",
+    "en_us": "Visit Krasnoyarsk",
+    "es_es": "Visita Krasnoyarsk",
+    "ja_jp": "クラスノヤルスクを訪れよう",
+    "ko_kr": "크라스노야르스크를 방문하세요",
+    "pl_pl": "Odwiedź Krasnojarsk",
+    "pt_br": "Visite Krasnoyarsk",
+    "ru_ru": "Посетите Красноярск",
+    "tr_tr": "Kızılyar'ı ziyaret edin",
+    "uk_ua": "Відвідайте Красноярськ",
+    "zh_cn": "访问克拉斯诺亚尔斯克",
+    "zh_hk": "遊覽克拉斯諾雅斯克",
+    "zh_tw": "造訪克拉斯諾亞爾斯克"
+  },
+  "latitude": 56.03742,
+  "longitude": 92.93136
+}

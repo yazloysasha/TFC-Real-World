@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/victoria",
+  "title_lang": {
+    "de_de": "Melbourne",
+    "en_us": "Melbourne",
+    "es_es": "Melbourne",
+    "ja_jp": "メルボルン",
+    "ko_kr": "멜버른",
+    "pl_pl": "Melbourne",
+    "pt_br": "Melbourne",
+    "ru_ru": "Мельбурн",
+    "tr_tr": "Melbourne",
+    "uk_ua": "Мельбурн",
+    "zh_cn": "墨尔本",
+    "zh_hk": "墨爾本",
+    "zh_tw": "墨爾本"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Melbourne",
+    "en_us": "Visit Melbourne",
+    "es_es": "Visita Melbourne",
+    "ja_jp": "メルボルンを訪れよう",
+    "ko_kr": "멜버른을 방문하세요",
+    "pl_pl": "Odwiedź Melbourne",
+    "pt_br": "Visite Melbourne",
+    "ru_ru": "Посетите Мельбурн",
+    "tr_tr": "Melbourne'yi ziyaret edin",
+    "uk_ua": "Відвідайте Мельбурн",
+    "zh_cn": "访问墨尔本",
+    "zh_hk": "遊覽墨爾本",
+    "zh_tw": "造訪墨爾本"
+  },
+  "latitude": -37.814,
+  "longitude": 144.96332
+}

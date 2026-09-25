@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/argentina_south",
+  "title_lang": {
+    "de_de": "Santa Fe",
+    "en_us": "Santa Fe",
+    "es_es": "Santa Fe",
+    "ja_jp": "サンタフェ",
+    "ko_kr": "산타페",
+    "pl_pl": "Santa Fe",
+    "pt_br": "Santa Fé",
+    "ru_ru": "Санта-Фе",
+    "tr_tr": "Santa Fe",
+    "uk_ua": "Санта-Фе",
+    "zh_cn": "圣菲",
+    "zh_hk": "聖菲",
+    "zh_tw": "聖菲"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Santa Fe",
+    "en_us": "Visit Santa Fe",
+    "es_es": "Visita Santa Fe",
+    "ja_jp": "サンタフェを訪れよう",
+    "ko_kr": "산타페를 방문하세요",
+    "pl_pl": "Odwiedź Santa Fe",
+    "pt_br": "Visite Santa Fé",
+    "ru_ru": "Посетите Санта-Фе",
+    "tr_tr": "Santa Fe'yi ziyaret edin",
+    "uk_ua": "Відвідайте Санта-Фе",
+    "zh_cn": "访问圣菲",
+    "zh_hk": "遊覽聖菲",
+    "zh_tw": "造訪聖菲"
+  },
+  "latitude": -31.64881,
+  "longitude": -60.70868
+}

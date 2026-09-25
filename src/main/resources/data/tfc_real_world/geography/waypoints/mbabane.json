@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/eswatini",
+  "title_lang": {
+    "de_de": "Mbabane",
+    "en_us": "Mbabane",
+    "es_es": "Mbabane",
+    "ja_jp": "ムババーネ",
+    "ko_kr": "음바바네",
+    "pl_pl": "Mbabane",
+    "pt_br": "Mebabane",
+    "ru_ru": "Мбабане",
+    "tr_tr": "Mbabane",
+    "uk_ua": "Мбабане",
+    "zh_cn": "姆巴巴内",
+    "zh_hk": "姆巴巴內",
+    "zh_tw": "墨巴本"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Eswatini",
+    "en_us": "Visit the capital of Eswatini",
+    "es_es": "Visita la capital de Esuatini",
+    "ja_jp": "エスワティニの首都を訪れよう",
+    "ko_kr": "에스와티니의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Eswatini",
+    "pt_br": "Visite a capital de Essuatíni",
+    "ru_ru": "Посетите столицу Эсватини",
+    "tr_tr": "Esvatini'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Есватіні",
+    "zh_cn": "访问斯威士兰的首都",
+    "zh_hk": "遊覽斯威士蘭的首都",
+    "zh_tw": "造訪斯威士蘭的首都"
+  },
+  "latitude": -26.31667,
+  "longitude": 31.13333,
+  "capital": 1
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/gulf_states",
+  "title_lang": {
+    "de_de": "Doha",
+    "en_us": "Doha",
+    "es_es": "Doha",
+    "ja_jp": "ドーハ",
+    "ko_kr": "도하",
+    "pl_pl": "Doha",
+    "pt_br": "Doha",
+    "ru_ru": "Доха",
+    "tr_tr": "Doha",
+    "uk_ua": "Доха",
+    "zh_cn": "多哈",
+    "zh_hk": "多哈",
+    "zh_tw": "杜哈"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt des Staates Katar",
+    "en_us": "Visit the capital of the State of Qatar",
+    "es_es": "Visita la capital del Estado de Catar",
+    "ja_jp": "カタール国の首都を訪れよう",
+    "ko_kr": "카타르국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Państwa Kataru",
+    "pt_br": "Visite a capital do Estado de Catar",
+    "ru_ru": "Посетите столицу Государства Катар",
+    "tr_tr": "Katar Devleti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Держави Катар",
+    "zh_cn": "访问卡塔尔国的首都",
+    "zh_hk": "遊覽卡塔爾國的首都",
+    "zh_tw": "造訪卡塔爾國的首都"
+  },
+  "latitude": 25.28545,
+  "longitude": 51.53096,
+  "capital": 1
+}

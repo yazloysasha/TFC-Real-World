@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/sulawesi",
+  "title_lang": {
+    "de_de": "Flagge",
+    "en_us": "flag",
+    "es_es": "bandera",
+    "ja_jp": "旗",
+    "ko_kr": "기",
+    "pl_pl": "flaga",
+    "pt_br": "bandeira",
+    "ru_ru": "флаг",
+    "tr_tr": "bayrak",
+    "uk_ua": "прапор",
+    "zh_cn": "旗帜",
+    "zh_hk": "旗幟",
+    "zh_tw": "旗幟"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Flagge",
+    "en_us": "Visit flag",
+    "es_es": "Visita bandera",
+    "ja_jp": "旗を訪れよう",
+    "ko_kr": "기를 방문하세요",
+    "pl_pl": "Odwiedź flaga",
+    "pt_br": "Visite bandeira",
+    "ru_ru": "Посетите флаг",
+    "tr_tr": "bayrak'ı ziyaret edin",
+    "uk_ua": "Відвідайте прапор",
+    "zh_cn": "访问旗帜",
+    "zh_hk": "遊覽旗幟",
+    "zh_tw": "造訪旗幟"
+  },
+  "latitude": -5.14861,
+  "longitude": 119.43194
+}

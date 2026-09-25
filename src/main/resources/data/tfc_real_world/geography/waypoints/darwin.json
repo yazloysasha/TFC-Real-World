@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/northern_territory",
+  "title_lang": {
+    "de_de": "Darwin",
+    "en_us": "Darwin",
+    "es_es": "Darwin",
+    "ja_jp": "ダーウィン (ノーザンテリトリー)",
+    "ko_kr": "다윈",
+    "pl_pl": "Darwin",
+    "pt_br": "Darwin",
+    "ru_ru": "Дарвин",
+    "tr_tr": "Darwin",
+    "uk_ua": "Дарвін",
+    "zh_cn": "达尔文市",
+    "zh_hk": "達爾文",
+    "zh_tw": "達爾文"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Darwin",
+    "en_us": "Visit Darwin",
+    "es_es": "Visita Darwin",
+    "ja_jp": "ダーウィン (ノーザンテリトリー)を訪れよう",
+    "ko_kr": "다윈을 방문하세요",
+    "pl_pl": "Odwiedź Darwin",
+    "pt_br": "Visite Darwin",
+    "ru_ru": "Посетите Дарвин",
+    "tr_tr": "Darwin'i ziyaret edin",
+    "uk_ua": "Відвідайте Дарвін",
+    "zh_cn": "访问达尔文市",
+    "zh_hk": "遊覽達爾文",
+    "zh_tw": "造訪達爾文"
+  },
+  "latitude": -12.46113,
+  "longitude": 130.84185
+}

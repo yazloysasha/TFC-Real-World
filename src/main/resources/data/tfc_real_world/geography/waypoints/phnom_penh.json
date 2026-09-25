@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/cambodia",
+  "title_lang": {
+    "de_de": "Phnom Penh",
+    "en_us": "Phnom Penh",
+    "es_es": "Nom Pen",
+    "ja_jp": "プノンペン",
+    "ko_kr": "프놈펜",
+    "pl_pl": "Phnom Penh",
+    "pt_br": "Phnom Penh",
+    "ru_ru": "Пномпень",
+    "tr_tr": "Phnom Penh",
+    "uk_ua": "Пномпень",
+    "zh_cn": "金边",
+    "zh_hk": "金邊",
+    "zh_tw": "金邊"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt des Königreichs Kambodscha",
+    "en_us": "Visit the capital of the Kingdom of Cambodia",
+    "es_es": "Visita la capital del Reino de Camboya",
+    "ja_jp": "カンボジア王国の首都を訪れよう",
+    "ko_kr": "캄보디아 왕국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Królestwa Kambodży",
+    "pt_br": "Visite a capital do Reino do Camboja",
+    "ru_ru": "Посетите столицу Королевства Камбоджа",
+    "tr_tr": "Kamboçya Krallığı'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Королівства Камбоджа",
+    "zh_cn": "访问柬埔寨王国的首都",
+    "zh_hk": "遊覽柬埔寨王國的首都",
+    "zh_tw": "造訪柬埔寨王國的首都"
+  },
+  "latitude": 11.56245,
+  "longitude": 104.91601,
+  "capital": 1
+}

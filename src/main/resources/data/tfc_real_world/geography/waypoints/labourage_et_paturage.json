@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/crozet_islands",
+  "title_lang": {
+    "de_de": "Labourage et Pâturage",
+    "en_us": "Labourage et Pâturage",
+    "es_es": "Labourage et Pâturage",
+    "ja_jp": "ラブラージュ・エ・パチュラージュ",
+    "ko_kr": "라부라주 에 파튀라주",
+    "pl_pl": "Labourage et Pâturage",
+    "pt_br": "Labourage et Pâturage",
+    "ru_ru": "Лабураж и Патюраж",
+    "tr_tr": "Labourage et Pâturage",
+    "uk_ua": "Лабураж і Патюраж",
+    "zh_cn": "拉布拉日与帕蒂拉日",
+    "zh_hk": "拉布拉日與帕蒂拉日",
+    "zh_tw": "拉布拉日與帕蒂拉日"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Labourage et Pâturage",
+    "en_us": "Visit Labourage et Pâturage",
+    "es_es": "Visita Labourage et Pâturage",
+    "ja_jp": "ラブラージュ・エ・パチュラージュを訪れよう",
+    "ko_kr": "라부라주 에 파튀라주를 방문하세요",
+    "pl_pl": "Odwiedź Labourage et Pâturage",
+    "pt_br": "Visite Labourage et Pâturage",
+    "ru_ru": "Посетите Лабураж и Патюраж",
+    "tr_tr": "Labourage et Pâturage'yi ziyaret edin",
+    "uk_ua": "Відвідайте Лабураж і Патюраж",
+    "zh_cn": "访问拉布拉日与帕蒂拉日",
+    "zh_hk": "遊覽拉布拉日與帕蒂拉日",
+    "zh_tw": "造訪拉布拉日與帕蒂拉日"
+  },
+  "latitude": -46.38333,
+  "longitude": 51.73333
+}

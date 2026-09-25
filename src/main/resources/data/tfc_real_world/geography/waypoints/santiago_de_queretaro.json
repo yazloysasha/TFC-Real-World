@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/mexico_northeast",
+  "title_lang": {
+    "de_de": "Santiago de Querétaro",
+    "en_us": "Santiago de Querétaro",
+    "es_es": "Santiago de Querétaro",
+    "ja_jp": "ケレタロ",
+    "ko_kr": "케레타로",
+    "pl_pl": "Querétaro",
+    "pt_br": "Santiago de Querétaro",
+    "ru_ru": "Сантьяго-де-Керетаро",
+    "tr_tr": "Santiago de Querétaro",
+    "uk_ua": "Сантьяґо-де-Керетаро",
+    "zh_cn": "克雷塔罗",
+    "zh_hk": "克雷塔羅",
+    "zh_tw": "克雷塔羅"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Santiago de Querétaro",
+    "en_us": "Visit Santiago de Querétaro",
+    "es_es": "Visita Santiago de Querétaro",
+    "ja_jp": "ケレタロを訪れよう",
+    "ko_kr": "케레타로를 방문하세요",
+    "pl_pl": "Odwiedź Querétaro",
+    "pt_br": "Visite Santiago de Querétaro",
+    "ru_ru": "Посетите Сантьяго-де-Керетаро",
+    "tr_tr": "Santiago de Querétaro'yu ziyaret edin",
+    "uk_ua": "Відвідайте Сантьяґо-де-Керетаро",
+    "zh_cn": "访问克雷塔罗",
+    "zh_hk": "遊覽克雷塔羅",
+    "zh_tw": "造訪克雷塔羅"
+  },
+  "latitude": 20.58806,
+  "longitude": -100.38806
+}

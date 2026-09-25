@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/puerto_rico",
+  "title_lang": {
+    "de_de": "San Juan",
+    "en_us": "San Juan",
+    "es_es": "San Juan",
+    "ja_jp": "サン・フアン",
+    "ko_kr": "산후안",
+    "pl_pl": "San Juan",
+    "pt_br": "San Juan",
+    "ru_ru": "Сан-Хуан",
+    "tr_tr": "San Juan",
+    "uk_ua": "Сан-Хуан",
+    "zh_cn": "圣胡安",
+    "zh_hk": "聖胡安",
+    "zh_tw": "聖胡安"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie San Juan",
+    "en_us": "Visit San Juan",
+    "es_es": "Visita San Juan",
+    "ja_jp": "サン・フアンを訪れよう",
+    "ko_kr": "산후안을 방문하세요",
+    "pl_pl": "Odwiedź San Juan",
+    "pt_br": "Visite San Juan",
+    "ru_ru": "Посетите Сан-Хуан",
+    "tr_tr": "San Juan'ı ziyaret edin",
+    "uk_ua": "Відвідайте Сан-Хуан",
+    "zh_cn": "访问圣胡安",
+    "zh_hk": "遊覽聖胡安",
+    "zh_tw": "造訪聖胡安"
+  },
+  "latitude": 18.46633,
+  "longitude": -66.10572
+}

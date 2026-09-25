@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/mexico_central",
+  "title_lang": {
+    "de_de": "Mexiko-Stadt",
+    "en_us": "Mexico City",
+    "es_es": "Ciudad de México",
+    "ja_jp": "メキシコシティ",
+    "ko_kr": "멕시코시티",
+    "pl_pl": "Meksyk",
+    "pt_br": "Cidade do México",
+    "ru_ru": "Мехико",
+    "tr_tr": "Meksiko",
+    "uk_ua": "Мехіко",
+    "zh_cn": "墨西哥城",
+    "zh_hk": "墨西哥城",
+    "zh_tw": "墨西哥城"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Mexiko",
+    "en_us": "Visit the capital of Mexico",
+    "es_es": "Visita la capital de México",
+    "ja_jp": "メキシコの首都を訪れよう",
+    "ko_kr": "멕시코의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Meksyku",
+    "pt_br": "Visite a capital do México",
+    "ru_ru": "Посетите столицу Мексики",
+    "tr_tr": "Meksika'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Мексики",
+    "zh_cn": "访问墨西哥的首都",
+    "zh_hk": "遊覽墨西哥的首都",
+    "zh_tw": "造訪墨西哥的首都"
+  },
+  "latitude": 19.42847,
+  "longitude": -99.12766,
+  "capital": 1
+}

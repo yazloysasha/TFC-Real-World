@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/palestine",
+  "title_lang": {
+    "de_de": "Amman",
+    "en_us": "Amman",
+    "es_es": "Amán",
+    "ja_jp": "アンマン",
+    "ko_kr": "암만",
+    "pl_pl": "Amman",
+    "pt_br": "Amã",
+    "ru_ru": "Амман",
+    "tr_tr": "Amman",
+    "uk_ua": "Амман",
+    "zh_cn": "安曼",
+    "zh_hk": "安曼",
+    "zh_tw": "安曼"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt des Haschemitischen Königreichs Jordanien",
+    "en_us": "Visit the capital of the Hashemite Kingdom of Jordan",
+    "es_es": "Visita la capital del Reino Hachemita de Jordania",
+    "ja_jp": "ヨルダン・ハシミテ王国の首都を訪れよう",
+    "ko_kr": "요르단 하심 왕국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Haszymidzkiego Królestwa Jordanii",
+    "pt_br": "Visite a capital do Reino Hachemita da Jordânia",
+    "ru_ru": "Посетите столицу Иорданского Хашимитского Королевства",
+    "tr_tr": "Ürdün Haşimi Krallığı'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Йорданського Хашимітського Королівства",
+    "zh_cn": "访问约旦哈希姆王国的首都",
+    "zh_hk": "遊覽約旦哈希姆王國的首都",
+    "zh_tw": "造訪約旦哈希姆王國的首都"
+  },
+  "latitude": 31.95522,
+  "longitude": 35.94503,
+  "capital": 1
+}

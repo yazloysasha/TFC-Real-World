@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/poland",
+  "title_lang": {
+    "de_de": "Warschau",
+    "en_us": "Warsaw",
+    "es_es": "Varsovia",
+    "ja_jp": "ワルシャワ",
+    "ko_kr": "바르샤바",
+    "pl_pl": "Warszawa",
+    "pt_br": "Varsóvia",
+    "ru_ru": "Варшава",
+    "tr_tr": "Varşova",
+    "uk_ua": "Варшава",
+    "zh_cn": "华沙",
+    "zh_hk": "華沙",
+    "zh_tw": "華沙"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Polen",
+    "en_us": "Visit the capital of the Republic of Poland",
+    "es_es": "Visita la capital de la República de Polonia",
+    "ja_jp": "ポーランド共和国の首都を訪れよう",
+    "ko_kr": "폴란드 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Polski",
+    "pt_br": "Visite a capital da República da Polônia",
+    "ru_ru": "Посетите столицу Республики Польша",
+    "tr_tr": "Polonya Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Польща",
+    "zh_cn": "访问波兰共和国的首都",
+    "zh_hk": "遊覽波蘭共和國的首都",
+    "zh_tw": "造訪波蘭共和國的首都"
+  },
+  "latitude": 52.22977,
+  "longitude": 21.01178,
+  "capital": 1
+}

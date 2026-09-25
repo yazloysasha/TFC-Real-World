@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/malaya",
+  "title_lang": {
+    "de_de": "Singapur",
+    "en_us": "Singapore",
+    "es_es": "Singapur",
+    "ja_jp": "シンガポール",
+    "ko_kr": "싱가포르",
+    "pl_pl": "Singapur",
+    "pt_br": "Singapura",
+    "ru_ru": "Сингапур",
+    "tr_tr": "Singapur",
+    "uk_ua": "Сінгапур",
+    "zh_cn": "新加坡",
+    "zh_hk": "新加坡",
+    "zh_tw": "新加坡"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Singapur",
+    "en_us": "Visit the capital of the Republic of Singapore",
+    "es_es": "Visita la capital de la República de Singapur",
+    "ja_jp": "シンガポール共和国の首都を訪れよう",
+    "ko_kr": "싱가포르 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Singapuru",
+    "pt_br": "Visite a capital da República de Singapura",
+    "ru_ru": "Посетите столицу Республики Сингапур",
+    "tr_tr": "Singapur Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Сінгапур",
+    "zh_cn": "访问新加坡共和国的首都",
+    "zh_hk": "遊覽新加坡共和國的首都",
+    "zh_tw": "造訪新加坡共和國的首都"
+  },
+  "latitude": 1.28967,
+  "longitude": 103.85007,
+  "capital": 1
+}

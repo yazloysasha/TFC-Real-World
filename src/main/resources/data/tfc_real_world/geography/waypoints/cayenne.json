@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/french_guiana",
+  "title_lang": {
+    "de_de": "Cayenne",
+    "en_us": "Cayenne",
+    "es_es": "Cayena",
+    "ja_jp": "カイエンヌ",
+    "ko_kr": "카옌",
+    "pl_pl": "Kajenna",
+    "pt_br": "Caiena",
+    "ru_ru": "Кайенна",
+    "tr_tr": "Cayenne",
+    "uk_ua": "Каєнна",
+    "zh_cn": "卡宴",
+    "zh_hk": "皆因",
+    "zh_tw": "開雲"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Cayenne",
+    "en_us": "Visit Cayenne",
+    "es_es": "Visita Cayena",
+    "ja_jp": "カイエンヌを訪れよう",
+    "ko_kr": "카옌을 방문하세요",
+    "pl_pl": "Odwiedź Kajenna",
+    "pt_br": "Visite Caiena",
+    "ru_ru": "Посетите Кайенна",
+    "tr_tr": "Cayenne'yi ziyaret edin",
+    "uk_ua": "Відвідайте Каєнна",
+    "zh_cn": "访问卡宴",
+    "zh_hk": "遊覽皆因",
+    "zh_tw": "造訪開雲"
+  },
+  "latitude": 4.9381,
+  "longitude": -52.33455
+}

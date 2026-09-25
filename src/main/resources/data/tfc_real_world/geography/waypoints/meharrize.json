@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/western_sahara",
+  "title_lang": {
+    "de_de": "Meharrize",
+    "en_us": "Meharrize",
+    "es_es": "Meharrize",
+    "ja_jp": "メハリス",
+    "ko_kr": "메하리즈",
+    "pl_pl": "Meharrize",
+    "pt_br": "Meharrize",
+    "ru_ru": "Мехриз",
+    "tr_tr": "Meharrize",
+    "uk_ua": "Мехріз",
+    "zh_cn": "梅哈里兹",
+    "zh_hk": "梅哈里茲",
+    "zh_tw": "梅哈里茲"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Meharrize",
+    "en_us": "Visit Meharrize",
+    "es_es": "Visita Meharrize",
+    "ja_jp": "メハリスを訪れよう",
+    "ko_kr": "메하리즈를 방문하세요",
+    "pl_pl": "Odwiedź Meharrize",
+    "pt_br": "Visite Meharrize",
+    "ru_ru": "Посетите Мехриз",
+    "tr_tr": "Meharrize'yi ziyaret edin",
+    "uk_ua": "Відвідайте Мехріз",
+    "zh_cn": "访问梅哈里兹",
+    "zh_hk": "遊覽梅哈里茲",
+    "zh_tw": "造訪梅哈里茲"
+  },
+  "latitude": 26.14763,
+  "longitude": -11.0693
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/tokelau_and_manihiki",
+  "title_lang": {
+    "de_de": "Atafu",
+    "en_us": "Atafu Village",
+    "es_es": "Atafu",
+    "ja_jp": "アタフ村",
+    "ko_kr": "아타푸 마을",
+    "pl_pl": "Atafu",
+    "pt_br": "Atafu",
+    "ru_ru": "Деревня Атафу",
+    "tr_tr": "Atafu Köyü",
+    "uk_ua": "Село Атафу",
+    "zh_cn": "阿塔富村",
+    "zh_hk": "阿塔富村",
+    "zh_tw": "阿塔富村"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Atafu",
+    "en_us": "Visit Atafu Village",
+    "es_es": "Visita Atafu",
+    "ja_jp": "アタフ村を訪れよう",
+    "ko_kr": "아타푸 마을을 방문하세요",
+    "pl_pl": "Odwiedź Atafu",
+    "pt_br": "Visite Atafu",
+    "ru_ru": "Посетите Деревня Атафу",
+    "tr_tr": "Atafu Köyü'yü ziyaret edin",
+    "uk_ua": "Відвідайте Село Атафу",
+    "zh_cn": "访问阿塔富村",
+    "zh_hk": "遊覽阿塔富村",
+    "zh_tw": "造訪阿塔富村"
+  },
+  "latitude": -8.54212,
+  "longitude": -172.51591
+}

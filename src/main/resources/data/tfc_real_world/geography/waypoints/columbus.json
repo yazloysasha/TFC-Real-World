@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/ohio",
+  "title_lang": {
+    "de_de": "Columbus",
+    "en_us": "Columbus",
+    "es_es": "Columbus",
+    "ja_jp": "コロンバス",
+    "ko_kr": "콜럼버스",
+    "pl_pl": "Columbus",
+    "pt_br": "Columbus",
+    "ru_ru": "Колумбус",
+    "tr_tr": "Columbus",
+    "uk_ua": "Колумбус",
+    "zh_cn": "哥伦布",
+    "zh_hk": "哥倫布",
+    "zh_tw": "哥倫布"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Columbus",
+    "en_us": "Visit Columbus",
+    "es_es": "Visita Columbus",
+    "ja_jp": "コロンバスを訪れよう",
+    "ko_kr": "콜럼버스를 방문하세요",
+    "pl_pl": "Odwiedź Columbus",
+    "pt_br": "Visite Columbus",
+    "ru_ru": "Посетите Колумбус",
+    "tr_tr": "Columbus'u ziyaret edin",
+    "uk_ua": "Відвідайте Колумбус",
+    "zh_cn": "访问哥伦布",
+    "zh_hk": "遊覽哥倫布",
+    "zh_tw": "造訪哥倫布"
+  },
+  "latitude": 39.96118,
+  "longitude": -82.99879
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/afghanistan",
+  "title_lang": {
+    "de_de": "Kabul",
+    "en_us": "Kabul",
+    "es_es": "Kabul",
+    "ja_jp": "カーブル",
+    "ko_kr": "카불",
+    "pl_pl": "Kabul",
+    "pt_br": "Cabul",
+    "ru_ru": "Кабул",
+    "tr_tr": "Kabil",
+    "uk_ua": "Кабул",
+    "zh_cn": "喀布尔",
+    "zh_hk": "喀布爾",
+    "zh_tw": "喀布爾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Islamischen Republik Afghanistan",
+    "en_us": "Visit the capital of the Islamic Republic of Afghanistan",
+    "es_es": "Visita la capital de la República Islámica de Afganistán",
+    "ja_jp": "アフガニスタン・イスラム共和国の首都を訪れよう",
+    "ko_kr": "아프가니스탄 이슬람 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Islamskiej Republiki Afganistanu",
+    "pt_br": "Visite a capital da República Islâmica do Afeganistão",
+    "ru_ru": "Посетите столицу Исламской Республики Афганистан",
+    "tr_tr": "Afganistan İslam Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Ісламської Республіки Афганістан",
+    "zh_cn": "访问阿富汗伊斯兰共和国的首都",
+    "zh_hk": "遊覽阿富汗伊斯蘭共和國的首都",
+    "zh_tw": "造訪阿富汗伊斯蘭共和國的首都"
+  },
+  "latitude": 34.52813,
+  "longitude": 69.17233,
+  "capital": 1
+}

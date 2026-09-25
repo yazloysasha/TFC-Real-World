@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/christmas_island",
+  "title_lang": {
+    "de_de": "Waterfall",
+    "en_us": "Waterfall",
+    "es_es": "Waterfall",
+    "ja_jp": "ウォーターフォール",
+    "ko_kr": "워터폴",
+    "pl_pl": "Waterfall",
+    "pt_br": "Waterfall",
+    "ru_ru": "Уотерфолл",
+    "tr_tr": "Waterfall",
+    "uk_ua": "Вотерфолл",
+    "zh_cn": "瀑布村",
+    "zh_hk": "瀑布村",
+    "zh_tw": "瀑布村"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Waterfall",
+    "en_us": "Visit Waterfall",
+    "es_es": "Visita Waterfall",
+    "ja_jp": "ウォーターフォールを訪れよう",
+    "ko_kr": "워터폴을 방문하세요",
+    "pl_pl": "Odwiedź Waterfall",
+    "pt_br": "Visite Waterfall",
+    "ru_ru": "Посетите Уотерфолл",
+    "tr_tr": "Waterfall'ı ziyaret edin",
+    "uk_ua": "Відвідайте Вотерфолл",
+    "zh_cn": "访问瀑布村",
+    "zh_hk": "遊覽瀑布村",
+    "zh_tw": "造訪瀑布村"
+  },
+  "latitude": -10.45719,
+  "longitude": 105.70481
+}

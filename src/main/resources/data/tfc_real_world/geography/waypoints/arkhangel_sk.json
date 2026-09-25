@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/north_european_russia",
+  "title_lang": {
+    "de_de": "Archangelsk",
+    "en_us": "Arkhangelsk",
+    "es_es": "Arcángel",
+    "ja_jp": "アルハンゲリスク",
+    "ko_kr": "아르한겔스크",
+    "pl_pl": "Archangielsk",
+    "pt_br": "Arcangel",
+    "ru_ru": "Архангельск",
+    "tr_tr": "Arhangelsk",
+    "uk_ua": "Архангельськ",
+    "zh_cn": "阿尔汉格尔斯克",
+    "zh_hk": "阿爾漢格爾斯克",
+    "zh_tw": "阿爾漢格爾斯克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Archangelsk",
+    "en_us": "Visit Arkhangelsk",
+    "es_es": "Visita Arcángel",
+    "ja_jp": "アルハンゲリスクを訪れよう",
+    "ko_kr": "아르한겔스크를 방문하세요",
+    "pl_pl": "Odwiedź Archangielsk",
+    "pt_br": "Visite Arcangel",
+    "ru_ru": "Посетите Архангельск",
+    "tr_tr": "Arhangelsk'i ziyaret edin",
+    "uk_ua": "Відвідайте Архангельськ",
+    "zh_cn": "访问阿尔汉格尔斯克",
+    "zh_hk": "遊覽阿爾漢格爾斯克",
+    "zh_tw": "造訪阿爾漢格爾斯克"
+  },
+  "latitude": 64.5461,
+  "longitude": 40.55183
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/tonga",
+  "title_lang": {
+    "de_de": "Nukuʻalofa",
+    "en_us": "Nukuʻalofa",
+    "es_es": "Nukualofa",
+    "ja_jp": "ヌクアロファ",
+    "ko_kr": "누쿠알로파",
+    "pl_pl": "Nukuʻalofa",
+    "pt_br": "Nuku'alofa",
+    "ru_ru": "Нукуалофа",
+    "tr_tr": "Nuku'alofa",
+    "uk_ua": "Нукуалофа",
+    "zh_cn": "努库阿洛法",
+    "zh_hk": "努庫阿洛法",
+    "zh_tw": "努瓜婁發"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt des Königreichs Tonga",
+    "en_us": "Visit the capital of the Kingdom of Tonga",
+    "es_es": "Visita la capital del Reino de Tonga",
+    "ja_jp": "トンガ王国の首都を訪れよう",
+    "ko_kr": "통가 왕국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Królestwa Tonga",
+    "pt_br": "Visite a capital do Reino de Tonga",
+    "ru_ru": "Посетите столицу Королевства Тонга",
+    "tr_tr": "Tonga Krallığı'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Королівства Тонга",
+    "zh_cn": "访问汤加王国的首都",
+    "zh_hk": "遊覽湯加王國的首都",
+    "zh_tw": "造訪湯加王國的首都"
+  },
+  "latitude": -21.13683,
+  "longitude": -175.20114,
+  "capital": 1
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/kwazulu_natal",
+  "title_lang": {
+    "de_de": "Pietermaritzburg",
+    "en_us": "Pietermaritzburg",
+    "es_es": "Pietermaritzburg",
+    "ja_jp": "ピーターマリッツバーグ",
+    "ko_kr": "피터마리츠버그",
+    "pl_pl": "Pietermaritzburg",
+    "pt_br": "Pietermaritzburg",
+    "ru_ru": "Питермарицбург",
+    "tr_tr": "Pietermaritzburg",
+    "uk_ua": "Пітермаріцбург",
+    "zh_cn": "彼得马里茨堡",
+    "zh_hk": "彼得馬裏茨堡",
+    "zh_tw": "彼得馬裏茨堡"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Pietermaritzburg",
+    "en_us": "Visit Pietermaritzburg",
+    "es_es": "Visita Pietermaritzburg",
+    "ja_jp": "ピーターマリッツバーグを訪れよう",
+    "ko_kr": "피터마리츠버그를 방문하세요",
+    "pl_pl": "Odwiedź Pietermaritzburg",
+    "pt_br": "Visite Pietermaritzburg",
+    "ru_ru": "Посетите Питермарицбург",
+    "tr_tr": "Pietermaritzburg'u ziyaret edin",
+    "uk_ua": "Відвідайте Пітермаріцбург",
+    "zh_cn": "访问彼得马里茨堡",
+    "zh_hk": "遊覽彼得馬裏茨堡",
+    "zh_tw": "造訪彼得馬裏茨堡"
+  },
+  "latitude": -29.61679,
+  "longitude": 30.39278
+}

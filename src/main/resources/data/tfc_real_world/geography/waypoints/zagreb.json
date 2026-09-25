@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/yugoslavia",
+  "title_lang": {
+    "de_de": "Zagreb",
+    "en_us": "Zagreb",
+    "es_es": "Zagreb",
+    "ja_jp": "ザグレブ",
+    "ko_kr": "자그레브",
+    "pl_pl": "Zagrzeb",
+    "pt_br": "Zagreb",
+    "ru_ru": "Загреб",
+    "tr_tr": "Zagreb",
+    "uk_ua": "Загреб",
+    "zh_cn": "萨格勒布",
+    "zh_hk": "薩格勒布",
+    "zh_tw": "札格雷布"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Kroatien",
+    "en_us": "Visit the capital of the Republic of Croatia",
+    "es_es": "Visita la capital de la República de Croacia",
+    "ja_jp": "クロアチア共和国の首都を訪れよう",
+    "ko_kr": "크로아티아 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Chorwacji",
+    "pt_br": "Visite a capital da República da Croácia",
+    "ru_ru": "Посетите столицу Республики Хорватия",
+    "tr_tr": "Hırvatistan Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Хорватія",
+    "zh_cn": "访问克罗地亚共和国的首都",
+    "zh_hk": "遊覽克羅地亞共和國的首都",
+    "zh_tw": "造訪克羅地亞共和國的首都"
+  },
+  "latitude": 45.81444,
+  "longitude": 15.97798,
+  "capital": 1
+}

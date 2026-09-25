@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/virginia",
+  "title_lang": {
+    "de_de": "Richmond",
+    "en_us": "Richmond",
+    "es_es": "Richmond",
+    "ja_jp": "リッチモンド",
+    "ko_kr": "리치먼드",
+    "pl_pl": "Richmond",
+    "pt_br": "Richmond",
+    "ru_ru": "Ричмонд",
+    "tr_tr": "Richmond",
+    "uk_ua": "Ричмонд",
+    "zh_cn": "里士满",
+    "zh_hk": "列治文",
+    "zh_tw": "裏士滿"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Richmond",
+    "en_us": "Visit Richmond",
+    "es_es": "Visita Richmond",
+    "ja_jp": "リッチモンドを訪れよう",
+    "ko_kr": "리치먼드를 방문하세요",
+    "pl_pl": "Odwiedź Richmond",
+    "pt_br": "Visite Richmond",
+    "ru_ru": "Посетите Ричмонд",
+    "tr_tr": "Richmond'u ziyaret edin",
+    "uk_ua": "Відвідайте Ричмонд",
+    "zh_cn": "访问里士满",
+    "zh_hk": "遊覽列治文",
+    "zh_tw": "造訪裏士滿"
+  },
+  "latitude": 37.55376,
+  "longitude": -77.46026
+}

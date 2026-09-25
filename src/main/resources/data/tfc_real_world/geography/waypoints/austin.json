@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/texas",
+  "title_lang": {
+    "de_de": "Austin",
+    "en_us": "Austin",
+    "es_es": "Austin",
+    "ja_jp": "オースティン",
+    "ko_kr": "오스틴",
+    "pl_pl": "Austin",
+    "pt_br": "Austin",
+    "ru_ru": "Остин",
+    "tr_tr": "Austin",
+    "uk_ua": "Остін",
+    "zh_cn": "奥斯汀",
+    "zh_hk": "柯士甸",
+    "zh_tw": "奧斯汀"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Austin",
+    "en_us": "Visit Austin",
+    "es_es": "Visita Austin",
+    "ja_jp": "オースティンを訪れよう",
+    "ko_kr": "오스틴을 방문하세요",
+    "pl_pl": "Odwiedź Austin",
+    "pt_br": "Visite Austin",
+    "ru_ru": "Посетите Остин",
+    "tr_tr": "Austin'i ziyaret edin",
+    "uk_ua": "Відвідайте Остін",
+    "zh_cn": "访问奥斯汀",
+    "zh_hk": "遊覽柯士甸",
+    "zh_tw": "造訪奧斯汀"
+  },
+  "latitude": 30.26715,
+  "longitude": -97.74306
+}

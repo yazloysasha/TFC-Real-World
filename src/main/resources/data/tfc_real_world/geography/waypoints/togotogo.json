@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/bismarck_archipelago",
+  "title_lang": {
+    "de_de": "Togotogo",
+    "en_us": "Togotogo",
+    "es_es": "Togotogo",
+    "ja_jp": "トゴトゴ",
+    "ko_kr": "토고토고",
+    "pl_pl": "Togotogo",
+    "pt_br": "Togotogo",
+    "ru_ru": "Тоготого",
+    "tr_tr": "Togotogo",
+    "uk_ua": "Тоготого",
+    "zh_cn": "托戈托戈",
+    "zh_hk": "托戈托戈",
+    "zh_tw": "托戈托戈"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Togotogo",
+    "en_us": "Visit Togotogo",
+    "es_es": "Visita Togotogo",
+    "ja_jp": "トゴトゴを訪れよう",
+    "ko_kr": "토고토고를 방문하세요",
+    "pl_pl": "Odwiedź Togotogo",
+    "pt_br": "Visite Togotogo",
+    "ru_ru": "Посетите Тоготого",
+    "tr_tr": "Togotogo'yu ziyaret edin",
+    "uk_ua": "Відвідайте Тоготого",
+    "zh_cn": "访问托戈托戈",
+    "zh_hk": "遊覽托戈托戈",
+    "zh_tw": "造訪托戈托戈"
+  },
+  "latitude": -4.93333,
+  "longitude": 151.21667
+}

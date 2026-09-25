@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/antipodean_islands",
+  "title_lang": {
+    "de_de": "Lumina",
+    "en_us": "Lumina",
+    "es_es": "Lumina",
+    "ja_jp": "ルミナ",
+    "ko_kr": "루미나",
+    "pl_pl": "Lumina",
+    "pt_br": "Lumina",
+    "ru_ru": "Лумина",
+    "tr_tr": "Lumina",
+    "uk_ua": "Луміна",
+    "zh_cn": "卢米纳",
+    "zh_hk": "盧米納",
+    "zh_tw": "盧米納"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Lumina",
+    "en_us": "Visit Lumina",
+    "es_es": "Visita Lumina",
+    "ja_jp": "ルミナを訪れよう",
+    "ko_kr": "루미나를 방문하세요",
+    "pl_pl": "Odwiedź Lumina",
+    "pt_br": "Visite Lumina",
+    "ru_ru": "Посетите Лумина",
+    "tr_tr": "Lumina'yı ziyaret edin",
+    "uk_ua": "Відвідайте Луміна",
+    "zh_cn": "访问卢米纳",
+    "zh_hk": "遊覽盧米納",
+    "zh_tw": "造訪盧米納"
+  },
+  "latitude": -50.7546,
+  "longitude": 166.04944
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/uruguay",
+  "title_lang": {
+    "de_de": "Montevideo",
+    "en_us": "Montevideo",
+    "es_es": "Montevideo",
+    "ja_jp": "モンテビデオ",
+    "ko_kr": "몬테비데오",
+    "pl_pl": "Montevideo",
+    "pt_br": "Montevidéu",
+    "ru_ru": "Монтевидео",
+    "tr_tr": "Montevideo",
+    "uk_ua": "Монтевідео",
+    "zh_cn": "蒙得维的亚",
+    "zh_hk": "蒙特維多",
+    "zh_tw": "蒙特維多"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Orientalischen Republik Uruguay",
+    "en_us": "Visit the capital of the Oriental Republic of Uruguay",
+    "es_es": "Visita la capital de la República Oriental del Uruguay",
+    "ja_jp": "ウルグアイ東方共和国の首都を訪れよう",
+    "ko_kr": "우루과이 동방 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Wschodniej Republiki Urugwaju",
+    "pt_br": "Visite a capital da República Oriental do Uruguai",
+    "ru_ru": "Посетите столицу Восточной Республики Уругвай",
+    "tr_tr": "Uruguay Doğu Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Східної Республіки Уругвай",
+    "zh_cn": "访问乌拉圭东岸共和国的首都",
+    "zh_hk": "遊覽烏拉圭東岸共和國的首都",
+    "zh_tw": "造訪烏拉圭東岸共和國的首都"
+  },
+  "latitude": -34.90328,
+  "longitude": -56.18816,
+  "capital": 1
+}

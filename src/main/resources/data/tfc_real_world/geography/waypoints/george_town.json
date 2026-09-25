@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/cayman_islands",
+  "title_lang": {
+    "de_de": "George Town",
+    "en_us": "George Town",
+    "es_es": "George Town",
+    "ja_jp": "ジョージタウン",
+    "ko_kr": "조지타운",
+    "pl_pl": "George Town",
+    "pt_br": "George Town",
+    "ru_ru": "Джорджтаун",
+    "tr_tr": "George Town",
+    "uk_ua": "Джорджтаун",
+    "zh_cn": "乔治敦",
+    "zh_hk": "喬治敦",
+    "zh_tw": "喬治敦"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie George Town",
+    "en_us": "Visit George Town",
+    "es_es": "Visita George Town",
+    "ja_jp": "ジョージタウンを訪れよう",
+    "ko_kr": "조지타운을 방문하세요",
+    "pl_pl": "Odwiedź George Town",
+    "pt_br": "Visite George Town",
+    "ru_ru": "Посетите Джорджтаун",
+    "tr_tr": "George Town'u ziyaret edin",
+    "uk_ua": "Відвідайте Джорджтаун",
+    "zh_cn": "访问乔治敦",
+    "zh_hk": "遊覽喬治敦",
+    "zh_tw": "造訪喬治敦"
+  },
+  "latitude": 19.2866,
+  "longitude": -81.37436
+}

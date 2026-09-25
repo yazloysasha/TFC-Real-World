@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/florida",
+  "title_lang": {
+    "de_de": "Tallahassee",
+    "en_us": "Tallahassee",
+    "es_es": "Tallahassee",
+    "ja_jp": "タラハシー",
+    "ko_kr": "탤러해시",
+    "pl_pl": "Tallahassee",
+    "pt_br": "Tallahassee",
+    "ru_ru": "Таллахасси",
+    "tr_tr": "Tallahassee",
+    "uk_ua": "Таллахассі",
+    "zh_cn": "塔拉赫西",
+    "zh_hk": "塔拉赫西",
+    "zh_tw": "塔拉赫西"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Tallahassee",
+    "en_us": "Visit Tallahassee",
+    "es_es": "Visita Tallahassee",
+    "ja_jp": "タラハシーを訪れよう",
+    "ko_kr": "탤러해시를 방문하세요",
+    "pl_pl": "Odwiedź Tallahassee",
+    "pt_br": "Visite Tallahassee",
+    "ru_ru": "Посетите Таллахасси",
+    "tr_tr": "Tallahassee'yi ziyaret edin",
+    "uk_ua": "Відвідайте Таллахассі",
+    "zh_cn": "访问塔拉赫西",
+    "zh_hk": "遊覽塔拉赫西",
+    "zh_tw": "造訪塔拉赫西"
+  },
+  "latitude": 30.43826,
+  "longitude": -84.28073
+}

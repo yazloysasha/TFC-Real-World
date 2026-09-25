@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/east_thrace",
+  "title_lang": {
+    "de_de": "Edirne",
+    "en_us": "Edirne",
+    "es_es": "Edirne",
+    "ja_jp": "エディルネ",
+    "ko_kr": "에디르네",
+    "pl_pl": "Edirne",
+    "pt_br": "Edirne",
+    "ru_ru": "Эдирне",
+    "tr_tr": "Edirne",
+    "uk_ua": "Едірне",
+    "zh_cn": "埃迪尔内",
+    "zh_hk": "埃迪爾內",
+    "zh_tw": "埃迪爾內"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Edirne",
+    "en_us": "Visit Edirne",
+    "es_es": "Visita Edirne",
+    "ja_jp": "エディルネを訪れよう",
+    "ko_kr": "에디르네를 방문하세요",
+    "pl_pl": "Odwiedź Edirne",
+    "pt_br": "Visite Edirne",
+    "ru_ru": "Посетите Эдирне",
+    "tr_tr": "Edirne'yi ziyaret edin",
+    "uk_ua": "Відвідайте Едірне",
+    "zh_cn": "访问埃迪尔内",
+    "zh_hk": "遊覽埃迪爾內",
+    "zh_tw": "造訪埃迪爾內"
+  },
+  "latitude": 41.67719,
+  "longitude": 26.55597
+}

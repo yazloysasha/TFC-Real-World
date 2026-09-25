@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/tristan_da_cunha",
+  "title_lang": {
+    "de_de": "Edinburgh of the Seven Seas",
+    "en_us": "Edinburgh of the Seven Seas",
+    "es_es": "Edimburgo de los Siete Mares",
+    "ja_jp": "エディンバラ・オブ・ザ・セブン・シーズ",
+    "ko_kr": "에든버러오브더세븐시즈",
+    "pl_pl": "Edinburgh of the Seven Seas",
+    "pt_br": "Edimburgo dos Sete Mares",
+    "ru_ru": "Эдинбург семи морей",
+    "tr_tr": "Edinburgh of the Seven Seas",
+    "uk_ua": "Единбург семи морів",
+    "zh_cn": "七海爱丁堡",
+    "zh_hk": "七海愛丁堡",
+    "zh_tw": "七海愛丁堡"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Edinburgh of the Seven Seas",
+    "en_us": "Visit Edinburgh of the Seven Seas",
+    "es_es": "Visita Edimburgo de los Siete Mares",
+    "ja_jp": "エディンバラ・オブ・ザ・セブン・シーズを訪れよう",
+    "ko_kr": "에든버러오브더세븐시즈를 방문하세요",
+    "pl_pl": "Odwiedź Edinburgh of the Seven Seas",
+    "pt_br": "Visite Edimburgo dos Sete Mares",
+    "ru_ru": "Посетите Эдинбург семи морей",
+    "tr_tr": "Edinburgh of the Seven Seas'ı ziyaret edin",
+    "uk_ua": "Відвідайте Единбург семи морів",
+    "zh_cn": "访问七海爱丁堡",
+    "zh_hk": "遊覽七海愛丁堡",
+    "zh_tw": "造訪七海愛丁堡"
+  },
+  "latitude": -37.06757,
+  "longitude": -12.31155
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/iran",
+  "title_lang": {
+    "de_de": "Teheran",
+    "en_us": "Tehran",
+    "es_es": "Teherán",
+    "ja_jp": "テヘラン",
+    "ko_kr": "테헤란",
+    "pl_pl": "Teheran",
+    "pt_br": "Teerão",
+    "ru_ru": "Тегеран",
+    "tr_tr": "Tahran",
+    "uk_ua": "Тегеран",
+    "zh_cn": "德黑兰",
+    "zh_hk": "德黑蘭",
+    "zh_tw": "德黑蘭"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Islamischen Republik Iran",
+    "en_us": "Visit the capital of the Islamic Republic of Iran",
+    "es_es": "Visita la capital de la República Islámica de Irán",
+    "ja_jp": "イラン・イスラム共和国の首都を訪れよう",
+    "ko_kr": "이란 이슬람 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Islamskiej Republiki Iranu",
+    "pt_br": "Visite a capital da República Islâmica de Irã",
+    "ru_ru": "Посетите столицу Исламской Республики Иран",
+    "tr_tr": "İran İslam Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Ісламської Республіки Іран",
+    "zh_cn": "访问伊朗伊斯兰共和国的首都",
+    "zh_hk": "遊覽伊朗伊斯蘭共和國的首都",
+    "zh_tw": "造訪伊朗伊斯蘭共和國的首都"
+  },
+  "latitude": 35.69439,
+  "longitude": 51.42151,
+  "capital": 1
+}

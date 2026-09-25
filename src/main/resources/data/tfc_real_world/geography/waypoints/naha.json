@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/nansei_islands",
+  "title_lang": {
+    "de_de": "Naha",
+    "en_us": "Naha",
+    "es_es": "Naha",
+    "ja_jp": "那覇",
+    "ko_kr": "나하",
+    "pl_pl": "Naha",
+    "pt_br": "Naha",
+    "ru_ru": "Наха",
+    "tr_tr": "Naha",
+    "uk_ua": "Наха",
+    "zh_cn": "那霸",
+    "zh_hk": "那霸",
+    "zh_tw": "那霸"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Naha",
+    "en_us": "Visit Naha",
+    "es_es": "Visita Naha",
+    "ja_jp": "那覇を訪れよう",
+    "ko_kr": "나하를 방문하세요",
+    "pl_pl": "Odwiedź Naha",
+    "pt_br": "Visite Naha",
+    "ru_ru": "Посетите Наха",
+    "tr_tr": "Naha'yı ziyaret edin",
+    "uk_ua": "Відвідайте Наха",
+    "zh_cn": "访问那霸",
+    "zh_hk": "遊覽那霸",
+    "zh_tw": "造訪那霸"
+  },
+  "latitude": 26.213,
+  "longitude": 127.67851
+}

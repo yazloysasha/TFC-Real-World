@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/connecticut",
+  "title_lang": {
+    "de_de": "Hartford",
+    "en_us": "Hartford",
+    "es_es": "Hartford",
+    "ja_jp": "ハートフォード",
+    "ko_kr": "하트퍼드",
+    "pl_pl": "Hartford",
+    "pt_br": "Hartford",
+    "ru_ru": "Хартфорд",
+    "tr_tr": "Hartford",
+    "uk_ua": "Гартфорд",
+    "zh_cn": "哈特福德",
+    "zh_hk": "哈特福德",
+    "zh_tw": "哈特福"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Hartford",
+    "en_us": "Visit Hartford",
+    "es_es": "Visita Hartford",
+    "ja_jp": "ハートフォードを訪れよう",
+    "ko_kr": "하트퍼드를 방문하세요",
+    "pl_pl": "Odwiedź Hartford",
+    "pt_br": "Visite Hartford",
+    "ru_ru": "Посетите Хартфорд",
+    "tr_tr": "Hartford'u ziyaret edin",
+    "uk_ua": "Відвідайте Гартфорд",
+    "zh_cn": "访问哈特福德",
+    "zh_hk": "遊覽哈特福德",
+    "zh_tw": "造訪哈特福"
+  },
+  "latitude": 41.76371,
+  "longitude": -72.68509
+}

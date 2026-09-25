@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/canary_islands",
+  "title_lang": {
+    "de_de": "Las Palmas de Gran Canaria",
+    "en_us": "Las Palmas de Gran Canaria",
+    "es_es": "Las Palmas de Gran Canaria",
+    "ja_jp": "ラス・パルマス・デ・グラン・カナリア",
+    "ko_kr": "라스팔마스 데 그란 카나리아",
+    "pl_pl": "Las Palmas de Gran Canaria",
+    "pt_br": "Las Palmas de Gran Canaria",
+    "ru_ru": "Лас-Пальмас",
+    "tr_tr": "Las Palmas de Gran Canaria",
+    "uk_ua": "Лас-Пальмас-де-Ґран-Канарія",
+    "zh_cn": "拉斯帕尔马斯",
+    "zh_hk": "拉斯帕爾馬斯",
+    "zh_tw": "拉斯帕爾馬斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Las Palmas de Gran Canaria",
+    "en_us": "Visit Las Palmas de Gran Canaria",
+    "es_es": "Visita Las Palmas de Gran Canaria",
+    "ja_jp": "ラス・パルマス・デ・グラン・カナリアを訪れよう",
+    "ko_kr": "라스팔마스 데 그란 카나리아를 방문하세요",
+    "pl_pl": "Odwiedź Las Palmas de Gran Canaria",
+    "pt_br": "Visite Las Palmas de Gran Canaria",
+    "ru_ru": "Посетите Лас-Пальмас",
+    "tr_tr": "Las Palmas de Gran Canaria'yı ziyaret edin",
+    "uk_ua": "Відвідайте Лас-Пальмас-де-Ґран-Канарія",
+    "zh_cn": "访问拉斯帕尔马斯",
+    "zh_hk": "遊覽拉斯帕爾馬斯",
+    "zh_tw": "造訪拉斯帕爾馬斯"
+  },
+  "latitude": 28.10178,
+  "longitude": -15.41573
+}

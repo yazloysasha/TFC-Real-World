@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/new_caledonia",
+  "title_lang": {
+    "de_de": "Nouméa",
+    "en_us": "Nouméa",
+    "es_es": "Numea",
+    "ja_jp": "ヌメア",
+    "ko_kr": "누메아",
+    "pl_pl": "Numea",
+    "pt_br": "Numeá",
+    "ru_ru": "Нумеа",
+    "tr_tr": "Nouméa",
+    "uk_ua": "Нумеа",
+    "zh_cn": "努美阿",
+    "zh_hk": "諾美亞",
+    "zh_tw": "努美阿"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Nouméa",
+    "en_us": "Visit Nouméa",
+    "es_es": "Visita Numea",
+    "ja_jp": "ヌメアを訪れよう",
+    "ko_kr": "누메아를 방문하세요",
+    "pl_pl": "Odwiedź Numea",
+    "pt_br": "Visite Numeá",
+    "ru_ru": "Посетите Нумеа",
+    "tr_tr": "Nouméa'yı ziyaret edin",
+    "uk_ua": "Відвідайте Нумеа",
+    "zh_cn": "访问努美阿",
+    "zh_hk": "遊覽諾美亞",
+    "zh_tw": "造訪努美阿"
+  },
+  "latitude": -22.27407,
+  "longitude": 166.44884
+}

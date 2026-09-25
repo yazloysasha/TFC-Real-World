@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/kansas",
+  "title_lang": {
+    "de_de": "Topeka",
+    "en_us": "Topeka",
+    "es_es": "Topeka",
+    "ja_jp": "トピカ",
+    "ko_kr": "토피카",
+    "pl_pl": "Topeka",
+    "pt_br": "Topeka",
+    "ru_ru": "Топика",
+    "tr_tr": "Topeka",
+    "uk_ua": "Топіка",
+    "zh_cn": "托皮卡",
+    "zh_hk": "托皮卡",
+    "zh_tw": "托皮卡"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Topeka",
+    "en_us": "Visit Topeka",
+    "es_es": "Visita Topeka",
+    "ja_jp": "トピカを訪れよう",
+    "ko_kr": "토피카를 방문하세요",
+    "pl_pl": "Odwiedź Topeka",
+    "pt_br": "Visite Topeka",
+    "ru_ru": "Посетите Топика",
+    "tr_tr": "Topeka'yı ziyaret edin",
+    "uk_ua": "Відвідайте Топіка",
+    "zh_cn": "访问托皮卡",
+    "zh_hk": "遊覽托皮卡",
+    "zh_tw": "造訪托皮卡"
+  },
+  "latitude": 39.04833,
+  "longitude": -95.67804
+}

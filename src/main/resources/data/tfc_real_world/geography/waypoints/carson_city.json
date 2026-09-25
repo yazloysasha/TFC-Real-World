@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/nevada",
+  "title_lang": {
+    "de_de": "Carson City",
+    "en_us": "Carson City",
+    "es_es": "Carson City",
+    "ja_jp": "カーソンシティ",
+    "ko_kr": "카슨시티",
+    "pl_pl": "Carson City",
+    "pt_br": "Carson City",
+    "ru_ru": "Карсон-Сити",
+    "tr_tr": "Carson City",
+    "uk_ua": "Карсон-Сіті",
+    "zh_cn": "卡森城",
+    "zh_hk": "卡森城",
+    "zh_tw": "卡森城"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Carson City",
+    "en_us": "Visit Carson City",
+    "es_es": "Visita Carson City",
+    "ja_jp": "カーソンシティを訪れよう",
+    "ko_kr": "카슨시티를 방문하세요",
+    "pl_pl": "Odwiedź Carson City",
+    "pt_br": "Visite Carson City",
+    "ru_ru": "Посетите Карсон-Сити",
+    "tr_tr": "Carson City'i ziyaret edin",
+    "uk_ua": "Відвідайте Карсон-Сіті",
+    "zh_cn": "访问卡森城",
+    "zh_hk": "遊覽卡森城",
+    "zh_tw": "造訪卡森城"
+  },
+  "latitude": 39.1638,
+  "longitude": -119.7674
+}

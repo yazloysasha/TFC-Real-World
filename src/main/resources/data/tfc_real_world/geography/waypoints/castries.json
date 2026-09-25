@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/windward_islands",
+  "title_lang": {
+    "de_de": "Castries",
+    "en_us": "Castries",
+    "es_es": "Castries",
+    "ja_jp": "カストリーズ",
+    "ko_kr": "캐스트리스",
+    "pl_pl": "Castries",
+    "pt_br": "Castries",
+    "ru_ru": "Кастри",
+    "tr_tr": "Castries",
+    "uk_ua": "Кастрі",
+    "zh_cn": "卡斯特里",
+    "zh_hk": "卡斯特裏",
+    "zh_tw": "卡斯翠"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von St. Lucia",
+    "en_us": "Visit the capital of Saint Lucia",
+    "es_es": "Visita la capital de Santa Lucía",
+    "ja_jp": "セントルシアの首都を訪れよう",
+    "ko_kr": "세인트루시아의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Saint Lucii",
+    "pt_br": "Visite a capital de Santa Lúcia",
+    "ru_ru": "Посетите столицу Сент-Люсии",
+    "tr_tr": "Saint Lucia'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Сент-Люсії",
+    "zh_cn": "访问圣卢西亚的首都",
+    "zh_hk": "遊覽聖盧西亞的首都",
+    "zh_tw": "造訪聖盧西亞的首都"
+  },
+  "latitude": 13.9957,
+  "longitude": -61.00614,
+  "capital": 1
+}

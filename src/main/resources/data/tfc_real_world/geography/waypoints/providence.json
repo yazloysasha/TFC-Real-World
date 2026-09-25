@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/rhode_island",
+  "title_lang": {
+    "de_de": "Providence",
+    "en_us": "Providence",
+    "es_es": "Providence",
+    "ja_jp": "プロヴィデンス",
+    "ko_kr": "프로비던스",
+    "pl_pl": "Providence",
+    "pt_br": "Providence",
+    "ru_ru": "Провиденс",
+    "tr_tr": "Providence",
+    "uk_ua": "Провіденс",
+    "zh_cn": "普罗维登斯",
+    "zh_hk": "普洛威頓斯",
+    "zh_tw": "普洛威頓斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Providence",
+    "en_us": "Visit Providence",
+    "es_es": "Visita Providence",
+    "ja_jp": "プロヴィデンスを訪れよう",
+    "ko_kr": "프로비던스를 방문하세요",
+    "pl_pl": "Odwiedź Providence",
+    "pt_br": "Visite Providence",
+    "ru_ru": "Посетите Провиденс",
+    "tr_tr": "Providence'yi ziyaret edin",
+    "uk_ua": "Відвідайте Провіденс",
+    "zh_cn": "访问普罗维登斯",
+    "zh_hk": "遊覽普洛威頓斯",
+    "zh_tw": "造訪普洛威頓斯"
+  },
+  "latitude": 41.82399,
+  "longitude": -71.41283
+}

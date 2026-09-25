@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/madeira",
+  "title_lang": {
+    "de_de": "Funchal",
+    "en_us": "Funchal",
+    "es_es": "Funchal",
+    "ja_jp": "フンシャル",
+    "ko_kr": "푼샬",
+    "pl_pl": "Funchal",
+    "pt_br": "Funchal",
+    "ru_ru": "Фуншал",
+    "tr_tr": "Funchal",
+    "uk_ua": "Фуншал",
+    "zh_cn": "丰沙尔",
+    "zh_hk": "豐沙爾",
+    "zh_tw": "豐沙爾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Funchal",
+    "en_us": "Visit Funchal",
+    "es_es": "Visita Funchal",
+    "ja_jp": "フンシャルを訪れよう",
+    "ko_kr": "푼샬을 방문하세요",
+    "pl_pl": "Odwiedź Funchal",
+    "pt_br": "Visite Funchal",
+    "ru_ru": "Посетите Фуншал",
+    "tr_tr": "Funchal'ı ziyaret edin",
+    "uk_ua": "Відвідайте Фуншал",
+    "zh_cn": "访问丰沙尔",
+    "zh_hk": "遊覽豐沙爾",
+    "zh_tw": "造訪豐沙爾"
+  },
+  "latitude": 32.66568,
+  "longitude": -16.92547
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/mississippi",
+  "title_lang": {
+    "de_de": "Jackson",
+    "en_us": "Jackson",
+    "es_es": "Jackson",
+    "ja_jp": "ジャクソン",
+    "ko_kr": "잭슨",
+    "pl_pl": "Jackson",
+    "pt_br": "Jackson",
+    "ru_ru": "Джэксон",
+    "tr_tr": "Jackson",
+    "uk_ua": "Джексон",
+    "zh_cn": "杰克逊",
+    "zh_hk": "傑克遜",
+    "zh_tw": "傑克遜"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Jackson",
+    "en_us": "Visit Jackson",
+    "es_es": "Visita Jackson",
+    "ja_jp": "ジャクソンを訪れよう",
+    "ko_kr": "잭슨을 방문하세요",
+    "pl_pl": "Odwiedź Jackson",
+    "pt_br": "Visite Jackson",
+    "ru_ru": "Посетите Джэксон",
+    "tr_tr": "Jackson'u ziyaret edin",
+    "uk_ua": "Відвідайте Джексон",
+    "zh_cn": "访问杰克逊",
+    "zh_hk": "遊覽傑克遜",
+    "zh_tw": "造訪傑克遜"
+  },
+  "latitude": 32.29876,
+  "longitude": -90.18481
+}

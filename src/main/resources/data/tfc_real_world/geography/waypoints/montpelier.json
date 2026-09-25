@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/vermont",
+  "title_lang": {
+    "de_de": "Montpelier",
+    "en_us": "Montpelier",
+    "es_es": "Montpelier",
+    "ja_jp": "モントピリア",
+    "ko_kr": "몬트필리어",
+    "pl_pl": "Montpelier",
+    "pt_br": "Montpelier",
+    "ru_ru": "Монтпилиер",
+    "tr_tr": "Montpelier",
+    "uk_ua": "Монтпілієр",
+    "zh_cn": "蒙彼利埃",
+    "zh_hk": "蒙彼利埃",
+    "zh_tw": "蒙彼利埃"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Montpelier",
+    "en_us": "Visit Montpelier",
+    "es_es": "Visita Montpelier",
+    "ja_jp": "モントピリアを訪れよう",
+    "ko_kr": "몬트필리어를 방문하세요",
+    "pl_pl": "Odwiedź Montpelier",
+    "pt_br": "Visite Montpelier",
+    "ru_ru": "Посетите Монтпилиер",
+    "tr_tr": "Montpelier'i ziyaret edin",
+    "uk_ua": "Відвідайте Монтпілієр",
+    "zh_cn": "访问蒙彼利埃",
+    "zh_hk": "遊覽蒙彼利埃",
+    "zh_tw": "造訪蒙彼利埃"
+  },
+  "latitude": 44.26006,
+  "longitude": -72.57539
+}

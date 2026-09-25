@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/mexican_pacific_islands",
+  "title_lang": {
+    "de_de": "San Benedicto",
+    "en_us": "San Benedicto Island",
+    "es_es": "Isla San Benedicto",
+    "ja_jp": "サン・ベネディクト島",
+    "ko_kr": "산베네딕토섬",
+    "pl_pl": "Wyspa San Benedicto",
+    "pt_br": "Ilha San Benedicto",
+    "ru_ru": "Остров Сан-Бенедикто",
+    "tr_tr": "San Benedicto Adası",
+    "uk_ua": "Острів Сан-Бенедікто",
+    "zh_cn": "圣贝尼迪克托岛",
+    "zh_hk": "聖貝尼迪克托島",
+    "zh_tw": "聖貝尼迪克托島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie San Benedicto",
+    "en_us": "Visit San Benedicto Island",
+    "es_es": "Visita Isla San Benedicto",
+    "ja_jp": "サン・ベネディクト島を訪れよう",
+    "ko_kr": "산베네딕토섬을 방문하세요",
+    "pl_pl": "Odwiedź Wyspa San Benedicto",
+    "pt_br": "Visite Ilha San Benedicto",
+    "ru_ru": "Посетите Остров Сан-Бенедикто",
+    "tr_tr": "San Benedicto Adası'yı ziyaret edin",
+    "uk_ua": "Відвідайте Острів Сан-Бенедікто",
+    "zh_cn": "访问圣贝尼迪克托岛",
+    "zh_hk": "遊覽聖貝尼迪克托島",
+    "zh_tw": "造訪聖貝尼迪克托島"
+  },
+  "latitude": 19.31312,
+  "longitude": -110.80556
+}

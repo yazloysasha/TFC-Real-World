@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/marshall_islands",
+  "title_lang": {
+    "de_de": "Majuro",
+    "en_us": "Majuro",
+    "es_es": "Majuro",
+    "ja_jp": "マジュロ",
+    "ko_kr": "마주로",
+    "pl_pl": "Majuro",
+    "pt_br": "Majuro",
+    "ru_ru": "Маджуро",
+    "tr_tr": "Majuro",
+    "uk_ua": "Маджуро",
+    "zh_cn": "马朱罗",
+    "zh_hk": "馬朱羅",
+    "zh_tw": "馬朱羅"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Marshallinseln",
+    "en_us": "Visit the capital of the Republic of the Marshall Islands",
+    "es_es": "Visita la capital de la República de las Islas Marshall",
+    "ja_jp": "マーシャル諸島共和国の首都を訪れよう",
+    "ko_kr": "마셜 제도 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Wysp Marshalla",
+    "pt_br": "Visite a capital da República das as Ilhas Marshall",
+    "ru_ru": "Посетите столицу Республики Маршалловы Острова",
+    "tr_tr": "Marshall Adaları Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Маршаллові Острови",
+    "zh_cn": "访问马绍尔群岛共和国的首都",
+    "zh_hk": "遊覽馬紹爾羣島共和國的首都",
+    "zh_tw": "造訪馬紹爾羣島共和國的首都"
+  },
+  "latitude": 7.08971,
+  "longitude": 171.38027,
+  "capital": 1
+}

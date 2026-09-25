@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/savage_islands",
+  "title_lang": {
+    "de_de": "Selvagem Grande",
+    "en_us": "Selvagem Grande",
+    "es_es": "Selvagem Grande",
+    "ja_jp": "セルヴァジェン・グランデ",
+    "ko_kr": "셀바젱 그란데",
+    "pl_pl": "Selvagem Grande",
+    "pt_br": "Selvagem Grande",
+    "ru_ru": "Селважен-Гранди",
+    "tr_tr": "Selvagem Grande",
+    "uk_ua": "Селважен-Гранді",
+    "zh_cn": "大塞尔瓦任岛",
+    "zh_hk": "大塞爾瓦任島",
+    "zh_tw": "大塞爾瓦任島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Selvagem Grande",
+    "en_us": "Visit Selvagem Grande",
+    "es_es": "Visita Selvagem Grande",
+    "ja_jp": "セルヴァジェン・グランデを訪れよう",
+    "ko_kr": "셀바젱 그란데를 방문하세요",
+    "pl_pl": "Odwiedź Selvagem Grande",
+    "pt_br": "Visite Selvagem Grande",
+    "ru_ru": "Посетите Селважен-Гранди",
+    "tr_tr": "Selvagem Grande'yi ziyaret edin",
+    "uk_ua": "Відвідайте Селважен-Гранді",
+    "zh_cn": "访问大塞尔瓦任岛",
+    "zh_hk": "遊覽大塞爾瓦任島",
+    "zh_tw": "造訪大塞爾瓦任島"
+  },
+  "latitude": 30.14631,
+  "longitude": -15.86666
+}

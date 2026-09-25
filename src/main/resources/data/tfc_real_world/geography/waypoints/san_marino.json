@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/italy",
+  "title_lang": {
+    "de_de": "San Marino",
+    "en_us": "San Marino",
+    "es_es": "San Marino",
+    "ja_jp": "サンマリノ市",
+    "ko_kr": "산마리노",
+    "pl_pl": "San Marino",
+    "pt_br": "San Marino",
+    "ru_ru": "Сан-Марино",
+    "tr_tr": "San Marino",
+    "uk_ua": "Сан-Марино",
+    "zh_cn": "圣马力诺",
+    "zh_hk": "聖馬連奴",
+    "zh_tw": "聖馬利諾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik San Marino",
+    "en_us": "Visit the capital of the Repubblica di San Marino",
+    "es_es": "Visita la capital de la Serenísima República de San Marino",
+    "ja_jp": "サンマリノ共和国の首都を訪れよう",
+    "ko_kr": "산마리노 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki San Marino",
+    "pt_br": "Visite a capital da Sereníssima República de San Marino",
+    "ru_ru": "Посетите столицу Республики Сан-Марино",
+    "tr_tr": "San Marino Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Сан-Марино",
+    "zh_cn": "访问圣马力诺共和国的首都",
+    "zh_hk": "遊覽聖馬力諾共和國的首都",
+    "zh_tw": "造訪聖馬力諾共和國的首都"
+  },
+  "latitude": 43.93667,
+  "longitude": 12.44639,
+  "capital": 1
+}

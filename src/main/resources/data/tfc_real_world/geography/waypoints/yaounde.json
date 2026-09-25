@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/cameroon",
+  "title_lang": {
+    "de_de": "Yaoundé",
+    "en_us": "Yaoundé",
+    "es_es": "Yaundé",
+    "ja_jp": "ヤウンデ",
+    "ko_kr": "야운데",
+    "pl_pl": "Jaunde",
+    "pt_br": "Iaundé",
+    "ru_ru": "Яунде",
+    "tr_tr": "Yaunde",
+    "uk_ua": "Яунде",
+    "zh_cn": "雅温得",
+    "zh_hk": "雅恩德",
+    "zh_tw": "雅溫德"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Kamerun",
+    "en_us": "Visit the capital of the Republic of Cameroon",
+    "es_es": "Visita la capital de la República de Camerún",
+    "ja_jp": "カメルーン共和国の首都を訪れよう",
+    "ko_kr": "카메룬 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Kamerunu",
+    "pt_br": "Visite a capital da República dos Camarões",
+    "ru_ru": "Посетите столицу Республики Камерун",
+    "tr_tr": "Kamerun Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Камерун",
+    "zh_cn": "访问喀麦隆共和国的首都",
+    "zh_hk": "遊覽喀麥隆共和國的首都",
+    "zh_tw": "造訪喀麥隆共和國的首都"
+  },
+  "latitude": 3.86667,
+  "longitude": 11.51667,
+  "capital": 1
+}

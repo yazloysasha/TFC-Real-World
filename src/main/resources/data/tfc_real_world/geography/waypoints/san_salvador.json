@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/el_salvador",
+  "title_lang": {
+    "de_de": "San Salvador",
+    "en_us": "San Salvador",
+    "es_es": "San Salvador",
+    "ja_jp": "サンサルバドル",
+    "ko_kr": "산살바도르",
+    "pl_pl": "San Salvador",
+    "pt_br": "San Salvador",
+    "ru_ru": "Сан-Сальвадор",
+    "tr_tr": "San Salvador",
+    "uk_ua": "Сан-Сальвадор",
+    "zh_cn": "圣萨尔瓦多",
+    "zh_hk": "聖薩爾瓦多",
+    "zh_tw": "聖薩爾瓦多"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik El Salvador",
+    "en_us": "Visit the capital of the Republic of El Salvador",
+    "es_es": "Visita la capital de la República de El Salvador",
+    "ja_jp": "エルサルバドル共和国の首都を訪れよう",
+    "ko_kr": "엘살바도르 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Salwadoru",
+    "pt_br": "Visite a capital da República de El Salvador",
+    "ru_ru": "Посетите столицу Республики Сальвадор",
+    "tr_tr": "El Salvador Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Сальвадор",
+    "zh_cn": "访问萨尔瓦多共和国的首都",
+    "zh_hk": "遊覽薩爾瓦多共和國的首都",
+    "zh_tw": "造訪薩爾瓦多共和國的首都"
+  },
+  "latitude": 13.68935,
+  "longitude": -89.18718,
+  "capital": 1
+}

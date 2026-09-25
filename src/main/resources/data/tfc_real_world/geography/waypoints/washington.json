@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/district_of_columbia",
+  "title_lang": {
+    "de_de": "Washington",
+    "en_us": "Washington",
+    "es_es": "Washington",
+    "ja_jp": "ワシントン",
+    "ko_kr": "워싱턴",
+    "pl_pl": "Waszyngton",
+    "pt_br": "Washington",
+    "ru_ru": "Вашингтон",
+    "tr_tr": "Washington",
+    "uk_ua": "Вашингтон",
+    "zh_cn": "华盛顿",
+    "zh_hk": "華盛頓",
+    "zh_tw": "華盛頓"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Vereinigten Staaten",
+    "en_us": "Visit the capital of the United States",
+    "es_es": "Visita la capital de los Estados Unidos",
+    "ja_jp": "アメリカ合衆国の首都を訪れよう",
+    "ko_kr": "미국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Stanów Zjednoczonych",
+    "pt_br": "Visite a capital dos Estados Unidos",
+    "ru_ru": "Посетите столицу Соединённых Штатов",
+    "tr_tr": "Amerika Birleşik Devletleri'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Сполучених Штатів",
+    "zh_cn": "访问美国的首都",
+    "zh_hk": "遊覽美國的首都",
+    "zh_tw": "造訪美國的首都"
+  },
+  "latitude": 38.89511,
+  "longitude": -77.03637,
+  "capital": 1
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/hawaii",
+  "title_lang": {
+    "de_de": "Honolulu",
+    "en_us": "Honolulu",
+    "es_es": "Honolulu",
+    "ja_jp": "ホノルル",
+    "ko_kr": "호놀룰루",
+    "pl_pl": "Honolulu",
+    "pt_br": "Honolulu",
+    "ru_ru": "Гонолулу",
+    "tr_tr": "Honolulu",
+    "uk_ua": "Гонолулу",
+    "zh_cn": "火奴鲁鲁",
+    "zh_hk": "檀香山",
+    "zh_tw": "檀香山"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Honolulu",
+    "en_us": "Visit Honolulu",
+    "es_es": "Visita Honolulu",
+    "ja_jp": "ホノルルを訪れよう",
+    "ko_kr": "호놀룰루를 방문하세요",
+    "pl_pl": "Odwiedź Honolulu",
+    "pt_br": "Visite Honolulu",
+    "ru_ru": "Посетите Гонолулу",
+    "tr_tr": "Honolulu'yu ziyaret edin",
+    "uk_ua": "Відвідайте Гонолулу",
+    "zh_cn": "访问火奴鲁鲁",
+    "zh_hk": "遊覽檀香山",
+    "zh_tw": "造訪檀香山"
+  },
+  "latitude": 21.30694,
+  "longitude": -157.85833
+}

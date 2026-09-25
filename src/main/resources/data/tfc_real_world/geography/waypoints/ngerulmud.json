@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/caroline_islands",
+  "title_lang": {
+    "de_de": "Ngerulmud",
+    "en_us": "Ngerulmud",
+    "es_es": "Ngerulmud",
+    "ja_jp": "ンゲルルムッド",
+    "ko_kr": "응게룰무드",
+    "pl_pl": "Ngerulmud",
+    "pt_br": "Ngerulmud",
+    "ru_ru": "Нгерулмуд",
+    "tr_tr": "Ngerulmud",
+    "uk_ua": "Нгерулмуд",
+    "zh_cn": "恩吉鲁穆德",
+    "zh_hk": "恩吉魯穆德",
+    "zh_tw": "恩吉魯穆德"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Palau",
+    "en_us": "Visit the capital of the Republic of Palau",
+    "es_es": "Visita la capital de la República de Palaos",
+    "ja_jp": "パラオ共和国の首都を訪れよう",
+    "ko_kr": "팔라우 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Palau",
+    "pt_br": "Visite a capital da República de Palau",
+    "ru_ru": "Посетите столицу Республики Палау",
+    "tr_tr": "Palau Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Палау",
+    "zh_cn": "访问帕劳共和国的首都",
+    "zh_hk": "遊覽帕勞共和國的首都",
+    "zh_tw": "造訪帕勞共和國的首都"
+  },
+  "latitude": 7.50077,
+  "longitude": 134.6238,
+  "capital": 1
+}

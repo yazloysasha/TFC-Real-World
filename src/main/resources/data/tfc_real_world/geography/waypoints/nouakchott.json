@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/mauritania",
+  "title_lang": {
+    "de_de": "Nouakchott",
+    "en_us": "Nouakchott",
+    "es_es": "Nuakchot",
+    "ja_jp": "ヌアクショット",
+    "ko_kr": "누악쇼트",
+    "pl_pl": "Nawakszut",
+    "pt_br": "Nouakchott",
+    "ru_ru": "Нуакшот",
+    "tr_tr": "Nuakşot",
+    "uk_ua": "Нуакшот",
+    "zh_cn": "努瓦克肖特",
+    "zh_hk": "努瓦克肖特",
+    "zh_tw": "諾克少"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Islamischen Republik Mauretanien",
+    "en_us": "Visit the capital of the Islamic Republic of Mauritania",
+    "es_es": "Visita la capital de la República Islámica de Mauritania",
+    "ja_jp": "モーリタニア・イスラム共和国の首都を訪れよう",
+    "ko_kr": "모리타니 이슬람 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Islamskiej Republiki Mauretanii",
+    "pt_br": "Visite a capital da República Islâmica de Mauritânia",
+    "ru_ru": "Посетите столицу Исламской Республики Мавритания",
+    "tr_tr": "Moritanya İslam Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Ісламської Республіки Мавританія",
+    "zh_cn": "访问毛里塔尼亚伊斯兰共和国的首都",
+    "zh_hk": "遊覽毛裏塔尼亞伊斯蘭共和國的首都",
+    "zh_tw": "造訪毛裏塔尼亞伊斯蘭共和國的首都"
+  },
+  "latitude": 18.08581,
+  "longitude": -15.9785,
+  "capital": 1
+}

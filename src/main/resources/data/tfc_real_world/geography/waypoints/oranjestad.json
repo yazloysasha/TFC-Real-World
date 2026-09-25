@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/aruba",
+  "title_lang": {
+    "de_de": "Oranjestad",
+    "en_us": "Oranjestad",
+    "es_es": "Oranjestad",
+    "ja_jp": "オラニエスタッド",
+    "ko_kr": "오라녜스타트",
+    "pl_pl": "Oranjestad",
+    "pt_br": "Oranjestad",
+    "ru_ru": "Ораньестад",
+    "tr_tr": "Oranjestad",
+    "uk_ua": "Ораньєстад",
+    "zh_cn": "奥拉涅斯塔德",
+    "zh_hk": "奧臘涅斯塔德",
+    "zh_tw": "奧臘涅斯塔德"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Oranjestad",
+    "en_us": "Visit Oranjestad",
+    "es_es": "Visita Oranjestad",
+    "ja_jp": "オラニエスタッドを訪れよう",
+    "ko_kr": "오라녜스타트를 방문하세요",
+    "pl_pl": "Odwiedź Oranjestad",
+    "pt_br": "Visite Oranjestad",
+    "ru_ru": "Посетите Ораньестад",
+    "tr_tr": "Oranjestad'ı ziyaret edin",
+    "uk_ua": "Відвідайте Ораньєстад",
+    "zh_cn": "访问奥拉涅斯塔德",
+    "zh_hk": "遊覽奧臘涅斯塔德",
+    "zh_tw": "造訪奧臘涅斯塔德"
+  },
+  "latitude": 12.52398,
+  "longitude": -70.02703
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/missouri",
+  "title_lang": {
+    "de_de": "Jefferson City",
+    "en_us": "Jefferson City",
+    "es_es": "Jefferson City",
+    "ja_jp": "ジェファーソンシティ",
+    "ko_kr": "제퍼슨시티",
+    "pl_pl": "Jefferson City",
+    "pt_br": "Jefferson City",
+    "ru_ru": "Джефферсон-Сити",
+    "tr_tr": "Jefferson City",
+    "uk_ua": "Джефферсон-Сіті",
+    "zh_cn": "杰斐逊城",
+    "zh_hk": "傑斐遜城",
+    "zh_tw": "傑斐遜城"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Jefferson City",
+    "en_us": "Visit Jefferson City",
+    "es_es": "Visita Jefferson City",
+    "ja_jp": "ジェファーソンシティを訪れよう",
+    "ko_kr": "제퍼슨시티를 방문하세요",
+    "pl_pl": "Odwiedź Jefferson City",
+    "pt_br": "Visite Jefferson City",
+    "ru_ru": "Посетите Джефферсон-Сити",
+    "tr_tr": "Jefferson City'i ziyaret edin",
+    "uk_ua": "Відвідайте Джефферсон-Сіті",
+    "zh_cn": "访问杰斐逊城",
+    "zh_hk": "遊覽傑斐遜城",
+    "zh_tw": "造訪傑斐遜城"
+  },
+  "latitude": 38.5767,
+  "longitude": -92.17352
+}

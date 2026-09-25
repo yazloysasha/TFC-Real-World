@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/windward_islands",
+  "title_lang": {
+    "de_de": "Bridgetown",
+    "en_us": "Bridgetown",
+    "es_es": "Bridgetown",
+    "ja_jp": "ブリッジタウン",
+    "ko_kr": "브리지타운",
+    "pl_pl": "Bridgetown",
+    "pt_br": "Bridgetown",
+    "ru_ru": "Бриджтаун",
+    "tr_tr": "Bridgetown",
+    "uk_ua": "Бриджтаун",
+    "zh_cn": "布里奇顿",
+    "zh_hk": "橋鎮",
+    "zh_tw": "橋鎮"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Barbados",
+    "en_us": "Visit the capital of Barbados",
+    "es_es": "Visita la capital de Barbados",
+    "ja_jp": "バルバドスの首都を訪れよう",
+    "ko_kr": "바베이도스의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Barbadosu",
+    "pt_br": "Visite a capital de Barbados",
+    "ru_ru": "Посетите столицу Барбадоса",
+    "tr_tr": "Barbados'un başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Барбадосу",
+    "zh_cn": "访问巴巴多斯的首都",
+    "zh_hk": "遊覽巴巴多斯的首都",
+    "zh_tw": "造訪巴巴多斯的首都"
+  },
+  "latitude": 13.10732,
+  "longitude": -59.62021,
+  "capital": 1
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/northwest_territories",
+  "title_lang": {
+    "de_de": "Yellowknife",
+    "en_us": "Yellowknife",
+    "es_es": "Cuchillo amarillo",
+    "ja_jp": "イエローナイフ",
+    "ko_kr": "옐로나이프",
+    "pl_pl": "Yellowknife",
+    "pt_br": "Yellowknife",
+    "ru_ru": "Йеллоунайф",
+    "tr_tr": "Yellowknife",
+    "uk_ua": "Єлловнайф",
+    "zh_cn": "黄刀镇",
+    "zh_hk": "黃刀鎮",
+    "zh_tw": "黃刀鎮"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Yellowknife",
+    "en_us": "Visit Yellowknife",
+    "es_es": "Visita Cuchillo amarillo",
+    "ja_jp": "イエローナイフを訪れよう",
+    "ko_kr": "옐로나이프를 방문하세요",
+    "pl_pl": "Odwiedź Yellowknife",
+    "pt_br": "Visite Yellowknife",
+    "ru_ru": "Посетите Йеллоунайф",
+    "tr_tr": "Yellowknife'yi ziyaret edin",
+    "uk_ua": "Відвідайте Єлловнайф",
+    "zh_cn": "访问黄刀镇",
+    "zh_hk": "遊覽黃刀鎮",
+    "zh_tw": "造訪黃刀鎮"
+  },
+  "latitude": 62.45411,
+  "longitude": -114.37248
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/tuamotu",
+  "title_lang": {
+    "de_de": "Tapuarava",
+    "en_us": "Tapuarava",
+    "es_es": "Tapuarava",
+    "ja_jp": "タプアラヴァ",
+    "ko_kr": "타푸아라바",
+    "pl_pl": "Tapuarava",
+    "pt_br": "Tapuarava",
+    "ru_ru": "Тапуарава",
+    "tr_tr": "Tapuarava",
+    "uk_ua": "Тапуарава",
+    "zh_cn": "塔普阿拉瓦",
+    "zh_hk": "塔普阿拉瓦",
+    "zh_tw": "塔普阿拉瓦"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Tapuarava",
+    "en_us": "Visit Tapuarava",
+    "es_es": "Visita Tapuarava",
+    "ja_jp": "タプアラヴァを訪れよう",
+    "ko_kr": "타푸아라바를 방문하세요",
+    "pl_pl": "Odwiedź Tapuarava",
+    "pt_br": "Visite Tapuarava",
+    "ru_ru": "Посетите Тапуарава",
+    "tr_tr": "Tapuarava'yı ziyaret edin",
+    "uk_ua": "Відвідайте Тапуарава",
+    "zh_cn": "访问塔普阿拉瓦",
+    "zh_hk": "遊覽塔普阿拉瓦",
+    "zh_tw": "造訪塔普阿拉瓦"
+  },
+  "latitude": -18.46647,
+  "longitude": -136.46328
+}

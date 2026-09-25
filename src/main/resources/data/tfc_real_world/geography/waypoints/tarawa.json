@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/gilbert_islands",
+  "title_lang": {
+    "de_de": "Süd-Tarawa",
+    "en_us": "South Tarawa",
+    "es_es": "Tarawa Sur",
+    "ja_jp": "サウスタラワ",
+    "ko_kr": "사우스타라와",
+    "pl_pl": "Południowa Tarawa",
+    "pt_br": "Tarawa do Sul",
+    "ru_ru": "Южная Тарава",
+    "tr_tr": "Güney Tarawa",
+    "uk_ua": "Південна Тарава",
+    "zh_cn": "南塔拉瓦",
+    "zh_hk": "南塔拉瓦",
+    "zh_tw": "南塔拉瓦"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Kiribati",
+    "en_us": "Visit the capital of the Republic of Kiribati",
+    "es_es": "Visita la capital de la República de Kiribati",
+    "ja_jp": "キリバス共和国の首都を訪れよう",
+    "ko_kr": "키리바시 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Kiribati",
+    "pt_br": "Visite a capital da República de Kiribati",
+    "ru_ru": "Посетите столицу Республики Кирибати",
+    "tr_tr": "Kiribati Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Кірибаті",
+    "zh_cn": "访问基里巴斯共和国的首都",
+    "zh_hk": "遊覽基裏巴斯共和國的首都",
+    "zh_tw": "造訪基裏巴斯共和國的首都"
+  },
+  "latitude": 1.3278,
+  "longitude": 172.97696,
+  "capital": 1
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/japan",
+  "title_lang": {
+    "de_de": "Tokio",
+    "en_us": "Tokyo",
+    "es_es": "Tokio",
+    "ja_jp": "東京",
+    "ko_kr": "도쿄",
+    "pl_pl": "Tokio",
+    "pt_br": "Tóquio",
+    "ru_ru": "Токио",
+    "tr_tr": "Tokyo",
+    "uk_ua": "Токіо",
+    "zh_cn": "东京",
+    "zh_hk": "東京",
+    "zh_tw": "東京"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Japan",
+    "en_us": "Visit the capital of Japan",
+    "es_es": "Visita la capital de Japón",
+    "ja_jp": "日本の首都を訪れよう",
+    "ko_kr": "일본의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Japonii",
+    "pt_br": "Visite a capital do Japão",
+    "ru_ru": "Посетите столицу Японии",
+    "tr_tr": "Japonya'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Японії",
+    "zh_cn": "访问日本的首都",
+    "zh_hk": "遊覽日本的首都",
+    "zh_tw": "造訪日本的首都"
+  },
+  "latitude": 35.6895,
+  "longitude": 139.69171,
+  "capital": 1
+}

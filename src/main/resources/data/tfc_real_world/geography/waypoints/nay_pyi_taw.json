@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/myanmar",
+  "title_lang": {
+    "de_de": "Naypyidaw",
+    "en_us": "Naypyidaw",
+    "es_es": "Naipyidó",
+    "ja_jp": "ネピドー",
+    "ko_kr": "네피도",
+    "pl_pl": "Naypyidaw",
+    "pt_br": "Naypyidaw",
+    "ru_ru": "Нейпьидо",
+    "tr_tr": "Naypyidaw",
+    "uk_ua": "Найп'їдо",
+    "zh_cn": "内比都",
+    "zh_hk": "奈比多",
+    "zh_tw": "奈比多"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Union von Burma",
+    "en_us": "Visit the capital of the Union of Burma",
+    "es_es": "Visita la capital de la Unión de Birmania",
+    "ja_jp": "ビルマ連邦の首都を訪れよう",
+    "ko_kr": "버마 연방의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Związku Birmy",
+    "pt_br": "Visite a capital da União da Birmânia",
+    "ru_ru": "Посетите столицу Союза Бирмы",
+    "tr_tr": "Birmanya Birliği'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Союзу Бірми",
+    "zh_cn": "访问缅甸联邦的首都",
+    "zh_hk": "遊覽緬甸聯邦的首都",
+    "zh_tw": "造訪緬甸聯邦的首都"
+  },
+  "latitude": 19.745,
+  "longitude": 96.12972,
+  "capital": 1
+}

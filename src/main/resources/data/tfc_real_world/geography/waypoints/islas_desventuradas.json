@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/desventuradas_islands",
+  "title_lang": {
+    "de_de": "Desventuradas-Inseln",
+    "en_us": "Desventuradas Islands",
+    "es_es": "Islas Desventuradas",
+    "ja_jp": "デスベントゥラダス諸島",
+    "ko_kr": "데스벤투라다스 제도",
+    "pl_pl": "Wyspy Desventuradas",
+    "pt_br": "Ilhas Desventuradas",
+    "ru_ru": "Острова Десвентурадас",
+    "tr_tr": "Desventuradas Adaları",
+    "uk_ua": "Острови Десвентурадас",
+    "zh_cn": "德斯文图拉达斯群岛",
+    "zh_hk": "德斯文圖拉達斯群島",
+    "zh_tw": "德斯文圖拉達斯群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Desventuradas-Inseln",
+    "en_us": "Visit Desventuradas Islands",
+    "es_es": "Visita Islas Desventuradas",
+    "ja_jp": "デスベントゥラダス諸島を訪れよう",
+    "ko_kr": "데스벤투라다스 제도를 방문하세요",
+    "pl_pl": "Odwiedź Wyspy Desventuradas",
+    "pt_br": "Visite Ilhas Desventuradas",
+    "ru_ru": "Посетите Острова Десвентурадас",
+    "tr_tr": "Desventuradas Adaları'yı ziyaret edin",
+    "uk_ua": "Відвідайте Острови Десвентурадас",
+    "zh_cn": "访问德斯文图拉达斯群岛",
+    "zh_hk": "遊覽德斯文圖拉達斯群島",
+    "zh_tw": "造訪德斯文圖拉達斯群島"
+  },
+  "latitude": -26.32263753021739,
+  "longitude": -79.9752051335857
+}

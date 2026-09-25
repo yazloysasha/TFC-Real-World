@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/peru",
+  "title_lang": {
+    "de_de": "Lima",
+    "en_us": "Lima",
+    "es_es": "Lima",
+    "ja_jp": "リマ",
+    "ko_kr": "리마",
+    "pl_pl": "Lima",
+    "pt_br": "Lima",
+    "ru_ru": "Лима",
+    "tr_tr": "Lima",
+    "uk_ua": "Ліма",
+    "zh_cn": "利马",
+    "zh_hk": "利馬",
+    "zh_tw": "利馬"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Peru",
+    "en_us": "Visit the capital of the Republic of Peru",
+    "es_es": "Visita la capital de la República del Perú",
+    "ja_jp": "ペルー共和国の首都を訪れよう",
+    "ko_kr": "페루 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Peru",
+    "pt_br": "Visite a capital da República do Peru",
+    "ru_ru": "Посетите столицу Республики Перу",
+    "tr_tr": "Peru Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Перу",
+    "zh_cn": "访问秘鲁共和国的首都",
+    "zh_hk": "遊覽祕魯共和國的首都",
+    "zh_tw": "造訪祕魯共和國的首都"
+  },
+  "latitude": -12.04318,
+  "longitude": -77.02824,
+  "capital": 1
+}

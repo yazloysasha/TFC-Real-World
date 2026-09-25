@@ -1,0 +1,35 @@
+{
+  "parent": "subregion/southwest_caribbean",
+  "title_lang": {
+    "de_de": "Carib Town",
+    "en_us": "Carib Town",
+    "es_es": "Carib Town",
+    "ja_jp": "カリブ・タウン",
+    "ko_kr": "캐리브 타운",
+    "pl_pl": "Carib Town",
+    "pt_br": "Carib Town",
+    "ru_ru": "Кариб-Таун",
+    "tr_tr": "Carib Town",
+    "uk_ua": "Кариб-Таун",
+    "zh_cn": "加勒比镇",
+    "zh_hk": "加勒比鎮",
+    "zh_tw": "加勒比鎮"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Carib Town",
+    "en_us": "Visit Carib Town",
+    "es_es": "Visita Carib Town",
+    "ja_jp": "カリブ・タウンを訪れよう",
+    "ko_kr": "캐리브 타운을 방문하세요",
+    "pl_pl": "Odwiedź Carib Town",
+    "pt_br": "Visite Carib Town",
+    "ru_ru": "Посетите Кариб-Таун",
+    "tr_tr": "Carib Town'u ziyaret edin",
+    "uk_ua": "Відвідайте Кариб-Таун",
+    "zh_cn": "访问加勒比镇",
+    "zh_hk": "遊覽加勒比鎮",
+    "zh_tw": "造訪加勒比鎮"
+  },
+  "latitude": 12.28812,
+  "longitude": -82.98145
+}

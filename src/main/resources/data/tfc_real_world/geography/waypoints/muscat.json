@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/oman",
+  "title_lang": {
+    "de_de": "Maskat",
+    "en_us": "Muscat",
+    "es_es": "Mascate",
+    "ja_jp": "マスカット",
+    "ko_kr": "무스카트",
+    "pl_pl": "Maskat",
+    "pt_br": "Mascate",
+    "ru_ru": "Маскат",
+    "tr_tr": "Maskat",
+    "uk_ua": "Маскат",
+    "zh_cn": "马斯喀特",
+    "zh_hk": "馬斯喀特",
+    "zh_tw": "馬斯喀特"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt des Sultanats Oman",
+    "en_us": "Visit the capital of the Sultanate of Oman",
+    "es_es": "Visita la capital del Sultanato de Omán",
+    "ja_jp": "オマーンのスルターン国の首都を訪れよう",
+    "ko_kr": "오만 술탄국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Sułtanatu Omanu",
+    "pt_br": "Visite a capital do Sultanato de Omã",
+    "ru_ru": "Посетите столицу Султаната Оман",
+    "tr_tr": "Umman Sultanlığı'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Султанату Оман",
+    "zh_cn": "访问阿曼苏丹国的首都",
+    "zh_hk": "遊覽阿曼蘇丹國的首都",
+    "zh_tw": "造訪阿曼蘇丹國的首都"
+  },
+  "latitude": 23.58413,
+  "longitude": 58.40778,
+  "capital": 1
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/sudan",
+  "title_lang": {
+    "de_de": "Juba",
+    "en_us": "Juba",
+    "es_es": "Yuba",
+    "ja_jp": "ジュバ",
+    "ko_kr": "주바",
+    "pl_pl": "Dżuba",
+    "pt_br": "Juba",
+    "ru_ru": "Джуба",
+    "tr_tr": "Cuba",
+    "uk_ua": "Джуба",
+    "zh_cn": "朱巴",
+    "zh_hk": "朱巴",
+    "zh_tw": "朱巴"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Südsudan",
+    "en_us": "Visit the capital of South Sudan",
+    "es_es": "Visita la capital de Sudán del Sur",
+    "ja_jp": "南スーダンの首都を訪れよう",
+    "ko_kr": "남수단의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Sudanu Południowego",
+    "pt_br": "Visite a capital do Sudão do Sul",
+    "ru_ru": "Посетите столицу Южного Судана",
+    "tr_tr": "Güney Sudan'ın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Південного Судану",
+    "zh_cn": "访问南苏丹的首都",
+    "zh_hk": "遊覽南蘇丹的首都",
+    "zh_tw": "造訪南蘇丹的首都"
+  },
+  "latitude": 4.85165,
+  "longitude": 31.58247,
+  "capital": 1
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/nauru",
+  "title_lang": {
+    "de_de": "Yaren",
+    "en_us": "Yaren",
+    "es_es": "Yaren",
+    "ja_jp": "ヤレン",
+    "ko_kr": "야렌",
+    "pl_pl": "Yaren",
+    "pt_br": "Yaren",
+    "ru_ru": "Ярен",
+    "tr_tr": "Yaren",
+    "uk_ua": "Ярен",
+    "zh_cn": "亚伦",
+    "zh_hk": "亞倫",
+    "zh_tw": "亞倫"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Nauru",
+    "en_us": "Visit the capital of Nauru",
+    "es_es": "Visita la capital de Nauru",
+    "ja_jp": "ナウルの首都を訪れよう",
+    "ko_kr": "나우루의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Nauru",
+    "pt_br": "Visite a capital de Nauru",
+    "ru_ru": "Посетите столицу Науру",
+    "tr_tr": "Nauru'nun başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Науру",
+    "zh_cn": "访问瑙鲁的首都",
+    "zh_hk": "遊覽瑙魯的首都",
+    "zh_tw": "造訪瑙魯的首都"
+  },
+  "latitude": -0.55085,
+  "longitude": 166.9252,
+  "capital": 1
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "subregion/finland",
+  "title_lang": {
+    "de_de": "Helsinki",
+    "en_us": "Helsinki",
+    "es_es": "Helsinki",
+    "ja_jp": "ヘルシンキ",
+    "ko_kr": "헬싱키",
+    "pl_pl": "Helsinki",
+    "pt_br": "Helsinque",
+    "ru_ru": "Хельсинки",
+    "tr_tr": "Helsinki",
+    "uk_ua": "Гельсінкі",
+    "zh_cn": "赫尔辛基",
+    "zh_hk": "赫爾辛基",
+    "zh_tw": "赫爾辛基"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Finnland",
+    "en_us": "Visit the capital of the Republic of Finland",
+    "es_es": "Visita la capital de la República de Finlandia",
+    "ja_jp": "フィンランド共和国の首都を訪れよう",
+    "ko_kr": "핀란드 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Finlandii",
+    "pt_br": "Visite a capital da República da Finlândia",
+    "ru_ru": "Посетите столицу Республики Финляндия",
+    "tr_tr": "Finlandiya Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Фінляндія",
+    "zh_cn": "访问芬兰共和国的首都",
+    "zh_hk": "遊覽芬蘭共和國的首都",
+    "zh_tw": "造訪芬蘭共和國的首都"
+  },
+  "latitude": 60.16952,
+  "longitude": 24.93545,
+  "capital": 1
+}
