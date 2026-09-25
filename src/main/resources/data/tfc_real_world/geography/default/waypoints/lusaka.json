@@ -15,6 +15,21 @@
     "zh_hk": "盧薩卡",
     "zh_tw": "路沙卡"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Sambia",
+    "en_us": "Capital of the Republic of Zambia",
+    "es_es": "Capital de la República de Zambia",
+    "ja_jp": "ザンビア共和国の首都",
+    "ko_kr": "잠비아 공화국의 수도",
+    "pl_pl": "Stolica Republiki Zambii",
+    "pt_br": "Capital da República da Zâmbia",
+    "ru_ru": "Столица Республики Замбия",
+    "tr_tr": "Zambiya Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Замбія",
+    "zh_cn": "赞比亚共和国的首都",
+    "zh_hk": "贊比亞共和國的首都",
+    "zh_tw": "贊比亞共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Sambia",
     "en_us": "Visit the capital of the Republic of Zambia",

@@ -15,6 +15,21 @@
     "zh_hk": "赫爾辛基",
     "zh_tw": "赫爾辛基"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Finnland",
+    "en_us": "Capital of the Republic of Finland",
+    "es_es": "Capital de la República de Finlandia",
+    "ja_jp": "フィンランド共和国の首都",
+    "ko_kr": "핀란드 공화국의 수도",
+    "pl_pl": "Stolica Republiki Finlandii",
+    "pt_br": "Capital da República da Finlândia",
+    "ru_ru": "Столица Республики Финляндия",
+    "tr_tr": "Finlandiya Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Фінляндія",
+    "zh_cn": "芬兰共和国的首都",
+    "zh_hk": "芬蘭共和國的首都",
+    "zh_tw": "芬蘭共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Finnland",
     "en_us": "Visit the capital of the Republic of Finland",

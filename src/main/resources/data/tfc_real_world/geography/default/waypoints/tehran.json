@@ -15,6 +15,21 @@
     "zh_hk": "德黑蘭",
     "zh_tw": "德黑蘭"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Islamischen Republik Iran",
+    "en_us": "Capital of the Islamic Republic of Iran",
+    "es_es": "Capital de la República Islámica de Irán",
+    "ja_jp": "イラン・イスラム共和国の首都",
+    "ko_kr": "이란 이슬람 공화국의 수도",
+    "pl_pl": "Stolica Islamskiej Republiki Iranu",
+    "pt_br": "Capital da República Islâmica de Irã",
+    "ru_ru": "Столица Исламской Республики Иран",
+    "tr_tr": "İran İslam Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Ісламської Республіки Іран",
+    "zh_cn": "伊朗伊斯兰共和国的首都",
+    "zh_hk": "伊朗伊斯蘭共和國的首都",
+    "zh_tw": "伊朗伊斯蘭共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Islamischen Republik Iran",
     "en_us": "Visit the capital of the Islamic Republic of Iran",

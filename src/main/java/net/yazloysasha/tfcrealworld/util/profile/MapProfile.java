@@ -5,7 +5,10 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
@@ -26,7 +29,8 @@ public record MapProfile(
   double southEdgeLatitude,
   double northEdgeLatitude,
   MapProjection mapProjection,
-  Map<String, String> lang
+  Map<String, String> lang,
+  List<String> waypoints
 ) {
   private static final Gson GSON = new GsonBuilder()
     .setPrettyPrinting()
@@ -128,6 +132,15 @@ public record MapProfile(
       }
     }
 
+    List<String> waypoints = new ArrayList<>();
+    if (json.has("waypoints") && json.get("waypoints").isJsonArray()) {
+      for (var element : json.getAsJsonArray("waypoints")) {
+        if (element.isJsonPrimitive()) {
+          waypoints.add(element.getAsString().toLowerCase());
+        }
+      }
+    }
+
     return new MapProfile(
       namespace,
       name,
@@ -161,7 +174,8 @@ public record MapProfile(
           json.get("map_projection").getAsString().toUpperCase()
         )
         : DEFAULT_MAP_PROJECTION,
-      langMap
+      langMap,
+      Collections.unmodifiableList(waypoints)
     );
   }
 
@@ -179,7 +193,8 @@ public record MapProfile(
       DEFAULT_SOUTH_EDGE_LATITUDE,
       DEFAULT_NORTH_EDGE_LATITUDE,
       DEFAULT_MAP_PROJECTION,
-      new HashMap<>()
+      new HashMap<>(),
+      List.of()
     );
   }
 

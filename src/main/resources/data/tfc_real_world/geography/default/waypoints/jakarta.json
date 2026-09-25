@@ -15,6 +15,21 @@
     "zh_hk": "雅加達",
     "zh_tw": "雅加達"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Indonesien",
+    "en_us": "Capital of the Republic of Indonesia",
+    "es_es": "Capital de la República de Indonesia",
+    "ja_jp": "インドネシア共和国の首都",
+    "ko_kr": "인도네시아 공화국의 수도",
+    "pl_pl": "Stolica Republiki Indonezji",
+    "pt_br": "Capital da República da Indonésia",
+    "ru_ru": "Столица Республики Индонезия",
+    "tr_tr": "Endonezya Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Індонезія",
+    "zh_cn": "印度尼西亚共和国的首都",
+    "zh_hk": "印度尼西亞共和國的首都",
+    "zh_tw": "印度尼西亞共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Indonesien",
     "en_us": "Visit the capital of the Republic of Indonesia",

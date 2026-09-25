@@ -15,6 +15,21 @@
     "zh_hk": "葉里溫",
     "zh_tw": "葉里溫"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Armenien",
+    "en_us": "Capital of the Republic of Armenia",
+    "es_es": "Capital de la República de Armenia",
+    "ja_jp": "アルメニア共和国の首都",
+    "ko_kr": "아르메니아 공화국의 수도",
+    "pl_pl": "Stolica Republiki Armenii",
+    "pt_br": "Capital da República da Armênia",
+    "ru_ru": "Столица Республики Армения",
+    "tr_tr": "Ermenistan Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Вірменія",
+    "zh_cn": "亚美尼亚共和国的首都",
+    "zh_hk": "亞美尼亞共和國的首都",
+    "zh_tw": "亞美尼亞共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Armenien",
     "en_us": "Visit the capital of the Republic of Armenia",

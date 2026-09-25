@@ -15,6 +15,21 @@
     "zh_hk": "華沙",
     "zh_tw": "華沙"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Polen",
+    "en_us": "Capital of the Republic of Poland",
+    "es_es": "Capital de la República de Polonia",
+    "ja_jp": "ポーランド共和国の首都",
+    "ko_kr": "폴란드 공화국의 수도",
+    "pl_pl": "Stolica Republiki Polski",
+    "pt_br": "Capital da República da Polônia",
+    "ru_ru": "Столица Республики Польша",
+    "tr_tr": "Polonya Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Польща",
+    "zh_cn": "波兰共和国的首都",
+    "zh_hk": "波蘭共和國的首都",
+    "zh_tw": "波蘭共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Polen",
     "en_us": "Visit the capital of the Republic of Poland",

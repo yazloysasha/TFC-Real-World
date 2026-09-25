@@ -15,6 +15,21 @@
     "zh_hk": "基特加",
     "zh_tw": "基特加"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Burundi",
+    "en_us": "Capital of the Republic of Burundi",
+    "es_es": "Capital de la República de Burundi",
+    "ja_jp": "ブルンジ共和国の首都",
+    "ko_kr": "부룬디 공화국의 수도",
+    "pl_pl": "Stolica Republiki Burundi",
+    "pt_br": "Capital da República do Burundi",
+    "ru_ru": "Столица Республики Бурунди",
+    "tr_tr": "Burundi Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Бурунді",
+    "zh_cn": "布隆迪共和国的首都",
+    "zh_hk": "布隆迪共和國的首都",
+    "zh_tw": "布隆迪共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Burundi",
     "en_us": "Visit the capital of the Republic of Burundi",

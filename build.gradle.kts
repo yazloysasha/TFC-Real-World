@@ -109,6 +109,7 @@ neoForge {
 
 dependencies {
   compileOnly("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$maxTfcVersion@jar")
+  compileOnly("vazkii.patchouli:Patchouli:$patchouliVersion")
 
   testImplementation("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$maxTfcVersion@jar")
   testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")

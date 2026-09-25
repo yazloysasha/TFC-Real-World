@@ -15,6 +15,21 @@
     "zh_hk": "基加利",
     "zh_tw": "基加利"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Ruanda",
+    "en_us": "Capital of the Republic of Rwanda",
+    "es_es": "Capital de la República de Ruanda",
+    "ja_jp": "ルワンダ共和国の首都",
+    "ko_kr": "르완다 공화국의 수도",
+    "pl_pl": "Stolica Republiki Rwandy",
+    "pt_br": "Capital da República de Ruanda",
+    "ru_ru": "Столица Республики Руанда",
+    "tr_tr": "Ruanda Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Руанда",
+    "zh_cn": "卢旺达共和国的首都",
+    "zh_hk": "盧旺達共和國的首都",
+    "zh_tw": "盧旺達共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Ruanda",
     "en_us": "Visit the capital of the Republic of Rwanda",

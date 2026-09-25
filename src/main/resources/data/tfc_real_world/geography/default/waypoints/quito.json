@@ -15,6 +15,21 @@
     "zh_hk": "基多",
     "zh_tw": "基多"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Ecuador",
+    "en_us": "Capital of the Republic of Ecuador",
+    "es_es": "Capital de la República del Ecuador",
+    "ja_jp": "エクアドル共和国の首都",
+    "ko_kr": "에콰도르 공화국의 수도",
+    "pl_pl": "Stolica Republiki Ekwadoru",
+    "pt_br": "Capital da República do Equador",
+    "ru_ru": "Столица Республики Эквадор",
+    "tr_tr": "Ekvador Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Еквадор",
+    "zh_cn": "厄瓜多尔共和国的首都",
+    "zh_hk": "厄瓜多爾共和國的首都",
+    "zh_tw": "厄瓜多爾共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Ecuador",
     "en_us": "Visit the capital of the Republic of Ecuador",

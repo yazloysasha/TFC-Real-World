@@ -15,6 +15,21 @@
     "zh_hk": "河內市",
     "zh_tw": "河內市"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Sozialistischen Republik Vietnam",
+    "en_us": "Capital of the Socialist Republic of Vietnam",
+    "es_es": "Capital de la República Socialista de Vietnam",
+    "ja_jp": "ベトナム社会主義共和国の首都",
+    "ko_kr": "베트남 사회주의 공화국의 수도",
+    "pl_pl": "Stolica Socjalistycznej Republiki Wietnamu",
+    "pt_br": "Capital da República Socialista do Vietnã",
+    "ru_ru": "Столица Социалистической Республики Вьетнам",
+    "tr_tr": "Vietnam Sosyalist Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Соціалістичної Республіки В'єтнам",
+    "zh_cn": "越南社会主义共和国的首都",
+    "zh_hk": "越南社會主義共和國的首都",
+    "zh_tw": "越南社會主義共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Sozialistischen Republik Vietnam",
     "en_us": "Visit the capital of the Socialist Republic of Vietnam",

@@ -15,6 +15,21 @@
     "zh_hk": "北京",
     "zh_tw": "北京"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Volksrepublik China",
+    "en_us": "Capital of the People’s Republic of China",
+    "es_es": "Capital de la República Popular China",
+    "ja_jp": "中華人民共和国の首都",
+    "ko_kr": "중화인민공화국의 수도",
+    "pl_pl": "Stolica Chińskiej Republiki Ludowej",
+    "pt_br": "Capital da República Popular da China",
+    "ru_ru": "Столица Китайской Народной Республики",
+    "tr_tr": "Çin Halk Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Китайської Народної Республіки",
+    "zh_cn": "中华人民共和国的首都",
+    "zh_hk": "中華人民共和國的首都",
+    "zh_tw": "中華人民共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Volksrepublik China",
     "en_us": "Visit the capital of the People’s Republic of China",

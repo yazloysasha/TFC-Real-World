@@ -15,6 +15,21 @@
     "zh_hk": "溫得和克",
     "zh_tw": "溫得和克"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Namibia",
+    "en_us": "Capital of the Republic of Namibia",
+    "es_es": "Capital de la República de Namibia",
+    "ja_jp": "ナミビア共和国の首都",
+    "ko_kr": "나미비아 공화국의 수도",
+    "pl_pl": "Stolica Republiki Namibii",
+    "pt_br": "Capital da República da Namíbia",
+    "ru_ru": "Столица Республики Намибия",
+    "tr_tr": "Namibya Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Намібія",
+    "zh_cn": "纳米比亚共和国的首都",
+    "zh_hk": "納米比亞共和國的首都",
+    "zh_tw": "納米比亞共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Namibia",
     "en_us": "Visit the capital of the Republic of Namibia",

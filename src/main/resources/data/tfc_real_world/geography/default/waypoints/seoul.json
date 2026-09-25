@@ -15,6 +15,21 @@
     "zh_hk": "首爾",
     "zh_tw": "首爾"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Korea",
+    "en_us": "Capital of the Republic of Korea",
+    "es_es": "Capital de la República de Corea",
+    "ja_jp": "大韓民国の首都",
+    "ko_kr": "대한민국의 수도",
+    "pl_pl": "Stolica Republiki Korei",
+    "pt_br": "Capital da República da Coreia",
+    "ru_ru": "Столица Республики Корея",
+    "tr_tr": "Kore Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Корея",
+    "zh_cn": "大韩民国的首都",
+    "zh_hk": "大韓民國的首都",
+    "zh_tw": "大韓民國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Korea",
     "en_us": "Visit the capital of the Republic of Korea",

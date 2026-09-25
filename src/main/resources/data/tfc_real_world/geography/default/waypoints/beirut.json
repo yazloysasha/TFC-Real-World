@@ -15,6 +15,21 @@
     "zh_hk": "貝魯特",
     "zh_tw": "貝魯特"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Libanon",
+    "en_us": "Capital of Lebanon",
+    "es_es": "Capital de Líbano",
+    "ja_jp": "レバノンの首都",
+    "ko_kr": "레바논의 수도",
+    "pl_pl": "Stolica Libanu",
+    "pt_br": "Capital do Líbano",
+    "ru_ru": "Столица Ливана",
+    "tr_tr": "Lübnan'ın başkenti",
+    "uk_ua": "Столиця Лівану",
+    "zh_cn": "黎巴嫩的首都",
+    "zh_hk": "黎巴嫩的首都",
+    "zh_tw": "黎巴嫩的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Libanon",
     "en_us": "Visit the capital of Lebanon",

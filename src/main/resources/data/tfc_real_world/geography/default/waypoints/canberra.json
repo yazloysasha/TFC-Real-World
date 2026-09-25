@@ -15,6 +15,21 @@
     "zh_hk": "坎培拉",
     "zh_tw": "坎培拉"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Commonwealth von Australien",
+    "en_us": "Capital of the Commonwealth of Australia",
+    "es_es": "Capital de la Mancomunidad de Australia",
+    "ja_jp": "オーストラリア連邦の首都",
+    "ko_kr": "오스트레일리아 연방의 수도",
+    "pl_pl": "Stolica Związku Australijskiego",
+    "pt_br": "Capital da Comunidade da Austrália",
+    "ru_ru": "Столица Австралийского Союза",
+    "tr_tr": "Avustralya Milletler Topluluğu'nun başkenti",
+    "uk_ua": "Столиця Австралійської Співдружності",
+    "zh_cn": "澳大利亚联邦的首都",
+    "zh_hk": "澳大利亞聯邦的首都",
+    "zh_tw": "澳大利亞聯邦的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Commonwealth von Australien",
     "en_us": "Visit the capital of the Commonwealth of Australia",

@@ -15,6 +15,21 @@
     "zh_hk": "波哥大",
     "zh_tw": "波哥大"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Kolumbien",
+    "en_us": "Capital of the Republic of Colombia",
+    "es_es": "Capital de la República de Colombia",
+    "ja_jp": "コロンビア共和国の首都",
+    "ko_kr": "콜롬비아 공화국의 수도",
+    "pl_pl": "Stolica Republiki Kolumbii",
+    "pt_br": "Capital da República da Colômbia",
+    "ru_ru": "Столица Республики Колумбия",
+    "tr_tr": "Kolombiya Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Колумбія",
+    "zh_cn": "哥伦比亚共和国的首都",
+    "zh_hk": "哥倫比亞共和國的首都",
+    "zh_tw": "哥倫比亞共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Kolumbien",
     "en_us": "Visit the capital of the Republic of Colombia",

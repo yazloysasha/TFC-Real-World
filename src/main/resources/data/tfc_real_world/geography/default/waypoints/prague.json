@@ -15,6 +15,21 @@
     "zh_hk": "布拉格",
     "zh_tw": "布拉格"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Tschechien",
+    "en_us": "Capital of Czechia",
+    "es_es": "Capital de Chequia",
+    "ja_jp": "チェコの首都",
+    "ko_kr": "체코의 수도",
+    "pl_pl": "Stolica Czech",
+    "pt_br": "Capital da Tchéquia",
+    "ru_ru": "Столица Чехии",
+    "tr_tr": "Çekya'nın başkenti",
+    "uk_ua": "Столиця Чехії",
+    "zh_cn": "捷克的首都",
+    "zh_hk": "捷克的首都",
+    "zh_tw": "捷克的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Tschechien",
     "en_us": "Visit the capital of Czechia",

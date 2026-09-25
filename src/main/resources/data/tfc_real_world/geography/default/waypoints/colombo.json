@@ -15,6 +15,21 @@
     "zh_hk": "哥林堡",
     "zh_tw": "可倫坡"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Demokratischen Sozialistischen Republik Sri Lanka",
+    "en_us": "Capital of the Democratic Socialist Republic of Sri Lanka",
+    "es_es": "Capital de la República Democrática Socialista de Sri Lanka",
+    "ja_jp": "スリランカ民主社会主義共和国の首都",
+    "ko_kr": "스리랑카 민주 사회주의 공화국의 수도",
+    "pl_pl": "Stolica Demokratyczno-Socjalistycznej Republiki Sri Lanki",
+    "pt_br": "Capital da República Democrática Socialista do Sri Lanka",
+    "ru_ru": "Столица Демократической Социалистической Республики Шри-Ланка",
+    "tr_tr": "Sri Lanka Demokratik Sosyalist Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Демократичної Соціалістичної Республіки Шрі-Ланка",
+    "zh_cn": "斯里兰卡民主社会主义共和国的首都",
+    "zh_hk": "斯裏蘭卡民主社會主義共和國的首都",
+    "zh_tw": "斯裏蘭卡民主社會主義共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Demokratischen Sozialistischen Republik Sri Lanka",
     "en_us": "Visit the capital of the Democratic Socialist Republic of Sri Lanka",

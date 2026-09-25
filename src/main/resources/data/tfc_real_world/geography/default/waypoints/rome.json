@@ -15,6 +15,21 @@
     "zh_hk": "羅馬",
     "zh_tw": "羅馬"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Italienischen Republik",
+    "en_us": "Capital of the Italian Republic",
+    "es_es": "Capital de la República Italiana",
+    "ja_jp": "イタリア共和国の首都",
+    "ko_kr": "이탈리아 공화국의 수도",
+    "pl_pl": "Stolica Republiki Włoskiej",
+    "pt_br": "Capital da República Italiana",
+    "ru_ru": "Столица Итальянской Республики",
+    "tr_tr": "İtalya Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Італійської Республіки",
+    "zh_cn": "意大利共和国的首都",
+    "zh_hk": "意大利共和國的首都",
+    "zh_tw": "意大利共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Italienischen Republik",
     "en_us": "Visit the capital of the Italian Republic",

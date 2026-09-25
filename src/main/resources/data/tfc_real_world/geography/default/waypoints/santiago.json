@@ -15,6 +15,21 @@
     "zh_hk": "聖地牙哥",
     "zh_tw": "聖地牙哥"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Chile",
+    "en_us": "Capital of the Republic of Chile",
+    "es_es": "Capital de la República de Chile",
+    "ja_jp": "チリ共和国の首都",
+    "ko_kr": "칠레 공화국의 수도",
+    "pl_pl": "Stolica Republiki Chile",
+    "pt_br": "Capital da República do Chile",
+    "ru_ru": "Столица Республики Чили",
+    "tr_tr": "Şili Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Чилі",
+    "zh_cn": "智利共和国的首都",
+    "zh_hk": "智利共和國的首都",
+    "zh_tw": "智利共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Chile",
     "en_us": "Visit the capital of the Republic of Chile",

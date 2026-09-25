@@ -15,6 +15,21 @@
     "zh_hk": "安曼",
     "zh_tw": "安曼"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Haschemitischen Königreichs Jordanien",
+    "en_us": "Capital of the Hashemite Kingdom of Jordan",
+    "es_es": "Capital del Reino Hachemita de Jordania",
+    "ja_jp": "ヨルダン・ハシミテ王国の首都",
+    "ko_kr": "요르단 하심 왕국의 수도",
+    "pl_pl": "Stolica Haszymidzkiego Królestwa Jordanii",
+    "pt_br": "Capital do Reino Hachemita da Jordânia",
+    "ru_ru": "Столица Иорданского Хашимитского Королевства",
+    "tr_tr": "Ürdün Haşimi Krallığı'nın başkenti",
+    "uk_ua": "Столиця Йорданського Хашимітського Королівства",
+    "zh_cn": "约旦哈希姆王国的首都",
+    "zh_hk": "約旦哈希姆王國的首都",
+    "zh_tw": "約旦哈希姆王國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Haschemitischen Königreichs Jordanien",
     "en_us": "Visit the capital of the Hashemite Kingdom of Jordan",

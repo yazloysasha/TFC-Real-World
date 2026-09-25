@@ -15,6 +15,21 @@
     "zh_hk": "雷克雅未克",
     "zh_tw": "雷克雅維克"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Island",
+    "en_us": "Capital of Iceland",
+    "es_es": "Capital de Islandia",
+    "ja_jp": "アイスランドの首都",
+    "ko_kr": "아이슬란드의 수도",
+    "pl_pl": "Stolica Islandii",
+    "pt_br": "Capital da Islândia",
+    "ru_ru": "Столица Исландии",
+    "tr_tr": "İzlanda'nın başkenti",
+    "uk_ua": "Столиця Ісландії",
+    "zh_cn": "冰岛的首都",
+    "zh_hk": "冰島的首都",
+    "zh_tw": "冰島的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Island",
     "en_us": "Visit the capital of Iceland",

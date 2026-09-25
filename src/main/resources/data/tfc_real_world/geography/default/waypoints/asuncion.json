@@ -15,6 +15,21 @@
     "zh_hk": "亞松森",
     "zh_tw": "亞松森"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Paraguay",
+    "en_us": "Capital of the Republic of Paraguay",
+    "es_es": "Capital de la República de Paraguay",
+    "ja_jp": "パラグアイ共和国の首都",
+    "ko_kr": "파라과이 공화국의 수도",
+    "pl_pl": "Stolica Republiki Paragwaju",
+    "pt_br": "Capital da República do Paraguai",
+    "ru_ru": "Столица Республики Парагвай",
+    "tr_tr": "Paraguay Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Парагвай",
+    "zh_cn": "巴拉圭共和国的首都",
+    "zh_hk": "巴拉圭共和國的首都",
+    "zh_tw": "巴拉圭共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Paraguay",
     "en_us": "Visit the capital of the Republic of Paraguay",

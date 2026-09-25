@@ -15,6 +15,21 @@
     "zh_hk": "京士頓",
     "zh_tw": "京士頓"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Jamaika",
+    "en_us": "Capital of Jamaica",
+    "es_es": "Capital de Jamaica",
+    "ja_jp": "ジャマイカの首都",
+    "ko_kr": "자메이카의 수도",
+    "pl_pl": "Stolica Jamajki",
+    "pt_br": "Capital da Jamaica",
+    "ru_ru": "Столица Ямайки",
+    "tr_tr": "Jamaika'nın başkenti",
+    "uk_ua": "Столиця Ямайки",
+    "zh_cn": "牙买加的首都",
+    "zh_hk": "牙買加的首都",
+    "zh_tw": "牙買加的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Jamaika",
     "en_us": "Visit the capital of Jamaica",

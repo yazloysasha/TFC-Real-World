@@ -15,6 +15,21 @@
     "zh_hk": "阿斯馬拉",
     "zh_tw": "阿斯馬拉"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Staates Eritrea",
+    "en_us": "Capital of the State of Eritrea",
+    "es_es": "Capital del Estado de Eritrea",
+    "ja_jp": "エリトリア国の首都",
+    "ko_kr": "에리트레아국의 수도",
+    "pl_pl": "Stolica Państwa Erytrei",
+    "pt_br": "Capital do Estado da Eritreia",
+    "ru_ru": "Столица Государства Эритрея",
+    "tr_tr": "Eritre Devleti'nin başkenti",
+    "uk_ua": "Столиця Держави Еритрея",
+    "zh_cn": "厄立特里亚国的首都",
+    "zh_hk": "厄立特裏亞國的首都",
+    "zh_tw": "厄立特裏亞國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Staates Eritrea",
     "en_us": "Visit the capital of the State of Eritrea",

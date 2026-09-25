@@ -15,6 +15,21 @@
     "zh_hk": "布宜諾斯艾利斯",
     "zh_tw": "布宜諾斯艾利斯"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Argentinischen Republik",
+    "en_us": "Capital of the Argentine Republic",
+    "es_es": "Capital de la República Argentina",
+    "ja_jp": "アルゼンチン共和国の首都",
+    "ko_kr": "아르헨티나 공화국의 수도",
+    "pl_pl": "Stolica Republiki Argentyńskiej",
+    "pt_br": "Capital da República Argentina",
+    "ru_ru": "Столица Аргентинской Республики",
+    "tr_tr": "Arjantin Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Аргентинської Республіки",
+    "zh_cn": "阿根廷共和国的首都",
+    "zh_hk": "阿根廷共和國的首都",
+    "zh_tw": "阿根廷共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Argentinischen Republik",
     "en_us": "Visit the capital of the Argentine Republic",

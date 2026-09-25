@@ -15,6 +15,21 @@
     "zh_hk": "里斯本",
     "zh_tw": "里斯本"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Portugiesischen Republik",
+    "en_us": "Capital of the Portuguese Republic",
+    "es_es": "Capital de la República Portuguesa",
+    "ja_jp": "ポルトガル共和国の首都",
+    "ko_kr": "포르투갈 공화국의 수도",
+    "pl_pl": "Stolica Republiki Portugalskiej",
+    "pt_br": "Capital da República Portuguesa",
+    "ru_ru": "Столица Португальской Республики",
+    "tr_tr": "Portekiz Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Португальської Республіки",
+    "zh_cn": "葡萄牙共和国的首都",
+    "zh_hk": "葡萄牙共和國的首都",
+    "zh_tw": "葡萄牙共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Portugiesischen Republik",
     "en_us": "Visit the capital of the Portuguese Republic",

@@ -15,6 +15,21 @@
     "zh_hk": "烏蘭巴托",
     "zh_tw": "烏蘭巴托"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Mongolei",
+    "en_us": "Capital of Mongolia",
+    "es_es": "Capital de Mongolia",
+    "ja_jp": "モンゴルの首都",
+    "ko_kr": "몽골의 수도",
+    "pl_pl": "Stolica Mongolii",
+    "pt_br": "Capital da Mongólia",
+    "ru_ru": "Столица Монголии",
+    "tr_tr": "Moğolistan'ın başkenti",
+    "uk_ua": "Столиця Монголії",
+    "zh_cn": "蒙古的首都",
+    "zh_hk": "蒙古的首都",
+    "zh_tw": "蒙古的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Mongolei",
     "en_us": "Visit the capital of Mongolia",

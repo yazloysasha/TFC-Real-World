@@ -15,6 +15,21 @@
     "zh_hk": "耶路撒冷",
     "zh_tw": "耶路撒冷"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Staates Israel",
+    "en_us": "Capital of the State of Israel",
+    "es_es": "Capital del Estado de Israel",
+    "ja_jp": "イスラエル国の首都",
+    "ko_kr": "이스라엘국의 수도",
+    "pl_pl": "Stolica Państwa Izraela",
+    "pt_br": "Capital do Estado de Israel",
+    "ru_ru": "Столица Государства Израиль",
+    "tr_tr": "İsrail Devleti'nin başkenti",
+    "uk_ua": "Столиця Держави Ізраїль",
+    "zh_cn": "以色列国的首都",
+    "zh_hk": "以色列國的首都",
+    "zh_tw": "以色列國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Staates Israel",
     "en_us": "Visit the capital of the State of Israel",

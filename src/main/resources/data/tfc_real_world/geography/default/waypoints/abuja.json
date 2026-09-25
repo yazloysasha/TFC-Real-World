@@ -15,6 +15,21 @@
     "zh_hk": "阿布賈",
     "zh_tw": "阿布加"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Bundesrepublik Nigeria",
+    "en_us": "Capital of the Federal Republic of Nigeria",
+    "es_es": "Capital de la República Federal de Nigeria",
+    "ja_jp": "ナイジェリア連邦共和国の首都",
+    "ko_kr": "나이지리아 연방공화국의 수도",
+    "pl_pl": "Stolica Republiki Federalnej Nigerii",
+    "pt_br": "Capital da República Federal de Nigéria",
+    "ru_ru": "Столица Федеративной Республики Нигерия",
+    "tr_tr": "Nijerya Federal Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Федеративної Республіки Нігерія",
+    "zh_cn": "尼日利亚联邦共和国的首都",
+    "zh_hk": "尼日利亞聯邦共和國的首都",
+    "zh_tw": "尼日利亞聯邦共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Bundesrepublik Nigeria",
     "en_us": "Visit the capital of the Federal Republic of Nigeria",

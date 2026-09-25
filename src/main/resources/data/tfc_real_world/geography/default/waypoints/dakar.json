@@ -15,6 +15,21 @@
     "zh_hk": "達喀爾",
     "zh_tw": "達卡"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Senegal",
+    "en_us": "Capital of the Republic of Senegal",
+    "es_es": "Capital de la República de Senegal",
+    "ja_jp": "セネガル共和国の首都",
+    "ko_kr": "세네갈 공화국의 수도",
+    "pl_pl": "Stolica Republiki Senegalu",
+    "pt_br": "Capital da República do Senegal",
+    "ru_ru": "Столица Республики Сенегал",
+    "tr_tr": "Senegal Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Сенегал",
+    "zh_cn": "塞内加尔共和国的首都",
+    "zh_hk": "塞內加爾共和國的首都",
+    "zh_tw": "塞內加爾共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Senegal",
     "en_us": "Visit the capital of the Republic of Senegal",

@@ -15,6 +15,21 @@
     "zh_hk": "聖荷西",
     "zh_tw": "聖荷西"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Costa Rica",
+    "en_us": "Capital of the Republic of Costa Rica",
+    "es_es": "Capital de la República de Costa Rica",
+    "ja_jp": "コスタリカ共和国の首都",
+    "ko_kr": "코스타리카 공화국의 수도",
+    "pl_pl": "Stolica Republiki Kostaryki",
+    "pt_br": "Capital da República da Costa Rica",
+    "ru_ru": "Столица Республики Коста-Рика",
+    "tr_tr": "Kosta Rika Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Коста-Рика",
+    "zh_cn": "哥斯达黎加共和国的首都",
+    "zh_hk": "哥斯達黎加共和國的首都",
+    "zh_tw": "哥斯達黎加共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Costa Rica",
     "en_us": "Visit the capital of the Republic of Costa Rica",

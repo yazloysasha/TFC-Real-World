@@ -15,6 +15,21 @@
     "zh_hk": "太子港",
     "zh_tw": "太子港"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Haiti",
+    "en_us": "Capital of the Republic of Haiti",
+    "es_es": "Capital de la República de Haití",
+    "ja_jp": "ハイチ共和国の首都",
+    "ko_kr": "아이티 공화국의 수도",
+    "pl_pl": "Stolica Republiki Haiti",
+    "pt_br": "Capital da República do Haiti",
+    "ru_ru": "Столица Республики Гаити",
+    "tr_tr": "Haiti Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Гаїті",
+    "zh_cn": "海地共和国的首都",
+    "zh_hk": "海地共和國的首都",
+    "zh_tw": "海地共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Haiti",
     "en_us": "Visit the capital of the Republic of Haiti",

@@ -15,6 +15,21 @@
     "zh_hk": "洛美",
     "zh_tw": "洛美"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Togolesischen Republik",
+    "en_us": "Capital of the Togolese Republic",
+    "es_es": "Capital de la República Togolesa",
+    "ja_jp": "トーゴ共和国の首都",
+    "ko_kr": "토고 공화국의 수도",
+    "pl_pl": "Stolica Republiki Togijskiej",
+    "pt_br": "Capital da República Togolesa",
+    "ru_ru": "Столица Тоголезской Республики",
+    "tr_tr": "Togo Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Тоголезької Республіки",
+    "zh_cn": "多哥共和国的首都",
+    "zh_hk": "多哥共和國的首都",
+    "zh_tw": "多哥共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Togolesischen Republik",
     "en_us": "Visit the capital of the Togolese Republic",

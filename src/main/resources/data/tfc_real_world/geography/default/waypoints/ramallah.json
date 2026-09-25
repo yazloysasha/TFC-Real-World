@@ -15,6 +15,21 @@
     "zh_hk": "拉姆安拉",
     "zh_tw": "拉馬拉"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Palästina",
+    "en_us": "Capital of Palestine",
+    "es_es": "Capital de Palestina",
+    "ja_jp": "パレスチナの首都",
+    "ko_kr": "팔레스타인의 수도",
+    "pl_pl": "Stolica Palestyny",
+    "pt_br": "Capital da Palestina",
+    "ru_ru": "Столица Палестины",
+    "tr_tr": "Filistin'in başkenti",
+    "uk_ua": "Столиця Палестини",
+    "zh_cn": "巴勒斯坦的首都",
+    "zh_hk": "巴勒斯坦的首都",
+    "zh_tw": "巴勒斯坦的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Palästina",
     "en_us": "Visit the capital of Palestine",

@@ -153,6 +153,15 @@ Profiles can be placed in two locations:
 
 External profiles take priority over JAR profiles with the same namespace and name.
 
+#### 📍 Custom Geography & Waypoints
+
+The in-game geography map (inventory globe tab) shows waypoints listed in the active profile’s `settings.json` (`"waypoints": ["namespace:slug", ...]`). Waypoint and hierarchy JSON live separately from map images:
+
+- **JAR:** `data/tfc_real_world/geography/{namespace}/{continents|regions|subregions|waypoints}/`
+- **External (folders or ZIP):** `config/tfc_real_world/geography/` — either `{namespace}/waypoints/my_place.json` or a `.zip` whose root contains the same `{namespace}/…` tree
+
+IDs: waypoints use `namespace:slug`; continents/regions/subregions use `namespace:continent|region|subregion/slug`. External geography overrides JAR entries with the same ID. A custom waypoint only appears on the map if its ref is listed in the **active profile** `waypoints` array and the JSON has `latitude` / `longitude`.
+
 #### 🔧 Profile Settings (`settings.json`)
 
 Each map profile requires a `settings.json` file that defines the profile's configuration. All fields are optional and will use default values if omitted.
@@ -180,6 +189,10 @@ Each map profile requires a `settings.json` file that defines the profile's conf
 - **East Edge Longitude** (Double, default: `190.0`): Eastern edge of the map in degrees longitude.
 - **South Edge Latitude** (Double, default: `-90.0`): Southern edge of the map in degrees latitude.
 - **North Edge Latitude** (Double, default: `90.0`): Northern edge of the map in degrees latitude.
+
+**Geography Map:**
+
+- **Waypoints** (String array, default: `[]`): Waypoint refs (`namespace:slug`) shown on the geography overview for this profile. Refs must resolve to geography waypoint JSON with latitude/longitude.
 
 **Projection:**
 

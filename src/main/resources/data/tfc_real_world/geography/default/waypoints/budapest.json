@@ -15,6 +15,21 @@
     "zh_hk": "布達佩斯",
     "zh_tw": "布達佩斯"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Ungarn",
+    "en_us": "Capital of Hungary",
+    "es_es": "Capital de Hungría",
+    "ja_jp": "ハンガリーの首都",
+    "ko_kr": "헝가리의 수도",
+    "pl_pl": "Stolica Węgier",
+    "pt_br": "Capital da Hungria",
+    "ru_ru": "Столица Венгрии",
+    "tr_tr": "Macaristan'ın başkenti",
+    "uk_ua": "Столиця Угорщини",
+    "zh_cn": "匈牙利的首都",
+    "zh_hk": "匈牙利的首都",
+    "zh_tw": "匈牙利的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Ungarn",
     "en_us": "Visit the capital of Hungary",

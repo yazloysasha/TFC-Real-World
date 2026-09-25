@@ -15,6 +15,21 @@
     "zh_hk": "阿姆斯特丹",
     "zh_tw": "阿姆斯特丹"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Niederlande",
+    "en_us": "Capital of the Netherlands",
+    "es_es": "Capital de los Países Bajos",
+    "ja_jp": "オランダの首都",
+    "ko_kr": "네덜란드의 수도",
+    "pl_pl": "Stolica Holandii",
+    "pt_br": "Capital dos Países Baixos",
+    "ru_ru": "Столица Нидерландов",
+    "tr_tr": "Hollanda'nın başkenti",
+    "uk_ua": "Столиця Нідерландів",
+    "zh_cn": "荷兰的首都",
+    "zh_hk": "荷蘭的首都",
+    "zh_tw": "荷蘭的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Niederlande",
     "en_us": "Visit the capital of the Netherlands",

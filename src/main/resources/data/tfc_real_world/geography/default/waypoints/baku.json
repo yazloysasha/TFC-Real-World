@@ -15,6 +15,21 @@
     "zh_hk": "巴庫",
     "zh_tw": "巴庫"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Aserbaidschan",
+    "en_us": "Capital of the Republic of Azerbaijan",
+    "es_es": "Capital de la República de Azerbaiyán",
+    "ja_jp": "アゼルバイジャン共和国の首都",
+    "ko_kr": "아제르바이잔 공화국의 수도",
+    "pl_pl": "Stolica Republiki Azerbejdżanu",
+    "pt_br": "Capital da República do Azerbaijão",
+    "ru_ru": "Столица Республики Азербайджан",
+    "tr_tr": "Azerbaycan Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Азербайджан",
+    "zh_cn": "阿塞拜疆共和国的首都",
+    "zh_hk": "阿塞拜疆共和國的首都",
+    "zh_tw": "阿塞拜疆共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Aserbaidschan",
     "en_us": "Visit the capital of the Republic of Azerbaijan",

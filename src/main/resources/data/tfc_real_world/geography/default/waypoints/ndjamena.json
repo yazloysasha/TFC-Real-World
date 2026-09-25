@@ -15,6 +15,21 @@
     "zh_hk": "恩賈梅納",
     "zh_tw": "恩將納"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Tschad",
+    "en_us": "Capital of the Republic of Chad",
+    "es_es": "Capital de la República del Chad",
+    "ja_jp": "チャド共和国の首都",
+    "ko_kr": "차드 공화국의 수도",
+    "pl_pl": "Stolica Republiki Czadu",
+    "pt_br": "Capital da República do Chade",
+    "ru_ru": "Столица Республики Чад",
+    "tr_tr": "Çad Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Чад",
+    "zh_cn": "乍得共和国的首都",
+    "zh_hk": "乍得共和國的首都",
+    "zh_tw": "乍得共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Tschad",
     "en_us": "Visit the capital of the Republic of Chad",

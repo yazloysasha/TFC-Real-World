@@ -15,6 +15,21 @@
     "zh_hk": "坎帕拉",
     "zh_tw": "坎帕拉"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Uganda",
+    "en_us": "Capital of the Republic of Uganda",
+    "es_es": "Capital de la República de Uganda",
+    "ja_jp": "ウガンダ共和国の首都",
+    "ko_kr": "우간다 공화국의 수도",
+    "pl_pl": "Stolica Republiki Ugandy",
+    "pt_br": "Capital da República da Uganda",
+    "ru_ru": "Столица Республики Уганда",
+    "tr_tr": "Uganda Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Уганда",
+    "zh_cn": "乌干达共和国的首都",
+    "zh_hk": "烏幹達共和國的首都",
+    "zh_tw": "烏幹達共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Uganda",
     "en_us": "Visit the capital of the Republic of Uganda",

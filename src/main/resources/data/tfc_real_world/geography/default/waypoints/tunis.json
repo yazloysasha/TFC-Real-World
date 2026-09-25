@@ -15,6 +15,21 @@
     "zh_hk": "突尼斯",
     "zh_tw": "突尼斯市"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Tunesien",
+    "en_us": "Capital of the Republic of Tunisia",
+    "es_es": "Capital de la República de Túnez",
+    "ja_jp": "チュニジア共和国の首都",
+    "ko_kr": "튀니지 공화국의 수도",
+    "pl_pl": "Stolica Republiki Tunezji",
+    "pt_br": "Capital da República da Tunísia",
+    "ru_ru": "Столица Республики Тунис",
+    "tr_tr": "Tunus Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Туніс",
+    "zh_cn": "突尼斯共和国的首都",
+    "zh_hk": "突尼斯共和國的首都",
+    "zh_tw": "突尼斯共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Tunesien",
     "en_us": "Visit the capital of the Republic of Tunisia",

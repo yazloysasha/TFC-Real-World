@@ -15,6 +15,21 @@
     "zh_hk": "拉巴特",
     "zh_tw": "拉巴特"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Königreichs Marokko",
+    "en_us": "Capital of the Kingdom of Morocco",
+    "es_es": "Capital del Reino de Marruecos",
+    "ja_jp": "モロッコ王国の首都",
+    "ko_kr": "모로코 왕국의 수도",
+    "pl_pl": "Stolica Królestwa Maroka",
+    "pt_br": "Capital do Reino do Marrocos",
+    "ru_ru": "Столица Королевства Марокко",
+    "tr_tr": "Fas Krallığı'nın başkenti",
+    "uk_ua": "Столиця Королівства Марокко",
+    "zh_cn": "摩洛哥王国的首都",
+    "zh_hk": "摩洛哥王國的首都",
+    "zh_tw": "摩洛哥王國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Königreichs Marokko",
     "en_us": "Visit the capital of the Kingdom of Morocco",

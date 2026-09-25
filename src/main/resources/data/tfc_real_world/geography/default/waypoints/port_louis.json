@@ -15,6 +15,21 @@
     "zh_hk": "路易港",
     "zh_tw": "路易港"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Mauritius",
+    "en_us": "Capital of the Republic of Mauritius",
+    "es_es": "Capital de la República de Mauricio",
+    "ja_jp": "モーリシャス共和国の首都",
+    "ko_kr": "모리셔스 공화국의 수도",
+    "pl_pl": "Stolica Republiki Mauritiusu",
+    "pt_br": "Capital da República das Maurício",
+    "ru_ru": "Столица Республики Маврикий",
+    "tr_tr": "Mauritius Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Маврикій",
+    "zh_cn": "毛里求斯共和国的首都",
+    "zh_hk": "毛裏求斯共和國的首都",
+    "zh_tw": "毛裏求斯共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Mauritius",
     "en_us": "Visit the capital of the Republic of Mauritius",

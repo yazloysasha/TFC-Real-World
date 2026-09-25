@@ -15,6 +15,21 @@
     "zh_hk": "伊斯蘭堡",
     "zh_tw": "伊斯蘭瑪巴德"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Islamischen Republik Pakistan",
+    "en_us": "Capital of the Islamic Republic of Pakistan",
+    "es_es": "Capital de la República Islámica de Pakistán",
+    "ja_jp": "パキスタン・イスラム共和国の首都",
+    "ko_kr": "파키스탄 이슬람 공화국의 수도",
+    "pl_pl": "Stolica Islamskiej Republiki Pakistanu",
+    "pt_br": "Capital da República Islâmica de Paquistão",
+    "ru_ru": "Столица Исламской Республики Пакистан",
+    "tr_tr": "Pakistan İslam Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Ісламської Республіки Пакистан",
+    "zh_cn": "巴基斯坦伊斯兰共和国的首都",
+    "zh_hk": "巴基斯坦伊斯蘭共和國的首都",
+    "zh_tw": "巴基斯坦伊斯蘭共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Islamischen Republik Pakistan",
     "en_us": "Visit the capital of the Islamic Republic of Pakistan",

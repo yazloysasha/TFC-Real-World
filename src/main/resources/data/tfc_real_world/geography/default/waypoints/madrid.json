@@ -15,6 +15,21 @@
     "zh_hk": "馬德里",
     "zh_tw": "馬德里"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Königreichs Spanien",
+    "en_us": "Capital of the Kingdom of Spain",
+    "es_es": "Capital del Reino de España",
+    "ja_jp": "スペイン王国の首都",
+    "ko_kr": "스페인 왕국의 수도",
+    "pl_pl": "Stolica Królestwa Hiszpanii",
+    "pt_br": "Capital do Reino da Espanha",
+    "ru_ru": "Столица Королевства Испания",
+    "tr_tr": "İspanya Krallığı'nın başkenti",
+    "uk_ua": "Столиця Королівства Іспанія",
+    "zh_cn": "西班牙王国的首都",
+    "zh_hk": "西班牙王國的首都",
+    "zh_tw": "西班牙王國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Königreichs Spanien",
     "en_us": "Visit the capital of the Kingdom of Spain",

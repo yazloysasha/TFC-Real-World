@@ -15,6 +15,21 @@
     "zh_hk": "倫敦",
     "zh_tw": "倫敦"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Vereinigten Königreichs Großbritannien und Nordirland",
+    "en_us": "Capital of the United Kingdom of Great Britain and Northern Ireland",
+    "es_es": "Capital del Reino Unido de Gran Bretaña e Irlanda del Norte",
+    "ja_jp": "グレートブリテンおよび北アイルランド連合王国の首都",
+    "ko_kr": "그레이트브리튼 및 북아일랜드 연합왕국의 수도",
+    "pl_pl": "Stolica Zjednoczonego Królestwa Wielkiej Brytanii i Irlandii Północnej",
+    "pt_br": "Capital do Reino Unido da Grã-Bretanha e Irlanda do Norte",
+    "ru_ru": "Столица Соединённого Королевства Великобритании и Северной Ирландии",
+    "tr_tr": "Büyük Britanya ve Kuzey İrlanda Birleşik Krallığı'nın başkenti",
+    "uk_ua": "Столиця Сполученого Королівства Великої Британії та Північної Ірландії",
+    "zh_cn": "大不列颠及北爱尔兰联合王国的首都",
+    "zh_hk": "大不列顛及北愛爾蘭聯合王國的首都",
+    "zh_tw": "大不列顛及北愛爾蘭聯合王國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Vereinigten Königreichs Großbritannien und Nordirland",
     "en_us": "Visit the capital of the United Kingdom of Great Britain and Northern Ireland",

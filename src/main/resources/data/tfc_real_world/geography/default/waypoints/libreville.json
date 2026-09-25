@@ -15,6 +15,21 @@
     "zh_hk": "利伯維爾",
     "zh_tw": "利伯維爾"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Gabunischen Republik",
+    "en_us": "Capital of the Gabonese Republic",
+    "es_es": "Capital de la República Gabonesa",
+    "ja_jp": "ガボン共和国の首都",
+    "ko_kr": "가봉 공화국의 수도",
+    "pl_pl": "Stolica Republiki Gabońskiej",
+    "pt_br": "Capital da República Gabonesa",
+    "ru_ru": "Столица Габонской Республики",
+    "tr_tr": "Gabon Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Габонської Республіки",
+    "zh_cn": "加蓬共和国的首都",
+    "zh_hk": "加蓬共和國的首都",
+    "zh_tw": "加蓬共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Gabunischen Republik",
     "en_us": "Visit the capital of the Gabonese Republic",

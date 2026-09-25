@@ -15,6 +15,21 @@
     "zh_hk": "瓦杜茲",
     "zh_tw": "瓦杜茲"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Fürstentums Liechtenstein",
+    "en_us": "Capital of the Principality of Liechtenstein",
+    "es_es": "Capital del Principado de Liechtenstein",
+    "ja_jp": "リヒテンシュタイン公国の首都",
+    "ko_kr": "리히텐슈타인 공국의 수도",
+    "pl_pl": "Stolica Księstwa Liechtensteinu",
+    "pt_br": "Capital do Principado de Liechtenstein",
+    "ru_ru": "Столица Княжества Лихтенштейн",
+    "tr_tr": "Lihtenştayn Prensliği'nin başkenti",
+    "uk_ua": "Столиця Князівства Ліхтенштейн",
+    "zh_cn": "列支敦士登公国的首都",
+    "zh_hk": "列支敦士登公國的首都",
+    "zh_tw": "列支敦士登公國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Fürstentums Liechtenstein",
     "en_us": "Visit the capital of the Principality of Liechtenstein",

@@ -15,6 +15,21 @@
     "zh_hk": "新德里",
     "zh_tw": "新德里"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Indien",
+    "en_us": "Capital of the Republic of India",
+    "es_es": "Capital de la República de la India",
+    "ja_jp": "インド共和国の首都",
+    "ko_kr": "인도 공화국의 수도",
+    "pl_pl": "Stolica Republiki Indii",
+    "pt_br": "Capital da República da Índia",
+    "ru_ru": "Столица Республики Индия",
+    "tr_tr": "Hindistan Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Індія",
+    "zh_cn": "印度共和国的首都",
+    "zh_hk": "印度共和國的首都",
+    "zh_tw": "印度共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Indien",
     "en_us": "Visit the capital of the Republic of India",

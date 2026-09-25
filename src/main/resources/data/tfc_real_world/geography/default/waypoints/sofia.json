@@ -15,6 +15,21 @@
     "zh_hk": "索菲亞",
     "zh_tw": "索菲亞"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Bulgarien",
+    "en_us": "Capital of the Republic of Bulgaria",
+    "es_es": "Capital de la República de Bulgaria",
+    "ja_jp": "ブルガリア共和国の首都",
+    "ko_kr": "불가리아 공화국의 수도",
+    "pl_pl": "Stolica Republiki Bułgarii",
+    "pt_br": "Capital da República da Bulgária",
+    "ru_ru": "Столица Республики Болгария",
+    "tr_tr": "Bulgaristan Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Болгарія",
+    "zh_cn": "保加利亚共和国的首都",
+    "zh_hk": "保加利亞共和國的首都",
+    "zh_tw": "保加利亞共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Bulgarien",
     "en_us": "Visit the capital of the Republic of Bulgaria",

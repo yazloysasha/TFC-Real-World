@@ -15,6 +15,21 @@
     "zh_hk": "夏灣拿",
     "zh_tw": "哈瓦那"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Kuba",
+    "en_us": "Capital of the Republic of Cuba",
+    "es_es": "Capital de la República de Cuba",
+    "ja_jp": "キューバ共和国の首都",
+    "ko_kr": "쿠바 공화국의 수도",
+    "pl_pl": "Stolica Republiki Kuby",
+    "pt_br": "Capital da República de Cuba",
+    "ru_ru": "Столица Республики Куба",
+    "tr_tr": "Küba Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Куба",
+    "zh_cn": "古巴共和国的首都",
+    "zh_hk": "古巴共和國的首都",
+    "zh_tw": "古巴共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Kuba",
     "en_us": "Visit the capital of the Republic of Cuba",

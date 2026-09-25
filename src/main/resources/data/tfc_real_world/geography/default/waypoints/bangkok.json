@@ -15,6 +15,21 @@
     "zh_hk": "曼谷",
     "zh_tw": "曼谷"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Königreichs Thailand",
+    "en_us": "Capital of the Kingdom of Thailand",
+    "es_es": "Capital del Reino de Tailandia",
+    "ja_jp": "タイ王国の首都",
+    "ko_kr": "태국 왕국의 수도",
+    "pl_pl": "Stolica Królestwa Tajlandii",
+    "pt_br": "Capital do Reino da Tailândia",
+    "ru_ru": "Столица Королевства Таиланд",
+    "tr_tr": "Tayland Krallığı'nın başkenti",
+    "uk_ua": "Столиця Королівства Таїланд",
+    "zh_cn": "泰国王国的首都",
+    "zh_hk": "泰國王國的首都",
+    "zh_tw": "泰國王國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Königreichs Thailand",
     "en_us": "Visit the capital of the Kingdom of Thailand",

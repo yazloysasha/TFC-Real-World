@@ -15,6 +15,21 @@
     "zh_hk": "卡斯特裏",
     "zh_tw": "卡斯翠"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von St. Lucia",
+    "en_us": "Capital of Saint Lucia",
+    "es_es": "Capital de Santa Lucía",
+    "ja_jp": "セントルシアの首都",
+    "ko_kr": "세인트루시아의 수도",
+    "pl_pl": "Stolica Saint Lucii",
+    "pt_br": "Capital de Santa Lúcia",
+    "ru_ru": "Столица Сент-Люсии",
+    "tr_tr": "Saint Lucia'nın başkenti",
+    "uk_ua": "Столиця Сент-Люсії",
+    "zh_cn": "圣卢西亚的首都",
+    "zh_hk": "聖盧西亞的首都",
+    "zh_tw": "聖盧西亞的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von St. Lucia",
     "en_us": "Visit the capital of Saint Lucia",

@@ -15,6 +15,21 @@
     "zh_hk": "達卡",
     "zh_tw": "達卡"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Bangladesch",
+    "en_us": "Capital of Bangladesh",
+    "es_es": "Capital de Bangladés",
+    "ja_jp": "バングラデシュの首都",
+    "ko_kr": "방글라데시의 수도",
+    "pl_pl": "Stolica Bangladeszu",
+    "pt_br": "Capital do Bangladesh",
+    "ru_ru": "Столица Бангладеш",
+    "tr_tr": "Bangladeş'in başkenti",
+    "uk_ua": "Столиця Бангладеш",
+    "zh_cn": "孟加拉国的首都",
+    "zh_hk": "孟加拉國的首都",
+    "zh_tw": "孟加拉國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Bangladesch",
     "en_us": "Visit the capital of Bangladesh",

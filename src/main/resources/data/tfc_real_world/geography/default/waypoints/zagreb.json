@@ -15,6 +15,21 @@
     "zh_hk": "薩格勒布",
     "zh_tw": "札格雷布"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Kroatien",
+    "en_us": "Capital of the Republic of Croatia",
+    "es_es": "Capital de la República de Croacia",
+    "ja_jp": "クロアチア共和国の首都",
+    "ko_kr": "크로아티아 공화국의 수도",
+    "pl_pl": "Stolica Republiki Chorwacji",
+    "pt_br": "Capital da República da Croácia",
+    "ru_ru": "Столица Республики Хорватия",
+    "tr_tr": "Hırvatistan Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Хорватія",
+    "zh_cn": "克罗地亚共和国的首都",
+    "zh_hk": "克羅地亞共和國的首都",
+    "zh_tw": "克羅地亞共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Kroatien",
     "en_us": "Visit the capital of the Republic of Croatia",

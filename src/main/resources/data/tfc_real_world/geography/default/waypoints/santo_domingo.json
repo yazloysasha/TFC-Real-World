@@ -15,6 +15,21 @@
     "zh_hk": "聖多明哥",
     "zh_tw": "聖多明哥"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Dominikanischen Republik",
+    "en_us": "Capital of the Dominican Republic",
+    "es_es": "Capital de la República Dominicana",
+    "ja_jp": "ドミニカ共和国の首都",
+    "ko_kr": "도미니카 공화국의 수도",
+    "pl_pl": "Stolica Dominikany",
+    "pt_br": "Capital da República Dominicana",
+    "ru_ru": "Столица Доминиканской Республики",
+    "tr_tr": "Dominik Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Домініканської Республіки",
+    "zh_cn": "多米尼加共和国的首都",
+    "zh_hk": "多米尼加共和國的首都",
+    "zh_tw": "多米尼加共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Dominikanischen Republik",
     "en_us": "Visit the capital of the Dominican Republic",

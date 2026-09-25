@@ -15,6 +15,21 @@
     "zh_hk": "開羅",
     "zh_tw": "開羅"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Arabischen Republik Ägypten",
+    "en_us": "Capital of the Arab Republic of Egypt",
+    "es_es": "Capital de la República Árabe de Egipto",
+    "ja_jp": "エジプト・アラブ共和国の首都",
+    "ko_kr": "이집트 아랍 공화국의 수도",
+    "pl_pl": "Stolica Arabskiej Republiki Egiptu",
+    "pt_br": "Capital da República Árabe do Egito",
+    "ru_ru": "Столица Арабской Республики Египет",
+    "tr_tr": "Mısır Arap Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Арабської Республіки Єгипет",
+    "zh_cn": "阿拉伯埃及共和国的首都",
+    "zh_hk": "阿拉伯埃及共和國的首都",
+    "zh_tw": "阿拉伯埃及共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Arabischen Republik Ägypten",
     "en_us": "Visit the capital of the Arab Republic of Egypt",

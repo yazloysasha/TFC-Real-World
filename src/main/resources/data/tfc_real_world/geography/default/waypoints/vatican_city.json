@@ -15,6 +15,21 @@
     "zh_hk": "梵蒂岡",
     "zh_tw": "梵蒂岡"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Staates Vatikanstadt",
+    "en_us": "Capital of the State of the Vatican City",
+    "es_es": "Capital del Estado de la Ciudad del Vaticano",
+    "ja_jp": "バチカン市国の首都",
+    "ko_kr": "바티칸 시국의 수도",
+    "pl_pl": "Stolica Państwa Watykańskiego",
+    "pt_br": "Capital do Estado da Cidade do Vaticano",
+    "ru_ru": "Столица Государства Град Ватикан",
+    "tr_tr": "Vatikan Şehir Devleti'nin başkenti",
+    "uk_ua": "Столиця Держави Ватикан",
+    "zh_cn": "梵蒂冈城国的首都",
+    "zh_hk": "梵蒂岡城國的首都",
+    "zh_tw": "梵蒂岡城國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Staates Vatikanstadt",
     "en_us": "Visit the capital of the State of the Vatican City",

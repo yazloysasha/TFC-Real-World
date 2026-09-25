@@ -15,6 +15,21 @@
     "zh_hk": "卡拉卡斯",
     "zh_tw": "加拉加斯"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Bolivarischen Republik Venezuela",
+    "en_us": "Capital of the Bolivarian Republic of Venezuela",
+    "es_es": "Capital de la República Bolivariana de Venezuela",
+    "ja_jp": "ベネズエラ・ボリバル共和国の首都",
+    "ko_kr": "베네수엘라 볼리바르 공화국의 수도",
+    "pl_pl": "Stolica Boliwariańskiej Republiki Wenezueli",
+    "pt_br": "Capital da República Bolivariana da Venezuela",
+    "ru_ru": "Столица Боливарианской Республики Венесуэла",
+    "tr_tr": "Venezuela Bolivar Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Боліваріанської Республіки Венесуела",
+    "zh_cn": "委内瑞拉玻利瓦尔共和国的首都",
+    "zh_hk": "委內瑞拉玻利瓦爾共和國的首都",
+    "zh_tw": "委內瑞拉玻利瓦爾共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Bolivarischen Republik Venezuela",
     "en_us": "Visit the capital of the Bolivarian Republic of Venezuela",

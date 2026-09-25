@@ -15,6 +15,21 @@
     "zh_hk": "維也納",
     "zh_tw": "維也納"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Österreich",
+    "en_us": "Capital of the Republic of Austria",
+    "es_es": "Capital de la República de Austria",
+    "ja_jp": "オーストリア共和国の首都",
+    "ko_kr": "오스트리아 공화국의 수도",
+    "pl_pl": "Stolica Republiki Austrii",
+    "pt_br": "Capital da República da Áustria",
+    "ru_ru": "Столица Республики Австрия",
+    "tr_tr": "Avusturya Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Австрія",
+    "zh_cn": "奥地利共和国的首都",
+    "zh_hk": "奧地利共和國的首都",
+    "zh_tw": "奧地利共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Österreich",
     "en_us": "Visit the capital of the Republic of Austria",

@@ -15,6 +15,21 @@
     "zh_hk": "斯德哥爾摩",
     "zh_tw": "斯德哥爾摩"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Königreichs Schweden",
+    "en_us": "Capital of the Kingdom of Sweden",
+    "es_es": "Capital del Reino de Suecia",
+    "ja_jp": "スウェーデン王国の首都",
+    "ko_kr": "스웨덴 왕국의 수도",
+    "pl_pl": "Stolica Królestwa Szwecji",
+    "pt_br": "Capital do Reino da Suécia",
+    "ru_ru": "Столица Королевства Швеция",
+    "tr_tr": "İsveç Krallığı'nın başkenti",
+    "uk_ua": "Столиця Королівства Швеція",
+    "zh_cn": "瑞典王国的首都",
+    "zh_hk": "瑞典王國的首都",
+    "zh_tw": "瑞典王國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Königreichs Schweden",
     "en_us": "Visit the capital of the Kingdom of Sweden",

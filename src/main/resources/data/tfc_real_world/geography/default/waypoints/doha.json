@@ -15,6 +15,21 @@
     "zh_hk": "多哈",
     "zh_tw": "杜哈"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Staates Katar",
+    "en_us": "Capital of the State of Qatar",
+    "es_es": "Capital del Estado de Catar",
+    "ja_jp": "カタール国の首都",
+    "ko_kr": "카타르국의 수도",
+    "pl_pl": "Stolica Państwa Kataru",
+    "pt_br": "Capital do Estado de Catar",
+    "ru_ru": "Столица Государства Катар",
+    "tr_tr": "Katar Devleti'nin başkenti",
+    "uk_ua": "Столиця Держави Катар",
+    "zh_cn": "卡塔尔国的首都",
+    "zh_hk": "卡塔爾國的首都",
+    "zh_tw": "卡塔爾國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Staates Katar",
     "en_us": "Visit the capital of the State of Qatar",

@@ -15,6 +15,21 @@
     "zh_hk": "布加勒斯特",
     "zh_tw": "布加勒斯特"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Rumänien",
+    "en_us": "Capital of Romania",
+    "es_es": "Capital de Rumanía",
+    "ja_jp": "ルーマニアの首都",
+    "ko_kr": "루마니아의 수도",
+    "pl_pl": "Stolica Rumunii",
+    "pt_br": "Capital da Romênia",
+    "ru_ru": "Столица Румынии",
+    "tr_tr": "Romanya'nın başkenti",
+    "uk_ua": "Столиця Румунії",
+    "zh_cn": "罗马尼亚的首都",
+    "zh_hk": "羅馬尼亞的首都",
+    "zh_tw": "羅馬尼亞的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Rumänien",
     "en_us": "Visit the capital of Romania",

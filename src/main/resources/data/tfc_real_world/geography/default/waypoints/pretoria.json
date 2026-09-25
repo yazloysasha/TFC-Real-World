@@ -15,6 +15,21 @@
     "zh_hk": "比勒陀利亞",
     "zh_tw": "比勒陀利亞"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Südafrika",
+    "en_us": "Capital of South Africa",
+    "es_es": "Capital de Sudáfrica",
+    "ja_jp": "南アフリカの首都",
+    "ko_kr": "남아프리카 공화국의 수도",
+    "pl_pl": "Stolica Południowej Afryki",
+    "pt_br": "Capital da África do Sul",
+    "ru_ru": "Столица ЮАР",
+    "tr_tr": "Güney Afrika'nın başkenti",
+    "uk_ua": "Столиця Південної Африки",
+    "zh_cn": "南非的首都",
+    "zh_hk": "南非的首都",
+    "zh_tw": "南非的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Südafrika",
     "en_us": "Visit the capital of South Africa",

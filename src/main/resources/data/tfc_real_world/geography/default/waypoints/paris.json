@@ -15,6 +15,21 @@
     "zh_hk": "巴黎",
     "zh_tw": "巴黎"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Frankreich",
+    "en_us": "Capital of the Republic of France",
+    "es_es": "Capital de la República de Francia",
+    "ja_jp": "フランス共和国の首都",
+    "ko_kr": "프랑스 공화국의 수도",
+    "pl_pl": "Stolica Republiki Francji",
+    "pt_br": "Capital da República da França",
+    "ru_ru": "Столица Республики Франция",
+    "tr_tr": "Fransa Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Франція",
+    "zh_cn": "法国共和国的首都",
+    "zh_hk": "法國共和國的首都",
+    "zh_tw": "法國共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Frankreich",
     "en_us": "Visit the capital of the Republic of France",

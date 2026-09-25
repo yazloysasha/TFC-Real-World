@@ -15,6 +15,21 @@
     "zh_hk": "馬塞盧",
     "zh_tw": "馬塞盧"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Königreichs Lesotho",
+    "en_us": "Capital of the Kingdom of Lesotho",
+    "es_es": "Capital del Reino de Lesoto",
+    "ja_jp": "レソト王国の首都",
+    "ko_kr": "레소토 왕국의 수도",
+    "pl_pl": "Stolica Królestwa Lesotho",
+    "pt_br": "Capital do Reino do Lesoto",
+    "ru_ru": "Столица Королевства Лесото",
+    "tr_tr": "Lesotho Krallığı'nın başkenti",
+    "uk_ua": "Столиця Королівства Лесото",
+    "zh_cn": "莱索托王国的首都",
+    "zh_hk": "萊索托王國的首都",
+    "zh_tw": "萊索托王國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Königreichs Lesotho",
     "en_us": "Visit the capital of the Kingdom of Lesotho",

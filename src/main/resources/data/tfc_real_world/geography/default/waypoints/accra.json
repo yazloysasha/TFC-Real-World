@@ -15,6 +15,21 @@
     "zh_hk": "阿克拉",
     "zh_tw": "阿克拉"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Ghana",
+    "en_us": "Capital of the Republic of Ghana",
+    "es_es": "Capital de la República de Ghana",
+    "ja_jp": "ガーナ共和国の首都",
+    "ko_kr": "가나 공화국의 수도",
+    "pl_pl": "Stolica Republiki Ghany",
+    "pt_br": "Capital da República de Gana",
+    "ru_ru": "Столица Республики Гана",
+    "tr_tr": "Gana Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Гана",
+    "zh_cn": "加纳共和国的首都",
+    "zh_hk": "加納共和國的首都",
+    "zh_tw": "加納共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Ghana",
     "en_us": "Visit the capital of the Republic of Ghana",

@@ -15,6 +15,21 @@
     "zh_hk": "亞的斯亞貝巴",
     "zh_tw": "阿迪斯阿貝巴"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Demokratischen Bundesrepublik Äthiopien",
+    "en_us": "Capital of the Federal Democratic Republic of Ethiopia",
+    "es_es": "Capital de la República Democrática Federal de Etiopía",
+    "ja_jp": "エチオピア連邦民主共和国の首都",
+    "ko_kr": "에티오피아 연방민주공화국의 수도",
+    "pl_pl": "Stolica Federalnej Demokratycznej Republiki Etiopii",
+    "pt_br": "Capital da República Democrática Federal da Etiópia",
+    "ru_ru": "Столица Федеративной Демократической Республики Эфиопия",
+    "tr_tr": "Etiyopya Federal Demokratik Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Федеративної Демократичної Республіки Ефіопія",
+    "zh_cn": "埃塞俄比亚联邦民主共和国的首都",
+    "zh_hk": "埃塞俄比亞聯邦民主共和國的首都",
+    "zh_tw": "埃塞俄比亞聯邦民主共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Demokratischen Bundesrepublik Äthiopien",
     "en_us": "Visit the capital of the Federal Democratic Republic of Ethiopia",

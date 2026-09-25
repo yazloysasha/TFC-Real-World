@@ -15,6 +15,21 @@
     "zh_hk": "史高比耶",
     "zh_tw": "史高比耶"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Nordmazedonien",
+    "en_us": "Capital of North Macedonia",
+    "es_es": "Capital de Macedonia del Norte",
+    "ja_jp": "北マケドニアの首都",
+    "ko_kr": "북마케도니아의 수도",
+    "pl_pl": "Stolica Macedonii Północnej",
+    "pt_br": "Capital de Macedônia do Norte",
+    "ru_ru": "Столица Северной Македонии",
+    "tr_tr": "Kuzey Makedonya'nın başkenti",
+    "uk_ua": "Столиця Північної Македонії",
+    "zh_cn": "北马其顿的首都",
+    "zh_hk": "北馬其頓的首都",
+    "zh_tw": "北馬其頓的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Nordmazedonien",
     "en_us": "Visit the capital of North Macedonia",

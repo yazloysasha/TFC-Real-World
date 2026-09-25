@@ -30,7 +30,8 @@
     "world.region.FloodFillSmallOceansMixin",
     "world.region.RegionGeneratorMixin",
     "world.settings.SettingsMixin",
-    "client.overworld.SolarCalculatorMixin"
+    "client.overworld.SolarCalculatorMixin",
+    "server.ServerAdvancementManagerMixin"
   ],
   "client": [
     "client.advancement.DisplayInfoMixin",

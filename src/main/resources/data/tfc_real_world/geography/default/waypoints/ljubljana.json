@@ -15,6 +15,21 @@
     "zh_hk": "盧布爾雅那",
     "zh_tw": "盧比安納"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Slowenien",
+    "en_us": "Capital of the Republic of Slovenia",
+    "es_es": "Capital de la República de Eslovenia",
+    "ja_jp": "スロベニア共和国の首都",
+    "ko_kr": "슬로베니아 공화국의 수도",
+    "pl_pl": "Stolica Republiki Słowenii",
+    "pt_br": "Capital da República da Eslovênia",
+    "ru_ru": "Столица Республики Словения",
+    "tr_tr": "Slovenya Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Словенія",
+    "zh_cn": "斯洛文尼亚共和国的首都",
+    "zh_hk": "斯洛文尼亞共和國的首都",
+    "zh_tw": "斯洛文尼亞共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Slowenien",
     "en_us": "Visit the capital of the Republic of Slovenia",

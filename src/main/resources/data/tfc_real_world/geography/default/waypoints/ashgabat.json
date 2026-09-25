@@ -15,6 +15,21 @@
     "zh_hk": "阿什哈巴德",
     "zh_tw": "阿什哈巴特"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Turkmenistan",
+    "en_us": "Capital of Turkmenistan",
+    "es_es": "Capital de Turkmenistán",
+    "ja_jp": "トルクメニスタンの首都",
+    "ko_kr": "투르크메니스탄의 수도",
+    "pl_pl": "Stolica Turkmenistanu",
+    "pt_br": "Capital do Turquemenistão",
+    "ru_ru": "Столица Туркменистана",
+    "tr_tr": "Türkmenistan'ın başkenti",
+    "uk_ua": "Столиця Туркменістану",
+    "zh_cn": "土库曼斯坦的首都",
+    "zh_hk": "土庫曼斯坦的首都",
+    "zh_tw": "土庫曼斯坦的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Turkmenistan",
     "en_us": "Visit the capital of Turkmenistan",

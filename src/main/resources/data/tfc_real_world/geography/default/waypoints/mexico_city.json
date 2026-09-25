@@ -15,6 +15,21 @@
     "zh_hk": "墨西哥城",
     "zh_tw": "墨西哥城"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Mexiko",
+    "en_us": "Capital of Mexico",
+    "es_es": "Capital de México",
+    "ja_jp": "メキシコの首都",
+    "ko_kr": "멕시코의 수도",
+    "pl_pl": "Stolica Meksyku",
+    "pt_br": "Capital do México",
+    "ru_ru": "Столица Мексики",
+    "tr_tr": "Meksika'nın başkenti",
+    "uk_ua": "Столиця Мексики",
+    "zh_cn": "墨西哥的首都",
+    "zh_hk": "墨西哥的首都",
+    "zh_tw": "墨西哥的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Mexiko",
     "en_us": "Visit the capital of Mexico",

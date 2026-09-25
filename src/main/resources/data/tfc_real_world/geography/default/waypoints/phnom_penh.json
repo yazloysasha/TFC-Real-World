@@ -15,6 +15,21 @@
     "zh_hk": "金邊",
     "zh_tw": "金邊"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Königreichs Kambodscha",
+    "en_us": "Capital of the Kingdom of Cambodia",
+    "es_es": "Capital del Reino de Camboya",
+    "ja_jp": "カンボジア王国の首都",
+    "ko_kr": "캄보디아 왕국의 수도",
+    "pl_pl": "Stolica Królestwa Kambodży",
+    "pt_br": "Capital do Reino do Camboja",
+    "ru_ru": "Столица Королевства Камбоджа",
+    "tr_tr": "Kamboçya Krallığı'nın başkenti",
+    "uk_ua": "Столиця Королівства Камбоджа",
+    "zh_cn": "柬埔寨王国的首都",
+    "zh_hk": "柬埔寨王國的首都",
+    "zh_tw": "柬埔寨王國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Königreichs Kambodscha",
     "en_us": "Visit the capital of the Kingdom of Cambodia",

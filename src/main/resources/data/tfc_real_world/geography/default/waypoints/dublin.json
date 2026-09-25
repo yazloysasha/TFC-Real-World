@@ -15,6 +15,21 @@
     "zh_hk": "都柏林",
     "zh_tw": "都柏林"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Irland",
+    "en_us": "Capital of Ireland",
+    "es_es": "Capital de Irlanda",
+    "ja_jp": "アイルランドの首都",
+    "ko_kr": "아일랜드의 수도",
+    "pl_pl": "Stolica Irlandii",
+    "pt_br": "Capital da Irlanda",
+    "ru_ru": "Столица Ирландии",
+    "tr_tr": "İrlanda'nın başkenti",
+    "uk_ua": "Столиця Ірландії",
+    "zh_cn": "爱尔兰的首都",
+    "zh_hk": "愛爾蘭的首都",
+    "zh_tw": "愛爾蘭的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Irland",
     "en_us": "Visit the capital of Ireland",

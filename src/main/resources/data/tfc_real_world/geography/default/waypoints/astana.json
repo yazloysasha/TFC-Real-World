@@ -15,6 +15,21 @@
     "zh_hk": "阿斯塔納",
     "zh_tw": "阿斯塔納"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Kasachstan",
+    "en_us": "Capital of the Republic of Kazakhstan",
+    "es_es": "Capital de la República de Kazajistán",
+    "ja_jp": "カザフスタン共和国の首都",
+    "ko_kr": "카자흐스탄 공화국의 수도",
+    "pl_pl": "Stolica Republiki Kazachstanu",
+    "pt_br": "Capital da República do Cazaquistão",
+    "ru_ru": "Столица Республики Казахстан",
+    "tr_tr": "Kazakistan Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Казахстан",
+    "zh_cn": "哈萨克斯坦共和国的首都",
+    "zh_hk": "哈薩克斯坦共和國的首都",
+    "zh_tw": "哈薩克斯坦共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Kasachstan",
     "en_us": "Visit the capital of the Republic of Kazakhstan",

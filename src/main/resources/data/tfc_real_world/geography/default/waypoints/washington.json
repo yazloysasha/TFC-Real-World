@@ -15,6 +15,21 @@
     "zh_hk": "華盛頓",
     "zh_tw": "華盛頓"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Vereinigten Staaten",
+    "en_us": "Capital of the United States",
+    "es_es": "Capital de los Estados Unidos",
+    "ja_jp": "アメリカ合衆国の首都",
+    "ko_kr": "미국의 수도",
+    "pl_pl": "Stolica Stanów Zjednoczonych",
+    "pt_br": "Capital dos Estados Unidos",
+    "ru_ru": "Столица Соединённых Штатов",
+    "tr_tr": "Amerika Birleşik Devletleri'nin başkenti",
+    "uk_ua": "Столиця Сполучених Штатів",
+    "zh_cn": "美国的首都",
+    "zh_hk": "美國的首都",
+    "zh_tw": "美國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Vereinigten Staaten",
     "en_us": "Visit the capital of the United States",

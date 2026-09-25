@@ -15,6 +15,21 @@
     "zh_hk": "基輔",
     "zh_tw": "基輔"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Ukraine",
+    "en_us": "Capital of Ukraine",
+    "es_es": "Capital de Ucrania",
+    "ja_jp": "ウクライナの首都",
+    "ko_kr": "우크라이나의 수도",
+    "pl_pl": "Stolica Ukrainy",
+    "pt_br": "Capital da Ucrânia",
+    "ru_ru": "Столица Украины",
+    "tr_tr": "Ukrayna'nın başkenti",
+    "uk_ua": "Столиця України",
+    "zh_cn": "乌克兰的首都",
+    "zh_hk": "烏克蘭的首都",
+    "zh_tw": "烏克蘭的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Ukraine",
     "en_us": "Visit the capital of Ukraine",

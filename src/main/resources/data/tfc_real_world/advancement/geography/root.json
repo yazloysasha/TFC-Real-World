@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": { "id": "tfc_real_world:globe" },
+    "title": {
+      "translate": "tfc_real_world.advancements.geography.root.title"
+    },
+    "description": {
+      "translate": "tfc_real_world.advancements.geography.root.description"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "minecraft:textures/block/cartography_table_side3.png"
+  },
+  "criteria": {
+    "auto": { "trigger": "minecraft:tick" }
+  },
+  "requirements": [["auto"]]
+}

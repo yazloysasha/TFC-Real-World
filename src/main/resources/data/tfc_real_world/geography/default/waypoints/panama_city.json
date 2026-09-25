@@ -15,6 +15,21 @@
     "zh_hk": "巴拿馬城",
     "zh_tw": "巴拿馬城"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Panama",
+    "en_us": "Capital of the Republic of Panama",
+    "es_es": "Capital de la República de Panamá",
+    "ja_jp": "パナマ共和国の首都",
+    "ko_kr": "파나마 공화국의 수도",
+    "pl_pl": "Stolica Republiki Panamy",
+    "pt_br": "Capital da República do Panamá",
+    "ru_ru": "Столица Республики Панама",
+    "tr_tr": "Panama Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Панама",
+    "zh_cn": "巴拿马共和国的首都",
+    "zh_hk": "巴拿馬共和國的首都",
+    "zh_tw": "巴拿馬共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Panama",
     "en_us": "Visit the capital of the Republic of Panama",

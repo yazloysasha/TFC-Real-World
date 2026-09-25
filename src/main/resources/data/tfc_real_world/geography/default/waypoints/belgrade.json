@@ -15,6 +15,21 @@
     "zh_hk": "貝爾格萊德",
     "zh_tw": "貝爾格勒"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Serbien",
+    "en_us": "Capital of Serbia",
+    "es_es": "Capital de Serbia",
+    "ja_jp": "セルビアの首都",
+    "ko_kr": "세르비아의 수도",
+    "pl_pl": "Stolica Serbii",
+    "pt_br": "Capital da Sérvia",
+    "ru_ru": "Столица Сербии",
+    "tr_tr": "Sırbistan'ın başkenti",
+    "uk_ua": "Столиця Сербії",
+    "zh_cn": "塞尔维亚的首都",
+    "zh_hk": "塞爾維亞的首都",
+    "zh_tw": "塞爾維亞的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Serbien",
     "en_us": "Visit the capital of Serbia",

@@ -15,6 +15,21 @@
     "zh_hk": "科威特城",
     "zh_tw": "科威特城"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Staates Kuwait",
+    "en_us": "Capital of the State of Kuwait",
+    "es_es": "Capital del Estado de Kuwait",
+    "ja_jp": "クウェート国の首都",
+    "ko_kr": "쿠웨이트국의 수도",
+    "pl_pl": "Stolica Państwa Kuwejtu",
+    "pt_br": "Capital do Estado de Kuwait",
+    "ru_ru": "Столица Государства Кувейт",
+    "tr_tr": "Kuveyt Devleti'nin başkenti",
+    "uk_ua": "Столиця Держави Кувейт",
+    "zh_cn": "科威特国的首都",
+    "zh_hk": "科威特國的首都",
+    "zh_tw": "科威特國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Staates Kuwait",
     "en_us": "Visit the capital of the State of Kuwait",

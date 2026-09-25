@@ -15,6 +15,21 @@
     "zh_hk": "維爾紐斯",
     "zh_tw": "維爾紐斯"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Litauen",
+    "en_us": "Capital of the Republic of Lithuania",
+    "es_es": "Capital de la República de Lituania",
+    "ja_jp": "リトアニア共和国の首都",
+    "ko_kr": "리투아니아 공화국의 수도",
+    "pl_pl": "Stolica Republiki Litwy",
+    "pt_br": "Capital da República da Lituânia",
+    "ru_ru": "Столица Республики Литва",
+    "tr_tr": "Litvanya Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Литва",
+    "zh_cn": "立陶宛共和国的首都",
+    "zh_hk": "立陶宛共和國的首都",
+    "zh_tw": "立陶宛共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Litauen",
     "en_us": "Visit the capital of the Republic of Lithuania",

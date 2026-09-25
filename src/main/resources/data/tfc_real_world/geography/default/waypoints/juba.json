@@ -15,6 +15,21 @@
     "zh_hk": "朱巴",
     "zh_tw": "朱巴"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Südsudan",
+    "en_us": "Capital of South Sudan",
+    "es_es": "Capital de Sudán del Sur",
+    "ja_jp": "南スーダンの首都",
+    "ko_kr": "남수단의 수도",
+    "pl_pl": "Stolica Sudanu Południowego",
+    "pt_br": "Capital do Sudão do Sul",
+    "ru_ru": "Столица Южного Судана",
+    "tr_tr": "Güney Sudan'ın başkenti",
+    "uk_ua": "Столиця Південного Судану",
+    "zh_cn": "南苏丹的首都",
+    "zh_hk": "南蘇丹的首都",
+    "zh_tw": "南蘇丹的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Südsudan",
     "en_us": "Visit the capital of South Sudan",

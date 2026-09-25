@@ -15,6 +15,21 @@
     "zh_hk": "喀土穆",
     "zh_tw": "喀土木"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Sudan",
+    "en_us": "Capital of the Republic of Sudan",
+    "es_es": "Capital de la República del Sudán",
+    "ja_jp": "スーダン共和国の首都",
+    "ko_kr": "수단 공화국의 수도",
+    "pl_pl": "Stolica Republiki Sudanu",
+    "pt_br": "Capital da República do Sudão",
+    "ru_ru": "Столица Республики Судан",
+    "tr_tr": "Sudan Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Судан",
+    "zh_cn": "苏丹共和国的首都",
+    "zh_hk": "蘇丹共和國的首都",
+    "zh_tw": "蘇丹共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Sudan",
     "en_us": "Visit the capital of the Republic of Sudan",

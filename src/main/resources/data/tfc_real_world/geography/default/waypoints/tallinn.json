@@ -15,6 +15,21 @@
     "zh_hk": "塔林",
     "zh_tw": "塔林"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Estland",
+    "en_us": "Capital of the Republic of Estonia",
+    "es_es": "Capital de la República de Estonia",
+    "ja_jp": "エストニア共和国の首都",
+    "ko_kr": "에스토니아 공화국의 수도",
+    "pl_pl": "Stolica Republiki Estonii",
+    "pt_br": "Capital da República da Estônia",
+    "ru_ru": "Столица Республики Эстония",
+    "tr_tr": "Estonya Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Естонія",
+    "zh_cn": "爱沙尼亚共和国的首都",
+    "zh_hk": "愛沙尼亞共和國的首都",
+    "zh_tw": "愛沙尼亞共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Estland",
     "en_us": "Visit the capital of the Republic of Estonia",

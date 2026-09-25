@@ -15,6 +15,21 @@
     "zh_hk": "奈比多",
     "zh_tw": "奈比多"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Union von Burma",
+    "en_us": "Capital of the Union of Burma",
+    "es_es": "Capital de la Unión de Birmania",
+    "ja_jp": "ビルマ連邦の首都",
+    "ko_kr": "버마 연방의 수도",
+    "pl_pl": "Stolica Związku Birmy",
+    "pt_br": "Capital da União da Birmânia",
+    "ru_ru": "Столица Союза Бирмы",
+    "tr_tr": "Birmanya Birliği'nin başkenti",
+    "uk_ua": "Столиця Союзу Бірми",
+    "zh_cn": "缅甸联邦的首都",
+    "zh_hk": "緬甸聯邦的首都",
+    "zh_tw": "緬甸聯邦的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Union von Burma",
     "en_us": "Visit the capital of the Union of Burma",

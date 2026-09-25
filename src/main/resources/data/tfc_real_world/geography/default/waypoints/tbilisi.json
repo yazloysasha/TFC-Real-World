@@ -15,6 +15,21 @@
     "zh_hk": "第比利斯",
     "zh_tw": "提比里斯"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Georgien",
+    "en_us": "Capital of Georgia",
+    "es_es": "Capital de Georgia",
+    "ja_jp": "ジョージアの首都",
+    "ko_kr": "조지아의 수도",
+    "pl_pl": "Stolica Gruzji",
+    "pt_br": "Capital da Geórgia",
+    "ru_ru": "Столица Грузии",
+    "tr_tr": "Gürcistan'ın başkenti",
+    "uk_ua": "Столиця Грузії",
+    "zh_cn": "格鲁吉亚的首都",
+    "zh_hk": "格魯吉亞的首都",
+    "zh_tw": "格魯吉亞的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Georgien",
     "en_us": "Visit the capital of Georgia",

@@ -15,6 +15,21 @@
     "zh_hk": "渥太華",
     "zh_tw": "渥太華"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Kanada",
+    "en_us": "Capital of Canada",
+    "es_es": "Capital de Canadá",
+    "ja_jp": "カナダの首都",
+    "ko_kr": "캐나다의 수도",
+    "pl_pl": "Stolica Kanady",
+    "pt_br": "Capital do Canadá",
+    "ru_ru": "Столица Канады",
+    "tr_tr": "Kanada'nın başkenti",
+    "uk_ua": "Столиця Канади",
+    "zh_cn": "加拿大的首都",
+    "zh_hk": "加拿大的首都",
+    "zh_tw": "加拿大的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Kanada",
     "en_us": "Visit the capital of Canada",

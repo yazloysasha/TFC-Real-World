@@ -15,6 +15,21 @@
     "zh_hk": "吉隆坡",
     "zh_tw": "吉隆坡"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Malaysia",
+    "en_us": "Capital of Malaysia",
+    "es_es": "Capital de Malasia",
+    "ja_jp": "マレーシアの首都",
+    "ko_kr": "말레이시아의 수도",
+    "pl_pl": "Stolica Malezji",
+    "pt_br": "Capital da Malásia",
+    "ru_ru": "Столица Малайзии",
+    "tr_tr": "Malezya'nın başkenti",
+    "uk_ua": "Столиця Малайзії",
+    "zh_cn": "马来西亚的首都",
+    "zh_hk": "馬來西亞的首都",
+    "zh_tw": "馬來西亞的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Malaysia",
     "en_us": "Visit the capital of Malaysia",

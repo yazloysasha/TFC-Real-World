@@ -15,6 +15,21 @@
     "zh_hk": "莫斯科",
     "zh_tw": "莫斯科"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Russischen Föderation",
+    "en_us": "Capital of the Russian Federation",
+    "es_es": "Capital de la Federación de Rusia",
+    "ja_jp": "ロシア連邦の首都",
+    "ko_kr": "러시아 연방의 수도",
+    "pl_pl": "Stolica Federacji Rosyjskiej",
+    "pt_br": "Capital da Federação da Rússia",
+    "ru_ru": "Столица Российской Федерации",
+    "tr_tr": "Rusya Federasyonu'nun başkenti",
+    "uk_ua": "Столиця Російської Федерації",
+    "zh_cn": "俄罗斯联邦的首都",
+    "zh_hk": "俄羅斯聯邦的首都",
+    "zh_tw": "俄羅斯聯邦的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Russischen Föderation",
     "en_us": "Visit the capital of the Russian Federation",

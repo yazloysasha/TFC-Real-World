@@ -15,6 +15,21 @@
     "zh_hk": "霍尼亞拉",
     "zh_tw": "霍尼亞拉"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Salomonen",
+    "en_us": "Capital of Solomon Islands",
+    "es_es": "Capital de Islas Salomón",
+    "ja_jp": "ソロモン諸島の首都",
+    "ko_kr": "솔로몬 제도의 수도",
+    "pl_pl": "Stolica Wysp Salomona",
+    "pt_br": "Capital das Ilhas Salomão",
+    "ru_ru": "Столица Соломоновых Островов",
+    "tr_tr": "Solomon Adaları'nın başkenti",
+    "uk_ua": "Столиця Соломонових Островів",
+    "zh_cn": "所罗门群岛的首都",
+    "zh_hk": "所羅門羣島的首都",
+    "zh_tw": "所羅門羣島的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Salomonen",
     "en_us": "Visit the capital of Solomon Islands",

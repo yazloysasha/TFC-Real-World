@@ -15,6 +15,21 @@
     "zh_hk": "阿布達比",
     "zh_tw": "阿布達比"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Vereinigten Arabischen Emirate",
+    "en_us": "Capital of the United Arab Emirates",
+    "es_es": "Capital de los Emiratos Árabes Unidos",
+    "ja_jp": "アラブ首長国連邦の首都",
+    "ko_kr": "아랍에미리트의 수도",
+    "pl_pl": "Stolica Zjednoczonych Emiratów Arabskich",
+    "pt_br": "Capital dos Emirados Árabes Unidos",
+    "ru_ru": "Столица Объединённых Арабских Эмиратов",
+    "tr_tr": "Birleşik Arap Emirlikleri'nin başkenti",
+    "uk_ua": "Столиця Об'єднаних Арабських Еміратів",
+    "zh_cn": "阿拉伯联合酋长国的首都",
+    "zh_hk": "阿拉伯聯合酋長國的首都",
+    "zh_tw": "阿拉伯聯合酋長國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Vereinigten Arabischen Emirate",
     "en_us": "Visit the capital of the United Arab Emirates",

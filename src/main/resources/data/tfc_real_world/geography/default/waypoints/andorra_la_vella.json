@@ -15,6 +15,21 @@
     "zh_hk": "安道爾城",
     "zh_tw": "安道爾城"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Fürstentums Andorra",
+    "en_us": "Capital of the Principality of Andorra",
+    "es_es": "Capital del Principado de Andorra",
+    "ja_jp": "アンドラ公国の首都",
+    "ko_kr": "안도라 공국의 수도",
+    "pl_pl": "Stolica Księstwa Andory",
+    "pt_br": "Capital do Principado de Andorra",
+    "ru_ru": "Столица Княжества Андорра",
+    "tr_tr": "Andorra Prensliği'nin başkenti",
+    "uk_ua": "Столиця Князівства Андорра",
+    "zh_cn": "安道尔公国的首都",
+    "zh_hk": "安道爾公國的首都",
+    "zh_tw": "安道爾公國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Fürstentums Andorra",
     "en_us": "Visit the capital of the Principality of Andorra",

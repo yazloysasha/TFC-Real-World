@@ -15,6 +15,21 @@
     "zh_hk": "利雅得",
     "zh_tw": "利雅德"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Königreichs Saudi-Arabien",
+    "en_us": "Capital of the Kingdom of Saudi Arabia",
+    "es_es": "Capital del Reino de Arabia Saudí",
+    "ja_jp": "サウジアラビア王国の首都",
+    "ko_kr": "사우디아라비아 왕국의 수도",
+    "pl_pl": "Stolica Królestwa Arabii Saudyjskiej",
+    "pt_br": "Capital do Reino da Arábia Saudita",
+    "ru_ru": "Столица Королевства Саудовская Аравия",
+    "tr_tr": "Suudi Arabistan Krallığı'nın başkenti",
+    "uk_ua": "Столиця Королівства Саудівська Аравія",
+    "zh_cn": "沙特阿拉伯王国的首都",
+    "zh_hk": "沙特阿拉伯王國的首都",
+    "zh_tw": "沙特阿拉伯王國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Königreichs Saudi-Arabien",
     "en_us": "Visit the capital of the Kingdom of Saudi Arabia",

@@ -15,6 +15,21 @@
     "zh_hk": "尼科西亞",
     "zh_tw": "尼古西亞"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Zypern",
+    "en_us": "Capital of the Republic of Cyprus",
+    "es_es": "Capital de la República de Chipre",
+    "ja_jp": "キプロス共和国の首都",
+    "ko_kr": "키프로스 공화국의 수도",
+    "pl_pl": "Stolica Republiki Cypru",
+    "pt_br": "Capital da República do Chipre",
+    "ru_ru": "Столица Республики Кипр",
+    "tr_tr": "Kıbrıs Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Кіпр",
+    "zh_cn": "塞浦路斯共和国的首都",
+    "zh_hk": "塞浦路斯共和國的首都",
+    "zh_tw": "塞浦路斯共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Zypern",
     "en_us": "Visit the capital of the Republic of Cyprus",

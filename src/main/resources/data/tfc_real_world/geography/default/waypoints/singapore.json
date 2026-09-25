@@ -15,6 +15,21 @@
     "zh_hk": "新加坡",
     "zh_tw": "新加坡"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Singapur",
+    "en_us": "Capital of the Republic of Singapore",
+    "es_es": "Capital de la República de Singapur",
+    "ja_jp": "シンガポール共和国の首都",
+    "ko_kr": "싱가포르 공화국의 수도",
+    "pl_pl": "Stolica Republiki Singapuru",
+    "pt_br": "Capital da República de Singapura",
+    "ru_ru": "Столица Республики Сингапур",
+    "tr_tr": "Singapur Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Сінгапур",
+    "zh_cn": "新加坡共和国的首都",
+    "zh_hk": "新加坡共和國的首都",
+    "zh_tw": "新加坡共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Singapur",
     "en_us": "Visit the capital of the Republic of Singapore",

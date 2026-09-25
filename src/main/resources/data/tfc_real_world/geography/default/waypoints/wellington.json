@@ -15,6 +15,21 @@
     "zh_hk": "威靈頓",
     "zh_tw": "威靈頓"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Neuseeland",
+    "en_us": "Capital of New Zealand",
+    "es_es": "Capital de Nueva Zelanda",
+    "ja_jp": "ニュージーランドの首都",
+    "ko_kr": "뉴질랜드의 수도",
+    "pl_pl": "Stolica Nowej Zelandii",
+    "pt_br": "Capital da Nova Zelândia",
+    "ru_ru": "Столица Новой Зеландии",
+    "tr_tr": "Yeni Zelanda'nın başkenti",
+    "uk_ua": "Столиця Нової Зеландії",
+    "zh_cn": "新西兰的首都",
+    "zh_hk": "新西蘭的首都",
+    "zh_tw": "新西蘭的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt von Neuseeland",
     "en_us": "Visit the capital of New Zealand",

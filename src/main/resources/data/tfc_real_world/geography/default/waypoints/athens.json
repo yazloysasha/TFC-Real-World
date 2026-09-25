@@ -15,6 +15,21 @@
     "zh_hk": "雅典",
     "zh_tw": "雅典"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Hellenischen Republik",
+    "en_us": "Capital of the Hellenic Republic",
+    "es_es": "Capital de la República Helénica",
+    "ja_jp": "ギリシャ共和国の首都",
+    "ko_kr": "헬라스 공화국의 수도",
+    "pl_pl": "Stolica Republiki Greckiej",
+    "pt_br": "Capital da República Helênica",
+    "ru_ru": "Столица Греческой Республики",
+    "tr_tr": "Helen Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Грецької Республіки",
+    "zh_cn": "希腊共和国的首都",
+    "zh_hk": "希臘共和國的首都",
+    "zh_tw": "希臘共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Hellenischen Republik",
     "en_us": "Visit the capital of the Hellenic Republic",

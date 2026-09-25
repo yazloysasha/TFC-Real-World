@@ -15,6 +15,21 @@
     "zh_hk": "尼亞美",
     "zh_tw": "尼阿美"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Niger",
+    "en_us": "Capital of the Republic of Niger",
+    "es_es": "Capital de la República de Níger",
+    "ja_jp": "ニジェール共和国の首都",
+    "ko_kr": "니제르 공화국의 수도",
+    "pl_pl": "Stolica Republiki Nigeru",
+    "pt_br": "Capital da República do Níger",
+    "ru_ru": "Столица Республики Нигер",
+    "tr_tr": "Nijer Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Нігер",
+    "zh_cn": "尼日尔共和国的首都",
+    "zh_hk": "尼日爾共和國的首都",
+    "zh_tw": "尼日爾共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Niger",
     "en_us": "Visit the capital of the Republic of Niger",

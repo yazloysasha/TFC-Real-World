@@ -15,6 +15,21 @@
     "zh_hk": "奧斯陸",
     "zh_tw": "奧斯陸"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Königreichs Norwegen",
+    "en_us": "Capital of the Kingdom of Norway",
+    "es_es": "Capital del Reino de Noruega",
+    "ja_jp": "ノルウェー王国の首都",
+    "ko_kr": "노르웨이 왕국의 수도",
+    "pl_pl": "Stolica Królestwa Norwegii",
+    "pt_br": "Capital do Reino da Noruega",
+    "ru_ru": "Столица Королевства Норвегия",
+    "tr_tr": "Norveç Krallığı'nın başkenti",
+    "uk_ua": "Столиця Королівства Норвегія",
+    "zh_cn": "挪威王国的首都",
+    "zh_hk": "挪威王國的首都",
+    "zh_tw": "挪威王國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Königreichs Norwegen",
     "en_us": "Visit the capital of the Kingdom of Norway",

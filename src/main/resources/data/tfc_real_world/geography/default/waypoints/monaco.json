@@ -15,6 +15,21 @@
     "zh_hk": "摩納哥",
     "zh_tw": "摩納哥"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Fürstentums Monaco",
+    "en_us": "Capital of the Principality of Monaco",
+    "es_es": "Capital del Principado de Mónaco",
+    "ja_jp": "モナコ公国の首都",
+    "ko_kr": "모나코 공국의 수도",
+    "pl_pl": "Stolica Księstwa Monako",
+    "pt_br": "Capital do Principado de Mônaco",
+    "ru_ru": "Столица Княжества Монако",
+    "tr_tr": "Monako Prensliği'nin başkenti",
+    "uk_ua": "Столиця Князівства Монако",
+    "zh_cn": "摩纳哥公国的首都",
+    "zh_hk": "摩納哥公國的首都",
+    "zh_tw": "摩納哥公國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Fürstentums Monaco",
     "en_us": "Visit the capital of the Principality of Monaco",

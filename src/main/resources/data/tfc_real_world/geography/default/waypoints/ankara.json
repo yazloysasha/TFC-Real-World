@@ -15,6 +15,21 @@
     "zh_hk": "安卡拉",
     "zh_tw": "安卡拉"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Türkei",
+    "en_us": "Capital of the Republic of Turkey",
+    "es_es": "Capital de la República de Turquía",
+    "ja_jp": "トルコ共和国の首都",
+    "ko_kr": "튀르키예 공화국의 수도",
+    "pl_pl": "Stolica Republiki Turcji",
+    "pt_br": "Capital da República da Turquia",
+    "ru_ru": "Столица Республики Турция",
+    "tr_tr": "Türkiye Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Туреччина",
+    "zh_cn": "土耳其共和国的首都",
+    "zh_hk": "土耳其共和國的首都",
+    "zh_tw": "土耳其共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Türkei",
     "en_us": "Visit the capital of the Republic of Turkey",

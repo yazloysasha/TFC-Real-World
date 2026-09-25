@@ -15,6 +15,21 @@
     "zh_hk": "大馬士革",
     "zh_tw": "大馬士革"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Syrischen Arabischen Republik",
+    "en_us": "Capital of the Syrian Arab Republic",
+    "es_es": "Capital de la República Árabe Siria",
+    "ja_jp": "シリア・アラブ共和国の首都",
+    "ko_kr": "시리아 아랍 공화국의 수도",
+    "pl_pl": "Stolica Syryjskiej Republiki Arabskiej",
+    "pt_br": "Capital da República Árabe Síria",
+    "ru_ru": "Столица Сирийской Арабской Республики",
+    "tr_tr": "Suriye Arap Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Сирійської Арабської Республіки",
+    "zh_cn": "阿拉伯叙利亚共和国的首都",
+    "zh_hk": "阿拉伯敘利亞共和國的首都",
+    "zh_tw": "阿拉伯敘利亞共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Syrischen Arabischen Republik",
     "en_us": "Visit the capital of the Syrian Arab Republic",

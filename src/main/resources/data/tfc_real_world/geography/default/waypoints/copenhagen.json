@@ -15,6 +15,21 @@
     "zh_hk": "哥本哈根",
     "zh_tw": "哥本哈根"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Königreichs Dänemark",
+    "en_us": "Capital of the Kingdom of Denmark",
+    "es_es": "Capital del Reino de Dinamarca",
+    "ja_jp": "デンマーク王国の首都",
+    "ko_kr": "덴마크 왕국의 수도",
+    "pl_pl": "Stolica Królestwa Danii",
+    "pt_br": "Capital do Reino da Dinamarca",
+    "ru_ru": "Столица Королевства Дания",
+    "tr_tr": "Danimarka Krallığı'nın başkenti",
+    "uk_ua": "Столиця Королівства Данія",
+    "zh_cn": "丹麦王国的首都",
+    "zh_hk": "丹麥王國的首都",
+    "zh_tw": "丹麥王國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Königreichs Dänemark",
     "en_us": "Visit the capital of the Kingdom of Denmark",

@@ -2,23 +2,37 @@ package net.yazloysasha.tfcrealworld;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+import net.yazloysasha.tfcrealworld.attachment.ModAttachments;
+import net.yazloysasha.tfcrealworld.attachment.VisitedWaypoints;
 import net.yazloysasha.tfcrealworld.config.ConfigManager;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.item.ModItems;
 import net.yazloysasha.tfcrealworld.network.ConfigSyncPacket;
+import net.yazloysasha.tfcrealworld.network.OpenGeographyScreenPacket;
+import net.yazloysasha.tfcrealworld.network.OpenGeographyTabPacket;
+import net.yazloysasha.tfcrealworld.network.VisitedWaypointUpdatePacket;
+import net.yazloysasha.tfcrealworld.network.VisitedWaypointsSyncPacket;
 import net.yazloysasha.tfcrealworld.trigger.ModTriggers;
+import net.yazloysasha.tfcrealworld.util.geography.GeographyAdvancements;
+import net.yazloysasha.tfcrealworld.util.geography.GeographyManager;
+import net.yazloysasha.tfcrealworld.util.geography.WaypointVisitTracker;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.SmoothedKoppenParameterMaps;
@@ -34,8 +48,13 @@ public final class TFCRealWorld {
   public static final String MOD_NAME = "TFC: Real World";
   public static final Logger LOGGER = LogUtils.getLogger();
 
+  public static ResourceLocation id(String path) {
+    return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+  }
+
   public TFCRealWorld(ModContainer container, IEventBus modEventBus) {
     ProfileManager.initialize();
+    GeographyManager.initialize();
 
     container.registerConfig(
       ModConfig.Type.COMMON,
@@ -52,6 +71,8 @@ public final class TFCRealWorld {
     NeoForge.EVENT_BUS.register(ConfigManager.class);
 
     ModTriggers.TRIGGERS.register(modEventBus);
+    ModAttachments.ATTACHMENT_TYPES.register(modEventBus);
+    ModItems.ITEMS.register(modEventBus);
 
     NeoForge.EVENT_BUS.addListener(this::onPlayerTick);
 
@@ -93,6 +114,7 @@ public final class TFCRealWorld {
           .trigger(serverPlayer);
         ModTriggers.FIXED_LOW_GLOBE_TROTTER_LOCATION.get()
           .trigger(serverPlayer);
+        WaypointVisitTracker.tickPlayer(serverPlayer);
       }
     }
   }
@@ -104,11 +126,48 @@ public final class TFCRealWorld {
       ConfigSyncPacket.STREAM_CODEC,
       ConfigSyncPacket::handle
     );
+    registrar.playToServer(
+      OpenGeographyTabPacket.TYPE,
+      OpenGeographyTabPacket.STREAM_CODEC,
+      OpenGeographyTabPacket::handle
+    );
+    if (FMLEnvironment.dist == Dist.CLIENT) {
+      registrar.playToClient(
+        OpenGeographyScreenPacket.TYPE,
+        OpenGeographyScreenPacket.STREAM_CODEC,
+        net.yazloysasha.tfcrealworld.client.GeographyClientEvents::handleOpenGeographyScreen
+      );
+    } else {
+      registrar.playToClient(
+        OpenGeographyScreenPacket.TYPE,
+        OpenGeographyScreenPacket.STREAM_CODEC,
+        OpenGeographyScreenPacket::handle
+      );
+    }
+    registrar.playToClient(
+      VisitedWaypointsSyncPacket.TYPE,
+      VisitedWaypointsSyncPacket.STREAM_CODEC,
+      VisitedWaypointsSyncPacket::handle
+    );
+    registrar.playToClient(
+      VisitedWaypointUpdatePacket.TYPE,
+      VisitedWaypointUpdatePacket.STREAM_CODEC,
+      VisitedWaypointUpdatePacket::handle
+    );
   }
 
   private void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
     if (event.getEntity() instanceof ServerPlayer serverPlayer) {
       ConfigManager.sendConfigToClient(serverPlayer);
+      VisitedWaypoints data = serverPlayer.getData(
+        ModAttachments.VISITED_WAYPOINTS
+      );
+      PacketDistributor.sendToPlayer(
+        serverPlayer,
+        new VisitedWaypointsSyncPacket(data.asMap())
+      );
+      GeographyAdvancements.syncFromVisited(serverPlayer, data.asMap());
+      WaypointVisitTracker.rebuildCache();
     }
   }
 

@@ -15,6 +15,21 @@
     "zh_hk": "布魯塞爾",
     "zh_tw": "布魯塞爾"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Königreichs Belgien",
+    "en_us": "Capital of the Kingdom of Belgium",
+    "es_es": "Capital del Reino de Bélgica",
+    "ja_jp": "ベルギー王国の首都",
+    "ko_kr": "벨기에 왕국의 수도",
+    "pl_pl": "Stolica Królestwa Belgii",
+    "pt_br": "Capital do Reino da Bélgica",
+    "ru_ru": "Столица Королевства Бельгия",
+    "tr_tr": "Belçika Krallığı'nın başkenti",
+    "uk_ua": "Столиця Королівства Бельгія",
+    "zh_cn": "比利时王国的首都",
+    "zh_hk": "比利時王國的首都",
+    "zh_tw": "比利時王國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt des Königreichs Belgien",
     "en_us": "Visit the capital of the Kingdom of Belgium",

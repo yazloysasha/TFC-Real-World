@@ -15,6 +15,21 @@
     "zh_hk": "里加",
     "zh_tw": "里加"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Lettland",
+    "en_us": "Capital of the Republic of Latvia",
+    "es_es": "Capital de la República de Letonia",
+    "ja_jp": "ラトビア共和国の首都",
+    "ko_kr": "라트비아 공화국의 수도",
+    "pl_pl": "Stolica Republiki Łotwy",
+    "pt_br": "Capital da República da Letônia",
+    "ru_ru": "Столица Республики Латвия",
+    "tr_tr": "Letonya Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Латвія",
+    "zh_cn": "拉脱维亚共和国的首都",
+    "zh_hk": "拉脫維亞共和國的首都",
+    "zh_tw": "拉脫維亞共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Lettland",
     "en_us": "Visit the capital of the Republic of Latvia",

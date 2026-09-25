@@ -15,6 +15,21 @@
     "zh_hk": "明斯克",
     "zh_tw": "明斯克"
   },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Belarus",
+    "en_us": "Capital of the Republic of Belarus",
+    "es_es": "Capital de la República de Bielorrusia",
+    "ja_jp": "ベラルーシ共和国の首都",
+    "ko_kr": "벨라루스 공화국의 수도",
+    "pl_pl": "Stolica Republiki Białorusi",
+    "pt_br": "Capital da República da Bielorrússia",
+    "ru_ru": "Столица Республики Беларусь",
+    "tr_tr": "Belarus Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Білорусь",
+    "zh_cn": "白俄罗斯共和国的首都",
+    "zh_hk": "白俄羅斯共和國的首都",
+    "zh_tw": "白俄羅斯共和國的首都"
+  },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Belarus",
     "en_us": "Visit the capital of the Republic of Belarus",

@@ -26,4 +26,12 @@ public class ModTriggers {
     "fixed_low_globe_trotter_location",
     FixedLowGlobeTrotterLocation::new
   );
+
+  public static final DeferredHolder<
+    CriterionTrigger<?>,
+    VisitWaypointTrigger
+  > VISIT_WAYPOINT = TRIGGERS.register(
+    "visit_waypoint",
+    VisitWaypointTrigger::new
+  );
 }
