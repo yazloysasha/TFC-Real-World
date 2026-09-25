@@ -1,5 +1,5 @@
 {
-  "continent": "pacific",
+  "parent": "continent/pacific",
   "title_lang": {
     "de_de": "Nordwestpazifik",
     "en_us": "Northwestern Pacific",

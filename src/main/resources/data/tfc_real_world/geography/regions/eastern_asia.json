@@ -1,5 +1,5 @@
 {
-  "continent": "asia_temperate",
+  "parent": "continent/asia_temperate",
   "title_lang": {
     "de_de": "Ostasien",
     "en_us": "Eastern Asia",

@@ -1,5 +1,5 @@
 {
-  "region": "northern_europe",
+  "parent": "region/northern_europe",
   "title_lang": {
     "de_de": "Färöer",
     "en_us": "Faroe Islands",

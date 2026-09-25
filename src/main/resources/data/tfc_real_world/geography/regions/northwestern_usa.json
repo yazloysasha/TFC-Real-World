@@ -1,5 +1,5 @@
 {
-  "continent": "northern_america",
+  "parent": "continent/northern_america",
   "title_lang": {
     "de_de": "Nordwesten der USA",
     "en_us": "Northwestern U.S.A.",

@@ -1,5 +1,5 @@
 {
-  "subregion": "denmark",
+  "parent": "subregion/denmark",
   "title_lang": {
     "de_de": "Kopenhagen",
     "en_us": "Copenhagen",

@@ -1,5 +1,5 @@
 {
-  "continent": "africa",
+  "parent": "continent/africa",
   "title_lang": {
     "de_de": "Südliches Afrika",
     "en_us": "Southern Africa",

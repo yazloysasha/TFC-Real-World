@@ -1,5 +1,5 @@
 {
-  "continent": "africa",
+  "parent": "continent/africa",
   "title_lang": {
     "de_de": "Westlich-zentrales tropisches Afrika",
     "en_us": "West-Central Tropical Africa",
@@ -23,9 +23,9 @@
     "ko_kr": "중서부 열대 아프리카를 방문하세요",
     "pl_pl": "Odwiedź zachodnio-środkową Afrykę tropikalną",
     "pt_br": "Visite a África Tropical Centro-Ocidental",
-    "ru_ru": "Посетите Западно-центральную тропическую Африку",
+    "ru_ru": "Посетите западно-центральную тропическую Африку",
     "tr_tr": "Batı-Orta Tropikal Afrika'yı Ziyaret Edin",
-    "uk_ua": "Відвідайте Західно-центральну тропічну Африку",
+    "uk_ua": "Відвідайте західно-центральну тропічну Африку",
     "zh_cn": "访问中西部热带非洲",
     "zh_hk": "遊覽中西部熱帶非洲",
     "zh_tw": "造訪中西部熱帶非洲"

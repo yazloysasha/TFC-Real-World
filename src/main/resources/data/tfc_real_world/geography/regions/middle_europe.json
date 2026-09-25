@@ -1,5 +1,5 @@
 {
-  "continent": "europe",
+  "parent": "continent/europe",
   "title_lang": {
     "de_de": "Mitteleuropa",
     "en_us": "Middle Europe",

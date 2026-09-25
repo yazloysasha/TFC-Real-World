@@ -1,5 +1,5 @@
 {
-  "continent": "asia_tropical",
+  "parent": "continent/asia_tropical",
   "title_lang": {
     "de_de": "Indochina",
     "en_us": "Indo-China",

@@ -1,5 +1,5 @@
 {
-  "continent": "africa",
+  "parent": "continent/africa",
   "title_lang": {
     "de_de": "Nordöstliches tropisches Afrika",
     "en_us": "Northeast Tropical Africa",
@@ -23,9 +23,9 @@
     "ko_kr": "북동 열대 아프리카를 방문하세요",
     "pl_pl": "Odwiedź północno-wschodnią Afrykę tropikalną",
     "pt_br": "Visite a África Tropical Nordeste",
-    "ru_ru": "Посетите Северо-восточную тропическую Африку",
+    "ru_ru": "Посетите северо-восточную тропическую Африку",
     "tr_tr": "Kuzeydoğu Tropikal Afrika'yı Ziyaret Edin",
-    "uk_ua": "Відвідайте Північно-східну тропічну Африку",
+    "uk_ua": "Відвідайте північно-східну тропічну Африку",
     "zh_cn": "访问东北热带非洲",
     "zh_hk": "遊覽東北熱帶非洲",
     "zh_tw": "造訪東北熱帶非洲"

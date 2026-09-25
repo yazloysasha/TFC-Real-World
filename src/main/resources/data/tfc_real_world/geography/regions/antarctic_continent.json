@@ -1,5 +1,5 @@
 {
-  "continent": "antarctic",
+  "parent": "continent/antarctic",
   "title_lang": {
     "de_de": "Antarktischer Kontinent",
     "en_us": "Antarctic Continent",
@@ -23,9 +23,9 @@
     "ko_kr": "남극 대륙을 방문하세요",
     "pl_pl": "Odwiedź kontynent antarktyczny",
     "pt_br": "Visite o Continente Antártico",
-    "ru_ru": "Посетите Антарктический континент",
+    "ru_ru": "Посетите антарктический континент",
     "tr_tr": "Antarktika Kıtası'nı Ziyaret Edin",
-    "uk_ua": "Відвідайте Антарктичний континент",
+    "uk_ua": "Відвідайте антарктичний континент",
     "zh_cn": "访问南极大陆",
     "zh_hk": "遊覽南極大陸",
     "zh_tw": "造訪南極大陸"

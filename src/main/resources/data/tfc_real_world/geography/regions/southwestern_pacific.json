@@ -1,5 +1,5 @@
 {
-  "continent": "pacific",
+  "parent": "continent/pacific",
   "title_lang": {
     "de_de": "Südwestpazifik",
     "en_us": "Southwestern Pacific",

@@ -1,5 +1,5 @@
 {
-  "continent": "northern_america",
+  "parent": "continent/northern_america",
   "title_lang": {
     "de_de": "Westkanada",
     "en_us": "Western Canada",

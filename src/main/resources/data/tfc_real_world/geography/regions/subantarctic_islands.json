@@ -1,5 +1,5 @@
 {
-  "continent": "antarctic",
+  "parent": "continent/antarctic",
   "title_lang": {
     "de_de": "Subantarktische Inseln",
     "en_us": "Subantarctic Islands",
@@ -21,11 +21,11 @@
     "es_es": "Visita las Islas Subantárticas",
     "ja_jp": "亜南極諸島を訪れよう",
     "ko_kr": "아남극 제도를 방문하세요",
-    "pl_pl": "Odwiedź Wyspy subantarktyczne",
+    "pl_pl": "Odwiedź wyspy subantarktyczne",
     "pt_br": "Visite as Ilhas Subantárticas",
-    "ru_ru": "Посетите Субантарктические острова",
+    "ru_ru": "Посетите субантарктические острова",
     "tr_tr": "Subantarktik Adalar'ı Ziyaret Edin",
-    "uk_ua": "Відвідайте Субантарктичні острови",
+    "uk_ua": "Відвідайте субантарктичні острови",
     "zh_cn": "访问亚南极群岛",
     "zh_hk": "遊覽亞南極群島",
     "zh_tw": "造訪亞南極群島"

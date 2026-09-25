@@ -1,5 +1,5 @@
 {
-  "continent": "northern_america",
+  "parent": "continent/northern_america",
   "title_lang": {
     "de_de": "Südosten der USA",
     "en_us": "Southeastern U.S.A.",

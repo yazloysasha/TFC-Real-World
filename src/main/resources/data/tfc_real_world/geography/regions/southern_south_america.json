@@ -1,5 +1,5 @@
 {
-  "continent": "southern_america",
+  "parent": "continent/southern_america",
   "title_lang": {
     "de_de": "Südliches Südamerika",
     "en_us": "Southern South America",

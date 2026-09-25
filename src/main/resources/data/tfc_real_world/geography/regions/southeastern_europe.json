@@ -1,5 +1,5 @@
 {
-  "continent": "europe",
+  "parent": "continent/europe",
   "title_lang": {
     "de_de": "Südosteuropa",
     "en_us": "Southeastern Europe",

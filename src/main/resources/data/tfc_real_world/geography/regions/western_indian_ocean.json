@@ -1,5 +1,5 @@
 {
-  "continent": "africa",
+  "parent": "continent/africa",
   "title_lang": {
     "de_de": "Westlicher Indischer Ozean",
     "en_us": "Western Indian Ocean",
@@ -23,9 +23,9 @@
     "ko_kr": "서인도양을 방문하세요",
     "pl_pl": "Odwiedź zachodni Ocean Indyjski",
     "pt_br": "Visite o Oceano Índico Ocidental",
-    "ru_ru": "Посетите Западный Индийский океан",
+    "ru_ru": "Посетите западный Индийский океан",
     "tr_tr": "Batı Hint Okyanusu'nu Ziyaret Edin",
-    "uk_ua": "Відвідайте Західний Індійський океан",
+    "uk_ua": "Відвідайте західний Індійський океан",
     "zh_cn": "访问西印度洋",
     "zh_hk": "遊覽西印度洋",
     "zh_tw": "造訪西印度洋"

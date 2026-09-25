@@ -1,5 +1,5 @@
 {
-  "continent": "northern_america",
+  "parent": "continent/northern_america",
   "title_lang": {
     "de_de": "Nord-Zentral-USA",
     "en_us": "North-Central U.S.A.",
@@ -8,9 +8,9 @@
     "ko_kr": "미국 중북부",
     "pl_pl": "Północno-środkowe USA",
     "pt_br": "Centro-norte dos EUA",
-    "ru_ru": "Северо-центральные США",
+    "ru_ru": "Север США",
     "tr_tr": "Kuzey-Orta ABD",
-    "uk_ua": "Північно-центральні США",
+    "uk_ua": "Північ США",
     "zh_cn": "美国中北部",
     "zh_hk": "美國中北部",
     "zh_tw": "美國中北部"
@@ -23,9 +23,9 @@
     "ko_kr": "미국 중북부를 방문하세요",
     "pl_pl": "Odwiedź północno-środkowe USA",
     "pt_br": "Visite o centro-norte dos EUA",
-    "ru_ru": "Посетите северо-центральные США",
+    "ru_ru": "Посетите север США",
     "tr_tr": "Kuzey-Orta ABD'yi Ziyaret Edin",
-    "uk_ua": "Відвідайте північно-центральні США",
+    "uk_ua": "Відвідайте північ США",
     "zh_cn": "访问美国中北部",
     "zh_hk": "遊覽美國中北部",
     "zh_tw": "造訪美國中北部"

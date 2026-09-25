@@ -1,5 +1,5 @@
 {
-  "subregion": "faroe_islands",
+  "parent": "subregion/faroe_islands",
   "title_lang": {
     "de_de": "Tórshavn",
     "en_us": "Tórshavn",

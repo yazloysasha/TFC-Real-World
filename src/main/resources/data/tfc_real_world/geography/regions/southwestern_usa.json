@@ -1,5 +1,5 @@
 {
-  "continent": "northern_america",
+  "parent": "continent/northern_america",
   "title_lang": {
     "de_de": "Südwesten der USA",
     "en_us": "Southwestern U.S.A.",

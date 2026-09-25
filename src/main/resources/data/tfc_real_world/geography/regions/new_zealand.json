@@ -1,5 +1,5 @@
 {
-  "continent": "australasia",
+  "parent": "continent/australasia",
   "title_lang": {
     "de_de": "Neuseeland",
     "en_us": "New Zealand",

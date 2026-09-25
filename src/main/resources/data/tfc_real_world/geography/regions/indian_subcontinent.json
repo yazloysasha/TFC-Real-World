@@ -1,5 +1,5 @@
 {
-  "continent": "asia_tropical",
+  "parent": "continent/asia_tropical",
   "title_lang": {
     "de_de": "Indischer Subkontinent",
     "en_us": "Indian Subcontinent",
@@ -23,9 +23,9 @@
     "ko_kr": "인도 아대륙을 방문하세요",
     "pl_pl": "Odwiedź subkontynent indyjski",
     "pt_br": "Visite o Subcontinente Indiano",
-    "ru_ru": "Посетите Индийский субконтинент",
+    "ru_ru": "Посетите индийский субконтинент",
     "tr_tr": "Hint Alt Kıtası'nı Ziyaret Edin",
-    "uk_ua": "Відвідайте Індійський субконтинент",
+    "uk_ua": "Відвідайте індійський субконтинент",
     "zh_cn": "访问印度次大陆",
     "zh_hk": "遊覽印度次大陸",
     "zh_tw": "造訪印度次大陸"
