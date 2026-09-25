@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/marianas",
+  "title_lang": {
+    "de_de": "Saipan",
+    "en_us": "Saipan",
+    "es_es": "Saipán",
+    "ja_jp": "サイパン",
+    "ko_kr": "사이판",
+    "pl_pl": "Saipan",
+    "pt_br": "Saipan",
+    "ru_ru": "Сайпан",
+    "tr_tr": "Saipan",
+    "uk_ua": "Сайпан",
+    "zh_cn": "塞班",
+    "zh_hk": "塞班",
+    "zh_tw": "塞班"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Saipan",
+    "en_us": "Visit Saipan",
+    "es_es": "Visita Saipán",
+    "ja_jp": "サイパンを訪れよう",
+    "ko_kr": "사이판을 방문하세요",
+    "pl_pl": "Odwiedź Saipan",
+    "pt_br": "Visite Saipan",
+    "ru_ru": "Посетите Сайпан",
+    "tr_tr": "Saipan'ı ziyaret edin",
+    "uk_ua": "Відвідайте Сайпан",
+    "zh_cn": "访问塞班",
+    "zh_hk": "遊覽塞班",
+    "zh_tw": "造訪塞班"
+  },
+  "latitude": 15.21233,
+  "longitude": 145.7545
+}

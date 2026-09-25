@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/germany",
+  "title_lang": {
+    "de_de": "Berlin",
+    "en_us": "Berlin",
+    "es_es": "Berlín",
+    "ja_jp": "ベルリン",
+    "ko_kr": "베를린",
+    "pl_pl": "Berlin",
+    "pt_br": "Berlim",
+    "ru_ru": "Берлин",
+    "tr_tr": "Berlin",
+    "uk_ua": "Берлін",
+    "zh_cn": "柏林",
+    "zh_hk": "柏林",
+    "zh_tw": "柏林"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Bundesrepublik Deutschland",
+    "en_us": "Visit the capital of the Federal Republic of Germany",
+    "es_es": "Visita la capital de la República Federal de Alemania",
+    "ja_jp": "ドイツ連邦共和国の首都を訪れよう",
+    "ko_kr": "독일 연방공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Federalnej Niemiec",
+    "pt_br": "Visite a capital da República Federal de Alemanha",
+    "ru_ru": "Посетите столицу Федеративной Республики Германия",
+    "tr_tr": "Almanya Federal Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Федеративної Республіки Німеччина",
+    "zh_cn": "访问德国联邦共和国的首都",
+    "zh_hk": "遊覽德國聯邦共和國的首都",
+    "zh_tw": "造訪德國聯邦共和國的首都"
+  },
+  "latitude": 52.52437,
+  "longitude": 13.41053,
+  "capital": 1
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/southwestern_pacific",
+  "title_lang": {
+    "de_de": "Phoenixinseln",
+    "en_us": "Phoenix Islands",
+    "es_es": "Islas Fénix",
+    "ja_jp": "フェニックス諸島",
+    "ko_kr": "피닉스 제도",
+    "pl_pl": "Wyspy Feniks",
+    "pt_br": "Ilhas Fénix",
+    "ru_ru": "Острова Феникс",
+    "tr_tr": "Phoenix Adaları",
+    "uk_ua": "Острови Фенікс",
+    "zh_cn": "凤凰群岛",
+    "zh_hk": "鳳凰群島",
+    "zh_tw": "鳳凰群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Phoenixinseln",
+    "en_us": "Visit the Phoenix Islands subregion",
+    "es_es": "Visita la subregión Islas Fénix",
+    "ja_jp": "フェニックス諸島のサブリージョンを訪れよう",
+    "ko_kr": "피닉스 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Feniks",
+    "pt_br": "Visite a sub-região Ilhas Fénix",
+    "ru_ru": "Посетите субрегион Острова Феникс",
+    "tr_tr": "Phoenix Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Острови Фенікс",
+    "zh_cn": "访问凤凰群岛子区域",
+    "zh_hk": "遊覽鳳凰群島子區域",
+    "zh_tw": "造訪鳳凰群島子區域"
+  }
+}

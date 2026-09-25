@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/kerguelen",
+  "title_lang": {
+    "de_de": "Port-aux-Français",
+    "en_us": "Port-aux-Français",
+    "es_es": "Port-aux-Français",
+    "ja_jp": "ポルトーフランセ",
+    "ko_kr": "포르토프랑세",
+    "pl_pl": "Port-aux-Français",
+    "pt_br": "Port-aux-Français",
+    "ru_ru": "Порт-о-Франсэ",
+    "tr_tr": "Port-aux-Français",
+    "uk_ua": "Порт-о-Франсе",
+    "zh_cn": "法兰西港",
+    "zh_hk": "法蘭西港",
+    "zh_tw": "法蘭西港"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Port-aux-Français",
+    "en_us": "Visit Port-aux-Français",
+    "es_es": "Visita Port-aux-Français",
+    "ja_jp": "ポルトーフランセを訪れよう",
+    "ko_kr": "포르토프랑세를 방문하세요",
+    "pl_pl": "Odwiedź Port-aux-Français",
+    "pt_br": "Visite Port-aux-Français",
+    "ru_ru": "Посетите Порт-о-Франсэ",
+    "tr_tr": "Port-aux-Français'i ziyaret edin",
+    "uk_ua": "Відвідайте Порт-о-Франсе",
+    "zh_cn": "访问法兰西港",
+    "zh_hk": "遊覽法蘭西港",
+    "zh_tw": "造訪法蘭西港"
+  },
+  "latitude": -49.34916,
+  "longitude": 70.21937
+}

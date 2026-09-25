@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/eastern_canada",
+  "title_lang": {
+    "de_de": "Québec",
+    "en_us": "Quebec",
+    "es_es": "Quebec",
+    "ja_jp": "ケベック",
+    "ko_kr": "퀘벡",
+    "pl_pl": "Quebek",
+    "pt_br": "Quebec",
+    "ru_ru": "Квебек",
+    "tr_tr": "Quebec",
+    "uk_ua": "Квебек",
+    "zh_cn": "魁北克",
+    "zh_hk": "魁北克",
+    "zh_tw": "魁北克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Québec",
+    "en_us": "Visit the Quebec subregion",
+    "es_es": "Visita la subregión de Quebec",
+    "ja_jp": "ケベックのサブリージョンを訪れよう",
+    "ko_kr": "퀘벡 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Quebek",
+    "pt_br": "Visite a sub-região Quebec",
+    "ru_ru": "Посетите субрегион Квебек",
+    "tr_tr": "Quebec alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Квебек",
+    "zh_cn": "访问魁北克子区域",
+    "zh_hk": "遊覽魁北克子區域",
+    "zh_tw": "造訪魁北克子區域"
+  }
+}

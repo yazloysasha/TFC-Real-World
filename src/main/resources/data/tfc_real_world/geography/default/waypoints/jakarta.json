@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/java",
+  "title_lang": {
+    "de_de": "Jakarta",
+    "en_us": "Jakarta",
+    "es_es": "Yakarta",
+    "ja_jp": "ジャカルタ",
+    "ko_kr": "자카르타",
+    "pl_pl": "Dżakarta",
+    "pt_br": "Jacarta",
+    "ru_ru": "Джакарта",
+    "tr_tr": "Cakarta",
+    "uk_ua": "Джакарта",
+    "zh_cn": "雅加达",
+    "zh_hk": "雅加達",
+    "zh_tw": "雅加達"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Indonesien",
+    "en_us": "Visit the capital of the Republic of Indonesia",
+    "es_es": "Visita la capital de la República de Indonesia",
+    "ja_jp": "インドネシア共和国の首都を訪れよう",
+    "ko_kr": "인도네시아 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Indonezji",
+    "pt_br": "Visite a capital da República da Indonésia",
+    "ru_ru": "Посетите столицу Республики Индонезия",
+    "tr_tr": "Endonezya Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Індонезія",
+    "zh_cn": "访问印度尼西亚共和国的首都",
+    "zh_hk": "遊覽印度尼西亞共和國的首都",
+    "zh_tw": "造訪印度尼西亞共和國的首都"
+  },
+  "latitude": -6.21462,
+  "longitude": 106.84513,
+  "capital": 1
+}

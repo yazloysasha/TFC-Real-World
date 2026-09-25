@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/west_tropical_africa",
+  "title_lang": {
+    "de_de": "Burkina Faso",
+    "en_us": "Burkina Faso",
+    "es_es": "Burkina Faso",
+    "ja_jp": "ブルキナファソ",
+    "ko_kr": "부르키나파소",
+    "pl_pl": "Burkina Faso",
+    "pt_br": "Burquina Faso",
+    "ru_ru": "Буркина-Фасо",
+    "tr_tr": "Burkina Faso",
+    "uk_ua": "Буркіна-Фасо",
+    "zh_cn": "布基纳法索",
+    "zh_hk": "布基納法索",
+    "zh_tw": "布基納法索"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Burkina Faso",
+    "en_us": "Visit the Burkina Faso subregion",
+    "es_es": "Visita la subregión de Burkina Faso",
+    "ja_jp": "ブルキナファソのサブリージョンを訪れよう",
+    "ko_kr": "부르키나파소 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Burkina Faso",
+    "pt_br": "Visite a sub-região Burquina Faso",
+    "ru_ru": "Посетите субрегион Буркина-Фасо",
+    "tr_tr": "Burkina Faso alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Буркіна-Фасо",
+    "zh_cn": "访问布基纳法索子区域",
+    "zh_hk": "遊覽布基納法索子區域",
+    "zh_tw": "造訪布基納法索子區域"
+  }
+}

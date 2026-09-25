@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/southeastern_europe",
+  "title_lang": {
+    "de_de": "Griechenland",
+    "en_us": "Greece",
+    "es_es": "Grecia",
+    "ja_jp": "ギリシャ",
+    "ko_kr": "그리스",
+    "pl_pl": "Grecja",
+    "pt_br": "Grécia",
+    "ru_ru": "Греция",
+    "tr_tr": "Yunanistan",
+    "uk_ua": "Греція",
+    "zh_cn": "希腊",
+    "zh_hk": "希臘",
+    "zh_tw": "希臘"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Griechenland",
+    "en_us": "Visit the Greece subregion",
+    "es_es": "Visita la subregión de Grecia",
+    "ja_jp": "ギリシャのサブリージョンを訪れよう",
+    "ko_kr": "그리스 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Grecja",
+    "pt_br": "Visite a sub-região Grécia",
+    "ru_ru": "Посетите субрегион Греция",
+    "tr_tr": "Yunanistan alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Греція",
+    "zh_cn": "访问希腊子区域",
+    "zh_hk": "遊覽希臘子區域",
+    "zh_tw": "造訪希臘子區域"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/ogasawara_islands",
+  "title_lang": {
+    "de_de": "Neko Iwa",
+    "en_us": "Neko Iwa",
+    "es_es": "Neko Iwa",
+    "ja_jp": "ネコイワ",
+    "ko_kr": "네코 이와",
+    "pl_pl": "Neko Iwa",
+    "pt_br": "Neko Iwa",
+    "ru_ru": "Нэко-Ива",
+    "tr_tr": "Neko Iwa",
+    "uk_ua": "Неко-Іва",
+    "zh_cn": "猫岩",
+    "zh_hk": "貓岩",
+    "zh_tw": "貓岩"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Neko Iwa",
+    "en_us": "Visit Neko Iwa",
+    "es_es": "Visita Neko Iwa",
+    "ja_jp": "ネコイワを訪れよう",
+    "ko_kr": "네코 이와를 방문하세요",
+    "pl_pl": "Odwiedź Neko Iwa",
+    "pt_br": "Visite Neko Iwa",
+    "ru_ru": "Посетите Нэко-Ива",
+    "tr_tr": "Neko Iwa'yı ziyaret edin",
+    "uk_ua": "Відвідайте Неко-Іва",
+    "zh_cn": "访问猫岩",
+    "zh_hk": "遊覽貓岩",
+    "zh_tw": "造訪貓岩"
+  },
+  "latitude": 27.12655,
+  "longitude": 142.17749
+}

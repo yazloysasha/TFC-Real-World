@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/vanuatu",
+  "title_lang": {
+    "de_de": "Port Vila",
+    "en_us": "Port Vila",
+    "es_es": "Port Vila",
+    "ja_jp": "ポートビラ",
+    "ko_kr": "포트빌라",
+    "pl_pl": "Port Vila",
+    "pt_br": "Porto Vila",
+    "ru_ru": "Порт-Вила",
+    "tr_tr": "Port Vila",
+    "uk_ua": "Порт-Віла",
+    "zh_cn": "维拉港",
+    "zh_hk": "維拉港",
+    "zh_tw": "維拉港"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Vanuatu",
+    "en_us": "Visit the capital of the Republic of Vanuatu",
+    "es_es": "Visita la capital de la República de Vanuatu",
+    "ja_jp": "バヌアツ共和国の首都を訪れよう",
+    "ko_kr": "바누아투 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Vanuatu",
+    "pt_br": "Visite a capital da República de Vanuatu",
+    "ru_ru": "Посетите столицу Республики Вануату",
+    "tr_tr": "Vanuatu Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Вануату",
+    "zh_cn": "访问瓦努阿图共和国的首都",
+    "zh_hk": "遊覽瓦努阿圖共和國的首都",
+    "zh_tw": "造訪瓦努阿圖共和國的首都"
+  },
+  "latitude": -17.73648,
+  "longitude": 168.31366,
+  "capital": 1
+}

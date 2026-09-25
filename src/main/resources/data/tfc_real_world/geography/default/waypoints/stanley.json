@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/falkland_islands",
+  "title_lang": {
+    "de_de": "Stanley",
+    "en_us": "Stanley",
+    "es_es": "Puerto Argentino",
+    "ja_jp": "スタンリー",
+    "ko_kr": "스탠리",
+    "pl_pl": "Stanley",
+    "pt_br": "Stanley",
+    "ru_ru": "Порт-Стэнли",
+    "tr_tr": "Stanley",
+    "uk_ua": "Порт-Стенлі",
+    "zh_cn": "斯坦利",
+    "zh_hk": "史丹利",
+    "zh_tw": "史坦利"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Stanley",
+    "en_us": "Visit Stanley",
+    "es_es": "Visita Puerto Argentino",
+    "ja_jp": "スタンリーを訪れよう",
+    "ko_kr": "스탠리를 방문하세요",
+    "pl_pl": "Odwiedź Stanley",
+    "pt_br": "Visite Stanley",
+    "ru_ru": "Посетите Порт-Стэнли",
+    "tr_tr": "Stanley'i ziyaret edin",
+    "uk_ua": "Відвідайте Порт-Стенлі",
+    "zh_cn": "访问斯坦利",
+    "zh_hk": "遊覽史丹利",
+    "zh_tw": "造訪史坦利"
+  },
+  "latitude": -51.69382,
+  "longitude": -57.85701
+}

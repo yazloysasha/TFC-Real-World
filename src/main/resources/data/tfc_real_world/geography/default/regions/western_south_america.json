@@ -1,0 +1,33 @@
+{
+  "parent": "default:continent/southern_america",
+  "title_lang": {
+    "de_de": "Westliches Südamerika",
+    "en_us": "Western South America",
+    "es_es": "Oeste de Sudamérica",
+    "ja_jp": "南アメリカ西部",
+    "ko_kr": "남아메리카 서부",
+    "pl_pl": "Zachodnia Ameryka Południowa",
+    "pt_br": "Oeste da América do Sul",
+    "ru_ru": "Запад Южной Америки",
+    "tr_tr": "Güney Amerika'nın Batısı",
+    "uk_ua": "Захід Південної Америки",
+    "zh_cn": "南美洲西部",
+    "zh_hk": "南美洲西部",
+    "zh_tw": "南美洲西部"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie das westliche Südamerika",
+    "en_us": "Visit Western South America",
+    "es_es": "Visita el oeste de Sudamérica",
+    "ja_jp": "南アメリカ西部を訪れよう",
+    "ko_kr": "남아메리카 서부를 방문하세요",
+    "pl_pl": "Odwiedź zachodnią Amerykę Południową",
+    "pt_br": "Visite o oeste da América do Sul",
+    "ru_ru": "Посетите запад Южной Америки",
+    "tr_tr": "Güney Amerika'nın Batısı'nı Ziyaret Edin",
+    "uk_ua": "Відвідайте захід Південної Америки",
+    "zh_cn": "访问南美洲西部",
+    "zh_hk": "遊覽南美洲西部",
+    "zh_tw": "造訪南美洲西部"
+  }
+}

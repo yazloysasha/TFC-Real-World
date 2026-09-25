@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/labrador",
+  "title_lang": {
+    "de_de": "Corner Brook",
+    "en_us": "Corner Brook",
+    "es_es": "Corner Brook",
+    "ja_jp": "コーナーブルック",
+    "ko_kr": "코너브룩",
+    "pl_pl": "Corner Brook",
+    "pt_br": "Corner Brook",
+    "ru_ru": "Корнер-Брук",
+    "tr_tr": "Corner Brook",
+    "uk_ua": "Корнер-Брук",
+    "zh_cn": "科纳布鲁克",
+    "zh_hk": "科納布魯克",
+    "zh_tw": "科納布魯克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Corner Brook",
+    "en_us": "Visit Corner Brook",
+    "es_es": "Visita Corner Brook",
+    "ja_jp": "コーナーブルックを訪れよう",
+    "ko_kr": "코너브룩을 방문하세요",
+    "pl_pl": "Odwiedź Corner Brook",
+    "pt_br": "Visite Corner Brook",
+    "ru_ru": "Посетите Корнер-Брук",
+    "tr_tr": "Corner Brook'u ziyaret edin",
+    "uk_ua": "Відвідайте Корнер-Брук",
+    "zh_cn": "访问科纳布鲁克",
+    "zh_hk": "遊覽科納布魯克",
+    "zh_tw": "造訪科納布魯克"
+  },
+  "latitude": 48.95001,
+  "longitude": -57.95202
+}

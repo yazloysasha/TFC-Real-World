@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/oregon",
+  "title_lang": {
+    "de_de": "Salem",
+    "en_us": "Salem",
+    "es_es": "Salem",
+    "ja_jp": "セイラム",
+    "ko_kr": "세일럼",
+    "pl_pl": "Salem",
+    "pt_br": "Salem",
+    "ru_ru": "Сейлем",
+    "tr_tr": "Salem",
+    "uk_ua": "Сейлем",
+    "zh_cn": "塞勒姆",
+    "zh_hk": "塞勒姆",
+    "zh_tw": "塞勒姆"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Salem",
+    "en_us": "Visit Salem",
+    "es_es": "Visita Salem",
+    "ja_jp": "セイラムを訪れよう",
+    "ko_kr": "세일럼을 방문하세요",
+    "pl_pl": "Odwiedź Salem",
+    "pt_br": "Visite Salem",
+    "ru_ru": "Посетите Сейлем",
+    "tr_tr": "Salem'i ziyaret edin",
+    "uk_ua": "Відвідайте Сейлем",
+    "zh_cn": "访问塞勒姆",
+    "zh_hk": "遊覽塞勒姆",
+    "zh_tw": "造訪塞勒姆"
+  },
+  "latitude": 44.9429,
+  "longitude": -123.0351
+}

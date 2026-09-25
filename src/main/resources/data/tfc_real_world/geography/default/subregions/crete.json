@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/southeastern_europe",
+  "title_lang": {
+    "de_de": "Kreta",
+    "en_us": "Crete",
+    "es_es": "Creta",
+    "ja_jp": "クレタ島",
+    "ko_kr": "크레타",
+    "pl_pl": "Kreta",
+    "pt_br": "Creta",
+    "ru_ru": "Крит",
+    "tr_tr": "Girit",
+    "uk_ua": "Крит",
+    "zh_cn": "克里特",
+    "zh_hk": "克里特",
+    "zh_tw": "克里特"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Kreta",
+    "en_us": "Visit the Crete subregion",
+    "es_es": "Visita la subregión de Creta",
+    "ja_jp": "クレタ島のサブリージョンを訪れよう",
+    "ko_kr": "크레타 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Kreta",
+    "pt_br": "Visite a sub-região Creta",
+    "ru_ru": "Посетите субрегион Крит",
+    "tr_tr": "Girit alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Крит",
+    "zh_cn": "访问克里特子区域",
+    "zh_hk": "遊覽克里特子區域",
+    "zh_tw": "造訪克里特子區域"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/northeastern_usa",
+  "title_lang": {
+    "de_de": "New York",
+    "en_us": "New York",
+    "es_es": "Nueva York",
+    "ja_jp": "ニューヨーク",
+    "ko_kr": "뉴욕",
+    "pl_pl": "Nowy Jork",
+    "pt_br": "Nova York",
+    "ru_ru": "Нью-Йорк",
+    "tr_tr": "New York",
+    "uk_ua": "Нью-Йорк",
+    "zh_cn": "纽约",
+    "zh_hk": "紐約",
+    "zh_tw": "紐約"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion New York",
+    "en_us": "Visit the New York subregion",
+    "es_es": "Visita la subregión de Nueva York",
+    "ja_jp": "ニューヨークのサブリージョンを訪れよう",
+    "ko_kr": "뉴욕 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Nowy Jork",
+    "pt_br": "Visite a sub-região Nova York",
+    "ru_ru": "Посетите субрегион Нью-Йорк",
+    "tr_tr": "New York alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Нью-Йорк",
+    "zh_cn": "访问纽约子区域",
+    "zh_hk": "遊覽紐約子區域",
+    "zh_tw": "造訪紐約子區域"
+  }
+}

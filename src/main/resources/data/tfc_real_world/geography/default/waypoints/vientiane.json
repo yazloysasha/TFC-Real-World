@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/laos",
+  "title_lang": {
+    "de_de": "Vientiane",
+    "en_us": "Vientiane",
+    "es_es": "Vientián",
+    "ja_jp": "ヴィエンチャン",
+    "ko_kr": "비엔티안",
+    "pl_pl": "Wientian",
+    "pt_br": "Vienciana",
+    "ru_ru": "Вьентьян",
+    "tr_tr": "Vientiane",
+    "uk_ua": "В'єнтьян",
+    "zh_cn": "万象",
+    "zh_hk": "永珍",
+    "zh_tw": "永珍"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Demokratischen Volksrepublik Laos",
+    "en_us": "Visit the capital of the Lao People’s Democratic Republic",
+    "es_es": "Visita la capital de la República Democrática Popular Lao",
+    "ja_jp": "ラオス人民民主共和国の首都を訪れよう",
+    "ko_kr": "라오 인민민주공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Laotańskiej Republiki Ludowo-Demokratycznej",
+    "pt_br": "Visite a capital da República Democrática Popular do Laos",
+    "ru_ru": "Посетите столицу Лаосской Народно-Демократической Республики",
+    "tr_tr": "Laos Demokratik Halk Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Лаоської Народно-Демократичної Республіки",
+    "zh_cn": "访问老挝人民民主共和国的首都",
+    "zh_hk": "遊覽老撾人民民主共和國的首都",
+    "zh_tw": "造訪老撾人民民主共和國的首都"
+  },
+  "latitude": 17.96667,
+  "longitude": 102.6,
+  "capital": 1
+}

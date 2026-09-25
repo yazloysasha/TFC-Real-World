@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/northern_europe",
+  "title_lang": {
+    "de_de": "Dänemark",
+    "en_us": "Denmark",
+    "es_es": "Dinamarca",
+    "ja_jp": "デンマーク",
+    "ko_kr": "덴마크",
+    "pl_pl": "Dania",
+    "pt_br": "Dinamarca",
+    "ru_ru": "Дания",
+    "tr_tr": "Danimarka",
+    "uk_ua": "Данія",
+    "zh_cn": "丹麦",
+    "zh_hk": "丹麥",
+    "zh_tw": "丹麥"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Dänemark",
+    "en_us": "Visit the Denmark subregion",
+    "es_es": "Visita la subregión de Dinamarca",
+    "ja_jp": "デンマークのサブリージョンを訪れよう",
+    "ko_kr": "덴마크 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Danii",
+    "pt_br": "Visite a sub-região Dinamarca",
+    "ru_ru": "Посетите субрегион Дания",
+    "tr_tr": "Danimarka alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Данія",
+    "zh_cn": "访问丹麦子区域",
+    "zh_hk": "遊覽丹麥子區域",
+    "zh_tw": "造訪丹麥子區域"
+  }
+}

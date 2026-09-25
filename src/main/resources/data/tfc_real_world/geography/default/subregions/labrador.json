@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/eastern_canada",
+  "title_lang": {
+    "de_de": "Labrador",
+    "en_us": "Labrador",
+    "es_es": "Labrador",
+    "ja_jp": "ラブラドル",
+    "ko_kr": "래브라도르",
+    "pl_pl": "Labrador",
+    "pt_br": "Labrador",
+    "ru_ru": "Лабрадор",
+    "tr_tr": "Labrador",
+    "uk_ua": "Лабрадор",
+    "zh_cn": "拉布拉多",
+    "zh_hk": "拉布拉多",
+    "zh_tw": "拉布拉多"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Labrador",
+    "en_us": "Visit the Labrador subregion",
+    "es_es": "Visita la subregión de Labrador",
+    "ja_jp": "ラブラドルのサブリージョンを訪れよう",
+    "ko_kr": "래브라도르 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Labrador",
+    "pt_br": "Visite a sub-região Labrador",
+    "ru_ru": "Посетите субрегион Лабрадор",
+    "tr_tr": "Labrador alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Лабрадор",
+    "zh_cn": "访问拉布拉多子区域",
+    "zh_hk": "遊覽拉布拉多子區域",
+    "zh_tw": "造訪拉布拉多子區域"
+  }
+}

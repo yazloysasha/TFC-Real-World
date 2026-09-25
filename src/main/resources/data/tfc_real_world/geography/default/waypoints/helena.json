@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/montana",
+  "title_lang": {
+    "de_de": "Helena",
+    "en_us": "Helena",
+    "es_es": "Helena",
+    "ja_jp": "ヘレナ",
+    "ko_kr": "헬레나",
+    "pl_pl": "Helena",
+    "pt_br": "Helena",
+    "ru_ru": "Хелена",
+    "tr_tr": "Helena",
+    "uk_ua": "Гелена",
+    "zh_cn": "赫勒拿",
+    "zh_hk": "赫勒拿",
+    "zh_tw": "海倫娜"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Helena",
+    "en_us": "Visit Helena",
+    "es_es": "Visita Helena",
+    "ja_jp": "ヘレナを訪れよう",
+    "ko_kr": "헬레나를 방문하세요",
+    "pl_pl": "Odwiedź Helenę",
+    "pt_br": "Visite Helena",
+    "ru_ru": "Посетите Хелену",
+    "tr_tr": "Helena'yı ziyaret edin",
+    "uk_ua": "Відвідайте Гелену",
+    "zh_cn": "访问赫勒拿",
+    "zh_hk": "遊覽赫勒拿",
+    "zh_tw": "造訪海倫娜"
+  },
+  "latitude": 46.59271,
+  "longitude": -112.03611
+}

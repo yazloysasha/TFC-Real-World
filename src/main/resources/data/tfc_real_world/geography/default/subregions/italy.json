@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/southeastern_europe",
+  "title_lang": {
+    "de_de": "Italien",
+    "en_us": "Italy",
+    "es_es": "Italia",
+    "ja_jp": "イタリア",
+    "ko_kr": "이탈리아",
+    "pl_pl": "Włochy",
+    "pt_br": "Itália",
+    "ru_ru": "Италия",
+    "tr_tr": "İtalya",
+    "uk_ua": "Італія",
+    "zh_cn": "意大利",
+    "zh_hk": "意大利",
+    "zh_tw": "義大利"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Italien",
+    "en_us": "Visit the Italy subregion",
+    "es_es": "Visita la subregión de Italia",
+    "ja_jp": "イタリアのサブリージョンを訪れよう",
+    "ko_kr": "이탈리아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Włochy",
+    "pt_br": "Visite a sub-região Itália",
+    "ru_ru": "Посетите субрегион Италия",
+    "tr_tr": "İtalya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Італія",
+    "zh_cn": "访问意大利子区域",
+    "zh_hk": "遊覽意大利子區域",
+    "zh_tw": "造訪義大利子區域"
+  }
+}

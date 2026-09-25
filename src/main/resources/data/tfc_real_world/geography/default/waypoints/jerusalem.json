@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/palestine",
+  "title_lang": {
+    "de_de": "Jerusalem",
+    "en_us": "Jerusalem",
+    "es_es": "Jerusalén",
+    "ja_jp": "エルサレム",
+    "ko_kr": "예루살렘",
+    "pl_pl": "Jerozolima",
+    "pt_br": "Jerusalém",
+    "ru_ru": "Иерусалим",
+    "tr_tr": "Kudüs",
+    "uk_ua": "Єрусалим",
+    "zh_cn": "耶路撒冷",
+    "zh_hk": "耶路撒冷",
+    "zh_tw": "耶路撒冷"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt des Staates Israel",
+    "en_us": "Visit the capital of the State of Israel",
+    "es_es": "Visita la capital del Estado de Israel",
+    "ja_jp": "イスラエル国の首都を訪れよう",
+    "ko_kr": "이스라엘국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Państwa Izraela",
+    "pt_br": "Visite a capital do Estado de Israel",
+    "ru_ru": "Посетите столицу Государства Израиль",
+    "tr_tr": "İsrail Devleti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Держави Ізраїль",
+    "zh_cn": "访问以色列国的首都",
+    "zh_hk": "遊覽以色列國的首都",
+    "zh_tw": "造訪以色列國的首都"
+  },
+  "latitude": 31.76904,
+  "longitude": 35.21633,
+  "capital": 1
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/brazil",
+  "title_lang": {
+    "de_de": "Südostbrasilien",
+    "en_us": "Brazil Southeast",
+    "es_es": "Brasil Sudeste",
+    "ja_jp": "ブラジル南東部",
+    "ko_kr": "브라질 남동부",
+    "pl_pl": "Brazylia Południowo-Wschodnia",
+    "pt_br": "Sudeste do Brasil",
+    "ru_ru": "Юго-Восток Бразилии",
+    "tr_tr": "Güneydoğu Brezilya",
+    "uk_ua": "Південний схід Бразилії",
+    "zh_cn": "巴西东南部",
+    "zh_hk": "巴西東南部",
+    "zh_tw": "巴西東南部"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Südostbrasilien",
+    "en_us": "Visit the Brazil Southeast subregion",
+    "es_es": "Visita la subregión de Brasil Sudeste",
+    "ja_jp": "ブラジル南東部のサブリージョンを訪れよう",
+    "ko_kr": "브라질 남동부 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Brazylia Południowo-Wschodnia",
+    "pt_br": "Visite a sub-região Sudeste do Brasil",
+    "ru_ru": "Посетите субрегион Юго-Восток Бразилии",
+    "tr_tr": "Güneydoğu Brezilya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Південний схід Бразилії",
+    "zh_cn": "访问巴西东南部子区域",
+    "zh_hk": "遊覽巴西東南部子區域",
+    "zh_tw": "造訪巴西東南部子區域"
+  }
+}

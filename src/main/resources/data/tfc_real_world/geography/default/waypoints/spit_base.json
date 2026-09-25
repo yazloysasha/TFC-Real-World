@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/heard_and_mcdonald_islands",
+  "title_lang": {
+    "de_de": "Spit Base",
+    "en_us": "Spit Base",
+    "es_es": "Base Spit",
+    "ja_jp": "スピット基地",
+    "ko_kr": "스피트 기지",
+    "pl_pl": "Baza Spit",
+    "pt_br": "Base Spit",
+    "ru_ru": "База Спит",
+    "tr_tr": "Spit Üssü",
+    "uk_ua": "База Спіт",
+    "zh_cn": "斯皮特基地",
+    "zh_hk": "斯皮特基地",
+    "zh_tw": "斯皮特基地"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Spit Base",
+    "en_us": "Visit Spit Base",
+    "es_es": "Visita Base Spit",
+    "ja_jp": "スピット基地を訪れよう",
+    "ko_kr": "스피트 기지를 방문하세요",
+    "pl_pl": "Odwiedź bazę Spit",
+    "pt_br": "Visite Base Spit",
+    "ru_ru": "Посетите базу Спит",
+    "tr_tr": "Spit Üssü'yü ziyaret edin",
+    "uk_ua": "Відвідайте базу Спіт",
+    "zh_cn": "访问斯皮特基地",
+    "zh_hk": "遊覽斯皮特基地",
+    "zh_tw": "造訪斯皮特基地"
+  },
+  "latitude": -53.11814,
+  "longitude": 73.73474
+}

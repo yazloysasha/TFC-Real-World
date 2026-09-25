@@ -1,0 +1,33 @@
+{
+  "parent": "default:continent/europe",
+  "title_lang": {
+    "de_de": "Nordeuropa",
+    "en_us": "Northern Europe",
+    "es_es": "Europa del Norte",
+    "ja_jp": "北ヨーロッパ",
+    "ko_kr": "북유럽",
+    "pl_pl": "Europa Północna",
+    "pt_br": "Europa do Norte",
+    "ru_ru": "Северная Европа",
+    "tr_tr": "Kuzey Avrupa",
+    "uk_ua": "Північна Європа",
+    "zh_cn": "北欧",
+    "zh_hk": "北歐",
+    "zh_tw": "北歐"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Nordeuropa",
+    "en_us": "Visit Northern Europe",
+    "es_es": "Visita Europa del Norte",
+    "ja_jp": "北ヨーロッパを訪れよう",
+    "ko_kr": "북유럽을 방문하세요",
+    "pl_pl": "Odwiedź Europę Północną",
+    "pt_br": "Visite a Europa do Norte",
+    "ru_ru": "Посетите Северную Европу",
+    "tr_tr": "Kuzey Avrupa'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Північну Європу",
+    "zh_cn": "访问北欧",
+    "zh_hk": "遊覽北歐",
+    "zh_tw": "造訪北歐"
+  }
+}

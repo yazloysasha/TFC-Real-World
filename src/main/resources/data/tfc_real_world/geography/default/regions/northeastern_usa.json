@@ -1,0 +1,33 @@
+{
+  "parent": "default:continent/northern_america",
+  "title_lang": {
+    "de_de": "Nordosten der USA",
+    "en_us": "Northeastern U.S.A.",
+    "es_es": "Noreste de EE. UU.",
+    "ja_jp": "アメリカ北東部",
+    "ko_kr": "미국 북동부",
+    "pl_pl": "Północno-wschodnie USA",
+    "pt_br": "Nordeste dos EUA",
+    "ru_ru": "Северо-восток США",
+    "tr_tr": "Kuzeydoğu ABD",
+    "uk_ua": "Північний схід США",
+    "zh_cn": "美国东北部",
+    "zh_hk": "美國東北部",
+    "zh_tw": "美國東北部"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie den Nordosten der USA",
+    "en_us": "Visit the Northeastern U.S.A.",
+    "es_es": "Visita el noreste de EE. UU.",
+    "ja_jp": "アメリカ北東部を訪れよう",
+    "ko_kr": "미국 북동부를 방문하세요",
+    "pl_pl": "Odwiedź północno-wschodnie USA",
+    "pt_br": "Visite o nordeste dos EUA",
+    "ru_ru": "Посетите северо-восток США",
+    "tr_tr": "Kuzeydoğu ABD'yi Ziyaret Edin",
+    "uk_ua": "Відвідайте північний схід США",
+    "zh_cn": "访问美国东北部",
+    "zh_hk": "遊覽美國東北部",
+    "zh_tw": "造訪美國東北部"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/southwestern_pacific",
+  "title_lang": {
+    "de_de": "Fidschi",
+    "en_us": "Fiji",
+    "es_es": "Fiyi",
+    "ja_jp": "フィジー",
+    "ko_kr": "피지",
+    "pl_pl": "Fidżi",
+    "pt_br": "Fiji",
+    "ru_ru": "Фиджи",
+    "tr_tr": "Fiji",
+    "uk_ua": "Фіджі",
+    "zh_cn": "斐济",
+    "zh_hk": "斐濟",
+    "zh_tw": "斐濟"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Fidschi",
+    "en_us": "Visit the Fiji subregion",
+    "es_es": "Visita la subregión de Fiyi",
+    "ja_jp": "フィジーのサブリージョンを訪れよう",
+    "ko_kr": "피지 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Fidżi",
+    "pt_br": "Visite a sub-região Fiji",
+    "ru_ru": "Посетите субрегион Фиджи",
+    "tr_tr": "Fiji alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Фіджі",
+    "zh_cn": "访问斐济子区域",
+    "zh_hk": "遊覽斐濟子區域",
+    "zh_tw": "造訪斐濟子區域"
+  }
+}

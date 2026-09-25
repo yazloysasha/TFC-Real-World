@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/yukon",
+  "title_lang": {
+    "de_de": "Whitehorse",
+    "en_us": "Whitehorse",
+    "es_es": "Whitehorse",
+    "ja_jp": "ホワイトホース",
+    "ko_kr": "화이트호스",
+    "pl_pl": "Whitehorse",
+    "pt_br": "Whitehorse",
+    "ru_ru": "Уайтхорс",
+    "tr_tr": "Whitehorse",
+    "uk_ua": "Вайтхорс",
+    "zh_cn": "怀特霍斯",
+    "zh_hk": "懷特霍斯",
+    "zh_tw": "懷特霍斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Whitehorse",
+    "en_us": "Visit Whitehorse",
+    "es_es": "Visita Whitehorse",
+    "ja_jp": "ホワイトホースを訪れよう",
+    "ko_kr": "화이트호스를 방문하세요",
+    "pl_pl": "Odwiedź Whitehorse",
+    "pt_br": "Visite Whitehorse",
+    "ru_ru": "Посетите Уайтхорс",
+    "tr_tr": "Whitehorse'yi ziyaret edin",
+    "uk_ua": "Відвідайте Вайтхорс",
+    "zh_cn": "访问怀特霍斯",
+    "zh_hk": "遊覽懷特霍斯",
+    "zh_tw": "造訪懷特霍斯"
+  },
+  "latitude": 60.71611,
+  "longitude": -135.05375
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/russian_far_east",
+  "title_lang": {
+    "de_de": "Primorje",
+    "en_us": "Primorye",
+    "es_es": "Primorie",
+    "ja_jp": "沿海地方",
+    "ko_kr": "연해주",
+    "pl_pl": "Nadmorskie",
+    "pt_br": "Primorie",
+    "ru_ru": "Приморье",
+    "tr_tr": "Primorye",
+    "uk_ua": "Примор'я",
+    "zh_cn": "滨海边疆区",
+    "zh_hk": "濱海邊疆區",
+    "zh_tw": "濱海邊疆區"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Primorje",
+    "en_us": "Visit the Primorye subregion",
+    "es_es": "Visita la subregión de Primorie",
+    "ja_jp": "沿海地方のサブリージョンを訪れよう",
+    "ko_kr": "연해주 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Nadmorskie",
+    "pt_br": "Visite a sub-região Primorie",
+    "ru_ru": "Посетите субрегион Приморье",
+    "tr_tr": "Primorye alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Примор'я",
+    "zh_cn": "访问滨海边疆区子区域",
+    "zh_hk": "遊覽濱海邊疆區子區域",
+    "zh_tw": "造訪濱海邊疆區子區域"
+  }
+}

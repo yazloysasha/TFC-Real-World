@@ -1,0 +1,33 @@
+{
+  "parent": "default:continent/africa",
+  "title_lang": {
+    "de_de": "Makaronesien",
+    "en_us": "Macaronesia",
+    "es_es": "Macaronesia",
+    "ja_jp": "マカロネシア",
+    "ko_kr": "마카로네시아",
+    "pl_pl": "Makaronezja",
+    "pt_br": "Macaronésia",
+    "ru_ru": "Макаронезия",
+    "tr_tr": "Makaronezya",
+    "uk_ua": "Макаронезія",
+    "zh_cn": "马卡罗尼西亚",
+    "zh_hk": "馬卡羅尼西亞",
+    "zh_tw": "馬卡羅尼西亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Makaronesien",
+    "en_us": "Visit Macaronesia",
+    "es_es": "Visita Macaronesia",
+    "ja_jp": "マカロネシアを訪れよう",
+    "ko_kr": "마카로네시아를 방문하세요",
+    "pl_pl": "Odwiedź Makaronezję",
+    "pt_br": "Visite a Macaronésia",
+    "ru_ru": "Посетите Макаронезию",
+    "tr_tr": "Makaronezya'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Макаронезію",
+    "zh_cn": "访问马卡罗尼西亚",
+    "zh_hk": "遊覽馬卡羅尼西亞",
+    "zh_tw": "造訪馬卡羅尼西亞"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/central_america",
+  "title_lang": {
+    "de_de": "Guatemala",
+    "en_us": "Guatemala",
+    "es_es": "Guatemala",
+    "ja_jp": "グアテマラ",
+    "ko_kr": "과테말라",
+    "pl_pl": "Gwatemala",
+    "pt_br": "Guatemala",
+    "ru_ru": "Гватемала",
+    "tr_tr": "Guatemala",
+    "uk_ua": "Гватемала",
+    "zh_cn": "危地马拉",
+    "zh_hk": "危地馬拉",
+    "zh_tw": "危地馬拉"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Guatemala",
+    "en_us": "Visit the Guatemala subregion",
+    "es_es": "Visita la subregión de Guatemala",
+    "ja_jp": "グアテマラのサブリージョンを訪れよう",
+    "ko_kr": "과테말라 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Gwatemala",
+    "pt_br": "Visite a sub-região Guatemala",
+    "ru_ru": "Посетите субрегион Гватемала",
+    "tr_tr": "Guatemala alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Гватемала",
+    "zh_cn": "访问危地马拉子区域",
+    "zh_hk": "遊覽危地馬拉子區域",
+    "zh_tw": "造訪危地馬拉子區域"
+  }
+}

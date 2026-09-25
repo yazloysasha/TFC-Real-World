@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/pitcairn_islands",
+  "title_lang": {
+    "de_de": "Adamstown",
+    "en_us": "Adamstown",
+    "es_es": "Adamstown",
+    "ja_jp": "アダムスタウン",
+    "ko_kr": "애덤스타운",
+    "pl_pl": "Adamstown",
+    "pt_br": "Adamstown",
+    "ru_ru": "Адамстаун",
+    "tr_tr": "Adamstown",
+    "uk_ua": "Адамстаун",
+    "zh_cn": "亚当斯敦",
+    "zh_hk": "亞當斯敦",
+    "zh_tw": "亞當斯敦"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Adamstown",
+    "en_us": "Visit Adamstown",
+    "es_es": "Visita Adamstown",
+    "ja_jp": "アダムスタウンを訪れよう",
+    "ko_kr": "애덤스타운을 방문하세요",
+    "pl_pl": "Odwiedź Adamstown",
+    "pt_br": "Visite Adamstown",
+    "ru_ru": "Посетите Адамстаун",
+    "tr_tr": "Adamstown'u ziyaret edin",
+    "uk_ua": "Відвідайте Адамстаун",
+    "zh_cn": "访问亚当斯敦",
+    "zh_hk": "遊覽亞當斯敦",
+    "zh_tw": "造訪亞當斯敦"
+  },
+  "latitude": -25.06597,
+  "longitude": -130.10147
+}

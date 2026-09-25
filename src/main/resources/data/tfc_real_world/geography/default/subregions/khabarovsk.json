@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/russian_far_east",
+  "title_lang": {
+    "de_de": "Chabarowsk",
+    "en_us": "Khabarovsk",
+    "es_es": "Jabárovsk",
+    "ja_jp": "ハバロフスク",
+    "ko_kr": "하바롭스크",
+    "pl_pl": "Chabarowsk",
+    "pt_br": "Khabarovsk",
+    "ru_ru": "Хабаровск",
+    "tr_tr": "Habarovsk",
+    "uk_ua": "Хабаровськ",
+    "zh_cn": "哈巴罗夫斯克",
+    "zh_hk": "哈巴羅夫斯克",
+    "zh_tw": "哈巴羅夫斯克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Chabarowsk",
+    "en_us": "Visit the Khabarovsk subregion",
+    "es_es": "Visita la subregión de Jabárovsk",
+    "ja_jp": "ハバロフスクのサブリージョンを訪れよう",
+    "ko_kr": "하바롭스크 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Chabarowsk",
+    "pt_br": "Visite a sub-região Khabarovsk",
+    "ru_ru": "Посетите субрегион Хабаровск",
+    "tr_tr": "Habarovsk alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Хабаровськ",
+    "zh_cn": "访问哈巴罗夫斯克子区域",
+    "zh_hk": "遊覽哈巴羅夫斯克子區域",
+    "zh_tw": "造訪哈巴羅夫斯克子區域"
+  }
+}

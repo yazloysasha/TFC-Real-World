@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/northwestern_usa",
+  "title_lang": {
+    "de_de": "Wyoming",
+    "en_us": "Wyoming",
+    "es_es": "Wyoming",
+    "ja_jp": "ワイオミング",
+    "ko_kr": "와이오밍",
+    "pl_pl": "Wyoming",
+    "pt_br": "Wyoming",
+    "ru_ru": "Вайоминг",
+    "tr_tr": "Wyoming",
+    "uk_ua": "Вайомінг",
+    "zh_cn": "怀俄明",
+    "zh_hk": "懷俄明",
+    "zh_tw": "懷俄明"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Wyoming",
+    "en_us": "Visit the Wyoming subregion",
+    "es_es": "Visita la subregión de Wyoming",
+    "ja_jp": "ワイオミングのサブリージョンを訪れよう",
+    "ko_kr": "와이오밍 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyoming",
+    "pt_br": "Visite a sub-região Wyoming",
+    "ru_ru": "Посетите субрегион Вайоминг",
+    "tr_tr": "Wyoming alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Вайомінг",
+    "zh_cn": "访问怀俄明子区域",
+    "zh_hk": "遊覽懷俄明子區域",
+    "zh_tw": "造訪懷俄明子區域"
+  }
+}

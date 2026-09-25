@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/niger",
+  "title_lang": {
+    "de_de": "Niamey",
+    "en_us": "Niamey",
+    "es_es": "Niamey",
+    "ja_jp": "ニアメ",
+    "ko_kr": "니아메",
+    "pl_pl": "Niamey",
+    "pt_br": "Niamey",
+    "ru_ru": "Ниамей",
+    "tr_tr": "Niamey",
+    "uk_ua": "Ніамей",
+    "zh_cn": "尼亚美",
+    "zh_hk": "尼亞美",
+    "zh_tw": "尼阿美"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Niger",
+    "en_us": "Visit the capital of the Republic of Niger",
+    "es_es": "Visita la capital de la República de Níger",
+    "ja_jp": "ニジェール共和国の首都を訪れよう",
+    "ko_kr": "니제르 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Nigeru",
+    "pt_br": "Visite a capital da República do Níger",
+    "ru_ru": "Посетите столицу Республики Нигер",
+    "tr_tr": "Nijer Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Нігер",
+    "zh_cn": "访问尼日尔共和国的首都",
+    "zh_hk": "遊覽尼日爾共和國的首都",
+    "zh_tw": "造訪尼日爾共和國的首都"
+  },
+  "latitude": 13.51366,
+  "longitude": 2.1098,
+  "capital": 1
+}

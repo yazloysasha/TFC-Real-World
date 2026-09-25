@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/eastern_europe",
+  "title_lang": {
+    "de_de": "Ukraine",
+    "en_us": "Ukraine",
+    "es_es": "Ucrania",
+    "ja_jp": "ウクライナ",
+    "ko_kr": "우크라이나",
+    "pl_pl": "Ukraina",
+    "pt_br": "Ucrânia",
+    "ru_ru": "Украина",
+    "tr_tr": "Ukrayna",
+    "uk_ua": "Україна",
+    "zh_cn": "乌克兰",
+    "zh_hk": "烏克蘭",
+    "zh_tw": "烏克蘭"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Ukraine",
+    "en_us": "Visit the Ukraine subregion",
+    "es_es": "Visita la subregión de Ucrania",
+    "ja_jp": "ウクライナのサブリージョンを訪れよう",
+    "ko_kr": "우크라이나 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Ukraina",
+    "pt_br": "Visite a sub-região Ucrânia",
+    "ru_ru": "Посетите субрегион Украина",
+    "tr_tr": "Ukrayna alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Україна",
+    "zh_cn": "访问乌克兰子区域",
+    "zh_hk": "遊覽烏克蘭子區域",
+    "zh_tw": "造訪烏克蘭子區域"
+  }
+}

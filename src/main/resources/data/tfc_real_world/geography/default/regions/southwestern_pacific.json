@@ -1,0 +1,33 @@
+{
+  "parent": "default:continent/pacific",
+  "title_lang": {
+    "de_de": "Südwestpazifik",
+    "en_us": "Southwestern Pacific",
+    "es_es": "Pacífico Suroccidental",
+    "ja_jp": "南西太平洋",
+    "ko_kr": "남서태평양",
+    "pl_pl": "Południowo-zachodni Pacyfik",
+    "pt_br": "Pacífico Sudoeste",
+    "ru_ru": "Юго-запад Тихого океана",
+    "tr_tr": "Güneybatı Pasifik",
+    "uk_ua": "Південний захід Тихого океану",
+    "zh_cn": "西南太平洋",
+    "zh_hk": "西南太平洋",
+    "zh_tw": "西南太平洋"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie den Südwestpazifik",
+    "en_us": "Visit the Southwestern Pacific",
+    "es_es": "Visita el Pacífico Suroccidental",
+    "ja_jp": "南西太平洋を訪れよう",
+    "ko_kr": "남서태평양을 방문하세요",
+    "pl_pl": "Odwiedź południowo-zachodni Pacyfik",
+    "pt_br": "Visite o Pacífico Sudoeste",
+    "ru_ru": "Посетите юго-запад Тихого океана",
+    "tr_tr": "Güneybatı Pasifik'i Ziyaret Edin",
+    "uk_ua": "Відвідайте південний захід Тихого океану",
+    "zh_cn": "访问西南太平洋",
+    "zh_hk": "遊覽西南太平洋",
+    "zh_tw": "造訪西南太平洋"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/southeastern_usa",
+  "title_lang": {
+    "de_de": "North Carolina",
+    "en_us": "North Carolina",
+    "es_es": "Carolina del Norte",
+    "ja_jp": "ノースカロライナ",
+    "ko_kr": "노스캐롤라이나",
+    "pl_pl": "Karolina Północna",
+    "pt_br": "Carolina do Norte",
+    "ru_ru": "Северная Каролина",
+    "tr_tr": "Kuzey Carolina",
+    "uk_ua": "Північна Кароліна",
+    "zh_cn": "北卡罗来纳",
+    "zh_hk": "北卡羅來納",
+    "zh_tw": "北卡羅來納"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion North Carolina",
+    "en_us": "Visit the North Carolina subregion",
+    "es_es": "Visita la subregión de Carolina del Norte",
+    "ja_jp": "ノースカロライナのサブリージョンを訪れよう",
+    "ko_kr": "노스캐롤라이나 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Karolina Północna",
+    "pt_br": "Visite a sub-região Carolina do Norte",
+    "ru_ru": "Посетите субрегион Северная Каролина",
+    "tr_tr": "Kuzey Carolina alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Північна Кароліна",
+    "zh_cn": "访问北卡罗来纳子区域",
+    "zh_hk": "遊覽北卡羅來納子區域",
+    "zh_tw": "造訪北卡羅來納子區域"
+  }
+}

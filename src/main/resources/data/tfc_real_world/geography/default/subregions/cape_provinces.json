@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/southern_africa",
+  "title_lang": {
+    "de_de": "Kapprovinzen",
+    "en_us": "Cape Provinces",
+    "es_es": "Provincias del Cabo",
+    "ja_jp": "ケープ諸州",
+    "ko_kr": "케이프 주들",
+    "pl_pl": "Prowincje Przylądkowe",
+    "pt_br": "Províncias do Cabo",
+    "ru_ru": "Капские провинции",
+    "tr_tr": "Kap Eyaletleri",
+    "uk_ua": "Капські провінції",
+    "zh_cn": "开普诸省",
+    "zh_hk": "開普諸省",
+    "zh_tw": "開普諸省"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Kapprovinzen",
+    "en_us": "Visit the Cape Provinces subregion",
+    "es_es": "Visita la subregión de Provincias del Cabo",
+    "ja_jp": "ケープ諸州のサブリージョンを訪れよう",
+    "ko_kr": "케이프 주들 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Prowincje Przylądkowe",
+    "pt_br": "Visite a sub-região Províncias do Cabo",
+    "ru_ru": "Посетите субрегион Капские провинции",
+    "tr_tr": "Kap Eyaletleri alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Капські провінції",
+    "zh_cn": "访问开普诸省子区域",
+    "zh_hk": "遊覽開普諸省子區域",
+    "zh_tw": "造訪開普諸省子區域"
+  }
+}

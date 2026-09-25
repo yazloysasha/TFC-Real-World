@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/northern_europe",
+  "title_lang": {
+    "de_de": "Irland",
+    "en_us": "Ireland",
+    "es_es": "Irlanda",
+    "ja_jp": "アイルランド",
+    "ko_kr": "아일랜드",
+    "pl_pl": "Irlandia",
+    "pt_br": "Irlanda",
+    "ru_ru": "Ирландия",
+    "tr_tr": "İrlanda",
+    "uk_ua": "Ірландія",
+    "zh_cn": "爱尔兰",
+    "zh_hk": "愛爾蘭",
+    "zh_tw": "愛爾蘭"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Irland",
+    "en_us": "Visit the Ireland subregion",
+    "es_es": "Visita la subregión de Irlanda",
+    "ja_jp": "アイルランドのサブリージョンを訪れよう",
+    "ko_kr": "아일랜드 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Irlandia",
+    "pt_br": "Visite a sub-região Irlanda",
+    "ru_ru": "Посетите субрегион Ирландия",
+    "tr_tr": "İrlanda alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Ірландія",
+    "zh_cn": "访问爱尔兰子区域",
+    "zh_hk": "遊覽愛爾蘭子區域",
+    "zh_tw": "造訪愛爾蘭子區域"
+  }
+}

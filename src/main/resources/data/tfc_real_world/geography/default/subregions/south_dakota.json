@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/north_central_usa",
+  "title_lang": {
+    "de_de": "South Dakota",
+    "en_us": "South Dakota",
+    "es_es": "Dakota del Sur",
+    "ja_jp": "サウスダコタ",
+    "ko_kr": "사우스다코타",
+    "pl_pl": "Dakota Południowa",
+    "pt_br": "Dakota do Sul",
+    "ru_ru": "Южная Дакота",
+    "tr_tr": "Güney Dakota",
+    "uk_ua": "Південна Дакота",
+    "zh_cn": "南达科他",
+    "zh_hk": "南達科他",
+    "zh_tw": "南達科他"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion South Dakota",
+    "en_us": "Visit the South Dakota subregion",
+    "es_es": "Visita la subregión de Dakota del Sur",
+    "ja_jp": "サウスダコタのサブリージョンを訪れよう",
+    "ko_kr": "사우스다코타 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Dakota Południowa",
+    "pt_br": "Visite a sub-região Dakota do Sul",
+    "ru_ru": "Посетите субрегион Южная Дакота",
+    "tr_tr": "Güney Dakota alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Південна Дакота",
+    "zh_cn": "访问南达科他子区域",
+    "zh_hk": "遊覽南達科他子區域",
+    "zh_tw": "造訪南達科他子區域"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/malesia",
+  "title_lang": {
+    "de_de": "Java",
+    "en_us": "Java",
+    "es_es": "Java",
+    "ja_jp": "ジャワ",
+    "ko_kr": "자바",
+    "pl_pl": "Jawa",
+    "pt_br": "Java",
+    "ru_ru": "Ява",
+    "tr_tr": "Cava",
+    "uk_ua": "Ява",
+    "zh_cn": "爪哇",
+    "zh_hk": "爪哇",
+    "zh_tw": "爪哇"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Java",
+    "en_us": "Visit the Java subregion",
+    "es_es": "Visita la subregión de Java",
+    "ja_jp": "ジャワのサブリージョンを訪れよう",
+    "ko_kr": "자바 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Jawa",
+    "pt_br": "Visite a sub-região Java",
+    "ru_ru": "Посетите субрегион Ява",
+    "tr_tr": "Cava alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Ява",
+    "zh_cn": "访问爪哇子区域",
+    "zh_hk": "遊覽爪哇子區域",
+    "zh_tw": "造訪爪哇子區域"
+  }
+}

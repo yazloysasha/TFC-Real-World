@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/china",
+  "title_lang": {
+    "de_de": "Südwestchina",
+    "en_us": "China South-Central",
+    "es_es": "China surcentral",
+    "ja_jp": "西南中国",
+    "ko_kr": "중국 남중부",
+    "pl_pl": "Chiny południowo-środkowe",
+    "pt_br": "China Sul-Central",
+    "ru_ru": "Юго-Западный Китай",
+    "tr_tr": "Güney-Orta Çin",
+    "uk_ua": "Південно-центральний Китай",
+    "zh_cn": "西南",
+    "zh_hk": "西南",
+    "zh_tw": "西南"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Südwestchina",
+    "en_us": "Visit the China South-Central subregion",
+    "es_es": "Visita la subregión de China surcentral",
+    "ja_jp": "西南中国のサブリージョンを訪れよう",
+    "ko_kr": "중국 남중부 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Chiny południowo-środkowe",
+    "pt_br": "Visite a sub-região China Sul-Central",
+    "ru_ru": "Посетите субрегион Юго-Западный Китай",
+    "tr_tr": "Güney-Orta Çin alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Південно-центральний Китай",
+    "zh_cn": "访问西南子区域",
+    "zh_hk": "遊覽西南子區域",
+    "zh_tw": "造訪西南子區域"
+  }
+}

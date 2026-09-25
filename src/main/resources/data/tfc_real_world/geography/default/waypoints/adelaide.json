@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/south_australia",
+  "title_lang": {
+    "de_de": "Adelaide",
+    "en_us": "Adelaide",
+    "es_es": "Adelaida",
+    "ja_jp": "アデレード",
+    "ko_kr": "애들레이드",
+    "pl_pl": "Adelaide",
+    "pt_br": "Adelaide",
+    "ru_ru": "Аделаида",
+    "tr_tr": "Adelaide",
+    "uk_ua": "Аделаїда",
+    "zh_cn": "阿德莱德",
+    "zh_hk": "阿德萊德",
+    "zh_tw": "阿得雷德"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Adelaide",
+    "en_us": "Visit Adelaide",
+    "es_es": "Visita Adelaida",
+    "ja_jp": "アデレードを訪れよう",
+    "ko_kr": "애들레이드를 방문하세요",
+    "pl_pl": "Odwiedź Adelaide",
+    "pt_br": "Visite Adelaide",
+    "ru_ru": "Посетите Аделаиду",
+    "tr_tr": "Adelaide'yi ziyaret edin",
+    "uk_ua": "Відвідайте Аделаїду",
+    "zh_cn": "访问阿德莱德",
+    "zh_hk": "遊覽阿德萊德",
+    "zh_tw": "造訪阿得雷德"
+  },
+  "latitude": -34.92866,
+  "longitude": 138.59863
+}

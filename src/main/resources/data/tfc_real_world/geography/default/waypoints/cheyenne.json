@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/wyoming",
+  "title_lang": {
+    "de_de": "Cheyenne",
+    "en_us": "Cheyenne",
+    "es_es": "Cheyenne",
+    "ja_jp": "シャイアン",
+    "ko_kr": "샤이엔",
+    "pl_pl": "Cheyenne",
+    "pt_br": "Cheyenne",
+    "ru_ru": "Шайенн",
+    "tr_tr": "Cheyenne",
+    "uk_ua": "Шаєнн",
+    "zh_cn": "夏延",
+    "zh_hk": "夏延",
+    "zh_tw": "夏延"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Cheyenne",
+    "en_us": "Visit Cheyenne",
+    "es_es": "Visita Cheyenne",
+    "ja_jp": "シャイアンを訪れよう",
+    "ko_kr": "샤이엔을 방문하세요",
+    "pl_pl": "Odwiedź Cheyenne",
+    "pt_br": "Visite Cheyenne",
+    "ru_ru": "Посетите Шайенн",
+    "tr_tr": "Cheyenne'yi ziyaret edin",
+    "uk_ua": "Відвідайте Шаєнн",
+    "zh_cn": "访问夏延",
+    "zh_hk": "遊覽夏延",
+    "zh_tw": "造訪夏延"
+  },
+  "latitude": 41.13998,
+  "longitude": -104.82025
+}

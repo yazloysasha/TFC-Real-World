@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/south_central_pacific",
+  "title_lang": {
+    "de_de": "Tubuai-Inseln",
+    "en_us": "Tubuai Islands",
+    "es_es": "Islas Tubuai",
+    "ja_jp": "トゥブアイ諸島",
+    "ko_kr": "투부아이 제도",
+    "pl_pl": "Wyspy Tubuai",
+    "pt_br": "Ilhas Tubuai",
+    "ru_ru": "Острова Тубуаи",
+    "tr_tr": "Tubuai Adaları",
+    "uk_ua": "Острови Тубуаї",
+    "zh_cn": "图布艾群岛",
+    "zh_hk": "圖布艾群島",
+    "zh_tw": "圖布艾群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Tubuai-Inseln",
+    "en_us": "Visit the Tubuai Islands subregion",
+    "es_es": "Visita la subregión Islas Tubuai",
+    "ja_jp": "トゥブアイ諸島のサブリージョンを訪れよう",
+    "ko_kr": "투부아이 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Tubuai",
+    "pt_br": "Visite a sub-região Ilhas Tubuai",
+    "ru_ru": "Посетите субрегион Острова Тубуаи",
+    "tr_tr": "Tubuai Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Острови Тубуаї",
+    "zh_cn": "访问图布艾群岛子区域",
+    "zh_hk": "遊覽圖布艾群島子區域",
+    "zh_tw": "造訪圖布艾群島子區域"
+  }
+}

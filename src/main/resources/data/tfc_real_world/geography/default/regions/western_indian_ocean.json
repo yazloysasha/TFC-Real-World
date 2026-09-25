@@ -1,0 +1,33 @@
+{
+  "parent": "default:continent/africa",
+  "title_lang": {
+    "de_de": "Westlicher Indischer Ozean",
+    "en_us": "Western Indian Ocean",
+    "es_es": "Océano Índico Occidental",
+    "ja_jp": "西インド洋",
+    "ko_kr": "서인도양",
+    "pl_pl": "Zachodni Ocean Indyjski",
+    "pt_br": "Oceano Índico Ocidental",
+    "ru_ru": "Западный Индийский океан",
+    "tr_tr": "Batı Hint Okyanusu",
+    "uk_ua": "Західний Індійський океан",
+    "zh_cn": "西印度洋",
+    "zh_hk": "西印度洋",
+    "zh_tw": "西印度洋"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie den westlichen Indischen Ozean",
+    "en_us": "Visit the Western Indian Ocean",
+    "es_es": "Visita el Océano Índico Occidental",
+    "ja_jp": "西インド洋を訪れよう",
+    "ko_kr": "서인도양을 방문하세요",
+    "pl_pl": "Odwiedź zachodni Ocean Indyjski",
+    "pt_br": "Visite o Oceano Índico Ocidental",
+    "ru_ru": "Посетите западный Индийский океан",
+    "tr_tr": "Batı Hint Okyanusu'nu Ziyaret Edin",
+    "uk_ua": "Відвідайте західний Індійський океан",
+    "zh_cn": "访问西印度洋",
+    "zh_hk": "遊覽西印度洋",
+    "zh_tw": "造訪西印度洋"
+  }
+}

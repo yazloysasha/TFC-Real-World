@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/libya",
+  "title_lang": {
+    "de_de": "Tripolis",
+    "en_us": "Tripoli",
+    "es_es": "Trípoli",
+    "ja_jp": "トリポリ",
+    "ko_kr": "트리폴리",
+    "pl_pl": "Trypolis",
+    "pt_br": "Trípoli",
+    "ru_ru": "Триполи",
+    "tr_tr": "Trablus",
+    "uk_ua": "Триполі",
+    "zh_cn": "的黎波里",
+    "zh_hk": "的黎波里",
+    "zh_tw": "的黎波里"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Libyen",
+    "en_us": "Visit the capital of Libya",
+    "es_es": "Visita la capital de Libia",
+    "ja_jp": "リビアの首都を訪れよう",
+    "ko_kr": "리비아의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Libii",
+    "pt_br": "Visite a capital da Líbia",
+    "ru_ru": "Посетите столицу Ливии",
+    "tr_tr": "Libya'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Лівії",
+    "zh_cn": "访问利比亚的首都",
+    "zh_hk": "遊覽利比亞的首都",
+    "zh_tw": "造訪利比亞的首都"
+  },
+  "latitude": 32.88743,
+  "longitude": 13.18733,
+  "capital": 1
+}

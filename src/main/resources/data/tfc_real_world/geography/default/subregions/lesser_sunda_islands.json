@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/malesia",
+  "title_lang": {
+    "de_de": "Kleine Sundainseln",
+    "en_us": "Lesser Sunda Islands",
+    "es_es": "Islas menores de la Sonda",
+    "ja_jp": "小スンダ列島",
+    "ko_kr": "소순다 열도",
+    "pl_pl": "Małe Wyspy Sundajskie",
+    "pt_br": "Pequenas Ilhas da Sonda",
+    "ru_ru": "Малые Зондские острова",
+    "tr_tr": "Küçük Sunda Adaları",
+    "uk_ua": "Малі Зондські острови",
+    "zh_cn": "小巽他群岛",
+    "zh_hk": "小巽他群島",
+    "zh_tw": "小巽他群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Kleine Sundainseln",
+    "en_us": "Visit the Lesser Sunda Islands subregion",
+    "es_es": "Visita la subregión Islas menores de la Sonda",
+    "ja_jp": "小スンダ列島のサブリージョンを訪れよう",
+    "ko_kr": "소순다 열도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Małe Wyspy Sundajskie",
+    "pt_br": "Visite a sub-região Pequenas Ilhas da Sonda",
+    "ru_ru": "Посетите субрегион Малые Зондские острова",
+    "tr_tr": "Küçük Sunda Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Малі Зондські острови",
+    "zh_cn": "访问小巽他群岛子区域",
+    "zh_hk": "遊覽小巽他群島子區域",
+    "zh_tw": "造訪小巽他群島子區域"
+  }
+}

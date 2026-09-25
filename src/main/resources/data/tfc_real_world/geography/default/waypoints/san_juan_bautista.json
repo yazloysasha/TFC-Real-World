@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/juan_fernandez_islands",
+  "title_lang": {
+    "de_de": "San Juan Bautista",
+    "en_us": "San Juan Bautista",
+    "es_es": "San Juan Bautista",
+    "ja_jp": "サン・フアン・バウティスタ",
+    "ko_kr": "산후안바우티스타",
+    "pl_pl": "San Juan Bautista",
+    "pt_br": "São João Batista",
+    "ru_ru": "Сан-Хуан-Батиста",
+    "tr_tr": "San Juan Bautista",
+    "uk_ua": "Сан-Хуан-Батіста",
+    "zh_cn": "圣胡安包蒂斯塔",
+    "zh_hk": "聖胡安包蒂斯塔",
+    "zh_tw": "聖胡安包蒂斯塔"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie San Juan Bautista",
+    "en_us": "Visit San Juan Bautista",
+    "es_es": "Visita San Juan Bautista",
+    "ja_jp": "サン・フアン・バウティスタを訪れよう",
+    "ko_kr": "산후안바우티스타를 방문하세요",
+    "pl_pl": "Odwiedź San Juan Bautista",
+    "pt_br": "Visite São João Batista",
+    "ru_ru": "Посетите Сан-Хуан-Батисту",
+    "tr_tr": "San Juan Bautista'yı ziyaret edin",
+    "uk_ua": "Відвідайте Сан-Хуан-Батісту",
+    "zh_cn": "访问圣胡安包蒂斯塔",
+    "zh_hk": "遊覽聖胡安包蒂斯塔",
+    "zh_tw": "造訪聖胡安包蒂斯塔"
+  },
+  "latitude": -33.63706,
+  "longitude": -78.83368
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/western_indian_ocean",
+  "title_lang": {
+    "de_de": "Mauritius",
+    "en_us": "Mauritius",
+    "es_es": "Mauricio",
+    "ja_jp": "モーリシャス",
+    "ko_kr": "모리셔스",
+    "pl_pl": "Mauritius",
+    "pt_br": "Maurício",
+    "ru_ru": "Маврикий",
+    "tr_tr": "Mauritius",
+    "uk_ua": "Маврикій",
+    "zh_cn": "毛里求斯",
+    "zh_hk": "毛里求斯",
+    "zh_tw": "毛里求斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Mauritius",
+    "en_us": "Visit the Mauritius subregion",
+    "es_es": "Visita la subregión de Mauricio",
+    "ja_jp": "モーリシャスのサブリージョンを訪れよう",
+    "ko_kr": "모리셔스 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Mauritius",
+    "pt_br": "Visite a sub-região Maurício",
+    "ru_ru": "Посетите субрегион Маврикий",
+    "tr_tr": "Mauritius alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Маврикій",
+    "zh_cn": "访问毛里求斯子区域",
+    "zh_hk": "遊覽毛里求斯子區域",
+    "zh_tw": "造訪毛里求斯子區域"
+  }
+}

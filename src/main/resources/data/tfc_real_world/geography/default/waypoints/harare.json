@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/zimbabwe",
+  "title_lang": {
+    "de_de": "Harare",
+    "en_us": "Harare",
+    "es_es": "Harare",
+    "ja_jp": "ハラレ",
+    "ko_kr": "하라레",
+    "pl_pl": "Harare",
+    "pt_br": "Harare",
+    "ru_ru": "Хараре",
+    "tr_tr": "Harare",
+    "uk_ua": "Хараре",
+    "zh_cn": "哈拉雷",
+    "zh_hk": "哈拉雷",
+    "zh_tw": "哈拉雷"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Simbabwe",
+    "en_us": "Visit the capital of the Republic of Zimbabwe",
+    "es_es": "Visita la capital de la República de Zimbabue",
+    "ja_jp": "ジンバブエ共和国の首都を訪れよう",
+    "ko_kr": "짐바브웨 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Zimbabwe",
+    "pt_br": "Visite a capital da República do Zimbábue",
+    "ru_ru": "Посетите столицу Республики Зимбабве",
+    "tr_tr": "Zimbabve Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Зімбабве",
+    "zh_cn": "访问津巴布韦共和国的首都",
+    "zh_hk": "遊覽津巴布韋共和國的首都",
+    "zh_tw": "造訪津巴布韋共和國的首都"
+  },
+  "latitude": -17.82772,
+  "longitude": 31.05337,
+  "capital": 1
+}

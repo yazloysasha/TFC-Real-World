@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/central_america",
+  "title_lang": {
+    "de_de": "Nicaragua",
+    "en_us": "Nicaragua",
+    "es_es": "Nicaragua",
+    "ja_jp": "ニカラグア",
+    "ko_kr": "니카라과",
+    "pl_pl": "Nikaragua",
+    "pt_br": "Nicarágua",
+    "ru_ru": "Никарагуа",
+    "tr_tr": "Nikaragua",
+    "uk_ua": "Нікарагуа",
+    "zh_cn": "尼加拉瓜",
+    "zh_hk": "尼加拉瓜",
+    "zh_tw": "尼加拉瓜"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Nicaragua",
+    "en_us": "Visit the Nicaragua subregion",
+    "es_es": "Visita la subregión de Nicaragua",
+    "ja_jp": "ニカラグアのサブリージョンを訪れよう",
+    "ko_kr": "니카라과 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Nikaragua",
+    "pt_br": "Visite a sub-região Nicarágua",
+    "ru_ru": "Посетите субрегион Никарагуа",
+    "tr_tr": "Nikaragua alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Нікарагуа",
+    "zh_cn": "访问尼加拉瓜子区域",
+    "zh_hk": "遊覽尼加拉瓜子區域",
+    "zh_tw": "造訪尼加拉瓜子區域"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/china",
+  "title_lang": {
+    "de_de": "Innere Mongolei",
+    "en_us": "Inner Mongolia",
+    "es_es": "Mongolia Interior",
+    "ja_jp": "内モンゴル",
+    "ko_kr": "내몽골",
+    "pl_pl": "Mongolia Wewnętrzna",
+    "pt_br": "Mongólia Interior",
+    "ru_ru": "Внутренняя Монголия",
+    "tr_tr": "İç Moğolistan",
+    "uk_ua": "Внутрішня Монголія",
+    "zh_cn": "内蒙古",
+    "zh_hk": "內蒙古",
+    "zh_tw": "內蒙古"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Innere Mongolei",
+    "en_us": "Visit the Inner Mongolia subregion",
+    "es_es": "Visita la subregión de Mongolia Interior",
+    "ja_jp": "内モンゴルのサブリージョンを訪れよう",
+    "ko_kr": "내몽골 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Mongolia Wewnętrzna",
+    "pt_br": "Visite a sub-região Mongólia Interior",
+    "ru_ru": "Посетите субрегион Внутренняя Монголия",
+    "tr_tr": "İç Moğolistan alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Внутрішня Монголія",
+    "zh_cn": "访问内蒙古子区域",
+    "zh_hk": "遊覽內蒙古子區域",
+    "zh_tw": "造訪內蒙古子區域"
+  }
+}

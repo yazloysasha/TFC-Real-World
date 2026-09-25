@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/central_european_russia",
+  "title_lang": {
+    "de_de": "Moskau",
+    "en_us": "Moscow",
+    "es_es": "Moscú",
+    "ja_jp": "モスクワ",
+    "ko_kr": "모스크바",
+    "pl_pl": "Moskwa",
+    "pt_br": "Moscou",
+    "ru_ru": "Москва",
+    "tr_tr": "Moskova",
+    "uk_ua": "Москва",
+    "zh_cn": "莫斯科",
+    "zh_hk": "莫斯科",
+    "zh_tw": "莫斯科"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Russischen Föderation",
+    "en_us": "Visit the capital of the Russian Federation",
+    "es_es": "Visita la capital de la Federación de Rusia",
+    "ja_jp": "ロシア連邦の首都を訪れよう",
+    "ko_kr": "러시아 연방의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Federacji Rosyjskiej",
+    "pt_br": "Visite a capital da Federação da Rússia",
+    "ru_ru": "Посетите столицу Российской Федерации",
+    "tr_tr": "Rusya Federasyonu'nun başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Російської Федерації",
+    "zh_cn": "访问俄罗斯联邦的首都",
+    "zh_hk": "遊覽俄羅斯聯邦的首都",
+    "zh_tw": "造訪俄羅斯聯邦的首都"
+  },
+  "latitude": 55.75204,
+  "longitude": 37.61781,
+  "capital": 1
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/iowa",
+  "title_lang": {
+    "de_de": "Des Moines",
+    "en_us": "Des Moines",
+    "es_es": "Des Moines",
+    "ja_jp": "デ・モイン",
+    "ko_kr": "디모인",
+    "pl_pl": "Des Moines",
+    "pt_br": "Des Moines",
+    "ru_ru": "Де-Мойн",
+    "tr_tr": "Des Moines",
+    "uk_ua": "Де-Мойн",
+    "zh_cn": "得梅因",
+    "zh_hk": "得梅因",
+    "zh_tw": "狄蒙因"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Des Moines",
+    "en_us": "Visit Des Moines",
+    "es_es": "Visita Des Moines",
+    "ja_jp": "デ・モインを訪れよう",
+    "ko_kr": "디모인을 방문하세요",
+    "pl_pl": "Odwiedź Des Moines",
+    "pt_br": "Visite Des Moines",
+    "ru_ru": "Посетите Де-Мойн",
+    "tr_tr": "Des Moines'i ziyaret edin",
+    "uk_ua": "Відвідайте Де-Мойн",
+    "zh_cn": "访问得梅因",
+    "zh_hk": "遊覽得梅因",
+    "zh_tw": "造訪狄蒙因"
+  },
+  "latitude": 41.60054,
+  "longitude": -93.60911
+}

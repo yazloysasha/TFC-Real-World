@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/north_central_usa",
+  "title_lang": {
+    "de_de": "Illinois",
+    "en_us": "Illinois",
+    "es_es": "Illinois",
+    "ja_jp": "イリノイ",
+    "ko_kr": "일리노이",
+    "pl_pl": "Illinois",
+    "pt_br": "Illinois",
+    "ru_ru": "Иллинойс",
+    "tr_tr": "Illinois",
+    "uk_ua": "Іллінойс",
+    "zh_cn": "伊利诺伊",
+    "zh_hk": "伊利諾伊",
+    "zh_tw": "伊利諾伊"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Illinois",
+    "en_us": "Visit the Illinois subregion",
+    "es_es": "Visita la subregión de Illinois",
+    "ja_jp": "イリノイのサブリージョンを訪れよう",
+    "ko_kr": "일리노이 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Illinois",
+    "pt_br": "Visite a sub-região Illinois",
+    "ru_ru": "Посетите субрегион Иллинойс",
+    "tr_tr": "Illinois alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Іллінойс",
+    "zh_cn": "访问伊利诺伊子区域",
+    "zh_hk": "遊覽伊利諾伊子區域",
+    "zh_tw": "造訪伊利諾伊子區域"
+  }
+}

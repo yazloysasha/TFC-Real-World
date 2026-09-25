@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/indian_subcontinent",
+  "title_lang": {
+    "de_de": "Westhimalaya",
+    "en_us": "West Himalaya",
+    "es_es": "Himalaya Occidental",
+    "ja_jp": "西ヒマラヤ",
+    "ko_kr": "서히말라야",
+    "pl_pl": "Himalaje Zachodnie",
+    "pt_br": "Himalaia Ocidental",
+    "ru_ru": "Западные Гималаи",
+    "tr_tr": "Batı Himalaya",
+    "uk_ua": "Західні Гімалаї",
+    "zh_cn": "西喜马拉雅",
+    "zh_hk": "西喜馬拉雅",
+    "zh_tw": "西喜馬拉雅"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Westhimalaya",
+    "en_us": "Visit the West Himalaya subregion",
+    "es_es": "Visita la subregión de Himalaya Occidental",
+    "ja_jp": "西ヒマラヤのサブリージョンを訪れよう",
+    "ko_kr": "서히말라야 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Himalaje Zachodnie",
+    "pt_br": "Visite a sub-região Himalaia Ocidental",
+    "ru_ru": "Посетите субрегион Западные Гималаи",
+    "tr_tr": "Batı Himalaya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Західні Гімалаї",
+    "zh_cn": "访问西喜马拉雅子区域",
+    "zh_hk": "遊覽西喜馬拉雅子區域",
+    "zh_tw": "造訪西喜馬拉雅子區域"
+  }
+}

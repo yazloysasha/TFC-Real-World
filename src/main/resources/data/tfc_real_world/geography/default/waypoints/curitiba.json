@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/brazil_south",
+  "title_lang": {
+    "de_de": "Curitiba",
+    "en_us": "Curitiba",
+    "es_es": "Curitiba",
+    "ja_jp": "クリチバ",
+    "ko_kr": "쿠리치바",
+    "pl_pl": "Kurytyba",
+    "pt_br": "Curitiba",
+    "ru_ru": "Куритиба",
+    "tr_tr": "Curitiba",
+    "uk_ua": "Куритиба",
+    "zh_cn": "库里蒂巴",
+    "zh_hk": "庫裏蒂巴",
+    "zh_tw": "古里提巴"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Curitiba",
+    "en_us": "Visit Curitiba",
+    "es_es": "Visita Curitiba",
+    "ja_jp": "クリチバを訪れよう",
+    "ko_kr": "쿠리치바를 방문하세요",
+    "pl_pl": "Odwiedź Kurytybę",
+    "pt_br": "Visite Curitiba",
+    "ru_ru": "Посетите Куритибу",
+    "tr_tr": "Curitiba'yı ziyaret edin",
+    "uk_ua": "Відвідайте Куритибу",
+    "zh_cn": "访问库里蒂巴",
+    "zh_hk": "遊覽庫裏蒂巴",
+    "zh_tw": "造訪古里提巴"
+  },
+  "latitude": -25.42778,
+  "longitude": -49.27306
+}

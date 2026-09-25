@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/manchuria",
+  "title_lang": {
+    "de_de": "Harbin",
+    "en_us": "Harbin",
+    "es_es": "Harbin",
+    "ja_jp": "ハルビン市",
+    "ko_kr": "하얼빈시",
+    "pl_pl": "Harbin",
+    "pt_br": "Harbin",
+    "ru_ru": "Харбин",
+    "tr_tr": "Harbin",
+    "uk_ua": "Харбін",
+    "zh_cn": "哈尔滨市",
+    "zh_hk": "哈爾濱市",
+    "zh_tw": "哈爾濱市"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Harbin",
+    "en_us": "Visit Harbin",
+    "es_es": "Visita Harbin",
+    "ja_jp": "ハルビン市を訪れよう",
+    "ko_kr": "하얼빈시를 방문하세요",
+    "pl_pl": "Odwiedź Harbin",
+    "pt_br": "Visite Harbin",
+    "ru_ru": "Посетите Харбин",
+    "tr_tr": "Harbin'i ziyaret edin",
+    "uk_ua": "Відвідайте Харбін",
+    "zh_cn": "访问哈尔滨市",
+    "zh_hk": "遊覽哈爾濱市",
+    "zh_tw": "造訪哈爾濱市"
+  },
+  "latitude": 45.75,
+  "longitude": 126.65
+}

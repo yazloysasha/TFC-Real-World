@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/southeastern_europe",
+  "title_lang": {
+    "de_de": "Ostthrakien",
+    "en_us": "East Thrace",
+    "es_es": "Tracia Oriental",
+    "ja_jp": "東トラキア",
+    "ko_kr": "동트라키아",
+    "pl_pl": "Tracja Wschodnia",
+    "pt_br": "Trácia Oriental",
+    "ru_ru": "Восточная Фракия",
+    "tr_tr": "Doğu Trakya",
+    "uk_ua": "Східна Фракія",
+    "zh_cn": "东色雷斯",
+    "zh_hk": "東色雷斯",
+    "zh_tw": "東色雷斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Ostthrakien",
+    "en_us": "Visit the East Thrace subregion",
+    "es_es": "Visita la subregión de Tracia Oriental",
+    "ja_jp": "東トラキアのサブリージョンを訪れよう",
+    "ko_kr": "동트라키아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Tracja Wschodnia",
+    "pt_br": "Visite a sub-região Trácia Oriental",
+    "ru_ru": "Посетите субрегион Восточная Фракия",
+    "tr_tr": "Doğu Trakya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Східна Фракія",
+    "zh_cn": "访问东色雷斯子区域",
+    "zh_hk": "遊覽東色雷斯子區域",
+    "zh_tw": "造訪東色雷斯子區域"
+  }
+}

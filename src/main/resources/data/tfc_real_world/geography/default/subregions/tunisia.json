@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/northern_africa",
+  "title_lang": {
+    "de_de": "Tunesien",
+    "en_us": "Tunisia",
+    "es_es": "Túnez",
+    "ja_jp": "チュニジア",
+    "ko_kr": "튀니지",
+    "pl_pl": "Tunezja",
+    "pt_br": "Tunísia",
+    "ru_ru": "Тунис",
+    "tr_tr": "Tunus",
+    "uk_ua": "Туніс",
+    "zh_cn": "突尼斯",
+    "zh_hk": "突尼斯",
+    "zh_tw": "突尼斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Tunesien",
+    "en_us": "Visit the Tunisia subregion",
+    "es_es": "Visita la subregión de Túnez",
+    "ja_jp": "チュニジアのサブリージョンを訪れよう",
+    "ko_kr": "튀니지 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Tunezja",
+    "pt_br": "Visite a sub-região Tunísia",
+    "ru_ru": "Посетите субрегион Тунис",
+    "tr_tr": "Tunus alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Туніс",
+    "zh_cn": "访问突尼斯子区域",
+    "zh_hk": "遊覽突尼斯子區域",
+    "zh_tw": "造訪突尼斯子區域"
+  }
+}

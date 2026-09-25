@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/middle_europe",
+  "title_lang": {
+    "de_de": "Österreich",
+    "en_us": "Austria",
+    "es_es": "Austria",
+    "ja_jp": "オーストリア",
+    "ko_kr": "오스트리아",
+    "pl_pl": "Austria",
+    "pt_br": "Áustria",
+    "ru_ru": "Австрия",
+    "tr_tr": "Avusturya",
+    "uk_ua": "Австрія",
+    "zh_cn": "奥地利",
+    "zh_hk": "奧地利",
+    "zh_tw": "奧地利"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Österreich",
+    "en_us": "Visit the Austria subregion",
+    "es_es": "Visita la subregión de Austria",
+    "ja_jp": "オーストリアのサブリージョンを訪れよう",
+    "ko_kr": "오스트리아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Austria",
+    "pt_br": "Visite a sub-região Áustria",
+    "ru_ru": "Посетите субрегион Австрия",
+    "tr_tr": "Avusturya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Австрія",
+    "zh_cn": "访问奥地利子区域",
+    "zh_hk": "遊覽奧地利子區域",
+    "zh_tw": "造訪奧地利子區域"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/northern_south_america",
+  "title_lang": {
+    "de_de": "Französisch-Guayana",
+    "en_us": "French Guiana",
+    "es_es": "Guayana Francesa",
+    "ja_jp": "フランス領ギアナ",
+    "ko_kr": "프랑스령 기아나",
+    "pl_pl": "Gujana Francuska",
+    "pt_br": "Guiana Francesa",
+    "ru_ru": "Французская Гвиана",
+    "tr_tr": "Fransız Guyanası",
+    "uk_ua": "Французька Гвіана",
+    "zh_cn": "法属圭亚那",
+    "zh_hk": "法屬圭亞那",
+    "zh_tw": "法屬圭亞那"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Französisch-Guayana",
+    "en_us": "Visit the French Guiana subregion",
+    "es_es": "Visita la subregión de Guayana Francesa",
+    "ja_jp": "フランス領ギアナのサブリージョンを訪れよう",
+    "ko_kr": "프랑스령 기아나 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Gujana Francuska",
+    "pt_br": "Visite a sub-região Guiana Francesa",
+    "ru_ru": "Посетите субрегион Французская Гвиана",
+    "tr_tr": "Fransız Guyanası alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Французька Гвіана",
+    "zh_cn": "访问法属圭亚那子区域",
+    "zh_hk": "遊覽法屬圭亞那子區域",
+    "zh_tw": "造訪法屬圭亞那子區域"
+  }
+}

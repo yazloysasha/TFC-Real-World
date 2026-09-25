@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/djibouti",
+  "title_lang": {
+    "de_de": "Dschibuti",
+    "en_us": "Djibouti",
+    "es_es": "Ciudad de Yibuti",
+    "ja_jp": "ジブチ市",
+    "ko_kr": "지부티",
+    "pl_pl": "Dżibuti",
+    "pt_br": "Djibouti",
+    "ru_ru": "Джибути",
+    "tr_tr": "Cibuti",
+    "uk_ua": "Джибуті",
+    "zh_cn": "吉布提市",
+    "zh_hk": "吉布提",
+    "zh_tw": "吉布地"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Dschibuti",
+    "en_us": "Visit the capital of the Republic of Djibouti",
+    "es_es": "Visita la capital de la República de Yibuti",
+    "ja_jp": "ジブチ共和国の首都を訪れよう",
+    "ko_kr": "지부티 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Dżibuti",
+    "pt_br": "Visite a capital da República do Djibuti",
+    "ru_ru": "Посетите столицу Республики Джибути",
+    "tr_tr": "Cibuti Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Джибуті",
+    "zh_cn": "访问吉布提共和国的首都",
+    "zh_hk": "遊覽吉布提共和國的首都",
+    "zh_tw": "造訪吉布提共和國的首都"
+  },
+  "latitude": 11.58901,
+  "longitude": 43.14503,
+  "capital": 1
+}

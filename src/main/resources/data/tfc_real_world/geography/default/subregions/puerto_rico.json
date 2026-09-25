@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/caribbean",
+  "title_lang": {
+    "de_de": "Puerto Rico",
+    "en_us": "Puerto Rico",
+    "es_es": "Puerto Rico",
+    "ja_jp": "プエルトリコ",
+    "ko_kr": "푸에르토리코",
+    "pl_pl": "Portoryko",
+    "pt_br": "Porto Rico",
+    "ru_ru": "Пуэрто-Рико",
+    "tr_tr": "Porto Riko",
+    "uk_ua": "Пуерто-Рико",
+    "zh_cn": "波多黎各",
+    "zh_hk": "波多黎各",
+    "zh_tw": "波多黎各"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Puerto Rico",
+    "en_us": "Visit the Puerto Rico subregion",
+    "es_es": "Visita la subregión de Puerto Rico",
+    "ja_jp": "プエルトリコのサブリージョンを訪れよう",
+    "ko_kr": "푸에르토리코 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Portoryko",
+    "pt_br": "Visite a sub-região Porto Rico",
+    "ru_ru": "Посетите субрегион Пуэрто-Рико",
+    "tr_tr": "Porto Riko alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Пуерто-Рико",
+    "zh_cn": "访问波多黎各子区域",
+    "zh_hk": "遊覽波多黎各子區域",
+    "zh_tw": "造訪波多黎各子區域"
+  }
+}

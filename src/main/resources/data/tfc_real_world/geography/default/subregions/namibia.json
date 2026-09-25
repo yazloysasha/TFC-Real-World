@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/southern_africa",
+  "title_lang": {
+    "de_de": "Namibia",
+    "en_us": "Namibia",
+    "es_es": "Namibia",
+    "ja_jp": "ナミビア",
+    "ko_kr": "나미비아",
+    "pl_pl": "Namibia",
+    "pt_br": "Namíbia",
+    "ru_ru": "Намибия",
+    "tr_tr": "Namibya",
+    "uk_ua": "Намібія",
+    "zh_cn": "纳米比亚",
+    "zh_hk": "納米比亞",
+    "zh_tw": "納米比亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Namibia",
+    "en_us": "Visit the Namibia subregion",
+    "es_es": "Visita la subregión de Namibia",
+    "ja_jp": "ナミビアのサブリージョンを訪れよう",
+    "ko_kr": "나미비아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Namibia",
+    "pt_br": "Visite a sub-região Namíbia",
+    "ru_ru": "Посетите субрегион Намибия",
+    "tr_tr": "Namibya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Намібія",
+    "zh_cn": "访问纳米比亚子区域",
+    "zh_hk": "遊覽納米比亞子區域",
+    "zh_tw": "造訪納米比亞子區域"
+  }
+}

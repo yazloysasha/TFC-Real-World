@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/macaronesia",
+  "title_lang": {
+    "de_de": "Azoren",
+    "en_us": "Azores",
+    "es_es": "Azores",
+    "ja_jp": "アゾレス諸島",
+    "ko_kr": "아조레스 제도",
+    "pl_pl": "Azory",
+    "pt_br": "Açores",
+    "ru_ru": "Азорские острова",
+    "tr_tr": "Azorlar",
+    "uk_ua": "Азорські острови",
+    "zh_cn": "亚速尔群岛",
+    "zh_hk": "亞速爾群島",
+    "zh_tw": "亞速爾群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Azoren",
+    "en_us": "Visit the Azores subregion",
+    "es_es": "Visita la subregión de Azores",
+    "ja_jp": "アゾレス諸島のサブリージョンを訪れよう",
+    "ko_kr": "아조레스 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Azory",
+    "pt_br": "Visite a sub-região Açores",
+    "ru_ru": "Посетите субрегион Азорские острова",
+    "tr_tr": "Azorlar alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Азорські острови",
+    "zh_cn": "访问亚速尔群岛子区域",
+    "zh_hk": "遊覽亞速爾群島子區域",
+    "zh_tw": "造訪亞速爾群島子區域"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/eastern_canada",
+  "title_lang": {
+    "de_de": "Neufundland",
+    "en_us": "Newfoundland",
+    "es_es": "Terranova",
+    "ja_jp": "ニューファンドランド",
+    "ko_kr": "뉴펀들랜드",
+    "pl_pl": "Nowa Fundlandia",
+    "pt_br": "Terra Nova",
+    "ru_ru": "Ньюфаундленд",
+    "tr_tr": "Newfoundland",
+    "uk_ua": "Ньюфаундленд",
+    "zh_cn": "纽芬兰",
+    "zh_hk": "紐芬蘭",
+    "zh_tw": "紐芬蘭"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Neufundland",
+    "en_us": "Visit the Newfoundland subregion",
+    "es_es": "Visita la subregión de Terranova",
+    "ja_jp": "ニューファンドランドのサブリージョンを訪れよう",
+    "ko_kr": "뉴펀들랜드 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Nowa Fundlandia",
+    "pt_br": "Visite a sub-região Terra Nova",
+    "ru_ru": "Посетите субрегион Ньюфаундленд",
+    "tr_tr": "Newfoundland alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Ньюфаундленд",
+    "zh_cn": "访问纽芬兰子区域",
+    "zh_hk": "遊覽紐芬蘭子區域",
+    "zh_tw": "造訪紐芬蘭子區域"
+  }
+}

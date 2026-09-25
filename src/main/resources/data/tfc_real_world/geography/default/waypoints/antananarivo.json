@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/madagascar",
+  "title_lang": {
+    "de_de": "Antananarivo",
+    "en_us": "Antananarivo",
+    "es_es": "Antananarivo",
+    "ja_jp": "アンタナナリボ",
+    "ko_kr": "안타나나리보",
+    "pl_pl": "Antananarywa",
+    "pt_br": "Antananarivo",
+    "ru_ru": "Антананариву",
+    "tr_tr": "Antananarivo",
+    "uk_ua": "Антананаріву",
+    "zh_cn": "塔那那利佛",
+    "zh_hk": "安塔那那列佛",
+    "zh_tw": "安塔那那利佛"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Madagaskar",
+    "en_us": "Visit the capital of the Republic of Madagascar",
+    "es_es": "Visita la capital de la República de Madagascar",
+    "ja_jp": "マダガスカル共和国の首都を訪れよう",
+    "ko_kr": "마다가스카르 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Madagaskaru",
+    "pt_br": "Visite a capital da República de Madagáscar",
+    "ru_ru": "Посетите столицу Республики Мадагаскар",
+    "tr_tr": "Madagaskar Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Мадагаскар",
+    "zh_cn": "访问马达加斯加共和国的首都",
+    "zh_hk": "遊覽馬達加斯加共和國的首都",
+    "zh_tw": "造訪馬達加斯加共和國的首都"
+  },
+  "latitude": -18.91368,
+  "longitude": 47.53613,
+  "capital": 1
+}

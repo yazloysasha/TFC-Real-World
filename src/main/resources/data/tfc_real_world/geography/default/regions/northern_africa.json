@@ -1,0 +1,33 @@
+{
+  "parent": "default:continent/africa",
+  "title_lang": {
+    "de_de": "Nordafrika",
+    "en_us": "Northern Africa",
+    "es_es": "África del Norte",
+    "ja_jp": "北アフリカ",
+    "ko_kr": "북아프리카",
+    "pl_pl": "Afryka Północna",
+    "pt_br": "África do Norte",
+    "ru_ru": "Северная Африка",
+    "tr_tr": "Kuzey Afrika",
+    "uk_ua": "Північна Африка",
+    "zh_cn": "北非",
+    "zh_hk": "北非",
+    "zh_tw": "北非"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Nordafrika",
+    "en_us": "Visit Northern Africa",
+    "es_es": "Visita África del Norte",
+    "ja_jp": "北アフリカを訪れよう",
+    "ko_kr": "북아프리카를 방문하세요",
+    "pl_pl": "Odwiedź Afrykę Północną",
+    "pt_br": "Visite a África do Norte",
+    "ru_ru": "Посетите Северную Африку",
+    "tr_tr": "Kuzey Afrika'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Північну Африку",
+    "zh_cn": "访问北非",
+    "zh_hk": "遊覽北非",
+    "zh_tw": "造訪北非"
+  }
+}

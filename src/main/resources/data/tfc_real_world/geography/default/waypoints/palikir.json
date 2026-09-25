@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/caroline_islands",
+  "title_lang": {
+    "de_de": "Palikir",
+    "en_us": "Palikir",
+    "es_es": "Palikir",
+    "ja_jp": "パリキール",
+    "ko_kr": "팔리키르",
+    "pl_pl": "Palikir",
+    "pt_br": "Paliquir",
+    "ru_ru": "Паликир",
+    "tr_tr": "Palikir",
+    "uk_ua": "Палікір",
+    "zh_cn": "帕利基尔",
+    "zh_hk": "帕利基爾",
+    "zh_tw": "帕利基爾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Föderierten Staaten von Mikronesien",
+    "en_us": "Visit the capital of the Federated States of Micronesia",
+    "es_es": "Visita la capital de los Estados Federados de Micronesia",
+    "ja_jp": "ミクロネシア連邦の首都を訪れよう",
+    "ko_kr": "미크로네시아 연방의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Sfederowanych Stanów Mikronezji",
+    "pt_br": "Visite a capital dos Estados Federados da Micronésia",
+    "ru_ru": "Посетите столицу Федеративных Штатов Микронезии",
+    "tr_tr": "Mikronezya Federal Devletleri'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Федеративних Штатів Мікронезії",
+    "zh_cn": "访问密克罗尼西亚联邦的首都",
+    "zh_hk": "遊覽密克羅尼西亞聯邦的首都",
+    "zh_tw": "造訪密克羅尼西亞聯邦的首都"
+  },
+  "latitude": 6.92477,
+  "longitude": 158.16109,
+  "capital": 1
+}

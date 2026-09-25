@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/siberia",
+  "title_lang": {
+    "de_de": "Burjatien",
+    "en_us": "Buryatia",
+    "es_es": "Buriatia",
+    "ja_jp": "ブリヤート",
+    "ko_kr": "부랴티야",
+    "pl_pl": "Buriacja",
+    "pt_br": "Buriácia",
+    "ru_ru": "Бурятия",
+    "tr_tr": "Buryatya",
+    "uk_ua": "Бурятія",
+    "zh_cn": "布里亚特",
+    "zh_hk": "布里亞特",
+    "zh_tw": "布里亞特"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Burjatien",
+    "en_us": "Visit the Buryatia subregion",
+    "es_es": "Visita la subregión de Buriatia",
+    "ja_jp": "ブリヤートのサブリージョンを訪れよう",
+    "ko_kr": "부랴티야 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Buriacja",
+    "pt_br": "Visite a sub-região Buriácia",
+    "ru_ru": "Посетите субрегион Бурятия",
+    "tr_tr": "Buryatya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Бурятія",
+    "zh_cn": "访问布里亚特子区域",
+    "zh_hk": "遊覽布里亞特子區域",
+    "zh_tw": "造訪布里亞特子區域"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/south_european_russia",
+  "title_lang": {
+    "de_de": "Rostow am Don",
+    "en_us": "Rostov-on-Don",
+    "es_es": "Rostov del Don",
+    "ja_jp": "ロストフ・ナ・ドヌ",
+    "ko_kr": "로스토프나도누",
+    "pl_pl": "Rostów nad Donem",
+    "pt_br": "Rostov do Don",
+    "ru_ru": "Ростов-на-Дону",
+    "tr_tr": "Rostov-na-Donu",
+    "uk_ua": "Ростов-на-Дону",
+    "zh_cn": "顿河畔罗斯托夫",
+    "zh_hk": "頓河畔羅斯托夫",
+    "zh_tw": "頓河畔羅斯托夫"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Rostow am Don",
+    "en_us": "Visit Rostov-on-Don",
+    "es_es": "Visita Rostov del Don",
+    "ja_jp": "ロストフ・ナ・ドヌを訪れよう",
+    "ko_kr": "로스토프나도누를 방문하세요",
+    "pl_pl": "Odwiedź Rostów nad Donem",
+    "pt_br": "Visite Rostov do Don",
+    "ru_ru": "Посетите Ростов-на-Дону",
+    "tr_tr": "Rostov-na-Donu'yu ziyaret edin",
+    "uk_ua": "Відвідайте Ростов-на-Дону",
+    "zh_cn": "访问顿河畔罗斯托夫",
+    "zh_hk": "遊覽頓河畔羅斯托夫",
+    "zh_tw": "造訪頓河畔羅斯托夫"
+  },
+  "latitude": 47.21997,
+  "longitude": 39.70769
+}

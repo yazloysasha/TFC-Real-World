@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/indiana",
+  "title_lang": {
+    "de_de": "Indianapolis",
+    "en_us": "Indianapolis",
+    "es_es": "Indianápolis",
+    "ja_jp": "インディアナポリス",
+    "ko_kr": "인디애나폴리스",
+    "pl_pl": "Indianapolis",
+    "pt_br": "Indianápolis",
+    "ru_ru": "Индианаполис",
+    "tr_tr": "Indianapolis",
+    "uk_ua": "Індіанаполіс",
+    "zh_cn": "印第安纳波利斯",
+    "zh_hk": "印第安納波利斯",
+    "zh_tw": "印第安納波利斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Indianapolis",
+    "en_us": "Visit Indianapolis",
+    "es_es": "Visita Indianápolis",
+    "ja_jp": "インディアナポリスを訪れよう",
+    "ko_kr": "인디애나폴리스를 방문하세요",
+    "pl_pl": "Odwiedź Indianapolis",
+    "pt_br": "Visite Indianápolis",
+    "ru_ru": "Посетите Индианаполис",
+    "tr_tr": "Indianapolis'i ziyaret edin",
+    "uk_ua": "Відвідайте Індіанаполіс",
+    "zh_cn": "访问印第安纳波利斯",
+    "zh_hk": "遊覽印第安納波利斯",
+    "zh_tw": "造訪印第安納波利斯"
+  },
+  "latitude": 39.76838,
+  "longitude": -86.15804
+}

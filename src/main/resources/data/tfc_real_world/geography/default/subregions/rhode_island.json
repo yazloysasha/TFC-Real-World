@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/northeastern_usa",
+  "title_lang": {
+    "de_de": "Rhode Island",
+    "en_us": "Rhode Island",
+    "es_es": "Rhode Island",
+    "ja_jp": "ロードアイランド",
+    "ko_kr": "로드아일랜드",
+    "pl_pl": "Rhode Island",
+    "pt_br": "Rhode Island",
+    "ru_ru": "Род-Айленд",
+    "tr_tr": "Rhode Island",
+    "uk_ua": "Род-Айленд",
+    "zh_cn": "罗得岛",
+    "zh_hk": "羅得島",
+    "zh_tw": "羅得島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Rhode Island",
+    "en_us": "Visit the Rhode Island subregion",
+    "es_es": "Visita la subregión de Rhode Island",
+    "ja_jp": "ロードアイランドのサブリージョンを訪れよう",
+    "ko_kr": "로드아일랜드 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Rhode Island",
+    "pt_br": "Visite a sub-região Rhode Island",
+    "ru_ru": "Посетите субрегион Род-Айленд",
+    "tr_tr": "Rhode Island alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Род-Айленд",
+    "zh_cn": "访问罗得岛子区域",
+    "zh_hk": "遊覽羅得島子區域",
+    "zh_tw": "造訪羅得島子區域"
+  }
+}

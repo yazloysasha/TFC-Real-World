@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/saint_helena",
+  "title_lang": {
+    "de_de": "Jamestown",
+    "en_us": "Jamestown",
+    "es_es": "Jamestown",
+    "ja_jp": "ジェームズタウン",
+    "ko_kr": "제임스타운",
+    "pl_pl": "Jamestown",
+    "pt_br": "Jamestown",
+    "ru_ru": "Джеймстаун",
+    "tr_tr": "Jamestown",
+    "uk_ua": "Джеймстаун",
+    "zh_cn": "詹姆斯敦",
+    "zh_hk": "詹姆斯敦",
+    "zh_tw": "詹姆斯敦"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Jamestown",
+    "en_us": "Visit Jamestown",
+    "es_es": "Visita Jamestown",
+    "ja_jp": "ジェームズタウンを訪れよう",
+    "ko_kr": "제임스타운을 방문하세요",
+    "pl_pl": "Odwiedź Jamestown",
+    "pt_br": "Visite Jamestown",
+    "ru_ru": "Посетите Джеймстаун",
+    "tr_tr": "Jamestown'u ziyaret edin",
+    "uk_ua": "Відвідайте Джеймстаун",
+    "zh_cn": "访问詹姆斯敦",
+    "zh_hk": "遊覽詹姆斯敦",
+    "zh_tw": "造訪詹姆斯敦"
+  },
+  "latitude": -15.92488,
+  "longitude": -5.71816
+}

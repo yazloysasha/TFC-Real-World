@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/northeastern_usa",
+  "title_lang": {
+    "de_de": "Indiana",
+    "en_us": "Indiana",
+    "es_es": "Indiana",
+    "ja_jp": "インディアナ",
+    "ko_kr": "인디애나",
+    "pl_pl": "Indiana",
+    "pt_br": "Indiana",
+    "ru_ru": "Индиана",
+    "tr_tr": "Indiana",
+    "uk_ua": "Індіана",
+    "zh_cn": "印第安纳",
+    "zh_hk": "印第安納",
+    "zh_tw": "印第安納"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Indiana",
+    "en_us": "Visit the Indiana subregion",
+    "es_es": "Visita la subregión de Indiana",
+    "ja_jp": "インディアナのサブリージョンを訪れよう",
+    "ko_kr": "인디애나 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Indiana",
+    "pt_br": "Visite a sub-região Indiana",
+    "ru_ru": "Посетите субрегион Индиана",
+    "tr_tr": "Indiana alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Індіана",
+    "zh_cn": "访问印第安纳子区域",
+    "zh_hk": "遊覽印第安納子區域",
+    "zh_tw": "造訪印第安納子區域"
+  }
+}

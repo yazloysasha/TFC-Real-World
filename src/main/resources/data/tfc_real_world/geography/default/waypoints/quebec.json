@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/quebec",
+  "title_lang": {
+    "de_de": "Québec",
+    "en_us": "Quebec City",
+    "es_es": "Quebec",
+    "ja_jp": "ケベック市",
+    "ko_kr": "퀘벡",
+    "pl_pl": "Quebec",
+    "pt_br": "Quebec",
+    "ru_ru": "Квебек",
+    "tr_tr": "Quebec City",
+    "uk_ua": "Квебек",
+    "zh_cn": "魁北克市",
+    "zh_hk": "魁北克市",
+    "zh_tw": "魁北克市"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Québec",
+    "en_us": "Visit Quebec City",
+    "es_es": "Visita Quebec",
+    "ja_jp": "ケベック市を訪れよう",
+    "ko_kr": "퀘벡을 방문하세요",
+    "pl_pl": "Odwiedź Quebec",
+    "pt_br": "Visite Quebec",
+    "ru_ru": "Посетите Квебек",
+    "tr_tr": "Quebec City'i ziyaret edin",
+    "uk_ua": "Відвідайте Квебек",
+    "zh_cn": "访问魁北克市",
+    "zh_hk": "遊覽魁北克市",
+    "zh_tw": "造訪魁北克市"
+  },
+  "latitude": 46.81228,
+  "longitude": -71.21454
+}

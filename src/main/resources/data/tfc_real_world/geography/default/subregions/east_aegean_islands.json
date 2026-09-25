@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/western_asia",
+  "title_lang": {
+    "de_de": "Ostägäische Inseln",
+    "en_us": "East Aegean Islands",
+    "es_es": "Islas del Egeo Oriental",
+    "ja_jp": "東エーゲ諸島",
+    "ko_kr": "동에게 제도",
+    "pl_pl": "Wyspy wschodnioegejskie",
+    "pt_br": "Ilhas do Egeu Oriental",
+    "ru_ru": "Восточноэгейские острова",
+    "tr_tr": "Doğu Ege Adaları",
+    "uk_ua": "Східноегейські острови",
+    "zh_cn": "东爱琴群岛",
+    "zh_hk": "東愛琴群島",
+    "zh_tw": "東愛琴群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Ostägäische Inseln",
+    "en_us": "Visit the East Aegean Islands subregion",
+    "es_es": "Visita la subregión Islas del Egeo Oriental",
+    "ja_jp": "東エーゲ諸島のサブリージョンを訪れよう",
+    "ko_kr": "동에게 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy wschodnioegejskie",
+    "pt_br": "Visite a sub-região Ilhas do Egeu Oriental",
+    "ru_ru": "Посетите субрегион Восточноэгейские острова",
+    "tr_tr": "Doğu Ege Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Східноегейські острови",
+    "zh_cn": "访问东爱琴群岛子区域",
+    "zh_hk": "遊覽東愛琴群島子區域",
+    "zh_tw": "造訪東愛琴群島子區域"
+  }
+}

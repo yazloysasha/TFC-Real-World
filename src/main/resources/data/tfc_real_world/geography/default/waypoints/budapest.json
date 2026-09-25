@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/hungary",
+  "title_lang": {
+    "de_de": "Budapest",
+    "en_us": "Budapest",
+    "es_es": "Budapest",
+    "ja_jp": "ブダペスト",
+    "ko_kr": "부다페스트",
+    "pl_pl": "Budapeszt",
+    "pt_br": "Budapeste",
+    "ru_ru": "Будапешт",
+    "tr_tr": "Budapeşte",
+    "uk_ua": "Будапешт",
+    "zh_cn": "布达佩斯",
+    "zh_hk": "布達佩斯",
+    "zh_tw": "布達佩斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Ungarn",
+    "en_us": "Visit the capital of Hungary",
+    "es_es": "Visita la capital de Hungría",
+    "ja_jp": "ハンガリーの首都を訪れよう",
+    "ko_kr": "헝가리의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Węgier",
+    "pt_br": "Visite a capital da Hungria",
+    "ru_ru": "Посетите столицу Венгрии",
+    "tr_tr": "Macaristan'ın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Угорщини",
+    "zh_cn": "访问匈牙利的首都",
+    "zh_hk": "遊覽匈牙利的首都",
+    "zh_tw": "造訪匈牙利的首都"
+  },
+  "latitude": 47.49835,
+  "longitude": 19.04045,
+  "capital": 1
+}

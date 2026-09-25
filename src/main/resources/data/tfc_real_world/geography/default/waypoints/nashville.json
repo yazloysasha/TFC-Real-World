@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/tennessee",
+  "title_lang": {
+    "de_de": "Nashville",
+    "en_us": "Nashville",
+    "es_es": "Nashville",
+    "ja_jp": "ナッシュヴィル",
+    "ko_kr": "내슈빌",
+    "pl_pl": "Nashville",
+    "pt_br": "Nashville",
+    "ru_ru": "Нашвилл",
+    "tr_tr": "Nashville",
+    "uk_ua": "Нашвілл",
+    "zh_cn": "纳什维尔",
+    "zh_hk": "納士維",
+    "zh_tw": "納許維爾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Nashville",
+    "en_us": "Visit Nashville",
+    "es_es": "Visita Nashville",
+    "ja_jp": "ナッシュヴィルを訪れよう",
+    "ko_kr": "내슈빌을 방문하세요",
+    "pl_pl": "Odwiedź Nashville",
+    "pt_br": "Visite Nashville",
+    "ru_ru": "Посетите Нашвилл",
+    "tr_tr": "Nashville'yi ziyaret edin",
+    "uk_ua": "Відвідайте Нашвілл",
+    "zh_cn": "访问纳什维尔",
+    "zh_hk": "遊覽納士維",
+    "zh_tw": "造訪納許維爾"
+  },
+  "latitude": 36.16589,
+  "longitude": -86.78444
+}

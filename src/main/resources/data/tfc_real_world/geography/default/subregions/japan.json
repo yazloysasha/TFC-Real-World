@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/eastern_asia",
+  "title_lang": {
+    "de_de": "Japan",
+    "en_us": "Japan",
+    "es_es": "Japón",
+    "ja_jp": "日本",
+    "ko_kr": "일본",
+    "pl_pl": "Japonia",
+    "pt_br": "Japão",
+    "ru_ru": "Япония",
+    "tr_tr": "Japonya",
+    "uk_ua": "Японія",
+    "zh_cn": "日本",
+    "zh_hk": "日本",
+    "zh_tw": "日本"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Japan",
+    "en_us": "Visit the Japan subregion",
+    "es_es": "Visita la subregión de Japón",
+    "ja_jp": "日本のサブリージョンを訪れよう",
+    "ko_kr": "일본 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Japonia",
+    "pt_br": "Visite a sub-região Japão",
+    "ru_ru": "Посетите субрегион Япония",
+    "tr_tr": "Japonya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Японія",
+    "zh_cn": "访问日本子区域",
+    "zh_hk": "遊覽日本子區域",
+    "zh_tw": "造訪日本子區域"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "default:continent/antarctic",
+  "title_lang": {
+    "de_de": "Subantarktische Inseln",
+    "en_us": "Subantarctic Islands",
+    "es_es": "Islas Subantárticas",
+    "ja_jp": "亜南極諸島",
+    "ko_kr": "아남극 제도",
+    "pl_pl": "Wyspy subantarktyczne",
+    "pt_br": "Ilhas Subantárticas",
+    "ru_ru": "Субантарктические острова",
+    "tr_tr": "Subantarktik Adalar",
+    "uk_ua": "Субантарктичні острови",
+    "zh_cn": "亚南极群岛",
+    "zh_hk": "亞南極群島",
+    "zh_tw": "亞南極群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die subantarktischen Inseln",
+    "en_us": "Visit the Subantarctic Islands",
+    "es_es": "Visita las Islas Subantárticas",
+    "ja_jp": "亜南極諸島を訪れよう",
+    "ko_kr": "아남극 제도를 방문하세요",
+    "pl_pl": "Odwiedź wyspy subantarktyczne",
+    "pt_br": "Visite as Ilhas Subantárticas",
+    "ru_ru": "Посетите субантарктические острова",
+    "tr_tr": "Subantarktik Adalar'ı Ziyaret Edin",
+    "uk_ua": "Відвідайте субантарктичні острови",
+    "zh_cn": "访问亚南极群岛",
+    "zh_hk": "遊覽亞南極群島",
+    "zh_tw": "造訪亞南極群島"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/dominican_republic",
+  "title_lang": {
+    "de_de": "Santo Domingo",
+    "en_us": "Santo Domingo",
+    "es_es": "Santo Domingo",
+    "ja_jp": "サント・ドミンゴ",
+    "ko_kr": "산토도밍고",
+    "pl_pl": "Santo Domingo",
+    "pt_br": "São Domingos",
+    "ru_ru": "Санто-Доминго",
+    "tr_tr": "Santo Domingo",
+    "uk_ua": "Санто-Домінго",
+    "zh_cn": "圣多明各",
+    "zh_hk": "聖多明哥",
+    "zh_tw": "聖多明哥"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Dominikanischen Republik",
+    "en_us": "Visit the capital of the Dominican Republic",
+    "es_es": "Visita la capital de la República Dominicana",
+    "ja_jp": "ドミニカ共和国の首都を訪れよう",
+    "ko_kr": "도미니카 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Dominikany",
+    "pt_br": "Visite a capital da República Dominicana",
+    "ru_ru": "Посетите столицу Доминиканской Республики",
+    "tr_tr": "Dominik Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Домініканської Республіки",
+    "zh_cn": "访问多米尼加共和国的首都",
+    "zh_hk": "遊覽多米尼加共和國的首都",
+    "zh_tw": "造訪多米尼加共和國的首都"
+  },
+  "latitude": 18.47186,
+  "longitude": -69.89232,
+  "capital": 1
+}

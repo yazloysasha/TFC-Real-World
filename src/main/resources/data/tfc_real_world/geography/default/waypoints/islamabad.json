@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/pakistan",
+  "title_lang": {
+    "de_de": "Islamabad",
+    "en_us": "Islamabad",
+    "es_es": "Islamabad",
+    "ja_jp": "イスラマバード",
+    "ko_kr": "이슬라마바드",
+    "pl_pl": "Islamabad",
+    "pt_br": "Islamabad",
+    "ru_ru": "Исламабад",
+    "tr_tr": "İslamabad",
+    "uk_ua": "Ісламабад",
+    "zh_cn": "伊斯兰堡",
+    "zh_hk": "伊斯蘭堡",
+    "zh_tw": "伊斯蘭瑪巴德"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Islamischen Republik Pakistan",
+    "en_us": "Visit the capital of the Islamic Republic of Pakistan",
+    "es_es": "Visita la capital de la República Islámica de Pakistán",
+    "ja_jp": "パキスタン・イスラム共和国の首都を訪れよう",
+    "ko_kr": "파키스탄 이슬람 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Islamskiej Republiki Pakistanu",
+    "pt_br": "Visite a capital da República Islâmica de Paquistão",
+    "ru_ru": "Посетите столицу Исламской Республики Пакистан",
+    "tr_tr": "Pakistan İslam Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Ісламської Республіки Пакистан",
+    "zh_cn": "访问巴基斯坦伊斯兰共和国的首都",
+    "zh_hk": "遊覽巴基斯坦伊斯蘭共和國的首都",
+    "zh_tw": "造訪巴基斯坦伊斯蘭共和國的首都"
+  },
+  "latitude": 33.72148,
+  "longitude": 73.04329,
+  "capital": 1
+}

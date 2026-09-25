@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/southern_south_america",
+  "title_lang": {
+    "de_de": "Desventuradas-Inseln",
+    "en_us": "Desventuradas Islands",
+    "es_es": "Islas Desventuradas",
+    "ja_jp": "デスベントゥラダス諸島",
+    "ko_kr": "데스벤투라다스 제도",
+    "pl_pl": "Wyspy Desventuradas",
+    "pt_br": "Ilhas Desventuradas",
+    "ru_ru": "Острова Десвентурадас",
+    "tr_tr": "Desventuradas Adaları",
+    "uk_ua": "Острови Десвентурадас",
+    "zh_cn": "德斯文图拉达斯群岛",
+    "zh_hk": "德斯文圖拉達斯群島",
+    "zh_tw": "德斯文圖拉達斯群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Desventuradas-Inseln",
+    "en_us": "Visit the Desventuradas Islands subregion",
+    "es_es": "Visita la subregión Islas Desventuradas",
+    "ja_jp": "デスベントゥラダス諸島のサブリージョンを訪れよう",
+    "ko_kr": "데스벤투라다스 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Desventuradas",
+    "pt_br": "Visite a sub-região Ilhas Desventuradas",
+    "ru_ru": "Посетите субрегион Острова Десвентурадас",
+    "tr_tr": "Desventuradas Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Острови Десвентурадас",
+    "zh_cn": "访问德斯文图拉达斯群岛子区域",
+    "zh_hk": "遊覽德斯文圖拉達斯群島子區域",
+    "zh_tw": "造訪德斯文圖拉達斯群島子區域"
+  }
+}

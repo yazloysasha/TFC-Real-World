@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/sinai",
+  "title_lang": {
+    "de_de": "Al-Arisch",
+    "en_us": "Arish",
+    "es_es": "El Arish",
+    "ja_jp": "アリーシュ",
+    "ko_kr": "아리시",
+    "pl_pl": "Arisz",
+    "pt_br": "Alarixe",
+    "ru_ru": "Эль-Ариш",
+    "tr_tr": "Ariş",
+    "uk_ua": "Ель-Аріш",
+    "zh_cn": "阿里什",
+    "zh_hk": "阿里什",
+    "zh_tw": "阿里什"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Al-Arisch",
+    "en_us": "Visit Arish",
+    "es_es": "Visita El Arish",
+    "ja_jp": "アリーシュを訪れよう",
+    "ko_kr": "아리시를 방문하세요",
+    "pl_pl": "Odwiedź Arisz",
+    "pt_br": "Visite Alarixe",
+    "ru_ru": "Посетите Эль-Ариш",
+    "tr_tr": "Ariş'i ziyaret edin",
+    "uk_ua": "Відвідайте Ель-Аріш",
+    "zh_cn": "访问阿里什",
+    "zh_hk": "遊覽阿里什",
+    "zh_tw": "造訪阿里什"
+  },
+  "latitude": 31.13159,
+  "longitude": 33.79844
+}

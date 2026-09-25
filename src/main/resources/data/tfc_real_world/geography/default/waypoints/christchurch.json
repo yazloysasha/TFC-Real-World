@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/south_island",
+  "title_lang": {
+    "de_de": "Christchurch",
+    "en_us": "Christchurch",
+    "es_es": "Christchurch",
+    "ja_jp": "クライストチャーチ",
+    "ko_kr": "크라이스트처치",
+    "pl_pl": "Christchurch",
+    "pt_br": "Christchurch",
+    "ru_ru": "Крайстчерч",
+    "tr_tr": "Christchurch",
+    "uk_ua": "Крайстчерч",
+    "zh_cn": "克赖斯特彻奇",
+    "zh_hk": "基督城",
+    "zh_tw": "克賴斯特徹奇"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Christchurch",
+    "en_us": "Visit Christchurch",
+    "es_es": "Visita Christchurch",
+    "ja_jp": "クライストチャーチを訪れよう",
+    "ko_kr": "크라이스트처치를 방문하세요",
+    "pl_pl": "Odwiedź Christchurch",
+    "pt_br": "Visite Christchurch",
+    "ru_ru": "Посетите Крайстчерч",
+    "tr_tr": "Christchurch'u ziyaret edin",
+    "uk_ua": "Відвідайте Крайстчерч",
+    "zh_cn": "访问克赖斯特彻奇",
+    "zh_hk": "遊覽基督城",
+    "zh_tw": "造訪克賴斯特徹奇"
+  },
+  "latitude": -43.53333,
+  "longitude": 172.63333
+}

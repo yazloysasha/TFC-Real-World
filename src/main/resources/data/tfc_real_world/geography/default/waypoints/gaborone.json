@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/botswana",
+  "title_lang": {
+    "de_de": "Gaborone",
+    "en_us": "Gaborone",
+    "es_es": "Gaborone",
+    "ja_jp": "ハボローネ",
+    "ko_kr": "가보로네",
+    "pl_pl": "Gaborone",
+    "pt_br": "Gaborone",
+    "ru_ru": "Габороне",
+    "tr_tr": "Gaborone",
+    "uk_ua": "Габороне",
+    "zh_cn": "哈博罗内",
+    "zh_hk": "嘉波隆里",
+    "zh_tw": "嘉柏隆里"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Botswana",
+    "en_us": "Visit the capital of the Republic of Botswana",
+    "es_es": "Visita la capital de la República de Botsuana",
+    "ja_jp": "ボツワナ共和国の首都を訪れよう",
+    "ko_kr": "보츠와나 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Botswany",
+    "pt_br": "Visite a capital da República de Botsuana",
+    "ru_ru": "Посетите столицу Республики Ботсвана",
+    "tr_tr": "Botsvana Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Ботсвана",
+    "zh_cn": "访问博茨瓦纳共和国的首都",
+    "zh_hk": "遊覽博茨瓦納共和國的首都",
+    "zh_tw": "造訪博茨瓦納共和國的首都"
+  },
+  "latitude": -24.65451,
+  "longitude": 25.90859,
+  "capital": 1
+}

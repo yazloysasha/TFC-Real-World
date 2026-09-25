@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/middle_europe",
+  "title_lang": {
+    "de_de": "Belgien",
+    "en_us": "Belgium",
+    "es_es": "Bélgica",
+    "ja_jp": "ベルギー",
+    "ko_kr": "벨기에",
+    "pl_pl": "Belgia",
+    "pt_br": "Bélgica",
+    "ru_ru": "Бельгия",
+    "tr_tr": "Belçika",
+    "uk_ua": "Бельгія",
+    "zh_cn": "比利时",
+    "zh_hk": "比利時",
+    "zh_tw": "比利時"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Belgien",
+    "en_us": "Visit the Belgium subregion",
+    "es_es": "Visita la subregión de Bélgica",
+    "ja_jp": "ベルギーのサブリージョンを訪れよう",
+    "ko_kr": "벨기에 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Belgia",
+    "pt_br": "Visite a sub-região Bélgica",
+    "ru_ru": "Посетите субрегион Бельгия",
+    "tr_tr": "Belçika alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Бельгія",
+    "zh_cn": "访问比利时子区域",
+    "zh_hk": "遊覽比利時子區域",
+    "zh_tw": "造訪比利時子區域"
+  }
+}

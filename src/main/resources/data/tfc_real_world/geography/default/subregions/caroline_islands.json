@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/northwestern_pacific",
+  "title_lang": {
+    "de_de": "Karolinen",
+    "en_us": "Caroline Islands",
+    "es_es": "Islas Carolinas",
+    "ja_jp": "カロリン諸島",
+    "ko_kr": "캐롤라인 제도",
+    "pl_pl": "Karoliny",
+    "pt_br": "Ilhas Carolinas",
+    "ru_ru": "Каролинские острова",
+    "tr_tr": "Caroline Adaları",
+    "uk_ua": "Каролінські острови",
+    "zh_cn": "加罗林群岛",
+    "zh_hk": "加羅林群島",
+    "zh_tw": "加羅林群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Karolinen",
+    "en_us": "Visit the Caroline Islands subregion",
+    "es_es": "Visita la subregión Islas Carolinas",
+    "ja_jp": "カロリン諸島のサブリージョンを訪れよう",
+    "ko_kr": "캐롤라인 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Karoliny",
+    "pt_br": "Visite a sub-região Ilhas Carolinas",
+    "ru_ru": "Посетите субрегион Каролинские острова",
+    "tr_tr": "Caroline Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Каролінські острови",
+    "zh_cn": "访问加罗林群岛子区域",
+    "zh_hk": "遊覽加羅林群島子區域",
+    "zh_tw": "造訪加羅林群島子區域"
+  }
+}

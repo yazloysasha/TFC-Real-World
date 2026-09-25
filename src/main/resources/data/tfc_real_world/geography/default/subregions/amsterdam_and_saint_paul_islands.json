@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/subantarctic_islands",
+  "title_lang": {
+    "de_de": "Amsterdam- und Saint-Paul-Inseln",
+    "en_us": "Amsterdam and Saint Paul Islands",
+    "es_es": "Islas Ámsterdam y San Pablo",
+    "ja_jp": "アムステルダム島とサンポール島",
+    "ko_kr": "암스테르담과 생폴 제도",
+    "pl_pl": "Wyspy Amsterdam i Saint Paul",
+    "pt_br": "Ilhas Amsterdam e Saint Paul",
+    "ru_ru": "Острова Амстердам и Сен-Поль",
+    "tr_tr": "Amsterdam ve Saint Paul Adaları",
+    "uk_ua": "Острови Амстердам і Сен-Поль",
+    "zh_cn": "阿姆斯特丹与圣保罗群岛",
+    "zh_hk": "阿姆斯特丹與聖保羅群島",
+    "zh_tw": "阿姆斯特丹與聖保羅群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Amsterdam- und Saint-Paul-Inseln",
+    "en_us": "Visit the Amsterdam and Saint Paul Islands subregion",
+    "es_es": "Visita la subregión Islas Ámsterdam y San Pablo",
+    "ja_jp": "アムステルダム島とサンポール島のサブリージョンを訪れよう",
+    "ko_kr": "암스테르담과 생폴 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Amsterdam i Saint Paul",
+    "pt_br": "Visite a sub-região Ilhas Amsterdam e Saint Paul",
+    "ru_ru": "Посетите субрегион Острова Амстердам и Сен-Поль",
+    "tr_tr": "Amsterdam ve Saint Paul Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Острови Амстердам і Сен-Поль",
+    "zh_cn": "访问阿姆斯特丹与圣保罗群岛子区域",
+    "zh_hk": "遊覽阿姆斯特丹與聖保羅群島子區域",
+    "zh_tw": "造訪阿姆斯特丹與聖保羅群島子區域"
+  }
+}

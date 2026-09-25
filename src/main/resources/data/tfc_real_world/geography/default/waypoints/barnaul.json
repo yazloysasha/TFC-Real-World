@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/altai",
+  "title_lang": {
+    "de_de": "Barnaul",
+    "en_us": "Barnaul",
+    "es_es": "Barnaúl",
+    "ja_jp": "バルナウル",
+    "ko_kr": "바르나울",
+    "pl_pl": "Barnauł",
+    "pt_br": "Barnaul",
+    "ru_ru": "Барнаул",
+    "tr_tr": "Barnaul",
+    "uk_ua": "Барнаул",
+    "zh_cn": "巴尔瑙尔",
+    "zh_hk": "巴爾瑙爾",
+    "zh_tw": "巴爾瑙爾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Barnaul",
+    "en_us": "Visit Barnaul",
+    "es_es": "Visita Barnaúl",
+    "ja_jp": "バルナウルを訪れよう",
+    "ko_kr": "바르나울을 방문하세요",
+    "pl_pl": "Odwiedź Barnauł",
+    "pt_br": "Visite Barnaul",
+    "ru_ru": "Посетите Барнаул",
+    "tr_tr": "Barnaul'u ziyaret edin",
+    "uk_ua": "Відвідайте Барнаул",
+    "zh_cn": "访问巴尔瑙尔",
+    "zh_hk": "遊覽巴爾瑙爾",
+    "zh_tw": "造訪巴爾瑙爾"
+  },
+  "latitude": 53.36199,
+  "longitude": 83.72786
+}

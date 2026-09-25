@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/vietnam",
+  "title_lang": {
+    "de_de": "Hanoi",
+    "en_us": "Hanoi",
+    "es_es": "Hanói",
+    "ja_jp": "ハノイ",
+    "ko_kr": "하노이",
+    "pl_pl": "Hanoi",
+    "pt_br": "Hanói",
+    "ru_ru": "Ханой",
+    "tr_tr": "Hanoi",
+    "uk_ua": "Ханой",
+    "zh_cn": "河内",
+    "zh_hk": "河內市",
+    "zh_tw": "河內市"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Sozialistischen Republik Vietnam",
+    "en_us": "Visit the capital of the Socialist Republic of Vietnam",
+    "es_es": "Visita la capital de la República Socialista de Vietnam",
+    "ja_jp": "ベトナム社会主義共和国の首都を訪れよう",
+    "ko_kr": "베트남 사회주의 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Socjalistycznej Republiki Wietnamu",
+    "pt_br": "Visite a capital da República Socialista do Vietnã",
+    "ru_ru": "Посетите столицу Социалистической Республики Вьетнам",
+    "tr_tr": "Vietnam Sosyalist Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Соціалістичної Республіки В'єтнам",
+    "zh_cn": "访问越南社会主义共和国的首都",
+    "zh_hk": "遊覽越南社會主義共和國的首都",
+    "zh_tw": "造訪越南社會主義共和國的首都"
+  },
+  "latitude": 21.0245,
+  "longitude": 105.84117,
+  "capital": 1
+}

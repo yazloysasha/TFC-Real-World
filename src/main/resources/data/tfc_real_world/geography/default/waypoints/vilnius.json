@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/baltic_states",
+  "title_lang": {
+    "de_de": "Vilnius",
+    "en_us": "Vilnius",
+    "es_es": "Vilna",
+    "ja_jp": "ヴィルニュス",
+    "ko_kr": "빌뉴스",
+    "pl_pl": "Wilno",
+    "pt_br": "Vilnius",
+    "ru_ru": "Вильнюс",
+    "tr_tr": "Vilnius",
+    "uk_ua": "Вільнюс",
+    "zh_cn": "维尔纽斯",
+    "zh_hk": "維爾紐斯",
+    "zh_tw": "維爾紐斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Litauen",
+    "en_us": "Visit the capital of the Republic of Lithuania",
+    "es_es": "Visita la capital de la República de Lituania",
+    "ja_jp": "リトアニア共和国の首都を訪れよう",
+    "ko_kr": "리투아니아 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Litwy",
+    "pt_br": "Visite a capital da República da Lituânia",
+    "ru_ru": "Посетите столицу Республики Литва",
+    "tr_tr": "Litvanya Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Литва",
+    "zh_cn": "访问立陶宛共和国的首都",
+    "zh_hk": "遊覽立陶宛共和國的首都",
+    "zh_tw": "造訪立陶宛共和國的首都"
+  },
+  "latitude": 54.68916,
+  "longitude": 25.2798,
+  "capital": 1
+}

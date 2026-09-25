@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/tubuai_islands",
+  "title_lang": {
+    "de_de": "Moerai",
+    "en_us": "Moerai",
+    "es_es": "Moerai",
+    "ja_jp": "モエライ",
+    "ko_kr": "모에라이",
+    "pl_pl": "Moerai",
+    "pt_br": "Moerai",
+    "ru_ru": "Моэраи",
+    "tr_tr": "Moerai",
+    "uk_ua": "Моераї",
+    "zh_cn": "莫埃赖",
+    "zh_hk": "莫埃賴",
+    "zh_tw": "莫埃賴"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Moerai",
+    "en_us": "Visit Moerai",
+    "es_es": "Visita Moerai",
+    "ja_jp": "モエライを訪れよう",
+    "ko_kr": "모에라이를 방문하세요",
+    "pl_pl": "Odwiedź Moerai",
+    "pt_br": "Visite Moerai",
+    "ru_ru": "Посетите Моэраи",
+    "tr_tr": "Moerai'yi ziyaret edin",
+    "uk_ua": "Відвідайте Моераї",
+    "zh_cn": "访问莫埃赖",
+    "zh_hk": "遊覽莫埃賴",
+    "zh_tw": "造訪莫埃賴"
+  },
+  "latitude": -22.45133,
+  "longitude": -151.34191
+}

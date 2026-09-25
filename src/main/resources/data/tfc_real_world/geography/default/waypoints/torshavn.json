@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/faroe_islands",
+  "title_lang": {
+    "de_de": "Tórshavn",
+    "en_us": "Tórshavn",
+    "es_es": "Tórshavn",
+    "ja_jp": "トースハウン",
+    "ko_kr": "토르스하운",
+    "pl_pl": "Tórshavn",
+    "pt_br": "Tórshavn",
+    "ru_ru": "Торсхавн",
+    "tr_tr": "Tórshavn",
+    "uk_ua": "Торсгавн",
+    "zh_cn": "托尔斯港",
+    "zh_hk": "托斯港",
+    "zh_tw": "托爾斯港"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Tórshavn",
+    "en_us": "Visit Tórshavn",
+    "es_es": "Visita Tórshavn",
+    "ja_jp": "トースハウンを訪れよう",
+    "ko_kr": "토르스하운을 방문하세요",
+    "pl_pl": "Odwiedź Tórshavn",
+    "pt_br": "Visite Tórshavn",
+    "ru_ru": "Посетите Торсхавн",
+    "tr_tr": "Tórshavn'ı ziyaret edin",
+    "uk_ua": "Відвідайте Торсгавн",
+    "zh_cn": "访问托尔斯港",
+    "zh_hk": "遊覽托斯港",
+    "zh_tw": "造訪托爾斯港"
+  },
+  "latitude": 62.00973,
+  "longitude": -6.77164
+}

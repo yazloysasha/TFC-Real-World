@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/caribbean",
+  "title_lang": {
+    "de_de": "Haiti",
+    "en_us": "Haiti",
+    "es_es": "Haití",
+    "ja_jp": "ハイチ",
+    "ko_kr": "아이티",
+    "pl_pl": "Haiti",
+    "pt_br": "Haiti",
+    "ru_ru": "Гаити",
+    "tr_tr": "Haiti",
+    "uk_ua": "Гаїті",
+    "zh_cn": "海地",
+    "zh_hk": "海地",
+    "zh_tw": "海地"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Haiti",
+    "en_us": "Visit the Haiti subregion",
+    "es_es": "Visita la subregión de Haití",
+    "ja_jp": "ハイチのサブリージョンを訪れよう",
+    "ko_kr": "아이티 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Haiti",
+    "pt_br": "Visite a sub-região Haiti",
+    "ru_ru": "Посетите субрегион Гаити",
+    "tr_tr": "Haiti alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Гаїті",
+    "zh_cn": "访问海地子区域",
+    "zh_hk": "遊覽海地子區域",
+    "zh_tw": "造訪海地子區域"
+  }
+}

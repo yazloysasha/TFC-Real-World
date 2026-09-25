@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/burundi",
+  "title_lang": {
+    "de_de": "Gitega",
+    "en_us": "Gitega",
+    "es_es": "Guitega",
+    "ja_jp": "ギテガ",
+    "ko_kr": "기테가",
+    "pl_pl": "Gitega",
+    "pt_br": "Guitega",
+    "ru_ru": "Гитега",
+    "tr_tr": "Gietaga",
+    "uk_ua": "Гітега",
+    "zh_cn": "基特加",
+    "zh_hk": "基特加",
+    "zh_tw": "基特加"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Burundi",
+    "en_us": "Visit the capital of the Republic of Burundi",
+    "es_es": "Visita la capital de la República de Burundi",
+    "ja_jp": "ブルンジ共和国の首都を訪れよう",
+    "ko_kr": "부룬디 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Burundi",
+    "pt_br": "Visite a capital da República do Burundi",
+    "ru_ru": "Посетите столицу Республики Бурунди",
+    "tr_tr": "Burundi Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Бурунді",
+    "zh_cn": "访问布隆迪共和国的首都",
+    "zh_hk": "遊覽布隆迪共和國的首都",
+    "zh_tw": "造訪布隆迪共和國的首都"
+  },
+  "latitude": -3.42708,
+  "longitude": 29.92463,
+  "capital": 1
+}

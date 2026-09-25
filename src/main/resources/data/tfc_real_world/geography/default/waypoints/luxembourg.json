@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/belgium",
+  "title_lang": {
+    "de_de": "Luxemburg",
+    "en_us": "Luxembourg",
+    "es_es": "Luxemburgo",
+    "ja_jp": "ルクセンブルク市",
+    "ko_kr": "룩셈부르크",
+    "pl_pl": "Luksemburg",
+    "pt_br": "Luxemburgo",
+    "ru_ru": "Люксембург",
+    "tr_tr": "Lüksemburg",
+    "uk_ua": "Люксембург",
+    "zh_cn": "卢森堡市",
+    "zh_hk": "盧森堡市",
+    "zh_tw": "盧森堡市"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt des Großherzogtums Luxemburg",
+    "en_us": "Visit the capital of the Grand Duchy of Luxembourg",
+    "es_es": "Visita la capital del Gran Ducado de Luxemburgo",
+    "ja_jp": "ルクセンブルク大公国の首都を訪れよう",
+    "ko_kr": "룩셈부르크 대공국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Wielkiego Księstwa Luksemburga",
+    "pt_br": "Visite a capital do Grão-Ducado de Luxemburgo",
+    "ru_ru": "Посетите столицу Великого Герцогства Люксембург",
+    "tr_tr": "Lüksemburg Büyük Dükalığı'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Великого Герцогства Люксембург",
+    "zh_cn": "访问卢森堡大公国的首都",
+    "zh_hk": "遊覽盧森堡大公國的首都",
+    "zh_tw": "造訪盧森堡大公國的首都"
+  },
+  "latitude": 49.60982,
+  "longitude": 6.13268,
+  "capital": 1
+}

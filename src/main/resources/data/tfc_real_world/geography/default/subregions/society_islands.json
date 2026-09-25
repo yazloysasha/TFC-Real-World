@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/south_central_pacific",
+  "title_lang": {
+    "de_de": "Gesellschaftsinseln",
+    "en_us": "Society Islands",
+    "es_es": "Islas de la Sociedad",
+    "ja_jp": "ソシエテ諸島",
+    "ko_kr": "소시에테 제도",
+    "pl_pl": "Wyspy Towarzystwa",
+    "pt_br": "Ilhas da Sociedade",
+    "ru_ru": "Острова Общества",
+    "tr_tr": "Society Adaları",
+    "uk_ua": "Острови Товариства",
+    "zh_cn": "社会群岛",
+    "zh_hk": "社會群島",
+    "zh_tw": "社會群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Gesellschaftsinseln",
+    "en_us": "Visit the Society Islands subregion",
+    "es_es": "Visita la subregión Islas de la Sociedad",
+    "ja_jp": "ソシエテ諸島のサブリージョンを訪れよう",
+    "ko_kr": "소시에테 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Towarzystwa",
+    "pt_br": "Visite a sub-região Ilhas da Sociedade",
+    "ru_ru": "Посетите субрегион Острова Общества",
+    "tr_tr": "Society Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Острови Товариства",
+    "zh_cn": "访问社会群岛子区域",
+    "zh_hk": "遊覽社會群島子區域",
+    "zh_tw": "造訪社會群島子區域"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/rwanda",
+  "title_lang": {
+    "de_de": "Kigali",
+    "en_us": "Kigali",
+    "es_es": "Kigali",
+    "ja_jp": "キガリ",
+    "ko_kr": "키갈리",
+    "pl_pl": "Kigali",
+    "pt_br": "Quigali",
+    "ru_ru": "Кигали",
+    "tr_tr": "Kigali",
+    "uk_ua": "Кігалі",
+    "zh_cn": "基加利",
+    "zh_hk": "基加利",
+    "zh_tw": "基加利"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Ruanda",
+    "en_us": "Visit the capital of the Republic of Rwanda",
+    "es_es": "Visita la capital de la República de Ruanda",
+    "ja_jp": "ルワンダ共和国の首都を訪れよう",
+    "ko_kr": "르완다 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Rwandy",
+    "pt_br": "Visite a capital da República de Ruanda",
+    "ru_ru": "Посетите столицу Республики Руанда",
+    "tr_tr": "Ruanda Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Руанда",
+    "zh_cn": "访问卢旺达共和国的首都",
+    "zh_hk": "遊覽盧旺達共和國的首都",
+    "zh_tw": "造訪盧旺達共和國的首都"
+  },
+  "latitude": -1.94995,
+  "longitude": 30.05885,
+  "capital": 1
+}

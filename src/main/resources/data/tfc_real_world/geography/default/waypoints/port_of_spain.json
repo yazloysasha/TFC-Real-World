@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/trinidad_and_tobago",
+  "title_lang": {
+    "de_de": "Port of Spain",
+    "en_us": "Port of Spain",
+    "es_es": "Puerto España",
+    "ja_jp": "ポートオブスペイン",
+    "ko_kr": "포트오브스페인",
+    "pl_pl": "Port of Spain",
+    "pt_br": "Port of Spain",
+    "ru_ru": "Порт-оф-Спейн",
+    "tr_tr": "Port of Spain",
+    "uk_ua": "Порт-оф-Спейн",
+    "zh_cn": "西班牙港",
+    "zh_hk": "西班牙港",
+    "zh_tw": "西班牙港"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Trinidad und Tobago",
+    "en_us": "Visit the capital of the Republic of Trinidad and Tobago",
+    "es_es": "Visita la capital de la República de Trinidad y Tobago",
+    "ja_jp": "トリニダード・トバゴ共和国の首都を訪れよう",
+    "ko_kr": "트리니다드 토바고 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Trynidadu i Tobago",
+    "pt_br": "Visite a capital da República de Trindade e Tobago",
+    "ru_ru": "Посетите столицу Республики Тринидад и Тобаго",
+    "tr_tr": "Trinidad ve Tobago Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Тринідад і Тобаго",
+    "zh_cn": "访问特立尼达和多巴哥共和国的首都",
+    "zh_hk": "遊覽特立尼達和多巴哥共和國的首都",
+    "zh_tw": "造訪特立尼達和多巴哥共和國的首都"
+  },
+  "latitude": 10.66668,
+  "longitude": -61.51889,
+  "capital": 1
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/caprivi_strip",
+  "title_lang": {
+    "de_de": "Katima Mulilo",
+    "en_us": "Katima Mulilo",
+    "es_es": "Katima Mulilo",
+    "ja_jp": "カティマ・ムリロ",
+    "ko_kr": "카티마물릴로",
+    "pl_pl": "Katima Mulilo",
+    "pt_br": "Katima Mulilo",
+    "ru_ru": "Катима-Мулило",
+    "tr_tr": "Katima Mulilo",
+    "uk_ua": "Катіма-Муліло",
+    "zh_cn": "卡蒂马穆利洛",
+    "zh_hk": "卡蒂馬穆利洛",
+    "zh_tw": "卡蒂馬穆利洛"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Katima Mulilo",
+    "en_us": "Visit Katima Mulilo",
+    "es_es": "Visita Katima Mulilo",
+    "ja_jp": "カティマ・ムリロを訪れよう",
+    "ko_kr": "카티마물릴로를 방문하세요",
+    "pl_pl": "Odwiedź Katima Mulilo",
+    "pt_br": "Visite Katima Mulilo",
+    "ru_ru": "Посетите Катима-Мулило",
+    "tr_tr": "Katima Mulilo'yu ziyaret edin",
+    "uk_ua": "Відвідайте Катіма-Муліло",
+    "zh_cn": "访问卡蒂马穆利洛",
+    "zh_hk": "遊覽卡蒂馬穆利洛",
+    "zh_tw": "造訪卡蒂馬穆利洛"
+  },
+  "latitude": -17.50467,
+  "longitude": 24.27574
+}

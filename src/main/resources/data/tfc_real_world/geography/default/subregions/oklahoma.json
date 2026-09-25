@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/north_central_usa",
+  "title_lang": {
+    "de_de": "Oklahoma",
+    "en_us": "Oklahoma",
+    "es_es": "Oklahoma",
+    "ja_jp": "オクラホマ",
+    "ko_kr": "오클라호마",
+    "pl_pl": "Oklahoma",
+    "pt_br": "Oklahoma",
+    "ru_ru": "Оклахома",
+    "tr_tr": "Oklahoma",
+    "uk_ua": "Оклахома",
+    "zh_cn": "俄克拉荷马",
+    "zh_hk": "俄克拉荷馬",
+    "zh_tw": "俄克拉荷馬"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Oklahoma",
+    "en_us": "Visit the Oklahoma subregion",
+    "es_es": "Visita la subregión de Oklahoma",
+    "ja_jp": "オクラホマのサブリージョンを訪れよう",
+    "ko_kr": "오클라호마 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Oklahoma",
+    "pt_br": "Visite a sub-região Oklahoma",
+    "ru_ru": "Посетите субрегион Оклахома",
+    "tr_tr": "Oklahoma alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Оклахома",
+    "zh_cn": "访问俄克拉荷马子区域",
+    "zh_hk": "遊覽俄克拉荷馬子區域",
+    "zh_tw": "造訪俄克拉荷馬子區域"
+  }
+}

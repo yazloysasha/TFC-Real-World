@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/north_central_usa",
+  "title_lang": {
+    "de_de": "Missouri",
+    "en_us": "Missouri",
+    "es_es": "Misuri",
+    "ja_jp": "ミズーリ",
+    "ko_kr": "미주리",
+    "pl_pl": "Missouri",
+    "pt_br": "Missouri",
+    "ru_ru": "Миссури",
+    "tr_tr": "Missouri",
+    "uk_ua": "Міссурі",
+    "zh_cn": "密苏里",
+    "zh_hk": "密蘇里",
+    "zh_tw": "密蘇里"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Missouri",
+    "en_us": "Visit the Missouri subregion",
+    "es_es": "Visita la subregión de Misuri",
+    "ja_jp": "ミズーリのサブリージョンを訪れよう",
+    "ko_kr": "미주리 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Missouri",
+    "pt_br": "Visite a sub-região Missouri",
+    "ru_ru": "Посетите субрегион Миссури",
+    "tr_tr": "Missouri alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Міссурі",
+    "zh_cn": "访问密苏里子区域",
+    "zh_hk": "遊覽密蘇里子區域",
+    "zh_tw": "造訪密蘇里子區域"
+  }
+}

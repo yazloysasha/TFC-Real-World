@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/maine",
+  "title_lang": {
+    "de_de": "Augusta",
+    "en_us": "Augusta",
+    "es_es": "Augusta",
+    "ja_jp": "オーガスタ",
+    "ko_kr": "오거스타",
+    "pl_pl": "Augusta",
+    "pt_br": "Augusta",
+    "ru_ru": "Огаста",
+    "tr_tr": "Augusta",
+    "uk_ua": "Огаста",
+    "zh_cn": "奥古斯塔",
+    "zh_hk": "奧古斯塔",
+    "zh_tw": "奧古斯塔"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Augusta",
+    "en_us": "Visit Augusta",
+    "es_es": "Visita Augusta",
+    "ja_jp": "オーガスタを訪れよう",
+    "ko_kr": "오거스타를 방문하세요",
+    "pl_pl": "Odwiedź Augustę",
+    "pt_br": "Visite Augusta",
+    "ru_ru": "Посетите Огасту",
+    "tr_tr": "Augusta'yı ziyaret edin",
+    "uk_ua": "Відвідайте Огасту",
+    "zh_cn": "访问奥古斯塔",
+    "zh_hk": "遊覽奧古斯塔",
+    "zh_tw": "造訪奧古斯塔"
+  },
+  "latitude": 44.31062,
+  "longitude": -69.77949
+}

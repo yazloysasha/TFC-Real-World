@@ -1,0 +1,33 @@
+{
+  "parent": "default:continent/europe",
+  "title_lang": {
+    "de_de": "Südosteuropa",
+    "en_us": "Southeastern Europe",
+    "es_es": "Europa del Sureste",
+    "ja_jp": "南東ヨーロッパ",
+    "ko_kr": "남동유럽",
+    "pl_pl": "Europa Południowo-Wschodnia",
+    "pt_br": "Europa do Sudeste",
+    "ru_ru": "Юго-Восточная Европа",
+    "tr_tr": "Güneydoğu Avrupa",
+    "uk_ua": "Південно-Східна Європа",
+    "zh_cn": "东南欧",
+    "zh_hk": "東南歐",
+    "zh_tw": "東南歐"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Südosteuropa",
+    "en_us": "Visit Southeastern Europe",
+    "es_es": "Visita Europa del Sureste",
+    "ja_jp": "南東ヨーロッパを訪れよう",
+    "ko_kr": "남동유럽을 방문하세요",
+    "pl_pl": "Odwiedź Europę Południowo-Wschodnią",
+    "pt_br": "Visite a Europa do Sudeste",
+    "ru_ru": "Посетите Юго-Восточную Европу",
+    "tr_tr": "Güneydoğu Avrupa'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Південно-Східну Європу",
+    "zh_cn": "访问东南欧",
+    "zh_hk": "遊覽東南歐",
+    "zh_tw": "造訪東南歐"
+  }
+}

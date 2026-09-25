@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/northern_africa",
+  "title_lang": {
+    "de_de": "Ägypten",
+    "en_us": "Egypt",
+    "es_es": "Egipto",
+    "ja_jp": "エジプト",
+    "ko_kr": "이집트",
+    "pl_pl": "Egipt",
+    "pt_br": "Egito",
+    "ru_ru": "Египет",
+    "tr_tr": "Mısır",
+    "uk_ua": "Єгипет",
+    "zh_cn": "埃及",
+    "zh_hk": "埃及",
+    "zh_tw": "埃及"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Ägypten",
+    "en_us": "Visit the Egypt subregion",
+    "es_es": "Visita la subregión de Egipto",
+    "ja_jp": "エジプトのサブリージョンを訪れよう",
+    "ko_kr": "이집트 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Egipt",
+    "pt_br": "Visite a sub-região Egito",
+    "ru_ru": "Посетите субрегион Египет",
+    "tr_tr": "Mısır alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Єгипет",
+    "zh_cn": "访问埃及子区域",
+    "zh_hk": "遊覽埃及子區域",
+    "zh_tw": "造訪埃及子區域"
+  }
+}

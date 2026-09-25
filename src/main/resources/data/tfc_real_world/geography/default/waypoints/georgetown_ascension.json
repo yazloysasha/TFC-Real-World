@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/ascension",
+  "title_lang": {
+    "de_de": "Georgetown",
+    "en_us": "Georgetown",
+    "es_es": "Georgetown",
+    "ja_jp": "ジョージタウン",
+    "ko_kr": "조지타운",
+    "pl_pl": "Georgetown",
+    "pt_br": "Georgetown",
+    "ru_ru": "Джорджтаун",
+    "tr_tr": "Georgetown",
+    "uk_ua": "Джорджтаун",
+    "zh_cn": "乔治敦",
+    "zh_hk": "喬治敦",
+    "zh_tw": "喬治敦"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Georgetown",
+    "en_us": "Visit Georgetown",
+    "es_es": "Visita Georgetown",
+    "ja_jp": "ジョージタウンを訪れよう",
+    "ko_kr": "조지타운을 방문하세요",
+    "pl_pl": "Odwiedź Georgetown",
+    "pt_br": "Visite Georgetown",
+    "ru_ru": "Посетите Джорджтаун",
+    "tr_tr": "Georgetown'u ziyaret edin",
+    "uk_ua": "Відвідайте Джорджтаун",
+    "zh_cn": "访问乔治敦",
+    "zh_hk": "遊覽喬治敦",
+    "zh_tw": "造訪喬治敦"
+  },
+  "latitude": -7.92861,
+  "longitude": -14.41194
+}

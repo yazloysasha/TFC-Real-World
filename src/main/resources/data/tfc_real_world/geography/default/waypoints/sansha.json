@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/south_china_sea",
+  "title_lang": {
+    "de_de": "Sansha",
+    "en_us": "Sansha",
+    "es_es": "Sansha",
+    "ja_jp": "三沙",
+    "ko_kr": "싼사",
+    "pl_pl": "Sansha",
+    "pt_br": "Sansha",
+    "ru_ru": "Саньша",
+    "tr_tr": "Sansha",
+    "uk_ua": "Саньша",
+    "zh_cn": "三沙",
+    "zh_hk": "三沙",
+    "zh_tw": "三沙"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Sansha",
+    "en_us": "Visit Sansha",
+    "es_es": "Visita Sansha",
+    "ja_jp": "三沙を訪れよう",
+    "ko_kr": "싼사를 방문하세요",
+    "pl_pl": "Odwiedź Sansha",
+    "pt_br": "Visite Sansha",
+    "ru_ru": "Посетите Саньша",
+    "tr_tr": "Sansha'yı ziyaret edin",
+    "uk_ua": "Відвідайте Саньша",
+    "zh_cn": "访问三沙",
+    "zh_hk": "遊覽三沙",
+    "zh_tw": "造訪三沙"
+  },
+  "latitude": 16.83912,
+  "longitude": 112.34064
+}

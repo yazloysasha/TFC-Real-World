@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/ontario",
+  "title_lang": {
+    "de_de": "Ottawa",
+    "en_us": "Ottawa",
+    "es_es": "Ottawa",
+    "ja_jp": "オタワ",
+    "ko_kr": "오타와",
+    "pl_pl": "Ottawa",
+    "pt_br": "Ottawa",
+    "ru_ru": "Оттава",
+    "tr_tr": "Ottawa",
+    "uk_ua": "Оттава",
+    "zh_cn": "渥太华",
+    "zh_hk": "渥太華",
+    "zh_tw": "渥太華"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Kanada",
+    "en_us": "Visit the capital of Canada",
+    "es_es": "Visita la capital de Canadá",
+    "ja_jp": "カナダの首都を訪れよう",
+    "ko_kr": "캐나다의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Kanady",
+    "pt_br": "Visite a capital do Canadá",
+    "ru_ru": "Посетите столицу Канады",
+    "tr_tr": "Kanada'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Канади",
+    "zh_cn": "访问加拿大的首都",
+    "zh_hk": "遊覽加拿大的首都",
+    "zh_tw": "造訪加拿大的首都"
+  },
+  "latitude": 45.41117,
+  "longitude": -75.69812,
+  "capital": 1
+}

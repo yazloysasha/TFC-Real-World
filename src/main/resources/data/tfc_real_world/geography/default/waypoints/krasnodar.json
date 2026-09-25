@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/north_caucasus",
+  "title_lang": {
+    "de_de": "Krasnodar",
+    "en_us": "Krasnodar",
+    "es_es": "Krasnodar",
+    "ja_jp": "クラスノダール",
+    "ko_kr": "크라스노다르",
+    "pl_pl": "Krasnodar",
+    "pt_br": "Crasnodar",
+    "ru_ru": "Краснодар",
+    "tr_tr": "Krasnodar",
+    "uk_ua": "Краснодар",
+    "zh_cn": "克拉斯诺达尔",
+    "zh_hk": "克拉斯諾達爾",
+    "zh_tw": "克拉斯諾達爾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Krasnodar",
+    "en_us": "Visit Krasnodar",
+    "es_es": "Visita Krasnodar",
+    "ja_jp": "クラスノダールを訪れよう",
+    "ko_kr": "크라스노다르를 방문하세요",
+    "pl_pl": "Odwiedź Krasnodar",
+    "pt_br": "Visite Crasnodar",
+    "ru_ru": "Посетите Краснодар",
+    "tr_tr": "Krasnodar'ı ziyaret edin",
+    "uk_ua": "Відвідайте Краснодар",
+    "zh_cn": "访问克拉斯诺达尔",
+    "zh_hk": "遊覽克拉斯諾達爾",
+    "zh_tw": "造訪克拉斯諾達爾"
+  },
+  "latitude": 45.04534,
+  "longitude": 38.98178
+}

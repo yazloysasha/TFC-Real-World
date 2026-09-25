@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/russian_far_east",
+  "title_lang": {
+    "de_de": "Kurilen",
+    "en_us": "Kuril Islands",
+    "es_es": "Islas Kuriles",
+    "ja_jp": "千島列島",
+    "ko_kr": "쿠릴 열도",
+    "pl_pl": "Wyspy Kurylskie",
+    "pt_br": "Ilhas Curilas",
+    "ru_ru": "Курильские острова",
+    "tr_tr": "Kuril Adaları",
+    "uk_ua": "Курильські острови",
+    "zh_cn": "千岛群岛",
+    "zh_hk": "千島群島",
+    "zh_tw": "千島群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Kurilen",
+    "en_us": "Visit the Kuril Islands subregion",
+    "es_es": "Visita la subregión Islas Kuriles",
+    "ja_jp": "千島列島のサブリージョンを訪れよう",
+    "ko_kr": "쿠릴 열도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Kurylskie",
+    "pt_br": "Visite a sub-região Ilhas Curilas",
+    "ru_ru": "Посетите субрегион Курильские острова",
+    "tr_tr": "Kuril Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Курильські острови",
+    "zh_cn": "访问千岛群岛子区域",
+    "zh_hk": "遊覽千島群島子區域",
+    "zh_tw": "造訪千島群島子區域"
+  }
+}

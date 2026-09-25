@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/idaho",
+  "title_lang": {
+    "de_de": "Boise",
+    "en_us": "Boise",
+    "es_es": "Boise",
+    "ja_jp": "ボイシ",
+    "ko_kr": "보이시",
+    "pl_pl": "Boise",
+    "pt_br": "Boise",
+    "ru_ru": "Бойсе",
+    "tr_tr": "Boise",
+    "uk_ua": "Бойсе",
+    "zh_cn": "博伊西",
+    "zh_hk": "博伊西",
+    "zh_tw": "博伊西"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Boise",
+    "en_us": "Visit Boise",
+    "es_es": "Visita Boise",
+    "ja_jp": "ボイシを訪れよう",
+    "ko_kr": "보이시를 방문하세요",
+    "pl_pl": "Odwiedź Boise",
+    "pt_br": "Visite Boise",
+    "ru_ru": "Посетите Бойсе",
+    "tr_tr": "Boise'yi ziyaret edin",
+    "uk_ua": "Відвідайте Бойсе",
+    "zh_cn": "访问博伊西",
+    "zh_hk": "遊覽博伊西",
+    "zh_tw": "造訪博伊西"
+  },
+  "latitude": 43.6135,
+  "longitude": -116.20345
+}

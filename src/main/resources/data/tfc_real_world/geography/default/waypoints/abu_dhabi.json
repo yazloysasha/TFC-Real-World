@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/gulf_states",
+  "title_lang": {
+    "de_de": "Abu Dhabi",
+    "en_us": "Abu Dhabi",
+    "es_es": "Abu Dhabi",
+    "ja_jp": "アブダビ",
+    "ko_kr": "아부다비",
+    "pl_pl": "Abu Zabi",
+    "pt_br": "Abu Dhabi",
+    "ru_ru": "Абу-Даби",
+    "tr_tr": "Abu Dabi",
+    "uk_ua": "Абу-Дабі",
+    "zh_cn": "阿布扎比",
+    "zh_hk": "阿布達比",
+    "zh_tw": "阿布達比"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Vereinigten Arabischen Emirate",
+    "en_us": "Visit the capital of the United Arab Emirates",
+    "es_es": "Visita la capital de los Emiratos Árabes Unidos",
+    "ja_jp": "アラブ首長国連邦の首都を訪れよう",
+    "ko_kr": "아랍에미리트의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Zjednoczonych Emiratów Arabskich",
+    "pt_br": "Visite a capital dos Emirados Árabes Unidos",
+    "ru_ru": "Посетите столицу Объединённых Арабских Эмиратов",
+    "tr_tr": "Birleşik Arap Emirlikleri'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Об'єднаних Арабських Еміратів",
+    "zh_cn": "访问阿拉伯联合酋长国的首都",
+    "zh_hk": "遊覽阿拉伯聯合酋長國的首都",
+    "zh_tw": "造訪阿拉伯聯合酋長國的首都"
+  },
+  "latitude": 24.45118,
+  "longitude": 54.39696,
+  "capital": 1
+}

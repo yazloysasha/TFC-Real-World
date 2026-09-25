@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/ivory_coast",
+  "title_lang": {
+    "de_de": "Yamoussoukro",
+    "en_us": "Yamoussoukro",
+    "es_es": "Yamusukro",
+    "ja_jp": "ヤムスクロ",
+    "ko_kr": "야무수크로",
+    "pl_pl": "Jamusukro",
+    "pt_br": "Yamoussoukro",
+    "ru_ru": "Ямусукро",
+    "tr_tr": "Yamoussoukro",
+    "uk_ua": "Ямусукро",
+    "zh_cn": "亚穆苏克罗",
+    "zh_hk": "雅穆蘇克雷",
+    "zh_tw": "雅穆索戈"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Elfenbeinküste",
+    "en_us": "Visit the capital of the Republic of Côte d’Ivoire",
+    "es_es": "Visita la capital de la República de Costa de Marfil",
+    "ja_jp": "コートジボワール共和国の首都を訪れよう",
+    "ko_kr": "코트디부아르 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Wybrzeża Kości Słoniowej",
+    "pt_br": "Visite a capital da República da Costa do Marfim",
+    "ru_ru": "Посетите столицу Республики Кот-д’Ивуар",
+    "tr_tr": "Fildişi Sahili Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Кот-д'Івуар",
+    "zh_cn": "访问科特迪瓦共和国的首都",
+    "zh_hk": "遊覽科特迪瓦共和國的首都",
+    "zh_tw": "造訪科特迪瓦共和國的首都"
+  },
+  "latitude": 6.82055,
+  "longitude": -5.27674,
+  "capital": 1
+}

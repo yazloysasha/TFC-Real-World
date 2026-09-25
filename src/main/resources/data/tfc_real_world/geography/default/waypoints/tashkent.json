@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/uzbekistan",
+  "title_lang": {
+    "de_de": "Taschkent",
+    "en_us": "Tashkent",
+    "es_es": "Taskent",
+    "ja_jp": "タシュケント",
+    "ko_kr": "타슈켄트",
+    "pl_pl": "Taszkent",
+    "pt_br": "Tasquente",
+    "ru_ru": "Ташкент",
+    "tr_tr": "Taşkent",
+    "uk_ua": "Ташкент",
+    "zh_cn": "塔什干",
+    "zh_hk": "塔什干",
+    "zh_tw": "塔什干"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Usbekistan",
+    "en_us": "Visit the capital of the Republic of Uzbekistan",
+    "es_es": "Visita la capital de la República de Uzbekistán",
+    "ja_jp": "ウズベキスタン共和国の首都を訪れよう",
+    "ko_kr": "우즈베키스탄 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Uzbekistanu",
+    "pt_br": "Visite a capital da República do Uzbequistão",
+    "ru_ru": "Посетите столицу Республики Узбекистан",
+    "tr_tr": "Özbekistan Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Узбекистан",
+    "zh_cn": "访问乌兹别克斯坦共和国的首都",
+    "zh_hk": "遊覽烏茲別克斯坦共和國的首都",
+    "zh_tw": "造訪烏茲別克斯坦共和國的首都"
+  },
+  "latitude": 41.26465,
+  "longitude": 69.21627,
+  "capital": 1
+}

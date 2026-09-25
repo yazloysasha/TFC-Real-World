@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/colombia",
+  "title_lang": {
+    "de_de": "Bogotá",
+    "en_us": "Bogotá",
+    "es_es": "Bogotá",
+    "ja_jp": "ボゴタ",
+    "ko_kr": "보고타",
+    "pl_pl": "Bogota",
+    "pt_br": "Bogotá",
+    "ru_ru": "Богота",
+    "tr_tr": "Bogotá",
+    "uk_ua": "Богота",
+    "zh_cn": "波哥大",
+    "zh_hk": "波哥大",
+    "zh_tw": "波哥大"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Kolumbien",
+    "en_us": "Visit the capital of the Republic of Colombia",
+    "es_es": "Visita la capital de la República de Colombia",
+    "ja_jp": "コロンビア共和国の首都を訪れよう",
+    "ko_kr": "콜롬비아 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Kolumbii",
+    "pt_br": "Visite a capital da República da Colômbia",
+    "ru_ru": "Посетите столицу Республики Колумбия",
+    "tr_tr": "Kolombiya Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Колумбія",
+    "zh_cn": "访问哥伦比亚共和国的首都",
+    "zh_hk": "遊覽哥倫比亞共和國的首都",
+    "zh_tw": "造訪哥倫比亞共和國的首都"
+  },
+  "latitude": 4.60971,
+  "longitude": -74.08175,
+  "capital": 1
+}

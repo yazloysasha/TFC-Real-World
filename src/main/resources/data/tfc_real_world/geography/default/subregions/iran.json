@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/western_asia",
+  "title_lang": {
+    "de_de": "Iran",
+    "en_us": "Iran",
+    "es_es": "Irán",
+    "ja_jp": "イラン",
+    "ko_kr": "이란",
+    "pl_pl": "Iran",
+    "pt_br": "Irã",
+    "ru_ru": "Иран",
+    "tr_tr": "İran",
+    "uk_ua": "Іран",
+    "zh_cn": "伊朗",
+    "zh_hk": "伊朗",
+    "zh_tw": "伊朗"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Iran",
+    "en_us": "Visit the Iran subregion",
+    "es_es": "Visita la subregión de Irán",
+    "ja_jp": "イランのサブリージョンを訪れよう",
+    "ko_kr": "이란 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Iran",
+    "pt_br": "Visite a sub-região Irã",
+    "ru_ru": "Посетите субрегион Иран",
+    "tr_tr": "İran alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Іран",
+    "zh_cn": "访问伊朗子区域",
+    "zh_hk": "遊覽伊朗子區域",
+    "zh_tw": "造訪伊朗子區域"
+  }
+}

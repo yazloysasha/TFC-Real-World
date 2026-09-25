@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/yugoslavia",
+  "title_lang": {
+    "de_de": "Ljubljana",
+    "en_us": "Ljubljana",
+    "es_es": "Liubliana",
+    "ja_jp": "リュブリャナ",
+    "ko_kr": "류블랴나",
+    "pl_pl": "Lublana",
+    "pt_br": "Liubliana",
+    "ru_ru": "Любляна",
+    "tr_tr": "Ljubljana",
+    "uk_ua": "Любляна",
+    "zh_cn": "卢布尔雅那",
+    "zh_hk": "盧布爾雅那",
+    "zh_tw": "盧比安納"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Slowenien",
+    "en_us": "Visit the capital of the Republic of Slovenia",
+    "es_es": "Visita la capital de la República de Eslovenia",
+    "ja_jp": "スロベニア共和国の首都を訪れよう",
+    "ko_kr": "슬로베니아 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Słowenii",
+    "pt_br": "Visite a capital da República da Eslovênia",
+    "ru_ru": "Посетите столицу Республики Словения",
+    "tr_tr": "Slovenya Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Словенія",
+    "zh_cn": "访问斯洛文尼亚共和国的首都",
+    "zh_hk": "遊覽斯洛文尼亞共和國的首都",
+    "zh_tw": "造訪斯洛文尼亞共和國的首都"
+  },
+  "latitude": 46.05108,
+  "longitude": 14.50513,
+  "capital": 1
+}

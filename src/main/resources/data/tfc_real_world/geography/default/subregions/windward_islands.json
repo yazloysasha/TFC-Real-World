@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/caribbean",
+  "title_lang": {
+    "de_de": "Inseln über dem Winde",
+    "en_us": "Windward Islands",
+    "es_es": "Islas de Barlovento",
+    "ja_jp": "ウィンドワード諸島",
+    "ko_kr": "윈드워드 제도",
+    "pl_pl": "Wyspy Zawietrzne",
+    "pt_br": "Ilhas de Barlavento",
+    "ru_ru": "Наветренные острова",
+    "tr_tr": "Rüzgarüstü Adaları",
+    "uk_ua": "Навітряні острови",
+    "zh_cn": "向风群岛",
+    "zh_hk": "向風群島",
+    "zh_tw": "向風群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Inseln über dem Winde",
+    "en_us": "Visit the Windward Islands subregion",
+    "es_es": "Visita la subregión Islas de Barlovento",
+    "ja_jp": "ウィンドワード諸島のサブリージョンを訪れよう",
+    "ko_kr": "윈드워드 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Zawietrzne",
+    "pt_br": "Visite a sub-região Ilhas de Barlavento",
+    "ru_ru": "Посетите субрегион Наветренные острова",
+    "tr_tr": "Rüzgarüstü Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Навітряні острови",
+    "zh_cn": "访问向风群岛子区域",
+    "zh_hk": "遊覽向風群島子區域",
+    "zh_tw": "造訪向風群島子區域"
+  }
+}

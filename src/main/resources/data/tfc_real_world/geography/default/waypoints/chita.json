@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/chita",
+  "title_lang": {
+    "de_de": "Tschita",
+    "en_us": "Chita",
+    "es_es": "Chitá",
+    "ja_jp": "チタ",
+    "ko_kr": "치타",
+    "pl_pl": "Czyta",
+    "pt_br": "Chita",
+    "ru_ru": "Чита",
+    "tr_tr": "Çita",
+    "uk_ua": "Чита",
+    "zh_cn": "赤塔",
+    "zh_hk": "赤塔",
+    "zh_tw": "赤塔"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Tschita",
+    "en_us": "Visit Chita",
+    "es_es": "Visita Chitá",
+    "ja_jp": "チタを訪れよう",
+    "ko_kr": "치타를 방문하세요",
+    "pl_pl": "Odwiedź Czytę",
+    "pt_br": "Visite Chita",
+    "ru_ru": "Посетите Читу",
+    "tr_tr": "Çita'yı ziyaret edin",
+    "uk_ua": "Відвідайте Читу",
+    "zh_cn": "访问赤塔",
+    "zh_hk": "遊覽赤塔",
+    "zh_tw": "造訪赤塔"
+  },
+  "latitude": 52.04311,
+  "longitude": 113.49171
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/louisiana",
+  "title_lang": {
+    "de_de": "Baton Rouge",
+    "en_us": "Baton Rouge",
+    "es_es": "Baton Rouge",
+    "ja_jp": "バトン・ルージュ",
+    "ko_kr": "배턴루지",
+    "pl_pl": "Baton Rouge",
+    "pt_br": "Baton Rouge",
+    "ru_ru": "Батон-Руж",
+    "tr_tr": "Baton Rouge",
+    "uk_ua": "Батон-Руж",
+    "zh_cn": "巴吞鲁日",
+    "zh_hk": "巴頓魯治",
+    "zh_tw": "巴頓魯治"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Baton Rouge",
+    "en_us": "Visit Baton Rouge",
+    "es_es": "Visita Baton Rouge",
+    "ja_jp": "バトン・ルージュを訪れよう",
+    "ko_kr": "배턴루지를 방문하세요",
+    "pl_pl": "Odwiedź Baton Rouge",
+    "pt_br": "Visite Baton Rouge",
+    "ru_ru": "Посетите Батон-Руж",
+    "tr_tr": "Baton Rouge'yi ziyaret edin",
+    "uk_ua": "Відвідайте Батон-Руж",
+    "zh_cn": "访问巴吞鲁日",
+    "zh_hk": "遊覽巴頓魯治",
+    "zh_tw": "造訪巴頓魯治"
+  },
+  "latitude": 30.44332,
+  "longitude": -91.18747
+}

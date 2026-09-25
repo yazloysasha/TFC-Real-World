@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/southern_africa",
+  "title_lang": {
+    "de_de": "Nordprovinzen",
+    "en_us": "Northern Provinces",
+    "es_es": "Provincias del Norte",
+    "ja_jp": "北部州",
+    "ko_kr": "북부 주들",
+    "pl_pl": "Prowincje Północne",
+    "pt_br": "Províncias do Norte",
+    "ru_ru": "Северные провинции",
+    "tr_tr": "Kuzey Eyaletleri",
+    "uk_ua": "Північні провінції",
+    "zh_cn": "北部诸省",
+    "zh_hk": "北部諸省",
+    "zh_tw": "北部諸省"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Nordprovinzen",
+    "en_us": "Visit the Northern Provinces subregion",
+    "es_es": "Visita la subregión de Provincias del Norte",
+    "ja_jp": "北部州のサブリージョンを訪れよう",
+    "ko_kr": "북부 주들 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Prowincje Północne",
+    "pt_br": "Visite a sub-região Províncias do Norte",
+    "ru_ru": "Посетите субрегион Северные провинции",
+    "tr_tr": "Kuzey Eyaletleri alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Північні провінції",
+    "zh_cn": "访问北部诸省子区域",
+    "zh_hk": "遊覽北部諸省子區域",
+    "zh_tw": "造訪北部諸省子區域"
+  }
+}

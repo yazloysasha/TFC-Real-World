@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/brazil",
+  "title_lang": {
+    "de_de": "Westzentralbrasilien",
+    "en_us": "Brazil West-Central",
+    "es_es": "Brasil Centro-Oeste",
+    "ja_jp": "ブラジル中西部",
+    "ko_kr": "브라질 중서부",
+    "pl_pl": "Brazylia Środkowo-Zachodnia",
+    "pt_br": "Centro-Oeste do Brasil",
+    "ru_ru": "Центрально-Западная Бразилия",
+    "tr_tr": "Orta-Batı Brezilya",
+    "uk_ua": "Центрально-західна Бразилія",
+    "zh_cn": "巴西中西部",
+    "zh_hk": "巴西中西部",
+    "zh_tw": "巴西中西部"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Westzentralbrasilien",
+    "en_us": "Visit the Brazil West-Central subregion",
+    "es_es": "Visita la subregión de Brasil Centro-Oeste",
+    "ja_jp": "ブラジル中西部のサブリージョンを訪れよう",
+    "ko_kr": "브라질 중서부 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Brazylia Środkowo-Zachodnia",
+    "pt_br": "Visite a sub-região Centro-Oeste do Brasil",
+    "ru_ru": "Посетите субрегион Центрально-Западная Бразилия",
+    "tr_tr": "Orta-Batı Brezilya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Центрально-західна Бразилія",
+    "zh_cn": "访问巴西中西部子区域",
+    "zh_hk": "遊覽巴西中西部子區域",
+    "zh_tw": "造訪巴西中西部子區域"
+  }
+}

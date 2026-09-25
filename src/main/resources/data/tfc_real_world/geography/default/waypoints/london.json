@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/great_britain",
+  "title_lang": {
+    "de_de": "London",
+    "en_us": "London",
+    "es_es": "Londres",
+    "ja_jp": "ロンドン",
+    "ko_kr": "런던",
+    "pl_pl": "Londyn",
+    "pt_br": "Londres",
+    "ru_ru": "Лондон",
+    "tr_tr": "Londra",
+    "uk_ua": "Лондон",
+    "zh_cn": "伦敦",
+    "zh_hk": "倫敦",
+    "zh_tw": "倫敦"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt des Vereinigten Königreichs Großbritannien und Nordirland",
+    "en_us": "Visit the capital of the United Kingdom of Great Britain and Northern Ireland",
+    "es_es": "Visita la capital del Reino Unido de Gran Bretaña e Irlanda del Norte",
+    "ja_jp": "グレートブリテンおよび北アイルランド連合王国の首都を訪れよう",
+    "ko_kr": "그레이트브리튼 및 북아일랜드 연합왕국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Zjednoczonego Królestwa Wielkiej Brytanii i Irlandii Północnej",
+    "pt_br": "Visite a capital do Reino Unido da Grã-Bretanha e Irlanda do Norte",
+    "ru_ru": "Посетите столицу Соединённого Королевства Великобритании и Северной Ирландии",
+    "tr_tr": "Büyük Britanya ve Kuzey İrlanda Birleşik Krallığı'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Сполученого Королівства Великої Британії та Північної Ірландії",
+    "zh_cn": "访问大不列颠及北爱尔兰联合王国的首都",
+    "zh_hk": "遊覽大不列顛及北愛爾蘭聯合王國的首都",
+    "zh_tw": "造訪大不列顛及北愛爾蘭聯合王國的首都"
+  },
+  "latitude": 51.50853,
+  "longitude": -0.12574,
+  "capital": 1
+}

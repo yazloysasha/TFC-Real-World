@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/south_central_usa",
+  "title_lang": {
+    "de_de": "New Mexico",
+    "en_us": "New Mexico",
+    "es_es": "Nuevo México",
+    "ja_jp": "ニューメキシコ",
+    "ko_kr": "뉴멕시코",
+    "pl_pl": "Nowy Meksyk",
+    "pt_br": "Novo México",
+    "ru_ru": "Нью-Мексико",
+    "tr_tr": "New Mexico",
+    "uk_ua": "Нью-Мексико",
+    "zh_cn": "新墨西哥",
+    "zh_hk": "新墨西哥",
+    "zh_tw": "新墨西哥"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion New Mexico",
+    "en_us": "Visit the New Mexico subregion",
+    "es_es": "Visita la subregión de Nuevo México",
+    "ja_jp": "ニューメキシコのサブリージョンを訪れよう",
+    "ko_kr": "뉴멕시코 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Nowy Meksyk",
+    "pt_br": "Visite a sub-região Novo México",
+    "ru_ru": "Посетите субрегион Нью-Мексико",
+    "tr_tr": "New Mexico alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Нью-Мексико",
+    "zh_cn": "访问新墨西哥子区域",
+    "zh_hk": "遊覽新墨西哥子區域",
+    "zh_tw": "造訪新墨西哥子區域"
+  }
+}

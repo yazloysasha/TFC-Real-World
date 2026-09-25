@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/eastern_europe",
+  "title_lang": {
+    "de_de": "Zentralrussland",
+    "en_us": "Central European Russia",
+    "es_es": "Rusia europea central",
+    "ja_jp": "ロシア欧州中部",
+    "ko_kr": "러시아 유럽 중부",
+    "pl_pl": "Rosja środkowoeuropejska",
+    "pt_br": "Rússia Europeia Central",
+    "ru_ru": "Центральная Россия",
+    "tr_tr": "Orta Avrupa Rusyası",
+    "uk_ua": "Центральна Росія",
+    "zh_cn": "俄罗斯欧洲中部",
+    "zh_hk": "俄羅斯歐洲中部",
+    "zh_tw": "俄羅斯歐洲中部"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Zentralrussland",
+    "en_us": "Visit the Central European Russia subregion",
+    "es_es": "Visita la subregión de Rusia europea central",
+    "ja_jp": "ロシア欧州中部のサブリージョンを訪れよう",
+    "ko_kr": "러시아 유럽 중부 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Rosja środkowoeuropejska",
+    "pt_br": "Visite a sub-região Rússia Europeia Central",
+    "ru_ru": "Посетите субрегион Центральная Россия",
+    "tr_tr": "Orta Avrupa Rusyası alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Центральна Росія",
+    "zh_cn": "访问俄罗斯欧洲中部子区域",
+    "zh_hk": "遊覽俄羅斯歐洲中部子區域",
+    "zh_tw": "造訪俄羅斯歐洲中部子區域"
+  }
+}

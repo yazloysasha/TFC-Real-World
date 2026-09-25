@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/minnesota",
+  "title_lang": {
+    "de_de": "Saint Paul",
+    "en_us": "Saint Paul",
+    "es_es": "Saint Paul",
+    "ja_jp": "セイント・ポール",
+    "ko_kr": "세인트폴",
+    "pl_pl": "Saint Paul",
+    "pt_br": "Saint Paul",
+    "ru_ru": "Сент-Пол",
+    "tr_tr": "St. Paul",
+    "uk_ua": "Сент-Пол",
+    "zh_cn": "圣保罗",
+    "zh_hk": "聖保羅",
+    "zh_tw": "聖保羅"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Saint Paul",
+    "en_us": "Visit Saint Paul",
+    "es_es": "Visita Saint Paul",
+    "ja_jp": "セイント・ポールを訪れよう",
+    "ko_kr": "세인트폴을 방문하세요",
+    "pl_pl": "Odwiedź Saint Paul",
+    "pt_br": "Visite Saint Paul",
+    "ru_ru": "Посетите Сент-Пол",
+    "tr_tr": "St. Paul'u ziyaret edin",
+    "uk_ua": "Відвідайте Сент-Пол",
+    "zh_cn": "访问圣保罗",
+    "zh_hk": "遊覽聖保羅",
+    "zh_tw": "造訪聖保羅"
+  },
+  "latitude": 44.94441,
+  "longitude": -93.09327
+}

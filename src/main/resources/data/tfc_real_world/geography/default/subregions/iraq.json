@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/western_asia",
+  "title_lang": {
+    "de_de": "Irak",
+    "en_us": "Iraq",
+    "es_es": "Irak",
+    "ja_jp": "イラク",
+    "ko_kr": "이라크",
+    "pl_pl": "Irak",
+    "pt_br": "Iraque",
+    "ru_ru": "Ирак",
+    "tr_tr": "Irak",
+    "uk_ua": "Ірак",
+    "zh_cn": "伊拉克",
+    "zh_hk": "伊拉克",
+    "zh_tw": "伊拉克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Irak",
+    "en_us": "Visit the Iraq subregion",
+    "es_es": "Visita la subregión de Irak",
+    "ja_jp": "イラクのサブリージョンを訪れよう",
+    "ko_kr": "이라크 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Irak",
+    "pt_br": "Visite a sub-região Iraque",
+    "ru_ru": "Посетите субрегион Ирак",
+    "tr_tr": "Irak alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Ірак",
+    "zh_cn": "访问伊拉克子区域",
+    "zh_hk": "遊覽伊拉克子區域",
+    "zh_tw": "造訪伊拉克子區域"
+  }
+}

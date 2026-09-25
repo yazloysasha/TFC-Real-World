@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/easter_island",
+  "title_lang": {
+    "de_de": "Hanga Roa",
+    "en_us": "Hanga Roa",
+    "es_es": "Hanga Roa",
+    "ja_jp": "ハンガロア",
+    "ko_kr": "항가로아",
+    "pl_pl": "Hanga Roa",
+    "pt_br": "Hanga Roa",
+    "ru_ru": "Ханга-Роа",
+    "tr_tr": "Hanga Roa",
+    "uk_ua": "Ханга-Роа",
+    "zh_cn": "安加罗阿",
+    "zh_hk": "安加羅阿",
+    "zh_tw": "安加羅阿"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Hanga Roa",
+    "en_us": "Visit Hanga Roa",
+    "es_es": "Visita Hanga Roa",
+    "ja_jp": "ハンガロアを訪れよう",
+    "ko_kr": "항가로아를 방문하세요",
+    "pl_pl": "Odwiedź Hanga Roa",
+    "pt_br": "Visite Hanga Roa",
+    "ru_ru": "Посетите Ханга-Роа",
+    "tr_tr": "Hanga Roa'yı ziyaret edin",
+    "uk_ua": "Відвідайте Ханга-Роа",
+    "zh_cn": "访问安加罗阿",
+    "zh_hk": "遊覽安加羅阿",
+    "zh_tw": "造訪安加羅阿"
+  },
+  "latitude": -27.15253,
+  "longitude": -109.42438
+}

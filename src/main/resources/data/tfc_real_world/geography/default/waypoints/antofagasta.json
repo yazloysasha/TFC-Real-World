@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/chile_north",
+  "title_lang": {
+    "de_de": "Antofagasta",
+    "en_us": "Antofagasta",
+    "es_es": "Antofagasta",
+    "ja_jp": "アントファガスタ",
+    "ko_kr": "안토파가스타",
+    "pl_pl": "Antofagasta",
+    "pt_br": "Antofagasta",
+    "ru_ru": "Антофагаста",
+    "tr_tr": "Antofagasta",
+    "uk_ua": "Антофаґаста",
+    "zh_cn": "安托法加斯塔",
+    "zh_hk": "安托法加斯塔",
+    "zh_tw": "安托法加斯塔"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Antofagasta",
+    "en_us": "Visit Antofagasta",
+    "es_es": "Visita Antofagasta",
+    "ja_jp": "アントファガスタを訪れよう",
+    "ko_kr": "안토파가스타를 방문하세요",
+    "pl_pl": "Odwiedź Antofagastę",
+    "pt_br": "Visite Antofagasta",
+    "ru_ru": "Посетите Антофагасту",
+    "tr_tr": "Antofagasta'yı ziyaret edin",
+    "uk_ua": "Відвідайте Антофаґасту",
+    "zh_cn": "访问安托法加斯塔",
+    "zh_hk": "遊覽安托法加斯塔",
+    "zh_tw": "造訪安托法加斯塔"
+  },
+  "latitude": -23.65094,
+  "longitude": -70.39752
+}

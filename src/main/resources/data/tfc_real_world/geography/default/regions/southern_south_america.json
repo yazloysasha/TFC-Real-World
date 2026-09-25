@@ -1,0 +1,33 @@
+{
+  "parent": "default:continent/southern_america",
+  "title_lang": {
+    "de_de": "Südliches Südamerika",
+    "en_us": "Southern South America",
+    "es_es": "Sur de Sudamérica",
+    "ja_jp": "南アメリカ南部",
+    "ko_kr": "남아메리카 남부",
+    "pl_pl": "Południowa Ameryka Południowa",
+    "pt_br": "Sul da América do Sul",
+    "ru_ru": "Юг Южной Америки",
+    "tr_tr": "Güney Amerika'nın Güneyi",
+    "uk_ua": "Південь Південної Америки",
+    "zh_cn": "南美洲南部",
+    "zh_hk": "南美洲南部",
+    "zh_tw": "南美洲南部"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie das südliche Südamerika",
+    "en_us": "Visit Southern South America",
+    "es_es": "Visita el sur de Sudamérica",
+    "ja_jp": "南アメリカ南部を訪れよう",
+    "ko_kr": "남아메리카 남부를 방문하세요",
+    "pl_pl": "Odwiedź południową Amerykę Południową",
+    "pt_br": "Visite o sul da América do Sul",
+    "ru_ru": "Посетите юг Южной Америки",
+    "tr_tr": "Güney Amerika'nın Güneyi'ni Ziyaret Edin",
+    "uk_ua": "Відвідайте південь Південної Америки",
+    "zh_cn": "访问南美洲南部",
+    "zh_hk": "遊覽南美洲南部",
+    "zh_tw": "造訪南美洲南部"
+  }
+}

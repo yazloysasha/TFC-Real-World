@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/arabian_peninsula",
+  "title_lang": {
+    "de_de": "Oman",
+    "en_us": "Oman",
+    "es_es": "Omán",
+    "ja_jp": "オマーン",
+    "ko_kr": "오만",
+    "pl_pl": "Oman",
+    "pt_br": "Omã",
+    "ru_ru": "Оман",
+    "tr_tr": "Umman",
+    "uk_ua": "Оман",
+    "zh_cn": "阿曼",
+    "zh_hk": "阿曼",
+    "zh_tw": "阿曼"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Oman",
+    "en_us": "Visit the Oman subregion",
+    "es_es": "Visita la subregión de Omán",
+    "ja_jp": "オマーンのサブリージョンを訪れよう",
+    "ko_kr": "오만 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Oman",
+    "pt_br": "Visite a sub-região Omã",
+    "ru_ru": "Посетите субрегион Оман",
+    "tr_tr": "Umman alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Оман",
+    "zh_cn": "访问阿曼子区域",
+    "zh_hk": "遊覽阿曼子區域",
+    "zh_tw": "造訪阿曼子區域"
+  }
+}

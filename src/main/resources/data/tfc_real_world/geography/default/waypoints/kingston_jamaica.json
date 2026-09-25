@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/jamaica",
+  "title_lang": {
+    "de_de": "Kingston",
+    "en_us": "Kingston",
+    "es_es": "Kingston",
+    "ja_jp": "キングストン",
+    "ko_kr": "킹스턴",
+    "pl_pl": "Kingston",
+    "pt_br": "Kingston",
+    "ru_ru": "Кингстон",
+    "tr_tr": "Kingston",
+    "uk_ua": "Кінгстон",
+    "zh_cn": "金斯敦",
+    "zh_hk": "京士頓",
+    "zh_tw": "京士頓"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Jamaika",
+    "en_us": "Visit the capital of Jamaica",
+    "es_es": "Visita la capital de Jamaica",
+    "ja_jp": "ジャマイカの首都を訪れよう",
+    "ko_kr": "자메이카의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Jamajki",
+    "pt_br": "Visite a capital da Jamaica",
+    "ru_ru": "Посетите столицу Ямайки",
+    "tr_tr": "Jamaika'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Ямайки",
+    "zh_cn": "访问牙买加的首都",
+    "zh_hk": "遊覽牙買加的首都",
+    "zh_tw": "造訪牙買加的首都"
+  },
+  "latitude": 17.99702,
+  "longitude": -76.79358,
+  "capital": 1
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/benin",
+  "title_lang": {
+    "de_de": "Porto-Novo",
+    "en_us": "Porto-Novo",
+    "es_es": "Porto Novo",
+    "ja_jp": "ポルトノボ",
+    "ko_kr": "포르토노보",
+    "pl_pl": "Porto-Novo",
+    "pt_br": "Porto Novo",
+    "ru_ru": "Порто-Ново",
+    "tr_tr": "Porto-Novo",
+    "uk_ua": "Порто-Ново",
+    "zh_cn": "波多诺伏",
+    "zh_hk": "波多諾伏",
+    "zh_tw": "波多諾伏"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Benin",
+    "en_us": "Visit the capital of the Republic of Benin",
+    "es_es": "Visita la capital de la República de Benín",
+    "ja_jp": "ベナン共和国の首都を訪れよう",
+    "ko_kr": "베냉 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Beninu",
+    "pt_br": "Visite a capital da República do Benim",
+    "ru_ru": "Посетите столицу Республики Бенин",
+    "tr_tr": "Benin Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Бенін",
+    "zh_cn": "访问贝宁共和国的首都",
+    "zh_hk": "遊覽貝寧共和國的首都",
+    "zh_tw": "造訪貝寧共和國的首都"
+  },
+  "latitude": 6.49646,
+  "longitude": 2.60359,
+  "capital": 1
+}

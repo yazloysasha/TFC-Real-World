@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/maldives",
+  "title_lang": {
+    "de_de": "Malé",
+    "en_us": "Malé",
+    "es_es": "Malé",
+    "ja_jp": "マレ",
+    "ko_kr": "말레",
+    "pl_pl": "Male",
+    "pt_br": "Malé",
+    "ru_ru": "Мале",
+    "tr_tr": "Malé",
+    "uk_ua": "Мале",
+    "zh_cn": "马累",
+    "zh_hk": "馬累",
+    "zh_tw": "馬利"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Malediven",
+    "en_us": "Visit the capital of the Republic of Maldives",
+    "es_es": "Visita la capital de la República de Maldivas",
+    "ja_jp": "モルディブ共和国の首都を訪れよう",
+    "ko_kr": "몰디브 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Malediwów",
+    "pt_br": "Visite a capital da República das Maldivas",
+    "ru_ru": "Посетите столицу Республики Мальдивы",
+    "tr_tr": "Maldivler Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Мальдіви",
+    "zh_cn": "访问马尔代夫共和国的首都",
+    "zh_hk": "遊覽馬爾代夫共和國的首都",
+    "zh_tw": "造訪馬爾代夫共和國的首都"
+  },
+  "latitude": 4.17521,
+  "longitude": 73.50916,
+  "capital": 1
+}

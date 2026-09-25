@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/paraguay",
+  "title_lang": {
+    "de_de": "Asunción",
+    "en_us": "Asunción",
+    "es_es": "Asunción",
+    "ja_jp": "アスンシオン",
+    "ko_kr": "아순시온",
+    "pl_pl": "Asunción",
+    "pt_br": "Assunção",
+    "ru_ru": "Асунсьон",
+    "tr_tr": "Asunción",
+    "uk_ua": "Асунсьйон",
+    "zh_cn": "亚松森",
+    "zh_hk": "亞松森",
+    "zh_tw": "亞松森"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Paraguay",
+    "en_us": "Visit the capital of the Republic of Paraguay",
+    "es_es": "Visita la capital de la República de Paraguay",
+    "ja_jp": "パラグアイ共和国の首都を訪れよう",
+    "ko_kr": "파라과이 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Paragwaju",
+    "pt_br": "Visite a capital da República do Paraguai",
+    "ru_ru": "Посетите столицу Республики Парагвай",
+    "tr_tr": "Paraguay Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Парагвай",
+    "zh_cn": "访问巴拉圭共和国的首都",
+    "zh_hk": "遊覽巴拉圭共和國的首都",
+    "zh_tw": "造訪巴拉圭共和國的首都"
+  },
+  "latitude": -25.28646,
+  "longitude": -57.647,
+  "capital": 1
+}

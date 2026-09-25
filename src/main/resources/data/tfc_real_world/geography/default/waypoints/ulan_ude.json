@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/buryatia",
+  "title_lang": {
+    "de_de": "Ulan-Ude",
+    "en_us": "Ulan-Ude",
+    "es_es": "Ulán-Udé",
+    "ja_jp": "ウラン・ウデ",
+    "ko_kr": "울란우데",
+    "pl_pl": "Ułan Ude",
+    "pt_br": "Ulan-Ude",
+    "ru_ru": "Улан-Удэ",
+    "tr_tr": "Ulan-Ude",
+    "uk_ua": "Улан-Уде",
+    "zh_cn": "乌兰乌德",
+    "zh_hk": "烏蘭烏德",
+    "zh_tw": "烏蘭烏德"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Ulan-Ude",
+    "en_us": "Visit Ulan-Ude",
+    "es_es": "Visita Ulán-Udé",
+    "ja_jp": "ウラン・ウデを訪れよう",
+    "ko_kr": "울란우데를 방문하세요",
+    "pl_pl": "Odwiedź Ułan Ude",
+    "pt_br": "Visite Ulan-Ude",
+    "ru_ru": "Посетите Улан-Удэ",
+    "tr_tr": "Ulan-Ude'yi ziyaret edin",
+    "uk_ua": "Відвідайте Улан-Уде",
+    "zh_cn": "访问乌兰乌德",
+    "zh_hk": "遊覽烏蘭烏德",
+    "zh_tw": "造訪烏蘭烏德"
+  },
+  "latitude": 51.82648,
+  "longitude": 107.59979
+}

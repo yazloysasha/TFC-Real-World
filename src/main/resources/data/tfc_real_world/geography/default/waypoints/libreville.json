@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/gabon",
+  "title_lang": {
+    "de_de": "Libreville",
+    "en_us": "Libreville",
+    "es_es": "Libreville",
+    "ja_jp": "リーブルヴィル",
+    "ko_kr": "리브르빌",
+    "pl_pl": "Libreville",
+    "pt_br": "Libreville",
+    "ru_ru": "Либревиль",
+    "tr_tr": "Libreville",
+    "uk_ua": "Лібревіль",
+    "zh_cn": "利伯维尔",
+    "zh_hk": "利伯維爾",
+    "zh_tw": "利伯維爾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Gabunischen Republik",
+    "en_us": "Visit the capital of the Gabonese Republic",
+    "es_es": "Visita la capital de la República Gabonesa",
+    "ja_jp": "ガボン共和国の首都を訪れよう",
+    "ko_kr": "가봉 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Gabońskiej",
+    "pt_br": "Visite a capital da República Gabonesa",
+    "ru_ru": "Посетите столицу Габонской Республики",
+    "tr_tr": "Gabon Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Габонської Республіки",
+    "zh_cn": "访问加蓬共和国的首都",
+    "zh_hk": "遊覽加蓬共和國的首都",
+    "zh_tw": "造訪加蓬共和國的首都"
+  },
+  "latitude": 0.39241,
+  "longitude": 9.45356,
+  "capital": 1
+}

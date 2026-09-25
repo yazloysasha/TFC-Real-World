@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/southern_south_america",
+  "title_lang": {
+    "de_de": "Uruguay",
+    "en_us": "Uruguay",
+    "es_es": "Uruguay",
+    "ja_jp": "ウルグアイ",
+    "ko_kr": "우루과이",
+    "pl_pl": "Urugwaj",
+    "pt_br": "Uruguai",
+    "ru_ru": "Уругвай",
+    "tr_tr": "Uruguay",
+    "uk_ua": "Уругвай",
+    "zh_cn": "乌拉圭",
+    "zh_hk": "烏拉圭",
+    "zh_tw": "烏拉圭"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Uruguay",
+    "en_us": "Visit the Uruguay subregion",
+    "es_es": "Visita la subregión de Uruguay",
+    "ja_jp": "ウルグアイのサブリージョンを訪れよう",
+    "ko_kr": "우루과이 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Urugwaj",
+    "pt_br": "Visite a sub-região Uruguai",
+    "ru_ru": "Посетите субрегион Уругвай",
+    "tr_tr": "Uruguay alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Уругвай",
+    "zh_cn": "访问乌拉圭子区域",
+    "zh_hk": "遊覽烏拉圭子區域",
+    "zh_tw": "造訪烏拉圭子區域"
+  }
+}

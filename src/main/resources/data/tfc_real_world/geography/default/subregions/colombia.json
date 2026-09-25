@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/western_south_america",
+  "title_lang": {
+    "de_de": "Kolumbien",
+    "en_us": "Colombia",
+    "es_es": "Colombia",
+    "ja_jp": "コロンビア",
+    "ko_kr": "콜롬비아",
+    "pl_pl": "Kolumbia",
+    "pt_br": "Colômbia",
+    "ru_ru": "Колумбия",
+    "tr_tr": "Kolombiya",
+    "uk_ua": "Колумбія",
+    "zh_cn": "哥伦比亚",
+    "zh_hk": "哥倫比亞",
+    "zh_tw": "哥倫比亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Kolumbien",
+    "en_us": "Visit the Colombia subregion",
+    "es_es": "Visita la subregión de Colombia",
+    "ja_jp": "コロンビアのサブリージョンを訪れよう",
+    "ko_kr": "콜롬비아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Kolumbia",
+    "pt_br": "Visite a sub-região Colômbia",
+    "ru_ru": "Посетите субрегион Колумбия",
+    "tr_tr": "Kolombiya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Колумбія",
+    "zh_cn": "访问哥伦比亚子区域",
+    "zh_hk": "遊覽哥倫比亞子區域",
+    "zh_tw": "造訪哥倫比亞子區域"
+  }
+}

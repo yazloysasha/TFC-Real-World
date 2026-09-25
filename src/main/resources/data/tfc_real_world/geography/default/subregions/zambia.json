@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/south_tropical_africa",
+  "title_lang": {
+    "de_de": "Sambia",
+    "en_us": "Zambia",
+    "es_es": "Zambia",
+    "ja_jp": "ザンビア",
+    "ko_kr": "잠비아",
+    "pl_pl": "Zambia",
+    "pt_br": "Zâmbia",
+    "ru_ru": "Замбия",
+    "tr_tr": "Zambiya",
+    "uk_ua": "Замбія",
+    "zh_cn": "赞比亚",
+    "zh_hk": "贊比亞",
+    "zh_tw": "贊比亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Sambia",
+    "en_us": "Visit the Zambia subregion",
+    "es_es": "Visita la subregión de Zambia",
+    "ja_jp": "ザンビアのサブリージョンを訪れよう",
+    "ko_kr": "잠비아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Zambia",
+    "pt_br": "Visite a sub-região Zâmbia",
+    "ru_ru": "Посетите субрегион Замбия",
+    "tr_tr": "Zambiya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Замбія",
+    "zh_cn": "访问赞比亚子区域",
+    "zh_hk": "遊覽贊比亞子區域",
+    "zh_tw": "造訪贊比亞子區域"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/corsica",
+  "title_lang": {
+    "de_de": "Ajaccio",
+    "en_us": "Ajaccio",
+    "es_es": "Ajaccio",
+    "ja_jp": "アジャクシオ",
+    "ko_kr": "아작시오",
+    "pl_pl": "Ajaccio",
+    "pt_br": "Ajaccio",
+    "ru_ru": "Аяччо",
+    "tr_tr": "Ajaccio",
+    "uk_ua": "Аяччо",
+    "zh_cn": "阿雅克肖",
+    "zh_hk": "阿雅克肖",
+    "zh_tw": "阿雅克肖"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Ajaccio",
+    "en_us": "Visit Ajaccio",
+    "es_es": "Visita Ajaccio",
+    "ja_jp": "アジャクシオを訪れよう",
+    "ko_kr": "아작시오를 방문하세요",
+    "pl_pl": "Odwiedź Ajaccio",
+    "pt_br": "Visite Ajaccio",
+    "ru_ru": "Посетите Аяччо",
+    "tr_tr": "Ajaccio'yu ziyaret edin",
+    "uk_ua": "Відвідайте Аяччо",
+    "zh_cn": "访问阿雅克肖",
+    "zh_hk": "遊覽阿雅克肖",
+    "zh_tw": "造訪阿雅克肖"
+  },
+  "latitude": 41.91886,
+  "longitude": 8.73812
+}

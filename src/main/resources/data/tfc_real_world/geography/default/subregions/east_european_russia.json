@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/eastern_europe",
+  "title_lang": {
+    "de_de": "Ostrussland",
+    "en_us": "East European Russia",
+    "es_es": "Rusia europea oriental",
+    "ja_jp": "ロシア欧州東部",
+    "ko_kr": "러시아 유럽 동부",
+    "pl_pl": "Rosja wschodnioeuropejska",
+    "pt_br": "Rússia Europeia Oriental",
+    "ru_ru": "Восточноевропейская Россия",
+    "tr_tr": "Doğu Avrupa Rusyası",
+    "uk_ua": "Східноєвропейська Росія",
+    "zh_cn": "俄罗斯欧洲东部",
+    "zh_hk": "俄羅斯歐洲東部",
+    "zh_tw": "俄羅斯歐洲東部"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Ostrussland",
+    "en_us": "Visit the East European Russia subregion",
+    "es_es": "Visita la subregión de Rusia europea oriental",
+    "ja_jp": "ロシア欧州東部のサブリージョンを訪れよう",
+    "ko_kr": "러시아 유럽 동부 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Rosja wschodnioeuropejska",
+    "pt_br": "Visite a sub-região Rússia Europeia Oriental",
+    "ru_ru": "Посетите субрегион Восточноевропейская Россия",
+    "tr_tr": "Doğu Avrupa Rusyası alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Східноєвропейська Росія",
+    "zh_cn": "访问俄罗斯欧洲东部子区域",
+    "zh_hk": "遊覽俄羅斯歐洲東部子區域",
+    "zh_tw": "造訪俄羅斯歐洲東部子區域"
+  }
+}

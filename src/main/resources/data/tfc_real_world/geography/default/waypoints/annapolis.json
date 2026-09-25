@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/maryland",
+  "title_lang": {
+    "de_de": "Annapolis",
+    "en_us": "Annapolis",
+    "es_es": "Annapolis",
+    "ja_jp": "アナポリス",
+    "ko_kr": "아나폴리스",
+    "pl_pl": "Annapolis",
+    "pt_br": "Annapolis",
+    "ru_ru": "Аннаполис",
+    "tr_tr": "Annapolis",
+    "uk_ua": "Аннаполіс",
+    "zh_cn": "安纳波利斯",
+    "zh_hk": "安納波利斯",
+    "zh_tw": "安納波利斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Annapolis",
+    "en_us": "Visit Annapolis",
+    "es_es": "Visita Annapolis",
+    "ja_jp": "アナポリスを訪れよう",
+    "ko_kr": "아나폴리스를 방문하세요",
+    "pl_pl": "Odwiedź Annapolis",
+    "pt_br": "Visite Annapolis",
+    "ru_ru": "Посетите Аннаполис",
+    "tr_tr": "Annapolis'i ziyaret edin",
+    "uk_ua": "Відвідайте Аннаполіс",
+    "zh_cn": "访问安纳波利斯",
+    "zh_hk": "遊覽安納波利斯",
+    "zh_tw": "造訪安納波利斯"
+  },
+  "latitude": 38.97859,
+  "longitude": -76.49184
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/ghana",
+  "title_lang": {
+    "de_de": "Accra",
+    "en_us": "Accra",
+    "es_es": "Acra",
+    "ja_jp": "アクラ",
+    "ko_kr": "아크라",
+    "pl_pl": "Akra",
+    "pt_br": "Acra",
+    "ru_ru": "Аккра",
+    "tr_tr": "Akra",
+    "uk_ua": "Аккра",
+    "zh_cn": "阿克拉",
+    "zh_hk": "阿克拉",
+    "zh_tw": "阿克拉"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Ghana",
+    "en_us": "Visit the capital of the Republic of Ghana",
+    "es_es": "Visita la capital de la República de Ghana",
+    "ja_jp": "ガーナ共和国の首都を訪れよう",
+    "ko_kr": "가나 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Ghany",
+    "pt_br": "Visite a capital da República de Gana",
+    "ru_ru": "Посетите столицу Республики Гана",
+    "tr_tr": "Gana Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Гана",
+    "zh_cn": "访问加纳共和国的首都",
+    "zh_hk": "遊覽加納共和國的首都",
+    "zh_tw": "造訪加納共和國的首都"
+  },
+  "latitude": 5.55602,
+  "longitude": -0.1969,
+  "capital": 1
+}

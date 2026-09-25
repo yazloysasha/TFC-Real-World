@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/kermadec_islands",
+  "title_lang": {
+    "de_de": "Raoul-Island-Station",
+    "en_us": "Raoul Island Station",
+    "es_es": "Estación de la isla Raoul",
+    "ja_jp": "ラオール島測候所",
+    "ko_kr": "라울섬 관측소",
+    "pl_pl": "Stacja Wyspy Raoul",
+    "pt_br": "Estação da Ilha Raoul",
+    "ru_ru": "Станция острова Рауль",
+    "tr_tr": "Raoul Adası İstasyonu",
+    "uk_ua": "Станція острова Рауль",
+    "zh_cn": "拉乌尔岛测站",
+    "zh_hk": "拉烏爾島測站",
+    "zh_tw": "拉烏爾島測站"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Raoul-Island-Station",
+    "en_us": "Visit Raoul Island Station",
+    "es_es": "Visita Estación de la isla Raoul",
+    "ja_jp": "ラオール島測候所を訪れよう",
+    "ko_kr": "라울섬 관측소를 방문하세요",
+    "pl_pl": "Odwiedź stację wyspy Raoul",
+    "pt_br": "Visite Estação da Ilha Raoul",
+    "ru_ru": "Посетите станцию острова Рауль",
+    "tr_tr": "Raoul Adası İstasyonu'yu ziyaret edin",
+    "uk_ua": "Відвідайте станцію острова Рауль",
+    "zh_cn": "访问拉乌尔岛测站",
+    "zh_hk": "遊覽拉烏爾島測站",
+    "zh_tw": "造訪拉烏爾島測站"
+  },
+  "latitude": -29.24604,
+  "longitude": -177.92719
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/svalbard",
+  "title_lang": {
+    "de_de": "Longyearbyen",
+    "en_us": "Longyearbyen",
+    "es_es": "Longyearbyen",
+    "ja_jp": "ロングイェールビーン",
+    "ko_kr": "롱이어비엔",
+    "pl_pl": "Longyearbyen",
+    "pt_br": "Longyearbyen",
+    "ru_ru": "Лонгйир",
+    "tr_tr": "Longyearbyen",
+    "uk_ua": "Лонг'їр",
+    "zh_cn": "朗伊尔城",
+    "zh_hk": "朗伊爾城",
+    "zh_tw": "朗伊爾城"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Longyearbyen",
+    "en_us": "Visit Longyearbyen",
+    "es_es": "Visita Longyearbyen",
+    "ja_jp": "ロングイェールビーンを訪れよう",
+    "ko_kr": "롱이어비엔을 방문하세요",
+    "pl_pl": "Odwiedź Longyearbyen",
+    "pt_br": "Visite Longyearbyen",
+    "ru_ru": "Посетите Лонгйир",
+    "tr_tr": "Longyearbyen'i ziyaret edin",
+    "uk_ua": "Відвідайте Лонг'їр",
+    "zh_cn": "访问朗伊尔城",
+    "zh_hk": "遊覽朗伊爾城",
+    "zh_tw": "造訪朗伊爾城"
+  },
+  "latitude": 78.22334,
+  "longitude": 15.64689
+}

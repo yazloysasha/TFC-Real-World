@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/galapagos_islands",
+  "title_lang": {
+    "de_de": "Puerto Baquerizo Moreno",
+    "en_us": "Puerto Baquerizo Moreno",
+    "es_es": "Puerto Baquerizo Moreno",
+    "ja_jp": "プエルト・バケリソ・モレノ",
+    "ko_kr": "푸에르토바케리소모레노",
+    "pl_pl": "Puerto Baquerizo Moreno",
+    "pt_br": "Puerto Baquerizo Moreno",
+    "ru_ru": "Пуэрто-Бакерисо-Морено",
+    "tr_tr": "Puerto Baquerizo Moreno",
+    "uk_ua": "Пуерто-Бакерісо-Морено",
+    "zh_cn": "巴克里索莫雷诺港",
+    "zh_hk": "巴克里索莫雷諾港",
+    "zh_tw": "巴克裏索莫雷諾港"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Puerto Baquerizo Moreno",
+    "en_us": "Visit Puerto Baquerizo Moreno",
+    "es_es": "Visita Puerto Baquerizo Moreno",
+    "ja_jp": "プエルト・バケリソ・モレノを訪れよう",
+    "ko_kr": "푸에르토바케리소모레노를 방문하세요",
+    "pl_pl": "Odwiedź Puerto Baquerizo Moreno",
+    "pt_br": "Visite Puerto Baquerizo Moreno",
+    "ru_ru": "Посетите Пуэрто-Бакерисо-Морено",
+    "tr_tr": "Puerto Baquerizo Moreno'yu ziyaret edin",
+    "uk_ua": "Відвідайте Пуерто-Бакерісо-Морено",
+    "zh_cn": "访问巴克里索莫雷诺港",
+    "zh_hk": "遊覽巴克里索莫雷諾港",
+    "zh_tw": "造訪巴克裏索莫雷諾港"
+  },
+  "latitude": -0.90172,
+  "longitude": -89.61021
+}

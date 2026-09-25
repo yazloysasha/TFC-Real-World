@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/arkansas",
+  "title_lang": {
+    "de_de": "Little Rock",
+    "en_us": "Little Rock",
+    "es_es": "Little Rock",
+    "ja_jp": "リトル・ロック",
+    "ko_kr": "리틀록",
+    "pl_pl": "Little Rock",
+    "pt_br": "Little Rock",
+    "ru_ru": "Литл-Рок",
+    "tr_tr": "Little Rock",
+    "uk_ua": "Літл-Рок",
+    "zh_cn": "小石城",
+    "zh_hk": "小石城",
+    "zh_tw": "小石城"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Little Rock",
+    "en_us": "Visit Little Rock",
+    "es_es": "Visita Little Rock",
+    "ja_jp": "リトル・ロックを訪れよう",
+    "ko_kr": "리틀록을 방문하세요",
+    "pl_pl": "Odwiedź Little Rock",
+    "pt_br": "Visite Little Rock",
+    "ru_ru": "Посетите Литл-Рок",
+    "tr_tr": "Little Rock'u ziyaret edin",
+    "uk_ua": "Відвідайте Літл-Рок",
+    "zh_cn": "访问小石城",
+    "zh_hk": "遊覽小石城",
+    "zh_tw": "造訪小石城"
+  },
+  "latitude": 34.74648,
+  "longitude": -92.28959
+}

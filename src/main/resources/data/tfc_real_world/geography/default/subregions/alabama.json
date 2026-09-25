@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/southeastern_usa",
+  "title_lang": {
+    "de_de": "Alabama",
+    "en_us": "Alabama",
+    "es_es": "Alabama",
+    "ja_jp": "アラバマ",
+    "ko_kr": "앨라배마",
+    "pl_pl": "Alabama",
+    "pt_br": "Alabama",
+    "ru_ru": "Алабама",
+    "tr_tr": "Alabama",
+    "uk_ua": "Алабама",
+    "zh_cn": "阿拉巴马",
+    "zh_hk": "阿拉巴馬",
+    "zh_tw": "阿拉巴馬"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Alabama",
+    "en_us": "Visit the Alabama subregion",
+    "es_es": "Visita la subregión de Alabama",
+    "ja_jp": "アラバマのサブリージョンを訪れよう",
+    "ko_kr": "앨라배마 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Alabama",
+    "pt_br": "Visite a sub-região Alabama",
+    "ru_ru": "Посетите субрегион Алабама",
+    "tr_tr": "Alabama alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Алабама",
+    "zh_cn": "访问阿拉巴马子区域",
+    "zh_hk": "遊覽阿拉巴馬子區域",
+    "zh_tw": "造訪阿拉巴馬子區域"
+  }
+}

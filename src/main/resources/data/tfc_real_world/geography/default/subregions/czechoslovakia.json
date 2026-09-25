@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/middle_europe",
+  "title_lang": {
+    "de_de": "Tschechoslowakei",
+    "en_us": "Czechoslovakia",
+    "es_es": "Checoslovaquia",
+    "ja_jp": "チェコスロバキア",
+    "ko_kr": "체코슬로바키아",
+    "pl_pl": "Czechosłowacja",
+    "pt_br": "Tchecoslováquia",
+    "ru_ru": "Чехословакия",
+    "tr_tr": "Çekoslovakya",
+    "uk_ua": "Чехословаччина",
+    "zh_cn": "捷克斯洛伐克",
+    "zh_hk": "捷克斯洛伐克",
+    "zh_tw": "捷克斯洛伐克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Tschechoslowakei",
+    "en_us": "Visit the Czechoslovakia subregion",
+    "es_es": "Visita la subregión de Checoslovaquia",
+    "ja_jp": "チェコスロバキアのサブリージョンを訪れよう",
+    "ko_kr": "체코슬로바키아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Czechosłowacja",
+    "pt_br": "Visite a sub-região Tchecoslováquia",
+    "ru_ru": "Посетите субрегион Чехословакия",
+    "tr_tr": "Çekoslovakya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Чехословаччина",
+    "zh_cn": "访问捷克斯洛伐克子区域",
+    "zh_hk": "遊覽捷克斯洛伐克子區域",
+    "zh_tw": "造訪捷克斯洛伐克子區域"
+  }
+}

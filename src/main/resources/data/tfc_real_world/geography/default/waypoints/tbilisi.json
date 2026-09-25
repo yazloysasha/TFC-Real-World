@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/transcaucasus",
+  "title_lang": {
+    "de_de": "Tiflis",
+    "en_us": "Tbilisi",
+    "es_es": "Tiflis",
+    "ja_jp": "トビリシ",
+    "ko_kr": "트빌리시",
+    "pl_pl": "Tbilisi",
+    "pt_br": "Tiblíssi",
+    "ru_ru": "Тбилиси",
+    "tr_tr": "Tiflis",
+    "uk_ua": "Тбілісі",
+    "zh_cn": "第比利斯",
+    "zh_hk": "第比利斯",
+    "zh_tw": "提比里斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Georgien",
+    "en_us": "Visit the capital of Georgia",
+    "es_es": "Visita la capital de Georgia",
+    "ja_jp": "ジョージアの首都を訪れよう",
+    "ko_kr": "조지아의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Gruzji",
+    "pt_br": "Visite a capital da Geórgia",
+    "ru_ru": "Посетите столицу Грузии",
+    "tr_tr": "Gürcistan'ın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Грузії",
+    "zh_cn": "访问格鲁吉亚的首都",
+    "zh_hk": "遊覽格魯吉亞的首都",
+    "zh_tw": "造訪格魯吉亞的首都"
+  },
+  "latitude": 41.69143,
+  "longitude": 44.83412,
+  "capital": 1
+}

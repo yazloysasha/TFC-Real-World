@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/siberia",
+  "title_lang": {
+    "de_de": "Krasnojarsk",
+    "en_us": "Krasnoyarsk",
+    "es_es": "Krasnoyarsk",
+    "ja_jp": "クラスノヤルスク",
+    "ko_kr": "크라스노야르스크",
+    "pl_pl": "Krasnojarsk",
+    "pt_br": "Krasnoiarsk",
+    "ru_ru": "Красноярск",
+    "tr_tr": "Krasnoyarsk",
+    "uk_ua": "Красноярськ",
+    "zh_cn": "克拉斯诺亚尔斯克",
+    "zh_hk": "克拉斯諾亞爾斯克",
+    "zh_tw": "克拉斯諾亞爾斯克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Krasnojarsk",
+    "en_us": "Visit the Krasnoyarsk subregion",
+    "es_es": "Visita la subregión de Krasnoyarsk",
+    "ja_jp": "クラスノヤルスクのサブリージョンを訪れよう",
+    "ko_kr": "크라스노야르스크 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Krasnojarsk",
+    "pt_br": "Visite a sub-região Krasnoiarsk",
+    "ru_ru": "Посетите субрегион Красноярск",
+    "tr_tr": "Krasnoyarsk alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Красноярськ",
+    "zh_cn": "访问克拉斯诺亚尔斯克子区域",
+    "zh_hk": "遊覽克拉斯諾亞爾斯克子區域",
+    "zh_tw": "造訪克拉斯諾亞爾斯克子區域"
+  }
+}

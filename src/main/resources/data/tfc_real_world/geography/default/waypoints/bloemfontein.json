@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/free_state",
+  "title_lang": {
+    "de_de": "Bloemfontein",
+    "en_us": "Bloemfontein",
+    "es_es": "Bloemfontein",
+    "ja_jp": "ブルームフォンテーン",
+    "ko_kr": "블룸폰테인",
+    "pl_pl": "Bloemfontein",
+    "pt_br": "Bloemfontein",
+    "ru_ru": "Блумфонтейн",
+    "tr_tr": "Bloemfontein",
+    "uk_ua": "Блумфонтейн",
+    "zh_cn": "布隆方丹",
+    "zh_hk": "布隆方丹",
+    "zh_tw": "布隆方丹"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Bloemfontein",
+    "en_us": "Visit Bloemfontein",
+    "es_es": "Visita Bloemfontein",
+    "ja_jp": "ブルームフォンテーンを訪れよう",
+    "ko_kr": "블룸폰테인을 방문하세요",
+    "pl_pl": "Odwiedź Bloemfontein",
+    "pt_br": "Visite Bloemfontein",
+    "ru_ru": "Посетите Блумфонтейн",
+    "tr_tr": "Bloemfontein'i ziyaret edin",
+    "uk_ua": "Відвідайте Блумфонтейн",
+    "zh_cn": "访问布隆方丹",
+    "zh_hk": "遊覽布隆方丹",
+    "zh_tw": "造訪布隆方丹"
+  },
+  "latitude": -29.12107,
+  "longitude": 26.214
+}

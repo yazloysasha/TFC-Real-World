@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/eastern_europe",
+  "title_lang": {
+    "de_de": "Baltikum",
+    "en_us": "Baltic States",
+    "es_es": "Países Bálticos",
+    "ja_jp": "バルト三国",
+    "ko_kr": "발트 삼국",
+    "pl_pl": "Kraje bałtyckie",
+    "pt_br": "Países Bálticos",
+    "ru_ru": "Прибалтика",
+    "tr_tr": "Baltık ülkeleri",
+    "uk_ua": "Прибалтика",
+    "zh_cn": "波罗的海三国",
+    "zh_hk": "波羅的海三國",
+    "zh_tw": "波羅的海三國"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Baltikum",
+    "en_us": "Visit the Baltic States subregion",
+    "es_es": "Visita la subregión Países Bálticos",
+    "ja_jp": "バルト三国のサブリージョンを訪れよう",
+    "ko_kr": "발트 삼국 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Kraje bałtyckie",
+    "pt_br": "Visite a sub-região Países Bálticos",
+    "ru_ru": "Посетите субрегион Прибалтика",
+    "tr_tr": "Baltık ülkeleri alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Прибалтика",
+    "zh_cn": "访问波罗的海三国子区域",
+    "zh_hk": "遊覽波羅的海三國子區域",
+    "zh_tw": "造訪波羅的海三國子區域"
+  }
+}

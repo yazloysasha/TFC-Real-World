@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/michigan",
+  "title_lang": {
+    "de_de": "Lansing",
+    "en_us": "Lansing",
+    "es_es": "Lansing",
+    "ja_jp": "ランシング",
+    "ko_kr": "랜싱",
+    "pl_pl": "Lansing",
+    "pt_br": "Lansing",
+    "ru_ru": "Лансинг",
+    "tr_tr": "Lansing",
+    "uk_ua": "Лансінг",
+    "zh_cn": "兰辛",
+    "zh_hk": "蘭辛",
+    "zh_tw": "蘭辛"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Lansing",
+    "en_us": "Visit Lansing",
+    "es_es": "Visita Lansing",
+    "ja_jp": "ランシングを訪れよう",
+    "ko_kr": "랜싱을 방문하세요",
+    "pl_pl": "Odwiedź Lansing",
+    "pt_br": "Visite Lansing",
+    "ru_ru": "Посетите Лансинг",
+    "tr_tr": "Lansing'i ziyaret edin",
+    "uk_ua": "Відвідайте Лансінг",
+    "zh_cn": "访问兰辛",
+    "zh_hk": "遊覽蘭辛",
+    "zh_tw": "造訪蘭辛"
+  },
+  "latitude": 42.73253,
+  "longitude": -84.55553
+}

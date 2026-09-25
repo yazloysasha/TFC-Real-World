@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/new_zealand",
+  "title_lang": {
+    "de_de": "Nordinsel",
+    "en_us": "North Island",
+    "es_es": "Isla Norte",
+    "ja_jp": "北島",
+    "ko_kr": "북섬",
+    "pl_pl": "Wyspa Północna",
+    "pt_br": "Ilha Norte",
+    "ru_ru": "Северный остров",
+    "tr_tr": "Kuzey Adası",
+    "uk_ua": "Північний острів",
+    "zh_cn": "北岛",
+    "zh_hk": "北島",
+    "zh_tw": "北島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Nordinsel",
+    "en_us": "Visit the North Island subregion",
+    "es_es": "Visita la subregión Isla Norte",
+    "ja_jp": "北島のサブリージョンを訪れよう",
+    "ko_kr": "북섬 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspa Północna",
+    "pt_br": "Visite a sub-região Ilha Norte",
+    "ru_ru": "Посетите субрегион Северный остров",
+    "tr_tr": "Kuzey Adası alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Північний острів",
+    "zh_cn": "访问北岛子区域",
+    "zh_hk": "遊覽北島子區域",
+    "zh_tw": "造訪北島子區域"
+  }
+}

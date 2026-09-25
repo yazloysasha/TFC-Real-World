@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/new_jersey",
+  "title_lang": {
+    "de_de": "Trenton",
+    "en_us": "Trenton",
+    "es_es": "Trenton",
+    "ja_jp": "トレントン",
+    "ko_kr": "트렌턴",
+    "pl_pl": "Trenton",
+    "pt_br": "Trenton",
+    "ru_ru": "Трентон",
+    "tr_tr": "Trenton",
+    "uk_ua": "Трентон",
+    "zh_cn": "特伦顿",
+    "zh_hk": "特倫頓",
+    "zh_tw": "特倫頓"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Trenton",
+    "en_us": "Visit Trenton",
+    "es_es": "Visita Trenton",
+    "ja_jp": "トレントンを訪れよう",
+    "ko_kr": "트렌턴을 방문하세요",
+    "pl_pl": "Odwiedź Trenton",
+    "pt_br": "Visite Trenton",
+    "ru_ru": "Посетите Трентон",
+    "tr_tr": "Trenton'u ziyaret edin",
+    "uk_ua": "Відвідайте Трентон",
+    "zh_cn": "访问特伦顿",
+    "zh_hk": "遊覽特倫頓",
+    "zh_tw": "造訪特倫頓"
+  },
+  "latitude": 40.21705,
+  "longitude": -74.74294
+}

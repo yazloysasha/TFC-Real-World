@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/spain",
+  "title_lang": {
+    "de_de": "Andorra la Vella",
+    "en_us": "Andorra la Vella",
+    "es_es": "Andorra la Vella",
+    "ja_jp": "アンドラ・ラ・ベリャ",
+    "ko_kr": "안도라라벨랴",
+    "pl_pl": "Andorra la Vella",
+    "pt_br": "Andorra-a-Velha",
+    "ru_ru": "Андорра-ла-Велья",
+    "tr_tr": "Andorra la Vella",
+    "uk_ua": "Андорра-ла-Велья",
+    "zh_cn": "安道尔城",
+    "zh_hk": "安道爾城",
+    "zh_tw": "安道爾城"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt des Fürstentums Andorra",
+    "en_us": "Visit the capital of the Principality of Andorra",
+    "es_es": "Visita la capital del Principado de Andorra",
+    "ja_jp": "アンドラ公国の首都を訪れよう",
+    "ko_kr": "안도라 공국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Księstwa Andory",
+    "pt_br": "Visite a capital do Principado de Andorra",
+    "ru_ru": "Посетите столицу Княжества Андорра",
+    "tr_tr": "Andorra Prensliği'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Князівства Андорра",
+    "zh_cn": "访问安道尔公国的首都",
+    "zh_hk": "遊覽安道爾公國的首都",
+    "zh_tw": "造訪安道爾公國的首都"
+  },
+  "latitude": 42.50779,
+  "longitude": 1.52109,
+  "capital": 1
+}

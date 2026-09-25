@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/chile_central",
+  "title_lang": {
+    "de_de": "Santiago de Chile",
+    "en_us": "Santiago",
+    "es_es": "Santiago de Chile",
+    "ja_jp": "サンティアゴ",
+    "ko_kr": "산티아고",
+    "pl_pl": "Santiago",
+    "pt_br": "Santiago",
+    "ru_ru": "Сантьяго",
+    "tr_tr": "Santiago",
+    "uk_ua": "Сантьяго",
+    "zh_cn": "圣地亚哥",
+    "zh_hk": "聖地牙哥",
+    "zh_tw": "聖地牙哥"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Chile",
+    "en_us": "Visit the capital of the Republic of Chile",
+    "es_es": "Visita la capital de la República de Chile",
+    "ja_jp": "チリ共和国の首都を訪れよう",
+    "ko_kr": "칠레 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Chile",
+    "pt_br": "Visite a capital da República do Chile",
+    "ru_ru": "Посетите столицу Республики Чили",
+    "tr_tr": "Şili Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Чилі",
+    "zh_cn": "访问智利共和国的首都",
+    "zh_hk": "遊覽智利共和國的首都",
+    "zh_tw": "造訪智利共和國的首都"
+  },
+  "latitude": -33.45694,
+  "longitude": -70.64827,
+  "capital": 1
+}

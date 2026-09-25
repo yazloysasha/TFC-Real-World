@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/northwestern_usa",
+  "title_lang": {
+    "de_de": "Idaho",
+    "en_us": "Idaho",
+    "es_es": "Idaho",
+    "ja_jp": "アイダホ",
+    "ko_kr": "아이다호",
+    "pl_pl": "Idaho",
+    "pt_br": "Idaho",
+    "ru_ru": "Айдахо",
+    "tr_tr": "Idaho",
+    "uk_ua": "Айдахо",
+    "zh_cn": "爱达荷",
+    "zh_hk": "愛達荷",
+    "zh_tw": "愛達荷"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Idaho",
+    "en_us": "Visit the Idaho subregion",
+    "es_es": "Visita la subregión de Idaho",
+    "ja_jp": "アイダホのサブリージョンを訪れよう",
+    "ko_kr": "아이다호 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Idaho",
+    "pt_br": "Visite a sub-região Idaho",
+    "ru_ru": "Посетите субрегион Айдахо",
+    "tr_tr": "Idaho alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Айдахо",
+    "zh_cn": "访问爱达荷子区域",
+    "zh_hk": "遊覽愛達荷子區域",
+    "zh_tw": "造訪愛達荷子區域"
+  }
+}

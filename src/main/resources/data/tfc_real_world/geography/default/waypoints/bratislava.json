@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/czechoslovakia",
+  "title_lang": {
+    "de_de": "Bratislava",
+    "en_us": "Bratislava",
+    "es_es": "Bratislava",
+    "ja_jp": "ブラチスラヴァ",
+    "ko_kr": "브라티슬라바",
+    "pl_pl": "Bratysława",
+    "pt_br": "Bratislava",
+    "ru_ru": "Братислава",
+    "tr_tr": "Bratislava",
+    "uk_ua": "Братислава",
+    "zh_cn": "布拉迪斯拉发",
+    "zh_hk": "布拉迪斯拉發",
+    "zh_tw": "布拉提斯拉瓦"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Slowakischen Republik",
+    "en_us": "Visit the capital of the Slovak Republic",
+    "es_es": "Visita la capital de la República Eslovaca",
+    "ja_jp": "スロバキア共和国の首都を訪れよう",
+    "ko_kr": "슬로바키아 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Słowackiej",
+    "pt_br": "Visite a capital da República Eslovaca",
+    "ru_ru": "Посетите столицу Словацкой Республики",
+    "tr_tr": "Slovak Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Словацької Республіки",
+    "zh_cn": "访问斯洛伐克共和国的首都",
+    "zh_hk": "遊覽斯洛伐克共和國的首都",
+    "zh_tw": "造訪斯洛伐克共和國的首都"
+  },
+  "latitude": 48.14816,
+  "longitude": 17.10674,
+  "capital": 1
+}

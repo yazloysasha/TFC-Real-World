@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/nebraska",
+  "title_lang": {
+    "de_de": "Lincoln",
+    "en_us": "Lincoln",
+    "es_es": "Lincoln",
+    "ja_jp": "リンカーン",
+    "ko_kr": "링컨",
+    "pl_pl": "Lincoln",
+    "pt_br": "Lincoln",
+    "ru_ru": "Линкольн",
+    "tr_tr": "Lincoln",
+    "uk_ua": "Лінкольн",
+    "zh_cn": "林肯",
+    "zh_hk": "林肯",
+    "zh_tw": "林肯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Lincoln",
+    "en_us": "Visit Lincoln",
+    "es_es": "Visita Lincoln",
+    "ja_jp": "リンカーンを訪れよう",
+    "ko_kr": "링컨을 방문하세요",
+    "pl_pl": "Odwiedź Lincoln",
+    "pt_br": "Visite Lincoln",
+    "ru_ru": "Посетите Линкольн",
+    "tr_tr": "Lincoln'u ziyaret edin",
+    "uk_ua": "Відвідайте Лінкольн",
+    "zh_cn": "访问林肯",
+    "zh_hk": "遊覽林肯",
+    "zh_tw": "造訪林肯"
+  },
+  "latitude": 40.8,
+  "longitude": -96.66696
+}

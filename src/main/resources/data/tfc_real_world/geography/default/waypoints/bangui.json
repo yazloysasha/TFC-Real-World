@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/central_african_republic",
+  "title_lang": {
+    "de_de": "Bangui",
+    "en_us": "Bangui",
+    "es_es": "Bangui",
+    "ja_jp": "バンギ",
+    "ko_kr": "방기",
+    "pl_pl": "Bangi",
+    "pt_br": "Bangui",
+    "ru_ru": "Банги",
+    "tr_tr": "Bangui",
+    "uk_ua": "Бангі",
+    "zh_cn": "班吉",
+    "zh_hk": "班基",
+    "zh_tw": "班基"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Zentralafrikanischen Republik",
+    "en_us": "Visit the capital of the Central African Republic",
+    "es_es": "Visita la capital de la República Centroafricana",
+    "ja_jp": "中央アフリカ共和国の首都を訪れよう",
+    "ko_kr": "중앙아프리카 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Środkowoafrykańskiej",
+    "pt_br": "Visite a capital da República Centro-Africana",
+    "ru_ru": "Посетите столицу Центральноафриканской Республики",
+    "tr_tr": "Orta Afrika Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Центральноафриканської Республіки",
+    "zh_cn": "访问中非共和国的首都",
+    "zh_hk": "遊覽中非共和國的首都",
+    "zh_tw": "造訪中非共和國的首都"
+  },
+  "latitude": 4.36122,
+  "longitude": 18.55496,
+  "capital": 1
+}

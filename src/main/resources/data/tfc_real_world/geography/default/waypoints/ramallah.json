@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/palestine",
+  "title_lang": {
+    "de_de": "Ramallah",
+    "en_us": "Ramallah",
+    "es_es": "Ramala",
+    "ja_jp": "ラマッラー",
+    "ko_kr": "라말라",
+    "pl_pl": "Ramallah",
+    "pt_br": "Ramallah",
+    "ru_ru": "Рамалла",
+    "tr_tr": "Ramallah",
+    "uk_ua": "Рамалла",
+    "zh_cn": "拉姆安拉",
+    "zh_hk": "拉姆安拉",
+    "zh_tw": "拉馬拉"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Palästina",
+    "en_us": "Visit the capital of Palestine",
+    "es_es": "Visita la capital de Palestina",
+    "ja_jp": "パレスチナの首都を訪れよう",
+    "ko_kr": "팔레스타인의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Palestyny",
+    "pt_br": "Visite a capital da Palestina",
+    "ru_ru": "Посетите столицу Палестины",
+    "tr_tr": "Filistin'in başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Палестини",
+    "zh_cn": "访问巴勒斯坦的首都",
+    "zh_hk": "遊覽巴勒斯坦的首都",
+    "zh_tw": "造訪巴勒斯坦的首都"
+  },
+  "latitude": 31.89964,
+  "longitude": 35.20422,
+  "capital": 1
+}

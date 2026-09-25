@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/niue",
+  "title_lang": {
+    "de_de": "Alofi",
+    "en_us": "Alofi",
+    "es_es": "Alofi",
+    "ja_jp": "アロフィ",
+    "ko_kr": "알로피",
+    "pl_pl": "Alofi",
+    "pt_br": "Alofi",
+    "ru_ru": "Алофи",
+    "tr_tr": "Alofi",
+    "uk_ua": "Алофі",
+    "zh_cn": "阿洛菲",
+    "zh_hk": "阿洛菲",
+    "zh_tw": "阿洛菲"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Alofi",
+    "en_us": "Visit Alofi",
+    "es_es": "Visita Alofi",
+    "ja_jp": "アロフィを訪れよう",
+    "ko_kr": "알로피를 방문하세요",
+    "pl_pl": "Odwiedź Alofi",
+    "pt_br": "Visite Alofi",
+    "ru_ru": "Посетите Алофи",
+    "tr_tr": "Alofi'yi ziyaret edin",
+    "uk_ua": "Відвідайте Алофі",
+    "zh_cn": "访问阿洛菲",
+    "zh_hk": "遊覽阿洛菲",
+    "zh_tw": "造訪阿洛菲"
+  },
+  "latitude": -19.05294,
+  "longitude": -169.91957
+}

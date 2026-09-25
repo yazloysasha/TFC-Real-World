@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/eastern_asia",
+  "title_lang": {
+    "de_de": "Taiwan",
+    "en_us": "Taiwan",
+    "es_es": "Taiwán",
+    "ja_jp": "台湾",
+    "ko_kr": "대만",
+    "pl_pl": "Tajwan",
+    "pt_br": "Taiwan",
+    "ru_ru": "Тайвань",
+    "tr_tr": "Tayvan",
+    "uk_ua": "Тайвань",
+    "zh_cn": "台湾",
+    "zh_hk": "台灣",
+    "zh_tw": "臺灣"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Taiwan",
+    "en_us": "Visit the Taiwan subregion",
+    "es_es": "Visita la subregión de Taiwán",
+    "ja_jp": "台湾のサブリージョンを訪れよう",
+    "ko_kr": "대만 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Tajwan",
+    "pt_br": "Visite a sub-região Taiwan",
+    "ru_ru": "Посетите субрегион Тайвань",
+    "tr_tr": "Tayvan alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Тайвань",
+    "zh_cn": "访问台湾子区域",
+    "zh_hk": "遊覽台灣子區域",
+    "zh_tw": "造訪臺灣子區域"
+  }
+}

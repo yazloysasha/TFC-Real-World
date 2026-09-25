@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/western_indian_ocean",
+  "title_lang": {
+    "de_de": "Inseln der Mosambikstraße",
+    "en_us": "Mozambique Channel Islands",
+    "es_es": "Islas del canal de Mozambique",
+    "ja_jp": "モザンビーク海峡諸島",
+    "ko_kr": "모잠비크 해협 제도",
+    "pl_pl": "Wyspy Kanału Mozambickiego",
+    "pt_br": "Ilhas do canal de Moçambique",
+    "ru_ru": "Острова Мозамбикского пролива",
+    "tr_tr": "Mozambik Kanalı Adaları",
+    "uk_ua": "Острови Мозамбіцької протоки",
+    "zh_cn": "莫桑比克海峡群岛",
+    "zh_hk": "莫桑比克海峽群島",
+    "zh_tw": "莫桑比克海峽群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Inseln der Mosambikstraße",
+    "en_us": "Visit the Mozambique Channel Islands subregion",
+    "es_es": "Visita la subregión Islas del canal de Mozambique",
+    "ja_jp": "モザンビーク海峡諸島のサブリージョンを訪れよう",
+    "ko_kr": "모잠비크 해협 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Kanału Mozambickiego",
+    "pt_br": "Visite a sub-região Ilhas do canal de Moçambique",
+    "ru_ru": "Посетите субрегион Острова Мозамбикского пролива",
+    "tr_tr": "Mozambik Kanalı Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Острови Мозамбіцької протоки",
+    "zh_cn": "访问莫桑比克海峡群岛子区域",
+    "zh_hk": "遊覽莫桑比克海峽群島子區域",
+    "zh_tw": "造訪莫桑比克海峽群島子區域"
+  }
+}

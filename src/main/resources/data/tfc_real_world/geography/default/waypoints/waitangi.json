@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/chatham_islands",
+  "title_lang": {
+    "de_de": "Waitangi",
+    "en_us": "Waitangi",
+    "es_es": "Waitangi",
+    "ja_jp": "ワイタンギ",
+    "ko_kr": "와이탕기",
+    "pl_pl": "Waitangi",
+    "pt_br": "Waitangi",
+    "ru_ru": "Вайтанги",
+    "tr_tr": "Waitangi",
+    "uk_ua": "Вайтангі",
+    "zh_cn": "怀唐伊",
+    "zh_hk": "懷唐伊",
+    "zh_tw": "懷唐伊"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Waitangi",
+    "en_us": "Visit Waitangi",
+    "es_es": "Visita Waitangi",
+    "ja_jp": "ワイタンギを訪れよう",
+    "ko_kr": "와이탕기를 방문하세요",
+    "pl_pl": "Odwiedź Waitangi",
+    "pt_br": "Visite Waitangi",
+    "ru_ru": "Посетите Вайтанги",
+    "tr_tr": "Waitangi'yi ziyaret edin",
+    "uk_ua": "Відвідайте Вайтангі",
+    "zh_cn": "访问怀唐伊",
+    "zh_hk": "遊覽懷唐伊",
+    "zh_tw": "造訪懷唐伊"
+  },
+  "latitude": -43.95353,
+  "longitude": -176.55973
+}

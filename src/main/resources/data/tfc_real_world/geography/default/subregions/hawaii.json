@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/north_central_pacific",
+  "title_lang": {
+    "de_de": "Hawaii",
+    "en_us": "Hawaii",
+    "es_es": "Hawái",
+    "ja_jp": "ハワイ",
+    "ko_kr": "하와이",
+    "pl_pl": "Hawaje",
+    "pt_br": "Havaí",
+    "ru_ru": "Гавайи",
+    "tr_tr": "Hawaii",
+    "uk_ua": "Гаваї",
+    "zh_cn": "夏威夷",
+    "zh_hk": "夏威夷",
+    "zh_tw": "夏威夷"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Hawaii",
+    "en_us": "Visit the Hawaii subregion",
+    "es_es": "Visita la subregión de Hawái",
+    "ja_jp": "ハワイのサブリージョンを訪れよう",
+    "ko_kr": "하와이 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Hawaje",
+    "pt_br": "Visite a sub-região Havaí",
+    "ru_ru": "Посетите субрегион Гавайи",
+    "tr_tr": "Hawaii alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Гаваї",
+    "zh_cn": "访问夏威夷子区域",
+    "zh_hk": "遊覽夏威夷子區域",
+    "zh_tw": "造訪夏威夷子區域"
+  }
+}

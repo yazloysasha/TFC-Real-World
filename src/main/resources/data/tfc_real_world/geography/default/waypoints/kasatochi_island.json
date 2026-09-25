@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/aleutian_islands",
+  "title_lang": {
+    "de_de": "Kasatochi",
+    "en_us": "Kasatochi Island",
+    "es_es": "Isla Kasatochi",
+    "ja_jp": "カサトチ島",
+    "ko_kr": "카사토치섬",
+    "pl_pl": "Wyspa Kasatochi",
+    "pt_br": "Ilha Kasatochi",
+    "ru_ru": "Остров Касаточи",
+    "tr_tr": "Kasatochi Adası",
+    "uk_ua": "Острів Касаточі",
+    "zh_cn": "卡萨托奇岛",
+    "zh_hk": "卡薩托奇島",
+    "zh_tw": "卡薩托奇島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Kasatochi",
+    "en_us": "Visit Kasatochi Island",
+    "es_es": "Visita Isla Kasatochi",
+    "ja_jp": "カサトチ島を訪れよう",
+    "ko_kr": "카사토치섬을 방문하세요",
+    "pl_pl": "Odwiedź wyspę Kasatochi",
+    "pt_br": "Visite Ilha Kasatochi",
+    "ru_ru": "Посетите остров Касаточи",
+    "tr_tr": "Kasatochi Adası'yı ziyaret edin",
+    "uk_ua": "Відвідайте острів Касаточі",
+    "zh_cn": "访问卡萨托奇岛",
+    "zh_hk": "遊覽卡薩托奇島",
+    "zh_tw": "造訪卡薩托奇島"
+  },
+  "latitude": 52.17014,
+  "longitude": -175.50917
+}

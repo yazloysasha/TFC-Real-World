@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/tunisia",
+  "title_lang": {
+    "de_de": "Tunis",
+    "en_us": "Tunis",
+    "es_es": "Túnez",
+    "ja_jp": "チュニス",
+    "ko_kr": "튀니스",
+    "pl_pl": "Tunis",
+    "pt_br": "Tunes",
+    "ru_ru": "Тунис",
+    "tr_tr": "Tunus",
+    "uk_ua": "Туніс",
+    "zh_cn": "突尼斯市",
+    "zh_hk": "突尼斯",
+    "zh_tw": "突尼斯市"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Tunesien",
+    "en_us": "Visit the capital of the Republic of Tunisia",
+    "es_es": "Visita la capital de la República de Túnez",
+    "ja_jp": "チュニジア共和国の首都を訪れよう",
+    "ko_kr": "튀니지 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Tunezji",
+    "pt_br": "Visite a capital da República da Tunísia",
+    "ru_ru": "Посетите столицу Республики Тунис",
+    "tr_tr": "Tunus Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Туніс",
+    "zh_cn": "访问突尼斯共和国的首都",
+    "zh_hk": "遊覽突尼斯共和國的首都",
+    "zh_tw": "造訪突尼斯共和國的首都"
+  },
+  "latitude": 36.81897,
+  "longitude": 10.16579,
+  "capital": 1
+}

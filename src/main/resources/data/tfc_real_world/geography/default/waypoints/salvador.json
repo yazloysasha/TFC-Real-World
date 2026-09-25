@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/brazil_northeast",
+  "title_lang": {
+    "de_de": "Salvador",
+    "en_us": "Salvador",
+    "es_es": "Salvador",
+    "ja_jp": "サルヴァドール",
+    "ko_kr": "사우바도르",
+    "pl_pl": "Salvador",
+    "pt_br": "Salvador",
+    "ru_ru": "Салвадор",
+    "tr_tr": "Salvador",
+    "uk_ua": "Салвадор",
+    "zh_cn": "萨尔瓦多",
+    "zh_hk": "薩爾瓦多",
+    "zh_tw": "薩爾瓦多"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Salvador",
+    "en_us": "Visit Salvador",
+    "es_es": "Visita Salvador",
+    "ja_jp": "サルヴァドールを訪れよう",
+    "ko_kr": "사우바도르를 방문하세요",
+    "pl_pl": "Odwiedź Salvador",
+    "pt_br": "Visite Salvador",
+    "ru_ru": "Посетите Салвадор",
+    "tr_tr": "Salvador'u ziyaret edin",
+    "uk_ua": "Відвідайте Салвадор",
+    "zh_cn": "访问萨尔瓦多",
+    "zh_hk": "遊覽薩爾瓦多",
+    "zh_tw": "造訪薩爾瓦多"
+  },
+  "latitude": -12.97563,
+  "longitude": -38.49096
+}

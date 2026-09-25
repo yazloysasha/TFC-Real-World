@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/south_central_pacific",
+  "title_lang": {
+    "de_de": "Tuamotu",
+    "en_us": "Tuamotu",
+    "es_es": "Tuamotu",
+    "ja_jp": "トゥアモトゥ",
+    "ko_kr": "투아모투",
+    "pl_pl": "Tuamotu",
+    "pt_br": "Tuamotu",
+    "ru_ru": "Туамоту",
+    "tr_tr": "Tuamotu",
+    "uk_ua": "Туамоту",
+    "zh_cn": "土阿莫土",
+    "zh_hk": "土阿莫土",
+    "zh_tw": "土阿莫土"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Tuamotu",
+    "en_us": "Visit the Tuamotu subregion",
+    "es_es": "Visita la subregión de Tuamotu",
+    "ja_jp": "トゥアモトゥのサブリージョンを訪れよう",
+    "ko_kr": "투아모투 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Tuamotu",
+    "pt_br": "Visite a sub-região Tuamotu",
+    "ru_ru": "Посетите субрегион Туамоту",
+    "tr_tr": "Tuamotu alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Туамоту",
+    "zh_cn": "访问土阿莫土子区域",
+    "zh_hk": "遊覽土阿莫土子區域",
+    "zh_tw": "造訪土阿莫土子區域"
+  }
+}

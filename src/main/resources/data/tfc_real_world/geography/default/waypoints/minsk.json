@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/belarus",
+  "title_lang": {
+    "de_de": "Minsk",
+    "en_us": "Minsk",
+    "es_es": "Minsk",
+    "ja_jp": "ミンスク",
+    "ko_kr": "민스크",
+    "pl_pl": "Mińsk",
+    "pt_br": "Minsk",
+    "ru_ru": "Минск",
+    "tr_tr": "Minsk",
+    "uk_ua": "Мінськ",
+    "zh_cn": "明斯克",
+    "zh_hk": "明斯克",
+    "zh_tw": "明斯克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Belarus",
+    "en_us": "Visit the capital of the Republic of Belarus",
+    "es_es": "Visita la capital de la República de Bielorrusia",
+    "ja_jp": "ベラルーシ共和国の首都を訪れよう",
+    "ko_kr": "벨라루스 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Białorusi",
+    "pt_br": "Visite a capital da República da Bielorrússia",
+    "ru_ru": "Посетите столицу Республики Беларусь",
+    "tr_tr": "Belarus Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Білорусь",
+    "zh_cn": "访问白俄罗斯共和国的首都",
+    "zh_hk": "遊覽白俄羅斯共和國的首都",
+    "zh_tw": "造訪白俄羅斯共和國的首都"
+  },
+  "latitude": 53.90019,
+  "longitude": 27.56653,
+  "capital": 1
+}

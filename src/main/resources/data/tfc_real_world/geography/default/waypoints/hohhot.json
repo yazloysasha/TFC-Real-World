@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/inner_mongolia",
+  "title_lang": {
+    "de_de": "Hohhot",
+    "en_us": "Hohhot",
+    "es_es": "Hohhot",
+    "ja_jp": "フフホト市",
+    "ko_kr": "후허하오터시",
+    "pl_pl": "Hohhot",
+    "pt_br": "Hohhot",
+    "ru_ru": "Хух-Хото",
+    "tr_tr": "Huhhot",
+    "uk_ua": "Хух-Хото",
+    "zh_cn": "呼和浩特市",
+    "zh_hk": "呼和浩特市",
+    "zh_tw": "呼和浩特市"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Hohhot",
+    "en_us": "Visit Hohhot",
+    "es_es": "Visita Hohhot",
+    "ja_jp": "フフホト市を訪れよう",
+    "ko_kr": "후허하오터시를 방문하세요",
+    "pl_pl": "Odwiedź Hohhot",
+    "pt_br": "Visite Hohhot",
+    "ru_ru": "Посетите Хух-Хото",
+    "tr_tr": "Huhhot'u ziyaret edin",
+    "uk_ua": "Відвідайте Хух-Хото",
+    "zh_cn": "访问呼和浩特市",
+    "zh_hk": "遊覽呼和浩特市",
+    "zh_tw": "造訪呼和浩特市"
+  },
+  "latitude": 40.81056,
+  "longitude": 111.65222
+}

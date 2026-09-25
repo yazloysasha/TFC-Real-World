@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/caribbean",
+  "title_lang": {
+    "de_de": "Niederländische Antillen",
+    "en_us": "Netherlands Antilles",
+    "es_es": "Antillas Neerlandesas",
+    "ja_jp": "オランダ領アンティル",
+    "ko_kr": "네덜란드령 안틸레스",
+    "pl_pl": "Antyle Holenderskie",
+    "pt_br": "Antilhas Neerlandesas",
+    "ru_ru": "Нидерландские Антилы",
+    "tr_tr": "Hollanda Antilleri",
+    "uk_ua": "Нідерландські Антильські острови",
+    "zh_cn": "荷属安的列斯",
+    "zh_hk": "荷屬安的列斯",
+    "zh_tw": "荷屬安的列斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Niederländische Antillen",
+    "en_us": "Visit the Netherlands Antilles subregion",
+    "es_es": "Visita la subregión Antillas Neerlandesas",
+    "ja_jp": "オランダ領アンティルのサブリージョンを訪れよう",
+    "ko_kr": "네덜란드령 안틸레스 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Antyle Holenderskie",
+    "pt_br": "Visite a sub-região Antilhas Neerlandesas",
+    "ru_ru": "Посетите субрегион Нидерландские Антилы",
+    "tr_tr": "Hollanda Antilleri alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Нідерландські Антильські острови",
+    "zh_cn": "访问荷属安的列斯子区域",
+    "zh_hk": "遊覽荷屬安的列斯子區域",
+    "zh_tw": "造訪荷屬安的列斯子區域"
+  }
+}

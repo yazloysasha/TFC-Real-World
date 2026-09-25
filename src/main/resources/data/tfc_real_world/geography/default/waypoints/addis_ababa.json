@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/ethiopia",
+  "title_lang": {
+    "de_de": "Addis Abeba",
+    "en_us": "Addis Ababa",
+    "es_es": "Adís Abeba",
+    "ja_jp": "アディスアベバ",
+    "ko_kr": "아디스아바바",
+    "pl_pl": "Addis Abeba",
+    "pt_br": "Adis Abeba",
+    "ru_ru": "Аддис-Абеба",
+    "tr_tr": "Addis Ababa",
+    "uk_ua": "Аддис-Абеба",
+    "zh_cn": "亚的斯亚贝巴",
+    "zh_hk": "亞的斯亞貝巴",
+    "zh_tw": "阿迪斯阿貝巴"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Demokratischen Bundesrepublik Äthiopien",
+    "en_us": "Visit the capital of the Federal Democratic Republic of Ethiopia",
+    "es_es": "Visita la capital de la República Democrática Federal de Etiopía",
+    "ja_jp": "エチオピア連邦民主共和国の首都を訪れよう",
+    "ko_kr": "에티오피아 연방민주공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Federalnej Demokratycznej Republiki Etiopii",
+    "pt_br": "Visite a capital da República Democrática Federal da Etiópia",
+    "ru_ru": "Посетите столицу Федеративной Демократической Республики Эфиопия",
+    "tr_tr": "Etiyopya Federal Demokratik Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Федеративної Демократичної Республіки Ефіопія",
+    "zh_cn": "访问埃塞俄比亚联邦民主共和国的首都",
+    "zh_hk": "遊覽埃塞俄比亞聯邦民主共和國的首都",
+    "zh_tw": "造訪埃塞俄比亞聯邦民主共和國的首都"
+  },
+  "latitude": 9.02497,
+  "longitude": 38.74689,
+  "capital": 1
+}

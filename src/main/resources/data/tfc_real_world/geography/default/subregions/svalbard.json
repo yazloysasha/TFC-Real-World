@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/northern_europe",
+  "title_lang": {
+    "de_de": "Spitzbergen",
+    "en_us": "Svalbard",
+    "es_es": "Svalbard",
+    "ja_jp": "スヴァールバル",
+    "ko_kr": "스발바르",
+    "pl_pl": "Svalbard",
+    "pt_br": "Svalbard",
+    "ru_ru": "Шпицберген",
+    "tr_tr": "Svalbard",
+    "uk_ua": "Шпіцберген",
+    "zh_cn": "斯瓦尔巴",
+    "zh_hk": "斯瓦爾巴",
+    "zh_tw": "斯瓦爾巴"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Spitzbergen",
+    "en_us": "Visit the Svalbard subregion",
+    "es_es": "Visita la subregión de Svalbard",
+    "ja_jp": "スヴァールバルのサブリージョンを訪れよう",
+    "ko_kr": "스발바르 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Svalbard",
+    "pt_br": "Visite a sub-região Svalbard",
+    "ru_ru": "Посетите субрегион Шпицберген",
+    "tr_tr": "Svalbard alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Шпіцберген",
+    "zh_cn": "访问斯瓦尔巴子区域",
+    "zh_hk": "遊覽斯瓦爾巴子區域",
+    "zh_tw": "造訪斯瓦爾巴子區域"
+  }
+}

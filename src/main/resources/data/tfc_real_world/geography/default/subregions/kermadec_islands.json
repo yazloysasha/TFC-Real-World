@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/new_zealand",
+  "title_lang": {
+    "de_de": "Kermadecinseln",
+    "en_us": "Kermadec Islands",
+    "es_es": "Islas Kermadec",
+    "ja_jp": "ケルマディック諸島",
+    "ko_kr": "커매дек 제도",
+    "pl_pl": "Wyspy Kermadec",
+    "pt_br": "Ilhas Kermadec",
+    "ru_ru": "Острова Кермадек",
+    "tr_tr": "Kermadec Adaları",
+    "uk_ua": "Острови Кермадек",
+    "zh_cn": "克马德克群岛",
+    "zh_hk": "克馬德克群島",
+    "zh_tw": "克馬德克群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Kermadecinseln",
+    "en_us": "Visit the Kermadec Islands subregion",
+    "es_es": "Visita la subregión Islas Kermadec",
+    "ja_jp": "ケルマディック諸島のサブリージョンを訪れよう",
+    "ko_kr": "커매дек 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Kermadec",
+    "pt_br": "Visite a sub-região Ilhas Kermadec",
+    "ru_ru": "Посетите субрегион Острова Кермадек",
+    "tr_tr": "Kermadec Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Острови Кермадек",
+    "zh_cn": "访问克马德克群岛子区域",
+    "zh_hk": "遊覽克馬德克群島子區域",
+    "zh_tw": "造訪克馬德克群島子區域"
+  }
+}

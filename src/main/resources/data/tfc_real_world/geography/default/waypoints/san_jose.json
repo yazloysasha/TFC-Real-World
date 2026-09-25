@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/costa_rica",
+  "title_lang": {
+    "de_de": "San José",
+    "en_us": "San José",
+    "es_es": "San José",
+    "ja_jp": "サンホセ",
+    "ko_kr": "산호세",
+    "pl_pl": "San José",
+    "pt_br": "San José",
+    "ru_ru": "Сан-Хосе",
+    "tr_tr": "San José",
+    "uk_ua": "Сан-Хосе",
+    "zh_cn": "圣何塞",
+    "zh_hk": "聖荷西",
+    "zh_tw": "聖荷西"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Costa Rica",
+    "en_us": "Visit the capital of the Republic of Costa Rica",
+    "es_es": "Visita la capital de la República de Costa Rica",
+    "ja_jp": "コスタリカ共和国の首都を訪れよう",
+    "ko_kr": "코스타리카 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Kostaryki",
+    "pt_br": "Visite a capital da República da Costa Rica",
+    "ru_ru": "Посетите столицу Республики Коста-Рика",
+    "tr_tr": "Kosta Rika Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Коста-Рика",
+    "zh_cn": "访问哥斯达黎加共和国的首都",
+    "zh_hk": "遊覽哥斯達黎加共和國的首都",
+    "zh_tw": "造訪哥斯達黎加共和國的首都"
+  },
+  "latitude": 9.93388,
+  "longitude": -84.08489,
+  "capital": 1
+}

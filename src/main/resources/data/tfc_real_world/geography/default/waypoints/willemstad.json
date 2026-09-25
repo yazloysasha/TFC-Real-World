@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/netherlands_antilles",
+  "title_lang": {
+    "de_de": "Willemstad",
+    "en_us": "Willemstad",
+    "es_es": "Willemstad",
+    "ja_jp": "ウィレムスタッド",
+    "ko_kr": "빌렘스타트",
+    "pl_pl": "Willemstad",
+    "pt_br": "Willemstad",
+    "ru_ru": "Виллемстад",
+    "tr_tr": "Willemstad",
+    "uk_ua": "Віллемстад",
+    "zh_cn": "威廉斯塔德",
+    "zh_hk": "威廉斯塔德",
+    "zh_tw": "威廉斯塔德"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Willemstad",
+    "en_us": "Visit Willemstad",
+    "es_es": "Visita Willemstad",
+    "ja_jp": "ウィレムスタッドを訪れよう",
+    "ko_kr": "빌렘스타트를 방문하세요",
+    "pl_pl": "Odwiedź Willemstad",
+    "pt_br": "Visite Willemstad",
+    "ru_ru": "Посетите Виллемстад",
+    "tr_tr": "Willemstad'ı ziyaret edin",
+    "uk_ua": "Відвідайте Віллемстад",
+    "zh_cn": "访问威廉斯塔德",
+    "zh_hk": "遊覽威廉斯塔德",
+    "zh_tw": "造訪威廉斯塔德"
+  },
+  "latitude": 12.12246,
+  "longitude": -68.88641
+}

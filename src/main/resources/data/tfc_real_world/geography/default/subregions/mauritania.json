@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/west_tropical_africa",
+  "title_lang": {
+    "de_de": "Mauretanien",
+    "en_us": "Mauritania",
+    "es_es": "Mauritania",
+    "ja_jp": "モーリタニア",
+    "ko_kr": "모리타니",
+    "pl_pl": "Mauretania",
+    "pt_br": "Mauritânia",
+    "ru_ru": "Мавритания",
+    "tr_tr": "Moritanya",
+    "uk_ua": "Мавританія",
+    "zh_cn": "毛里塔尼亚",
+    "zh_hk": "毛里塔尼亞",
+    "zh_tw": "毛里塔尼亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Mauretanien",
+    "en_us": "Visit the Mauritania subregion",
+    "es_es": "Visita la subregión de Mauritania",
+    "ja_jp": "モーリタニアのサブリージョンを訪れよう",
+    "ko_kr": "모리타니 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Mauretania",
+    "pt_br": "Visite a sub-região Mauritânia",
+    "ru_ru": "Посетите субрегион Мавритания",
+    "tr_tr": "Moritanya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Мавританія",
+    "zh_cn": "访问毛里塔尼亚子区域",
+    "zh_hk": "遊覽毛里塔尼亞子區域",
+    "zh_tw": "造訪毛里塔尼亞子區域"
+  }
+}

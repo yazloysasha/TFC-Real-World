@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/volcano_islands",
+  "title_lang": {
+    "de_de": "Higashi",
+    "en_us": "Higashi",
+    "es_es": "Higashi",
+    "ja_jp": "東",
+    "ko_kr": "히가시",
+    "pl_pl": "Higashi",
+    "pt_br": "Higashi",
+    "ru_ru": "Хигаси",
+    "tr_tr": "Higashi",
+    "uk_ua": "Хіґасі",
+    "zh_cn": "东",
+    "zh_hk": "東",
+    "zh_tw": "東"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Higashi",
+    "en_us": "Visit Higashi",
+    "es_es": "Visita Higashi",
+    "ja_jp": "東を訪れよう",
+    "ko_kr": "히가시를 방문하세요",
+    "pl_pl": "Odwiedź Higashi",
+    "pt_br": "Visite Higashi",
+    "ru_ru": "Посетите Хигаси",
+    "tr_tr": "Higashi'yi ziyaret edin",
+    "uk_ua": "Відвідайте Хіґасі",
+    "zh_cn": "访问东",
+    "zh_hk": "遊覽東",
+    "zh_tw": "造訪東"
+  },
+  "latitude": 24.78243,
+  "longitude": 141.3391
+}

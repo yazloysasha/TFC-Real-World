@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/greenland",
+  "title_lang": {
+    "de_de": "Nuuk",
+    "en_us": "Nuuk",
+    "es_es": "Nuuk",
+    "ja_jp": "ヌーク",
+    "ko_kr": "누크",
+    "pl_pl": "Nuuk",
+    "pt_br": "Nuuk",
+    "ru_ru": "Нуук",
+    "tr_tr": "Nuuk",
+    "uk_ua": "Нуук",
+    "zh_cn": "努克",
+    "zh_hk": "努克",
+    "zh_tw": "努克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Nuuk",
+    "en_us": "Visit Nuuk",
+    "es_es": "Visita Nuuk",
+    "ja_jp": "ヌークを訪れよう",
+    "ko_kr": "누크를 방문하세요",
+    "pl_pl": "Odwiedź Nuuk",
+    "pt_br": "Visite Nuuk",
+    "ru_ru": "Посетите Нуук",
+    "tr_tr": "Nuuk'u ziyaret edin",
+    "uk_ua": "Відвідайте Нуук",
+    "zh_cn": "访问努克",
+    "zh_hk": "遊覽努克",
+    "zh_tw": "造訪努克"
+  },
+  "latitude": 64.18347,
+  "longitude": -51.72157
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/kyrgyzstan",
+  "title_lang": {
+    "de_de": "Bischkek",
+    "en_us": "Bishkek",
+    "es_es": "Biskek",
+    "ja_jp": "ビシュケク",
+    "ko_kr": "비슈케크",
+    "pl_pl": "Biszkek",
+    "pt_br": "Bisqueque",
+    "ru_ru": "Бишкек",
+    "tr_tr": "Bişkek",
+    "uk_ua": "Бішкек",
+    "zh_cn": "比什凯克",
+    "zh_hk": "比什凱克",
+    "zh_tw": "比斯凱克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Kirgisischen Republik",
+    "en_us": "Visit the capital of the Kyrgyz Republic",
+    "es_es": "Visita la capital de la República Kirguisa",
+    "ja_jp": "キルギス共和国の首都を訪れよう",
+    "ko_kr": "키르기스 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Kirgiskiej",
+    "pt_br": "Visite a capital da República Quirguiz",
+    "ru_ru": "Посетите столицу Киргизской Республики",
+    "tr_tr": "Kırgız Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Киргизької Республіки",
+    "zh_cn": "访问吉尔吉斯共和国的首都",
+    "zh_hk": "遊覽吉爾吉斯共和國的首都",
+    "zh_tw": "造訪吉爾吉斯共和國的首都"
+  },
+  "latitude": 42.87,
+  "longitude": 74.59,
+  "capital": 1
+}

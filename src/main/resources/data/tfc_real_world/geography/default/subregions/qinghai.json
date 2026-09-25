@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/china",
+  "title_lang": {
+    "de_de": "Qinghai",
+    "en_us": "Qinghai",
+    "es_es": "Qinghai",
+    "ja_jp": "青海",
+    "ko_kr": "칭하이",
+    "pl_pl": "Qinghai",
+    "pt_br": "Qinghai",
+    "ru_ru": "Цинхай",
+    "tr_tr": "Qinghai",
+    "uk_ua": "Цінхай",
+    "zh_cn": "青海",
+    "zh_hk": "青海",
+    "zh_tw": "青海"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Qinghai",
+    "en_us": "Visit the Qinghai subregion",
+    "es_es": "Visita la subregión de Qinghai",
+    "ja_jp": "青海のサブリージョンを訪れよう",
+    "ko_kr": "칭하이 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Qinghai",
+    "pt_br": "Visite a sub-região Qinghai",
+    "ru_ru": "Посетите субрегион Цинхай",
+    "tr_tr": "Qinghai alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Цінхай",
+    "zh_cn": "访问青海子区域",
+    "zh_hk": "遊覽青海子區域",
+    "zh_tw": "造訪青海子區域"
+  }
+}

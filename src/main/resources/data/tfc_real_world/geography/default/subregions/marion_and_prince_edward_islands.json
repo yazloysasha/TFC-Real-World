@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/subantarctic_islands",
+  "title_lang": {
+    "de_de": "Marion- und Prince-Edward-Inseln",
+    "en_us": "Marion and Prince Edward Islands",
+    "es_es": "Islas Marion y del Príncipe Eduardo",
+    "ja_jp": "マリオン島とプリンスエドワード島",
+    "ko_kr": "매리언과 프린스에드워드 제도",
+    "pl_pl": "Wyspy Marion i Księcia Edwarda",
+    "pt_br": "Ilhas Marion e Príncipe Eduardo",
+    "ru_ru": "Острова Марион и Принс-Эдуард",
+    "tr_tr": "Marion ve Prince Edward Adaları",
+    "uk_ua": "Острови Маріон і Принс-Едвард",
+    "zh_cn": "马里昂与爱德华王子群岛",
+    "zh_hk": "馬里昂與愛德華王子群島",
+    "zh_tw": "馬里昂與愛德華王子群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Marion- und Prince-Edward-Inseln",
+    "en_us": "Visit the Marion and Prince Edward Islands subregion",
+    "es_es": "Visita la subregión Islas Marion y del Príncipe Eduardo",
+    "ja_jp": "マリオン島とプリンスエドワード島のサブリージョンを訪れよう",
+    "ko_kr": "매리언과 프린스에드워드 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Marion i Księcia Edwarda",
+    "pt_br": "Visite a sub-região Ilhas Marion e Príncipe Eduardo",
+    "ru_ru": "Посетите субрегион Острова Марион и Принс-Эдуард",
+    "tr_tr": "Marion ve Prince Edward Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Острови Маріон і Принс-Едвард",
+    "zh_cn": "访问马里昂与爱德华王子群岛子区域",
+    "zh_hk": "遊覽馬里昂與愛德華王子群島子區域",
+    "zh_tw": "造訪馬里昂與愛德華王子群島子區域"
+  }
+}

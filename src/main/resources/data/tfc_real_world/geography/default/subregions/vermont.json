@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/northeastern_usa",
+  "title_lang": {
+    "de_de": "Vermont",
+    "en_us": "Vermont",
+    "es_es": "Vermont",
+    "ja_jp": "バーモント",
+    "ko_kr": "버몬트",
+    "pl_pl": "Vermont",
+    "pt_br": "Vermont",
+    "ru_ru": "Вермонт",
+    "tr_tr": "Vermont",
+    "uk_ua": "Вермонт",
+    "zh_cn": "佛蒙特",
+    "zh_hk": "佛蒙特",
+    "zh_tw": "佛蒙特"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Vermont",
+    "en_us": "Visit the Vermont subregion",
+    "es_es": "Visita la subregión de Vermont",
+    "ja_jp": "バーモントのサブリージョンを訪れよう",
+    "ko_kr": "버몬트 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Vermont",
+    "pt_br": "Visite a sub-região Vermont",
+    "ru_ru": "Посетите субрегион Вермонт",
+    "tr_tr": "Vermont alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Вермонт",
+    "zh_cn": "访问佛蒙特子区域",
+    "zh_hk": "遊覽佛蒙特子區域",
+    "zh_tw": "造訪佛蒙特子區域"
+  }
+}

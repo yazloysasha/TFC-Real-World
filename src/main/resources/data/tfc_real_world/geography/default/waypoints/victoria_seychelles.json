@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/seychelles",
+  "title_lang": {
+    "de_de": "Victoria",
+    "en_us": "Victoria",
+    "es_es": "Victoria",
+    "ja_jp": "ヴィクトリア",
+    "ko_kr": "빅토리아",
+    "pl_pl": "Victoria",
+    "pt_br": "Victoria",
+    "ru_ru": "Виктория",
+    "tr_tr": "Victoria",
+    "uk_ua": "Вікторія",
+    "zh_cn": "维多利亚",
+    "zh_hk": "維多利亞",
+    "zh_tw": "維多利亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Seychellen",
+    "en_us": "Visit the capital of the Republic of Seychelles",
+    "es_es": "Visita la capital de la República de Seychelles",
+    "ja_jp": "セーシェル共和国の首都を訪れよう",
+    "ko_kr": "세이셸 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Seszeli",
+    "pt_br": "Visite a capital da República das Seicheles",
+    "ru_ru": "Посетите столицу Республики Сейшельские Острова",
+    "tr_tr": "Seyşeller Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Сейшельські Острови",
+    "zh_cn": "访问塞舌尔共和国的首都",
+    "zh_hk": "遊覽塞舌爾共和國的首都",
+    "zh_tw": "造訪塞舌爾共和國的首都"
+  },
+  "latitude": -4.62001,
+  "longitude": 55.45501,
+  "capital": 1
+}

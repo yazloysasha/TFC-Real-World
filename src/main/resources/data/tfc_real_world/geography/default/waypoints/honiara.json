@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/solomon_islands",
+  "title_lang": {
+    "de_de": "Honiara",
+    "en_us": "Honiara",
+    "es_es": "Honiara",
+    "ja_jp": "ホニアラ",
+    "ko_kr": "호니아라",
+    "pl_pl": "Honiara",
+    "pt_br": "Honiara",
+    "ru_ru": "Хониара",
+    "tr_tr": "Honiara",
+    "uk_ua": "Хоніара",
+    "zh_cn": "霍尼亚拉",
+    "zh_hk": "霍尼亞拉",
+    "zh_tw": "霍尼亞拉"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Salomonen",
+    "en_us": "Visit the capital of Solomon Islands",
+    "es_es": "Visita la capital de Islas Salomón",
+    "ja_jp": "ソロモン諸島の首都を訪れよう",
+    "ko_kr": "솔로몬 제도의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Wysp Salomona",
+    "pt_br": "Visite a capital das Ilhas Salomão",
+    "ru_ru": "Посетите столицу Соломоновых Островов",
+    "tr_tr": "Solomon Adaları'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Соломонових Островів",
+    "zh_cn": "访问所罗门群岛的首都",
+    "zh_hk": "遊覽所羅門羣島的首都",
+    "zh_tw": "造訪所羅門羣島的首都"
+  },
+  "latitude": -9.43333,
+  "longitude": 159.95,
+  "capital": 1
+}

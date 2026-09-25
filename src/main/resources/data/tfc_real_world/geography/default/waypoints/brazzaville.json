@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/congo",
+  "title_lang": {
+    "de_de": "Brazzaville",
+    "en_us": "Brazzaville",
+    "es_es": "Brazzaville",
+    "ja_jp": "ブラザヴィル",
+    "ko_kr": "브라자빌",
+    "pl_pl": "Brazzaville",
+    "pt_br": "Brazavile",
+    "ru_ru": "Браззавиль",
+    "tr_tr": "Brazzaville",
+    "uk_ua": "Браззавіль",
+    "zh_cn": "布拉柴维尔",
+    "zh_hk": "布拉柴維爾",
+    "zh_tw": "布拉柴維爾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Kongo",
+    "en_us": "Visit the capital of the Republic of the Congo",
+    "es_es": "Visita la capital de la República del el Congo",
+    "ja_jp": "コンゴ共和国の首都を訪れよう",
+    "ko_kr": "콩고 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Konga",
+    "pt_br": "Visite a capital da República do o Congo",
+    "ru_ru": "Посетите столицу Республики Конго",
+    "tr_tr": "Kongo Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Конго",
+    "zh_cn": "访问刚果共和国的首都",
+    "zh_hk": "遊覽剛果共和國的首都",
+    "zh_tw": "造訪剛果共和國的首都"
+  },
+  "latitude": -4.26613,
+  "longitude": 15.28318,
+  "capital": 1
+}

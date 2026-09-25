@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/amsterdam_and_saint_paul_islands",
+  "title_lang": {
+    "de_de": "Le Pignon",
+    "en_us": "Le Pignon",
+    "es_es": "Le Pignon",
+    "ja_jp": "ル・ピニョン",
+    "ko_kr": "르피뇽",
+    "pl_pl": "Le Pignon",
+    "pt_br": "Le Pignon",
+    "ru_ru": "Ле-Пиньон",
+    "tr_tr": "Le Pignon",
+    "uk_ua": "Ле-Піньйон",
+    "zh_cn": "勒皮尼翁",
+    "zh_hk": "勒皮尼翁",
+    "zh_tw": "勒皮尼翁"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Le Pignon",
+    "en_us": "Visit Le Pignon",
+    "es_es": "Visita Le Pignon",
+    "ja_jp": "ル・ピニョンを訪れよう",
+    "ko_kr": "르피뇽을 방문하세요",
+    "pl_pl": "Odwiedź Le Pignon",
+    "pt_br": "Visite Le Pignon",
+    "ru_ru": "Посетите Ле-Пиньон",
+    "tr_tr": "Le Pignon'u ziyaret edin",
+    "uk_ua": "Відвідайте Ле-Піньйон",
+    "zh_cn": "访问勒皮尼翁",
+    "zh_hk": "遊覽勒皮尼翁",
+    "zh_tw": "造訪勒皮尼翁"
+  },
+  "latitude": -37.85766,
+  "longitude": 77.53697
+}

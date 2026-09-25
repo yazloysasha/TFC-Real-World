@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/colorado",
+  "title_lang": {
+    "de_de": "Denver",
+    "en_us": "Denver",
+    "es_es": "Denver",
+    "ja_jp": "デンバー",
+    "ko_kr": "덴버",
+    "pl_pl": "Denver",
+    "pt_br": "Denver",
+    "ru_ru": "Денвер",
+    "tr_tr": "Denver",
+    "uk_ua": "Денвер",
+    "zh_cn": "丹佛",
+    "zh_hk": "丹佛",
+    "zh_tw": "丹佛"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Denver",
+    "en_us": "Visit Denver",
+    "es_es": "Visita Denver",
+    "ja_jp": "デンバーを訪れよう",
+    "ko_kr": "덴버를 방문하세요",
+    "pl_pl": "Odwiedź Denver",
+    "pt_br": "Visite Denver",
+    "ru_ru": "Посетите Денвер",
+    "tr_tr": "Denver'i ziyaret edin",
+    "uk_ua": "Відвідайте Денвер",
+    "zh_cn": "访问丹佛",
+    "zh_hk": "遊覽丹佛",
+    "zh_tw": "造訪丹佛"
+  },
+  "latitude": 39.73915,
+  "longitude": -104.9847
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "default:continent/northern_america",
+  "title_lang": {
+    "de_de": "Südwesten der USA",
+    "en_us": "Southwestern U.S.A.",
+    "es_es": "Suroeste de EE. UU.",
+    "ja_jp": "アメリカ南西部",
+    "ko_kr": "미국 남서부",
+    "pl_pl": "Południowo-zachodnie USA",
+    "pt_br": "Sudoeste dos EUA",
+    "ru_ru": "Юго-запад США",
+    "tr_tr": "Güneybatı ABD",
+    "uk_ua": "Південний захід США",
+    "zh_cn": "美国西南部",
+    "zh_hk": "美國西南部",
+    "zh_tw": "美國西南部"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie den Südwesten der USA",
+    "en_us": "Visit the Southwestern U.S.A.",
+    "es_es": "Visita el suroeste de EE. UU.",
+    "ja_jp": "アメリカ南西部を訪れよう",
+    "ko_kr": "미국 남서부를 방문하세요",
+    "pl_pl": "Odwiedź południowo-zachodnie USA",
+    "pt_br": "Visite o sudoeste dos EUA",
+    "ru_ru": "Посетите юго-запад США",
+    "tr_tr": "Güneybatı ABD'yi Ziyaret Edin",
+    "uk_ua": "Відвідайте південний захід США",
+    "zh_cn": "访问美国西南部",
+    "zh_hk": "遊覽美國西南部",
+    "zh_tw": "造訪美國西南部"
+  }
+}

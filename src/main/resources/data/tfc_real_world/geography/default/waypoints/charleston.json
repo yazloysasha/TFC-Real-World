@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/west_virginia",
+  "title_lang": {
+    "de_de": "Charleston",
+    "en_us": "Charleston",
+    "es_es": "Charleston",
+    "ja_jp": "チャールストン",
+    "ko_kr": "찰스턴",
+    "pl_pl": "Charleston",
+    "pt_br": "Charleston",
+    "ru_ru": "Чарлстон",
+    "tr_tr": "Charleston",
+    "uk_ua": "Чарлстон",
+    "zh_cn": "查尔斯顿",
+    "zh_hk": "查爾斯頓",
+    "zh_tw": "查爾斯頓"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Charleston",
+    "en_us": "Visit Charleston",
+    "es_es": "Visita Charleston",
+    "ja_jp": "チャールストンを訪れよう",
+    "ko_kr": "찰스턴을 방문하세요",
+    "pl_pl": "Odwiedź Charleston",
+    "pt_br": "Visite Charleston",
+    "ru_ru": "Посетите Чарлстон",
+    "tr_tr": "Charleston'u ziyaret edin",
+    "uk_ua": "Відвідайте Чарлстон",
+    "zh_cn": "访问查尔斯顿",
+    "zh_hk": "遊覽查爾斯頓",
+    "zh_tw": "造訪查爾斯頓"
+  },
+  "latitude": 38.34982,
+  "longitude": -81.63262
+}

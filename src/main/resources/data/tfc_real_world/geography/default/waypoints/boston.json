@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/massachusetts",
+  "title_lang": {
+    "de_de": "Boston",
+    "en_us": "Boston",
+    "es_es": "Boston",
+    "ja_jp": "ボストン",
+    "ko_kr": "보스턴",
+    "pl_pl": "Boston",
+    "pt_br": "Boston",
+    "ru_ru": "Бостон",
+    "tr_tr": "Boston",
+    "uk_ua": "Бостон",
+    "zh_cn": "波士顿",
+    "zh_hk": "波士頓",
+    "zh_tw": "波士頓"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Boston",
+    "en_us": "Visit Boston",
+    "es_es": "Visita Boston",
+    "ja_jp": "ボストンを訪れよう",
+    "ko_kr": "보스턴을 방문하세요",
+    "pl_pl": "Odwiedź Boston",
+    "pt_br": "Visite Boston",
+    "ru_ru": "Посетите Бостон",
+    "tr_tr": "Boston'u ziyaret edin",
+    "uk_ua": "Відвідайте Бостон",
+    "zh_cn": "访问波士顿",
+    "zh_hk": "遊覽波士頓",
+    "zh_tw": "造訪波士頓"
+  },
+  "latitude": 42.35843,
+  "longitude": -71.05977
+}

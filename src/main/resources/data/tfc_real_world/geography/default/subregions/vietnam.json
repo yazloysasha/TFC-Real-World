@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/indo_china",
+  "title_lang": {
+    "de_de": "Vietnam",
+    "en_us": "Vietnam",
+    "es_es": "Vietnam",
+    "ja_jp": "ベトナム",
+    "ko_kr": "베트남",
+    "pl_pl": "Wietnam",
+    "pt_br": "Vietnã",
+    "ru_ru": "Вьетнам",
+    "tr_tr": "Vietnam",
+    "uk_ua": "В'єтнам",
+    "zh_cn": "越南",
+    "zh_hk": "越南",
+    "zh_tw": "越南"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Vietnam",
+    "en_us": "Visit the Vietnam subregion",
+    "es_es": "Visita la subregión de Vietnam",
+    "ja_jp": "ベトナムのサブリージョンを訪れよう",
+    "ko_kr": "베트남 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wietnam",
+    "pt_br": "Visite a sub-região Vietnã",
+    "ru_ru": "Посетите субрегион Вьетнам",
+    "tr_tr": "Vietnam alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон В'єтнам",
+    "zh_cn": "访问越南子区域",
+    "zh_hk": "遊覽越南子區域",
+    "zh_tw": "造訪越南子區域"
+  }
+}

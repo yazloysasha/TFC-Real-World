@@ -1,0 +1,33 @@
+{
+  "parent": "default:continent/northern_america",
+  "title_lang": {
+    "de_de": "Nordwesten der USA",
+    "en_us": "Northwestern U.S.A.",
+    "es_es": "Noroeste de EE. UU.",
+    "ja_jp": "アメリカ北西部",
+    "ko_kr": "미국 북서부",
+    "pl_pl": "Północno-zachodnie USA",
+    "pt_br": "Noroeste dos EUA",
+    "ru_ru": "Северо-запад США",
+    "tr_tr": "Kuzeybatı ABD",
+    "uk_ua": "Північний захід США",
+    "zh_cn": "美国西北部",
+    "zh_hk": "美國西北部",
+    "zh_tw": "美國西北部"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie den Nordwesten der USA",
+    "en_us": "Visit the Northwestern U.S.A.",
+    "es_es": "Visita el noroeste de EE. UU.",
+    "ja_jp": "アメリカ北西部を訪れよう",
+    "ko_kr": "미국 북서부를 방문하세요",
+    "pl_pl": "Odwiedź północno-zachodnie USA",
+    "pt_br": "Visite o noroeste dos EUA",
+    "ru_ru": "Посетите северо-запад США",
+    "tr_tr": "Kuzeybatı ABD'yi Ziyaret Edin",
+    "uk_ua": "Відвідайте північний захід США",
+    "zh_cn": "访问美国西北部",
+    "zh_hk": "遊覽美國西北部",
+    "zh_tw": "造訪美國西北部"
+  }
+}

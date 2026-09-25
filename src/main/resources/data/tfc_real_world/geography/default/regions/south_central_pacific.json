@@ -1,0 +1,33 @@
+{
+  "parent": "default:continent/pacific",
+  "title_lang": {
+    "de_de": "Südzentralpazifik",
+    "en_us": "South-Central Pacific",
+    "es_es": "Pacífico Centro-sur",
+    "ja_jp": "南中部太平洋",
+    "ko_kr": "남중부 태평양",
+    "pl_pl": "Południowo-środkowy Pacyfik",
+    "pt_br": "Pacífico Centro-Sul",
+    "ru_ru": "Юг Тихого океана",
+    "tr_tr": "Güney-Orta Pasifik",
+    "uk_ua": "Південь Тихого океану",
+    "zh_cn": "中南太平洋",
+    "zh_hk": "中南太平洋",
+    "zh_tw": "中南太平洋"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie den Südzentralpazifik",
+    "en_us": "Visit the South-Central Pacific",
+    "es_es": "Visita el Pacífico Centro-sur",
+    "ja_jp": "南中部太平洋を訪れよう",
+    "ko_kr": "남중부 태평양을 방문하세요",
+    "pl_pl": "Odwiedź południowo-środkowy Pacyfik",
+    "pt_br": "Visite o Pacífico Centro-Sul",
+    "ru_ru": "Посетите юг Тихого океана",
+    "tr_tr": "Güney-Orta Pasifik'i Ziyaret Edin",
+    "uk_ua": "Відвідайте південь Тихого океану",
+    "zh_cn": "访问中南太平洋",
+    "zh_hk": "遊覽中南太平洋",
+    "zh_tw": "造訪中南太平洋"
+  }
+}

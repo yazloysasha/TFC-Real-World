@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/italy",
+  "title_lang": {
+    "de_de": "Vatikanstadt",
+    "en_us": "Vatican City",
+    "es_es": "Ciudad del Vaticano",
+    "ja_jp": "バチカン",
+    "ko_kr": "바티칸",
+    "pl_pl": "Watykan",
+    "pt_br": "Cidade do Vaticano",
+    "ru_ru": "Ватикан",
+    "tr_tr": "Vatikan",
+    "uk_ua": "Ватикан",
+    "zh_cn": "梵蒂冈",
+    "zh_hk": "梵蒂岡",
+    "zh_tw": "梵蒂岡"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt des Staates Vatikanstadt",
+    "en_us": "Visit the capital of the State of the Vatican City",
+    "es_es": "Visita la capital del Estado de la Ciudad del Vaticano",
+    "ja_jp": "バチカン市国の首都を訪れよう",
+    "ko_kr": "바티칸 시국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Państwa Watykańskiego",
+    "pt_br": "Visite a capital do Estado da Cidade do Vaticano",
+    "ru_ru": "Посетите столицу Государства Град Ватикан",
+    "tr_tr": "Vatikan Şehir Devleti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Держави Ватикан",
+    "zh_cn": "访问梵蒂冈城国的首都",
+    "zh_hk": "遊覽梵蒂岡城國的首都",
+    "zh_tw": "造訪梵蒂岡城國的首都"
+  },
+  "latitude": 41.90268,
+  "longitude": 12.45414,
+  "capital": 1
+}

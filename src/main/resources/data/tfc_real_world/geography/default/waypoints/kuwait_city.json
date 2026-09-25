@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/kuwait",
+  "title_lang": {
+    "de_de": "Kuweit-Stadt",
+    "en_us": "Kuwait City",
+    "es_es": "Ciudad de Kuwait",
+    "ja_jp": "クウェート市",
+    "ko_kr": "쿠웨이트 시",
+    "pl_pl": "Kuwejt",
+    "pt_br": "Kuwait",
+    "ru_ru": "Эль-Кувейт",
+    "tr_tr": "Kuveyt",
+    "uk_ua": "Ель-Кувейт",
+    "zh_cn": "科威特城",
+    "zh_hk": "科威特城",
+    "zh_tw": "科威特城"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt des Staates Kuwait",
+    "en_us": "Visit the capital of the State of Kuwait",
+    "es_es": "Visita la capital del Estado de Kuwait",
+    "ja_jp": "クウェート国の首都を訪れよう",
+    "ko_kr": "쿠웨이트국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Państwa Kuwejtu",
+    "pt_br": "Visite a capital do Estado de Kuwait",
+    "ru_ru": "Посетите столицу Государства Кувейт",
+    "tr_tr": "Kuveyt Devleti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Держави Кувейт",
+    "zh_cn": "访问科威特国的首都",
+    "zh_hk": "遊覽科威特國的首都",
+    "zh_tw": "造訪科威特國的首都"
+  },
+  "latitude": 29.367,
+  "longitude": 47.97429,
+  "capital": 1
+}

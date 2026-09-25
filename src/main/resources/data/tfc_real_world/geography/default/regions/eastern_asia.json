@@ -1,0 +1,33 @@
+{
+  "parent": "default:continent/asia_temperate",
+  "title_lang": {
+    "de_de": "Ostasien",
+    "en_us": "Eastern Asia",
+    "es_es": "Asia Oriental",
+    "ja_jp": "東アジア",
+    "ko_kr": "동아시아",
+    "pl_pl": "Azja Wschodnia",
+    "pt_br": "Ásia Oriental",
+    "ru_ru": "Восточная Азия",
+    "tr_tr": "Doğu Asya",
+    "uk_ua": "Східна Азія",
+    "zh_cn": "东亚",
+    "zh_hk": "東亞",
+    "zh_tw": "東亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Ostasien",
+    "en_us": "Visit Eastern Asia",
+    "es_es": "Visita Asia Oriental",
+    "ja_jp": "東アジアを訪れよう",
+    "ko_kr": "동아시아를 방문하세요",
+    "pl_pl": "Odwiedź Azję Wschodnią",
+    "pt_br": "Visite a Ásia Oriental",
+    "ru_ru": "Посетите Восточную Азию",
+    "tr_tr": "Doğu Asya'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Східну Азію",
+    "zh_cn": "访问东亚",
+    "zh_hk": "遊覽東亞",
+    "zh_tw": "造訪東亞"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/west_siberia",
+  "title_lang": {
+    "de_de": "Nowosibirsk",
+    "en_us": "Novosibirsk",
+    "es_es": "Novosibirsk",
+    "ja_jp": "ノヴォシビルスク",
+    "ko_kr": "노보시비르스크",
+    "pl_pl": "Nowosybirsk",
+    "pt_br": "Novosibirsk",
+    "ru_ru": "Новосибирск",
+    "tr_tr": "Novosibirsk",
+    "uk_ua": "Новосибірськ",
+    "zh_cn": "新西伯利亚",
+    "zh_hk": "新西伯利亞",
+    "zh_tw": "新西伯利亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Nowosibirsk",
+    "en_us": "Visit Novosibirsk",
+    "es_es": "Visita Novosibirsk",
+    "ja_jp": "ノヴォシビルスクを訪れよう",
+    "ko_kr": "노보시비르스크를 방문하세요",
+    "pl_pl": "Odwiedź Nowosybirsk",
+    "pt_br": "Visite Novosibirsk",
+    "ru_ru": "Посетите Новосибирск",
+    "tr_tr": "Novosibirsk'i ziyaret edin",
+    "uk_ua": "Відвідайте Новосибірськ",
+    "zh_cn": "访问新西伯利亚",
+    "zh_hk": "遊覽新西伯利亞",
+    "zh_tw": "造訪新西伯利亞"
+  },
+  "latitude": 55.02259,
+  "longitude": 82.93175
+}

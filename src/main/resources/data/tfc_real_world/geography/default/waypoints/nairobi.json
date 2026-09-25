@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/kenya",
+  "title_lang": {
+    "de_de": "Nairobi",
+    "en_us": "Nairobi",
+    "es_es": "Nairobi",
+    "ja_jp": "ナイロビ",
+    "ko_kr": "나이로비",
+    "pl_pl": "Nairobi",
+    "pt_br": "Nairóbi",
+    "ru_ru": "Найроби",
+    "tr_tr": "Nairobi",
+    "uk_ua": "Найробі",
+    "zh_cn": "内罗毕",
+    "zh_hk": "內羅比",
+    "zh_tw": "奈洛比"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Kenia",
+    "en_us": "Visit the capital of the Republic of Kenya",
+    "es_es": "Visita la capital de la República de Kenia",
+    "ja_jp": "ケニア共和国の首都を訪れよう",
+    "ko_kr": "케냐 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Kenii",
+    "pt_br": "Visite a capital da República do Quênia",
+    "ru_ru": "Посетите столицу Республики Кения",
+    "tr_tr": "Kenya Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Кенія",
+    "zh_cn": "访问肯尼亚共和国的首都",
+    "zh_hk": "遊覽肯尼亞共和國的首都",
+    "zh_tw": "造訪肯尼亞共和國的首都"
+  },
+  "latitude": -1.28333,
+  "longitude": 36.81667,
+  "capital": 1
+}

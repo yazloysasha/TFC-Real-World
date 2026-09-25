@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/macaronesia",
+  "title_lang": {
+    "de_de": "Kap Verde",
+    "en_us": "Cape Verde",
+    "es_es": "Cabo Verde",
+    "ja_jp": "カーボベルデ",
+    "ko_kr": "카보베르데",
+    "pl_pl": "Republika Zielonego Przylądka",
+    "pt_br": "Cabo Verde",
+    "ru_ru": "Кабо-Верде",
+    "tr_tr": "Yeşil Burun",
+    "uk_ua": "Кабо-Верде",
+    "zh_cn": "佛得角",
+    "zh_hk": "佛得角",
+    "zh_tw": "佛得角"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Kap Verde",
+    "en_us": "Visit the Cape Verde subregion",
+    "es_es": "Visita la subregión de Cabo Verde",
+    "ja_jp": "カーボベルデのサブリージョンを訪れよう",
+    "ko_kr": "카보베르데 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Republika Zielonego Przylądka",
+    "pt_br": "Visite a sub-região Cabo Verde",
+    "ru_ru": "Посетите субрегион Кабо-Верде",
+    "tr_tr": "Yeşil Burun alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Кабо-Верде",
+    "zh_cn": "访问佛得角子区域",
+    "zh_hk": "遊覽佛得角子區域",
+    "zh_tw": "造訪佛得角子區域"
+  }
+}

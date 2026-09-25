@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/middle_atlantic_ocean",
+  "title_lang": {
+    "de_de": "St. Helena",
+    "en_us": "Saint Helena",
+    "es_es": "Santa Elena",
+    "ja_jp": "セントヘレナ",
+    "ko_kr": "세인트헬레나",
+    "pl_pl": "Święta Helena",
+    "pt_br": "Santa Helena",
+    "ru_ru": "Остров Святой Елены",
+    "tr_tr": "Saint Helena",
+    "uk_ua": "Острів Святої Єлени",
+    "zh_cn": "圣赫勒拿",
+    "zh_hk": "聖赫勒拿",
+    "zh_tw": "聖赫勒拿"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion St. Helena",
+    "en_us": "Visit the Saint Helena subregion",
+    "es_es": "Visita la subregión de Santa Elena",
+    "ja_jp": "セントヘレナのサブリージョンを訪れよう",
+    "ko_kr": "세인트헬레나 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Święta Helena",
+    "pt_br": "Visite a sub-região Santa Helena",
+    "ru_ru": "Посетите субрегион Остров Святой Елены",
+    "tr_tr": "Saint Helena alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Острів Святої Єлени",
+    "zh_cn": "访问圣赫勒拿子区域",
+    "zh_hk": "遊覽聖赫勒拿子區域",
+    "zh_tw": "造訪聖赫勒拿子區域"
+  }
+}

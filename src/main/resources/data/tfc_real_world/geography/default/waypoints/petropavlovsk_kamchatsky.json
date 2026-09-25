@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/kamchatka",
+  "title_lang": {
+    "de_de": "Petropawlowsk-Kamtschatski",
+    "en_us": "Petropavlovsk-Kamchatsky",
+    "es_es": "Petropávlovsk-Kamchatski",
+    "ja_jp": "ペトロパブロフスク・カムチャツキー",
+    "ko_kr": "페트로파블롭스크캄차츠키",
+    "pl_pl": "Pietropawłowsk Kamczacki",
+    "pt_br": "Petropavlovsk-Kamchatski",
+    "ru_ru": "Петропавловск-Камчатский",
+    "tr_tr": "Petropavlovsk-Kamçatski",
+    "uk_ua": "Петропавловськ-Камчатський",
+    "zh_cn": "堪察加彼得罗巴甫洛夫斯克",
+    "zh_hk": "堪察加彼得羅巴甫洛夫斯克",
+    "zh_tw": "堪察加彼得羅巴甫洛夫斯克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Petropawlowsk-Kamtschatski",
+    "en_us": "Visit Petropavlovsk-Kamchatsky",
+    "es_es": "Visita Petropávlovsk-Kamchatski",
+    "ja_jp": "ペトロパブロフスク・カムチャツキーを訪れよう",
+    "ko_kr": "페트로파블롭스크캄차츠키를 방문하세요",
+    "pl_pl": "Odwiedź Pietropawłowsk Kamczacki",
+    "pt_br": "Visite Petropavlovsk-Kamchatski",
+    "ru_ru": "Посетите Петропавловск-Камчатский",
+    "tr_tr": "Petropavlovsk-Kamçatski'yi ziyaret edin",
+    "uk_ua": "Відвідайте Петропавловськ-Камчатський",
+    "zh_cn": "访问堪察加彼得罗巴甫洛夫斯克",
+    "zh_hk": "遊覽堪察加彼得羅巴甫洛夫斯克",
+    "zh_tw": "造訪堪察加彼得羅巴甫洛夫斯克"
+  },
+  "latitude": 53.06393,
+  "longitude": 158.62751
+}

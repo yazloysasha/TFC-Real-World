@@ -1,0 +1,33 @@
+{
+  "parent": "default:region/subarctic_america",
+  "title_lang": {
+    "de_de": "Nordwest-Territorien",
+    "en_us": "Northwest Territories",
+    "es_es": "Territorios del Noroeste",
+    "ja_jp": "ノースウエスト準州",
+    "ko_kr": "노스웨스트 준주",
+    "pl_pl": "Terytoria Północno-Zachodnie",
+    "pt_br": "Territórios do Noroeste",
+    "ru_ru": "Северо-Западные территории",
+    "tr_tr": "Kuzeybatı Toprakları",
+    "uk_ua": "Північно-Західні території",
+    "zh_cn": "西北地区",
+    "zh_hk": "西北地區",
+    "zh_tw": "西北地區"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Nordwest-Territorien",
+    "en_us": "Visit the Northwest Territories subregion",
+    "es_es": "Visita la subregión de Territorios del Noroeste",
+    "ja_jp": "ノースウエスト準州のサブリージョンを訪れよう",
+    "ko_kr": "노스웨스트 준주 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Terytoria Północno-Zachodnie",
+    "pt_br": "Visite a sub-região Territórios do Noroeste",
+    "ru_ru": "Посетите субрегион Северо-Западные территории",
+    "tr_tr": "Kuzeybatı Toprakları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Північно-Західні території",
+    "zh_cn": "访问西北地区子区域",
+    "zh_hk": "遊覽西北地區子區域",
+    "zh_tw": "造訪西北地區子區域"
+  }
+}

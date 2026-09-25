@@ -1,0 +1,35 @@
+{
+  "parent": "default:subregion/wake_island",
+  "title_lang": {
+    "de_de": "Wake",
+    "en_us": "Wake",
+    "es_es": "Wake",
+    "ja_jp": "ウェーク",
+    "ko_kr": "웨이크",
+    "pl_pl": "Wake",
+    "pt_br": "Wake",
+    "ru_ru": "Уэйк",
+    "tr_tr": "Wake",
+    "uk_ua": "Вейк",
+    "zh_cn": "威克",
+    "zh_hk": "威克",
+    "zh_tw": "威克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Wake",
+    "en_us": "Visit Wake",
+    "es_es": "Visita Wake",
+    "ja_jp": "ウェークを訪れよう",
+    "ko_kr": "웨이크를 방문하세요",
+    "pl_pl": "Odwiedź Wake",
+    "pt_br": "Visite Wake",
+    "ru_ru": "Посетите Уэйк",
+    "tr_tr": "Wake'yi ziyaret edin",
+    "uk_ua": "Відвідайте Вейк",
+    "zh_cn": "访问威克",
+    "zh_hk": "遊覽威克",
+    "zh_tw": "造訪威克"
+  },
+  "latitude": 19.30434,
+  "longitude": 166.63612
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "default:subregion/algeria",
+  "title_lang": {
+    "de_de": "Algier",
+    "en_us": "Algiers",
+    "es_es": "Argel",
+    "ja_jp": "アルジェ",
+    "ko_kr": "알제",
+    "pl_pl": "Algier",
+    "pt_br": "Argel",
+    "ru_ru": "Алжир",
+    "tr_tr": "Cezayir",
+    "uk_ua": "Алжир",
+    "zh_cn": "阿尔及尔",
+    "zh_hk": "阿爾及爾",
+    "zh_tw": "阿爾及爾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Demokratischen Volksrepublik Algerien",
+    "en_us": "Visit the capital of the People's Democratic Republic of Algeria",
+    "es_es": "Visita la capital de la República Argelina Democrática y Popular",
+    "ja_jp": "アルジェリア民主人民共和国の首都を訪れよう",
+    "ko_kr": "알제리 민주 인민 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Algierskiej Republiki Ludowo-Demokratycznej",
+    "pt_br": "Visite a capital da República Argelina Democrática e Popular",
+    "ru_ru": "Посетите столицу Алжирской Народной Демократической Республики",
+    "tr_tr": "Cezayir Demokratik Halk Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Алжирської Народної Демократичної Республіки",
+    "zh_cn": "访问阿尔及利亚民主人民共和国的首都",
+    "zh_hk": "遊覽阿爾及利亞民主人民共和國的首都",
+    "zh_tw": "造訪阿爾及利亞民主人民共和國的首都"
+  },
+  "latitude": 36.73225,
+  "longitude": 3.08746,
+  "capital": 1
+}

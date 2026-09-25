@@ -1,0 +1,33 @@
+{
+  "parent": "default:continent/asia_temperate",
+  "title_lang": {
+    "de_de": "Mongolei",
+    "en_us": "Mongolia",
+    "es_es": "Mongolia",
+    "ja_jp": "モンゴル",
+    "ko_kr": "몽골",
+    "pl_pl": "Mongolia",
+    "pt_br": "Mongólia",
+    "ru_ru": "Монголия",
+    "tr_tr": "Moğolistan",
+    "uk_ua": "Монголія",
+    "zh_cn": "蒙古",
+    "zh_hk": "蒙古",
+    "zh_tw": "蒙古"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Mongolei",
+    "en_us": "Visit Mongolia",
+    "es_es": "Visita Mongolia",
+    "ja_jp": "モンゴルを訪れよう",
+    "ko_kr": "몽골을 방문하세요",
+    "pl_pl": "Odwiedź Mongolię",
+    "pt_br": "Visite a Mongólia",
+    "ru_ru": "Посетите Монголию",
+    "tr_tr": "Moğolistan'ı Ziyaret Edin",
+    "uk_ua": "Відвідайте Монголію",
+    "zh_cn": "访问蒙古",
+    "zh_hk": "遊覽蒙古",
+    "zh_tw": "造訪蒙古"
+  }
+}
