@@ -1,0 +1,32 @@
+{
+  "title_lang": {
+    "de_de": "Europa",
+    "en_us": "Europe",
+    "es_es": "Europa",
+    "ja_jp": "ヨーロッパ",
+    "ko_kr": "유럽",
+    "pl_pl": "Europa",
+    "pt_br": "Europa",
+    "ru_ru": "Европа",
+    "tr_tr": "Avrupa",
+    "uk_ua": "Європа",
+    "zh_cn": "欧洲",
+    "zh_hk": "歐洲",
+    "zh_tw": "歐洲"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie Europa",
+    "en_us": "Visit Europe",
+    "es_es": "Visita Europa",
+    "ja_jp": "ヨーロッパを訪れよう",
+    "ko_kr": "유럽을 방문하세요",
+    "pl_pl": "Odwiedź Europę",
+    "pt_br": "Visite a Europa",
+    "ru_ru": "Посетите Европу",
+    "tr_tr": "Avrupa'yı Ziyaret Edin",
+    "uk_ua": "Відвідайте Європу",
+    "zh_cn": "访问欧洲",
+    "zh_hk": "訪問歐洲",
+    "zh_tw": "造訪歐洲"
+  }
+}
