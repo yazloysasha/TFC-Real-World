@@ -1,3 +1,6 @@
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+
 plugins {
   id("net.neoforged.moddev") version "2.0.107"
 }
@@ -114,6 +117,19 @@ dependencies {
 }
 
 tasks {
+  named<ProcessResources>("processResources") {
+    doLast {
+      val jsonSlurper = JsonSlurper()
+      destinationDir.walkTopDown()
+        .filter { it.isFile && it.extension.equals("json", ignoreCase = true) }
+        .forEach { file ->
+          @Suppress("UNCHECKED_CAST")
+          val parsed = jsonSlurper.parse(file) as Any
+          file.writeText(JsonOutput.toJson(parsed))
+        }
+    }
+  }
+
   jar {
     exclude("auroras/**")
     manifest {
