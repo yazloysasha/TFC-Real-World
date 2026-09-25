@@ -1,19 +1,19 @@
 {
   "parent": "subregion/nicaragua",
   "title_lang": {
-    "de_de": "Managua (City)",
-    "en_us": "Managua (City)",
-    "es_es": "Managua (City)",
-    "ja_jp": "マナグア（都市）",
-    "ko_kr": "마나과(도시)",
-    "pl_pl": "Managua (City)",
-    "pt_br": "Managua (City)",
-    "ru_ru": "Манагуа (город)",
-    "tr_tr": "Managua (City)",
-    "uk_ua": "Манагуа (місто)",
-    "zh_cn": "马那瓜（城市）",
-    "zh_hk": "馬那瓜（城市）",
-    "zh_tw": "馬那瓜（城市）"
+    "de_de": "Managua",
+    "en_us": "Managua",
+    "es_es": "Managua",
+    "ja_jp": "マナグア",
+    "ko_kr": "마나과",
+    "pl_pl": "Managua",
+    "pt_br": "Managua",
+    "ru_ru": "Манагуа",
+    "tr_tr": "Managua",
+    "uk_ua": "Манагуа",
+    "zh_cn": "马那瓜",
+    "zh_hk": "馬那瓜",
+    "zh_tw": "馬那瓜"
   },
   "description_lang": {
     "de_de": "Besuchen Sie die Hauptstadt der Republik Nicaragua",

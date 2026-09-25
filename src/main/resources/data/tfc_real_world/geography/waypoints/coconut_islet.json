@@ -6,14 +6,14 @@
     "es_es": "Islote Coconut",
     "ja_jp": "ココナッツ島",
     "ko_kr": "코코넛섬",
-    "pl_pl": "Wysepka Kokosowa",
+    "pl_pl": "Wyspa Kokosowa",
     "pt_br": "Ilhéu Coconut",
-    "ru_ru": "Кокосовый островок",
-    "tr_tr": "Hindistan Cevizi Adacığı",
-    "uk_ua": "Кокосовий острівець",
-    "zh_cn": "椰子小岛",
-    "zh_hk": "椰子小島",
-    "zh_tw": "椰子小島"
+    "ru_ru": "Кокосовый остров",
+    "tr_tr": "Kokos Adası",
+    "uk_ua": "Кокосовий острів",
+    "zh_cn": "椰子岛",
+    "zh_hk": "椰子島",
+    "zh_tw": "椰子島"
   },
   "description_lang": {
     "de_de": "Besuchen Sie Kokosinsel",
@@ -21,14 +21,14 @@
     "es_es": "Visita Islote Coconut",
     "ja_jp": "ココナッツ島を訪れよう",
     "ko_kr": "코코넛섬을 방문하세요",
-    "pl_pl": "Odwiedź Wysepkę Kokosową",
+    "pl_pl": "Odwiedź wyspę Kokosową",
     "pt_br": "Visite Ilhéu Coconut",
-    "ru_ru": "Посетите Кокосовый островок",
-    "tr_tr": "Hindistan Cevizi Adacığı'yı ziyaret edin",
-    "uk_ua": "Відвідайте Кокосовий острівець",
-    "zh_cn": "访问椰子小岛",
-    "zh_hk": "遊覽椰子小島",
-    "zh_tw": "造訪椰子小島"
+    "ru_ru": "Посетите Кокосовый остров",
+    "tr_tr": "Kokos Adası'yı ziyaret edin",
+    "uk_ua": "Відвідайте Кокосовий острів",
+    "zh_cn": "访问椰子岛",
+    "zh_hk": "遊覽椰子島",
+    "zh_tw": "造訪椰子島"
   },
   "latitude": -9.40732,
   "longitude": 46.44719
