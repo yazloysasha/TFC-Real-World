@@ -1,0 +1,33 @@
+{
+  "parent": "region/macaronesia",
+  "title_lang": {
+    "de_de": "Madeira",
+    "en_us": "Madeira",
+    "es_es": "Madeira",
+    "ja_jp": "マデイラ",
+    "ko_kr": "마데이라",
+    "pl_pl": "Madera",
+    "pt_br": "Madeira",
+    "ru_ru": "Мадейра",
+    "tr_tr": "Madeira",
+    "uk_ua": "Мадейра",
+    "zh_cn": "马德拉",
+    "zh_hk": "馬德拉",
+    "zh_tw": "馬德拉"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Madeira",
+    "en_us": "Visit the Madeira subregion",
+    "es_es": "Visita la subregión de Madeira",
+    "ja_jp": "マデイラのサブリージョンを訪れよう",
+    "ko_kr": "마데이라 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Madera",
+    "pt_br": "Visite a sub-região Madeira",
+    "ru_ru": "Посетите субрегион Мадейра",
+    "tr_tr": "Madeira alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Мадейра",
+    "zh_cn": "访问马德拉子区域",
+    "zh_hk": "遊覽馬德拉子區域",
+    "zh_tw": "造訪馬德拉子區域"
+  }
+}

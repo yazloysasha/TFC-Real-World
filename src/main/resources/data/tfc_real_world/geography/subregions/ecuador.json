@@ -1,0 +1,33 @@
+{
+  "parent": "region/western_south_america",
+  "title_lang": {
+    "de_de": "Ecuador",
+    "en_us": "Ecuador",
+    "es_es": "Ecuador",
+    "ja_jp": "エクアドル",
+    "ko_kr": "에콰도르",
+    "pl_pl": "Ekwador",
+    "pt_br": "Equador",
+    "ru_ru": "Эквадор",
+    "tr_tr": "Ekvador",
+    "uk_ua": "Еквадор",
+    "zh_cn": "厄瓜多尔",
+    "zh_hk": "厄瓜多爾",
+    "zh_tw": "厄瓜多爾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Ecuador",
+    "en_us": "Visit the Ecuador subregion",
+    "es_es": "Visita la subregión de Ecuador",
+    "ja_jp": "エクアドルのサブリージョンを訪れよう",
+    "ko_kr": "에콰도르 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Ekwador",
+    "pt_br": "Visite a sub-região Equador",
+    "ru_ru": "Посетите субрегион Эквадор",
+    "tr_tr": "Ekvador alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Еквадор",
+    "zh_cn": "访问厄瓜多尔子区域",
+    "zh_hk": "遊覽厄瓜多爾子區域",
+    "zh_tw": "造訪厄瓜多爾子區域"
+  }
+}

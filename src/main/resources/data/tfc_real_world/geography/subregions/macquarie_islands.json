@@ -1,0 +1,33 @@
+{
+  "parent": "region/subantarctic_islands",
+  "title_lang": {
+    "de_de": "Macquarieinseln",
+    "en_us": "Macquarie Islands",
+    "es_es": "Islas Macquarie",
+    "ja_jp": "マクーアリー諸島",
+    "ko_kr": "맥쿼리 제도",
+    "pl_pl": "Wyspy Macquarie",
+    "pt_br": "Ilhas Macquarie",
+    "ru_ru": "Острова Маккуори",
+    "tr_tr": "Macquarie Adaları",
+    "uk_ua": "Острови Маккуорі",
+    "zh_cn": "麦夸里群岛",
+    "zh_hk": "麥誇裏群島",
+    "zh_tw": "麥誇裡群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Macquarieinseln",
+    "en_us": "Visit the Macquarie Islands subregion",
+    "es_es": "Visita la subregión Islas Macquarie",
+    "ja_jp": "マクーアリー諸島のサブリージョンを訪れよう",
+    "ko_kr": "맥쿼리 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Macquarie",
+    "pt_br": "Visite a sub-região Ilhas Macquarie",
+    "ru_ru": "Посетите субрегион Острова Маккуори",
+    "tr_tr": "Macquarie Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Острови Маккуорі",
+    "zh_cn": "访问麦夸里群岛子区域",
+    "zh_hk": "遊覽麥誇裏群島子區域",
+    "zh_tw": "造訪麥誇裡群島子區域"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "region/eastern_canada",
+  "title_lang": {
+    "de_de": "Nova Scotia",
+    "en_us": "Nova Scotia",
+    "es_es": "Nueva Escocia",
+    "ja_jp": "ノバスコシア",
+    "ko_kr": "노바스코샤",
+    "pl_pl": "Nowa Szkocja",
+    "pt_br": "Nova Escócia",
+    "ru_ru": "Новая Шотландия",
+    "tr_tr": "Yeni İskoçya",
+    "uk_ua": "Нова Шотландія",
+    "zh_cn": "新斯科舍",
+    "zh_hk": "新斯科舍",
+    "zh_tw": "新斯科舍"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Nova Scotia",
+    "en_us": "Visit the Nova Scotia subregion",
+    "es_es": "Visita la subregión de Nueva Escocia",
+    "ja_jp": "ノバスコシアのサブリージョンを訪れよう",
+    "ko_kr": "노바스코샤 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Nowa Szkocja",
+    "pt_br": "Visite a sub-região Nova Escócia",
+    "ru_ru": "Посетите субрегион Новая Шотландия",
+    "tr_tr": "Yeni İskoçya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Нова Шотландія",
+    "zh_cn": "访问新斯科舍子区域",
+    "zh_hk": "遊覽新斯科舍子區域",
+    "zh_tw": "造訪新斯科舍子區域"
+  }
+}

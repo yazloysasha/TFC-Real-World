@@ -1,0 +1,33 @@
+{
+  "parent": "region/southwestern_pacific",
+  "title_lang": {
+    "de_de": "Tuvalu",
+    "en_us": "Tuvalu",
+    "es_es": "Tuvalu",
+    "ja_jp": "ツバル",
+    "ko_kr": "투발루",
+    "pl_pl": "Tuvalu",
+    "pt_br": "Tuvalu",
+    "ru_ru": "Тувалу",
+    "tr_tr": "Tuvalu",
+    "uk_ua": "Тувалу",
+    "zh_cn": "图瓦卢",
+    "zh_hk": "圖瓦盧",
+    "zh_tw": "圖瓦盧"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Tuvalu",
+    "en_us": "Visit the Tuvalu subregion",
+    "es_es": "Visita la subregión de Tuvalu",
+    "ja_jp": "ツバルのサブリージョンを訪れよう",
+    "ko_kr": "투발루 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Tuvalu",
+    "pt_br": "Visite a sub-região Tuvalu",
+    "ru_ru": "Посетите субрегион Тувалу",
+    "tr_tr": "Tuvalu alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Тувалу",
+    "zh_cn": "访问图瓦卢子区域",
+    "zh_hk": "遊覽圖瓦盧子區域",
+    "zh_tw": "造訪圖瓦盧子區域"
+  }
+}

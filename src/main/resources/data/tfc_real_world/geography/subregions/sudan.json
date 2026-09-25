@@ -1,0 +1,33 @@
+{
+  "parent": "region/northeast_tropical_africa",
+  "title_lang": {
+    "de_de": "Sudan",
+    "en_us": "Sudan",
+    "es_es": "Sudán",
+    "ja_jp": "スーダン",
+    "ko_kr": "수단",
+    "pl_pl": "Sudan",
+    "pt_br": "Sudão",
+    "ru_ru": "Судан",
+    "tr_tr": "Sudan",
+    "uk_ua": "Судан",
+    "zh_cn": "苏丹",
+    "zh_hk": "蘇丹",
+    "zh_tw": "蘇丹"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Sudan",
+    "en_us": "Visit the Sudan subregion",
+    "es_es": "Visita la subregión de Sudán",
+    "ja_jp": "スーダンのサブリージョンを訪れよう",
+    "ko_kr": "수단 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Sudan",
+    "pt_br": "Visite a sub-região Sudão",
+    "ru_ru": "Посетите субрегион Судан",
+    "tr_tr": "Sudan alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Судан",
+    "zh_cn": "访问苏丹子区域",
+    "zh_hk": "遊覽蘇丹子區域",
+    "zh_tw": "造訪蘇丹子區域"
+  }
+}

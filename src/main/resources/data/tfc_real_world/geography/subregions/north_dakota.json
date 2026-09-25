@@ -1,0 +1,33 @@
+{
+  "parent": "region/north_central_usa",
+  "title_lang": {
+    "de_de": "North Dakota",
+    "en_us": "North Dakota",
+    "es_es": "Dakota del Norte",
+    "ja_jp": "ノースダコタ",
+    "ko_kr": "노스다코타",
+    "pl_pl": "Dakota Północna",
+    "pt_br": "Dakota do Norte",
+    "ru_ru": "Северная Дакота",
+    "tr_tr": "Kuzey Dakota",
+    "uk_ua": "Північна Дакота",
+    "zh_cn": "北达科他",
+    "zh_hk": "北達科他",
+    "zh_tw": "北達科他"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion North Dakota",
+    "en_us": "Visit the North Dakota subregion",
+    "es_es": "Visita la subregión de Dakota del Norte",
+    "ja_jp": "ノースダコタのサブリージョンを訪れよう",
+    "ko_kr": "노스다코타 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Dakota Północna",
+    "pt_br": "Visite a sub-região Dakota do Norte",
+    "ru_ru": "Посетите субрегион Северная Дакота",
+    "tr_tr": "Kuzey Dakota alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Північна Дакота",
+    "zh_cn": "访问北达科他子区域",
+    "zh_hk": "遊覽北達科他子區域",
+    "zh_tw": "造訪北達科他子區域"
+  }
+}

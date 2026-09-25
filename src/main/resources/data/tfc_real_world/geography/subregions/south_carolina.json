@@ -1,0 +1,33 @@
+{
+  "parent": "region/southeastern_usa",
+  "title_lang": {
+    "de_de": "South Carolina",
+    "en_us": "South Carolina",
+    "es_es": "Carolina del Sur",
+    "ja_jp": "サウスカロライナ",
+    "ko_kr": "사우스캐롤라이나",
+    "pl_pl": "Karolina Południowa",
+    "pt_br": "Carolina do Sul",
+    "ru_ru": "Южная Каролина",
+    "tr_tr": "Güney Carolina",
+    "uk_ua": "Південна Кароліна",
+    "zh_cn": "南卡罗来纳",
+    "zh_hk": "南卡羅來納",
+    "zh_tw": "南卡羅來納"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion South Carolina",
+    "en_us": "Visit the South Carolina subregion",
+    "es_es": "Visita la subregión de Carolina del Sur",
+    "ja_jp": "サウスカロライナのサブリージョンを訪れよう",
+    "ko_kr": "사우스캐롤라이나 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Karolina Południowa",
+    "pt_br": "Visite a sub-região Carolina do Sul",
+    "ru_ru": "Посетите субрегион Южная Каролина",
+    "tr_tr": "Güney Carolina alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Південна Кароліна",
+    "zh_cn": "访问南卡罗来纳子区域",
+    "zh_hk": "遊覽南卡羅來納子區域",
+    "zh_tw": "造訪南卡羅來納子區域"
+  }
+}

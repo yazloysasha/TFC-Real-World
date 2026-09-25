@@ -1,0 +1,33 @@
+{
+  "parent": "region/northeastern_usa",
+  "title_lang": {
+    "de_de": "Pennsylvania",
+    "en_us": "Pennsylvania",
+    "es_es": "Pensilvania",
+    "ja_jp": "ペンシルベニア",
+    "ko_kr": "펜실베이니아",
+    "pl_pl": "Pensylwania",
+    "pt_br": "Pensilvânia",
+    "ru_ru": "Пенсильвания",
+    "tr_tr": "Pennsylvania",
+    "uk_ua": "Пенсильванія",
+    "zh_cn": "宾夕法尼亚",
+    "zh_hk": "賓夕法尼亞",
+    "zh_tw": "賓夕法尼亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Pennsylvania",
+    "en_us": "Visit the Pennsylvania subregion",
+    "es_es": "Visita la subregión de Pensilvania",
+    "ja_jp": "ペンシルベニアのサブリージョンを訪れよう",
+    "ko_kr": "펜실베이니아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Pensylwania",
+    "pt_br": "Visite a sub-região Pensilvânia",
+    "ru_ru": "Посетите субрегион Пенсильвания",
+    "tr_tr": "Pennsylvania alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Пенсильванія",
+    "zh_cn": "访问宾夕法尼亚子区域",
+    "zh_hk": "遊覽賓夕法尼亞子區域",
+    "zh_tw": "造訪賓夕法尼亞子區域"
+  }
+}

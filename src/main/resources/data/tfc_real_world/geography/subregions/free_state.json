@@ -1,0 +1,33 @@
+{
+  "parent": "region/southern_africa",
+  "title_lang": {
+    "de_de": "Freistaat",
+    "en_us": "Free State",
+    "es_es": "Estado Libre",
+    "ja_jp": "フリーステート",
+    "ko_kr": "프리스테이트",
+    "pl_pl": "Wolne Państwo",
+    "pt_br": "Estado Livre",
+    "ru_ru": "Фри-стейт",
+    "tr_tr": "Serbest Devlet",
+    "uk_ua": "Фрі-Стейт",
+    "zh_cn": "自由邦",
+    "zh_hk": "自由邦",
+    "zh_tw": "自由邦"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Freistaat",
+    "en_us": "Visit the Free State subregion",
+    "es_es": "Visita la subregión de Estado Libre",
+    "ja_jp": "フリーステートのサブリージョンを訪れよう",
+    "ko_kr": "프리스테이트 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wolne Państwo",
+    "pt_br": "Visite a sub-região Estado Livre",
+    "ru_ru": "Посетите субрегион Фри-стейт",
+    "tr_tr": "Serbest Devlet alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Фрі-Стейт",
+    "zh_cn": "访问自由邦子区域",
+    "zh_hk": "遊覽自由邦子區域",
+    "zh_tw": "造訪自由邦子區域"
+  }
+}

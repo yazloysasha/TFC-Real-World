@@ -1,0 +1,33 @@
+{
+  "parent": "region/southeastern_usa",
+  "title_lang": {
+    "de_de": "Arkansas",
+    "en_us": "Arkansas",
+    "es_es": "Arkansas",
+    "ja_jp": "アーカンソー",
+    "ko_kr": "아칸소",
+    "pl_pl": "Arkansas",
+    "pt_br": "Arkansas",
+    "ru_ru": "Арканзас",
+    "tr_tr": "Arkansas",
+    "uk_ua": "Арканзас",
+    "zh_cn": "阿肯色",
+    "zh_hk": "阿肯色",
+    "zh_tw": "阿肯色"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Arkansas",
+    "en_us": "Visit the Arkansas subregion",
+    "es_es": "Visita la subregión de Arkansas",
+    "ja_jp": "アーカンソーのサブリージョンを訪れよう",
+    "ko_kr": "아칸소 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Arkansas",
+    "pt_br": "Visite a sub-região Arkansas",
+    "ru_ru": "Посетите субрегион Арканзас",
+    "tr_tr": "Arkansas alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Арканзас",
+    "zh_cn": "访问阿肯色子区域",
+    "zh_hk": "遊覽阿肯色子區域",
+    "zh_tw": "造訪阿肯色子區域"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "region/russian_far_east",
+  "title_lang": {
+    "de_de": "Amur",
+    "en_us": "Amur",
+    "es_es": "Amur",
+    "ja_jp": "アムール",
+    "ko_kr": "아무르",
+    "pl_pl": "Amur",
+    "pt_br": "Amur",
+    "ru_ru": "Амур",
+    "tr_tr": "Amur",
+    "uk_ua": "Амур",
+    "zh_cn": "阿穆尔",
+    "zh_hk": "阿穆爾",
+    "zh_tw": "阿穆爾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Amur",
+    "en_us": "Visit the Amur subregion",
+    "es_es": "Visita la subregión de Amur",
+    "ja_jp": "アムールのサブリージョンを訪れよう",
+    "ko_kr": "아무르 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Amur",
+    "pt_br": "Visite a sub-região Amur",
+    "ru_ru": "Посетите субрегион Амур",
+    "tr_tr": "Amur alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Амур",
+    "zh_cn": "访问阿穆尔子区域",
+    "zh_hk": "遊覽阿穆爾子區域",
+    "zh_tw": "造訪阿穆爾子區域"
+  }
+}

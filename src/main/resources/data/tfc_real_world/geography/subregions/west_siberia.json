@@ -1,0 +1,33 @@
+{
+  "parent": "region/siberia",
+  "title_lang": {
+    "de_de": "Westsibirien",
+    "en_us": "West Siberia",
+    "es_es": "Siberia Occidental",
+    "ja_jp": "西シベリア",
+    "ko_kr": "서시베리아",
+    "pl_pl": "Syberia Zachodnia",
+    "pt_br": "Sibéria Ocidental",
+    "ru_ru": "Западная Сибирь",
+    "tr_tr": "Batı Sibirya",
+    "uk_ua": "Західний Сибір",
+    "zh_cn": "西西伯利亚",
+    "zh_hk": "西西伯利亞",
+    "zh_tw": "西西伯利亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Westsibirien",
+    "en_us": "Visit the West Siberia subregion",
+    "es_es": "Visita la subregión de Siberia Occidental",
+    "ja_jp": "西シベリアのサブリージョンを訪れよう",
+    "ko_kr": "서시베리아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Syberia Zachodnia",
+    "pt_br": "Visite a sub-região Sibéria Ocidental",
+    "ru_ru": "Посетите субрегион Западная Сибирь",
+    "tr_tr": "Batı Sibirya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Західний Сибір",
+    "zh_cn": "访问西西伯利亚子区域",
+    "zh_hk": "遊覽西西伯利亞子區域",
+    "zh_tw": "造訪西西伯利亞子區域"
+  }
+}

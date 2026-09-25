@@ -1,0 +1,33 @@
+{
+  "parent": "region/west_central_tropical_africa",
+  "title_lang": {
+    "de_de": "Burundi",
+    "en_us": "Burundi",
+    "es_es": "Burundi",
+    "ja_jp": "ブルンジ",
+    "ko_kr": "부룬디",
+    "pl_pl": "Burundi",
+    "pt_br": "Burundi",
+    "ru_ru": "Бурунди",
+    "tr_tr": "Burundi",
+    "uk_ua": "Бурунді",
+    "zh_cn": "布隆迪",
+    "zh_hk": "布隆迪",
+    "zh_tw": "布隆迪"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Burundi",
+    "en_us": "Visit the Burundi subregion",
+    "es_es": "Visita la subregión de Burundi",
+    "ja_jp": "ブルンジのサブリージョンを訪れよう",
+    "ko_kr": "부룬디 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Burundi",
+    "pt_br": "Visite a sub-região Burundi",
+    "ru_ru": "Посетите субрегион Бурунди",
+    "tr_tr": "Burundi alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Бурунді",
+    "zh_cn": "访问布隆迪子区域",
+    "zh_hk": "遊覽布隆迪子區域",
+    "zh_tw": "造訪布隆迪子區域"
+  }
+}

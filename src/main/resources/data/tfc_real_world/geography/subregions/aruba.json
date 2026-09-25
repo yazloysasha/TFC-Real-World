@@ -1,0 +1,33 @@
+{
+  "parent": "region/caribbean",
+  "title_lang": {
+    "de_de": "Aruba",
+    "en_us": "Aruba",
+    "es_es": "Aruba",
+    "ja_jp": "アルバ",
+    "ko_kr": "아루바",
+    "pl_pl": "Aruba",
+    "pt_br": "Aruba",
+    "ru_ru": "Аруба",
+    "tr_tr": "Aruba",
+    "uk_ua": "Аруба",
+    "zh_cn": "阿鲁巴",
+    "zh_hk": "阿魯巴",
+    "zh_tw": "阿魯巴"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Aruba",
+    "en_us": "Visit the Aruba subregion",
+    "es_es": "Visita la subregión de Aruba",
+    "ja_jp": "アルバのサブリージョンを訪れよう",
+    "ko_kr": "아루바 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Aruba",
+    "pt_br": "Visite a sub-região Aruba",
+    "ru_ru": "Посетите субрегион Аруба",
+    "tr_tr": "Aruba alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Аруба",
+    "zh_cn": "访问阿鲁巴子区域",
+    "zh_hk": "遊覽阿魯巴子區域",
+    "zh_tw": "造訪阿魯巴子區域"
+  }
+}

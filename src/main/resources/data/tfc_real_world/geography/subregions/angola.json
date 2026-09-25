@@ -1,0 +1,33 @@
+{
+  "parent": "region/south_tropical_africa",
+  "title_lang": {
+    "de_de": "Angola",
+    "en_us": "Angola",
+    "es_es": "Angola",
+    "ja_jp": "アンゴラ",
+    "ko_kr": "앙골라",
+    "pl_pl": "Angola",
+    "pt_br": "Angola",
+    "ru_ru": "Ангола",
+    "tr_tr": "Angola",
+    "uk_ua": "Ангола",
+    "zh_cn": "安哥拉",
+    "zh_hk": "安哥拉",
+    "zh_tw": "安哥拉"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Angola",
+    "en_us": "Visit the Angola subregion",
+    "es_es": "Visita la subregión de Angola",
+    "ja_jp": "アンゴラのサブリージョンを訪れよう",
+    "ko_kr": "앙골라 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Angola",
+    "pt_br": "Visite a sub-região Angola",
+    "ru_ru": "Посетите субрегион Ангола",
+    "tr_tr": "Angola alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Ангола",
+    "zh_cn": "访问安哥拉子区域",
+    "zh_hk": "遊覽安哥拉子區域",
+    "zh_tw": "造訪安哥拉子區域"
+  }
+}

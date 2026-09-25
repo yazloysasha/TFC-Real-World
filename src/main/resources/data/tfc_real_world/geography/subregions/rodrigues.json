@@ -1,0 +1,33 @@
+{
+  "parent": "region/western_indian_ocean",
+  "title_lang": {
+    "de_de": "Rodrigues",
+    "en_us": "Rodrigues",
+    "es_es": "Rodrigues",
+    "ja_jp": "ロドリゲス島",
+    "ko_kr": "로드리게스",
+    "pl_pl": "Rodrigues",
+    "pt_br": "Rodrigues",
+    "ru_ru": "Родригес",
+    "tr_tr": "Rodrigues",
+    "uk_ua": "Родрігес",
+    "zh_cn": "罗德里格斯",
+    "zh_hk": "羅德里格斯",
+    "zh_tw": "羅德里格斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Rodrigues",
+    "en_us": "Visit the Rodrigues subregion",
+    "es_es": "Visita la subregión de Rodrigues",
+    "ja_jp": "ロドリゲス島のサブリージョンを訪れよう",
+    "ko_kr": "로드리게스 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Rodrigues",
+    "pt_br": "Visite a sub-região Rodrigues",
+    "ru_ru": "Посетите субрегион Родригес",
+    "tr_tr": "Rodrigues alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Родрігес",
+    "zh_cn": "访问罗德里格斯子区域",
+    "zh_hk": "遊覽羅德里格斯子區域",
+    "zh_tw": "造訪羅德里格斯子區域"
+  }
+}

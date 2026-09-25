@@ -1,0 +1,33 @@
+{
+  "parent": "region/middle_asia",
+  "title_lang": {
+    "de_de": "Tadschikistan",
+    "en_us": "Tajikistan",
+    "es_es": "Tayikistán",
+    "ja_jp": "タジキスタン",
+    "ko_kr": "타지키스탄",
+    "pl_pl": "Tadżykistan",
+    "pt_br": "Tajiquistão",
+    "ru_ru": "Таджикистан",
+    "tr_tr": "Tacikistan",
+    "uk_ua": "Таджикистан",
+    "zh_cn": "塔吉克斯坦",
+    "zh_hk": "塔吉克斯坦",
+    "zh_tw": "塔吉克斯坦"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Tadschikistan",
+    "en_us": "Visit the Tajikistan subregion",
+    "es_es": "Visita la subregión de Tayikistán",
+    "ja_jp": "タジキスタンのサブリージョンを訪れよう",
+    "ko_kr": "타지키스탄 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Tadżykistan",
+    "pt_br": "Visite a sub-região Tajiquistão",
+    "ru_ru": "Посетите субрегион Таджикистан",
+    "tr_tr": "Tacikistan alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Таджикистан",
+    "zh_cn": "访问塔吉克斯坦子区域",
+    "zh_hk": "遊覽塔吉克斯坦子區域",
+    "zh_tw": "造訪塔吉克斯坦子區域"
+  }
+}

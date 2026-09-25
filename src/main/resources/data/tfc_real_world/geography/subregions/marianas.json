@@ -1,0 +1,33 @@
+{
+  "parent": "region/northwestern_pacific",
+  "title_lang": {
+    "de_de": "Marianen",
+    "en_us": "Marianas",
+    "es_es": "Islas Marianas",
+    "ja_jp": "マリアナ諸島",
+    "ko_kr": "마리아나 제도",
+    "pl_pl": "Mariany",
+    "pt_br": "Ilhas Marianas",
+    "ru_ru": "Марианские острова",
+    "tr_tr": "Mariana Adaları",
+    "uk_ua": "Маріанські острови",
+    "zh_cn": "马里亚纳群岛",
+    "zh_hk": "馬里亞納群島",
+    "zh_tw": "馬里亞納群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Marianen",
+    "en_us": "Visit the Marianas subregion",
+    "es_es": "Visita la subregión Islas Marianas",
+    "ja_jp": "マリアナ諸島のサブリージョンを訪れよう",
+    "ko_kr": "마리아나 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Mariany",
+    "pt_br": "Visite a sub-região Ilhas Marianas",
+    "ru_ru": "Посетите субрегион Марианские острова",
+    "tr_tr": "Mariana Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Маріанські острови",
+    "zh_cn": "访问马里亚纳群岛子区域",
+    "zh_hk": "遊覽馬里亞納群島子區域",
+    "zh_tw": "造訪馬里亞納群島子區域"
+  }
+}

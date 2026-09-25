@@ -1,0 +1,33 @@
+{
+  "parent": "region/north_central_usa",
+  "title_lang": {
+    "de_de": "Iowa",
+    "en_us": "Iowa",
+    "es_es": "Iowa",
+    "ja_jp": "アイオワ",
+    "ko_kr": "아이오와",
+    "pl_pl": "Iowa",
+    "pt_br": "Iowa",
+    "ru_ru": "Айова",
+    "tr_tr": "Iowa",
+    "uk_ua": "Айова",
+    "zh_cn": "艾奥瓦",
+    "zh_hk": "艾奧瓦",
+    "zh_tw": "艾奧瓦"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Iowa",
+    "en_us": "Visit the Iowa subregion",
+    "es_es": "Visita la subregión de Iowa",
+    "ja_jp": "アイオワのサブリージョンを訪れよう",
+    "ko_kr": "아이오와 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Iowa",
+    "pt_br": "Visite a sub-região Iowa",
+    "ru_ru": "Посетите субрегион Айова",
+    "tr_tr": "Iowa alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Айова",
+    "zh_cn": "访问艾奥瓦子区域",
+    "zh_hk": "遊覽艾奧瓦子區域",
+    "zh_tw": "造訪艾奧瓦子區域"
+  }
+}

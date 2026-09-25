@@ -1,0 +1,33 @@
+{
+  "parent": "region/southwestern_pacific",
+  "title_lang": {
+    "de_de": "Nauru",
+    "en_us": "Nauru",
+    "es_es": "Nauru",
+    "ja_jp": "ナウル",
+    "ko_kr": "나우루",
+    "pl_pl": "Nauru",
+    "pt_br": "Nauru",
+    "ru_ru": "Науру",
+    "tr_tr": "Nauru",
+    "uk_ua": "Науру",
+    "zh_cn": "瑙鲁",
+    "zh_hk": "瑙魯",
+    "zh_tw": "瑙魯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Nauru",
+    "en_us": "Visit the Nauru subregion",
+    "es_es": "Visita la subregión de Nauru",
+    "ja_jp": "ナウルのサブリージョンを訪れよう",
+    "ko_kr": "나우루 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Nauru",
+    "pt_br": "Visite a sub-região Nauru",
+    "ru_ru": "Посетите субрегион Науру",
+    "tr_tr": "Nauru alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Науру",
+    "zh_cn": "访问瑙鲁子区域",
+    "zh_hk": "遊覽瑙魯子區域",
+    "zh_tw": "造訪瑙魯子區域"
+  }
+}

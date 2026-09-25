@@ -1,0 +1,33 @@
+{
+  "parent": "region/southwestern_europe",
+  "title_lang": {
+    "de_de": "Balearen",
+    "en_us": "Balearic Islands",
+    "es_es": "Islas Baleares",
+    "ja_jp": "バレアレス諸島",
+    "ko_kr": "발레아레스 제도",
+    "pl_pl": "Baleary",
+    "pt_br": "Ilhas Baleares",
+    "ru_ru": "Балеарские острова",
+    "tr_tr": "Balear Adaları",
+    "uk_ua": "Балеарські острови",
+    "zh_cn": "巴利阿里群岛",
+    "zh_hk": "巴利阿里群島",
+    "zh_tw": "巴利阿里群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Balearen",
+    "en_us": "Visit the Balearic Islands subregion",
+    "es_es": "Visita la subregión Islas Baleares",
+    "ja_jp": "バレアレス諸島のサブリージョンを訪れよう",
+    "ko_kr": "발레아레스 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Baleary",
+    "pt_br": "Visite a sub-região Ilhas Baleares",
+    "ru_ru": "Посетите субрегион Балеарские острова",
+    "tr_tr": "Balear Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Балеарські острови",
+    "zh_cn": "访问巴利阿里群岛子区域",
+    "zh_hk": "遊覽巴利阿里群島子區域",
+    "zh_tw": "造訪巴利阿里群島子區域"
+  }
+}

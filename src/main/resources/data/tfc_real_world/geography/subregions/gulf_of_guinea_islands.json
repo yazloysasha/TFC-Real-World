@@ -1,0 +1,33 @@
+{
+  "parent": "region/west_central_tropical_africa",
+  "title_lang": {
+    "de_de": "Inseln im Golf von Guinea",
+    "en_us": "Gulf of Guinea Islands",
+    "es_es": "Islas del golfo de Guinea",
+    "ja_jp": "ギニア湾諸島",
+    "ko_kr": "기니만 제도",
+    "pl_pl": "Wyspy Zatoki Gwinejskiej",
+    "pt_br": "Ilhas do golfo da Guiné",
+    "ru_ru": "Острова Гвинейского залива",
+    "tr_tr": "Gine Körfezi Adaları",
+    "uk_ua": "Острови Гвінейської затоки",
+    "zh_cn": "几内亚湾群岛",
+    "zh_hk": "幾內亞灣群島",
+    "zh_tw": "幾內亞灣群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Inseln im Golf von Guinea",
+    "en_us": "Visit the Gulf of Guinea Islands subregion",
+    "es_es": "Visita la subregión Islas del golfo de Guinea",
+    "ja_jp": "ギニア湾諸島のサブリージョンを訪れよう",
+    "ko_kr": "기니만 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Zatoki Gwinejskiej",
+    "pt_br": "Visite a sub-região Ilhas do golfo da Guiné",
+    "ru_ru": "Посетите субрегион Острова Гвинейского залива",
+    "tr_tr": "Gine Körfezi Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Острови Гвінейської затоки",
+    "zh_cn": "访问几内亚湾群岛子区域",
+    "zh_hk": "遊覽幾內亞灣群島子區域",
+    "zh_tw": "造訪幾內亞灣群島子區域"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "region/southwestern_europe",
+  "title_lang": {
+    "de_de": "Frankreich",
+    "en_us": "France",
+    "es_es": "Francia",
+    "ja_jp": "フランス",
+    "ko_kr": "프랑스",
+    "pl_pl": "Francja",
+    "pt_br": "França",
+    "ru_ru": "Франция",
+    "tr_tr": "Fransa",
+    "uk_ua": "Франція",
+    "zh_cn": "法国",
+    "zh_hk": "法國",
+    "zh_tw": "法國"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Frankreich",
+    "en_us": "Visit the France subregion",
+    "es_es": "Visita la subregión de Francia",
+    "ja_jp": "フランスのサブリージョンを訪れよう",
+    "ko_kr": "프랑스 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Francja",
+    "pt_br": "Visite a sub-região França",
+    "ru_ru": "Посетите субрегион Франция",
+    "tr_tr": "Fransa alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Франція",
+    "zh_cn": "访问法国子区域",
+    "zh_hk": "遊覽法國子區域",
+    "zh_tw": "造訪法國子區域"
+  }
+}

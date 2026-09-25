@@ -1,0 +1,33 @@
+{
+  "parent": "region/middle_europe",
+  "title_lang": {
+    "de_de": "Ungarn",
+    "en_us": "Hungary",
+    "es_es": "Hungría",
+    "ja_jp": "ハンガリー",
+    "ko_kr": "헝가리",
+    "pl_pl": "Węgry",
+    "pt_br": "Hungria",
+    "ru_ru": "Венгрия",
+    "tr_tr": "Macaristan",
+    "uk_ua": "Угорщина",
+    "zh_cn": "匈牙利",
+    "zh_hk": "匈牙利",
+    "zh_tw": "匈牙利"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Ungarn",
+    "en_us": "Visit the Hungary subregion",
+    "es_es": "Visita la subregión de Hungría",
+    "ja_jp": "ハンガリーのサブリージョンを訪れよう",
+    "ko_kr": "헝가리 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Węgry",
+    "pt_br": "Visite a sub-região Hungria",
+    "ru_ru": "Посетите субрегион Венгрия",
+    "tr_tr": "Macaristan alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Угорщина",
+    "zh_cn": "访问匈牙利子区域",
+    "zh_hk": "遊覽匈牙利子區域",
+    "zh_tw": "造訪匈牙利子區域"
+  }
+}

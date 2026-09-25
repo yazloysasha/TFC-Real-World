@@ -1,0 +1,33 @@
+{
+  "parent": "region/northeastern_usa",
+  "title_lang": {
+    "de_de": "West Virginia",
+    "en_us": "West Virginia",
+    "es_es": "Virginia Occidental",
+    "ja_jp": "ウェストバージニア",
+    "ko_kr": "웨스트버지니아",
+    "pl_pl": "Wirginia Zachodnia",
+    "pt_br": "Virgínia Ocidental",
+    "ru_ru": "Западная Виргиния",
+    "tr_tr": "Batı Virginia",
+    "uk_ua": "Західна Вірджинія",
+    "zh_cn": "西弗吉尼亚",
+    "zh_hk": "西弗吉尼亞",
+    "zh_tw": "西弗吉尼亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion West Virginia",
+    "en_us": "Visit the West Virginia subregion",
+    "es_es": "Visita la subregión de Virginia Occidental",
+    "ja_jp": "ウェストバージニアのサブリージョンを訪れよう",
+    "ko_kr": "웨스트버지니아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wirginia Zachodnia",
+    "pt_br": "Visite a sub-região Virgínia Ocidental",
+    "ru_ru": "Посетите субрегион Западная Виргиния",
+    "tr_tr": "Batı Virginia alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Західна Вірджинія",
+    "zh_cn": "访问西弗吉尼亚子区域",
+    "zh_hk": "遊覽西弗吉尼亞子區域",
+    "zh_tw": "造訪西弗吉尼亞子區域"
+  }
+}

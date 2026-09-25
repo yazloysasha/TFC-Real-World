@@ -1,0 +1,33 @@
+{
+  "parent": "region/middle_europe",
+  "title_lang": {
+    "de_de": "Niederlande",
+    "en_us": "Netherlands",
+    "es_es": "Países Bajos",
+    "ja_jp": "オランダ",
+    "ko_kr": "네덜란드",
+    "pl_pl": "Holandia",
+    "pt_br": "Países Baixos",
+    "ru_ru": "Нидерланды",
+    "tr_tr": "Hollanda",
+    "uk_ua": "Нідерланди",
+    "zh_cn": "荷兰",
+    "zh_hk": "荷蘭",
+    "zh_tw": "荷蘭"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Niederlande",
+    "en_us": "Visit the Netherlands subregion",
+    "es_es": "Visita la subregión Países Bajos",
+    "ja_jp": "オランダのサブリージョンを訪れよう",
+    "ko_kr": "네덜란드 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Holandia",
+    "pt_br": "Visite a sub-região Países Baixos",
+    "ru_ru": "Посетите субрегион Нидерланды",
+    "tr_tr": "Hollanda alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Нідерланди",
+    "zh_cn": "访问荷兰子区域",
+    "zh_hk": "遊覽荷蘭子區域",
+    "zh_tw": "造訪荷蘭子區域"
+  }
+}

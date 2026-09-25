@@ -1,0 +1,33 @@
+{
+  "parent": "region/northern_europe",
+  "title_lang": {
+    "de_de": "Island",
+    "en_us": "Iceland",
+    "es_es": "Islandia",
+    "ja_jp": "アイスランド",
+    "ko_kr": "아이슬란드",
+    "pl_pl": "Islandia",
+    "pt_br": "Islândia",
+    "ru_ru": "Исландия",
+    "tr_tr": "İzlanda",
+    "uk_ua": "Ісландія",
+    "zh_cn": "冰岛",
+    "zh_hk": "冰島",
+    "zh_tw": "冰島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Island",
+    "en_us": "Visit the Iceland subregion",
+    "es_es": "Visita la subregión de Islandia",
+    "ja_jp": "アイスランドのサブリージョンを訪れよう",
+    "ko_kr": "아이슬란드 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Islandia",
+    "pt_br": "Visite a sub-região Islândia",
+    "ru_ru": "Посетите субрегион Исландия",
+    "tr_tr": "İzlanda alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Ісландія",
+    "zh_cn": "访问冰岛子区域",
+    "zh_hk": "遊覽冰島子區域",
+    "zh_tw": "造訪冰島子區域"
+  }
+}

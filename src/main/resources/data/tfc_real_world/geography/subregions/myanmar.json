@@ -1,0 +1,33 @@
+{
+  "parent": "region/indo_china",
+  "title_lang": {
+    "de_de": "Myanmar",
+    "en_us": "Myanmar",
+    "es_es": "Myanmar",
+    "ja_jp": "ミャンマー",
+    "ko_kr": "미얀마",
+    "pl_pl": "Mjanma",
+    "pt_br": "Mianmar",
+    "ru_ru": "Мьянма",
+    "tr_tr": "Myanmar",
+    "uk_ua": "М'янма",
+    "zh_cn": "缅甸",
+    "zh_hk": "緬甸",
+    "zh_tw": "緬甸"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Myanmar",
+    "en_us": "Visit the Myanmar subregion",
+    "es_es": "Visita la subregión de Myanmar",
+    "ja_jp": "ミャンマーのサブリージョンを訪れよう",
+    "ko_kr": "미얀마 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Mjanma",
+    "pt_br": "Visite a sub-região Mianmar",
+    "ru_ru": "Посетите субрегион Мьянма",
+    "tr_tr": "Myanmar alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон М'янма",
+    "zh_cn": "访问缅甸子区域",
+    "zh_hk": "遊覽緬甸子區域",
+    "zh_tw": "造訪緬甸子區域"
+  }
+}

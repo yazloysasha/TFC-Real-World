@@ -1,0 +1,33 @@
+{
+  "parent": "region/western_indian_ocean",
+  "title_lang": {
+    "de_de": "Komoren",
+    "en_us": "Comoros",
+    "es_es": "Comoras",
+    "ja_jp": "コモロ",
+    "ko_kr": "코모로",
+    "pl_pl": "Komory",
+    "pt_br": "Comores",
+    "ru_ru": "Коморы",
+    "tr_tr": "Komorlar",
+    "uk_ua": "Комори",
+    "zh_cn": "科摩罗",
+    "zh_hk": "科摩羅",
+    "zh_tw": "科摩羅"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Komoren",
+    "en_us": "Visit the Comoros subregion",
+    "es_es": "Visita la subregión de Comoras",
+    "ja_jp": "コモロのサブリージョンを訪れよう",
+    "ko_kr": "코모로 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Komory",
+    "pt_br": "Visite a sub-região Comores",
+    "ru_ru": "Посетите субрегион Коморы",
+    "tr_tr": "Komorlar alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Комори",
+    "zh_cn": "访问科摩罗子区域",
+    "zh_hk": "遊覽科摩羅子區域",
+    "zh_tw": "造訪科摩羅子區域"
+  }
+}

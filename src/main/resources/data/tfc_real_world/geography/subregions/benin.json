@@ -1,0 +1,33 @@
+{
+  "parent": "region/west_tropical_africa",
+  "title_lang": {
+    "de_de": "Benin",
+    "en_us": "Benin",
+    "es_es": "Benín",
+    "ja_jp": "ベナン",
+    "ko_kr": "베냉",
+    "pl_pl": "Benin",
+    "pt_br": "Benim",
+    "ru_ru": "Бенин",
+    "tr_tr": "Benin",
+    "uk_ua": "Бенін",
+    "zh_cn": "贝宁",
+    "zh_hk": "貝寧",
+    "zh_tw": "貝寧"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Benin",
+    "en_us": "Visit the Benin subregion",
+    "es_es": "Visita la subregión de Benín",
+    "ja_jp": "ベナンのサブリージョンを訪れよう",
+    "ko_kr": "베냉 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Benin",
+    "pt_br": "Visite a sub-região Benim",
+    "ru_ru": "Посетите субрегион Бенин",
+    "tr_tr": "Benin alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Бенін",
+    "zh_cn": "访问贝宁子区域",
+    "zh_hk": "遊覽貝寧子區域",
+    "zh_tw": "造訪貝寧子區域"
+  }
+}

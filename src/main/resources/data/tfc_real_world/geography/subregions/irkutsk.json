@@ -1,0 +1,33 @@
+{
+  "parent": "region/siberia",
+  "title_lang": {
+    "de_de": "Irkutsk",
+    "en_us": "Irkutsk",
+    "es_es": "Irkutsk",
+    "ja_jp": "イルクーツク",
+    "ko_kr": "이르쿠츠크",
+    "pl_pl": "Irkuck",
+    "pt_br": "Irkutsk",
+    "ru_ru": "Иркутск",
+    "tr_tr": "İrkutsk",
+    "uk_ua": "Іркутськ",
+    "zh_cn": "伊尔库茨克",
+    "zh_hk": "伊爾庫茨克",
+    "zh_tw": "伊爾庫茨克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Irkutsk",
+    "en_us": "Visit the Irkutsk subregion",
+    "es_es": "Visita la subregión de Irkutsk",
+    "ja_jp": "イルクーツクのサブリージョンを訪れよう",
+    "ko_kr": "이르쿠츠크 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Irkuck",
+    "pt_br": "Visite a sub-região Irkutsk",
+    "ru_ru": "Посетите субрегион Иркутск",
+    "tr_tr": "İrkutsk alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Іркутськ",
+    "zh_cn": "访问伊尔库茨克子区域",
+    "zh_hk": "遊覽伊爾庫茨克子區域",
+    "zh_tw": "造訪伊爾庫茨克子區域"
+  }
+}

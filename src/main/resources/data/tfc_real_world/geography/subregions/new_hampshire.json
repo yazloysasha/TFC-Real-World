@@ -1,0 +1,33 @@
+{
+  "parent": "region/northeastern_usa",
+  "title_lang": {
+    "de_de": "New Hampshire",
+    "en_us": "New Hampshire",
+    "es_es": "Nuevo Hampshire",
+    "ja_jp": "ニューハンプシャー",
+    "ko_kr": "뉴햄프셔",
+    "pl_pl": "New Hampshire",
+    "pt_br": "Nova Hampshire",
+    "ru_ru": "Нью-Гэмпшир",
+    "tr_tr": "New Hampshire",
+    "uk_ua": "Нью-Гемпшир",
+    "zh_cn": "新罕布什尔",
+    "zh_hk": "新罕布什爾",
+    "zh_tw": "新罕布什爾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion New Hampshire",
+    "en_us": "Visit the New Hampshire subregion",
+    "es_es": "Visita la subregión de Nuevo Hampshire",
+    "ja_jp": "ニューハンプシャーのサブリージョンを訪れよう",
+    "ko_kr": "뉴햄프셔 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion New Hampshire",
+    "pt_br": "Visite a sub-região Nova Hampshire",
+    "ru_ru": "Посетите субрегион Нью-Гэмпшир",
+    "tr_tr": "New Hampshire alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Нью-Гемпшир",
+    "zh_cn": "访问新罕布什尔子区域",
+    "zh_hk": "遊覽新罕布什爾子區域",
+    "zh_tw": "造訪新罕布什爾子區域"
+  }
+}

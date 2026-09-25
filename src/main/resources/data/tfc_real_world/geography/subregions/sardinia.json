@@ -1,0 +1,33 @@
+{
+  "parent": "region/southwestern_europe",
+  "title_lang": {
+    "de_de": "Sardinien",
+    "en_us": "Sardinia",
+    "es_es": "Cerdeña",
+    "ja_jp": "サルデーニャ",
+    "ko_kr": "사르데냐",
+    "pl_pl": "Sardynia",
+    "pt_br": "Sardenha",
+    "ru_ru": "Сардиния",
+    "tr_tr": "Sardinya",
+    "uk_ua": "Сардинія",
+    "zh_cn": "撒丁岛",
+    "zh_hk": "撒丁島",
+    "zh_tw": "撒丁島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Sardinien",
+    "en_us": "Visit the Sardinia subregion",
+    "es_es": "Visita la subregión de Cerdeña",
+    "ja_jp": "サルデーニャのサブリージョンを訪れよう",
+    "ko_kr": "사르데냐 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Sardynia",
+    "pt_br": "Visite a sub-região Sardenha",
+    "ru_ru": "Посетите субрегион Сардиния",
+    "tr_tr": "Sardinya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Сардинія",
+    "zh_cn": "访问撒丁岛子区域",
+    "zh_hk": "遊覽撒丁島子區域",
+    "zh_tw": "造訪撒丁島子區域"
+  }
+}

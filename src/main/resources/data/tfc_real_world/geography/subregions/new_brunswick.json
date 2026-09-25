@@ -1,0 +1,33 @@
+{
+  "parent": "region/eastern_canada",
+  "title_lang": {
+    "de_de": "New Brunswick",
+    "en_us": "New Brunswick",
+    "es_es": "Nuevo Brunswick",
+    "ja_jp": "ニューブランズウィック",
+    "ko_kr": "뉴브런즈윅",
+    "pl_pl": "Nowy Brunszwik",
+    "pt_br": "Novo Brunswick",
+    "ru_ru": "Нью-Брансуик",
+    "tr_tr": "New Brunswick",
+    "uk_ua": "Нью-Брансвік",
+    "zh_cn": "新不伦瑞克",
+    "zh_hk": "新不倫瑞克",
+    "zh_tw": "新不倫瑞克"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion New Brunswick",
+    "en_us": "Visit the New Brunswick subregion",
+    "es_es": "Visita la subregión de Nuevo Brunswick",
+    "ja_jp": "ニューブランズウィックのサブリージョンを訪れよう",
+    "ko_kr": "뉴브런즈윅 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Nowy Brunszwik",
+    "pt_br": "Visite a sub-região Novo Brunswick",
+    "ru_ru": "Посетите субрегион Нью-Брансуик",
+    "tr_tr": "New Brunswick alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Нью-Брансвік",
+    "zh_cn": "访问新不伦瑞克子区域",
+    "zh_hk": "遊覽新不倫瑞克子區域",
+    "zh_tw": "造訪新不倫瑞克子區域"
+  }
+}

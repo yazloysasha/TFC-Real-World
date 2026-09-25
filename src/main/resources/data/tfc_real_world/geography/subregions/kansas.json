@@ -1,0 +1,33 @@
+{
+  "parent": "region/north_central_usa",
+  "title_lang": {
+    "de_de": "Kansas",
+    "en_us": "Kansas",
+    "es_es": "Kansas",
+    "ja_jp": "カンザス",
+    "ko_kr": "캔자스",
+    "pl_pl": "Kansas",
+    "pt_br": "Kansas",
+    "ru_ru": "Канзас",
+    "tr_tr": "Kansas",
+    "uk_ua": "Канзас",
+    "zh_cn": "堪萨斯",
+    "zh_hk": "堪薩斯",
+    "zh_tw": "堪薩斯"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Kansas",
+    "en_us": "Visit the Kansas subregion",
+    "es_es": "Visita la subregión de Kansas",
+    "ja_jp": "カンザスのサブリージョンを訪れよう",
+    "ko_kr": "캔자스 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Kansas",
+    "pt_br": "Visite a sub-região Kansas",
+    "ru_ru": "Посетите субрегион Канзас",
+    "tr_tr": "Kansas alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Канзас",
+    "zh_cn": "访问堪萨斯子区域",
+    "zh_hk": "遊覽堪薩斯子區域",
+    "zh_tw": "造訪堪薩斯子區域"
+  }
+}

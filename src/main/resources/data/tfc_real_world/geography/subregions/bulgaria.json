@@ -1,0 +1,33 @@
+{
+  "parent": "region/southeastern_europe",
+  "title_lang": {
+    "de_de": "Bulgarien",
+    "en_us": "Bulgaria",
+    "es_es": "Bulgaria",
+    "ja_jp": "ブルガリア",
+    "ko_kr": "불가리아",
+    "pl_pl": "Bułgaria",
+    "pt_br": "Bulgária",
+    "ru_ru": "Болгария",
+    "tr_tr": "Bulgaristan",
+    "uk_ua": "Болгарія",
+    "zh_cn": "保加лия",
+    "zh_hk": "保加лия",
+    "zh_tw": "保加лия"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Bulgarien",
+    "en_us": "Visit the Bulgaria subregion",
+    "es_es": "Visita la subregión de Bulgaria",
+    "ja_jp": "ブルガリアのサブリージョンを訪れよう",
+    "ko_kr": "불가리아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Bułgaria",
+    "pt_br": "Visite a sub-região Bulgária",
+    "ru_ru": "Посетите субрегион Болгария",
+    "tr_tr": "Bulgaristan alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Болгарія",
+    "zh_cn": "访问保加лия子区域",
+    "zh_hk": "遊覽保加лия子區域",
+    "zh_tw": "造訪保加лия子區域"
+  }
+}

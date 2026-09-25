@@ -1,0 +1,33 @@
+{
+  "parent": "region/southeastern_usa",
+  "title_lang": {
+    "de_de": "Florida",
+    "en_us": "Florida",
+    "es_es": "Florida",
+    "ja_jp": "フロリダ",
+    "ko_kr": "플로리다",
+    "pl_pl": "Floryda",
+    "pt_br": "Flórida",
+    "ru_ru": "Флорида",
+    "tr_tr": "Florida",
+    "uk_ua": "Флорида",
+    "zh_cn": "佛罗里达",
+    "zh_hk": "佛羅里達",
+    "zh_tw": "佛羅里達"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Florida",
+    "en_us": "Visit the Florida subregion",
+    "es_es": "Visita la subregión de Florida",
+    "ja_jp": "フロリダのサブリージョンを訪れよう",
+    "ko_kr": "플로리다 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Floryda",
+    "pt_br": "Visite a sub-região Flórida",
+    "ru_ru": "Посетите субрегион Флорида",
+    "tr_tr": "Florida alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Флорида",
+    "zh_cn": "访问佛罗里达子区域",
+    "zh_hk": "遊覽佛羅里達子區域",
+    "zh_tw": "造訪佛羅里達子區域"
+  }
+}

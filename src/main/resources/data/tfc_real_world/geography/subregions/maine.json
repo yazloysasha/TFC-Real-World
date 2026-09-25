@@ -1,0 +1,33 @@
+{
+  "parent": "region/northeastern_usa",
+  "title_lang": {
+    "de_de": "Maine",
+    "en_us": "Maine",
+    "es_es": "Maine",
+    "ja_jp": "メイン",
+    "ko_kr": "메인",
+    "pl_pl": "Maine",
+    "pt_br": "Maine",
+    "ru_ru": "Мэн",
+    "tr_tr": "Maine",
+    "uk_ua": "Мен",
+    "zh_cn": "缅因",
+    "zh_hk": "緬因",
+    "zh_tw": "緬因"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Maine",
+    "en_us": "Visit the Maine subregion",
+    "es_es": "Visita la subregión de Maine",
+    "ja_jp": "メインのサブリージョンを訪れよう",
+    "ko_kr": "메인 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Maine",
+    "pt_br": "Visite a sub-região Maine",
+    "ru_ru": "Посетите субрегион Мэн",
+    "tr_tr": "Maine alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Мен",
+    "zh_cn": "访问缅因子区域",
+    "zh_hk": "遊覽緬因子區域",
+    "zh_tw": "造訪緬因子區域"
+  }
+}

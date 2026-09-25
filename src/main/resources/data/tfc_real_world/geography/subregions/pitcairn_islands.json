@@ -1,0 +1,33 @@
+{
+  "parent": "region/south_central_pacific",
+  "title_lang": {
+    "de_de": "Pitcairninseln",
+    "en_us": "Pitcairn Islands",
+    "es_es": "Islas Pitcairn",
+    "ja_jp": "ピトケアン諸島",
+    "ko_kr": "핏케언 제도",
+    "pl_pl": "Wyspy Pitcairn",
+    "pt_br": "Ilhas Pitcairn",
+    "ru_ru": "Острова Питкэрн",
+    "tr_tr": "Pitcairn Adaları",
+    "uk_ua": "Острови Піткерн",
+    "zh_cn": "皮特凯恩群岛",
+    "zh_hk": "皮特凱恩群島",
+    "zh_tw": "皮特凱恩群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Pitcairninseln",
+    "en_us": "Visit the Pitcairn Islands subregion",
+    "es_es": "Visita la subregión Islas Pitcairn",
+    "ja_jp": "ピトケアン諸島のサブリージョンを訪れよう",
+    "ko_kr": "핏케언 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Pitcairn",
+    "pt_br": "Visite a sub-região Ilhas Pitcairn",
+    "ru_ru": "Посетите субрегион Острова Питкэрн",
+    "tr_tr": "Pitcairn Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Острови Піткерн",
+    "zh_cn": "访问皮特凯恩群岛子区域",
+    "zh_hk": "遊覽皮特凱恩群島子區域",
+    "zh_tw": "造訪皮特凱恩群島子區域"
+  }
+}

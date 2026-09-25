@@ -1,0 +1,33 @@
+{
+  "parent": "region/china",
+  "title_lang": {
+    "de_de": "Tibet",
+    "en_us": "Tibet",
+    "es_es": "Tíbet",
+    "ja_jp": "チベット",
+    "ko_kr": "티베트",
+    "pl_pl": "Tybet",
+    "pt_br": "Tibete",
+    "ru_ru": "Тибет",
+    "tr_tr": "Tibet",
+    "uk_ua": "Тибет",
+    "zh_cn": "西藏",
+    "zh_hk": "西藏",
+    "zh_tw": "西藏"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Tibet",
+    "en_us": "Visit the Tibet subregion",
+    "es_es": "Visita la subregión de Tíbet",
+    "ja_jp": "チベットのサブリージョンを訪れよう",
+    "ko_kr": "티베트 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Tybet",
+    "pt_br": "Visite a sub-região Tibete",
+    "ru_ru": "Посетите субрегион Тибет",
+    "tr_tr": "Tibet alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Тибет",
+    "zh_cn": "访问西藏子区域",
+    "zh_hk": "遊覽西藏子區域",
+    "zh_tw": "造訪西藏子區域"
+  }
+}

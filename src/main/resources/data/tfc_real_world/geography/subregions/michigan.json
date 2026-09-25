@@ -1,0 +1,33 @@
+{
+  "parent": "region/northeastern_usa",
+  "title_lang": {
+    "de_de": "Michigan",
+    "en_us": "Michigan",
+    "es_es": "Míchigan",
+    "ja_jp": "ミシガン",
+    "ko_kr": "미시간",
+    "pl_pl": "Michigan",
+    "pt_br": "Michigan",
+    "ru_ru": "Мичиган",
+    "tr_tr": "Michigan",
+    "uk_ua": "Мічиган",
+    "zh_cn": "密歇根",
+    "zh_hk": "密歇根",
+    "zh_tw": "密歇根"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Michigan",
+    "en_us": "Visit the Michigan subregion",
+    "es_es": "Visita la subregión de Míchigan",
+    "ja_jp": "ミシガンのサブリージョンを訪れよう",
+    "ko_kr": "미시간 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Michigan",
+    "pt_br": "Visite a sub-região Michigan",
+    "ru_ru": "Посетите субрегион Мичиган",
+    "tr_tr": "Michigan alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Мічиган",
+    "zh_cn": "访问密歇根子区域",
+    "zh_hk": "遊覽密歇根子區域",
+    "zh_tw": "造訪密歇根子區域"
+  }
+}

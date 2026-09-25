@@ -1,0 +1,33 @@
+{
+  "parent": "region/eastern_asia",
+  "title_lang": {
+    "de_de": "Nansei-Inseln",
+    "en_us": "Nansei Islands",
+    "es_es": "Islas Nansei",
+    "ja_jp": "南西諸島",
+    "ko_kr": "난세이 제도",
+    "pl_pl": "Wyspy Nansei",
+    "pt_br": "Ilhas Nansei",
+    "ru_ru": "Острова Нансэй",
+    "tr_tr": "Nansei Adaları",
+    "uk_ua": "Острови Нансей",
+    "zh_cn": "南西诸岛",
+    "zh_hk": "南西諸島",
+    "zh_tw": "南西諸島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Nansei-Inseln",
+    "en_us": "Visit the Nansei Islands subregion",
+    "es_es": "Visita la subregión Islas Nansei",
+    "ja_jp": "南西諸島のサブリージョンを訪れよう",
+    "ko_kr": "난세이 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Nansei",
+    "pt_br": "Visite a sub-região Ilhas Nansei",
+    "ru_ru": "Посетите субрегион Острова Нансэй",
+    "tr_tr": "Nansei Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Острови Нансей",
+    "zh_cn": "访问南西诸岛子区域",
+    "zh_hk": "遊覽南西諸島子區域",
+    "zh_tw": "造訪南西諸島子區域"
+  }
+}

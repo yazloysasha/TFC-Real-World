@@ -1,0 +1,33 @@
+{
+  "parent": "region/southeastern_usa",
+  "title_lang": {
+    "de_de": "District of Columbia",
+    "en_us": "District of Columbia",
+    "es_es": "Distrito de Columbia",
+    "ja_jp": "コロンビア特別区",
+    "ko_kr": "컬럼비아 특별구",
+    "pl_pl": "Dystrykt Kolumbii",
+    "pt_br": "Distrito de Columbia",
+    "ru_ru": "Округ Колумбия",
+    "tr_tr": "Columbia Bölgesi",
+    "uk_ua": "Округ Колумбія",
+    "zh_cn": "哥伦比亚特区",
+    "zh_hk": "哥倫比亞特區",
+    "zh_tw": "哥倫比亞特區"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion District of Columbia",
+    "en_us": "Visit the District of Columbia subregion",
+    "es_es": "Visita la subregión de Distrito de Columbia",
+    "ja_jp": "コロンビア特別区のサブリージョンを訪れよう",
+    "ko_kr": "컬럼비아 특별구 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Dystrykt Kolumbii",
+    "pt_br": "Visite a sub-região Distrito de Columbia",
+    "ru_ru": "Посетите субрегион Округ Колумбия",
+    "tr_tr": "Columbia Bölgesi alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Округ Колумбія",
+    "zh_cn": "访问哥伦比亚特区子区域",
+    "zh_hk": "遊覽哥倫比亞特區子區域",
+    "zh_tw": "造訪哥倫比亞特區子區域"
+  }
+}

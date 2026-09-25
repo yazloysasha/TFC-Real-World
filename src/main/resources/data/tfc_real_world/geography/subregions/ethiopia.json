@@ -1,0 +1,33 @@
+{
+  "parent": "region/northeast_tropical_africa",
+  "title_lang": {
+    "de_de": "Äthiopien",
+    "en_us": "Ethiopia",
+    "es_es": "Etiopía",
+    "ja_jp": "エチオピア",
+    "ko_kr": "에티오피아",
+    "pl_pl": "Etiopia",
+    "pt_br": "Etiópia",
+    "ru_ru": "Эфиопия",
+    "tr_tr": "Etiyopya",
+    "uk_ua": "Ефіопія",
+    "zh_cn": "埃塞俄比亚",
+    "zh_hk": "埃塞俄比亞",
+    "zh_tw": "埃塞俄比亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Äthiopien",
+    "en_us": "Visit the Ethiopia subregion",
+    "es_es": "Visita la subregión de Etiopía",
+    "ja_jp": "エチオピアのサブリージョンを訪れよう",
+    "ko_kr": "에티오피아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Etiopia",
+    "pt_br": "Visite a sub-região Etiópia",
+    "ru_ru": "Посетите субрегион Эфиопия",
+    "tr_tr": "Etiyopya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Ефіопія",
+    "zh_cn": "访问埃塞俄比亚子区域",
+    "zh_hk": "遊覽埃塞俄比亞子區域",
+    "zh_tw": "造訪埃塞俄比亞子區域"
+  }
+}

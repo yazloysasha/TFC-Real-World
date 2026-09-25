@@ -1,0 +1,33 @@
+{
+  "parent": "region/middle_europe",
+  "title_lang": {
+    "de_de": "Deutschland",
+    "en_us": "Germany",
+    "es_es": "Alemania",
+    "ja_jp": "ドイツ",
+    "ko_kr": "독일",
+    "pl_pl": "Niemcy",
+    "pt_br": "Alemanha",
+    "ru_ru": "Германия",
+    "tr_tr": "Almanya",
+    "uk_ua": "Німеччина",
+    "zh_cn": "德国",
+    "zh_hk": "德國",
+    "zh_tw": "德國"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Deutschland",
+    "en_us": "Visit the Germany subregion",
+    "es_es": "Visita la subregión de Alemania",
+    "ja_jp": "ドイツのサブリージョンを訪れよう",
+    "ko_kr": "독일 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Niemcy",
+    "pt_br": "Visite a sub-região Alemanha",
+    "ru_ru": "Посетите субрегион Германия",
+    "tr_tr": "Almanya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Німеччина",
+    "zh_cn": "访问德国子区域",
+    "zh_hk": "遊覽德國子區域",
+    "zh_tw": "造訪德國子區域"
+  }
+}

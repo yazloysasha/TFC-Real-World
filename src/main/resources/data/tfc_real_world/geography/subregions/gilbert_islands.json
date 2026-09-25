@@ -1,0 +1,33 @@
+{
+  "parent": "region/southwestern_pacific",
+  "title_lang": {
+    "de_de": "Gilbertinseln",
+    "en_us": "Gilbert Islands",
+    "es_es": "Islas Gilbert",
+    "ja_jp": "ギルバート諸島",
+    "ko_kr": "길버트 제도",
+    "pl_pl": "Wyspy Gilberta",
+    "pt_br": "Ilhas Gilbert",
+    "ru_ru": "Острова Гилберта",
+    "tr_tr": "Gilbert Adaları",
+    "uk_ua": "Острови Гілберта",
+    "zh_cn": "吉尔伯特群岛",
+    "zh_hk": "吉爾伯特群島",
+    "zh_tw": "吉爾伯特群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Gilbertinseln",
+    "en_us": "Visit the Gilbert Islands subregion",
+    "es_es": "Visita la subregión Islas Gilbert",
+    "ja_jp": "ギルバート諸島のサブリージョンを訪れよう",
+    "ko_kr": "길버트 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Gilberta",
+    "pt_br": "Visite a sub-região Ilhas Gilbert",
+    "ru_ru": "Посетите субрегион Острова Гилберта",
+    "tr_tr": "Gilbert Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Острови Гілберта",
+    "zh_cn": "访问吉尔伯特群岛子区域",
+    "zh_hk": "遊覽吉爾伯特群島子區域",
+    "zh_tw": "造訪吉爾伯特群島子區域"
+  }
+}

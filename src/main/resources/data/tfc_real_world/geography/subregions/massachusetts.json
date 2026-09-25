@@ -1,0 +1,33 @@
+{
+  "parent": "region/northeastern_usa",
+  "title_lang": {
+    "de_de": "Massachusetts",
+    "en_us": "Massachusetts",
+    "es_es": "Massachusetts",
+    "ja_jp": "マサチューセッツ",
+    "ko_kr": "매사추세츠",
+    "pl_pl": "Massachusetts",
+    "pt_br": "Massachusetts",
+    "ru_ru": "Массачусетс",
+    "tr_tr": "Massachusetts",
+    "uk_ua": "Массачусетс",
+    "zh_cn": "马萨诸塞",
+    "zh_hk": "馬薩諸塞",
+    "zh_tw": "馬薩諸塞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Massachusetts",
+    "en_us": "Visit the Massachusetts subregion",
+    "es_es": "Visita la subregión de Massachusetts",
+    "ja_jp": "マサチューセッツのサブリージョンを訪れよう",
+    "ko_kr": "매사추세츠 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Massachusetts",
+    "pt_br": "Visite a sub-região Massachusetts",
+    "ru_ru": "Посетите субрегион Массачусетс",
+    "tr_tr": "Massachusetts alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Массачусетс",
+    "zh_cn": "访问马萨诸塞子区域",
+    "zh_hk": "遊覽馬薩諸塞子區域",
+    "zh_tw": "造訪馬薩諸塞子區域"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "region/papuasia",
+  "title_lang": {
+    "de_de": "Bismarck-Archipel",
+    "en_us": "Bismarck Archipelago",
+    "es_es": "Archipiélago de Bismarck",
+    "ja_jp": "ビスマルク諸島",
+    "ko_kr": "비스마르크 제도",
+    "pl_pl": "Archipelag Bismarcka",
+    "pt_br": "Arquipélago de Bismarck",
+    "ru_ru": "Архипелаг Бисмарка",
+    "tr_tr": "Bismarck Takımadaları",
+    "uk_ua": "Архіпелаг Бісмарка",
+    "zh_cn": "俾斯麦群岛",
+    "zh_hk": "俾斯麥群島",
+    "zh_tw": "俾斯麥群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Bismarck-Archipel",
+    "en_us": "Visit the Bismarck Archipelago subregion",
+    "es_es": "Visita la subregión Archipiélago de Bismarck",
+    "ja_jp": "ビスマルク諸島のサブリージョンを訪れよう",
+    "ko_kr": "비스마르크 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Archipelag Bismarcka",
+    "pt_br": "Visite a sub-região Arquipélago de Bismarck",
+    "ru_ru": "Посетите субрегион Архипелаг Бисмарка",
+    "tr_tr": "Bismarck Takımadaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Архіпелаг Бісмарка",
+    "zh_cn": "访问俾斯麦群岛子区域",
+    "zh_hk": "遊覽俾斯麥群島子區域",
+    "zh_tw": "造訪俾斯麥群島子區域"
+  }
+}

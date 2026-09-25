@@ -1,0 +1,33 @@
+{
+  "parent": "region/west_central_tropical_africa",
+  "title_lang": {
+    "de_de": "Ruanda",
+    "en_us": "Rwanda",
+    "es_es": "Ruanda",
+    "ja_jp": "ルワンダ",
+    "ko_kr": "르완다",
+    "pl_pl": "Rwanda",
+    "pt_br": "Ruanda",
+    "ru_ru": "Руанда",
+    "tr_tr": "Ruanda",
+    "uk_ua": "Руанда",
+    "zh_cn": "卢旺达",
+    "zh_hk": "盧旺達",
+    "zh_tw": "盧旺達"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Ruanda",
+    "en_us": "Visit the Rwanda subregion",
+    "es_es": "Visita la subregión de Ruanda",
+    "ja_jp": "ルワンダのサブリージョンを訪れよう",
+    "ko_kr": "르완다 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Rwanda",
+    "pt_br": "Visite a sub-região Ruanda",
+    "ru_ru": "Посетите субрегион Руанда",
+    "tr_tr": "Ruanda alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Руанда",
+    "zh_cn": "访问卢旺达子区域",
+    "zh_hk": "遊覽盧旺達子區域",
+    "zh_tw": "造訪盧旺達子區域"
+  }
+}

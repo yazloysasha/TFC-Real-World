@@ -1,0 +1,33 @@
+{
+  "parent": "region/caribbean",
+  "title_lang": {
+    "de_de": "Bermuda",
+    "en_us": "Bermuda",
+    "es_es": "Bermudas",
+    "ja_jp": "バミューダ",
+    "ko_kr": "버뮤다",
+    "pl_pl": "Bermudy",
+    "pt_br": "Bermudas",
+    "ru_ru": "Бермуды",
+    "tr_tr": "Bermuda",
+    "uk_ua": "Бермуди",
+    "zh_cn": "百慕大",
+    "zh_hk": "百慕大",
+    "zh_tw": "百慕大"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Bermuda",
+    "en_us": "Visit the Bermuda subregion",
+    "es_es": "Visita la subregión de Bermudas",
+    "ja_jp": "バミューダのサブリージョンを訪れよう",
+    "ko_kr": "버뮤다 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Bermudy",
+    "pt_br": "Visite a sub-região Bermudas",
+    "ru_ru": "Посетите субрегион Бермуды",
+    "tr_tr": "Bermuda alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Бермуди",
+    "zh_cn": "访问百慕大子区域",
+    "zh_hk": "遊覽百慕大子區域",
+    "zh_tw": "造訪百慕大子區域"
+  }
+}

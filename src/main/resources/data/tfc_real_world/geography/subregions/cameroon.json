@@ -1,0 +1,33 @@
+{
+  "parent": "region/west_central_tropical_africa",
+  "title_lang": {
+    "de_de": "Kamerun",
+    "en_us": "Cameroon",
+    "es_es": "Camerún",
+    "ja_jp": "カメルーン",
+    "ko_kr": "카메룬",
+    "pl_pl": "Kamerun",
+    "pt_br": "Camarões",
+    "ru_ru": "Камерун",
+    "tr_tr": "Kamerun",
+    "uk_ua": "Камерун",
+    "zh_cn": "喀麦隆",
+    "zh_hk": "喀麥隆",
+    "zh_tw": "喀麥隆"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Kamerun",
+    "en_us": "Visit the Cameroon subregion",
+    "es_es": "Visita la subregión de Camerún",
+    "ja_jp": "カメルーンのサブリージョンを訪れよう",
+    "ko_kr": "카메룬 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Kamerun",
+    "pt_br": "Visite a sub-região Camarões",
+    "ru_ru": "Посетите субрегион Камерун",
+    "tr_tr": "Kamerun alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Камерун",
+    "zh_cn": "访问喀麦隆子区域",
+    "zh_hk": "遊覽喀麥隆子區域",
+    "zh_tw": "造訪喀麥隆子區域"
+  }
+}

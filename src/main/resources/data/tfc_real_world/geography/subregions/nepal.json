@@ -1,0 +1,33 @@
+{
+  "parent": "region/indian_subcontinent",
+  "title_lang": {
+    "de_de": "Nepal",
+    "en_us": "Nepal",
+    "es_es": "Nepal",
+    "ja_jp": "ネパール",
+    "ko_kr": "네팔",
+    "pl_pl": "Nepal",
+    "pt_br": "Nepal",
+    "ru_ru": "Непал",
+    "tr_tr": "Nepal",
+    "uk_ua": "Непал",
+    "zh_cn": "尼泊尔",
+    "zh_hk": "尼泊爾",
+    "zh_tw": "尼泊爾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Nepal",
+    "en_us": "Visit the Nepal subregion",
+    "es_es": "Visita la subregión de Nepal",
+    "ja_jp": "ネパールのサブリージョンを訪れよう",
+    "ko_kr": "네팔 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Nepal",
+    "pt_br": "Visite a sub-região Nepal",
+    "ru_ru": "Посетите субрегион Непал",
+    "tr_tr": "Nepal alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Непал",
+    "zh_cn": "访问尼泊尔子区域",
+    "zh_hk": "遊覽尼泊爾子區域",
+    "zh_tw": "造訪尼泊爾子區域"
+  }
+}

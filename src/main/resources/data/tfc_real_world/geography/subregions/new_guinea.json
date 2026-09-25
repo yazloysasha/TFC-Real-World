@@ -1,0 +1,33 @@
+{
+  "parent": "region/papuasia",
+  "title_lang": {
+    "de_de": "Neuguinea",
+    "en_us": "New Guinea",
+    "es_es": "Nueva Guinea",
+    "ja_jp": "ニューギニア",
+    "ko_kr": "뉴기니",
+    "pl_pl": "Nowa Gwinea",
+    "pt_br": "Nova Guiné",
+    "ru_ru": "Новая Гвинея",
+    "tr_tr": "Yeni Gine",
+    "uk_ua": "Нова Гвінея",
+    "zh_cn": "新几内亚",
+    "zh_hk": "新幾內亞",
+    "zh_tw": "新幾內亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Neuguinea",
+    "en_us": "Visit the New Guinea subregion",
+    "es_es": "Visita la subregión de Nueva Guinea",
+    "ja_jp": "ニューギニアのサブリージョンを訪れよう",
+    "ko_kr": "뉴기니 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Nowa Gwinea",
+    "pt_br": "Visite a sub-região Nova Guiné",
+    "ru_ru": "Посетите субрегион Новая Гвинея",
+    "tr_tr": "Yeni Gine alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Нова Гвінея",
+    "zh_cn": "访问新几内亚子区域",
+    "zh_hk": "遊覽新幾內亞子區域",
+    "zh_tw": "造訪新幾內亞子區域"
+  }
+}

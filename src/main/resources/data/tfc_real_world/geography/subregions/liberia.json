@@ -1,0 +1,33 @@
+{
+  "parent": "region/west_tropical_africa",
+  "title_lang": {
+    "de_de": "Liberia",
+    "en_us": "Liberia",
+    "es_es": "Liberia",
+    "ja_jp": "リベリア",
+    "ko_kr": "라이베리아",
+    "pl_pl": "Liberia",
+    "pt_br": "Libéria",
+    "ru_ru": "Либерия",
+    "tr_tr": "Liberya",
+    "uk_ua": "Ліберія",
+    "zh_cn": "利比里亚",
+    "zh_hk": "利比里亞",
+    "zh_tw": "利比里亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Liberia",
+    "en_us": "Visit the Liberia subregion",
+    "es_es": "Visita la subregión de Liberia",
+    "ja_jp": "リベリアのサブリージョンを訪れよう",
+    "ko_kr": "라이베리아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Liberia",
+    "pt_br": "Visite a sub-região Libéria",
+    "ru_ru": "Посетите субрегион Либерия",
+    "tr_tr": "Liberya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Ліберія",
+    "zh_cn": "访问利比里亚子区域",
+    "zh_hk": "遊覽利比里亞子區域",
+    "zh_tw": "造訪利比里亞子區域"
+  }
+}

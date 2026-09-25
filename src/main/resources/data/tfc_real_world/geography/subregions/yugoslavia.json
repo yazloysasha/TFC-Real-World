@@ -1,0 +1,33 @@
+{
+  "parent": "region/southeastern_europe",
+  "title_lang": {
+    "de_de": "Jugoslawien",
+    "en_us": "Yugoslavia",
+    "es_es": "Yugoslavia",
+    "ja_jp": "ユーゴスラビア",
+    "ko_kr": "유고슬라비아",
+    "pl_pl": "Jugosławia",
+    "pt_br": "Iugoslávia",
+    "ru_ru": "Югославия",
+    "tr_tr": "Yugoslavya",
+    "uk_ua": "Югославія",
+    "zh_cn": "南斯拉夫",
+    "zh_hk": "南斯拉夫",
+    "zh_tw": "南斯拉夫"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Jugoslawien",
+    "en_us": "Visit the Yugoslavia subregion",
+    "es_es": "Visita la subregión de Yugoslavia",
+    "ja_jp": "ユーゴスラビアのサブリージョンを訪れよう",
+    "ko_kr": "유고슬라비아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Jugosławia",
+    "pt_br": "Visite a sub-região Iugoslávia",
+    "ru_ru": "Посетите субрегион Югославия",
+    "tr_tr": "Yugoslavya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Югославія",
+    "zh_cn": "访问南斯拉夫子区域",
+    "zh_hk": "遊覽南斯拉夫子區域",
+    "zh_tw": "造訪南斯拉夫子區域"
+  }
+}

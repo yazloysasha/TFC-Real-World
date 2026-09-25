@@ -1,0 +1,33 @@
+{
+  "parent": "region/west_tropical_africa",
+  "title_lang": {
+    "de_de": "Guinea-Bissau",
+    "en_us": "Guinea-Bissau",
+    "es_es": "Guinea-Bisáu",
+    "ja_jp": "ギニアビサウ",
+    "ko_kr": "기니비사우",
+    "pl_pl": "Gwinea Bissau",
+    "pt_br": "Guiné-Bissau",
+    "ru_ru": "Гвинея-Бисау",
+    "tr_tr": "Gine-Bissau",
+    "uk_ua": "Гвінея-Бісау",
+    "zh_cn": "几内亚比绍",
+    "zh_hk": "幾內亞比紹",
+    "zh_tw": "幾內亞比紹"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Guinea-Bissau",
+    "en_us": "Visit the Guinea-Bissau subregion",
+    "es_es": "Visita la subregión de Guinea-Bisáu",
+    "ja_jp": "ギニアビサウのサブリージョンを訪れよう",
+    "ko_kr": "기니비사우 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Gwinea Bissau",
+    "pt_br": "Visite a sub-região Guiné-Bissau",
+    "ru_ru": "Посетите субрегион Гвинея-Бисау",
+    "tr_tr": "Gine-Bissau alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Гвінея-Бісау",
+    "zh_cn": "访问几内亚比绍子区域",
+    "zh_hk": "遊覽幾內亞比紹子區域",
+    "zh_tw": "造訪幾內亞比紹子區域"
+  }
+}

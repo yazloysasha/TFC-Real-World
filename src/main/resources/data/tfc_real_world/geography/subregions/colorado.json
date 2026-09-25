@@ -1,0 +1,33 @@
+{
+  "parent": "region/northwestern_usa",
+  "title_lang": {
+    "de_de": "Colorado",
+    "en_us": "Colorado",
+    "es_es": "Colorado",
+    "ja_jp": "コロラド",
+    "ko_kr": "콜로라도",
+    "pl_pl": "Kolorado",
+    "pt_br": "Colorado",
+    "ru_ru": "Колорадо",
+    "tr_tr": "Colorado",
+    "uk_ua": "Колорадо",
+    "zh_cn": "科罗拉多",
+    "zh_hk": "科羅拉多",
+    "zh_tw": "科羅拉多"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Colorado",
+    "en_us": "Visit the Colorado subregion",
+    "es_es": "Visita la subregión de Colorado",
+    "ja_jp": "コロラドのサブリージョンを訪れよう",
+    "ko_kr": "콜로라도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Kolorado",
+    "pt_br": "Visite a sub-região Colorado",
+    "ru_ru": "Посетите субрегион Колорадо",
+    "tr_tr": "Colorado alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Колорадо",
+    "zh_cn": "访问科罗拉多子区域",
+    "zh_hk": "遊覽科羅拉多子區域",
+    "zh_tw": "造訪科羅拉多子區域"
+  }
+}

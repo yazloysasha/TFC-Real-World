@@ -1,0 +1,33 @@
+{
+  "parent": "region/northern_africa",
+  "title_lang": {
+    "de_de": "Westsahara",
+    "en_us": "Western Sahara",
+    "es_es": "Sáhara Occidental",
+    "ja_jp": "西サハラ",
+    "ko_kr": "서사하라",
+    "pl_pl": "Sahara Zachodnia",
+    "pt_br": "Saara Ocidental",
+    "ru_ru": "Западная Сахара",
+    "tr_tr": "Batı Sahra",
+    "uk_ua": "Західна Сахара",
+    "zh_cn": "西撒哈拉",
+    "zh_hk": "西撒哈拉",
+    "zh_tw": "西撒哈拉"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Westsahara",
+    "en_us": "Visit the Western Sahara subregion",
+    "es_es": "Visita la subregión de Sáhara Occidental",
+    "ja_jp": "西サハラのサブリージョンを訪れよう",
+    "ko_kr": "서사하라 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Sahara Zachodnia",
+    "pt_br": "Visite a sub-região Saara Ocidental",
+    "ru_ru": "Посетите субрегион Западная Сахара",
+    "tr_tr": "Batı Sahra alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Західна Сахара",
+    "zh_cn": "访问西撒哈拉子区域",
+    "zh_hk": "遊覽西撒哈拉子區域",
+    "zh_tw": "造訪西撒哈拉子區域"
+  }
+}

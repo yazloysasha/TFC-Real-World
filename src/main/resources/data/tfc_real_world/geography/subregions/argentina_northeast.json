@@ -1,0 +1,33 @@
+{
+  "parent": "region/southern_south_america",
+  "title_lang": {
+    "de_de": "Nordostargentinien",
+    "en_us": "Argentina Northeast",
+    "es_es": "Argentina nordeste",
+    "ja_jp": "アルゼンチン北東部",
+    "ko_kr": "아르헨티나 북동부",
+    "pl_pl": "Argentyna Północno-Wschodnia",
+    "pt_br": "Nordeste da Argentina",
+    "ru_ru": "Северо-Восток Аргентины",
+    "tr_tr": "Kuzeydoğu Arjantin",
+    "uk_ua": "Північний схід Аргентини",
+    "zh_cn": "阿根廷东北部",
+    "zh_hk": "阿根廷東北部",
+    "zh_tw": "阿根廷東北部"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Nordostargentinien",
+    "en_us": "Visit the Argentina Northeast subregion",
+    "es_es": "Visita la subregión de Argentina nordeste",
+    "ja_jp": "アルゼンチン北東部のサブリージョンを訪れよう",
+    "ko_kr": "아르헨티나 북동부 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Argentyna Północno-Wschodnia",
+    "pt_br": "Visite a sub-região Nordeste da Argentina",
+    "ru_ru": "Посетите субрегион Северо-Восток Аргентины",
+    "tr_tr": "Kuzeydoğu Arjantin alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Північний схід Аргентини",
+    "zh_cn": "访问阿根廷东北部子区域",
+    "zh_hk": "遊覽阿根廷東北部子區域",
+    "zh_tw": "造訪阿根廷東北部子區域"
+  }
+}

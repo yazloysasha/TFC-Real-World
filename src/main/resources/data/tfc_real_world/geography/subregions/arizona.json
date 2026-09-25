@@ -1,0 +1,33 @@
+{
+  "parent": "region/southwestern_usa",
+  "title_lang": {
+    "de_de": "Arizona",
+    "en_us": "Arizona",
+    "es_es": "Arizona",
+    "ja_jp": "アリゾナ",
+    "ko_kr": "애리조나",
+    "pl_pl": "Arizona",
+    "pt_br": "Arizona",
+    "ru_ru": "Аризона",
+    "tr_tr": "Arizona",
+    "uk_ua": "Аризона",
+    "zh_cn": "亚利桑那",
+    "zh_hk": "亞利桑那",
+    "zh_tw": "亞利桑那"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Arizona",
+    "en_us": "Visit the Arizona subregion",
+    "es_es": "Visita la subregión de Arizona",
+    "ja_jp": "アリゾナのサブリージョンを訪れよう",
+    "ko_kr": "애리조나 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Arizona",
+    "pt_br": "Visite a sub-região Arizona",
+    "ru_ru": "Посетите субрегион Аризона",
+    "tr_tr": "Arizona alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Аризона",
+    "zh_cn": "访问亚利桑那子区域",
+    "zh_hk": "遊覽亞利桑那子區域",
+    "zh_tw": "造訪亞利桑那子區域"
+  }
+}

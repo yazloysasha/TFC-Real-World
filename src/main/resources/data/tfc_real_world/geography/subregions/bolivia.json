@@ -1,0 +1,33 @@
+{
+  "parent": "region/western_south_america",
+  "title_lang": {
+    "de_de": "Bolivien",
+    "en_us": "Bolivia",
+    "es_es": "Bolivia",
+    "ja_jp": "ボリビア",
+    "ko_kr": "볼리비아",
+    "pl_pl": "Boliwia",
+    "pt_br": "Bolívia",
+    "ru_ru": "Боливия",
+    "tr_tr": "Bolivya",
+    "uk_ua": "Болівія",
+    "zh_cn": "玻利维亚",
+    "zh_hk": "玻利維亞",
+    "zh_tw": "玻利維亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Bolivien",
+    "en_us": "Visit the Bolivia subregion",
+    "es_es": "Visita la subregión de Bolivia",
+    "ja_jp": "ボリビアのサブリージョンを訪れよう",
+    "ko_kr": "볼리비아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Boliwia",
+    "pt_br": "Visite a sub-região Bolívia",
+    "ru_ru": "Посетите субрегион Боливия",
+    "tr_tr": "Bolivya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Болівія",
+    "zh_cn": "访问玻利维亚子区域",
+    "zh_hk": "遊覽玻利維亞子區域",
+    "zh_tw": "造訪玻利維亞子區域"
+  }
+}

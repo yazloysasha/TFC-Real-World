@@ -1,0 +1,33 @@
+{
+  "parent": "region/caribbean",
+  "title_lang": {
+    "de_de": "Südwestkaribik",
+    "en_us": "Southwest Caribbean",
+    "es_es": "Caribe suroccidental",
+    "ja_jp": "南西カリブ",
+    "ko_kr": "남서 카리브",
+    "pl_pl": "Południowo-zachodnie Karaiby",
+    "pt_br": "Caribe Sudoeste",
+    "ru_ru": "Юго-западные Карибы",
+    "tr_tr": "Güneybatı Karayipler",
+    "uk_ua": "Південно-західні Кариби",
+    "zh_cn": "西南加勒比",
+    "zh_hk": "西南加勒比",
+    "zh_tw": "西南加勒比"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Südwestkaribik",
+    "en_us": "Visit the Southwest Caribbean subregion",
+    "es_es": "Visita la subregión de Caribe suroccidental",
+    "ja_jp": "南西カリブのサブリージョンを訪れよう",
+    "ko_kr": "남서 카리브 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Południowo-zachodnie Karaiby",
+    "pt_br": "Visite a sub-região Caribe Sudoeste",
+    "ru_ru": "Посетите субрегион Юго-западные Карибы",
+    "tr_tr": "Güneybatı Karayipler alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Південно-західні Кариби",
+    "zh_cn": "访问西南加勒比子区域",
+    "zh_hk": "遊覽西南加勒比子區域",
+    "zh_tw": "造訪西南加勒比子區域"
+  }
+}

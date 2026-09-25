@@ -1,0 +1,33 @@
+{
+  "parent": "region/western_indian_ocean",
+  "title_lang": {
+    "de_de": "Chagos-Archipel",
+    "en_us": "Chagos Archipelago",
+    "es_es": "Archipiélago de Chagos",
+    "ja_jp": "チャゴス諸島",
+    "ko_kr": "차고스 제도",
+    "pl_pl": "Archipelag Czagos",
+    "pt_br": "Arquipélago de Chagos",
+    "ru_ru": "Архипелаг Чагос",
+    "tr_tr": "Chagos Takımadaları",
+    "uk_ua": "Архіпелаг Чагос",
+    "zh_cn": "查戈斯群岛",
+    "zh_hk": "查戈斯群島",
+    "zh_tw": "查戈斯群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Chagos-Archipel",
+    "en_us": "Visit the Chagos Archipelago subregion",
+    "es_es": "Visita la subregión Archipiélago de Chagos",
+    "ja_jp": "チャゴス諸島のサブリージョンを訪れよう",
+    "ko_kr": "차고스 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Archipelag Czagos",
+    "pt_br": "Visite a sub-região Arquipélago de Chagos",
+    "ru_ru": "Посетите субрегион Архипелаг Чагос",
+    "tr_tr": "Chagos Takımadaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Архіпелаг Чагос",
+    "zh_cn": "访问查戈斯群岛子区域",
+    "zh_hk": "遊覽查戈斯群島子區域",
+    "zh_tw": "造訪查戈斯群島子區域"
+  }
+}

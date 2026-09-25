@@ -1,0 +1,33 @@
+{
+  "parent": "region/russian_far_east",
+  "title_lang": {
+    "de_de": "Magadan",
+    "en_us": "Magadan",
+    "es_es": "Magadán",
+    "ja_jp": "マガダン",
+    "ko_kr": "마가단",
+    "pl_pl": "Magadan",
+    "pt_br": "Magadan",
+    "ru_ru": "Магадан",
+    "tr_tr": "Magadan",
+    "uk_ua": "Магадан",
+    "zh_cn": "马加丹",
+    "zh_hk": "馬加丹",
+    "zh_tw": "馬加丹"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Magadan",
+    "en_us": "Visit the Magadan subregion",
+    "es_es": "Visita la subregión de Magadán",
+    "ja_jp": "マガダンのサブリージョンを訪れよう",
+    "ko_kr": "마가단 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Magadan",
+    "pt_br": "Visite a sub-região Magadan",
+    "ru_ru": "Посетите субрегион Магадан",
+    "tr_tr": "Magadan alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Магадан",
+    "zh_cn": "访问马加丹子区域",
+    "zh_hk": "遊覽馬加丹子區域",
+    "zh_tw": "造訪馬加丹子區域"
+  }
+}

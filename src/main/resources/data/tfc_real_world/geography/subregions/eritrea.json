@@ -1,0 +1,33 @@
+{
+  "parent": "region/northeast_tropical_africa",
+  "title_lang": {
+    "de_de": "Eritrea",
+    "en_us": "Eritrea",
+    "es_es": "Eritrea",
+    "ja_jp": "エリトリア",
+    "ko_kr": "에리트레아",
+    "pl_pl": "Erytrea",
+    "pt_br": "Eritreia",
+    "ru_ru": "Эритрея",
+    "tr_tr": "Eritre",
+    "uk_ua": "Еритрея",
+    "zh_cn": "厄立特里亚",
+    "zh_hk": "厄立特里亞",
+    "zh_tw": "厄立特里亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Eritrea",
+    "en_us": "Visit the Eritrea subregion",
+    "es_es": "Visita la subregión de Eritrea",
+    "ja_jp": "エリトリアのサブリージョンを訪れよう",
+    "ko_kr": "에리트레아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Erytrea",
+    "pt_br": "Visite a sub-região Eritreia",
+    "ru_ru": "Посетите субрегион Эритрея",
+    "tr_tr": "Eritre alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Еритрея",
+    "zh_cn": "访问厄立特里亚子区域",
+    "zh_hk": "遊覽厄立特里亞子區域",
+    "zh_tw": "造訪厄立特里亞子區域"
+  }
+}

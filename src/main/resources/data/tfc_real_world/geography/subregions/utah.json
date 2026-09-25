@@ -1,0 +1,33 @@
+{
+  "parent": "region/southwestern_usa",
+  "title_lang": {
+    "de_de": "Utah",
+    "en_us": "Utah",
+    "es_es": "Utah",
+    "ja_jp": "ユタ",
+    "ko_kr": "유타",
+    "pl_pl": "Utah",
+    "pt_br": "Utah",
+    "ru_ru": "Юта",
+    "tr_tr": "Utah",
+    "uk_ua": "Юта",
+    "zh_cn": "犹他",
+    "zh_hk": "猶他",
+    "zh_tw": "猶他"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Utah",
+    "en_us": "Visit the Utah subregion",
+    "es_es": "Visita la subregión de Utah",
+    "ja_jp": "ユタのサブリージョンを訪れよう",
+    "ko_kr": "유타 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Utah",
+    "pt_br": "Visite a sub-região Utah",
+    "ru_ru": "Посетите субрегион Юта",
+    "tr_tr": "Utah alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Юта",
+    "zh_cn": "访问犹他子区域",
+    "zh_hk": "遊覽猶他子區域",
+    "zh_tw": "造訪猶他子區域"
+  }
+}

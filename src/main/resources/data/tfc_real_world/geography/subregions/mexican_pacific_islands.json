@@ -1,0 +1,33 @@
+{
+  "parent": "region/mexico",
+  "title_lang": {
+    "de_de": "Mexikanische Pazifikinseln",
+    "en_us": "Mexican Pacific Islands",
+    "es_es": "Islas del Pacífico mexicano",
+    "ja_jp": "メキシコ太平洋諸島",
+    "ko_kr": "멕시코 태평양 제도",
+    "pl_pl": "Meksykańskie wyspy Pacyfiku",
+    "pt_br": "Ilhas do Pacífico mexicano",
+    "ru_ru": "Мексиканские тихоокеанские острова",
+    "tr_tr": "Meksika Pasifik Adaları",
+    "uk_ua": "Мексиканські тихоокеанські острови",
+    "zh_cn": "墨西哥太平洋岛屿",
+    "zh_hk": "墨西哥太平洋島嶼",
+    "zh_tw": "墨西哥太平洋島嶼"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Mexikanische Pazifikinseln",
+    "en_us": "Visit the Mexican Pacific Islands subregion",
+    "es_es": "Visita la subregión Islas del Pacífico mexicano",
+    "ja_jp": "メキシコ太平洋諸島のサブリージョンを訪れよう",
+    "ko_kr": "멕시코 태평양 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Meksykańskie wyspy Pacyfiku",
+    "pt_br": "Visite a sub-região Ilhas do Pacífico mexicano",
+    "ru_ru": "Посетите субрегион Мексиканские тихоокеанские острова",
+    "tr_tr": "Meksika Pasifik Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Мексиканські тихоокеанські острови",
+    "zh_cn": "访问墨西哥太平洋岛屿子区域",
+    "zh_hk": "遊覽墨西哥太平洋島嶼子區域",
+    "zh_tw": "造訪墨西哥太平洋島嶼子區域"
+  }
+}

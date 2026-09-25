@@ -1,0 +1,33 @@
+{
+  "parent": "region/west_tropical_africa",
+  "title_lang": {
+    "de_de": "Elfenbeinküste",
+    "en_us": "Ivory Coast",
+    "es_es": "Costa de Marfil",
+    "ja_jp": "コートジボワール",
+    "ko_kr": "코트디부아르",
+    "pl_pl": "Wybrzeże Kości Słoniowej",
+    "pt_br": "Costa do Marfim",
+    "ru_ru": "Кот-д’Ивуар",
+    "tr_tr": "Fildişi Sahili",
+    "uk_ua": "Кот-д'Івуар",
+    "zh_cn": "科特迪瓦",
+    "zh_hk": "科特迪瓦",
+    "zh_tw": "科特迪瓦"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Elfenbeinküste",
+    "en_us": "Visit the Ivory Coast subregion",
+    "es_es": "Visita la subregión de Costa de Marfil",
+    "ja_jp": "コートジボワールのサブリージョンを訪れよう",
+    "ko_kr": "코트디부아르 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wybrzeże Kości Słoniowej",
+    "pt_br": "Visite a sub-região Costa do Marfim",
+    "ru_ru": "Посетите субрегион Кот-д’Ивуар",
+    "tr_tr": "Fildişi Sahili alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Кот-д'Івуар",
+    "zh_cn": "访问科特迪瓦子区域",
+    "zh_hk": "遊覽科特迪瓦子區域",
+    "zh_tw": "造訪科特迪瓦子區域"
+  }
+}

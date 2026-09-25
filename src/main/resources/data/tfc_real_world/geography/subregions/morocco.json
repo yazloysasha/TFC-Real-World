@@ -1,0 +1,33 @@
+{
+  "parent": "region/northern_africa",
+  "title_lang": {
+    "de_de": "Marokko",
+    "en_us": "Morocco",
+    "es_es": "Marruecos",
+    "ja_jp": "モロッコ",
+    "ko_kr": "모로코",
+    "pl_pl": "Maroko",
+    "pt_br": "Marrocos",
+    "ru_ru": "Марокко",
+    "tr_tr": "Fas",
+    "uk_ua": "Марокко",
+    "zh_cn": "摩洛哥",
+    "zh_hk": "摩洛哥",
+    "zh_tw": "摩洛哥"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Marokko",
+    "en_us": "Visit the Morocco subregion",
+    "es_es": "Visita la subregión de Marruecos",
+    "ja_jp": "モロッコのサブリージョンを訪れよう",
+    "ko_kr": "모로코 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Maroko",
+    "pt_br": "Visite a sub-região Marrocos",
+    "ru_ru": "Посетите субрегион Марокко",
+    "tr_tr": "Fas alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Марокко",
+    "zh_cn": "访问摩洛哥子区域",
+    "zh_hk": "遊覽摩洛哥子區域",
+    "zh_tw": "造訪摩洛哥子區域"
+  }
+}

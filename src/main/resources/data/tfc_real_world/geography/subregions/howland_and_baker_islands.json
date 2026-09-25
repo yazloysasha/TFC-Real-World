@@ -1,0 +1,33 @@
+{
+  "parent": "region/southwestern_pacific",
+  "title_lang": {
+    "de_de": "Howland- und Bakerinseln",
+    "en_us": "Howland and Baker Islands",
+    "es_es": "Islas Howland y Baker",
+    "ja_jp": "ハウランド島とベーカー島",
+    "ko_kr": "하울랜드와 베이커 섬",
+    "pl_pl": "Wyspy Howland i Baker",
+    "pt_br": "Ilhas Howland e Baker",
+    "ru_ru": "Острова Хауленд и Бейкер",
+    "tr_tr": "Howland ve Baker Adaları",
+    "uk_ua": "Острови Хауленд і Бейкер",
+    "zh_cn": "豪兰岛和贝克岛",
+    "zh_hk": "豪蘭島和貝克島",
+    "zh_tw": "豪蘭島和貝克島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Howland- und Bakerinseln",
+    "en_us": "Visit the Howland and Baker Islands subregion",
+    "es_es": "Visita la subregión Islas Howland y Baker",
+    "ja_jp": "ハウランド島とベーカー島のサブリージョンを訪れよう",
+    "ko_kr": "하울랜드와 베이커 섬 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Howland i Baker",
+    "pt_br": "Visite a sub-região Ilhas Howland e Baker",
+    "ru_ru": "Посетите субрегион Острова Хауленд и Бейкер",
+    "tr_tr": "Howland ve Baker Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Острови Хауленд і Бейкер",
+    "zh_cn": "访问豪兰岛和贝克岛子区域",
+    "zh_hk": "遊覽豪蘭島和貝克島子區域",
+    "zh_tw": "造訪豪蘭島和貝克島子區域"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "region/indo_china",
+  "title_lang": {
+    "de_de": "Thailand",
+    "en_us": "Thailand",
+    "es_es": "Tailandia",
+    "ja_jp": "タイ",
+    "ko_kr": "태국",
+    "pl_pl": "Tajlandia",
+    "pt_br": "Tailândia",
+    "ru_ru": "Таиланд",
+    "tr_tr": "Tayland",
+    "uk_ua": "Таїланд",
+    "zh_cn": "泰国",
+    "zh_hk": "泰國",
+    "zh_tw": "泰國"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Thailand",
+    "en_us": "Visit the Thailand subregion",
+    "es_es": "Visita la subregión de Tailandia",
+    "ja_jp": "タイのサブリージョンを訪れよう",
+    "ko_kr": "태국 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Tajlandia",
+    "pt_br": "Visite a sub-região Tailândia",
+    "ru_ru": "Посетите субрегион Таиланд",
+    "tr_tr": "Tayland alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Таїланд",
+    "zh_cn": "访问泰国子区域",
+    "zh_hk": "遊覽泰國子區域",
+    "zh_tw": "造訪泰國子區域"
+  }
+}

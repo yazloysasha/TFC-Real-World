@@ -1,0 +1,33 @@
+{
+  "parent": "region/australia",
+  "title_lang": {
+    "de_de": "South Australia",
+    "en_us": "South Australia",
+    "es_es": "Australia Meridional",
+    "ja_jp": "南オーストラリア",
+    "ko_kr": "사우스오스트레일리아",
+    "pl_pl": "Australia Południowa",
+    "pt_br": "Austrália Meridional",
+    "ru_ru": "Южная Австралия",
+    "tr_tr": "Güney Avustralya",
+    "uk_ua": "Південна Австралія",
+    "zh_cn": "南澳大利亚",
+    "zh_hk": "南澳大利亞",
+    "zh_tw": "南澳大利亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion South Australia",
+    "en_us": "Visit the South Australia subregion",
+    "es_es": "Visita la subregión de Australia Meridional",
+    "ja_jp": "南オーストラリアのサブリージョンを訪れよう",
+    "ko_kr": "사우스오스트레일리아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Australia Południowa",
+    "pt_br": "Visite a sub-região Austrália Meridional",
+    "ru_ru": "Посетите субрегион Южная Австралия",
+    "tr_tr": "Güney Avustralya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Південна Австралія",
+    "zh_cn": "访问南澳大利亚子区域",
+    "zh_hk": "遊覽南澳大利亞子區域",
+    "zh_tw": "造訪南澳大利亞子區域"
+  }
+}

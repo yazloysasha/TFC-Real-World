@@ -1,0 +1,33 @@
+{
+  "parent": "region/northeast_tropical_africa",
+  "title_lang": {
+    "de_de": "Tschad",
+    "en_us": "Chad",
+    "es_es": "Chad",
+    "ja_jp": "チャド",
+    "ko_kr": "차드",
+    "pl_pl": "Czad",
+    "pt_br": "Chade",
+    "ru_ru": "Чад",
+    "tr_tr": "Çad",
+    "uk_ua": "Чад",
+    "zh_cn": "乍得",
+    "zh_hk": "乍得",
+    "zh_tw": "乍得"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Tschad",
+    "en_us": "Visit the Chad subregion",
+    "es_es": "Visita la subregión de Chad",
+    "ja_jp": "チャドのサブリージョンを訪れよう",
+    "ko_kr": "차드 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Czad",
+    "pt_br": "Visite a sub-região Chade",
+    "ru_ru": "Посетите субрегион Чад",
+    "tr_tr": "Çad alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Чад",
+    "zh_cn": "访问乍得子区域",
+    "zh_hk": "遊覽乍得子區域",
+    "zh_tw": "造訪乍得子區域"
+  }
+}

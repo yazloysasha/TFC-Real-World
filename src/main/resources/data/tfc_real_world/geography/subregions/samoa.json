@@ -1,0 +1,33 @@
+{
+  "parent": "region/southwestern_pacific",
+  "title_lang": {
+    "de_de": "Samoa",
+    "en_us": "Samoa",
+    "es_es": "Samoa",
+    "ja_jp": "サモア",
+    "ko_kr": "사모아",
+    "pl_pl": "Samoa",
+    "pt_br": "Samoa",
+    "ru_ru": "Самоа",
+    "tr_tr": "Samoa",
+    "uk_ua": "Самоа",
+    "zh_cn": "萨摩亚",
+    "zh_hk": "薩摩亞",
+    "zh_tw": "薩摩亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Samoa",
+    "en_us": "Visit the Samoa subregion",
+    "es_es": "Visita la subregión de Samoa",
+    "ja_jp": "サモアのサブリージョンを訪れよう",
+    "ko_kr": "사모아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Samoa",
+    "pt_br": "Visite a sub-região Samoa",
+    "ru_ru": "Посетите субрегион Самоа",
+    "tr_tr": "Samoa alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Самоа",
+    "zh_cn": "访问萨摩亚子区域",
+    "zh_hk": "遊覽薩摩亞子區域",
+    "zh_tw": "造訪薩摩亞子區域"
+  }
+}

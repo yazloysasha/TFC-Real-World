@@ -1,0 +1,33 @@
+{
+  "parent": "region/caribbean",
+  "title_lang": {
+    "de_de": "Inseln unter dem Winde",
+    "en_us": "Leeward Islands",
+    "es_es": "Islas de Sotavento",
+    "ja_jp": "リーワード諸島",
+    "ko_kr": "리워드 제도",
+    "pl_pl": "Wyspy Podwietrzne",
+    "pt_br": "Ilhas de Sotavento",
+    "ru_ru": "Подветренные острова",
+    "tr_tr": "Rüzgaraltı Adaları",
+    "uk_ua": "Підвітряні острови",
+    "zh_cn": "背风群岛",
+    "zh_hk": "背風群島",
+    "zh_tw": "背風群島"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Inseln unter dem Winde",
+    "en_us": "Visit the Leeward Islands subregion",
+    "es_es": "Visita la subregión Islas de Sotavento",
+    "ja_jp": "リーワード諸島のサブリージョンを訪れよう",
+    "ko_kr": "리워드 제도 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Wyspy Podwietrzne",
+    "pt_br": "Visite a sub-região Ilhas de Sotavento",
+    "ru_ru": "Посетите субрегион Подветренные острова",
+    "tr_tr": "Rüzgaraltı Adaları alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Підвітряні острови",
+    "zh_cn": "访问背风群岛子区域",
+    "zh_hk": "遊覽背風群島子區域",
+    "zh_tw": "造訪背風群島子區域"
+  }
+}

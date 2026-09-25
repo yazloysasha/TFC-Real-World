@@ -1,0 +1,33 @@
+{
+  "parent": "region/southwestern_pacific",
+  "title_lang": {
+    "de_de": "Niue",
+    "en_us": "Niue",
+    "es_es": "Niue",
+    "ja_jp": "ニウエ",
+    "ko_kr": "니우에",
+    "pl_pl": "Niue",
+    "pt_br": "Niue",
+    "ru_ru": "Ниуэ",
+    "tr_tr": "Niue",
+    "uk_ua": "Ніуе",
+    "zh_cn": "纽埃",
+    "zh_hk": "紐埃",
+    "zh_tw": "紐埃"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Niue",
+    "en_us": "Visit the Niue subregion",
+    "es_es": "Visita la subregión de Niue",
+    "ja_jp": "ニウエのサブリージョンを訪れよう",
+    "ko_kr": "니우에 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Niue",
+    "pt_br": "Visite a sub-região Niue",
+    "ru_ru": "Посетите субрегион Ниуэ",
+    "tr_tr": "Niue alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Ніуе",
+    "zh_cn": "访问纽埃子区域",
+    "zh_hk": "遊覽紐埃子區域",
+    "zh_tw": "造訪紐埃子區域"
+  }
+}

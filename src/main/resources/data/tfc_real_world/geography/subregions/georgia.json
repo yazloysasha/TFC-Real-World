@@ -1,0 +1,33 @@
+{
+  "parent": "region/southeastern_usa",
+  "title_lang": {
+    "de_de": "Georgia",
+    "en_us": "Georgia",
+    "es_es": "Georgia",
+    "ja_jp": "ジョージア",
+    "ko_kr": "조지아",
+    "pl_pl": "Georgia",
+    "pt_br": "Geórgia",
+    "ru_ru": "Джорджия",
+    "tr_tr": "Georgia",
+    "uk_ua": "Джорджія",
+    "zh_cn": "佐治亚",
+    "zh_hk": "佐治亞",
+    "zh_tw": "佐治亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Georgia",
+    "en_us": "Visit the Georgia subregion",
+    "es_es": "Visita la subregión de Georgia",
+    "ja_jp": "ジョージアのサブリージョンを訪れよう",
+    "ko_kr": "조지아 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Georgia",
+    "pt_br": "Visite a sub-região Geórgia",
+    "ru_ru": "Посетите субрегион Джорджия",
+    "tr_tr": "Georgia alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Джорджія",
+    "zh_cn": "访问佐治亚子区域",
+    "zh_hk": "遊覽佐治亞子區域",
+    "zh_tw": "造訪佐治亞子區域"
+  }
+}

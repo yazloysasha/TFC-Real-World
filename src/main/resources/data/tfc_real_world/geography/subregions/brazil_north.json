@@ -1,0 +1,33 @@
+{
+  "parent": "region/brazil",
+  "title_lang": {
+    "de_de": "Nordbrasilien",
+    "en_us": "Brazil North",
+    "es_es": "Brasil Norte",
+    "ja_jp": "ブラジル北部",
+    "ko_kr": "브라질 북부",
+    "pl_pl": "Brazylia Północna",
+    "pt_br": "Norte do Brasil",
+    "ru_ru": "Север Бразилии",
+    "tr_tr": "Kuzey Brezilya",
+    "uk_ua": "Північ Бразилії",
+    "zh_cn": "巴西北部",
+    "zh_hk": "巴西北部",
+    "zh_tw": "巴西北部"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Nordbrasilien",
+    "en_us": "Visit the Brazil North subregion",
+    "es_es": "Visita la subregión de Brasil Norte",
+    "ja_jp": "ブラジル北部のサブリージョンを訪れよう",
+    "ko_kr": "브라질 북부 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Brazylia Północna",
+    "pt_br": "Visite a sub-região Norte do Brasil",
+    "ru_ru": "Посетите субрегион Север Бразилии",
+    "tr_tr": "Kuzey Brezilya alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Північ Бразилії",
+    "zh_cn": "访问巴西北部子区域",
+    "zh_hk": "遊覽巴西北部子區域",
+    "zh_tw": "造訪巴西北部子區域"
+  }
+}

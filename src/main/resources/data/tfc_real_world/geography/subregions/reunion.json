@@ -1,0 +1,33 @@
+{
+  "parent": "region/western_indian_ocean",
+  "title_lang": {
+    "de_de": "Réunion",
+    "en_us": "Reunion",
+    "es_es": "Reunión",
+    "ja_jp": "レユニオン",
+    "ko_kr": "레위니옹",
+    "pl_pl": "Reunion",
+    "pt_br": "Reunião",
+    "ru_ru": "Реюньон",
+    "tr_tr": "Reunion",
+    "uk_ua": "Реюньйон",
+    "zh_cn": "留尼汪",
+    "zh_hk": "留尼汪",
+    "zh_tw": "留尼汪"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Réunion",
+    "en_us": "Visit the Reunion subregion",
+    "es_es": "Visita la subregión de Reunión",
+    "ja_jp": "レユニオンのサブリージョンを訪れよう",
+    "ko_kr": "레위니옹 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Reunion",
+    "pt_br": "Visite a sub-região Reunião",
+    "ru_ru": "Посетите субрегион Реюньон",
+    "tr_tr": "Reunion alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Реюньйон",
+    "zh_cn": "访问留尼汪子区域",
+    "zh_hk": "遊覽留尼汪子區域",
+    "zh_tw": "造訪留尼汪子區域"
+  }
+}

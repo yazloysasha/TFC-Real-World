@@ -1,0 +1,33 @@
+{
+  "parent": "region/southern_africa",
+  "title_lang": {
+    "de_de": "Lesotho",
+    "en_us": "Lesotho",
+    "es_es": "Lesoto",
+    "ja_jp": "レソト",
+    "ko_kr": "레소토",
+    "pl_pl": "Lesotho",
+    "pt_br": "Lesoto",
+    "ru_ru": "Лесото",
+    "tr_tr": "Lesotho",
+    "uk_ua": "Лесото",
+    "zh_cn": "莱索托",
+    "zh_hk": "萊索托",
+    "zh_tw": "萊索托"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Lesotho",
+    "en_us": "Visit the Lesotho subregion",
+    "es_es": "Visita la subregión de Lesoto",
+    "ja_jp": "レソトのサブリージョンを訪れよう",
+    "ko_kr": "레소토 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Lesotho",
+    "pt_br": "Visite a sub-região Lesoto",
+    "ru_ru": "Посетите субрегион Лесото",
+    "tr_tr": "Lesotho alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Лесото",
+    "zh_cn": "访问莱索托子区域",
+    "zh_hk": "遊覽萊索托子區域",
+    "zh_tw": "造訪萊索托子區域"
+  }
+}

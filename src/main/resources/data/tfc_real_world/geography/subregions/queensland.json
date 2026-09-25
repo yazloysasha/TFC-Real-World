@@ -1,0 +1,33 @@
+{
+  "parent": "region/australia",
+  "title_lang": {
+    "de_de": "Queensland",
+    "en_us": "Queensland",
+    "es_es": "Queensland",
+    "ja_jp": "クイーンズランド",
+    "ko_kr": "퀸즐랜드",
+    "pl_pl": "Queensland",
+    "pt_br": "Queensland",
+    "ru_ru": "Квинсленд",
+    "tr_tr": "Queensland",
+    "uk_ua": "Квінсленд",
+    "zh_cn": "昆士兰",
+    "zh_hk": "昆士蘭",
+    "zh_tw": "昆士蘭"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Queensland",
+    "en_us": "Visit the Queensland subregion",
+    "es_es": "Visita la subregión de Queensland",
+    "ja_jp": "クイーンズランドのサブリージョンを訪れよう",
+    "ko_kr": "퀸즐랜드 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Queensland",
+    "pt_br": "Visite a sub-região Queensland",
+    "ru_ru": "Посетите субрегион Квинсленд",
+    "tr_tr": "Queensland alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Квінсленд",
+    "zh_cn": "访问昆士兰子区域",
+    "zh_hk": "遊覽昆士蘭子區域",
+    "zh_tw": "造訪昆士蘭子區域"
+  }
+}

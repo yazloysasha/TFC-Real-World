@@ -1,0 +1,33 @@
+{
+  "parent": "region/indo_china",
+  "title_lang": {
+    "de_de": "Südchinesisches Meer",
+    "en_us": "South China Sea",
+    "es_es": "Mar de la China Meridional",
+    "ja_jp": "南シナ海",
+    "ko_kr": "남중국해",
+    "pl_pl": "Morze Południowochińskie",
+    "pt_br": "Mar da China Meridional",
+    "ru_ru": "Южно-Китайское море",
+    "tr_tr": "Güney Çin Denizi",
+    "uk_ua": "Південнокитайське море",
+    "zh_cn": "南海",
+    "zh_hk": "南海",
+    "zh_tw": "南海"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Südchinesisches Meer",
+    "en_us": "Visit the South China Sea subregion",
+    "es_es": "Visita la subregión de Mar de la China Meridional",
+    "ja_jp": "南シナ海のサブリージョンを訪れよう",
+    "ko_kr": "남중국해 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Morze Południowochińskie",
+    "pt_br": "Visite a sub-região Mar da China Meridional",
+    "ru_ru": "Посетите субрегион Южно-Китайское море",
+    "tr_tr": "Güney Çin Denizi alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Південнокитайське море",
+    "zh_cn": "访问南海子区域",
+    "zh_hk": "遊覽南海子區域",
+    "zh_tw": "造訪南海子區域"
+  }
+}

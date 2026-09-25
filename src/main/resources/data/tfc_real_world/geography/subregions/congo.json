@@ -1,0 +1,33 @@
+{
+  "parent": "region/west_central_tropical_africa",
+  "title_lang": {
+    "de_de": "Kongo",
+    "en_us": "Congo",
+    "es_es": "Congo",
+    "ja_jp": "コンゴ",
+    "ko_kr": "콩고",
+    "pl_pl": "Kongo",
+    "pt_br": "Congo",
+    "ru_ru": "Конго",
+    "tr_tr": "Kongo",
+    "uk_ua": "Конго",
+    "zh_cn": "刚果",
+    "zh_hk": "剛果",
+    "zh_tw": "剛果"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Kongo",
+    "en_us": "Visit the Congo subregion",
+    "es_es": "Visita la subregión de Congo",
+    "ja_jp": "コンゴのサブリージョンを訪れよう",
+    "ko_kr": "콩고 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Kongo",
+    "pt_br": "Visite a sub-região Congo",
+    "ru_ru": "Посетите субрегион Конго",
+    "tr_tr": "Kongo alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Конго",
+    "zh_cn": "访问刚果子区域",
+    "zh_hk": "遊覽剛果子區域",
+    "zh_tw": "造訪剛果子區域"
+  }
+}

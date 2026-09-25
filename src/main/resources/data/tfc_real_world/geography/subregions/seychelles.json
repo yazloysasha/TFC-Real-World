@@ -1,0 +1,33 @@
+{
+  "parent": "region/western_indian_ocean",
+  "title_lang": {
+    "de_de": "Seychellen",
+    "en_us": "Seychelles",
+    "es_es": "Seychelles",
+    "ja_jp": "セーシェル",
+    "ko_kr": "세이셸",
+    "pl_pl": "Seszele",
+    "pt_br": "Seicheles",
+    "ru_ru": "Сейшельские Острова",
+    "tr_tr": "Seyşeller",
+    "uk_ua": "Сейшельські Острови",
+    "zh_cn": "塞舌尔",
+    "zh_hk": "塞舌爾",
+    "zh_tw": "塞舌爾"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Seychellen",
+    "en_us": "Visit the Seychelles subregion",
+    "es_es": "Visita la subregión de Seychelles",
+    "ja_jp": "セーシェルのサブリージョンを訪れよう",
+    "ko_kr": "세이셸 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Seszele",
+    "pt_br": "Visite a sub-região Seicheles",
+    "ru_ru": "Посетите субрегион Сейшельские Острова",
+    "tr_tr": "Seyşeller alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Сейшельські Острови",
+    "zh_cn": "访问塞舌尔子区域",
+    "zh_hk": "遊覽塞舌爾子區域",
+    "zh_tw": "造訪塞舌爾子區域"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "region/southwestern_pacific",
+  "title_lang": {
+    "de_de": "Vanuatu",
+    "en_us": "Vanuatu",
+    "es_es": "Vanuatu",
+    "ja_jp": "バヌアツ",
+    "ko_kr": "바누아투",
+    "pl_pl": "Vanuatu",
+    "pt_br": "Vanuatu",
+    "ru_ru": "Вануату",
+    "tr_tr": "Vanuatu",
+    "uk_ua": "Вануату",
+    "zh_cn": "瓦努阿图",
+    "zh_hk": "瓦努阿圖",
+    "zh_tw": "瓦努阿圖"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Vanuatu",
+    "en_us": "Visit the Vanuatu subregion",
+    "es_es": "Visita la subregión de Vanuatu",
+    "ja_jp": "バヌアツのサブリージョンを訪れよう",
+    "ko_kr": "바누아투 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Vanuatu",
+    "pt_br": "Visite a sub-região Vanuatu",
+    "ru_ru": "Посетите субрегион Вануату",
+    "tr_tr": "Vanuatu alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Вануату",
+    "zh_cn": "访问瓦努阿图子区域",
+    "zh_hk": "遊覽瓦努阿圖子區域",
+    "zh_tw": "造訪瓦努阿圖子區域"
+  }
+}

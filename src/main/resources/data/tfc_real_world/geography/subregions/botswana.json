@@ -1,0 +1,33 @@
+{
+  "parent": "region/southern_africa",
+  "title_lang": {
+    "de_de": "Botswana",
+    "en_us": "Botswana",
+    "es_es": "Botsuana",
+    "ja_jp": "ボツワナ",
+    "ko_kr": "보츠와나",
+    "pl_pl": "Botswana",
+    "pt_br": "Botsuana",
+    "ru_ru": "Ботсвана",
+    "tr_tr": "Botsvana",
+    "uk_ua": "Ботсвана",
+    "zh_cn": "博茨瓦纳",
+    "zh_hk": "博茨瓦納",
+    "zh_tw": "博茨瓦納"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Botswana",
+    "en_us": "Visit the Botswana subregion",
+    "es_es": "Visita la subregión de Botsuana",
+    "ja_jp": "ボツワナのサブリージョンを訪れよう",
+    "ko_kr": "보츠와나 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Botswana",
+    "pt_br": "Visite a sub-região Botsuana",
+    "ru_ru": "Посетите субрегион Ботсвана",
+    "tr_tr": "Botsvana alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Ботсвана",
+    "zh_cn": "访问博茨瓦纳子区域",
+    "zh_hk": "遊覽博茨瓦納子區域",
+    "zh_tw": "造訪博茨瓦納子區域"
+  }
+}

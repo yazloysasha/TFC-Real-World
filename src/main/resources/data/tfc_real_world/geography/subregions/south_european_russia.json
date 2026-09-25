@@ -1,0 +1,33 @@
+{
+  "parent": "region/eastern_europe",
+  "title_lang": {
+    "de_de": "Südrussland",
+    "en_us": "South European Russia",
+    "es_es": "Rusia europea meridional",
+    "ja_jp": "ロシア欧州南部",
+    "ko_kr": "러시아 유럽 남부",
+    "pl_pl": "Rosja południowoeuropejska",
+    "pt_br": "Rússia Europeia Meridional",
+    "ru_ru": "Юг Европейской России",
+    "tr_tr": "Güney Avrupa Rusyası",
+    "uk_ua": "Південь Європейської Росії",
+    "zh_cn": "俄罗斯欧洲南部",
+    "zh_hk": "俄羅斯歐洲南部",
+    "zh_tw": "俄羅斯歐洲南部"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Südrussland",
+    "en_us": "Visit the South European Russia subregion",
+    "es_es": "Visita la subregión de Rusia europea meridional",
+    "ja_jp": "ロシア欧州南部のサブリージョンを訪れよう",
+    "ko_kr": "러시아 유럽 남부 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Rosja południowoeuropejska",
+    "pt_br": "Visite a sub-região Rússia Europeia Meridional",
+    "ru_ru": "Посетите субрегион Юг Европейской России",
+    "tr_tr": "Güney Avrupa Rusyası alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Південь Європейської Росії",
+    "zh_cn": "访问俄罗斯欧洲南部子区域",
+    "zh_hk": "遊覽俄羅斯歐洲南部子區域",
+    "zh_tw": "造訪俄羅斯歐洲南部子區域"
+  }
+}

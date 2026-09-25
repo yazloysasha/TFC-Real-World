@@ -1,0 +1,33 @@
+{
+  "parent": "region/eastern_europe",
+  "title_lang": {
+    "de_de": "Krim",
+    "en_us": "Crimea",
+    "es_es": "Crimea",
+    "ja_jp": "クリミア",
+    "ko_kr": "크림",
+    "pl_pl": "Krym",
+    "pt_br": "Crimeia",
+    "ru_ru": "Крым",
+    "tr_tr": "Kırım",
+    "uk_ua": "Крим",
+    "zh_cn": "克里米亚",
+    "zh_hk": "克里米亞",
+    "zh_tw": "克里米亞"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Subregion Krim",
+    "en_us": "Visit the Crimea subregion",
+    "es_es": "Visita la subregión de Crimea",
+    "ja_jp": "クリミアのサブリージョンを訪れよう",
+    "ko_kr": "크림 하위 지역을 방문하세요",
+    "pl_pl": "Odwiedź subregion Krym",
+    "pt_br": "Visite a sub-região Crimeia",
+    "ru_ru": "Посетите субрегион Крым",
+    "tr_tr": "Kırım alt bölgesini ziyaret edin",
+    "uk_ua": "Відвідайте субрегіон Крим",
+    "zh_cn": "访问克里米亚子区域",
+    "zh_hk": "遊覽克里米亞子區域",
+    "zh_tw": "造訪克里米亞子區域"
+  }
+}
