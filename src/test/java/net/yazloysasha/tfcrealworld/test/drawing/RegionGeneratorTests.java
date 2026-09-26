@@ -90,6 +90,24 @@ public class RegionGeneratorTests implements TestSetup {
     );
   }
 
+  /**
+   * High-res GeographyUI stages 27–28 only (source mask + non-ocean biome land).
+   */
+  @Test
+  public void testGeographyArtistStages() {
+    drawStitchedRegions(
+      "",
+      EnumSet.of(
+        DrawnTask.GEOGRAPHY_SOURCE_MASK,
+        DrawnTask.GEOGRAPHY_GENERATED_LAND
+      ),
+      RandomSupport.generateUniqueSeed(),
+      0,
+      0,
+      312
+    );
+  }
+
   @SuppressWarnings("SameParameterValue")
   private void drawStitchedRegions(
     String name,
@@ -99,14 +117,23 @@ public class RegionGeneratorTests implements TestSetup {
     int centerZ,
     int radius
   ) {
-    final Map<Task, List<DrawnTask>> taskParent = tasksToDraw
+    final Set<DrawnTask> gridTasks = tasksToDraw
+      .stream()
+      .filter(t -> !t.isHighResGeography())
+      .collect(Collectors.toCollection(() -> EnumSet.noneOf(DrawnTask.class)));
+    final Set<DrawnTask> geographyTasks = tasksToDraw
+      .stream()
+      .filter(DrawnTask::isHighResGeography)
+      .collect(Collectors.toCollection(() -> EnumSet.noneOf(DrawnTask.class)));
+
+    final Map<Task, List<DrawnTask>> taskParent = gridTasks
       .stream()
       .collect(Collectors.groupingBy(t -> t.root));
 
-    final int taskIndex = tasksToDraw.size();
+    final int taskIndex = gridTasks.size();
     final int[] taskOffset = new int[DrawnTask.values().length]; // DrawnTask.ordinal -> (Ascending) Index
     int index = -1;
-    for (DrawnTask task : tasksToDraw) taskOffset[task.ordinal()] = ++index;
+    for (DrawnTask task : gridTasks) taskOffset[task.ordinal()] = ++index;
 
     final int size = radius * 2;
     final int[] taskData = new int[tasksToDraw.size() * radius * radius * 4]; // Color[(x + z * size) * taskIndex + taskOffset[task]]
@@ -130,42 +157,44 @@ public class RegionGeneratorTests implements TestSetup {
 
     final Map<Integer, Integer> biomeCounts = new HashMap<>();
 
-    for (int dx = 0; dx < size; dx++) for (int dz = 0; dz < size; dz++) if (
-      taskData[(dx + size * dz) * taskIndex] == -1
-    ) generator.visualizeRegion(
-      centerX - radius + dx,
-      centerZ - radius + dz,
-      (task, region) -> {
-        for (DrawnTask drawnTask : taskParent.getOrDefault(
-          task,
-          List.of()
-        )) for (Region.Point point : region.points()) {
-          final int pointX = point.x - centerX + radius;
-          final int pointZ = point.z - centerZ + radius;
-          if (pointX >= 0 && pointX < size && pointZ >= 0 && pointZ < size) {
-            taskData[(pointX + size * pointZ) * taskIndex +
-              taskOffset[drawnTask.ordinal()]] = taskColor(
-              drawnTask,
-              region,
-              point.x,
-              point.z
-            ).getRGB();
+    if (!gridTasks.isEmpty()) {
+      for (int dx = 0; dx < size; dx++) for (int dz = 0; dz < size; dz++) if (
+        taskData[(dx + size * dz) * taskIndex] == -1
+      ) generator.visualizeRegion(
+        centerX - radius + dx,
+        centerZ - radius + dz,
+        (task, region) -> {
+          for (DrawnTask drawnTask : taskParent.getOrDefault(
+            task,
+            List.of()
+          )) for (Region.Point point : region.points()) {
+            final int pointX = point.x - centerX + radius;
+            final int pointZ = point.z - centerZ + radius;
+            if (pointX >= 0 && pointX < size && pointZ >= 0 && pointZ < size) {
+              taskData[(pointX + size * pointZ) * taskIndex +
+                taskOffset[drawnTask.ordinal()]] = taskColor(
+                drawnTask,
+                region,
+                point.x,
+                point.z
+              ).getRGB();
+            }
           }
         }
-      }
-    );
+      );
 
-    collectFinalRegionStatistics(
-      generator,
-      seed,
-      centerX,
-      centerZ,
-      size,
-      koppenCounts,
-      biomeCounts
-    );
+      collectFinalRegionStatistics(
+        generator,
+        seed,
+        centerX,
+        centerZ,
+        size,
+        koppenCounts,
+        biomeCounts
+      );
+    }
 
-    for (DrawnTask task : tasksToDraw) Draw.draw(
+    for (DrawnTask task : gridTasks) Draw.draw(
       taskName(name, task),
       size,
       size,
@@ -173,8 +202,22 @@ public class RegionGeneratorTests implements TestSetup {
         taskData[(x + size * z) * taskIndex + taskOffset[task.ordinal()]]
     );
 
-    logKoppenStatistics(koppenCounts);
-    logBiomeStatistics(biomeCounts);
+    if (geographyTasks.contains(DrawnTask.GEOGRAPHY_SOURCE_MASK)) {
+      GeographyArtistStages.drawSourceMask(
+        taskName(name, DrawnTask.GEOGRAPHY_SOURCE_MASK)
+      );
+    }
+    if (geographyTasks.contains(DrawnTask.GEOGRAPHY_GENERATED_LAND)) {
+      GeographyArtistStages.drawGeneratedLand(
+        taskName(name, DrawnTask.GEOGRAPHY_GENERATED_LAND),
+        generator
+      );
+    }
+
+    if (!gridTasks.isEmpty()) {
+      logKoppenStatistics(koppenCounts);
+      logBiomeStatistics(biomeCounts);
+    }
   }
 
   private Artist.Pixel<Color> drawWithRivers(
@@ -342,6 +385,10 @@ public class RegionGeneratorTests implements TestSetup {
           case NONE -> baseColor;
         };
       }
+      case GEOGRAPHY_SOURCE_MASK,
+        GEOGRAPHY_GENERATED_LAND -> throw new IllegalStateException(
+        "High-res geography stages are drawn via GeographyArtistStages"
+      );
     };
   }
 
@@ -1392,6 +1439,10 @@ public class RegionGeneratorTests implements TestSetup {
 
   /**
    * Allows drawing additional visualizations between generation tasks.
+   * <p>
+   * Ordinals 0–26 write grid-scale {@code artist/region_NN_*.png} via {@link Draw}.
+   * Ordinals 27–28 are high-res GeographyUI previews ({@link GeographyArtistStages}),
+   * produced by the same {@code testRegionGenerator} run.
    */
   enum DrawnTask {
     ADD_CONTINENTS(Task.ADD_CONTINENTS),
@@ -1425,12 +1476,20 @@ public class RegionGeneratorTests implements TestSetup {
     KOPPEN_AFTER_RIVERS(Task.ADD_RIVERS_AND_LAKES),
     // Visualize where things can spawn
     KAOLINITE_CAN_SPAWN(Task.ADD_RIVERS_AND_LAKES),
-    PROJECTION_GRID(Task.ADD_RIVERS_AND_LAKES);
+    PROJECTION_GRID(Task.ADD_RIVERS_AND_LAKES),
+    GEOGRAPHY_SOURCE_MASK(Task.ADD_CONTINENTS),
+    GEOGRAPHY_GENERATED_LAND(Task.ADD_RIVERS_AND_LAKES);
 
     final Task root;
 
     DrawnTask(Task root) {
       this.root = root;
+    }
+
+    boolean isHighResGeography() {
+      return (
+        this == GEOGRAPHY_SOURCE_MASK || this == GEOGRAPHY_GENERATED_LAND
+      );
     }
   }
 }

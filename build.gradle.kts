@@ -151,7 +151,7 @@ tasks {
     if (project.hasProperty("continuousBiomeCoverage")) {
       systemProperty("continuousBiomeCoverage", "true")
     }
-    maxHeapSize = "4g"
+    maxHeapSize = "8g"
     minHeapSize = "1g"
     outputs.upToDateWhen { false }
     testLogging {
