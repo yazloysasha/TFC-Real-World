@@ -277,19 +277,19 @@ Climate types and their RGB colors:
 
 Here's a minimal example for creating a basic island map profile:
 
-1. **Continent Map:** Create a 1280x640 grayscale image with most of the map at `0` (ocean) and a circular island in the center at `255` (land).
+1. **Continent Map:** Create a 1248×624 grayscale image with most of the map at `0` (ocean) and a circular island in the center at `255` (land).
 
-2. **Altitude Map:** Create a matching 1280x640 grayscale image with ocean areas at `64` (shallow ocean), island edges at `128` (sea level), and island center at `200` (hills).
+2. **Altitude Map:** Create a matching 1248×624 grayscale image with ocean areas at `64` (shallow ocean), island edges at `128` (sea level), and island center at `200` (hills).
 
-3. **Hotspots Map:** Create a 1280x640 grayscale image with most areas at `0` (no volcanoes) and a small hotspot on the island at `192` (age 2).
+3. **Hotspots Map:** Create a 1248×624 grayscale image with most areas at `0` (no volcanoes) and a small hotspot on the island at `192` (age 2).
 
-4. **Köppen Map:** Create a 1280x640 RGB image using `(140, 200, 80)` for CFB (Oceanic climate).
+4. **Köppen Map:** Create a 1248×624 RGB image using `(140, 200, 80)` for CFB (Oceanic climate).
 
-5. **Temperature Map:** Create a 1280x640 grayscale image with a gradient from `120` (cooler) at the edges to `180` (warmer) at the center, representing temperature variation across the island.
+5. **Temperature Map:** Create a 1248×624 grayscale image with a gradient from `120` (cooler) at the edges to `180` (warmer) at the center, representing temperature variation across the island.
 
-6. **Rainfall Map:** Create a 1280x640 grayscale image with a gradient from `140` (drier) at the edges to `200` (wetter) at the center, representing rainfall variation across the island.
+6. **Rainfall Map:** Create a 1248×624 grayscale image with a gradient from `140` (drier) at the edges to `200` (wetter) at the center, representing rainfall variation across the island.
 
-7. **Settings:** Create `settings.json` with `horizontal_scale` = `40000` and `vertical_scale` = `20000` to match the 2:1 aspect ratio of the maps. Note that due to the 2:1, a circular island in your map will appear as an oval in the generated world.
+7. **Settings:** Create `settings.json` with `horizontal_scale` = `40000` and `vertical_scale` = `20000` to match the 2:1 aspect ratio of the maps (Full World x2 reference size is **1248×624**; x1 → 624×312, x4 → 2496×1248). Note that due to the 2:1, a circular island in your map will appear as an oval in the generated world.
 
 All maps in a given tier folder must share the same width and height. Put continent/hotspots in `maps/x1/`, `maps/x2/`, and `maps/x4/`; put climate/terrain maps in `maps/x2/` (see tiers above).
 

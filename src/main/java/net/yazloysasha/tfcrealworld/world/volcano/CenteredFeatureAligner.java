@@ -9,9 +9,17 @@ import net.dries007.tfc.world.region.Units;
 import net.dries007.tfc.world.volcano.CenteredFeatureNoise;
 import net.yazloysasha.tfcrealworld.world.biome.CoverageRareBiomes;
 
+/**
+ * Ensures cellular feature centers (stratovolcano cones, tuff rings, cinder)
+ * fall on a matching biome cell. Vanilla samples the biome at the cellular
+ * center — small volcanic blobs otherwise get no cone at all.
+ */
 public final class CenteredFeatureAligner {
 
-  private static final int MAX_CENTER_OFFSET_GRID = 2;
+  /** ~half a strato cell (~476 blocks / 128) with a little margin. */
+  private static final int MAX_CENTER_OFFSET_GRID = 4;
+  /** Map-hotspot islands: allow further snap so tiny land still gets a cone. */
+  private static final int MAX_HOTSPOT_CENTER_OFFSET_GRID = 6;
   private static final int HALF_GRID_BLOCK = Units.GRID_WIDTH_IN_BLOCK / 2;
 
   private CenteredFeatureAligner() {}
@@ -51,9 +59,12 @@ public final class CenteredFeatureAligner {
       final Cellular2D.Cell cell = cells.cell(blockX, blockZ);
       final int centerGridX = Units.blockToGrid((int) Math.round(cell.x()));
       final int centerGridZ = Units.blockToGrid((int) Math.round(cell.y()));
+      final int maxOffset = point.hotSpotAge > 0
+        ? MAX_HOTSPOT_CENTER_OFFSET_GRID
+        : MAX_CENTER_OFFSET_GRID;
       if (
-        Math.abs(centerGridX - point.x) > MAX_CENTER_OFFSET_GRID ||
-        Math.abs(centerGridZ - point.z) > MAX_CENTER_OFFSET_GRID
+        Math.abs(centerGridX - point.x) > maxOffset ||
+        Math.abs(centerGridZ - point.z) > maxOffset
       ) {
         continue;
       }
@@ -67,6 +78,10 @@ public final class CenteredFeatureAligner {
       final long key = entry.getLongKey();
       final Region.Point center = region.at(unpackX(key), unpackZ(key));
       if (center == null || matches.test(center.biome)) {
+        continue;
+      }
+      // Never paint land-volcano biomes onto pure ocean (no setLand).
+      if (!center.land()) {
         continue;
       }
       if (isShieldHotspotBiome(center.biome)) {

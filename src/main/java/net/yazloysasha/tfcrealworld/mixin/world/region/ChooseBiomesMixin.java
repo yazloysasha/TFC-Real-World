@@ -29,9 +29,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ChooseBiomesMixin {
 
   @Unique
-  private static final int TRENCH_SHELF_INFLUENCE_RADIUS = 2;
-
-  @Unique
   private static final int[] RIFT_VALLEY_BIOMES = {
     RIFT_VALLEY,
     RIFT_VALLEY,
@@ -42,15 +39,6 @@ public class ChooseBiomesMixin {
 
   @Unique
   private static final int[] LAND_RIFT_SPAWN_ROLL = { 1, 0 };
-
-  @Unique
-  private static final int[] MAP_SUBDUCTION_SHELF_BIOMES = {
-    OCEANIC_VOLCANIC_ARC,
-    OCEANIC_VOLCANIC_ARC,
-    OCEANIC_VOLCANIC_ARC,
-    VOLCANIC_ISLAND,
-    OCEANIC_VOLCANIC_ARC,
-  };
 
   @Unique
   private static final double ICE_SHEET_EDGE_MELTWATER_LAKE_CHANCE = 0.16;
@@ -262,6 +250,22 @@ public class ChooseBiomesMixin {
       biome == VOLCANIC_OCEANIC_MOUNTAINS ||
       biome == ICE_SHEET_VOLCANIC_OCEANIC_MOUNTAINS ||
       biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS
+    );
+  }
+
+  @Unique
+  private static boolean tfcrealworld$isVolcanicMountainFamily(int biome) {
+    return (
+      biome == VOLCANIC_MOUNTAINS ||
+      biome == VOLCANIC_OCEANIC_MOUNTAINS ||
+      biome == VOLCANIC_MOUNTAIN_LAKE ||
+      biome == VOLCANIC_OCEANIC_MOUNTAIN_LAKE ||
+      biome == ICE_SHEET_VOLCANIC_MOUNTAINS ||
+      biome == ICE_SHEET_VOLCANIC_OCEANIC_MOUNTAINS ||
+      biome == GLACIATED_VOLCANIC_MOUNTAINS ||
+      biome == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS ||
+      biome == GLACIALLY_CARVED_VOLCANIC_MOUNTAINS ||
       biome == GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS
     );
   }
@@ -482,9 +486,17 @@ public class ChooseBiomesMixin {
     int age,
     @Local Region.Point point
   ) {
-    // Ocean cells: keep ocean biome (seamounts/age only). Do not replace with
-    // land shield-volcano biomes when setLand() was intentionally skipped.
+    // Ocean cells must not become land shield-volcano islands (AddHotspots no
+    // longer calls setLand()). Age 4 ocean → SUNKEN is handled by vanilla
+    // before this call when the biome is already an ocean family.
+    // Inland ICE_SHEET_VOLCANIC_MOUNTAINS / strato path is untouched: land +
+    // keepMountainBiome still returns the mountain biome chosen above.
     if (!point.land()) {
+      return point.biome;
+    }
+    // Never replace an already-chosen volcanic-mountain (incl. ice-sheet)
+    // biome with a shield volcano — that was wiping ICE_SHEET_VOLCANIC_*.
+    if (tfcrealworld$isVolcanicMountainFamily(point.biome)) {
       return point.biome;
     }
     final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
@@ -550,32 +562,30 @@ public class ChooseBiomesMixin {
       ? DivergenceNoiseRegistry.get(generator)
       : null;
 
-    if (divergenceNoise != null || altitudeFromMap) {
+    // Ocean biomes: leave vanilla ChooseBiomes (driven by oceanDepth only).
+    // Depth/trench/ridge come from altitude + tectonics, not biome hardcode.
+    if (divergenceNoise != null) {
       final ChooseBiomesAccessor accessor = (ChooseBiomesAccessor) this;
       final Area blobArea = context.generator().biomeArea.get();
       final long rngSeed = context.random.nextLong();
 
       for (final Region.Point point : context.region.points()) {
-        if (divergenceNoise != null) {
-          tfcrealworld$applyLandRiftBiomes(
-            point,
-            divergenceNoise,
-            accessor,
-            blobArea,
-            rngSeed
-          );
-        }
-
-        if (altitudeFromMap && !tfcrealworld$skipOceanBiome(point)) {
-          tfcrealworld$assignMapOceanBiome(
-            point,
-            divergenceNoise,
-            accessor,
-            blobArea,
-            rngSeed
-          );
-        }
+        tfcrealworld$applyLandRiftBiomes(
+          point,
+          divergenceNoise,
+          accessor,
+          blobArea,
+          rngSeed
+        );
       }
+    }
+
+    // Abyssal (7) falls through vanilla's "else" ocean branch and becomes
+    // DEEP_OCEAN_ATOLLS across Earth-scale warm basins. Remap to plain deep
+    // without assigning other ocean biomes — reefs/arcs/ridges/trenches stay
+    // whatever vanilla already chose from oceanDepth / flags.
+    if (altitudeFromMap) {
+      tfcrealworld$remapAbyssalDeepAtolls(context.region);
     }
 
     tfcrealworld$applyVolcanicOceanicGlacialBands(
@@ -673,108 +683,24 @@ public class ChooseBiomesMixin {
     }
   }
 
+  /**
+   * Map abyssal plain depth (7) would otherwise become {@code DEEP_OCEAN_ATOLLS}
+   * under vanilla warm+far rules. Force plain {@code DEEP_OCEAN} for that
+   * sentinel only; leave depth-4 atoll habitat and all other ocean biomes.
+   */
   @Unique
-  private static void tfcrealworld$assignMapOceanBiome(
-    Region.Point point,
-    PNGDivergenceNoise divergenceNoise,
-    ChooseBiomesAccessor accessor,
-    Area blobArea,
-    long rngSeed
-  ) {
-    final int rawDepth = Byte.toUnsignedInt(point.oceanDepth);
-    if (rawDepth >= PNGAltitudeNoise.MAP_OCEAN_TRENCH_RAW_DEPTH) {
-      point.biome = DEEP_OCEAN_TRENCH;
-      return;
+  private static void tfcrealworld$remapAbyssalDeepAtolls(Region region) {
+    for (final Region.Point point : region.points()) {
+      if (point == null || point.land()) {
+        continue;
+      }
+      if (
+        point.biome == DEEP_OCEAN_ATOLLS &&
+        Byte.toUnsignedInt(point.oceanDepth) ==
+        PNGAltitudeNoise.ABYSSAL_OCEAN_DEPTH
+      ) {
+        point.biome = DEEP_OCEAN;
+      }
     }
-
-    point.biome = tfcrealworld$baseOceanBiomeForMapDepth(point, rawDepth);
-
-    if (divergenceNoise == null) {
-      return;
-    }
-
-    if (MapTectonics.isNearOceanRidge(point.divergence)) {
-      point.biome = OCEAN_RIDGE;
-      return;
-    }
-
-    if (
-      rawDepth != PNGAltitudeNoise.REEF_OCEAN_DEPTH &&
-      tfcrealworld$isSubductionShelf(point, divergenceNoise)
-    ) {
-      final int areaSeed = blobArea.get(point.x, point.z);
-      point.biome = accessor.tfcrealworld$invokeRandomSeededFrom(
-        rngSeed,
-        areaSeed,
-        MAP_SUBDUCTION_SHELF_BIOMES
-      );
-    }
-  }
-
-  @Unique
-  private static int tfcrealworld$baseOceanBiomeForMapDepth(
-    Region.Point point,
-    int rawDepth
-  ) {
-    if (rawDepth == PNGAltitudeNoise.REEF_OCEAN_DEPTH) {
-      return point.volcanic() ? OCEANIC_VOLCANIC_ARC : OCEAN_REEF;
-    }
-
-    final int depthBucket = Byte.toUnsignedInt(
-      PNGAltitudeNoise.bucketFromRawOceanDepth(rawDepth)
-    );
-    if (depthBucket <= 2) {
-      return point.temperature > 12 && point.distanceToLand > 4
-        ? OCEAN_ATOLLS
-        : OCEAN;
-    }
-    if (depthBucket == PNGAltitudeNoise.ABYSSAL_OCEAN_DEPTH) {
-      return DEEP_OCEAN;
-    }
-    if (depthBucket >= 4) {
-      return point.temperature > 12 && point.distanceToLand > 3
-        ? DEEP_OCEAN_ATOLLS
-        : DEEP_OCEAN;
-    }
-    return OCEAN;
-  }
-
-  @Unique
-  private static boolean tfcrealworld$isSubductionShelf(
-    Region.Point point,
-    PNGDivergenceNoise divergenceNoise
-  ) {
-    final int rawDepth = Byte.toUnsignedInt(point.oceanDepth);
-    if (
-      rawDepth == PNGAltitudeNoise.REEF_OCEAN_DEPTH ||
-      PNGAltitudeNoise.bucketFromRawOceanDepth(rawDepth) != 2
-    ) {
-      return false;
-    }
-    if (point.divergence >= 0f) {
-      return false;
-    }
-    if (
-      !MapTectonics.isNearTrenchInfluence(
-        divergenceNoise,
-        point.x,
-        point.z,
-        TRENCH_SHELF_INFLUENCE_RADIUS
-      )
-    ) {
-      return false;
-    }
-    return point.distanceToLand > 1 && point.distanceToLand < 8;
-  }
-
-  @Unique
-  private static boolean tfcrealworld$skipOceanBiome(Region.Point point) {
-    return (
-      point.land() ||
-      point.island() ||
-      point.mountain() ||
-      point.hotSpotAge > 0 ||
-      point.barrierIsland()
-    );
   }
 }

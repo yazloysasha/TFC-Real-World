@@ -2,10 +2,23 @@ package net.yazloysasha.tfcrealworld.world.noise.png;
 
 public class PNGAltitudeNoise extends BasePNGNoise {
 
-  public static final byte ABYSSAL_OCEAN_DEPTH = 7;
   public static final byte REEF_OCEAN_DEPTH = 1;
   public static final byte SHELF_OCEAN_DEPTH = 2;
+  /** Vanilla {@code ChooseBiomes} ridge bucket. */
+  public static final byte RIDGE_OCEAN_DEPTH = 3;
+  /** Vanilla deep-ocean bucket (not trench/ridge/shelf/reef). */
+  public static final byte DEEP_OCEAN_DEPTH = 4;
+  /** Vanilla {@code ChooseBiomes} trench bucket → {@code DEEP_OCEAN_TRENCH}. */
+  public static final byte TRENCH_OCEAN_DEPTH = 5;
+  /**
+   * Open abyssal plain. Vanilla {@code ChooseBiomes} would treat this like
+   * depth 4 (warm+far → {@code DEEP_OCEAN_ATOLLS}); map mode remaps it to
+   * plain {@code DEEP_OCEAN} after vanilla runs so Earth-scale basins are not
+   * painted as atolls.
+   */
+  public static final byte ABYSSAL_OCEAN_DEPTH = 7;
   public static final byte MIN_MAP_OCEAN_DEPTH = 2;
+  /** Raw altitude-map depth at/above this is a trench (before vanilla bucketing). */
   public static final int MAP_OCEAN_TRENCH_RAW_DEPTH = 10;
 
   private static final String MAP_NAME = "altitude";
@@ -66,34 +79,33 @@ public class PNGAltitudeNoise extends BasePNGNoise {
     return (byte) Math.clamp(Math.round(depth), MIN_MAP_OCEAN_DEPTH, 15);
   }
 
+  /**
+   * Convert continuous altitude-map depth into discrete {@code oceanDepth}
+   * values that feed vanilla {@code ChooseBiomes} / barrier placement:
+   * <ul>
+   *   <li>2 — continental shelf ({@code OCEAN} / nearshore atoll path)</li>
+   *   <li>4 — upper deep (rare atoll habitat when warm + far)</li>
+   *   <li>7 — abyssal plain (map mode → plain {@code DEEP_OCEAN})</li>
+   *   <li>5 — trench ({@code DEEP_OCEAN_TRENCH})</li>
+   * </ul>
+   * Depth 1 (reef) and 3 (ridge) are not produced here — barrier/arc
+   * placement and map tectonics set those later.
+   */
   public static byte normalizeMapOceanDepth(byte depth) {
     final int raw = Byte.toUnsignedInt(depth);
     if (raw <= 0) {
       return 0;
     }
+    if (raw >= MAP_OCEAN_TRENCH_RAW_DEPTH) {
+      return TRENCH_OCEAN_DEPTH;
+    }
     if (raw <= 5) {
       return SHELF_OCEAN_DEPTH;
     }
-    return depth;
-  }
-
-  public static byte bucketFromRawOceanDepth(int rawDepth) {
-    if (rawDepth <= 0) {
-      return 0;
+    if (raw <= 7) {
+      return DEEP_OCEAN_DEPTH;
     }
-    if (rawDepth <= 1) {
-      return 1;
-    }
-    if (rawDepth <= 5) {
-      return 2;
-    }
-    if (rawDepth <= 7) {
-      return 4;
-    }
-    if (rawDepth <= 13) {
-      return ABYSSAL_OCEAN_DEPTH;
-    }
-    return 4;
+    return ABYSSAL_OCEAN_DEPTH;
   }
 
   public AltitudeResult getAltitude(double x, double z) {

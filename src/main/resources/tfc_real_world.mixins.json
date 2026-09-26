@@ -17,6 +17,7 @@
     "world.region.AddContinentsAndSetOceanDepthsMixin",
     "world.region.RegionRiverGeneratorAccessor",
     "world.region.AddHotspotsMixin",
+    "world.region.AddIslandsMixin",
     "world.region.AddMountainsAndBarrierIslandsAccessor",
     "world.region.AddMountainsAndBarrierIslandsMixin",
     "world.region.RegionPointAccessor",

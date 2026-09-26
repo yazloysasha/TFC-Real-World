@@ -177,6 +177,9 @@ public final class MapHotspotLayout {
   }
 
   public void prepareChooseBiomes(Region region, long worldSeed) {
+    // Peak intensity / style resolution on land: ocean centroids (no setLand)
+    // otherwise leave cones missing on small islands and coastal hotspots.
+    snapCentersOntoLand(region);
     resolveMountainStyles(region, worldSeed);
     for (final Region.Point point : region.points()) {
       if (point == null || point.hotSpotAge <= 0 || !point.mountain()) {
@@ -189,6 +192,62 @@ public final class MapHotspotLayout {
       ) {
         point.setVolcanic();
       }
+    }
+  }
+
+  /**
+   * Move hotspot centroids that sit on ocean onto the nearest land cell inside
+   * the hotspot radius so shield intensity and strato alignment peak on land.
+   * Does not call {@code setLand()} — ocean stays ocean.
+   */
+  public void snapCentersOntoLand(Region region) {
+    for (int i = 0; i < centers.length; i++) {
+      final Center center = centers[i];
+      final Region.Point at = region.at(center.gridX(), center.gridZ());
+      if (at != null && at.land()) {
+        continue;
+      }
+      Region.Point best = null;
+      int bestDistSq = Integer.MAX_VALUE;
+      final int radius = Math.max(1, center.maxGridRadius());
+      for (int dz = -radius; dz <= radius; dz++) {
+        for (int dx = -radius; dx <= radius; dx++) {
+          final int distSq = dx * dx + dz * dz;
+          if (distSq > radius * radius || distSq >= bestDistSq) {
+            continue;
+          }
+          final Region.Point candidate = region.at(
+            center.gridX() + dx,
+            center.gridZ() + dz
+          );
+          if (candidate == null || !candidate.land()) {
+            continue;
+          }
+          bestDistSq = distSq;
+          best = candidate;
+        }
+      }
+      if (best == null) {
+        continue;
+      }
+      final double blockX = Units.gridToBlock(best.x) + HALF_GRID_BLOCK;
+      final double blockZ = Units.gridToBlock(best.z) + HALF_GRID_BLOCK;
+      final double[] image = noise.tileToImage(
+        blockX * INV_GRID_WIDTH_IN_BLOCK,
+        blockZ * INV_GRID_WIDTH_IN_BLOCK
+      );
+      centers[i] = new Center(
+        center.id(),
+        center.age(),
+        image[0],
+        image[1],
+        center.radiusBlocks(),
+        best.x,
+        best.z,
+        center.placementChance(),
+        center.stratovolcanoChance(),
+        center.maxGridRadius()
+      );
     }
   }
 
