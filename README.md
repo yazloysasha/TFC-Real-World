@@ -158,7 +158,7 @@ External profiles take priority over JAR profiles with the same namespace and na
 The in-game geography map (inventory globe tab) shows waypoints listed in the active profile’s `settings.json` (`"waypoints": ["namespace:slug", ...]`). Waypoint and hierarchy JSON live separately from map images:
 
 - **JAR:** `data/tfc_real_world/geography/{namespace}/{continents|regions|subregions|waypoints}/`
-- **External (folders or ZIP):** `config/tfc_real_world/geography/` — either `{namespace}/waypoints/my_place.json` or a `.zip` whose root contains the same `{namespace}/…` tree
+- **External (folders or ZIP):** `config/tfc_real_world/geography/` — either `{namespace}/waypoints/my_place.json` or a `.zip` whose root contains the same `{namespace}/...` tree
 
 IDs: waypoints use `namespace:slug`; continents/regions/subregions use `namespace:continent|region|subregion/slug`. External geography overrides JAR entries with the same ID. A custom waypoint only appears on the map if its ref is listed in the **active profile** `waypoints` array and the JSON has `latitude` / `longitude`.
 
