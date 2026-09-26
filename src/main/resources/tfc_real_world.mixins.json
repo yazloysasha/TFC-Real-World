@@ -10,6 +10,7 @@
     "world.biome.BiomeNoiseMixin",
     "world.biome.BiomeSourceExtensionMixin",
     "world.layer.IceSheetEdgeLayerMixin",
+    "world.layer.MoreShoresLayerMixin",
     "world.layer.TFCLayersMixin",
     "world.region.AddRiversAndLakesMixin",
     "world.region.RegionRiverGeneratorMixin",

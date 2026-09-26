@@ -24,7 +24,13 @@ public class OceanDistanceCalculator extends RegionPointCalculator {
     }
 
     forEachPoint(region, point -> {
-      point.distanceToOcean = cache.getDistance(point.x, point.z, point.land());
+      byte distance = cache.getDistance(point.x, point.z, point.land());
+      // Cache shore (-2) can bleed through bilinear samples into open ocean.
+      // Match vanilla AnnotateDistanceToOcean: only adjacency marks shore.
+      if (!point.land() && distance == -2) {
+        distance = -1;
+      }
+      point.distanceToOcean = distance;
     });
 
     forEachPoint(region, point -> {
