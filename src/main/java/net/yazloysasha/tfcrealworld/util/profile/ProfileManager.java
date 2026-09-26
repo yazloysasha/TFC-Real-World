@@ -15,8 +15,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 import net.neoforged.fml.loading.FMLPaths;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
@@ -305,10 +308,23 @@ public class ProfileManager {
     );
   }
 
+  /**
+   * Match {@code maps/xN} tier folders. Available tiers are discovered from the
+   * profile filesystem / ZIP / classpath resource tree (not a hardcoded probe list).
+   * Midpoints between consecutive discovered tiers decide selection
+   * (x1 < 1.5 <= x2; later x4 uses midpoint 3, …). Climate maps typically exist
+   * only under x2; continent/hotspots under x1, x2, and x4 in the built-in profiles.
+   */
+  private static final Pattern MAP_TIER_DIR = Pattern.compile(
+    "^x([0-9]+(?:\\.[0-9]+)?)$",
+    Pattern.CASE_INSENSITIVE
+  );
+
   public static InputStream getMapStream(String profileId, String mapName) {
     String[] parts = parseProfileId(profileId.toLowerCase());
     String namespace = parts[0];
     String profileName = parts[1];
+    String tierFolder = resolveMapTierFolder(profileId, mapName);
 
     ProfileLocation location = PROFILE_LOCATIONS.get(profileId.toUpperCase());
     if (location != null) {
@@ -317,13 +333,154 @@ public class ProfileManager {
           location.zipPath(),
           namespace,
           profileName,
-          mapName
+          mapName,
+          tierFolder
         );
       } else if (location.directoryPath() != null) {
-        return getMapStreamFromDirectory(location.directoryPath(), mapName);
+        return getMapStreamFromDirectory(
+          location.directoryPath(),
+          mapName,
+          tierFolder
+        );
       }
     }
 
+    if (tierFolder != null) {
+      InputStream scaled =
+        TFCRealWorld.class.getResourceAsStream(
+            resourceMapPath(namespace, profileName, tierFolder, mapName)
+          );
+      if (scaled != null) {
+        return scaled;
+      }
+    }
+    return TFCRealWorld.class.getResourceAsStream(
+        resourceMapPath(namespace, profileName, null, mapName)
+      );
+  }
+
+  private static String resourceMapPath(
+    String namespace,
+    String profileName,
+    String tierFolder,
+    String mapName
+  ) {
+    StringBuilder path = new StringBuilder();
+    path
+      .append("/data/")
+      .append(TFCRealWorld.MOD_ID)
+      .append("/profiles/")
+      .append(namespace)
+      .append("/")
+      .append(profileName)
+      .append("/maps/");
+    if (tierFolder != null && !tierFolder.isEmpty()) {
+      path.append(tierFolder).append("/");
+    }
+    path.append(mapName).append(".png");
+    return path.toString();
+  }
+
+  /**
+   * Pick {@code maps/xN} for {@code mapName}: highest available tier whose
+   * midpoint-range covers the current world scale factor vs profile defaults.
+   * Maps present only under x2 (climate) always resolve to x2 even when the
+   * scale factor would prefer x1 for continent/hotspots.
+   */
+  public static String resolveMapTierFolder(String profileId, String mapName) {
+    List<Double> available = listAvailableMapTiers(profileId, mapName);
+    if (available.isEmpty()) {
+      return null;
+    }
+    double factor = currentScaleFactor(profileId);
+    double chosen = selectMapTier(available, factor);
+    return formatMapTierFolder(chosen);
+  }
+
+  public static double currentScaleFactor(String profileId) {
+    MapProfile profile = getProfile(profileId);
+    double defaultH = Math.max(1, profile.horizontalScale());
+    double defaultV = Math.max(1, profile.verticalScale());
+    double factorH = TFCRealWorldConfig.HORIZONTAL_SCALE.get() / defaultH;
+    double factorV = TFCRealWorldConfig.VERTICAL_SCALE.get() / defaultV;
+    return Math.max(factorH, factorV);
+  }
+
+  public static double selectMapTier(List<Double> sortedTiers, double factor) {
+    if (sortedTiers == null || sortedTiers.isEmpty()) {
+      return 2.0;
+    }
+    double chosen = sortedTiers.get(0);
+    for (int i = 1; i < sortedTiers.size(); i++) {
+      double mid = (sortedTiers.get(i - 1) + sortedTiers.get(i)) / 2.0;
+      if (factor >= mid) {
+        chosen = sortedTiers.get(i);
+      } else {
+        break;
+      }
+    }
+    return chosen;
+  }
+
+  public static String formatMapTierFolder(double tier) {
+    if (Math.rint(tier) == tier) {
+      return "x" + (int) Math.rint(tier);
+    }
+    return "x" + trimTierString(tier);
+  }
+
+  private static String trimTierString(double tier) {
+    String s = String.format(Locale.ROOT, "%.4f", tier);
+    while (s.contains(".") && (s.endsWith("0") || s.endsWith("."))) {
+      s = s.substring(0, s.length() - 1);
+    }
+    return s;
+  }
+
+  private static List<Double> listAvailableMapTiers(
+    String profileId,
+    String mapName
+  ) {
+    String[] parts = parseProfileId(profileId.toLowerCase());
+    String namespace = parts[0];
+    String profileName = parts[1];
+    ProfileLocation location = PROFILE_LOCATIONS.get(profileId.toUpperCase());
+
+    List<Double> found = new ArrayList<>();
+    if (location != null && location.isZip()) {
+      found.addAll(
+        listTiersInZip(location.zipPath(), namespace, profileName, mapName)
+      );
+    } else if (location != null && location.directoryPath() != null) {
+      found.addAll(listTiersInDirectory(location.directoryPath(), mapName));
+    }
+
+    if (found.isEmpty()) {
+      // Built-in JAR / classpath profiles: list maps/xN dirs from the resource tree.
+      found.addAll(listTiersInClasspath(namespace, profileName, mapName));
+    }
+
+    found.sort(Double::compareTo);
+    return found;
+  }
+
+  private static List<Double> listTiersInDirectory(
+    Path profilePath,
+    String mapName
+  ) {
+    return collectTiersFromMapsRoot(profilePath.resolve("maps"), mapName);
+  }
+
+  /**
+   * Discover {@code maps/xN/<mapName>.png} tiers by listing the profile maps
+   * folder on the classpath (dev {@code file:} tree or packed {@code jar:}).
+   */
+  private static List<Double> listTiersInClasspath(
+    String namespace,
+    String profileName,
+    String mapName
+  ) {
+    List<Double> found = new ArrayList<>();
     String resourcePath =
       "/data/" +
       TFCRealWorld.MOD_ID +
@@ -331,28 +488,132 @@ public class ProfileManager {
       namespace +
       "/" +
       profileName +
-      "/maps/" +
-      mapName +
-      ".png";
-    return TFCRealWorld.class.getResourceAsStream(resourcePath);
+      "/maps";
+
+    try {
+      URL resourceUrl = TFCRealWorld.class.getResource(resourcePath);
+      if (resourceUrl == null) {
+        resourceUrl = TFCRealWorld.class.getResource(resourcePath + "/");
+      }
+      if (resourceUrl == null) {
+        return found;
+      }
+
+      URI resourceUri = resourceUrl.toURI();
+      FileSystem fileSystem = null;
+      boolean closeFileSystem = false;
+      try {
+        Path mapsRoot;
+        if ("jar".equals(resourceUri.getScheme())) {
+          String uriString = resourceUri.toString();
+          int bang = uriString.indexOf("!/");
+          URI jarUri = bang >= 0
+            ? URI.create(uriString.substring(0, bang))
+            : resourceUri;
+          try {
+            fileSystem = FileSystems.getFileSystem(jarUri);
+          } catch (java.nio.file.FileSystemNotFoundException e) {
+            fileSystem = FileSystems.newFileSystem(
+              jarUri,
+              Collections.emptyMap()
+            );
+            closeFileSystem = true;
+          }
+          mapsRoot = fileSystem.getPath(resourcePath);
+        } else {
+          mapsRoot = Paths.get(resourceUri);
+        }
+        found.addAll(collectTiersFromMapsRoot(mapsRoot, mapName));
+      } finally {
+        if (closeFileSystem && fileSystem != null) {
+          try {
+            fileSystem.close();
+          } catch (IOException ignored) {}
+        }
+      }
+    } catch (URISyntaxException | IOException e) {
+      TFCRealWorld.LOGGER.error(
+        "Failed to list map tiers from classpath for {}/{} map {}",
+        namespace,
+        profileName,
+        mapName,
+        e
+      );
+    }
+    return found;
+  }
+
+  private static List<Double> collectTiersFromMapsRoot(
+    Path mapsRoot,
+    String mapName
+  ) {
+    List<Double> found = new ArrayList<>();
+    if (mapsRoot == null || !Files.isDirectory(mapsRoot)) {
+      return found;
+    }
+    try (Stream<Path> stream = Files.list(mapsRoot)) {
+      stream
+        .filter(Files::isDirectory)
+        .forEach(dir -> {
+          Matcher matcher = MAP_TIER_DIR.matcher(dir.getFileName().toString());
+          if (!matcher.matches()) {
+            return;
+          }
+          if (Files.exists(dir.resolve(mapName + ".png"))) {
+            found.add(Double.parseDouble(matcher.group(1)));
+          }
+        });
+    } catch (IOException e) {
+      TFCRealWorld.LOGGER.error(
+        "Failed to list map tiers in maps root: {}",
+        mapsRoot,
+        e
+      );
+    }
+    return found;
+  }
+
+  private static List<Double> listTiersInZip(
+    Path zipPath,
+    String namespace,
+    String profileName,
+    String mapName
+  ) {
+    List<Double> found = new ArrayList<>();
+    withZipFileSystem(zipPath, zipFs -> {
+      Path mapsRoot = zipFs.getPath(
+        "/" + namespace + "/" + profileName + "/maps"
+      );
+      found.addAll(collectTiersFromMapsRoot(mapsRoot, mapName));
+      return null;
+    });
+    return found;
   }
 
   private static InputStream getMapStreamFromZip(
     Path zipPath,
     String namespace,
     String profileName,
-    String mapName
+    String mapName,
+    String tierFolder
   ) {
     return withZipFileSystem(zipPath, zipFs -> {
       try {
-        Path mapPath = zipFs.getPath(
-          "/" + namespace + "/" + profileName + "/maps/" + mapName + ".png"
+        Path mapsRoot = zipFs.getPath(
+          "/" + namespace + "/" + profileName + "/maps"
         );
-        if (Files.exists(mapPath)) {
-          return new ZipInputStreamWrapper(
-            Files.newInputStream(mapPath),
-            zipFs
-          );
+        if (tierFolder != null) {
+          Path scaled = mapsRoot.resolve(tierFolder).resolve(mapName + ".png");
+          if (Files.exists(scaled)) {
+            return new ZipInputStreamWrapper(
+              Files.newInputStream(scaled),
+              zipFs
+            );
+          }
+        }
+        Path legacy = mapsRoot.resolve(mapName + ".png");
+        if (Files.exists(legacy)) {
+          return new ZipInputStreamWrapper(Files.newInputStream(legacy), zipFs);
         }
       } catch (IOException e) {
         TFCRealWorld.LOGGER.error(
@@ -399,12 +660,20 @@ public class ProfileManager {
 
   private static InputStream getMapStreamFromDirectory(
     Path profilePath,
-    String mapName
+    String mapName,
+    String tierFolder
   ) {
     try {
-      Path mapPath = profilePath.resolve("maps").resolve(mapName + ".png");
-      if (Files.exists(mapPath)) {
-        return Files.newInputStream(mapPath);
+      Path mapsRoot = profilePath.resolve("maps");
+      if (tierFolder != null) {
+        Path scaled = mapsRoot.resolve(tierFolder).resolve(mapName + ".png");
+        if (Files.exists(scaled)) {
+          return Files.newInputStream(scaled);
+        }
+      }
+      Path legacy = mapsRoot.resolve(mapName + ".png");
+      if (Files.exists(legacy)) {
+        return Files.newInputStream(legacy);
       }
     } catch (IOException e) {
       TFCRealWorld.LOGGER.error(

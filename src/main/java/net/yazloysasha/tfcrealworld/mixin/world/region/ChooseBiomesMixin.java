@@ -482,6 +482,11 @@ public class ChooseBiomesMixin {
     int age,
     @Local Region.Point point
   ) {
+    // Ocean cells: keep ocean biome (seamounts/age only). Do not replace with
+    // land shield-volcano biomes when setLand() was intentionally skipped.
+    if (!point.land()) {
+      return point.biome;
+    }
     final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
     if (layout != null && layout.keepMountainBiome(point)) {
       return point.biome;

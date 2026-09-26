@@ -148,14 +148,23 @@ Map profiles organize all the map images needed for world generation. Each profi
 
 <code>{namespace}/{profile_name}/<br>
 ├─ maps/<br>
-│ ├── continent.png<br>
-│ ├── altitude.png<br>
-│ ├── divergence.png<br>
-│ ├── hotspots.png<br>
-│ ├── koppen.png<br>
-│ ├── temperature.png<br>
-│ └── rainfall.png<br>
+│ ├─ x1/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# half-resolution tier<br>
+│ │ ├── continent.png<br>
+│ │ └── hotspots.png<br>
+│ ├─ x2/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# higher-resolution tier<br>
+│ │ ├── continent.png<br>
+│ │ ├── altitude.png<br>
+│ │ ├── divergence.png<br>
+│ │ ├── hotspots.png<br>
+│ │ ├── koppen.png<br>
+│ │ ├── temperature.png<br>
+│ │ └── rainfall.png<br>
+│ └─ x4/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# ultra-high-resolution continent/hotspots tier<br>
+│ &nbsp;&nbsp;├── continent.png<br>
+│ &nbsp;&nbsp;└── hotspots.png<br>
 └── settings.json</code><br><br>
+
+<b>Map resolution tiers (<code>maps/x1</code>, <code>maps/x2</code>, <code>maps/x4</code>):</b> Profiles ship PNG maps under numbered tier folders. There is no default tier: at worldgen the mod chooses a tier automatically from the ratio of your Horizontal/Vertical Scale to the profile settings for best generation (midpoint rule between whatever tiers are present for that map file). Tier <b>x2</b> is the reference resolution used when authoring maps (for the Full World profile at vertical scale 20000 → 1248×624). Tier <b>x1</b> is half that linear size (624×312 for Full World). Continent and hotspots exist in <b>x1</b>, <b>x2</b>, and <b>x4</b>; x4 is twice x2 linearly (2496×1248 for Full World). Climate and terrain maps (altitude, divergence, köppen, temperature, rainfall) ship under <b>x2</b> only. Custom profiles may add further tiers.<br><br>
 
 Profiles can be placed in two locations:<br>
 
@@ -282,7 +291,7 @@ Here's a minimal example for creating a basic island map profile:<br><br>
 <li><b>Settings:</b> Create <code>settings.json</code> with <code>horizontal_scale</code> = <code>40000</code> and <code>vertical_scale</code> = <code>20000</code> to match the 2:1 aspect ratio of the maps. Note that due to the 2:1, a circular island in your map will appear as an oval in the generated world.</li>
 </ol>
 
-All six maps must be exactly 1280x640 pixels and saved as PNG files in the profile's <code>maps/</code> directory.
+All maps in a given tier folder must share the same width and height. Put continent/hotspots in <code>maps/x1/</code>, <code>maps/x2/</code>, and <code>maps/x4/</code>; put climate/terrain maps in <code>maps/x2/</code> (see tiers above).
 
 </div>
 

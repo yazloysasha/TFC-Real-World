@@ -263,7 +263,18 @@ public abstract class BasePNGNoise implements Noise2D {
   }
 
   public static BufferedImage loadImage(String mapName) {
-    String cacheKey = getProfileId() + ":" + mapName;
+    String profileId = getProfileId();
+    String tierFolder = ProfileManager.resolveMapTierFolder(profileId, mapName);
+    String cacheKey =
+      profileId +
+      ":" +
+      mapName +
+      ":" +
+      (tierFolder == null ? "legacy" : tierFolder) +
+      ":" +
+      TFCRealWorldConfig.HORIZONTAL_SCALE.get() +
+      ":" +
+      TFCRealWorldConfig.VERTICAL_SCALE.get();
     synchronized (imageCache) {
       BufferedImage cached = imageCache.get(cacheKey);
       if (cached != null) {
@@ -271,15 +282,15 @@ public abstract class BasePNGNoise implements Noise2D {
       }
     }
 
-    String profileId = getProfileId();
     try (
       InputStream mapStream = ProfileManager.getMapStream(profileId, mapName)
     ) {
       if (mapStream == null) {
         TFCRealWorld.LOGGER.error(
-          "Map {} not found for profile {} in resources",
+          "Map {} not found for profile {} (tier {}) in resources",
           mapName,
-          profileId
+          profileId,
+          tierFolder
         );
         return null;
       }

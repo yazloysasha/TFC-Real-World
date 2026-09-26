@@ -34,10 +34,10 @@ public class AddHotspotsMixin {
       }
       final byte mapAge = layout.ageAtGrid(point.x, point.z);
       if (mapAge > 0) {
+        // Paint age only: never grow land/islands from ocean hotspot cells.
+        // Land cells keep volcano biomes sized by existing land; ocean keeps
+        // ocean/seamount behaviour (age 4 → sunken shield in ChooseBiomes).
         point.hotSpotAge = mapAge;
-        if (mapAge != 4) {
-          point.setLand();
-        }
       }
     }
     ci.cancel();

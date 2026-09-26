@@ -136,15 +136,24 @@ Map profiles organize all the map images needed for world generation. Each profi
 ```
 {namespace}/{profile_name}/
 ├─ maps/
-│  ├── continent.png
-│  ├── altitude.png
-│  ├── divergence.png
-│  ├── hotspots.png
-│  ├── koppen.png
-│  ├── temperature.png
-│  └── rainfall.png
-└── settings.json
+│  ├─ x1/                    # half-resolution tier
+│  │  ├── continent.png
+│  │  └── hotspots.png
+│  ├─ x2/                    # higher-resolution tier
+│  │  ├── continent.png
+│  │  ├── altitude.png
+│  │  ├── divergence.png
+│  │  ├── hotspots.png
+│  │  ├── koppen.png
+│  │  ├── temperature.png
+│  │  └── rainfall.png
+│  └─ x4/                    # ultra-high-resolution continent/hotspots tier
+│     ├── continent.png
+│     └── hotspots.png
+└─ settings.json
 ```
+
+**Map resolution tiers (`maps/x1`, `maps/x2`, `maps/x4`):** Profiles ship PNG maps under numbered tier folders. There is no default tier: at worldgen the mod chooses a tier automatically from the ratio of your Horizontal/Vertical Scale to the profile settings for best generation (midpoint rule between whatever tiers are present for that map file). Tier **x2** is the reference resolution used when authoring maps (for the Full World profile at vertical scale 20000 → 1248×624). Tier **x1** is half that linear size (624×312 for Full World). Continent and hotspots exist in **x1**, **x2**, and **x4**; x4 is twice x2 linearly (2496×1248 for Full World). Climate and terrain maps (altitude, divergence, köppen, temperature, rainfall) ship under **x2** only. Custom profiles may add further tiers.
 
 Profiles can be placed in two locations:
 
@@ -267,7 +276,7 @@ Here's a minimal example for creating a basic island map profile:
 
 7. **Settings:** Create `settings.json` with `horizontal_scale` = `40000` and `vertical_scale` = `20000` to match the 2:1 aspect ratio of the maps. Note that due to the 2:1, a circular island in your map will appear as an oval in the generated world.
 
-All six maps must be exactly 1280x640 pixels and saved as PNG files in the profile's `maps/` directory.
+All maps in a given tier folder must share the same width and height. Put continent/hotspots in `maps/x1/`, `maps/x2/`, and `maps/x4/`; put climate/terrain maps in `maps/x2/` (see tiers above).
 
 </details>
 
