@@ -240,11 +240,27 @@ public class RegionGeneratorTests implements TestSetup {
             Mth.clampedMap(point.discreteBiomeAltitude(), 0, 3, 0, 1)
           )
           : continentColor(point);
-      case ANNOTATE_BOUNDARY_TYPES -> point.distanceToEdge < 2
-        ? point.divergence > 0 ? Color.MAGENTA : Color.RED
-        : point.land()
-          ? green.apply(0.5 * point.divergence + 0.5)
-          : point.divergence > 0 ? Color.BLUE : Color.ORANGE;
+      case ANNOTATE_BOUNDARY_TYPES -> {
+        // Map tectonics: show PNG polarity only (no vanilla cell-edge overlay).
+        // White/div>0 → blue ridge; black/div<0 → red trench; neutral → land/ocean.
+        if (
+          TFCRealWorldConfig.CONTINENT_FROM_MAP.get() &&
+          TFCRealWorldConfig.TECTONICS_FROM_MAP.get()
+        ) {
+          if (point.divergence > 0) {
+            yield Color.BLUE;
+          }
+          if (point.divergence < 0) {
+            yield Color.RED;
+          }
+          yield point.land() ? new Color(0, 130, 0) : Color.ORANGE;
+        }
+        yield point.distanceToEdge < 2
+          ? point.divergence > 0 ? Color.MAGENTA : Color.RED
+          : point.land()
+            ? green.apply(0.5 * point.divergence + 0.5)
+            : point.divergence > 0 ? Color.BLUE : Color.ORANGE;
+      }
       case TEMPERATURE -> temperatureGradient(
         point,
         point.temperature,

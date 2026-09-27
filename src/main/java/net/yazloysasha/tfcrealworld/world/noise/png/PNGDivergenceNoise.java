@@ -2,7 +2,12 @@ package net.yazloysasha.tfcrealworld.world.noise.png;
 
 import org.jetbrains.annotations.Nullable;
 
-/** PB2002 plate boundaries: 128 neutral, bright divergent, dark convergent. Nearest-neighbour sample. */
+/**
+ * PB2002 plate boundaries sampled nearest-neighbour.
+ * Gray polarity matches vanilla {@code point.divergence}:
+ * 128 ± dead-zone = 0 (neutral), bright/white → {@code > 0} spreading/ridge,
+ * dark/black → {@code < 0} subduction/trench.
+ */
 public class PNGDivergenceNoise extends BasePNGNoise {
 
   private static final String MAP_NAME = "divergence";

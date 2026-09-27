@@ -4,7 +4,6 @@ import it.unimi.dsi.fastutil.ints.IntArrayFIFOQueue;
 import java.util.BitSet;
 import java.util.function.IntUnaryOperator;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
-import net.yazloysasha.tfcrealworld.world.region.TfcContinentNoiseThresholds;
 
 abstract class BaseDistanceCache {
 
@@ -56,9 +55,7 @@ abstract class BaseDistanceCache {
     if (x < 0 || x >= width || z < 0 || z >= height) {
       return false;
     }
-    double brightness = continentNoise.getBrightness(x, z);
-    double continentValue = (brightness / 255.0) * 10.0;
-    return continentValue <= TfcContinentNoiseThresholds.LAND;
+    return !continentNoise.isLandPixel(x, z);
   }
 
   protected void processNeighbors(

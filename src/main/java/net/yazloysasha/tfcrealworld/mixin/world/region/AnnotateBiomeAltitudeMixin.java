@@ -7,9 +7,6 @@ import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.minecraft.util.RandomSource;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.util.registry.DivergenceNoiseRegistry;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGDivergenceNoise;
-import net.yazloysasha.tfcrealworld.world.region.MapTectonics;
 import net.yazloysasha.tfcrealworld.world.region.calculator.AltitudeCalculator;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,6 +20,9 @@ public class AnnotateBiomeAltitudeMixin {
 
   @Unique
   private static final short FLAG_MOUNTAIN = 0b10000;
+
+  @Unique
+  private static final short FLAG_COASTAL_MOUNTAIN = 0b100000;
 
   @Unique
   private static final int MAP_MID_LAND_HEIGHT = 5;
@@ -41,35 +41,7 @@ public class AnnotateBiomeAltitudeMixin {
     if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
       new AltitudeCalculator().calculate(context.region, context.generator());
       tfcrealworld$annotateFromMap(context.region, context.random);
-      tfcrealworld$applyMapMountainFlags(context.region, context.generator());
       ci.cancel();
-    }
-  }
-
-  @Unique
-  private static void tfcrealworld$applyMapMountainFlags(
-    Region region,
-    RegionGenerator generator
-  ) {
-    final PNGDivergenceNoise divergenceNoise = DivergenceNoiseRegistry.get(
-      generator
-    );
-    if (!MapTectonics.isActive(generator) || divergenceNoise == null) {
-      return;
-    }
-
-    for (final Region.Point point : region.points()) {
-      if (point == null || !point.land() || !point.mountain()) {
-        continue;
-      }
-      final float divergence = divergenceNoise.getDivergence(point.x, point.z);
-      point.divergence = divergence;
-      if (point.distanceToOcean < 3) {
-        point.setCoastalMountain();
-      }
-      if (point.divergence < MapTectonics.TRENCH_DIVERGENCE) {
-        point.setVolcanic();
-      }
     }
   }
 
@@ -181,14 +153,23 @@ public class AnnotateBiomeAltitudeMixin {
     return false;
   }
 
+  /**
+   * Drop procedural {@code setMountain} / coastal-mountain from
+   * {@code AddMountainsAndBarrierIslands.placeRange} when the altitude map
+   * does not keep this cell as a mountain core. Leaves {@code FLAG_VOLCANIC}
+   * alone so placeRange volcanic bits on surviving map mountains are not wiped;
+   * demoted cells keep inert volcanic without {@code mountain()} (ChooseBiomes
+   * only reads it under mountain / ocean-arc branches).
+   */
   @Unique
   private static void tfcrealworld$clearMountain(Region.Point point) {
-    if (!point.mountain()) {
+    if (!point.mountain() && !point.coastalMountain()) {
       return;
     }
     final RegionPointAccessor flags = (RegionPointAccessor) (Object) point;
     flags.tfcrealworld$setFlags(
-      (short) (flags.tfcrealworld$getFlags() & ~FLAG_MOUNTAIN)
+      (short) (flags.tfcrealworld$getFlags() &
+        ~(FLAG_MOUNTAIN | FLAG_COASTAL_MOUNTAIN))
     );
   }
 

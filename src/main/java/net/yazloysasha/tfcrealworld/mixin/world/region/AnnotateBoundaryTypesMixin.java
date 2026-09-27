@@ -12,6 +12,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Replace vanilla cellular {@code getDivergence} with {@code divergence.png}.
+ * Also writes {@code distanceToEdge} from |divergence| so later tasks never see
+ * Voronoi cell ridges beside the map.
+ */
 @Mixin(value = AnnotateBoundaryTypes.class, remap = false)
 public class AnnotateBoundaryTypesMixin {
 
@@ -35,7 +40,11 @@ public class AnnotateBoundaryTypesMixin {
         generator
       );
       for (final Region.Point point : context.region.points()) {
+        // PNG: 128 neutral, bright (white) divergent >, dark (black) convergent <
         point.divergence = divergenceNoise.getDivergence(point.x, point.z);
+        point.distanceToEdge = MapTectonics.distanceToEdgeFromDivergence(
+          point.divergence
+        );
       }
       ci.cancel();
     }

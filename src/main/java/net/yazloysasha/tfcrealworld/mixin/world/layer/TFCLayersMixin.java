@@ -1,10 +1,5 @@
 package net.yazloysasha.tfcrealworld.mixin.world.layer;
 
-import static net.dries007.tfc.world.layer.TFCLayers.GLACIALLY_CARVED_VOLCANIC_MOUNTAINS;
-import static net.dries007.tfc.world.layer.TFCLayers.GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS;
-import static net.dries007.tfc.world.layer.TFCLayers.GLACIATED_VOLCANIC_MOUNTAINS;
-import static net.dries007.tfc.world.layer.TFCLayers.GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS;
-
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.dries007.tfc.world.Seed;
@@ -174,30 +169,5 @@ public class TFCLayersMixin {
       return prev;
     }
     return original.call(instance, zoomSeed, prev);
-  }
-
-  @Inject(method = "hasShore", at = @At("HEAD"), cancellable = true)
-  private static void tfcrealworld$keepGlaciatedVolcanicOceanicMountains(
-    int value,
-    CallbackInfoReturnable<Boolean> cir
-  ) {
-    if (value == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS) {
-      cir.setReturnValue(false);
-    }
-  }
-
-  @Inject(method = "hasLake", at = @At("HEAD"), cancellable = true)
-  private static void tfcrealworld$noLakesOnVolcanicGlacialMountains(
-    int value,
-    CallbackInfoReturnable<Boolean> cir
-  ) {
-    if (
-      value == GLACIATED_VOLCANIC_OCEANIC_MOUNTAINS ||
-      value == GLACIALLY_CARVED_VOLCANIC_OCEANIC_MOUNTAINS ||
-      value == GLACIATED_VOLCANIC_MOUNTAINS ||
-      value == GLACIALLY_CARVED_VOLCANIC_MOUNTAINS
-    ) {
-      cir.setReturnValue(false);
-    }
   }
 }

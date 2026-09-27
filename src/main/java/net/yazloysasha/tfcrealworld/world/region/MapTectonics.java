@@ -3,17 +3,20 @@ package net.yazloysasha.tfcrealworld.world.region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.DivergenceNoiseRegistry;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGDivergenceNoise;
 
+/**
+ * Map plate-boundary helpers. Replaces vanilla cellular {@code divergence} and
+ * {@code distanceToEdge} so ridges / rifts / trenches follow {@code divergence.png}
+ * only — polarity matches vanilla: {@code < 0} subduction, {@code > 0} spreading.
+ * Mountain / collision / volcanic biome selection stays vanilla after these
+ * fields are set.
+ */
 public final class MapTectonics {
 
-  public static final float RIFT_BIOME_THRESHOLD = 1.0f;
-  public static final int LAND_RIFT_CORE_RADIUS = 1;
-  public static final float LAND_RIFT_BELT_MIN = 0.05f;
-  public static final float OCEAN_RIDGE_DIVERGENCE = 1.0f;
-  public static final float TRENCH_DIVERGENCE = -0.6f;
-
   private static final double MAX_RIFT_CONTINENT_ADJUST = -0.6;
+
+  /** Far from any map boundary (vanilla cell interiors are ~this scale). */
+  public static final byte INTERIOR_EDGE_DISTANCE = 24;
 
   private MapTectonics() {}
 
@@ -25,6 +28,11 @@ public final class MapTectonics {
     );
   }
 
+  /**
+   * Lower the altitude-derived continent continuum along divergent boundaries
+   * (map analogue of {@code addRiftSeas}) so shelf / trench buckets shift.
+   * Binary land from {@code continent.png} is unchanged.
+   */
   public static double continentRiftAdjustment(float divergence) {
     if (divergence <= 0) {
       return 0;
@@ -33,72 +41,18 @@ public final class MapTectonics {
     return MAX_RIFT_CONTINENT_ADJUST * strength;
   }
 
-  public static boolean isLandRiftCore(
-    PNGDivergenceNoise noise,
-    int x,
-    int z,
-    float centerDivergence
-  ) {
-    if (centerDivergence <= RIFT_BIOME_THRESHOLD) {
-      return false;
+  /**
+   * Synthesize {@code distanceToEdge} from map |divergence| so vanilla
+   * ChooseBiomes / AddMountains rift & collision checks follow the PNG instead
+   * of Voronoi cells. Strong boundary → near 0; neutral →
+   * {@link #INTERIOR_EDGE_DISTANCE}.
+   */
+  public static byte distanceToEdgeFromDivergence(float divergence) {
+    float mag = Math.abs(divergence);
+    if (mag <= 0f) {
+      return INTERIOR_EDGE_DISTANCE;
     }
-    return allBeyond(noise, x, z, LAND_RIFT_CORE_RADIUS, LAND_RIFT_BELT_MIN);
-  }
-
-  public static boolean isLandRiftCore(PNGDivergenceNoise noise, int x, int z) {
-    return isLandRiftCore(noise, x, z, noise.getDivergence(x, z));
-  }
-
-  public static boolean isNearOceanRidge(float divergence) {
-    return divergence > OCEAN_RIDGE_DIVERGENCE;
-  }
-
-  public static boolean isNearOceanRidge(
-    PNGDivergenceNoise noise,
-    int x,
-    int z
-  ) {
-    return isNearOceanRidge(noise.getDivergence(x, z));
-  }
-
-  public static boolean isNearTrench(float divergence) {
-    return divergence < TRENCH_DIVERGENCE;
-  }
-
-  public static boolean isNearTrench(PNGDivergenceNoise noise, int x, int z) {
-    return isNearTrench(noise.getDivergence(x, z));
-  }
-
-  public static boolean isNearTrenchInfluence(
-    PNGDivergenceNoise noise,
-    int x,
-    int z,
-    int radius
-  ) {
-    for (int dz = -radius; dz <= radius; dz++) {
-      for (int dx = -radius; dx <= radius; dx++) {
-        if (noise.getDivergence(x + dx, z + dz) < TRENCH_DIVERGENCE) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  private static boolean allBeyond(
-    PNGDivergenceNoise noise,
-    int x,
-    int z,
-    int radius,
-    float min
-  ) {
-    for (int dz = -radius; dz <= radius; dz++) {
-      for (int dx = -radius; dx <= radius; dx++) {
-        if (noise.getDivergence(x + dx, z + dz) <= min) {
-          return false;
-        }
-      }
-    }
-    return true;
+    float t = Math.min(1f, mag / 2f);
+    return (byte) Math.round((1f - t) * 8f);
   }
 }

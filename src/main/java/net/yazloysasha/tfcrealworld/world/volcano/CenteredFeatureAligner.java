@@ -7,7 +7,6 @@ import net.dries007.tfc.world.noise.Cellular2D;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.Units;
 import net.dries007.tfc.world.volcano.CenteredFeatureNoise;
-import net.yazloysasha.tfcrealworld.world.biome.CoverageRareBiomes;
 
 /**
  * Snaps cellular cone centers onto a matching volcanic biome cell.
@@ -80,9 +79,6 @@ public final class CenteredFeatureAligner {
         continue;
       }
       if (isLake(center.biome)) {
-        continue;
-      }
-      if (CoverageRareBiomes.preserve(center.biome)) {
         continue;
       }
       center.biome = entry.getIntValue();
