@@ -1,9 +1,5 @@
 package net.yazloysasha.tfcrealworld.util.projection;
 
-/**
- * Equal Earth projection implementation for converting geographic coordinates to classic coordinates.
- * Uses the exact mathematical formulas of the Equal Earth projection.
- */
 public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
 
   private static final double A1 = 1.340264;
@@ -112,14 +108,6 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     return new double[] { x, z };
   }
 
-  /**
-   * Forward projection of Equal Earth.
-   * Converts geographic coordinates (latitude, longitude difference) to projection coordinates (x, y).
-   *
-   * @param phi latitude in radians
-   * @param deltaLambda longitude difference from central meridian in radians
-   * @return array [x, y] of projection coordinates
-   */
   private static double[] forwardProjection(double phi, double deltaLambda) {
     double sinPhi = Math.sin(phi);
     double theta = Math.asin((SQRT_3 / 2.0) * sinPhi);
@@ -203,15 +191,6 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     return new double[] { longitude, latitude };
   }
 
-  /**
-   * Inverse projection of Equal Earth.
-   * Converts projection coordinates (x, y) to geographic coordinates (longitude, latitude).
-   *
-   * @param projX projection X coordinate
-   * @param projY projection Y coordinate
-   * @param lambda0 central meridian longitude in radians
-   * @return array [longitude, latitude] in radians
-   */
   private static double[] inverseProjection(
     double projX,
     double projY,
@@ -243,11 +222,7 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
   }
 
   /**
-   * Solves for theta given y in the Equal Earth projection.
-   * Uses Newton's method to solve: y = R * theta * (A1 + A2 * theta^2 + theta^6 * (A3 + A4 * theta^2))
-   *
-   * @param y projection Y coordinate
-   * @return theta in radians
+   * Newton solve: y = R * theta * (A1 + A2 * theta^2 + theta^6 * (A3 + A4 * theta^2)).
    */
   private static double solveThetaForY(double y) {
     double targetY = y / R;

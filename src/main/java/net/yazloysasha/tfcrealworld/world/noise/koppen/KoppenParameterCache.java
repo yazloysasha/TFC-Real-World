@@ -7,9 +7,6 @@ import net.dries007.tfc.util.climate.KoppenClimateClassification;
 import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.world.climate.RealKoppenClimateClassification;
 
-/**
- * Caches valid parameter combinations for each Köppen climate classification.
- */
 public class KoppenParameterCache {
 
   public static class ParameterCombination {

@@ -12,6 +12,7 @@ import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.ContinentNoiseRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.DivergenceNoiseRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedRainfallNoise;
@@ -88,6 +89,7 @@ public class RegionGeneratorMixin {
       if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
         continentNoise = new PNGContinentNoise(horizontalScale, verticalScale);
         initializeContinentMap(instance, continentNoise);
+        ContinentNoiseRegistry.register(instance, continentNoise);
 
         GlobalOceanDistanceCache.initialize(continentNoise);
         GlobalWestCoastDistanceCache.initialize(continentNoise);

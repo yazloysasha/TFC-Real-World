@@ -10,13 +10,11 @@ import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.DivergenceNoiseRegistry;
-import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.biome.CoverageRareBiomes;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGDivergenceNoise;
 import net.yazloysasha.tfcrealworld.world.region.MapTectonics;
 import net.yazloysasha.tfcrealworld.world.volcano.CenteredFeatureAligner;
-import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -477,13 +475,15 @@ public class ChooseBiomesMixin {
       target = "Lnet/dries007/tfc/world/region/ChooseBiomes;getHotSpotBiome(I)I"
     )
   )
-  private int tfcrealworld$mapHotspotBiomeOrKeepVanillaMountain(
+  private int tfcrealworld$hotspotBiomeWithoutRaisingLand(
     ChooseBiomes instance,
     int age,
     @Local Region.Point point
   ) {
-    final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
-    if (layout != null && layout.keepMountainBiome(point)) {
+    // Only difference from vanilla: do not paint land shield biomes onto ocean
+    // (AddHotspots never setLand). Age-4 ocean → SUNKEN is handled by vanilla
+    // before this call.
+    if (!point.land()) {
       return point.biome;
     }
     return (
@@ -496,16 +496,6 @@ public class ChooseBiomesMixin {
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
-      final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
-      if (layout != null) {
-        layout.prepareChooseBiomes(
-          context.region,
-          context.generator().seed().seed()
-        );
-      }
-    }
-
     if (!MapTectonics.isActive(context.generator())) {
       return;
     }

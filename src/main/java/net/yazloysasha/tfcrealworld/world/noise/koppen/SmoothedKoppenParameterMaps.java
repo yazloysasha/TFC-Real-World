@@ -9,8 +9,7 @@ import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
 
 /**
- * Smoothed parameter maps (temperature, rainfall, rainVar) derived from the Köppen map.
- * Enforces local neighbor limits in map-grid space.
+ * Temperature / rainfall / rainVar from Köppen; enforces local neighbor limits in map-grid space.
  */
 public final class SmoothedKoppenParameterMaps {
 
@@ -309,7 +308,6 @@ public final class SmoothedKoppenParameterMaps {
       int x = idx % width;
       int z = idx / width;
 
-      // left
       if (x > 0) {
         int j = idx - 1;
         if (relaxAll(packedIdx, idx, j)) {
@@ -327,7 +325,6 @@ public final class SmoothedKoppenParameterMaps {
           }
         }
       }
-      // right
       if (x < width - 1) {
         int j = idx + 1;
         if (relaxAll(packedIdx, idx, j)) {
@@ -345,7 +342,6 @@ public final class SmoothedKoppenParameterMaps {
           }
         }
       }
-      // up
       if (z > 0) {
         int j = idx - width;
         if (relaxAll(packedIdx, idx, j)) {
@@ -363,7 +359,6 @@ public final class SmoothedKoppenParameterMaps {
           }
         }
       }
-      // down
       if (z < height - 1) {
         int j = idx + width;
         if (relaxAll(packedIdx, idx, j)) {
@@ -493,7 +488,6 @@ public final class SmoothedKoppenParameterMaps {
     for (int iter = 0; iter < maxIterations; iter++) {
       boolean changed = false;
 
-      // Horizontal edges
       for (int z = 0; z < height; z++) {
         int rowStart = z * width;
         for (int x = 0; x < width - 1; x++) {
@@ -503,7 +497,6 @@ public final class SmoothedKoppenParameterMaps {
         }
       }
 
-      // Vertical edges
       for (int z = 0; z < height - 1; z++) {
         int rowStart = z * width;
         int nextRowStart = (z + 1) * width;
@@ -528,7 +521,6 @@ public final class SmoothedKoppenParameterMaps {
     int height
   ) {
     int violations = 0;
-    // Horizontal edges
     for (int z = 0; z < height; z++) {
       int rowStart = z * width;
       for (int x = 0; x < width - 1; x++) {
@@ -539,7 +531,6 @@ public final class SmoothedKoppenParameterMaps {
         }
       }
     }
-    // Vertical edges
     for (int z = 0; z < height - 1; z++) {
       int rowStart = z * width;
       int nextRowStart = (z + 1) * width;

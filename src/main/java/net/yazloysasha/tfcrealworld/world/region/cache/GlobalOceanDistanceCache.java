@@ -5,10 +5,6 @@ import java.util.BitSet;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Global cache of distances to ocean based on continent map.
- * Calculates distance to ocean for the entire map once during initialization.
- */
 public class GlobalOceanDistanceCache extends BaseGlobalDistanceCache {
 
   @Nullable

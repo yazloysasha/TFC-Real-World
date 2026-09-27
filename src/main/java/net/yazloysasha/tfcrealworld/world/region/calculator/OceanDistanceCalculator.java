@@ -6,8 +6,7 @@ import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Calculator for distance to ocean based on global cache.
- * Also correctly identifies shore points for river generation.
+ * Also marks shore points used by river generation.
  */
 public class OceanDistanceCalculator extends RegionPointCalculator {
 

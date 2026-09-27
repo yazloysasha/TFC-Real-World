@@ -3,10 +3,6 @@ package net.yazloysasha.tfcrealworld.world.region.cache;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Base class for global distance caches that share common singleton functionality.
- * Provides common initialization, clearing, and instance management.
- */
 abstract class BaseGlobalDistanceCache extends BaseDistanceCache {
 
   protected BaseGlobalDistanceCache(PNGContinentNoise continentNoise) {

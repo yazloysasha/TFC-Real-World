@@ -9,9 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Mixin to override logic for removing small oceans.
- * When using continent map, flood fill stage is skipped
- * to preserve inland seas drawn on the map.
+ * Continent map: skip flood-fill so inland seas on the map stay.
  */
 @Mixin(value = FloodFillSmallOceans.class, remap = false)
 public class FloodFillSmallOceansMixin {

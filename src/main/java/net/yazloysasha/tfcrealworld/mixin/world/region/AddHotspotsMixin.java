@@ -34,10 +34,8 @@ public class AddHotspotsMixin {
       }
       final byte mapAge = layout.ageAtGrid(point.x, point.z);
       if (mapAge > 0) {
+        // Age only — never setLand() (ocean hotspots stay ocean / sunken).
         point.hotSpotAge = mapAge;
-        if (mapAge != 4) {
-          point.setLand();
-        }
       }
     }
     ci.cancel();

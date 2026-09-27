@@ -5,10 +5,6 @@ import java.util.BitSet;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Global cache of distances to west coast based on continent map.
- * Calculates distance to west coast for the entire map once during initialization.
- */
 public class GlobalWestCoastDistanceCache extends BaseGlobalDistanceCache {
 
   @Nullable

@@ -45,9 +45,6 @@ public class AnnotateClimateMixin {
     return instance.noise(x, z);
   }
 
-  /**
-   * Overrides rainfallVariance calculation when using map.
-   */
   @Inject(
     method = "apply",
     at = @At(
@@ -75,7 +72,7 @@ public class AnnotateClimateMixin {
   }
 
   /**
-   * Disables temperature modification based on bias and ocean proximity when using Köppen map.
+   * Köppen map: skip bias/ocean temp lerp (return end).
    */
   @Redirect(
     method = "apply",
@@ -97,7 +94,7 @@ public class AnnotateClimateMixin {
   }
 
   /**
-   * Disables temperature modification based on tempDelta and oceanic influence when using Köppen map.
+   * Köppen map: skip oceanic tempDelta lerp (return start).
    */
   @Redirect(
     method = "apply",
@@ -119,7 +116,7 @@ public class AnnotateClimateMixin {
   }
 
   /**
-   * Disables rainfall modification based on bias and ocean proximity when using rainfall map.
+   * Map rainfall: skip bias/ocean rainfall lerp (return start).
    */
   @Redirect(
     method = "apply",
@@ -141,7 +138,7 @@ public class AnnotateClimateMixin {
   }
 
   /**
-   * Disables rainfallVariance reduction at cell edges when using rainVar map.
+   * Map rainVar: skip edge rainfallVariance lerp (return start).
    */
   @Redirect(
     method = "apply",

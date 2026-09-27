@@ -4,14 +4,9 @@ import it.unimi.dsi.fastutil.ints.IntArrayFIFOQueue;
 import java.util.BitSet;
 import java.util.function.IntUnaryOperator;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
+import net.yazloysasha.tfcrealworld.world.region.TfcContinentNoiseThresholds;
 
-/**
- * Base class for distance caches that share common functionality.
- * Provides coordinate transformation and ocean pixel detection.
- */
 abstract class BaseDistanceCache {
-
-  protected static final double CONTINENT_THRESHOLD = 4.4;
 
   protected final byte[] distanceMap;
   protected final int width;
@@ -63,19 +58,9 @@ abstract class BaseDistanceCache {
     }
     double brightness = continentNoise.getBrightness(x, z);
     double continentValue = (brightness / 255.0) * 10.0;
-    return continentValue <= CONTINENT_THRESHOLD;
+    return continentValue <= TfcContinentNoiseThresholds.LAND;
   }
 
-  /**
-   * Processes all 8 neighbors in BFS algorithm.
-   *
-   * @param lastX X coordinate of the current point
-   * @param lastZ Z coordinate of the current point
-   * @param nextDistance The distance value to assign to neighbors
-   * @param explored BitSet tracking explored points
-   * @param queue Queue for BFS traversal
-   * @param distanceProcessor Function to process the distance value
-   */
   protected void processNeighbors(
     int lastX,
     int lastZ,

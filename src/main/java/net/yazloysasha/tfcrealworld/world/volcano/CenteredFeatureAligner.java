@@ -9,6 +9,9 @@ import net.dries007.tfc.world.region.Units;
 import net.dries007.tfc.world.volcano.CenteredFeatureNoise;
 import net.yazloysasha.tfcrealworld.world.biome.CoverageRareBiomes;
 
+/**
+ * Snaps cellular cone centers onto a matching volcanic biome cell.
+ */
 public final class CenteredFeatureAligner {
 
   private static final int MAX_CENTER_OFFSET_GRID = 2;
@@ -67,6 +70,10 @@ public final class CenteredFeatureAligner {
       final long key = entry.getLongKey();
       final Region.Point center = region.at(unpackX(key), unpackZ(key));
       if (center == null || matches.test(center.biome)) {
+        continue;
+      }
+      // Do not paint land-volcano biomes onto ocean (hotspots never setLand).
+      if (!center.land()) {
         continue;
       }
       if (isShieldHotspotBiome(center.biome)) {

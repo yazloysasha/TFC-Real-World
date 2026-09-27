@@ -6,10 +6,9 @@ import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
 import net.yazloysasha.tfcrealworld.world.region.MapTectonics;
+import net.yazloysasha.tfcrealworld.world.region.TfcContinentNoiseThresholds;
 
 public class AltitudeCalculator extends RegionPointCalculator {
-
-  private static final double CONTINENTAL_SHELF_THRESHOLD = 3.3;
 
   public void prepareOceanForBarrierIslands(
     Region region,
@@ -72,7 +71,7 @@ public class AltitudeCalculator extends RegionPointCalculator {
       final double continent =
         (generator.continentNoise.noise(point.x, point.z) + tectonicFeatures) *
         generator.continentFactor(point);
-      if (continent > CONTINENTAL_SHELF_THRESHOLD) {
+      if (continent > TfcContinentNoiseThresholds.CONTINENTAL_SHELF) {
         point.oceanDepth = PNGAltitudeNoise.SHELF_OCEAN_DEPTH;
       }
     });

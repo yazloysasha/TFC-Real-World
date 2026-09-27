@@ -1,8 +1,5 @@
 package net.yazloysasha.tfcrealworld.world.noise.koppen;
 
-/**
- * Climate constants for the Köppen climate classification system.
- */
 public final class ClimateConstants {
 
   private ClimateConstants() {}

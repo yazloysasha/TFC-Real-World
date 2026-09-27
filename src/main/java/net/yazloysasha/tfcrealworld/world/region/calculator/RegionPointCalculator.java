@@ -6,9 +6,6 @@ import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Base class for region point calculators.
- */
 public abstract class RegionPointCalculator {
 
   public abstract void calculate(Region region, RegionGenerator generator);
