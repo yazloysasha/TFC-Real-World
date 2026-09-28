@@ -187,7 +187,7 @@ Each map profile requires a `settings.json` file that defines the profile's conf
 
 #### 🖼️ Required Map Images
 
-All maps must be PNG format and have identical dimensions. Maps should use an equal-area projection (e.g., Equal Earth) to maintain proper proportions.
+All climate maps must be PNG and share dimensions (e.g. 1248×624); `continent.png` is higher-res (e.g. 9984×4992). Prefer an equal-area projection (e.g., Equal Earth).
 
 **Continent Map (`continent.png`):** Defines landmass distribution and continental boundaries. Format: Grayscale PNG. Legend: `0` (black) = Ocean, `255` (white) = Land. This map shapes the basic layout of continents and oceans in your world.
 
@@ -247,27 +247,27 @@ Climate types and their RGB colors:
 
 5. **Testing:** Test your maps with a small world first to verify proportions and alignment before creating large-scale maps.
 
-6. **Map Dimensions:** All maps in a profile must have identical width and height. Use an equal-area projection to maintain proper proportions across the entire map.
+6. **Map Dimensions:** Climate maps share one size (e.g. 1248×624); `continent.png` is higher-res (e.g. 9984×4992). Use an equal-area projection.
 
 #### 🏝️ Example: Creating a Simple Island Map
 
 Here's a minimal example for creating a basic island map profile:
 
-1. **Continent Map:** Create a 1280x640 grayscale image with most of the map at `0` (ocean) and a circular island in the center at `255` (land).
+1. **Continent Map:** Create a 9984×4992 grayscale image with most of the map at `0` (ocean) and a circular island in the center at `255` (land).
 
-2. **Altitude Map:** Create a matching 1280x640 grayscale image with ocean areas at `64` (shallow ocean), island edges at `128` (sea level), and island center at `200` (hills).
+2. **Altitude Map:** Create a matching 1248×624 grayscale image with ocean areas at `64` (shallow ocean), island edges at `128` (sea level), and island center at `200` (hills).
 
-3. **Hotspots Map:** Create a 1280x640 grayscale image with most areas at `0` (no volcanoes) and a small hotspot on the island at `192` (age 2).
+3. **Hotspots Map:** Create a 1248×624 grayscale image with most areas at `0` (no volcanoes) and a small hotspot on the island at `192` (age 2).
 
-4. **Köppen Map:** Create a 1280x640 RGB image using `(140, 200, 80)` for CFB (Oceanic climate).
+4. **Köppen Map:** Create a 1248×624 RGB image using `(140, 200, 80)` for CFB (Oceanic climate).
 
-5. **Temperature Map:** Create a 1280x640 grayscale image with a gradient from `120` (cooler) at the edges to `180` (warmer) at the center, representing temperature variation across the island.
+5. **Temperature Map:** Create a 1248×624 grayscale image with a gradient from `120` (cooler) at the edges to `180` (warmer) at the center, representing temperature variation across the island.
 
-6. **Rainfall Map:** Create a 1280x640 grayscale image with a gradient from `140` (drier) at the edges to `200` (wetter) at the center, representing rainfall variation across the island.
+6. **Rainfall Map:** Create a 1248×624 grayscale image with a gradient from `140` (drier) at the edges to `200` (wetter) at the center, representing rainfall variation across the island.
 
 7. **Settings:** Create `settings.json` with `horizontal_scale` = `40000` and `vertical_scale` = `20000` to match the 2:1 aspect ratio of the maps. Note that due to the 2:1, a circular island in your map will appear as an oval in the generated world.
 
-All six maps must be exactly 1280x640 pixels and saved as PNG files in the profile's `maps/` directory.
+Climate maps must be 1248×624; `continent.png` must be 9984×4992. Save as PNG files in the profile's `maps/` directory.
 
 </details>
 
