@@ -10,6 +10,8 @@ import net.dries007.tfc.world.layer.framework.AreaContext;
 
 /**
  * Grows shore one cell inland via {@link TFCLayers#shoreFor(int)}.
+ * Triggers only next to true ocean or an already-painted coastal shore biome
+ * (not lakes — even if a lake biome flags {@code .shore()} for blend).
  */
 public enum WidenShoreInlandLayer implements AdjacentTransformLayer {
   INSTANCE;
@@ -23,7 +25,7 @@ public enum WidenShoreInlandLayer implements AdjacentTransformLayer {
     int west,
     int center
   ) {
-    if (center == RIVER_VALLEY) {
+    if (center == RIVER_VALLEY || TFCLayers.isLake(center)) {
       return center;
     }
     if (!TFCLayers.hasShore(center) || isShoreBiome(center)) {
@@ -42,7 +44,16 @@ public enum WidenShoreInlandLayer implements AdjacentTransformLayer {
     return TFCLayers.shoreFor(center);
   }
 
+  /**
+   * Coastal shore already painted by ShoreAndRiver / prior widen passes.
+   * Do NOT use BiomeExtension.isShore() alone: MELTWATER_LAKE (and a few other
+   * non-coast biomes) set .shore() for height/blend but are not ocean coast —
+   * treating them as adjacency would ring inland lakes with TIDAL_FLATS /
+   * ICE_SHEET_SHORE via shoreFor.
+   */
   static boolean isShoreBiome(int value) {
-    return TFCLayers.getFromLayerId(value).isShore();
+    return (
+      TFCLayers.getFromLayerId(value).isShore() && !TFCLayers.isLake(value)
+    );
   }
 }

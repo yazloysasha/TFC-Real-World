@@ -2,8 +2,10 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 
 import net.dries007.tfc.world.region.AddRiversAndLakes;
 import net.dries007.tfc.world.region.Region;
+import net.dries007.tfc.world.region.RegionGenerator;
 import net.dries007.tfc.world.region.RiverEdge;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.world.region.MeltwaterLakeAnnotator;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -71,5 +73,16 @@ public class AddRiversAndLakesMixin {
     if (tfcrealworld$excludesRiversByRainfall(region.at(gridX, gridZ))) {
       ci.cancel();
     }
+  }
+
+  /**
+   * Mark ICE_SHEET_EDGE cells for the vanilla meltwater mapping.
+   */
+  @Inject(method = "apply", at = @At("TAIL"))
+  private void tfcrealworld$annotateMeltwaterLakes(
+    RegionGenerator.Context context,
+    CallbackInfo ci
+  ) {
+    MeltwaterLakeAnnotator.apply(context.region);
   }
 }
