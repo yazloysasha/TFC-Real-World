@@ -1,5 +1,6 @@
 package net.yazloysasha.tfcrealworld.world.layer;
 
+import static net.dries007.tfc.world.layer.TFCLayers.LAKE;
 import static net.dries007.tfc.world.layer.TFCLayers.OCEAN;
 import static net.dries007.tfc.world.layer.TFCLayers.PLAINS;
 
@@ -11,11 +12,13 @@ import net.dries007.tfc.world.layer.framework.TransformLayer;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise.ContinentBand;
 
 /**
- * Forces biome land/ocean family to match {@code continent.png} before shores.
- * Injected at 16-block scale. Preserves oceanic islands / hotspots via Region
- * flags and BiomeExtension helpers (no biome-ID list).
+ * Forces biome land/ocean/lake family to match {@code continent.png} before
+ * shores. Injected at 16-block scale (same hi-res path as the shore mask) so
+ * map lakes keep detailed outlines. Preserves oceanic islands / hotspots via
+ * Region flags and BiomeExtension helpers (no biome-ID list).
  */
 public final class MapLandOceanCorrectionLayer implements TransformLayer {
 
@@ -41,18 +44,50 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     final int center = area.get(x, z);
     final double gridX = x * layerToGrid;
     final double gridZ = z * layerToGrid;
-    final boolean mapLand = continentNoise.isLandAtGridHard(gridX, gridZ);
+    final ContinentBand band = continentNoise.bandAtGridHard(gridX, gridZ);
+
+    if (band == ContinentBand.LAKE) {
+      return lakeBiomeFrom(center, area, x, z);
+    }
+
+    final boolean mapNonOcean = band != ContinentBand.OCEAN;
     final boolean biomeOcean = TFCLayers.isOcean(center);
 
-    if (mapLand && biomeOcean) {
+    if (mapNonOcean && biomeOcean) {
+      return landBiomeFromNeighbors(area, x, z);
+    }
+    if (mapNonOcean && TFCLayers.isLake(center)) {
+      // Map says dry land / island — strip procedural lake biome.
       return landBiomeFromNeighbors(area, x, z);
     }
     if (
-      !mapLand && !biomeOcean && !shouldPreserveOnMapOcean(center, gridX, gridZ)
+      !mapNonOcean &&
+      !biomeOcean &&
+      !shouldPreserveOnMapOcean(center, gridX, gridZ)
     ) {
       return OCEAN;
     }
     return center;
+  }
+
+  /**
+   * Hi-res lake outline from ×16 continent band. Vanilla ChooseBiomes already
+   * set lake flags at grid scale; this refines the biome footprint.
+   */
+  private static int lakeBiomeFrom(int center, Area area, int x, int z) {
+    if (TFCLayers.isLake(center)) {
+      return center;
+    }
+    if (TFCLayers.hasLake(center)) {
+      return TFCLayers.lakeFor(center);
+    }
+    final int land = TFCLayers.isOcean(center)
+      ? landBiomeFromNeighbors(area, x, z)
+      : center;
+    if (TFCLayers.hasLake(land)) {
+      return TFCLayers.lakeFor(land);
+    }
+    return LAKE;
   }
 
   private static int landBiomeFromNeighbors(Area area, int x, int z) {

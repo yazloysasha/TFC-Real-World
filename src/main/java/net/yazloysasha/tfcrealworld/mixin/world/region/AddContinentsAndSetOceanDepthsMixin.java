@@ -7,6 +7,7 @@ import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.ContinentNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise.ContinentBand;
 import net.yazloysasha.tfcrealworld.world.region.MapTectonics;
 import net.yazloysasha.tfcrealworld.world.region.TfcContinentNoiseThresholds;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,11 +16,15 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * {@code continent.png} → hard {@code setLand} only. Continuous shelf / trench
- * continuum (vanilla 4.4 / 3.3 thresholds) comes from {@code altitude.png} when
- * altitude-from-map is on. Divergence / map tectonics keep vanilla bucket
- * meanings; no Voronoi {@code distanceToEdge} catch-all when map tectonics are
- * active.
+ * {@code continent.png} grayscale bands → region flags only:
+ * <ul>
+ *   <li>ocean → ocean-depth buckets</li>
+ *   <li>island → {@code setLand} + {@code setIsland}</li>
+ *   <li>lake → {@code setLand} + {@code setLake} (vanilla ChooseBiomes picks lake biome)</li>
+ *   <li>land → {@code setLand}</li>
+ * </ul>
+ * Continuous shelf / trench continuum (vanilla 4.4 / 3.3) comes from
+ * {@code altitude.png} when altitude-from-map is on.
  * <p>
  * Reef depth (1) is not set here — vanilla comment: "Reef - 1 (Set later)".
  * Nearshore shelf (2) must exist so vanilla AddMountains barriers/arcs can
@@ -64,49 +69,63 @@ public class AddContinentsAndSetOceanDepthsMixin {
       final double continentFactor = generator.continentFactor(point);
       final double continent = (continuum + tectonicFeatures) * continentFactor;
 
-      // Land membership is the binary mask — never altitude continuum / 4.4.
-      if (continentMap.isLandAtGridHard(point.x, point.z)) {
-        point.setLand();
-      } else if (mapTectonics) {
-        // Match vanilla ocean-depth priority (AddContinentsAndSetOceanDepths):
-        //   ridge (div>0 near edge) BEFORE shelf — "Ocean ridges should override
-        //   continental shelves in rifting areas"; then shelf; then trench
-        //   (continent>3 && div<0); else abyssal.
-        // No Voronoi edge catch-all: distanceToEdge here is already synthesized
-        // from |divergence| in AnnotateBoundaryTypes (strong boundary → edge<2).
-        // Polarity replaces Voronoi cell borders.
-        if (point.divergence > 0 && point.distanceToEdge < 2) {
-          point.oceanDepth = 3;
-        } else if (
-          continuum * continentFactor >
-          TfcContinentNoiseThresholds.CONTINENTAL_SHELF
-        ) {
-          // Un-rifted continuum so weak-div nearshore stays shelf when ridge
-          // did not fire (edge>=2).
-          point.oceanDepth = 2;
-        } else if (
-          continent > TfcContinentNoiseThresholds.TRENCH_CONTINENT &&
-          point.divergence < 0
-        ) {
-          point.oceanDepth = 5;
-        } else {
-          point.oceanDepth = 4;
+      final ContinentBand band = continentMap.bandAtGridHard(point.x, point.z);
+      switch (band) {
+        case LAND -> point.setLand();
+        case ISLAND -> {
+          point.setLand();
+          point.setIsland();
         }
-      } else if (point.divergence > 0 && point.distanceToEdge < 2) {
-        point.oceanDepth = 3;
-      } else if (continent > TfcContinentNoiseThresholds.CONTINENTAL_SHELF) {
-        point.oceanDepth = 2;
-      } else if (
-        continent > TfcContinentNoiseThresholds.TRENCH_CONTINENT &&
-        point.divergence < 0
-      ) {
-        point.oceanDepth = 5;
-      } else if (
-        point.distanceToEdge < 2 && !(point.divergence < 0 && continent > 2)
-      ) {
-        point.oceanDepth = 3;
-      } else {
-        point.oceanDepth = 4;
+        case LAKE -> {
+          // Flags only — vanilla ChooseBiomes does lakeFor(biome).
+          point.setLand();
+          point.setLake();
+        }
+        case OCEAN -> {
+          if (mapTectonics) {
+            // Match vanilla ocean-depth priority (AddContinentsAndSetOceanDepths):
+            //   ridge (div>0 near edge) BEFORE shelf — "Ocean ridges should override
+            //   continental shelves in rifting areas"; then shelf; then trench
+            //   (continent>3 && div<0); else abyssal.
+            // No Voronoi edge catch-all: distanceToEdge here is already synthesized
+            // from |divergence| in AnnotateBoundaryTypes (strong boundary → edge<2).
+            // Polarity replaces Voronoi cell borders.
+            if (point.divergence > 0 && point.distanceToEdge < 2) {
+              point.oceanDepth = 3;
+            } else if (
+              continuum * continentFactor >
+              TfcContinentNoiseThresholds.CONTINENTAL_SHELF
+            ) {
+              // Un-rifted continuum so weak-div nearshore stays shelf when ridge
+              // did not fire (edge>=2).
+              point.oceanDepth = 2;
+            } else if (
+              continent > TfcContinentNoiseThresholds.TRENCH_CONTINENT &&
+              point.divergence < 0
+            ) {
+              point.oceanDepth = 5;
+            } else {
+              point.oceanDepth = 4;
+            }
+          } else if (point.divergence > 0 && point.distanceToEdge < 2) {
+            point.oceanDepth = 3;
+          } else if (
+            continent > TfcContinentNoiseThresholds.CONTINENTAL_SHELF
+          ) {
+            point.oceanDepth = 2;
+          } else if (
+            continent > TfcContinentNoiseThresholds.TRENCH_CONTINENT &&
+            point.divergence < 0
+          ) {
+            point.oceanDepth = 5;
+          } else if (
+            point.distanceToEdge < 2 && !(point.divergence < 0 && continent > 2)
+          ) {
+            point.oceanDepth = 3;
+          } else {
+            point.oceanDepth = 4;
+          }
+        }
       }
     }
 

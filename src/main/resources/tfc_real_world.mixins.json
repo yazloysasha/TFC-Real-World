@@ -15,6 +15,7 @@
     "world.region.AddContinentsAndSetOceanDepthsMixin",
     "world.region.RegionRiverGeneratorAccessor",
     "world.region.AddHotspotsMixin",
+    "world.region.AddIslandsMixin",
     "world.region.RegionPointAccessor",
     "world.region.AnnotateBoundaryTypesMixin",
     "world.region.AnnotateDistanceToCellEdgeMixin",

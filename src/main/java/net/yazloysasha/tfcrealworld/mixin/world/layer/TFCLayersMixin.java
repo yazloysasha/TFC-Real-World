@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.dries007.tfc.world.Seed;
 import net.dries007.tfc.world.layer.IceSheetEdgeLayer;
+import net.dries007.tfc.world.layer.MoreShoresLayer;
 import net.dries007.tfc.world.layer.ShoreAndRiverLayer;
 import net.dries007.tfc.world.layer.TFCLayers;
 import net.dries007.tfc.world.layer.ZoomLayer;
@@ -13,6 +14,7 @@ import net.dries007.tfc.world.region.Units;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.ContinentNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.layer.MapLandOceanCorrectionLayer;
+import net.yazloysasha.tfcrealworld.world.layer.PostShoreCorrection;
 import net.yazloysasha.tfcrealworld.world.layer.WidenShoreInlandLayer;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,8 +33,11 @@ public class TFCLayersMixin {
    *   <li>{@link IceSheetEdgeLayer} at 64 (vanilla-ish glacial/ice rim width
    *       after later zooms; late IceSheetEdge call is skipped)</li>
    *   <li>EXTRA Zooms → 32 → 16 + {@link MapLandOceanCorrectionLayer}</li>
-   *   <li>ShoreAndRiver + {@link WidenShoreInlandLayer} ×3 ({@code shoreFor} only)</li>
-   *   <li>Vanilla MoreShores (unchanged)</li>
+   *   <li>ShoreAndRiver + {@link WidenShoreInlandLayer} ×3 ({@code shoreFor} only;
+   *       grows shore inland on land)</li>
+   *   <li>Vanilla MoreShores, then {@link MapLandOceanCorrectionLayer} again so
+   *       shore/tidal painted onto map-ocean (incl. small saline lakes) is
+   *       stripped back to ocean — shore band stays on land</li>
    *   <li>Skip late IceSheetEdge; skip 2 post-shore Zooms → quart</li>
    * </ol>
    */
@@ -70,6 +75,15 @@ public class TFCLayersMixin {
   private static final ThreadLocal<Boolean> tfcrealworld$skipLateIceSheetEdge =
     ThreadLocal.withInitial(() -> false);
 
+  /**
+   * When non-null, MoreShores is followed by a second map land/ocean correction
+   * so vanilla oceanward shore paint cannot stick on continent-map ocean cells.
+   */
+  @Unique
+  private static final ThreadLocal<
+    PostShoreCorrection
+  > tfcrealworld$postShoreCorrection = new ThreadLocal<>();
+
   @Inject(method = "createRegionBiomeLayer", at = @At("HEAD"))
   private static void tfcrealworld$resetLayerFlags(
     RegionGenerator generator,
@@ -78,6 +92,7 @@ public class TFCLayersMixin {
   ) {
     tfcrealworld$skipPostShoreZooms.set(0);
     tfcrealworld$skipLateIceSheetEdge.set(false);
+    tfcrealworld$postShoreCorrection.set(null);
   }
 
   @WrapOperation(
@@ -125,10 +140,46 @@ public class TFCLayersMixin {
           layer = WidenShoreInlandLayer.INSTANCE.apply(widenSeed, layer);
           widenSeed = widenSeed * 0x9E3779B97F4A7C15L + 1L;
         }
+        // MoreShores (next) can paint shore onto ocean; correct after it.
+        tfcrealworld$postShoreCorrection.set(
+          new PostShoreCorrection(noise, generator)
+        );
         return layer;
       }
     }
     return original.call(instance, shoreSeed, layer);
+  }
+
+  /**
+   * After vanilla {@link MoreShoresLayer} (which expands shore/tidal into
+   * adjacent ocean cells), re-assert {@code continent.png} land/ocean so the
+   * shore band remains on land and small map-ocean pockets stay ocean.
+   */
+  @WrapOperation(
+    method = "createRegionBiomeLayer",
+    at = @At(
+      value = "INVOKE",
+      target = "Lnet/dries007/tfc/world/layer/MoreShoresLayer;apply(JLnet/dries007/tfc/world/layer/framework/AreaFactory;)Lnet/dries007/tfc/world/layer/framework/AreaFactory;"
+    )
+  )
+  private static AreaFactory tfcrealworld$stripShoreFromMapOceanAfterMoreShores(
+    MoreShoresLayer instance,
+    long moreShoreSeed,
+    AreaFactory prev,
+    Operation<AreaFactory> original
+  ) {
+    AreaFactory layer = original.call(instance, moreShoreSeed, prev);
+    final PostShoreCorrection correction =
+      tfcrealworld$postShoreCorrection.get();
+    if (correction != null) {
+      tfcrealworld$postShoreCorrection.set(null);
+      layer = new MapLandOceanCorrectionLayer(
+        correction.noise,
+        correction.generator,
+        tfcrealworld$ZOOMS_GRID_TO_CORRECTION
+      ).apply(moreShoreSeed ^ 0x4F434E31L, layer); // "OCN1"
+    }
+    return layer;
   }
 
   @WrapOperation(

@@ -202,7 +202,14 @@ Each map profile requires a `settings.json` file that defines the profile's conf
 
 All climate maps must be PNG and share dimensions (e.g. 1248×624); `continent.png` is higher-res (e.g. 9984×4992). Prefer an equal-area projection (e.g., Equal Earth).
 
-**Continent Map (`continent.png`):** Defines landmass distribution and continental boundaries. Format: Grayscale PNG. Legend: `0` (black) = Ocean, `255` (white) = Land. This map shapes the basic layout of continents and oceans in your world.
+**Continent Map (`continent.png`):** Defines landmass / island / lake / ocean bands at ×16 resolution (detailed shores & lake outlines). Format: Grayscale PNG (hotspot-style discrete bands with equal center gaps). Legend:
+
+- `0` (black) = Ocean
+- `85` = Island → region `setIsland` (and land)
+- `170` = Lake → region `setLake` (and land); mid band between islands and white land
+- `255` (white) = Land → `setLand`
+
+Binary-compatible: classic black/white maps still work (`0` ocean, `255` land). Equal-gap centers `0 / 85 / 170 / 255` (gaps all 85, like hotspots). Reader thresholds: `≤42.5` ocean, `≤127.5` island, `≤212.5` lake, `>212.5` land.
 
 **Altitude Map (`altitude.png`):** Defines terrain elevation and ocean depth. Format: Grayscale PNG. Legend: `0-127` = Ocean depth (darker = deeper), `128-255` = Land elevation (brighter = higher). Creates realistic mountains, hills, plains, and ocean floors. Example values: `0` = Deepest ocean, `64` = Shallow ocean, `128` = Sea level (coastline), `192` = Hills, `255` = Highest mountains.
 
@@ -268,7 +275,7 @@ Climate types and their RGB colors:
 
 Here's a minimal example for creating a basic island map profile:
 
-1. **Continent Map:** Create a 9984×4992 grayscale image with most of the map at `0` (ocean) and a circular island in the center at `255` (land).
+1. **Continent Map:** Create a 9984×4992 grayscale image with most of the map at `0` (ocean) and a circular island in the center at `85` (island band) or `255` (land). Optional lakes use mid-gray `170`.
 
 2. **Altitude Map:** Create a matching 1248×624 grayscale image with ocean areas at `64` (shallow ocean), island edges at `128` (sea level), and island center at `200` (hills).
 
