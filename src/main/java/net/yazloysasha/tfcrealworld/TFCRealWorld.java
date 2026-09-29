@@ -13,6 +13,7 @@ import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -33,6 +34,7 @@ import net.yazloysasha.tfcrealworld.trigger.ModTriggers;
 import net.yazloysasha.tfcrealworld.util.geography.GeographyManager;
 import net.yazloysasha.tfcrealworld.util.geography.WaypointVisitTracker;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
+import net.yazloysasha.tfcrealworld.world.FreshwaterFishSpawnGuard;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
 import net.yazloysasha.tfcrealworld.world.noise.koppen.SmoothedKoppenParameterMaps;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
@@ -103,6 +105,11 @@ public final class TFCRealWorld {
     NeoForge.EVENT_BUS.addListener(
       LevelEvent.Unload.class,
       this::onLevelUnload
+    );
+
+    NeoForge.EVENT_BUS.addListener(
+      MobSpawnEvent.PositionCheck.class,
+      FreshwaterFishSpawnGuard::onPositionCheck
     );
   }
 

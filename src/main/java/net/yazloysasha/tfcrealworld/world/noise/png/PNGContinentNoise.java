@@ -5,20 +5,22 @@ package net.yazloysasha.tfcrealworld.world.noise.png;
  * Continuous shelf / trench continuum still comes from {@link PNGAltitudeNoise}.
  *
  * <pre>
- * Band centers (uint8) — equal spacing like hotspots [0,64,127,192,255]:
+ * Band centers (uint8), step 64, land clamped to white:
  *   0   ocean
- *   85  island
- *   170 lake   (mid band — between island and white land)
+ *   64  island
+ *   128 fresh lake
+ *   192 salt lake
  *   255 land   (white — classic binary land)
  *
- * Gaps between centers are all 85 (even). Midpoint thresholds:
- *   brightness ≤ 42.5  → OCEAN
- *   brightness ≤ 127.5 → ISLAND
- *   brightness ≤ 212.5 → LAKE
- *   brightness > 212.5 → LAND
+ * Gaps are 64, 64, 64, 63. Midpoint thresholds:
+ *   brightness ≤ 32    → OCEAN
+ *   brightness ≤ 96    → ISLAND
+ *   brightness ≤ 160   → LAKE (fresh water)
+ *   brightness ≤ 223.5 → SALT_LAKE (salt water)
+ *   brightness &gt; 223.5 → LAND
  *
  * Classic B/W maps (0 / 255 only): black→ocean, white→land unchanged.
- * Lake/island appear only when those mid-gray bands are painted.
+ * Island and lake bands appear only when those grays are painted.
  * </pre>
  */
 public class PNGContinentNoise extends BasePNGNoise {
@@ -29,10 +31,13 @@ public class PNGContinentNoise extends BasePNGNoise {
   public static final int BAND_OCEAN = 0;
 
   /** Painted island center. */
-  public static final int BAND_ISLAND = 85;
+  public static final int BAND_ISLAND = 64;
 
-  /** Painted lake center (mid gray; not used by classic B/W maps). */
-  public static final int BAND_LAKE = 170;
+  /** Painted fresh-lake center. */
+  public static final int BAND_LAKE = 128;
+
+  /** Painted salt-lake center. */
+  public static final int BAND_SALT_LAKE = 192;
 
   /** Painted land center (white; classic binary land). */
   public static final int BAND_LAND = 255;
@@ -40,23 +45,32 @@ public class PNGContinentNoise extends BasePNGNoise {
   /**
    * Midpoint ocean↔island. {@code brightness ≤ this} → ocean.
    */
-  public static final double THRESHOLD_OCEAN_MAX = 42.5;
+  public static final double THRESHOLD_OCEAN_MAX =
+    (BAND_OCEAN + BAND_ISLAND) / 2.0;
 
   /**
-   * Midpoint island↔lake. {@code brightness ≤ this} (and &gt; ocean max) → island.
+   * Midpoint island↔fresh lake. {@code brightness ≤ this} → island.
    */
-  public static final double THRESHOLD_ISLAND_MAX = 127.5;
+  public static final double THRESHOLD_ISLAND_MAX =
+    (BAND_ISLAND + BAND_LAKE) / 2.0;
 
   /**
-   * Midpoint lake↔land. {@code brightness ≤ this} (and &gt; island max) → lake;
+   * Midpoint fresh lake↔salt lake. {@code brightness ≤ this} → fresh lake.
+   */
+  public static final double THRESHOLD_LAKE_MAX =
+    (BAND_LAKE + BAND_SALT_LAKE) / 2.0;
+
+  /**
+   * Midpoint salt lake↔land. {@code brightness ≤ this} → salt lake;
    * above → land. Classic white (255) stays land.
    */
-  public static final double THRESHOLD_LAKE_MAX = 212.5;
+  public static final double THRESHOLD_SALT_LAKE_MAX =
+    (BAND_SALT_LAKE + BAND_LAND) / 2.0;
 
   /**
    * Legacy name: values above this were "land" on binary maps. Kept as
    * documentation alias for the pre-band land/ocean cut (~127). Prefer
-   * {@link #bandFromBrightness} / {@link #THRESHOLD_LAKE_MAX} for band logic.
+   * {@link #bandFromBrightness} / {@link #THRESHOLD_SALT_LAKE_MAX} for band logic.
    * Non-ocean membership is {@code band != OCEAN} (island/lake/land).
    */
   public static final int LAND_MASK_THRESHOLD = 127;
@@ -71,6 +85,7 @@ public class PNGContinentNoise extends BasePNGNoise {
     OCEAN,
     ISLAND,
     LAKE,
+    SALT_LAKE,
     LAND,
   }
 
@@ -95,6 +110,9 @@ public class PNGContinentNoise extends BasePNGNoise {
     }
     if (brightness <= THRESHOLD_LAKE_MAX) {
       return ContinentBand.LAKE;
+    }
+    if (brightness <= THRESHOLD_SALT_LAKE_MAX) {
+      return ContinentBand.SALT_LAKE;
     }
     return ContinentBand.LAND;
   }
@@ -134,7 +152,12 @@ public class PNGContinentNoise extends BasePNGNoise {
   }
 
   public boolean isLakeAtGridHard(double gridX, double gridZ) {
-    return bandAtGridHard(gridX, gridZ) == ContinentBand.LAKE;
+    final ContinentBand band = bandAtGridHard(gridX, gridZ);
+    return band == ContinentBand.LAKE || band == ContinentBand.SALT_LAKE;
+  }
+
+  public boolean isSaltLakeAtGridHard(double gridX, double gridZ) {
+    return bandAtGridHard(gridX, gridZ) == ContinentBand.SALT_LAKE;
   }
 
   public boolean isIslandAtGridHard(double gridX, double gridZ) {

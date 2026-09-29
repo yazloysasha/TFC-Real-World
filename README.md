@@ -205,11 +205,10 @@ All climate maps must be PNG and share dimensions (e.g. 1248×624); `continent.p
 **Continent Map (`continent.png`):** Defines landmass / island / lake / ocean bands at ×16 resolution (detailed shores & lake outlines). Format: Grayscale PNG (hotspot-style discrete bands with equal center gaps). Legend:
 
 - `0` (black) = Ocean
-- `85` = Island → region `setIsland` (and land)
-- `170` = Lake → region `setLake` (and land); mid band between islands and white land
+- `64` = Island → region `setIsland` (and land)
+- `128` = Fresh lake → region `setLake` (and land); water is fresh
+- `192` = Salt lake → region `setLake` (and land); water is salt
 - `255` (white) = Land → `setLand`
-
-Binary-compatible: classic black/white maps still work (`0` ocean, `255` land). Equal-gap centers `0 / 85 / 170 / 255` (gaps all 85, like hotspots). Reader thresholds: `≤42.5` ocean, `≤127.5` island, `≤212.5` lake, `>212.5` land.
 
 **Altitude Map (`altitude.png`):** Defines terrain elevation and ocean depth. Format: Grayscale PNG. Legend: `0-127` = Ocean depth (darker = deeper), `128-255` = Land elevation (brighter = higher). Creates realistic mountains, hills, plains, and ocean floors. Example values: `0` = Deepest ocean, `64` = Shallow ocean, `128` = Sea level (coastline), `192` = Hills, `255` = Highest mountains.
 

@@ -9,6 +9,7 @@ import net.dries007.tfc.world.surface.builder.SurfaceBuilder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.world.MapLakeWater;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -38,6 +39,27 @@ public class BiomeExtensionMixin {
       hasCinderCones &&
       isCanyonBiome()
     );
+  }
+
+  /**
+   * A lake biome takes its salinity from the map lake cells around the column
+   * being sampled. Other biomes (oceans, land) stay vanilla, so TFC's own
+   * coastal rules still apply around a lake.
+   */
+  @Inject(method = "isSalty", at = @At("HEAD"), cancellable = true)
+  private void tfcrealworld$saltLakeIsSalty(
+    CallbackInfoReturnable<Boolean> cir
+  ) {
+    if (
+      !MapLakeWater.isColumnOpen() ||
+      !MapLakeWater.isLakeBiome((BiomeExtension) (Object) this)
+    ) {
+      return;
+    }
+    final Boolean salty = MapLakeWater.saltyFlagOverride();
+    if (salty != null) {
+      cir.setReturnValue(salty);
+    }
   }
 
   @Inject(method = "hasCinderCones", at = @At("HEAD"), cancellable = true)

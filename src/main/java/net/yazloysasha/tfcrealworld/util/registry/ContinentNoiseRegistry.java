@@ -26,4 +26,17 @@ public class ContinentNoiseRegistry
   public static PNGContinentNoise get(RegionGenerator generator) {
     return INSTANCE.getNoise(generator);
   }
+
+  /**
+   * The continent map registered for this process. Chunk fill does not hold
+   * the {@link RegionGenerator}; the image itself does not depend on which
+   * generator loaded it.
+   */
+  @Nullable
+  public static PNGContinentNoise any() {
+    if (INSTANCE.registry.isEmpty()) {
+      return null;
+    }
+    return INSTANCE.registry.values().iterator().next();
+  }
 }

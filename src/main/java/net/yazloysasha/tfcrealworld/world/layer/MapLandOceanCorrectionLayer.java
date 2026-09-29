@@ -46,7 +46,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     final double gridZ = z * layerToGrid;
     final ContinentBand band = continentNoise.bandAtGridHard(gridX, gridZ);
 
-    if (band == ContinentBand.LAKE) {
+    if (band == ContinentBand.LAKE || band == ContinentBand.SALT_LAKE) {
       return lakeBiomeFrom(center, area, x, z);
     }
 

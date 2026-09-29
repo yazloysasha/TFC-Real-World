@@ -20,7 +20,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * <ul>
  *   <li>ocean → ocean-depth buckets</li>
  *   <li>island → {@code setLand} + {@code setIsland}</li>
- *   <li>lake → {@code setLand} + {@code setLake} (vanilla ChooseBiomes picks lake biome)</li>
+ *   <li>fresh lake and salt lake → {@code setLand} + {@code setLake}
+ *       (vanilla ChooseBiomes picks the lake biome; water salinity comes from
+ *       the band at column fill)</li>
  *   <li>land → {@code setLand}</li>
  * </ul>
  * Continuous shelf / trench continuum (vanilla 4.4 / 3.3) comes from
@@ -76,8 +78,9 @@ public class AddContinentsAndSetOceanDepthsMixin {
           point.setLand();
           point.setIsland();
         }
-        case LAKE -> {
+        case LAKE, SALT_LAKE -> {
           // Flags only — vanilla ChooseBiomes does lakeFor(biome).
+          // Salt vs fresh water is the continent band, not a different biome.
           point.setLand();
           point.setLake();
         }
