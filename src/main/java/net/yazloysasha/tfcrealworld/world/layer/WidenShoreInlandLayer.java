@@ -1,9 +1,13 @@
 package net.yazloysasha.tfcrealworld.world.layer;
 
+import static net.dries007.tfc.world.layer.TFCLayers.OCEAN;
 import static net.dries007.tfc.world.layer.TFCLayers.RIVER_VALLEY;
 
 import java.util.function.IntPredicate;
 import java.util.function.Predicate;
+import net.dries007.tfc.world.biome.BiomeBlendType;
+import net.dries007.tfc.world.biome.BiomeExtension;
+import net.dries007.tfc.world.layer.MoreShoresLayer;
 import net.dries007.tfc.world.layer.TFCLayers;
 import net.dries007.tfc.world.layer.framework.AdjacentTransformLayer;
 import net.dries007.tfc.world.layer.framework.AreaContext;
@@ -12,6 +16,11 @@ import net.dries007.tfc.world.layer.framework.AreaContext;
  * Grows shore one cell inland via {@link TFCLayers#shoreFor(int)}.
  * Triggers only next to true ocean or an already-painted coastal shore biome
  * (not lakes — even if a lake biome flags {@code .shore()} for blend).
+ * <p>
+ * The inland biome is {@code shoreFor(center)}, the same choice vanilla uses
+ * for that land. A result that blends as ocean would be pulled under sea
+ * level, so it is handed to {@link MoreShoresLayer}, which already decides
+ * what stands on the waterline beside that shore. Every other result is kept.
  */
 public enum WidenShoreInlandLayer implements AdjacentTransformLayer {
   INSTANCE;
@@ -41,15 +50,40 @@ public enum WidenShoreInlandLayer implements AdjacentTransformLayer {
       return center;
     }
 
-    return TFCLayers.shoreFor(center);
+    return inlandShore(context, TFCLayers.shoreFor(center));
+  }
+
+  /**
+   * {@code shoreFor} as-is, unless it blends as ocean. Then the same
+   * {@link MoreShoresLayer} rule that rewrites the waterline.
+   */
+  private static int inlandShore(AreaContext context, int shore) {
+    if (!blendsAsOcean(shore)) {
+      return shore;
+    }
+    return MoreShoresLayer.INSTANCE.apply(
+      context,
+      shore,
+      OCEAN,
+      shore,
+      shore,
+      shore
+    );
+  }
+
+  private static boolean blendsAsOcean(int layerId) {
+    final BiomeExtension extension = TFCLayers.getFromLayerId(layerId);
+    return (
+      extension.isShore() && extension.biomeBlendType() == BiomeBlendType.OCEAN
+    );
   }
 
   /**
    * Coastal shore already painted by ShoreAndRiver / prior widen passes.
    * Do NOT use BiomeExtension.isShore() alone: MELTWATER_LAKE (and a few other
    * non-coast biomes) set .shore() for height/blend but are not ocean coast —
-   * treating them as adjacency would ring inland lakes with TIDAL_FLATS /
-   * ICE_SHEET_SHORE via shoreFor.
+   * treating them as adjacency would ring inland lakes with whatever
+   * {@code shoreFor} returns for that lake.
    */
   static boolean isShoreBiome(int value) {
     return (

@@ -33,11 +33,10 @@ public class TFCLayersMixin {
    *   <li>{@link IceSheetEdgeLayer} at 64 (vanilla-ish glacial/ice rim width
    *       after later zooms; late IceSheetEdge call is skipped)</li>
    *   <li>EXTRA Zooms → 32 → 16 + {@link MapLandOceanCorrectionLayer}</li>
-   *   <li>ShoreAndRiver + {@link WidenShoreInlandLayer} ×3 ({@code shoreFor} only;
-   *       grows shore inland on land)</li>
-   *   <li>Vanilla MoreShores, then {@link MapLandOceanCorrectionLayer} again so
-   *       shore/tidal painted onto map-ocean (incl. small saline lakes) is
-   *       stripped back to ocean — shore band stays on land</li>
+   *   <li>ShoreAndRiver + {@link WidenShoreInlandLayer} ×3 (an inland
+   *       ocean-blending shore is rewritten by vanilla MoreShores)</li>
+   *   <li>Vanilla MoreShores, then {@link MapLandOceanCorrectionLayer} again
+   *       so shore painted onto map-ocean is stripped back to ocean</li>
    *   <li>Skip late IceSheetEdge; skip 2 post-shore Zooms → quart</li>
    * </ol>
    */
