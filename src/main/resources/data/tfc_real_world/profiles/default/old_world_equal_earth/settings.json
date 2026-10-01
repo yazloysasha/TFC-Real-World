@@ -1,7 +1,7 @@
 {
   "index": 1,
-  "spawn_center_longitude": 38.7225,
-  "spawn_center_latitude": 14.1211,
+  "spawn_center_longitude": 38.74689,
+  "spawn_center_latitude": 9.02497,
   "horizontal_scale": 20000,
   "vertical_scale": 20000,
   "west_edge_longitude": -20.0,
@@ -243,6 +243,7 @@
     "default:tirana",
     "default:togotogo",
     "default:tokyo",
+    "default:tomsk",
     "default:torshavn",
     "default:tripoli",
     "default:tunis",

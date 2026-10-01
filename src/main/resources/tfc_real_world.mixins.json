@@ -40,6 +40,7 @@
     "world.settings.SettingsMixin"
   ],
   "client": [
+    "client.language.ClientLanguageMixin",
     "client.screen.CreateTFCWorldScreenAccessor",
     "client.screen.CreateTFCWorldScreenMixin",
     "compat.auroras.AHelpersMixin",

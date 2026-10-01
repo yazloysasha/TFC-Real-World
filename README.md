@@ -154,7 +154,7 @@ All fields are optional and will use default values if omitted.
 
 - `index` (Integer, default: `2147483647`): Display order in the profile selection list. Lower values appear first.
 - `lang` (Object, default: `{}`): Localized display names for the profile. Keys are language codes (e.g., `"en_us"`, `"ru_ru"`), values are display strings.
-- `spawn_center_longitude` / `spawn_center_latitude` (Double, default: `12.4964` / `41.9028`): Default geographic spawn center (Rome, Italy).
+- `spawn_center_longitude` / `spawn_center_latitude` (Double, default: `12.51133` / `41.89193`): Default geographic spawn center (Rome, Italy).
 - `horizontal_scale` / `vertical_scale` (Integer, default: `40000` / `20000`): The radius of the world map in blocks along X and Z. Their ratio should match your map's aspect ratio.
 - `west_edge_longitude` / `east_edge_longitude` (Double, default: `-170.0` / `190.0`): Western and eastern edges of the map.
 - `south_edge_latitude` / `north_edge_latitude` (Double, default: `-90.0` / `90.0`): Southern and northern edges of the map.

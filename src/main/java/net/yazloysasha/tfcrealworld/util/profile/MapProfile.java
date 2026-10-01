@@ -40,8 +40,8 @@ public record MapProfile(
     new ThreadLocal<>();
 
   private static final Integer DEFAULT_INDEX = Integer.MAX_VALUE;
-  private static final double DEFAULT_SPAWN_CENTER_LONGITUDE = 12.4964;
-  private static final double DEFAULT_SPAWN_CENTER_LATITUDE = 41.9028;
+  private static final double DEFAULT_SPAWN_CENTER_LONGITUDE = 12.51133;
+  private static final double DEFAULT_SPAWN_CENTER_LATITUDE = 41.89193;
   private static final int DEFAULT_HORIZONTAL_SCALE =
     TFCRealWorldConfig.DEFAULT_SCALE * 2;
   private static final int DEFAULT_VERTICAL_SCALE =

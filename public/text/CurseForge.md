@@ -167,7 +167,7 @@ All fields are optional and will use default values if omitted.<br>
 <ul>
 <li><code>index</code> (Integer, default: <code>2147483647</code>): Display order in the profile selection list. Lower values appear first.</li>
 <li><code>lang</code> (Object, default: <code>{}</code>): Localized display names for the profile. Keys are language codes (e.g., <code>"en_us"</code>, <code>"ru_ru"</code>), values are display strings.</li>
-<li><code>spawn_center_longitude</code> / <code>spawn_center_latitude</code> (Double, default: <code>12.4964</code> / <code>41.9028</code>): Default geographic spawn center (Rome, Italy).</li>
+<li><code>spawn_center_longitude</code> / <code>spawn_center_latitude</code> (Double, default: <code>12.51133</code> / <code>41.89193</code>): Default geographic spawn center (Rome, Italy).</li>
 <li><code>horizontal_scale</code> / <code>vertical_scale</code> (Integer, default: <code>40000</code> / <code>20000</code>): The radius of the world map in blocks along X and Z. Their ratio should match your map's aspect ratio.</li>
 <li><code>west_edge_longitude</code> / <code>east_edge_longitude</code> (Double, default: <code>-170.0</code> / <code>190.0</code>): Western and eastern edges of the map.</li>
 <li><code>south_edge_latitude</code> / <code>north_edge_latitude</code> (Double, default: <code>-90.0</code> / <code>90.0</code>): Southern and northern edges of the map.</li>

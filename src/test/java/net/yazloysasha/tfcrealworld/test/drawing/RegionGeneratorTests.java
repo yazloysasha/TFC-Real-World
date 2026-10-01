@@ -47,9 +47,9 @@ public class RegionGeneratorTests implements TestSetup {
   );
 
   private static final double[][] CITIES_GEOGRAPHIC_COORDS = {
-    { 12.4964, 41.9028 },
-    { -77.0369, 38.9072 },
-    { 38.7225, 14.1211 },
+    { 12.51133, 41.89193 },
+    { -77.03637, 38.89511 },
+    { 38.74689, 9.02497 },
   };
 
   final DoubleFunction<Color> blue = Artist.Colors.linearGradient(
