@@ -9,6 +9,7 @@ import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 import net.yazloysasha.tfcrealworld.world.volcano.CenteredFeatureAligner;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,8 +22,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /**
  * Vanilla ChooseBiomes picks every biome from the region-point fields written
  * from the maps. Adjusted inputs: hotspot shields stay off the ocean (sunken
- * shields may also cover ocean ridges), and coastal decisions read distances
- * in grid cells.
+ * shields may also cover ocean ridges), coastal decisions read distances in
+ * grid cells, and atolls stand where the tectonics map has coral reefs.
  */
 @Mixin(value = ChooseBiomes.class, remap = false)
 public class ChooseBiomesMixin {
@@ -121,6 +122,33 @@ public class ChooseBiomesMixin {
   )
   private byte tfcrealworld$saltMarshDistanceToOcean(Region.Point point) {
     return tfcrealworld$gridCellsToOcean(point);
+  }
+
+  /**
+   * Vanilla builds atolls in warm sea far enough from land, which on a real
+   * map is nearly all of the tropical ocean and almost none of its shelf. With
+   * tectonics the distance check is replaced by the {@code atolls} property:
+   * the sea where coral reefs stand. Vanilla still asks for warm water.
+   */
+  @Redirect(
+    method = "apply",
+    at = @At(
+      value = "FIELD",
+      target = "Lnet/dries007/tfc/world/region/Region$Point;distanceToLand:B",
+      opcode = Opcodes.GETFIELD
+    )
+  )
+  private byte tfcrealworld$atollDistanceToLand(
+    Region.Point point,
+    @Local(argsOnly = true) RegionGenerator.Context context
+  ) {
+    final TectonicsMap tectonics = TectonicsRegistry.get(context.generator());
+    if (tectonics == null) {
+      return point.distanceToLand;
+    }
+    return tectonics.classAtGrid(point.x, point.z).atolls()
+      ? Byte.MAX_VALUE
+      : 0;
   }
 
   @Unique

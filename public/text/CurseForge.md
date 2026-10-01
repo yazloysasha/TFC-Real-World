@@ -212,10 +212,11 @@ All maps cover the same area in an equal-area projection (e.g., Equal Earth). Th
 <li><code>water</code> — seafloor: <code>reef</code>, <code>shelf</code>, <code>ridge</code>, <code>deep</code> or <code>trench</code>.</li>
 <li><code>volcanism</code> — <code>none</code>, <code>arc</code> (subduction volcanoes), <code>rift</code> or <code>intraplate</code>.</li>
 <li><code>coast</code> — <code>true</code> for a mountain range the sea reaches into (fjords, steep island coasts): TFC's oceanic mountains.</li>
+<li><code>atolls</code> — <code>true</code> for sea where coral reefs stand: TFC builds its atolls there if the water is warm enough, and nowhere else.</li>
 <li><code>hotspot</code> — <code>0</code>, or hotspot age <code>1</code> (active) … <code>4</code> (ancient/sunken) at a shield volcano centre.</li>
 </ul>
 
-Omitted fields default to <code>none</code> / <code>lowland</code> / <code>deep</code> / <code>none</code> / <code>false</code> / <code>0</code>. Every palette index used in the PNG must have a class.<br><br>
+Omitted fields default to <code>none</code> / <code>lowland</code> / <code>deep</code> / <code>none</code> / <code>false</code> / <code>false</code> / <code>0</code>. Every palette index used in the PNG must have a class.<br><br>
 
 <b>Painting the tectonics map:</b> The mod reads only the palette index of each pixel, never its color, so pick any colors you like:<br>
 

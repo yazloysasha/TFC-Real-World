@@ -23,7 +23,8 @@ import org.jetbrains.annotations.Nullable;
  * [
  *   { "water": "reef" },
  *   { "boundary": "divergent", "land": "upland", "volcanism": "rift" },
- *   { "land": "mountain", "coast": true, "hotspot": 2 }
+ *   { "land": "mountain", "coast": true, "hotspot": 2 },
+ *   { "water": "shelf", "atolls": true }
  * ]
  * </pre>
  * Omitted fields use {@link TectonicClass#DEFAULT} values.
@@ -104,6 +105,7 @@ public final class TectonicLegend {
         index
       ),
       json.has("coast") && json.get("coast").getAsBoolean(),
+      json.has("atolls") && json.get("atolls").getAsBoolean(),
       (byte) hotspot
     );
   }

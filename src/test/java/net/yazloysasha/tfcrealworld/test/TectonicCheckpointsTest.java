@@ -320,6 +320,12 @@ public class TectonicCheckpointsTest implements TestSetup {
     map.put("any", p -> true);
     map.put("reef", p -> p.biome == TFCLayers.OCEAN_REEF);
     map.put(
+      "atolls",
+      p ->
+        p.biome == TFCLayers.OCEAN_ATOLLS ||
+        p.biome == TFCLayers.DEEP_OCEAN_ATOLLS
+    );
+    map.put(
       "reef_or_island",
       p -> p.biome == TFCLayers.OCEAN_REEF || p.island()
     );

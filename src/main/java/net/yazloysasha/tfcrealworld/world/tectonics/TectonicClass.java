@@ -9,6 +9,8 @@ import java.util.Locale;
  * region-point fields and vanilla {@code ChooseBiomes} picks the biome.
  * {@link #coast}: the sea reaches into the place (fjords, rias, outlet
  * glaciers, steep island coasts).
+ * {@link #atolls}: coral reefs stand in the sea here, so vanilla may build
+ * its atolls (it still asks for warm water).
  */
 public record TectonicClass(
   Boundary boundary,
@@ -16,6 +18,7 @@ public record TectonicClass(
   WaterDepth water,
   Volcanism volcanism,
   boolean coast,
+  boolean atolls,
   byte hotspot
 ) {
   public static final TectonicClass DEFAULT = new TectonicClass(
@@ -23,6 +26,7 @@ public record TectonicClass(
     LandRelief.LOWLAND,
     WaterDepth.DEEP,
     Volcanism.NONE,
+    false,
     false,
     (byte) 0
   );
