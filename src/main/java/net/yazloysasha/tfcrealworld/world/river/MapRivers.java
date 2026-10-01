@@ -50,7 +50,7 @@ public final class MapRivers {
    * Rivers this wide have a floodplain (vanilla's river valley). Map widths
    * run from 6 to 40 by the river's discharge, where vanilla's run 8 to 24.
    */
-  private static final int VALLEY_MIN_WIDTH = 13;
+  private static final int VALLEY_MIN_WIDTH = 15;
 
   /** Vanilla's low band of discrete biome altitude. */
   private static final int LOWLAND_ALTITUDE = 0;
