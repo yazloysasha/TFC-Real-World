@@ -16,7 +16,10 @@ Sail down the Nile to its delta. Winter on the shore of Baikal. Climb from the G
 - **A Detailed Coastline & Real Islands:** Bays, peninsulas, fjords and inland seas drawn as on a real map, islands from Britain and Japan down to small ocean islets, and atolls where coral reefs actually grow. 🏝️
 - **Real Mountains & Volcanoes:** The Himalayas, the Andes and the Alps rise where plates collide, rift valleys cut East Africa, and Hawaii, Iceland and the Ring of Fire get their volcanoes. 🏔️🌋
 - **Real Climates:** From equatorial rainforests through savannas and deserts to taiga and the ice sheets of Greenland and Antarctica - each with TFC's authentic seasons. ☀️❄️
-- **Conquer the Whole Planet:** 400+ real cities and landmarks are waiting on the geography map in your inventory, each with its own advancement. Reach Paris, Cairo, Tokyo, Honolulu, Cape Town... Can you set foot on every one of them? 🧭🏆
+- **Start Wherever You Like:** Type in a latitude and longitude and begin your survival in your home town, at the foot of Everest or on a Pacific island. 📍
+- **True to Size:** An equal-area map keeps every land its real size - Greenland is not bigger than Africa - on a world 80,000 by 40,000 blocks across, and you can make it larger or smaller. 📐
+- **Conquer the Whole Planet:** 400+ real cities and settlements, from national capitals to remote island villages and polar stations, are waiting on the geography map in your inventory, each with its own advancement. Reach Paris, Cairo, Tokyo, Honolulu, Cape Town... Can you set foot on every one of them? 🧭🏆
+- **Or Bring Your Own World:** Play the whole Earth, the Old World or the New World alone - or drop in your own maps and play on any planet you can draw. 🪐
 
 **It is still TFC.** The mod only tells TerraFirmaCraft what kind of place every spot on Earth is; TFC builds the biomes, the rocks and the seasons itself. Prefer TFC's random generation for some part of the world? Continents, lakes, tectonics, volcanoes, rivers and climate each have their own switch on the world creation screen and in the config.
 
