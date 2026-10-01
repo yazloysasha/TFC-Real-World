@@ -1,22 +1,26 @@
 # TFC: Real World 🌍
 
+**🎉 The Ultra-Realistic Update is here! Real rivers, lakes, islands, mountains and volcanoes since v4.2.0 on Minecraft 1.21.1.**
+
+Older Minecraft versions will get it later.
+
 ![Earth Maps](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
 
-### Explore a World You Know
+### Survive on the Real Earth
 
-**TerraFirmaCraft** on the real Earth. 🌄
+**The whole planet, block by block, with TerraFirmaCraft's survival on top.** 🌄
 
-**TFC: Real World** tells TFC what kind of place every spot of our planet is - coast or open sea, lake, river, mountain belt, volcano, desert or rainforest - and TFC builds its own biomes there. All of TFC's mechanics, resources and challenges stay exactly as they are; only the _stage_ changes. 🗺️
+Sail down the Nile to its delta. Winter on the shore of Baikal. Climb from the Ganges plain into the Himalayas, or cross the Pacific from atoll to atoll until Hawaii's volcanoes rise from the sea. Every coast, river and mountain range is where you know it should be - and everything you love about TFC is still there, untouched. 🗺️
 
-#### 🧭 What You Get:
+#### 🧭 What Awaits You:
 
 - **Real Rivers & Lakes:** The Nile, the Amazon, the Volga and thousands of kilometres of other great rivers run where they really do, wide where they are mighty, and fan out into deltas at the sea. Baikal, Victoria and the Great Lakes are there too, fresh or salt as in reality. 🏞️
 - **Real Islands & Seas:** Coastlines that mirror Earth's own, islands from Britain and Japan down to small ocean islets, and atolls where coral reefs actually grow. 🏝️
 - **Real Mountains & Volcanoes:** The Himalayas, the Andes and the Alps rise where plates collide, rift valleys cut East Africa, and Hawaii, Iceland and the Ring of Fire get their volcanoes. 🏔️🌋
 - **Real Climates:** From equatorial rainforests through savannas and deserts to taiga and the ice sheets of Greenland and Antarctica - each with TFC's authentic seasons. ☀️❄️
-- **A Map and a Goal:** A geography map in your inventory shows the whole world, where you are on it, and hundreds of real cities and landmarks. Every place you reach is marked as discovered and grants its own advancement. 🧭🏆
+- **Conquer the Whole Planet:** 400 real cities and landmarks are waiting on the geography map in your inventory, each with its own advancement. Reach Paris, Cairo, Tokyo, Honolulu, Cape Town... Can you set foot on every one of them? 🧭🏆
 
-Continents, lakes, tectonics, volcanoes, rivers and climate can each be switched back to TFC's own generation.
+**It is still TFC.** The mod only tells TerraFirmaCraft what kind of place every spot on Earth is; TFC builds the biomes, the rocks and the seasons itself. Continents, lakes, tectonics, volcanoes, rivers and climate can each be switched back to TFC's own generation.
 
 ---
 
@@ -32,7 +36,6 @@ The mod works by replacing TFC's default noise generators with data sampled from
 - **Volcanoes:** Hotspot shield volcanoes stand at their real locations, from active to ancient.
 - **Rivers:** The real river network of the profile, with widths from real discharge and deltas from real delta data. TFC carves, bends and floods them as its own rivers.
 - **Climate System:** Temperature, rainfall and rainfall-seasonality maps give every place its real climate zone (tropical, arid, temperate, continental, polar), which TFC's existing systems use to create biomes.
-- **Smooth Snow Line:** Snow and ice follow the climate block by block instead of chunk by chunk.
 - **Geography Map & Advancements:** A new inventory tab shows the world map with your position and the profile's waypoints, filtered by continent, region and subregion. Coming close to a waypoint discovers it and grants its advancement.
 - **Non-Intrusive:** No new blocks, items, or mobs. Uses Mixins to feed TFC's own world generation with map data.
 - **Enhanced Canyon Biomes:** Optional config to make canyon biomes purely erosional, removing volcanic features (1.21.1 only).
