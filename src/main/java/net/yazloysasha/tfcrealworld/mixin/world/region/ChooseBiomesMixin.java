@@ -3,6 +3,10 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 import static net.dries007.tfc.world.layer.TFCLayers.SUNKEN_SHIELD_VOLCANO;
 
 import com.llamalad7.mixinextras.sugar.Local;
+import java.util.function.IntPredicate;
+import java.util.stream.IntStream;
+import net.dries007.tfc.world.biome.BiomeExtension;
+import net.dries007.tfc.world.layer.TFCLayers;
 import net.dries007.tfc.world.region.ChooseBiomes;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
@@ -21,9 +25,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /**
  * Vanilla ChooseBiomes picks every biome from the region-point fields written
  * from the maps. Adjusted inputs: a sunken hotspot is a sunken shield in any
- * sea (vanilla raises an ancient shield out of ridges and atolls), coastal
- * decisions read distances in grid cells, and atolls stand where the
- * tectonics map has coral reefs.
+ * sea (vanilla raises an ancient shield out of ridges and atolls), islands
+ * are volcanic where the map has volcanism and arc islands follow its
+ * relief, coastal decisions read distances
+ * in grid cells, and atolls stand where the tectonics map has coral reefs.
  */
 @Mixin(value = ChooseBiomes.class, remap = false)
 public class ChooseBiomesMixin {
@@ -46,6 +51,108 @@ public class ChooseBiomesMixin {
     return (
       (ChooseBiomesAccessor) (Object) instance
     ).tfcrealworld$invokeGetHotSpotBiome(age);
+  }
+
+  /**
+   * Vanilla gives an island any of its island biomes: volcanic or not,
+   * mountainous or not. With tectonics the map decides both. Islands here are
+   * the low ones (a mountainous island is ordinary land with mountain relief),
+   * so the pick is among the island biomes that are not mountains, volcanic
+   * where the map has volcanism and the others where it has none.
+   */
+  @Redirect(
+    method = "apply",
+    at = @At(
+      value = "INVOKE",
+      target = "Lnet/dries007/tfc/world/region/ChooseBiomes;randomSeededFrom(JI[I)I",
+      ordinal = 0
+    )
+  )
+  private int tfcrealworld$islandBiomeByVolcanism(
+    ChooseBiomes instance,
+    long rngSeed,
+    int areaSeed,
+    int[] choices,
+    @Local Region.Point point,
+    @Local(argsOnly = true) RegionGenerator.Context context
+  ) {
+    final IntPredicate volcanism = biome ->
+      tfcrealworld$isVolcanicBiome(biome) == point.volcanic();
+    return tfcrealworld$chooseFitting(
+      instance,
+      rngSeed,
+      areaSeed,
+      choices,
+      TectonicsRegistry.isActive(context.generator()),
+      volcanism.and(biome -> !TFCLayers.isMountains(biome)),
+      volcanism
+    );
+  }
+
+  /**
+   * Vanilla gives an island of a volcanic arc volcanic mountains, volcanic
+   * island lowlands or the arc's sea floor, at random. With tectonics these
+   * are the low islands of the arc, so they are its lowlands; the sea floor
+   * of the arc comes from the arc's water around the island.
+   */
+  @Redirect(
+    method = "apply",
+    at = @At(
+      value = "INVOKE",
+      target = "Lnet/dries007/tfc/world/region/ChooseBiomes;randomSeededFrom(JI[I)I",
+      ordinal = 8
+    )
+  )
+  private int tfcrealworld$arcIslandBiomeByRelief(
+    ChooseBiomes instance,
+    long rngSeed,
+    int areaSeed,
+    int[] choices,
+    @Local(argsOnly = true) RegionGenerator.Context context
+  ) {
+    return tfcrealworld$chooseFitting(
+      instance,
+      rngSeed,
+      areaSeed,
+      choices,
+      TectonicsRegistry.isActive(context.generator()),
+      biome -> !TFCLayers.isOcean(biome) && !TFCLayers.isMountains(biome)
+    );
+  }
+
+  /**
+   * Vanilla's seeded pick among the choices that fit the first rule that
+   * leaves any, or among all of them if no rule does.
+   */
+  @Unique
+  private static int tfcrealworld$chooseFitting(
+    ChooseBiomes instance,
+    long rngSeed,
+    int areaSeed,
+    int[] choices,
+    boolean fromMap,
+    IntPredicate... rules
+  ) {
+    int[] fitting = choices;
+    if (fromMap) {
+      for (final IntPredicate rule : rules) {
+        final int[] kept = IntStream.of(choices).filter(rule).toArray();
+        if (kept.length > 0) {
+          fitting = kept;
+          break;
+        }
+      }
+    }
+    return (
+      (ChooseBiomesAccessor) (Object) instance
+    ).tfcrealworld$invokeRandomSeededFrom(rngSeed, areaSeed, fitting);
+  }
+
+  /** A biome that builds volcanoes: stratovolcanoes or cinder cones. */
+  @Unique
+  private static boolean tfcrealworld$isVolcanicBiome(int biome) {
+    final BiomeExtension extension = TFCLayers.getFromLayerId(biome);
+    return extension.hasStratovolcanoes() || extension.hasCinderCones();
   }
 
   /**

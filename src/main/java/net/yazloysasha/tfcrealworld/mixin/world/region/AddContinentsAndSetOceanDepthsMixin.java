@@ -10,6 +10,7 @@ import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise.ContinentBand;
 import net.yazloysasha.tfcrealworld.world.region.TfcContinentNoiseThresholds;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass.LandRelief;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass.Volcanism;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,9 +26,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * ChooseBiomes turns those fields into biomes.
  * <p>
  * continent.png says what is an island (island band, also islets inside
- * ocean cells). tectonics.png only picks which of vanilla's two islands it
- * is: on a volcanic arc the vanilla volcanic island chain (built at sea, as
- * vanilla places arcs over subduction zones), elsewhere a vanilla island.
+ * ocean cells). tectonics.png says what kind: a mountainous island is plain
+ * land with mountain relief; a low one is one of vanilla's two islands, on a
+ * volcanic arc the vanilla volcanic island chain (built at sea, as vanilla
+ * places arcs over subduction zones), elsewhere a vanilla island.
  */
 @Mixin(value = AddContinentsAndSetOceanDepths.class, remap = false)
 public class AddContinentsAndSetOceanDepthsMixin {
@@ -80,10 +82,14 @@ public class AddContinentsAndSetOceanDepthsMixin {
   ) {
     final Volcanism volcanism = tectonicClass.volcanism();
     final boolean arc = volcanism == Volcanism.ARC;
+    // A mountainous island is land like any other: its relief, coast and
+    // volcanism make it vanilla (volcanic) oceanic mountains. Vanilla's
+    // island is the low one.
     final boolean island =
-      band == ContinentBand.ISLAND ||
-      (band == ContinentBand.OCEAN &&
-        continentMap.anyIslandInCell(point.x, point.z));
+      tectonicClass.land() != LandRelief.MOUNTAIN &&
+      (band == ContinentBand.ISLAND ||
+        (band == ContinentBand.OCEAN &&
+          continentMap.anyIslandInCell(point.x, point.z)));
 
     if (island && arc) {
       // Vanilla volcanic island chain, trimmed to continent.png land later.

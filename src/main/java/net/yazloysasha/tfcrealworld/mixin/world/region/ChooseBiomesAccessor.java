@@ -8,4 +8,11 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 public interface ChooseBiomesAccessor {
   @Invoker("getHotSpotBiome")
   int tfcrealworld$invokeGetHotSpotBiome(int age);
+
+  @Invoker("randomSeededFrom")
+  int tfcrealworld$invokeRandomSeededFrom(
+    long rngSeed,
+    int areaSeed,
+    int[] choices
+  );
 }
