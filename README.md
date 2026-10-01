@@ -224,7 +224,7 @@ TFC derives the climate zone from these values (its Köppen classification), so 
 
 - `"TFRW"`, then `int` version (`1`).
 - `int` vertex count, then for each vertex `short x`, `short z`: `-32767` … `32767` from one edge of the map to the other.
-- `int` edge count, then for each edge `int` source vertex, `int` drain vertex, `byte` width in blocks (TFC uses `8` … `24`).
+- `int` edge count, then for each edge `int` source vertex, `int` drain vertex, `byte` width in blocks: the half-width of the channel (TFC's own rivers use `8` … `24`, the default profiles `6` … `40`).
 
 A river is a chain of edges that share vertices, running from source to drain. Keep edges about 2.7 region cells long (345 blocks): TFC checks every edge near a column, so many short edges slow generation down. Rivers flow at sea level, and where an edge runs into the sea or a lake nothing is carved.
 

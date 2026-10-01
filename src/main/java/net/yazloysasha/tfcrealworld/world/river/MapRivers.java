@@ -46,6 +46,12 @@ public final class MapRivers {
   private static final float VALLEY_RAINFALL_SHARE = 0.09f;
   private static final float MAX_RAINFALL = 500f;
 
+  /**
+   * Rivers this wide have a floodplain (vanilla's river valley). Map widths
+   * run from 6 to 40 by the river's discharge, where vanilla's run 8 to 24.
+   */
+  private static final int VALLEY_MIN_WIDTH = 13;
+
   /** Vanilla's low band of discrete biome altitude. */
   private static final int LOWLAND_ALTITUDE = 0;
 
@@ -239,7 +245,7 @@ public final class MapRivers {
     }
     region.setRivers(rivers);
     for (final RiverEdge river : rivers) {
-      if (river.width > RiverEdge.MIN_VALLEY_WIDTH) {
+      if (river.width >= VALLEY_MIN_WIDTH) {
         markValley(region, river);
       }
     }
