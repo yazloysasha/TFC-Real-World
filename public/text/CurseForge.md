@@ -149,8 +149,8 @@ This guide explains how to create custom map profiles for advanced users who wan
 │ ├── tectonics.png<br>
 │ ├── temperature.png<br>
 │ ├── rainfall.png<br>
-│ └── rain_variance.png<br>
-├── rivers.bin<br>
+│ ├── rain_variance.png<br>
+│ └── rivers.bin<br>
 ├── settings.json<br>
 └── tectonics.json</code><br><br>
 

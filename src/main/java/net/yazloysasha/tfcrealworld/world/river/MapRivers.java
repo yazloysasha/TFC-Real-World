@@ -20,9 +20,9 @@ import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * {@code rivers.bin}: the real river network of the profile, as vanilla river
- * edges. Vanilla grows its rivers inland from the shore of each region; here
- * every region takes the edges of the map that lie in it, and the rest
+ * {@code maps/rivers.bin}: the real river network of the profile, as vanilla
+ * river edges. Vanilla grows its rivers inland from the shore of each region;
+ * here every region takes the edges of the map that lie in it, and the rest
  * (meanders, carving, flow) stays vanilla.
  * <p>
  * Edges are about as long as vanilla's, so a map river costs the game what a
@@ -104,7 +104,10 @@ public final class MapRivers {
   public static MapRivers tryLoad(int horizontalScale, int verticalScale) {
     final String profileId = TFCRealWorldConfig.MAP_PROFILE.get();
     try (
-      InputStream stream = ProfileManager.getProfileFileStream(profileId, FILE)
+      InputStream stream = ProfileManager.getProfileFileStream(
+        profileId,
+        ProfileManager.MAPS_DIR + "/" + FILE
+      )
     ) {
       if (stream == null) {
         return null;
