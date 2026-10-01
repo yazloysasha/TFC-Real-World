@@ -10,6 +10,7 @@ import net.dries007.tfc.world.layer.TFCLayers;
 import net.dries007.tfc.world.region.ChooseBiomes;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
@@ -257,7 +258,9 @@ public class ChooseBiomesMixin {
 
   @Unique
   private static byte tfcrealworld$gridCellsToOcean(Region.Point point) {
-    return GlobalOceanDistanceCache.toGridCells(point.distanceToOcean);
+    return TFCRealWorldConfig.CONTINENT_FROM_MAP.get()
+      ? GlobalOceanDistanceCache.toGridCells(point.distanceToOcean)
+      : point.distanceToOcean;
   }
 
   @Inject(method = "apply", at = @At("TAIL"))
