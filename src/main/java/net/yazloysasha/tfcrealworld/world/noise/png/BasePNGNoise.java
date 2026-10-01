@@ -74,13 +74,16 @@ public abstract class BasePNGNoise implements Noise2D {
   }
 
   protected int sampleGrayAtWorldRounded(double x, double z) {
+    return (pixels[pixelIndexAtWorldRounded(x, z)] >> 16) & 0xFF;
+  }
+
+  /** Index of the pixel nearest to {@code (x, z)}, as hard samples read it. */
+  public int pixelIndexAtWorldRounded(double x, double z) {
     final double[] imageCoords = tileImageScratch();
     fillTileImageCoords(x, z, imageCoords);
-    int ix = (int) Math.round(imageCoords[0]);
-    int iz = (int) Math.round(imageCoords[1]);
-    ix = Math.clamp(ix, 0, width - 1);
-    iz = Math.clamp(iz, 0, height - 1);
-    return (pixels[iz * width + ix] >> 16) & 0xFF;
+    final int ix = Math.clamp(Math.round(imageCoords[0]), 0, width - 1);
+    final int iz = Math.clamp(Math.round(imageCoords[1]), 0, height - 1);
+    return iz * width + ix;
   }
 
   protected double[] tileImageScratch() {
@@ -115,17 +118,6 @@ public abstract class BasePNGNoise implements Noise2D {
     double brightness1 =
       brightness01 * (1 - coords.fx) + brightness11 * coords.fx;
     return brightness0 * (1 - coords.fz) + brightness1 * coords.fz;
-  }
-
-  protected int[] samplePixels(double imageX, double imageZ) {
-    InterpolationCoords coords = calculateInterpolationCoords(imageX, imageZ);
-
-    return new int[] {
-      pixels[coords.z0 * width + coords.x0],
-      pixels[coords.z0 * width + coords.x1],
-      pixels[coords.z1 * width + coords.x0],
-      pixels[coords.z1 * width + coords.x1],
-    };
   }
 
   protected static class InterpolationCoords {

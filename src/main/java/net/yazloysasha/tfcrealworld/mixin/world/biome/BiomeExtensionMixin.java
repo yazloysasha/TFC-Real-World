@@ -14,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -28,16 +29,18 @@ public class BiomeExtensionMixin {
   @Shadow
   private boolean hasCinderCones;
 
-  private boolean isCanyonBiome() {
+  @Unique
+  private boolean tfcrealworld$isCanyonBiome() {
     String biomePath = key.location().getPath();
     return biomePath.equals("canyons") || biomePath.equals("doline_canyons");
   }
 
-  private boolean shouldRemoveCinderCones() {
+  @Unique
+  private boolean tfcrealworld$shouldRemoveCinderCones() {
     return (
       TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get() &&
       hasCinderCones &&
-      isCanyonBiome()
+      tfcrealworld$isCanyonBiome()
     );
   }
 
@@ -66,7 +69,7 @@ public class BiomeExtensionMixin {
   private void tfcrealworld$overrideHasCinderCones(
     CallbackInfoReturnable<Boolean> cir
   ) {
-    if (shouldRemoveCinderCones()) {
+    if (tfcrealworld$shouldRemoveCinderCones()) {
       cir.setReturnValue(false);
     }
   }
@@ -76,7 +79,7 @@ public class BiomeExtensionMixin {
     Seed seed,
     CallbackInfoReturnable<@Nullable BiomeNoiseSampler> cir
   ) {
-    if (shouldRemoveCinderCones()) {
+    if (tfcrealworld$shouldRemoveCinderCones()) {
       String biomePath = key.location().getPath();
       if (biomePath.equals("canyons")) {
         cir.setReturnValue(
@@ -103,7 +106,7 @@ public class BiomeExtensionMixin {
     Seed seed,
     CallbackInfoReturnable<SurfaceBuilder> cir
   ) {
-    if (shouldRemoveCinderCones()) {
+    if (tfcrealworld$shouldRemoveCinderCones()) {
       cir.setReturnValue(NormalSurfaceBuilder.INSTANCE.apply(seed));
     }
   }

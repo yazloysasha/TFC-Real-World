@@ -3,6 +3,7 @@ package net.yazloysasha.tfcrealworld.world.volcano;
 import static net.dries007.tfc.world.layer.TFCLayers.*;
 
 import it.unimi.dsi.fastutil.longs.Long2IntOpenHashMap;
+import java.util.function.IntPredicate;
 import net.dries007.tfc.world.noise.Cellular2D;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.Units;
@@ -41,7 +42,7 @@ public final class CenteredFeatureAligner {
   private static void stamp(
     Region region,
     Cellular2D cells,
-    BiomePredicate matches
+    IntPredicate matches
   ) {
     final Long2IntOpenHashMap pending = new Long2IntOpenHashMap();
     for (final Region.Point point : region.points()) {
@@ -73,6 +74,11 @@ public final class CenteredFeatureAligner {
       }
       // Do not paint land-volcano biomes onto ocean (hotspots never setLand).
       if (!center.land()) {
+        continue;
+      }
+      // Only move a cone within volcanic ground; never spill it onto a
+      // neighbouring cell the tectonics map left non-volcanic.
+      if (!center.volcanic() && center.hotSpotAge == 0) {
         continue;
       }
       if (isShieldHotspotBiome(center.biome)) {
@@ -151,10 +157,5 @@ public final class CenteredFeatureAligner {
     return (
       biome == ACTIVE_SHIELD_VOLCANO || biome == VOLCANIC_MOUNTAIN_ISLANDS
     );
-  }
-
-  @FunctionalInterface
-  private interface BiomePredicate {
-    boolean test(int biome);
   }
 }

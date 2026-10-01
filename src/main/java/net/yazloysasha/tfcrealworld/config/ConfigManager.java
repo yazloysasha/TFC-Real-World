@@ -172,18 +172,8 @@ public class ConfigManager {
         ),
         getBoolean(
           config,
-          "generation_modes.altitude_from_map",
-          TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()
-        ),
-        getBoolean(
-          config,
-          "generation_modes.hotspots_from_map",
-          TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()
-        ),
-        getBoolean(
-          config,
-          "generation_modes.koppen_from_map",
-          TFCRealWorldConfig.KOPPEN_FROM_MAP.get()
+          "generation_modes.climate_from_map",
+          TFCRealWorldConfig.CLIMATE_FROM_MAP.get()
         ),
         getBoolean(
           config,
@@ -263,20 +253,6 @@ public class ConfigManager {
     }
   }
 
-  public static void reloadServerConfig(MinecraftServer server) {
-    Path serverConfigFile = getServerConfigPath(server);
-
-    try {
-      loadServerConfig(serverConfigFile);
-
-      for (ServerPlayer player : server.getPlayerList().getPlayers()) {
-        sendConfigToClient(player);
-      }
-    } catch (Exception e) {
-      TFCRealWorld.LOGGER.error("Error reloading server config", e);
-    }
-  }
-
   public static void sendConfigToClient(ServerPlayer player) {
     ConfigSyncPacket packet = new ConfigSyncPacket(
       TFCRealWorldConfig.MAP_PROFILE.get(),
@@ -298,9 +274,7 @@ public class ConfigManager {
       TFCRealWorldConfig.HORIZONTAL_SCALE.get(),
       TFCRealWorldConfig.VERTICAL_SCALE.get(),
       TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
-      TFCRealWorldConfig.ALTITUDE_FROM_MAP.get(),
-      TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get(),
-      TFCRealWorldConfig.KOPPEN_FROM_MAP.get(),
+      TFCRealWorldConfig.CLIMATE_FROM_MAP.get(),
       TFCRealWorldConfig.TECTONICS_FROM_MAP.get()
     );
     player.connection.send(packet);

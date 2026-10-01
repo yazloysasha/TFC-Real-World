@@ -151,6 +151,15 @@ tasks {
     if (project.hasProperty("continuousBiomeCoverage")) {
       systemProperty("continuousBiomeCoverage", "true")
     }
+    if (project.hasProperty("biomeCoverageOnce")) {
+      systemProperty("biomeCoverageOnce", "true")
+    }
+    if (project.hasProperty("worldCellDump")) {
+      systemProperty("worldCellDump", "true")
+    }
+    if (project.hasProperty("worldCellDumpSeed")) {
+      systemProperty("worldCellDumpSeed", project.property("worldCellDumpSeed").toString())
+    }
     maxHeapSize = "4g"
     minHeapSize = "1g"
     outputs.upToDateWhen { false }

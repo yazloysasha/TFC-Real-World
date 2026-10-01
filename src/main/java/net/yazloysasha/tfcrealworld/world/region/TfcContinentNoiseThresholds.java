@@ -2,17 +2,15 @@ package net.yazloysasha.tfcrealworld.world.region;
 
 /**
  * Cutoffs from vanilla TFC {@code AddContinentsAndSetOceanDepths} applied to the
- * continuous continent-noise value. With map generation, that continuum comes
- * from {@code altitude.png}; {@code continent.png} carries discrete grayscale
- * bands (ocean / island / lake / land) for {@code setLand}/{@code setIsland}/
- * {@code setLake} — see {@link net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise}.
+ * continuous continent-noise value. Used only when continents come from the
+ * map but tectonics are procedural; with {@code tectonics.png} ocean depth is
+ * a property of the tectonic class instead.
  */
 public final class TfcContinentNoiseThresholds {
 
   /**
    * Vanilla: {@code if (continent > 4.4) point.setLand()}. Map mode uses
-   * continent.png bands for land/island/lake instead; this value still documents
-   * the continuum scale that altitude samples into.
+   * continent.png bands for land/island/lake instead.
    */
   public static final double LAND = 4.4;
 

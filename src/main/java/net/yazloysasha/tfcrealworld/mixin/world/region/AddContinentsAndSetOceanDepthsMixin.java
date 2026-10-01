@@ -1,36 +1,33 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
 import net.dries007.tfc.world.region.AddContinentsAndSetOceanDepths;
+import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.ContinentNoiseRegistry;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
+import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise.ContinentBand;
-import net.yazloysasha.tfcrealworld.world.region.MapTectonics;
 import net.yazloysasha.tfcrealworld.world.region.TfcContinentNoiseThresholds;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass.Volcanism;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * {@code continent.png} grayscale bands → region flags only:
- * <ul>
- *   <li>ocean → ocean-depth buckets</li>
- *   <li>island → {@code setLand} + {@code setIsland}</li>
- *   <li>fresh lake and salt lake → {@code setLand} + {@code setLake}
- *       (vanilla ChooseBiomes picks the lake biome; water salinity comes from
- *       the band at column fill)</li>
- *   <li>land → {@code setLand}</li>
- * </ul>
- * Continuous shelf / trench continuum (vanilla 4.4 / 3.3) comes from
- * {@code altitude.png} when altitude-from-map is on.
+ * {@code continent.png} decides land vs water; {@code tectonics.png} decides
+ * what kind of place it is. Land points get the volcanic flag from the class,
+ * water points get {@code oceanDepth} (and the volcanic flag on arcs). Vanilla
+ * ChooseBiomes turns those fields into biomes.
  * <p>
- * Reef depth (1) is not set here — vanilla comment: "Reef - 1 (Set later)".
- * Nearshore shelf (2) must exist so vanilla AddMountains barriers/arcs can
- * promote it to depth 1.
+ * continent.png says what is an island (island band, also islets inside
+ * ocean cells). tectonics.png only picks which of vanilla's two islands it
+ * is: on a volcanic arc the vanilla volcanic island chain (built at sea, as
+ * vanilla places arcs over subduction zones), elsewhere a vanilla island.
  */
 @Mixin(value = AddContinentsAndSetOceanDepths.class, remap = false)
 public class AddContinentsAndSetOceanDepthsMixin {
@@ -52,92 +49,132 @@ public class AddContinentsAndSetOceanDepthsMixin {
       return;
     }
 
-    final boolean mapTectonics = MapTectonics.isActive(generator);
-    final PNGAltitudeNoise altitudeNoise =
-      TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()
-        ? AltitudeNoiseRegistry.get(generator)
-        : null;
-
+    final TectonicsMap tectonics = TectonicsRegistry.get(generator);
     for (final var point : context.region.points()) {
-      final double tectonicFeatures = mapTectonics
-        ? MapTectonics.continentRiftAdjustment(point.divergence)
-        : tfcrealworld$vanillaRiftSeas(point.distanceToEdge, point.divergence);
-
-      // Continuum for shelf/trench buckets: altitude map, else binary mask noise.
-      final double continuum = altitudeNoise != null
-        ? altitudeNoise.getContinentNoise(point.x, point.z)
-        : continentMap.noise(point.x, point.z);
-
-      final double continentFactor = generator.continentFactor(point);
-      final double continent = (continuum + tectonicFeatures) * continentFactor;
-
-      final ContinentBand band = continentMap.bandAtGridHard(point.x, point.z);
-      switch (band) {
-        case LAND -> point.setLand();
-        case ISLAND -> {
-          point.setLand();
-          point.setIsland();
-        }
-        case LAKE, SALT_LAKE -> {
-          // Flags only — vanilla ChooseBiomes does lakeFor(biome).
-          // Salt vs fresh water is the continent band, not a different biome.
-          point.setLand();
-          point.setLake();
-        }
-        case OCEAN -> {
-          if (mapTectonics) {
-            // Match vanilla ocean-depth priority (AddContinentsAndSetOceanDepths):
-            //   ridge (div>0 near edge) BEFORE shelf — "Ocean ridges should override
-            //   continental shelves in rifting areas"; then shelf; then trench
-            //   (continent>3 && div<0); else abyssal.
-            // No Voronoi edge catch-all: distanceToEdge here is already synthesized
-            // from |divergence| in AnnotateBoundaryTypes (strong boundary → edge<2).
-            // Polarity replaces Voronoi cell borders.
-            if (point.divergence > 0 && point.distanceToEdge < 2) {
-              point.oceanDepth = 3;
-            } else if (
-              continuum * continentFactor >
-              TfcContinentNoiseThresholds.CONTINENTAL_SHELF
-            ) {
-              // Un-rifted continuum so weak-div nearshore stays shelf when ridge
-              // did not fire (edge>=2).
-              point.oceanDepth = 2;
-            } else if (
-              continent > TfcContinentNoiseThresholds.TRENCH_CONTINENT &&
-              point.divergence < 0
-            ) {
-              point.oceanDepth = 5;
-            } else {
-              point.oceanDepth = 4;
-            }
-          } else if (point.divergence > 0 && point.distanceToEdge < 2) {
-            point.oceanDepth = 3;
-          } else if (
-            continent > TfcContinentNoiseThresholds.CONTINENTAL_SHELF
-          ) {
-            point.oceanDepth = 2;
-          } else if (
-            continent > TfcContinentNoiseThresholds.TRENCH_CONTINENT &&
-            point.divergence < 0
-          ) {
-            point.oceanDepth = 5;
-          } else if (
-            point.distanceToEdge < 2 && !(point.divergence < 0 && continent > 2)
-          ) {
-            point.oceanDepth = 3;
-          } else {
-            point.oceanDepth = 4;
-          }
-        }
+      // A region point covers [x, x + 1): sample the centre of its cell.
+      final ContinentBand band = continentMap.bandAtGridHard(
+        point.x + 0.5,
+        point.z + 0.5
+      );
+      if (tectonics != null) {
+        tfcrealworld$applyTectonics(
+          point,
+          band,
+          tectonics.classAtGrid(point.x, point.z),
+          continentMap
+        );
+      } else {
+        tfcrealworld$applyProcedural(point, band, continentMap, generator);
       }
     }
 
     ci.cancel();
   }
 
+  @Unique
+  private static void tfcrealworld$applyTectonics(
+    Region.Point point,
+    ContinentBand band,
+    TectonicClass tectonicClass,
+    PNGContinentNoise continentMap
+  ) {
+    final Volcanism volcanism = tectonicClass.volcanism();
+    final boolean arc = volcanism == Volcanism.ARC;
+    final boolean island =
+      band == ContinentBand.ISLAND ||
+      (band == ContinentBand.OCEAN &&
+        continentMap.anyIslandInCell(point.x, point.z));
+
+    if (island && arc) {
+      // Vanilla volcanic island chain, trimmed to continent.png land later.
+      point.oceanDepth = 1;
+      point.setVolcanic();
+      point.setBarrierIsland();
+      return;
+    }
+    if (island) {
+      point.setLand();
+      point.setIsland();
+      tfcrealworld$setVolcanism(point, volcanism);
+      return;
+    }
+    if (band == ContinentBand.OCEAN) {
+      if (arc) {
+        point.oceanDepth = 1;
+        point.setVolcanic();
+      } else {
+        point.oceanDepth = tectonicClass.water().oceanDepth();
+      }
+      return;
+    }
+
+    point.setLand();
+    if (band == ContinentBand.LAKE || band == ContinentBand.SALT_LAKE) {
+      point.setLake();
+    }
+    tfcrealworld$setVolcanism(point, volcanism);
+  }
+
+  @Unique
+  private static void tfcrealworld$setVolcanism(
+    Region.Point point,
+    Volcanism volcanism
+  ) {
+    if (volcanism != Volcanism.NONE) {
+      point.setVolcanic();
+    }
+  }
+
   /**
-   * Vanilla {@code addRiftSeas} when map tectonics are off.
+   * Continent map without tectonics: vanilla ocean-depth buckets over the
+   * binary continent continuum and procedural Voronoi boundaries.
    */
+  @Unique
+  private static void tfcrealworld$applyProcedural(
+    Region.Point point,
+    ContinentBand band,
+    PNGContinentNoise continentMap,
+    RegionGenerator generator
+  ) {
+    switch (band) {
+      case LAND -> point.setLand();
+      case ISLAND -> {
+        point.setLand();
+        point.setIsland();
+      }
+      case LAKE, SALT_LAKE -> {
+        point.setLand();
+        point.setLake();
+      }
+      case OCEAN -> {
+        final double continent =
+          (continentMap.noise(point.x, point.z) +
+            tfcrealworld$vanillaRiftSeas(
+              point.distanceToEdge,
+              point.divergence
+            )) *
+          generator.continentFactor(point);
+        if (point.divergence > 0 && point.distanceToEdge < 2) {
+          point.oceanDepth = 3;
+        } else if (continent > TfcContinentNoiseThresholds.CONTINENTAL_SHELF) {
+          point.oceanDepth = 2;
+        } else if (
+          continent > TfcContinentNoiseThresholds.TRENCH_CONTINENT &&
+          point.divergence < 0
+        ) {
+          point.oceanDepth = 5;
+        } else if (
+          point.distanceToEdge < 2 && !(point.divergence < 0 && continent > 2)
+        ) {
+          point.oceanDepth = 3;
+        } else {
+          point.oceanDepth = 4;
+        }
+      }
+    }
+  }
+
+  @Unique
   private static double tfcrealworld$vanillaRiftSeas(
     byte distanceToEdge,
     float divergence

@@ -1,11 +1,13 @@
 package net.yazloysasha.tfcrealworld.mixin.world.layer;
 
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.dries007.tfc.world.Seed;
 import net.dries007.tfc.world.layer.IceSheetEdgeLayer;
 import net.dries007.tfc.world.layer.MoreShoresLayer;
+import net.dries007.tfc.world.layer.RegionBiomeLayer;
+import net.dries007.tfc.world.layer.RegionEdgeBiomeLayer;
+import net.dries007.tfc.world.layer.RegionLayer;
 import net.dries007.tfc.world.layer.ShoreAndRiverLayer;
+import net.dries007.tfc.world.layer.SmoothLayer;
 import net.dries007.tfc.world.layer.TFCLayers;
 import net.dries007.tfc.world.layer.ZoomLayer;
 import net.dries007.tfc.world.layer.framework.AreaFactory;
@@ -14,7 +16,6 @@ import net.dries007.tfc.world.region.Units;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.ContinentNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.layer.MapLandOceanCorrectionLayer;
-import net.yazloysasha.tfcrealworld.world.layer.PostShoreCorrection;
 import net.yazloysasha.tfcrealworld.world.layer.WidenShoreInlandLayer;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,201 +24,135 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Region biome layers with continents from the map. Vanilla's layers in
+ * vanilla order, except that shores are made at 16-block cells, where
+ * {@code continent.png} gives the coastline, instead of 64-block cells:
+ * <ol>
+ *   <li>region biomes, region edges, zoom to 64 blocks (vanilla);</li>
+ *   <li>ice sheet edges at 64 blocks, as vanilla before its later zooms;</li>
+ *   <li>zoom to 16 blocks, then {@link MapLandOceanCorrectionLayer} makes
+ *       land, sea and lakes match the map;</li>
+ *   <li>vanilla shores, widened inland to vanilla's 64-block shore width by
+ *       {@link WidenShoreInlandLayer};</li>
+ *   <li>vanilla MoreShores, then the correction again, so no shore is left on
+ *       map sea;</li>
+ *   <li>the remaining vanilla zooms to quart scale and smoothing.</li>
+ * </ol>
+ * Vanilla's sequential seeds are drawn in vanilla order, and seeds of layers
+ * moved earlier are skipped where vanilla would use them.
+ */
 @Mixin(value = TFCLayers.class, remap = false)
 public class TFCLayersMixin {
 
-  /**
-   * CONTINENT_FROM_MAP biome pipeline:
-   * <ol>
-   *   <li>Vanilla Zoom → 64</li>
-   *   <li>{@link IceSheetEdgeLayer} at 64 (vanilla-ish glacial/ice rim width
-   *       after later zooms; late IceSheetEdge call is skipped)</li>
-   *   <li>EXTRA Zooms → 32 → 16 + {@link MapLandOceanCorrectionLayer}</li>
-   *   <li>ShoreAndRiver + {@link WidenShoreInlandLayer} ×3 (an inland
-   *       ocean-blending shore is rewritten by vanilla MoreShores)</li>
-   *   <li>Vanilla MoreShores, then {@link MapLandOceanCorrectionLayer} again
-   *       so shore painted onto map-ocean is stripped back to ocean</li>
-   *   <li>Skip late IceSheetEdge; skip 2 post-shore Zooms → quart</li>
-   * </ol>
-   */
+  /** Zooms from the region grid to the 16-block cells of the coastline. */
   @Unique
-  private static final int tfcrealworld$VANILLA_PRE_SHORE_ZOOMS = 1;
-
-  @Unique
-  private static final int tfcrealworld$ZOOMS_GRID_TO_CORRECTION =
+  private static final int ZOOMS_GRID_TO_COASTLINE =
     Units.GRID_BITS - (Units.QUART_BITS + 2);
 
+  /** Vanilla zooms once before its shores. */
   @Unique
-  private static final int tfcrealworld$EXTRA_PRE_CORRECTION_ZOOMS =
-    tfcrealworld$ZOOMS_GRID_TO_CORRECTION -
-    tfcrealworld$VANILLA_PRE_SHORE_ZOOMS;
+  private static final int VANILLA_ZOOMS_BEFORE_SHORES = 1;
 
-  /**
-   * Inland widen passes after ShoreAndRiver at 16 (~64 blocks with first ring).
-   */
+  /** Shore passes inland after ShoreAndRiver: 4 × 16 blocks = vanilla width. */
   @Unique
-  private static final int tfcrealworld$SHORE_WIDEN_INLAND_PASSES = 3;
+  private static final int SHORE_WIDEN_PASSES = 3;
 
-  /**
-   * Factory-build-time: how many post-shore ZoomLayer.apply calls to no-op so
-   * net zoom depth stays grid→quart after EXTRA pre-correction zooms.
-   */
   @Unique
-  private static final ThreadLocal<Integer> tfcrealworld$skipPostShoreZooms =
-    ThreadLocal.withInitial(() -> 0);
+  private static final long ICE_SHEET_EDGE_SALT = 0x49434531L;
 
-  /**
-   * When set, the vanilla late {@link IceSheetEdgeLayer} call is a no-op
-   * (already applied at 64 before EXTRA zooms).
-   */
   @Unique
-  private static final ThreadLocal<Boolean> tfcrealworld$skipLateIceSheetEdge =
-    ThreadLocal.withInitial(() -> false);
+  private static final long ZOOM_SALT = 0x5A4F4F4DL;
 
-  /**
-   * When non-null, MoreShores is followed by a second map land/ocean correction
-   * so vanilla oceanward shore paint cannot stick on continent-map ocean cells.
-   */
   @Unique
-  private static final ThreadLocal<
-    PostShoreCorrection
-  > tfcrealworld$postShoreCorrection = new ThreadLocal<>();
+  private static final long CORRECTION_SALT = 0x4D4C4F43L;
 
-  @Inject(method = "createRegionBiomeLayer", at = @At("HEAD"))
-  private static void tfcrealworld$resetLayerFlags(
+  @Unique
+  private static final long WIDEN_SALT = 0x57494445L;
+
+  @Unique
+  private static final long POST_SHORE_CORRECTION_SALT = 0x4F434E31L;
+
+  @Unique
+  private static final long GOLDEN_RATIO = 0x9E3779B97F4A7C15L;
+
+  @Inject(
+    method = "createRegionBiomeLayer",
+    at = @At("HEAD"),
+    cancellable = true
+  )
+  private static void tfcrealworld$regionBiomeLayerFromMap(
     RegionGenerator generator,
     Seed seed,
     CallbackInfoReturnable<AreaFactory> cir
   ) {
-    tfcrealworld$skipPostShoreZooms.set(0);
-    tfcrealworld$skipLateIceSheetEdge.set(false);
-    tfcrealworld$postShoreCorrection.set(null);
-  }
-
-  @WrapOperation(
-    method = "createRegionBiomeLayer",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/dries007/tfc/world/layer/ShoreAndRiverLayer;apply(JLnet/dries007/tfc/world/layer/framework/AreaFactory;)Lnet/dries007/tfc/world/layer/framework/AreaFactory;"
-    )
-  )
-  private static AreaFactory tfcrealworld$injectMapLandOceanCorrection(
-    ShoreAndRiverLayer instance,
-    long shoreSeed,
-    AreaFactory prev,
-    Operation<AreaFactory> original,
-    RegionGenerator generator,
-    Seed seed
-  ) {
-    AreaFactory layer = prev;
-    if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
-      final PNGContinentNoise noise = ContinentNoiseRegistry.get(generator);
-      if (noise != null) {
-        layer = IceSheetEdgeLayer.INSTANCE.apply(
-          shoreSeed ^ 0x49434531L,
-          layer
-        );
-        tfcrealworld$skipLateIceSheetEdge.set(true);
-
-        long zoomSeed = shoreSeed ^ 0x5A4F4F4DL;
-        for (int i = 0; i < tfcrealworld$EXTRA_PRE_CORRECTION_ZOOMS; i++) {
-          layer = ZoomLayer.NORMAL.apply(zoomSeed, layer);
-          zoomSeed = zoomSeed * 0x9E3779B97F4A7C15L + 1L;
-        }
-        layer = new MapLandOceanCorrectionLayer(
-          noise,
-          generator,
-          tfcrealworld$ZOOMS_GRID_TO_CORRECTION
-        ).apply(shoreSeed ^ 0x4D4C4F43L, layer);
-        tfcrealworld$skipPostShoreZooms.set(
-          tfcrealworld$EXTRA_PRE_CORRECTION_ZOOMS
-        );
-
-        layer = original.call(instance, shoreSeed, layer);
-        long widenSeed = shoreSeed ^ 0x57494445L; // "WIDE"
-        for (int i = 0; i < tfcrealworld$SHORE_WIDEN_INLAND_PASSES; i++) {
-          layer = WidenShoreInlandLayer.INSTANCE.apply(widenSeed, layer);
-          widenSeed = widenSeed * 0x9E3779B97F4A7C15L + 1L;
-        }
-        // MoreShores (next) can paint shore onto ocean; correct after it.
-        tfcrealworld$postShoreCorrection.set(
-          new PostShoreCorrection(noise, generator)
-        );
-        return layer;
-      }
+    if (!TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
+      return;
     }
-    return original.call(instance, shoreSeed, layer);
-  }
-
-  /**
-   * After vanilla {@link MoreShoresLayer} (which expands shore/tidal into
-   * adjacent ocean cells), re-assert {@code continent.png} land/ocean so the
-   * shore band remains on land and small map-ocean pockets stay ocean.
-   */
-  @WrapOperation(
-    method = "createRegionBiomeLayer",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/dries007/tfc/world/layer/MoreShoresLayer;apply(JLnet/dries007/tfc/world/layer/framework/AreaFactory;)Lnet/dries007/tfc/world/layer/framework/AreaFactory;"
-    )
-  )
-  private static AreaFactory tfcrealworld$stripShoreFromMapOceanAfterMoreShores(
-    MoreShoresLayer instance,
-    long moreShoreSeed,
-    AreaFactory prev,
-    Operation<AreaFactory> original
-  ) {
-    AreaFactory layer = original.call(instance, moreShoreSeed, prev);
-    final PostShoreCorrection correction =
-      tfcrealworld$postShoreCorrection.get();
-    if (correction != null) {
-      tfcrealworld$postShoreCorrection.set(null);
-      layer = new MapLandOceanCorrectionLayer(
-        correction.noise,
-        correction.generator,
-        tfcrealworld$ZOOMS_GRID_TO_CORRECTION
-      ).apply(moreShoreSeed ^ 0x4F434E31L, layer); // "OCN1"
+    final PNGContinentNoise continent = ContinentNoiseRegistry.get(generator);
+    if (continent == null) {
+      return;
     }
-    return layer;
-  }
 
-  @WrapOperation(
-    method = "createRegionBiomeLayer",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/dries007/tfc/world/layer/IceSheetEdgeLayer;apply(JLnet/dries007/tfc/world/layer/framework/AreaFactory;)Lnet/dries007/tfc/world/layer/framework/AreaFactory;"
-    )
-  )
-  private static AreaFactory tfcrealworld$maybeSkipLateIceSheetEdge(
-    IceSheetEdgeLayer instance,
-    long iceSeed,
-    AreaFactory prev,
-    Operation<AreaFactory> original
-  ) {
-    if (Boolean.TRUE.equals(tfcrealworld$skipLateIceSheetEdge.get())) {
-      return prev;
-    }
-    return original.call(instance, iceSeed, prev);
-  }
+    AreaFactory layer = RegionBiomeLayer.INSTANCE.apply(
+      new RegionLayer(generator).apply(seed.next())
+    );
+    layer = RegionEdgeBiomeLayer.INSTANCE.apply(seed.next(), layer);
+    layer = ZoomLayer.NORMAL.apply(seed.next(), layer);
 
-  @WrapOperation(
-    method = "createRegionBiomeLayer",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/dries007/tfc/world/layer/ZoomLayer;apply(JLnet/dries007/tfc/world/layer/framework/AreaFactory;)Lnet/dries007/tfc/world/layer/framework/AreaFactory;"
-    )
-  )
-  private static AreaFactory tfcrealworld$maybeSkipPostShoreZoom(
-    ZoomLayer instance,
-    long zoomSeed,
-    AreaFactory prev,
-    Operation<AreaFactory> original
-  ) {
-    final int left = tfcrealworld$skipPostShoreZooms.get();
-    if (left > 0) {
-      tfcrealworld$skipPostShoreZooms.set(left - 1);
-      return prev;
+    final long shoreSeed = seed.next();
+    layer = IceSheetEdgeLayer.INSTANCE.apply(
+      shoreSeed ^ ICE_SHEET_EDGE_SALT,
+      layer
+    );
+    long zoomSeed = shoreSeed ^ ZOOM_SALT;
+    for (
+      int i = VANILLA_ZOOMS_BEFORE_SHORES;
+      i < ZOOMS_GRID_TO_COASTLINE;
+      i++
+    ) {
+      layer = ZoomLayer.NORMAL.apply(zoomSeed, layer);
+      zoomSeed = zoomSeed * GOLDEN_RATIO + 1L;
     }
-    return original.call(instance, zoomSeed, prev);
+    layer = new MapLandOceanCorrectionLayer(
+      continent,
+      generator,
+      ZOOMS_GRID_TO_COASTLINE,
+      1 + SHORE_WIDEN_PASSES
+    ).apply(shoreSeed ^ CORRECTION_SALT, layer);
+    layer = ShoreAndRiverLayer.INSTANCE.apply(shoreSeed, layer);
+    long widenSeed = shoreSeed ^ WIDEN_SALT;
+    for (int i = 0; i < SHORE_WIDEN_PASSES; i++) {
+      layer = WidenShoreInlandLayer.INSTANCE.apply(widenSeed, layer);
+      widenSeed = widenSeed * GOLDEN_RATIO + 1L;
+    }
+
+    final long moreShoresSeed = seed.next();
+    layer = MoreShoresLayer.INSTANCE.apply(moreShoresSeed, layer);
+    layer = new MapLandOceanCorrectionLayer(
+      continent,
+      generator,
+      ZOOMS_GRID_TO_COASTLINE,
+      0
+    ).apply(moreShoresSeed ^ POST_SHORE_CORRECTION_SALT, layer);
+
+    // Vanilla's ice sheet edges and the zooms already made before shores.
+    seed.next();
+    for (
+      int i = VANILLA_ZOOMS_BEFORE_SHORES;
+      i < ZOOMS_GRID_TO_COASTLINE;
+      i++
+    ) {
+      seed.next();
+    }
+    for (
+      int i = ZOOMS_GRID_TO_COASTLINE;
+      i < Units.GRID_BITS - Units.QUART_BITS;
+      i++
+    ) {
+      layer = ZoomLayer.NORMAL.apply(seed.next(), layer);
+    }
+    layer = SmoothLayer.INSTANCE.apply(seed.next(), layer);
+    cir.setReturnValue(layer);
   }
 }

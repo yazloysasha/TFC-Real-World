@@ -1,0 +1,234 @@
+[
+  { "water": "reef" },
+  { "water": "reef", "volcanism": "arc" },
+  { "water": "reef", "volcanism": "rift" },
+  { "water": "reef", "volcanism": "intraplate" },
+  { "water": "shelf" },
+  { "water": "shelf" },
+  { "water": "shelf", "volcanism": "arc" },
+  { "water": "shelf", "volcanism": "arc" },
+  { "water": "shelf", "volcanism": "rift" },
+  { "water": "shelf", "volcanism": "rift" },
+  { "water": "shelf", "volcanism": "intraplate" },
+  { "water": "shelf", "volcanism": "intraplate" },
+  {},
+  { "volcanism": "arc" },
+  { "volcanism": "rift" },
+  { "volcanism": "intraplate" },
+  { "land": "upland", "water": "shelf" },
+  { "land": "upland", "water": "shelf", "volcanism": "arc" },
+  { "land": "upland", "water": "shelf", "volcanism": "rift" },
+  { "land": "upland", "water": "shelf", "volcanism": "intraplate" },
+  { "land": "highland", "water": "shelf" },
+  { "land": "highland", "water": "shelf", "volcanism": "arc" },
+  { "land": "highland", "water": "shelf", "volcanism": "rift" },
+  { "land": "highland", "water": "shelf", "volcanism": "intraplate" },
+  { "land": "mountain", "water": "shelf" },
+  { "land": "mountain", "water": "shelf", "volcanism": "arc" },
+  { "land": "mountain", "water": "shelf", "volcanism": "rift" },
+  { "land": "mountain", "water": "shelf", "volcanism": "intraplate" },
+  { "boundary": "convergent", "water": "reef" },
+  { "boundary": "convergent", "water": "shelf" },
+  { "boundary": "convergent" },
+  { "boundary": "convergent", "water": "trench" },
+  { "boundary": "convergent", "water": "trench", "volcanism": "arc" },
+  { "boundary": "convergent", "land": "mountain", "water": "shelf" },
+  { "boundary": "divergent", "water": "shelf" },
+  { "boundary": "divergent", "water": "shelf" },
+  { "boundary": "divergent", "water": "shelf", "volcanism": "arc" },
+  { "boundary": "divergent", "water": "shelf", "volcanism": "arc" },
+  { "boundary": "divergent", "water": "shelf", "volcanism": "rift" },
+  { "boundary": "divergent", "water": "ridge" },
+  { "boundary": "divergent", "water": "ridge", "volcanism": "arc" },
+  { "boundary": "divergent", "water": "ridge", "volcanism": "rift" },
+  { "boundary": "divergent", "water": "ridge", "volcanism": "intraplate" },
+  { "boundary": "divergent", "land": "upland", "water": "shelf" },
+  {
+    "boundary": "divergent",
+    "land": "upland",
+    "water": "shelf",
+    "volcanism": "arc"
+  },
+  { "boundary": "divergent", "land": "highland", "water": "shelf" },
+  {
+    "boundary": "divergent",
+    "land": "highland",
+    "water": "shelf",
+    "volcanism": "arc"
+  },
+  {
+    "boundary": "divergent",
+    "land": "highland",
+    "water": "shelf",
+    "volcanism": "rift"
+  },
+  { "boundary": "divergent", "land": "mountain", "water": "shelf" },
+  {
+    "boundary": "divergent",
+    "land": "mountain",
+    "water": "shelf",
+    "volcanism": "arc"
+  },
+  {
+    "boundary": "divergent",
+    "land": "mountain",
+    "water": "shelf",
+    "volcanism": "rift"
+  },
+  { "boundary": "transform", "water": "reef" },
+  { "boundary": "transform", "water": "shelf" },
+  { "boundary": "transform", "water": "shelf" },
+  { "boundary": "transform" },
+  { "boundary": "transform", "land": "upland", "water": "shelf" },
+  { "boundary": "transform", "land": "highland", "water": "shelf" },
+  { "boundary": "transform", "land": "mountain", "water": "shelf" },
+  {
+    "boundary": "transform",
+    "land": "mountain",
+    "water": "shelf",
+    "volcanism": "arc"
+  },
+  { "water": "shelf", "volcanism": "rift", "hotspot": 1 },
+  { "hotspot": 1 },
+  { "volcanism": "rift", "hotspot": 1 },
+  {
+    "boundary": "divergent",
+    "water": "ridge",
+    "volcanism": "rift",
+    "hotspot": 1
+  },
+  { "water": "shelf", "volcanism": "rift", "hotspot": 2 },
+  { "water": "shelf", "volcanism": "intraplate", "hotspot": 2 },
+  { "hotspot": 2 },
+  { "volcanism": "rift", "hotspot": 2 },
+  { "land": "highland", "water": "shelf", "volcanism": "rift", "hotspot": 2 },
+  { "land": "mountain", "water": "shelf", "volcanism": "arc", "hotspot": 2 },
+  { "boundary": "divergent", "water": "ridge", "hotspot": 2 },
+  {
+    "boundary": "divergent",
+    "water": "ridge",
+    "volcanism": "rift",
+    "hotspot": 2
+  },
+  {
+    "boundary": "divergent",
+    "land": "highland",
+    "water": "shelf",
+    "volcanism": "rift",
+    "hotspot": 2
+  },
+  { "volcanism": "rift", "hotspot": 3 },
+  { "volcanism": "intraplate", "hotspot": 3 },
+  { "land": "highland", "water": "shelf", "volcanism": "rift", "hotspot": 3 },
+  {
+    "boundary": "divergent",
+    "water": "ridge",
+    "volcanism": "rift",
+    "hotspot": 3
+  },
+  {
+    "boundary": "divergent",
+    "land": "highland",
+    "water": "shelf",
+    "volcanism": "rift",
+    "hotspot": 3
+  },
+  { "water": "reef", "volcanism": "intraplate", "hotspot": 4 },
+  { "water": "shelf", "volcanism": "rift", "hotspot": 4 },
+  { "water": "shelf", "volcanism": "intraplate", "hotspot": 4 },
+  { "water": "shelf", "volcanism": "intraplate", "hotspot": 4 },
+  { "hotspot": 4 },
+  { "volcanism": "rift", "hotspot": 4 },
+  { "volcanism": "intraplate", "hotspot": 4 },
+  { "land": "upland", "water": "shelf", "volcanism": "rift", "hotspot": 4 },
+  { "land": "highland", "water": "shelf", "volcanism": "rift", "hotspot": 4 },
+  {
+    "land": "highland",
+    "water": "shelf",
+    "volcanism": "intraplate",
+    "hotspot": 4
+  },
+  { "land": "mountain", "water": "shelf", "volcanism": "rift", "hotspot": 4 },
+  {
+    "land": "mountain",
+    "water": "shelf",
+    "volcanism": "intraplate",
+    "hotspot": 4
+  },
+  {
+    "boundary": "divergent",
+    "water": "shelf",
+    "volcanism": "rift",
+    "hotspot": 4
+  },
+  { "boundary": "divergent", "water": "ridge", "hotspot": 4 },
+  {
+    "boundary": "divergent",
+    "water": "ridge",
+    "volcanism": "rift",
+    "hotspot": 4
+  },
+  {
+    "boundary": "divergent",
+    "water": "ridge",
+    "volcanism": "intraplate",
+    "hotspot": 4
+  },
+  { "land": "mountain", "water": "shelf", "coast": true },
+  { "land": "mountain", "water": "shelf", "volcanism": "arc", "coast": true },
+  { "land": "mountain", "water": "shelf", "volcanism": "rift", "coast": true },
+  {
+    "land": "mountain",
+    "water": "shelf",
+    "volcanism": "intraplate",
+    "coast": true
+  },
+  {
+    "boundary": "convergent",
+    "land": "mountain",
+    "water": "shelf",
+    "coast": true
+  },
+  {
+    "boundary": "divergent",
+    "land": "mountain",
+    "water": "shelf",
+    "volcanism": "arc",
+    "coast": true
+  },
+  {
+    "boundary": "divergent",
+    "land": "mountain",
+    "water": "shelf",
+    "volcanism": "rift",
+    "coast": true
+  },
+  {
+    "land": "mountain",
+    "water": "shelf",
+    "volcanism": "intraplate",
+    "coast": true,
+    "hotspot": 1
+  },
+  {
+    "land": "mountain",
+    "water": "shelf",
+    "volcanism": "rift",
+    "coast": true,
+    "hotspot": 3
+  },
+  {
+    "land": "mountain",
+    "water": "shelf",
+    "volcanism": "intraplate",
+    "coast": true,
+    "hotspot": 3
+  },
+  {
+    "land": "mountain",
+    "water": "shelf",
+    "volcanism": "intraplate",
+    "coast": true,
+    "hotspot": 4
+  }
+]

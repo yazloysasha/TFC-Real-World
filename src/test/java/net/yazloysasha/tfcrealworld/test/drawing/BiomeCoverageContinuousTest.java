@@ -2,8 +2,6 @@ package net.yazloysasha.tfcrealworld.test.drawing;
 
 import static net.dries007.tfc.world.layer.TFCLayers.RIVER;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
@@ -23,6 +21,7 @@ import net.dries007.tfc.world.settings.Settings;
 import net.minecraft.core.QuartPos;
 import net.minecraft.world.level.levelgen.RandomSupport;
 import net.yazloysasha.tfcrealworld.test.TestSetup;
+import net.yazloysasha.tfcrealworld.test.TfcBiomeIds;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
@@ -50,6 +49,12 @@ public class BiomeCoverageContinuousTest implements TestSetup {
    * Extra grid cells to generate so biome layers can read adjacent region points.
    */
   private static final int REGION_LAYER_PADDING = 6;
+
+  /**
+   * Samples per grid cell side. One sample per cell (128 blocks) misses
+   * biomes smaller than a cell (islets, shore rings, lone summits).
+   */
+  private static final int SAMPLES_PER_CELL_SIDE = 4;
 
   @Test
   @EnabledIfSystemProperty(named = "continuousBiomeCoverage", matches = "true")
@@ -92,6 +97,54 @@ public class BiomeCoverageContinuousTest implements TestSetup {
         System.gc();
       }
     }
+  }
+
+  /**
+   * One pass over the whole map for a few fixed seeds: how many samples
+   * (4×4 per grid cell) end up with each biome on the final layer, rarest
+   * first. Run with
+   * {@code ./gradlew test -PbiomeCoverageOnce --tests "*BiomeCoverageContinuousTest"}.
+   */
+  @Test
+  @EnabledIfSystemProperty(named = "biomeCoverageOnce", matches = "true")
+  @Timeout(value = 2, unit = TimeUnit.HOURS)
+  public void biomeCoverageCounts() {
+    final long[] seeds = { 20260930L, 7L, 123456789L };
+    final Map<Integer, int[]> counts = new HashMap<>();
+    for (int i = 0; i < seeds.length; i++) {
+      final Map<Integer, Integer> seedCounts = countBiomes(
+        seeds[i],
+        0,
+        0,
+        MAP_RADIUS
+      );
+      if (seedCounts == null) {
+        continue;
+      }
+      final int index = i;
+      for (final int biome : getAllPossibleBiomes()) {
+        counts.computeIfAbsent(biome, b -> new int[seeds.length])[index] =
+          seedCounts.getOrDefault(biome, 0);
+      }
+    }
+    final StringBuilder out = new StringBuilder(
+      "\n=== Biome layer counts per seed ===\n"
+    );
+    counts
+      .entrySet()
+      .stream()
+      .sorted(
+        java.util.Comparator.comparingInt(e ->
+          java.util.Arrays.stream(e.getValue()).min().orElse(0)
+        )
+      )
+      .forEach(e ->
+        out
+          .append(String.format(Locale.ROOT, "%-44s", getBiomeName(e.getKey())))
+          .append(java.util.Arrays.toString(e.getValue()))
+          .append('\n')
+      );
+    System.out.print(out);
   }
 
   private void printCumulativeReport(
@@ -168,6 +221,48 @@ public class BiomeCoverageContinuousTest implements TestSetup {
     System.out.flush();
   }
 
+  private Map<Integer, Integer> countBiomes(
+    long seed,
+    int centerX,
+    int centerZ,
+    int radius
+  ) {
+    final Settings settings = BuiltinWorldPreset.defaultSettings();
+    final RegionGenerator generator = new RegionGenerator(
+      settings,
+      Seed.of(seed)
+    );
+    if (
+      !warmRegionPointsForLayerSampling(
+        generator,
+        centerX,
+        centerZ,
+        radius,
+        REGION_LAYER_PADDING
+      )
+    ) {
+      return null;
+    }
+    final Area biomeLayer = TFCLayers.createRegionBiomeLayer(
+      generator,
+      Seed.of(seed)
+    ).get();
+    final Map<Integer, Integer> counts = new HashMap<>();
+    for (int dx = 0; dx < radius * 2; dx++) {
+      for (int dz = 0; dz < radius * 2; dz++) {
+        final int gridX = centerX - radius + dx;
+        final int gridZ = centerZ - radius + dz;
+        if (!MapTileGridBounds.isInsidePrimaryMapTile(gridX, gridZ)) {
+          continue;
+        }
+        forEachCellSample(generator, biomeLayer, gridX, gridZ, biome ->
+          counts.merge(biome, 1, Integer::sum)
+        );
+      }
+    }
+    return counts;
+  }
+
   private Set<Integer> collectPresentBiomes(
     long seed,
     int centerX,
@@ -232,9 +327,7 @@ public class BiomeCoverageContinuousTest implements TestSetup {
           if (!MapTileGridBounds.isInsidePrimaryMapTile(gridX, gridZ)) {
             continue;
           }
-          present.add(
-            resolveWorldBiomeLayerId(generator, biomeLayer, gridX, gridZ)
-          );
+          forEachCellSample(generator, biomeLayer, gridX, gridZ, present::add);
         }
       }
       return present;
@@ -279,16 +372,38 @@ public class BiomeCoverageContinuousTest implements TestSetup {
     }
   }
 
+  private void forEachCellSample(
+    RegionGenerator generator,
+    Area biomeLayer,
+    int gridX,
+    int gridZ,
+    java.util.function.IntConsumer consumer
+  ) {
+    final int step = Units.GRID_WIDTH_IN_BLOCK / SAMPLES_PER_CELL_SIDE;
+    for (int sx = 0; sx < SAMPLES_PER_CELL_SIDE; sx++) {
+      for (int sz = 0; sz < SAMPLES_PER_CELL_SIDE; sz++) {
+        consumer.accept(
+          resolveWorldBiomeLayerId(
+            generator,
+            biomeLayer,
+            gridX,
+            gridZ,
+            Units.gridToBlock(gridX) + sx * step + (step >> 1),
+            Units.gridToBlock(gridZ) + sz * step + (step >> 1)
+          )
+        );
+      }
+    }
+  }
+
   private int resolveWorldBiomeLayerId(
     RegionGenerator generator,
     Area biomeLayer,
     int gridX,
-    int gridZ
+    int gridZ,
+    int blockX,
+    int blockZ
   ) {
-    final int blockX =
-      Units.gridToBlock(gridX) + (Units.GRID_WIDTH_IN_BLOCK >> 1);
-    final int blockZ =
-      Units.gridToBlock(gridZ) + (Units.GRID_WIDTH_IN_BLOCK >> 1);
     final int quartX = QuartPos.fromBlock(blockX);
     final int quartZ = QuartPos.fromBlock(blockZ);
     final int layerId = biomeLayer.get(quartX, quartZ);
@@ -307,42 +422,11 @@ public class BiomeCoverageContinuousTest implements TestSetup {
     return layerId;
   }
 
-  private static Set<Integer> allPossibleBiomesCache;
-  private static Map<Integer, String> biomeNameCache;
-
   private Set<Integer> getAllPossibleBiomes() {
-    if (allPossibleBiomesCache != null) {
-      return allPossibleBiomesCache;
-    }
-
-    final Set<Integer> biomes = new HashSet<>();
-    final Map<Integer, String> names = new HashMap<>();
-    try {
-      for (final Field field : TFCLayers.class.getDeclaredFields()) {
-        if (
-          Modifier.isStatic(field.getModifiers()) &&
-          Modifier.isFinal(field.getModifiers()) &&
-          field.getType() == int.class
-        ) {
-          field.setAccessible(true);
-          final int biomeId = field.getInt(null);
-          biomes.add(biomeId);
-          names.put(biomeId, field.getName());
-        }
-      }
-    } catch (IllegalAccessException e) {
-      LOGGER.error("Failed to get all biomes from TFCLayers", e);
-      return Set.of();
-    }
-    allPossibleBiomesCache = Set.copyOf(biomes);
-    biomeNameCache = Map.copyOf(names);
-    return allPossibleBiomesCache;
+    return TfcBiomeIds.names().keySet();
   }
 
   private String getBiomeName(int biome) {
-    if (biomeNameCache != null && biomeNameCache.containsKey(biome)) {
-      return biomeNameCache.get(biome);
-    }
-    return "UNKNOWN_BIOME_" + biome;
+    return TfcBiomeIds.name(biome);
   }
 }

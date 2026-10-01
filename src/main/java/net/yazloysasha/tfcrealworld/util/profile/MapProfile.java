@@ -62,36 +62,10 @@ public record MapProfile(
     String namespace = namespaceLower.toUpperCase();
     String profileName = profileNameLower.toUpperCase();
 
-    ProfileManager.ProfileLocation location = ProfileManager.getProfileLocation(
-      profileId
+    final InputStream stream = ProfileManager.getProfileFileStream(
+      profileId,
+      ProfileManager.SETTINGS_FILE
     );
-
-    InputStream stream = null;
-    if (location != null) {
-      if (location.isZip()) {
-        stream = ProfileManager.getSettingsStreamFromZip(
-          location.zipPath(),
-          namespaceLower,
-          profileNameLower
-        );
-      } else if (location.directoryPath() != null) {
-        stream = ProfileManager.getSettingsStreamFromDirectory(
-          location.directoryPath()
-        );
-      }
-    }
-
-    if (stream == null) {
-      String settingsPath =
-        "/data/" +
-        TFCRealWorld.MOD_ID +
-        "/profiles/" +
-        namespaceLower +
-        "/" +
-        profileNameLower +
-        "/settings.json";
-      stream = TFCRealWorld.class.getResourceAsStream(settingsPath);
-    }
 
     if (stream == null) {
       TFCRealWorld.LOGGER.error(
@@ -171,8 +145,8 @@ public record MapProfile(
         : DEFAULT_NORTH_EDGE_LATITUDE,
       json.has("map_projection")
         ? MapProjection.valueOf(
-          json.get("map_projection").getAsString().toUpperCase()
-        )
+            json.get("map_projection").getAsString().toUpperCase()
+          )
         : DEFAULT_MAP_PROJECTION,
       langMap,
       Collections.unmodifiableList(waypoints)
@@ -252,9 +226,8 @@ public record MapProfile(
       return namespace + ":" + name;
     }
 
-    String langKey = languageCode != null
-      ? languageCode.toLowerCase()
-      : "en_us";
+    String langKey =
+      languageCode != null ? languageCode.toLowerCase() : "en_us";
     return lang.getOrDefault(
       langKey,
       lang.getOrDefault("en_us", namespace + ":" + name)

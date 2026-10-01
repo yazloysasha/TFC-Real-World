@@ -1,25 +1,23 @@
 package net.yazloysasha.tfcrealworld.world.region.calculator;
 
 import net.dries007.tfc.world.region.Region;
-import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
 
-public class WestCoastDistanceCalculator extends RegionPointCalculator {
+/** Distance to the map's west coasts for every point of a region. */
+public final class WestCoastDistanceCalculator {
 
-  @Override
-  public void calculate(Region region, RegionGenerator generator) {
-    if (!isContinentFromMapEnabled()) {
-      return;
-    }
+  private WestCoastDistanceCalculator() {}
 
+  public static void apply(Region region) {
     final GlobalWestCoastDistanceCache cache =
       GlobalWestCoastDistanceCache.getInstance();
-    if (!validateCache(cache)) {
+    if (cache == null) {
       return;
     }
-
-    forEachPoint(region, point -> {
-      point.distanceToWestCoast = cache.getDistance(point.x, point.z);
-    });
+    for (final Region.Point point : region.points()) {
+      if (point != null) {
+        point.distanceToWestCoast = cache.getDistance(point.x, point.z);
+      }
+    }
   }
 }

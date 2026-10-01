@@ -15,6 +15,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.mixin.minecraft.client.gui.screens.ScreenAccessor;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
 import net.yazloysasha.tfcrealworld.util.profile.MapProfile;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
@@ -89,13 +90,7 @@ public class CreateTFCWorldScreenMixin {
   private OptionInstance<Boolean> continentFromMap;
 
   @Unique
-  private OptionInstance<Boolean> altitudeFromMap;
-
-  @Unique
-  private OptionInstance<Boolean> hotspotsFromMap;
-
-  @Unique
-  private OptionInstance<Boolean> koppenFromMap;
+  private OptionInstance<Boolean> climateFromMap;
 
   @Unique
   private OptionInstance<Boolean> tectonicsFromMap;
@@ -502,23 +497,13 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
       value -> {}
     );
-    altitudeFromMap = booleanOption(
-      getCaption("create_world.altitude_from_map"),
-      TFCRealWorldConfig.ALTITUDE_FROM_MAP.get(),
-      value -> {}
-    );
-    hotspotsFromMap = booleanOption(
-      getCaption("create_world.hotspots_from_map"),
-      TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get(),
-      value -> {}
-    );
-    koppenFromMap = booleanOption(
-      getCaption("create_world.koppen_from_map"),
-      TFCRealWorldConfig.KOPPEN_FROM_MAP.get(),
+    climateFromMap = booleanOption(
+      getCaption("create_world.climate_from_map"),
+      TFCRealWorldConfig.CLIMATE_FROM_MAP.get(),
       value -> {}
     );
     tectonicsFromMap = booleanOption(
-      getCaption("create_world.rifts_from_map"),
+      getCaption("create_world.tectonics_from_map"),
       TFCRealWorldConfig.TECTONICS_FROM_MAP.get(),
       value -> {}
     );
@@ -576,21 +561,31 @@ public class CreateTFCWorldScreenMixin {
     at = @At(
       value = "INVOKE",
       target = "Lnet/minecraft/client/gui/layouts/GridLayout$RowHelper;addChild(Lnet/minecraft/client/gui/layouts/LayoutElement;)Lnet/minecraft/client/gui/layouts/LayoutElement;",
-      ordinal = 10
+      ordinal = 9
     )
   )
-  private LayoutElement tfcrealworld$addRiftsAndWideClimateRow(
+  private LayoutElement tfcrealworld$addWideClimateRow(
     GridLayout.RowHelper instance,
     LayoutElement widget
   ) {
-    final CreateTFCWorldScreenAccessor accessor =
-      (CreateTFCWorldScreenAccessor) (Object) this;
-    instance.addChild(
-      accessor.tfcrealworld$invokeSmallButton(tectonicsFromMap)
-    );
     AbstractWidget climateButton = (AbstractWidget) widget;
     climateButton.setWidth(400);
     return instance.addChild(climateButton, 2);
+  }
+
+  @Redirect(
+    method = "init()V",
+    at = @At(
+      value = "INVOKE",
+      target = "Lnet/minecraft/client/gui/layouts/GridLayout$RowHelper;addChild(Lnet/minecraft/client/gui/layouts/LayoutElement;)Lnet/minecraft/client/gui/layouts/LayoutElement;",
+      ordinal = 10
+    )
+  )
+  private LayoutElement tfcrealworld$skipUnusedSlot(
+    GridLayout.RowHelper instance,
+    LayoutElement widget
+  ) {
+    return widget;
   }
 
   @Redirect(
@@ -694,11 +689,9 @@ public class CreateTFCWorldScreenMixin {
       case 8:
         return accessor.tfcrealworld$invokeSmallButton(continentFromMap);
       case 9:
-        return accessor.tfcrealworld$invokeSmallButton(altitudeFromMap);
+        return accessor.tfcrealworld$invokeSmallButton(tectonicsFromMap);
       case 10:
-        return accessor.tfcrealworld$invokeSmallButton(hotspotsFromMap);
-      case 11:
-        return accessor.tfcrealworld$invokeSmallButton(koppenFromMap);
+        return accessor.tfcrealworld$invokeSmallButton(climateFromMap);
       default:
         return accessor.tfcrealworld$invokeSmallButton(option);
     }
@@ -732,9 +725,7 @@ public class CreateTFCWorldScreenMixin {
     TFCRealWorldConfig.HORIZONTAL_SCALE.set(horizontalScale.get());
     TFCRealWorldConfig.VERTICAL_SCALE.set(verticalScale.get());
     TFCRealWorldConfig.CONTINENT_FROM_MAP.set(continentFromMap.get());
-    TFCRealWorldConfig.ALTITUDE_FROM_MAP.set(altitudeFromMap.get());
-    TFCRealWorldConfig.HOTSPOTS_FROM_MAP.set(hotspotsFromMap.get());
-    TFCRealWorldConfig.KOPPEN_FROM_MAP.set(koppenFromMap.get());
+    TFCRealWorldConfig.CLIMATE_FROM_MAP.set(climateFromMap.get());
     TFCRealWorldConfig.TECTONICS_FROM_MAP.set(tectonicsFromMap.get());
 
     TFCRealWorldConfig.saveConfig();

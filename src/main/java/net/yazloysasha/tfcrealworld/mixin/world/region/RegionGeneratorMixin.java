@@ -1,6 +1,5 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
-import java.lang.reflect.Field;
 import net.dries007.tfc.world.Seed;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.Region;
@@ -11,65 +10,65 @@ import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
-import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.ContinentNoiseRegistry;
-import net.yazloysasha.tfcrealworld.util.registry.DivergenceNoiseRegistry;
-import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedRainfallNoise;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedRainfallVarianceNoise;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedTemperatureNoise;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
+import net.yazloysasha.tfcrealworld.util.registry.RiftLakesRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGDivergenceNoise;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainVarianceNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
+import net.yazloysasha.tfcrealworld.world.tectonics.MapRiftLakes;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
+import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import sun.misc.Unsafe;
 
+/**
+ * Replaces the generator's procedural continent and climate noises with the
+ * profile maps, and registers the maps the region tasks read.
+ */
 @Mixin(value = RegionGenerator.class, remap = false)
 public class RegionGeneratorMixin {
 
   @Shadow
   @Final
+  @Mutable
   public Noise2D continentNoise;
 
   @Shadow
   @Final
+  @Mutable
   public Noise2D temperatureNoise;
 
   @Shadow
   @Final
+  @Mutable
   public Noise2D rainfallNoise;
+
+  @Shadow
+  @Final
+  @Mutable
+  public Noise2D rainfallVarianceNoise;
 
   @Shadow
   @Final
   private Settings settings;
 
-  @Shadow
-  @Final
-  private Seed seed;
+  /** Map edges: how far past the scale the continents fade out. */
+  @Unique
+  private static final float FINITE_CONTINENTS_FADE_FROM_MAP = 1.01f;
 
-  private static final Unsafe UNSAFE;
-
-  static {
-    try {
-      Field unsafeField = Unsafe.class.getDeclaredField("theUnsafe");
-      unsafeField.setAccessible(true);
-      UNSAFE = (Unsafe) unsafeField.get(null);
-    } catch (Exception e) {
-      throw new RuntimeException("Failed to get Unsafe instance", e);
-    }
-  }
+  @Unique
+  private static final float FINITE_CONTINENTS_FADE = 1.2f;
 
   @Inject(method = "<init>", at = @At("TAIL"))
   private void tfcrealworld$replaceNoises(
@@ -77,72 +76,73 @@ public class RegionGeneratorMixin {
     Seed seed,
     CallbackInfo ci
   ) {
-    RegionGenerator instance = (RegionGenerator) (Object) this;
-
+    final RegionGenerator generator = (RegionGenerator) (Object) this;
     WorldSeedHolder.setSeed(seed.seed());
+    final int horizontalScale = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
+    final int verticalScale = TFCRealWorldConfig.VERTICAL_SCALE.get();
 
-    try {
-      int horizontalScale = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
-      int verticalScale = TFCRealWorldConfig.VERTICAL_SCALE.get();
-
-      PNGContinentNoise continentNoise = null;
-      if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
-        continentNoise = new PNGContinentNoise(horizontalScale, verticalScale);
-        initializeContinentMap(instance, continentNoise);
-        ContinentNoiseRegistry.register(instance, continentNoise);
-
-        GlobalOceanDistanceCache.initialize(continentNoise);
-        GlobalWestCoastDistanceCache.initialize(continentNoise);
-
-        if (TFCRealWorldConfig.TECTONICS_FROM_MAP.get()) {
-          PNGDivergenceNoise divergenceNoise = PNGDivergenceNoise.tryCreate(
-            horizontalScale,
-            verticalScale
-          );
-          if (divergenceNoise != null) {
-            DivergenceNoiseRegistry.register(instance, divergenceNoise);
-          } else {
-            TFCRealWorld.LOGGER.warn(
-              "Tectonics from map enabled but divergence.png is missing for profile {}",
-              TFCRealWorldConfig.MAP_PROFILE.get()
-            );
-          }
-        }
-      }
-
-      if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
-        PNGAltitudeNoise altitudeNoise = new PNGAltitudeNoise(
-          horizontalScale,
-          verticalScale
-        );
-        initializeAltitudeMap(instance, altitudeNoise);
-      }
-
-      if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
-        PNGHotspotsNoise hotspotsNoise = new PNGHotspotsNoise(
-          horizontalScale,
-          verticalScale,
-          seed.seed()
-        );
-        initializeHotspotsMap(instance, hotspotsNoise);
-      } else {
-        HotspotsNoiseRegistry.clearBiomeLayout();
-      }
-
-      if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
-        initializeKoppenBasedClimateMaps(
-          instance,
+    if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
+      final PNGContinentNoise continent = new PNGContinentNoise(
+        horizontalScale,
+        verticalScale
+      );
+      continentNoise = continent;
+      ContinentNoiseRegistry.register(generator, continent);
+      GlobalOceanDistanceCache.initialize(continent);
+      GlobalWestCoastDistanceCache.initialize(continent);
+      TectonicsRegistry.clearHotspotLayout();
+      if (TFCRealWorldConfig.TECTONICS_FROM_MAP.get()) {
+        tfcrealworld$registerTectonics(
+          generator,
+          continent,
           seed,
           horizontalScale,
           verticalScale
         );
       }
-    } catch (NoSuchFieldException e) {
-      throw new RuntimeException(
-        "Failed to find required field in RegionGenerator. This should not happen.",
-        e
+    }
+
+    if (TFCRealWorldConfig.CLIMATE_FROM_MAP.get()) {
+      temperatureNoise = new PNGTemperatureNoise(
+        horizontalScale,
+        verticalScale
+      );
+      rainfallNoise = new PNGRainfallNoise(horizontalScale, verticalScale);
+      rainfallVarianceNoise = new PNGRainVarianceNoise(
+        horizontalScale,
+        verticalScale
       );
     }
+  }
+
+  @Unique
+  private static void tfcrealworld$registerTectonics(
+    RegionGenerator generator,
+    PNGContinentNoise continent,
+    Seed seed,
+    int horizontalScale,
+    int verticalScale
+  ) {
+    final TectonicsMap tectonics = TectonicsMap.tryCreate(
+      horizontalScale,
+      verticalScale
+    );
+    if (tectonics == null) {
+      TFCRealWorld.LOGGER.warn(
+        "Tectonics from map enabled but tectonics.png is missing for profile {}",
+        TFCRealWorldConfig.MAP_PROFILE.get()
+      );
+      return;
+    }
+    TectonicsRegistry.register(
+      generator,
+      tectonics,
+      MapHotspotLayout.create(tectonics, seed.seed())
+    );
+    RiftLakesRegistry.register(
+      generator,
+      MapRiftLakes.create(continent, tectonics)
+    );
   }
 
   @Inject(
@@ -154,121 +154,30 @@ public class RegionGeneratorMixin {
     Region.Point point,
     CallbackInfoReturnable<Float> cir
   ) {
-    if (settings.finiteContinents()) {
-      int scaleX = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
-      int scaleZ = TFCRealWorldConfig.VERTICAL_SCALE.get();
-      float blockX = Units.gridToBlock(point.x);
-      float blockZ = Units.gridToBlock(point.z);
-      float multiplier = TFCRealWorldConfig.CONTINENT_FROM_MAP.get()
-        ? 1.01f
-        : 1.2f;
-      float factorX = scaleX == 0
-        ? 1f
-        : Mth.clampedMap(Math.abs(blockX), scaleX, multiplier * scaleX, 1, 0);
-      float factorZ = scaleZ == 0
-        ? 1f
-        : Mth.clampedMap(Math.abs(blockZ), scaleZ, multiplier * scaleZ, 1, 0);
-      cir.setReturnValue(Math.min(factorX, factorZ));
+    if (!settings.finiteContinents()) {
+      return;
     }
+    final int scaleX = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
+    final int scaleZ = TFCRealWorldConfig.VERTICAL_SCALE.get();
+    final float fade = TFCRealWorldConfig.CONTINENT_FROM_MAP.get()
+      ? FINITE_CONTINENTS_FADE_FROM_MAP
+      : FINITE_CONTINENTS_FADE;
+    cir.setReturnValue(
+      Math.min(
+        tfcrealworld$edgeFactor(Units.gridToBlock(point.x), scaleX, fade),
+        tfcrealworld$edgeFactor(Units.gridToBlock(point.z), scaleZ, fade)
+      )
+    );
   }
 
-  private void initializeContinentMap(
-    RegionGenerator instance,
-    PNGContinentNoise continentNoise
-  ) throws NoSuchFieldException {
-    Field continentField =
-      RegionGenerator.class.getDeclaredField("continentNoise");
-    @SuppressWarnings("deprecation")
-    long offset = UNSAFE.objectFieldOffset(continentField);
-    UNSAFE.putObject(instance, offset, continentNoise);
-  }
-
-  private void initializeAltitudeMap(
-    RegionGenerator instance,
-    PNGAltitudeNoise altitudeNoise
+  @Unique
+  private static float tfcrealworld$edgeFactor(
+    float block,
+    int scale,
+    float fade
   ) {
-    AltitudeNoiseRegistry.register(instance, altitudeNoise);
-  }
-
-  private void initializeHotspotsMap(
-    RegionGenerator instance,
-    PNGHotspotsNoise hotspotsNoise
-  ) throws NoSuchFieldException {
-    Field hotspotIntensityField =
-      RegionGenerator.class.getDeclaredField("hotSpotIntensityNoise");
-    @SuppressWarnings("deprecation")
-    long intensityOffset = UNSAFE.objectFieldOffset(hotspotIntensityField);
-    UNSAFE.putObject(instance, intensityOffset, hotspotsNoise);
-    Field hotspotAgeField =
-      RegionGenerator.class.getDeclaredField("hotSpotAgeNoise");
-    @SuppressWarnings("deprecation")
-    long ageOffset = UNSAFE.objectFieldOffset(hotspotAgeField);
-    Noise2D ageNoise = new Noise2D() {
-      @Override
-      public double noise(double x, double z) {
-        return hotspotsNoise.getHotSpotAge(x, z);
-      }
-    };
-    UNSAFE.putObject(instance, ageOffset, ageNoise);
-    HotspotsNoiseRegistry.register(instance, hotspotsNoise);
-  }
-
-  private void initializeKoppenBasedClimateMaps(
-    RegionGenerator instance,
-    Seed seed,
-    int horizontalScale,
-    int verticalScale
-  ) throws NoSuchFieldException {
-    PNGKoppenNoise koppenNoise = new PNGKoppenNoise(
-      horizontalScale,
-      verticalScale
-    );
-
-    PNGTemperatureNoise temperatureNoise = new PNGTemperatureNoise(
-      horizontalScale,
-      verticalScale
-    );
-    PNGRainfallNoise rainfallNoise = new PNGRainfallNoise(
-      horizontalScale,
-      verticalScale
-    );
-
-    Field tempField =
-      RegionGenerator.class.getDeclaredField("temperatureNoise");
-    @SuppressWarnings("deprecation")
-    long tempOffset = UNSAFE.objectFieldOffset(tempField);
-    UNSAFE.putObject(
-      instance,
-      tempOffset,
-      new KoppenBasedTemperatureNoise(
-        koppenNoise,
-        temperatureNoise,
-        rainfallNoise
-      )
-    );
-
-    Field rainfallField =
-      RegionGenerator.class.getDeclaredField("rainfallNoise");
-    @SuppressWarnings("deprecation")
-    long rainfallOffset = UNSAFE.objectFieldOffset(rainfallField);
-    UNSAFE.putObject(
-      instance,
-      rainfallOffset,
-      new KoppenBasedRainfallNoise(koppenNoise, temperatureNoise, rainfallNoise)
-    );
-
-    Field rainfallVarianceField =
-      RegionGenerator.class.getDeclaredField("rainfallVarianceNoise");
-    @SuppressWarnings("deprecation")
-    long rainVarOffset = UNSAFE.objectFieldOffset(rainfallVarianceField);
-    UNSAFE.putObject(
-      instance,
-      rainVarOffset,
-      new KoppenBasedRainfallVarianceNoise(
-        koppenNoise,
-        temperatureNoise,
-        rainfallNoise
-      )
-    );
+    return scale == 0
+      ? 1f
+      : Mth.clampedMap(Math.abs(block), scale, fade * scale, 1, 0);
   }
 }

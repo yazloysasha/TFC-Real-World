@@ -1,29 +1,34 @@
 package net.yazloysasha.tfcrealworld.world.region.cache;
 
+import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
-import org.jetbrains.annotations.Nullable;
 
+/**
+ * A distance map over the whole continent map, built once per map. A new
+ * world reuses it when its profile and scale are the same.
+ */
 abstract class BaseGlobalDistanceCache extends BaseDistanceCache {
+
+  private final String source;
 
   protected BaseGlobalDistanceCache(PNGContinentNoise continentNoise) {
     super(continentNoise);
+    this.source = sourceOf(continentNoise);
   }
 
-  protected static <T extends BaseGlobalDistanceCache> T initializeInstance(
-    @Nullable T currentInstance,
-    T newInstance,
-    String cacheName
-  ) {
-    if (currentInstance == null) {
-      return newInstance;
-    }
-    return currentInstance;
+  protected boolean isBuiltFrom(PNGContinentNoise continentNoise) {
+    return source.equals(sourceOf(continentNoise));
   }
 
-  protected static <T extends BaseGlobalDistanceCache> void clearInstance(
-    @Nullable T instance,
-    String cacheName
-  ) {}
+  private static String sourceOf(PNGContinentNoise continentNoise) {
+    return (
+      TFCRealWorldConfig.MAP_PROFILE.get() +
+      ":" +
+      continentNoise.getTileRadiusBlocksX() +
+      "x" +
+      continentNoise.getTileRadiusBlocksZ()
+    );
+  }
 
   protected byte[] getDistanceValues(
     BaseDistanceCache.InterpolationResult interpolation

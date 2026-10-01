@@ -35,8 +35,6 @@ import net.yazloysasha.tfcrealworld.util.geography.GeographyManager;
 import net.yazloysasha.tfcrealworld.util.geography.WaypointVisitTracker;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 import net.yazloysasha.tfcrealworld.world.FreshwaterFishSpawnGuard;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.SmoothedKoppenParameterMaps;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
@@ -46,7 +44,6 @@ import org.slf4j.Logger;
 public final class TFCRealWorld {
 
   public static final String MOD_ID = "tfc_real_world";
-  public static final String MOD_NAME = "TFC: Real World";
   public static final Logger LOGGER = LogUtils.getLogger();
 
   public static ResourceLocation id(String path) {
@@ -116,10 +113,12 @@ public final class TFCRealWorld {
   private void onPlayerTick(PlayerTickEvent.Post event) {
     if (event.getEntity() instanceof ServerPlayer serverPlayer) {
       if (serverPlayer.tickCount % 20 == 0) {
-        ModTriggers.FIXED_HIGH_GLOBE_TROTTER_LOCATION.get()
-          .trigger(serverPlayer);
-        ModTriggers.FIXED_LOW_GLOBE_TROTTER_LOCATION.get()
-          .trigger(serverPlayer);
+        ModTriggers.FIXED_HIGH_GLOBE_TROTTER_LOCATION.get().trigger(
+          serverPlayer
+        );
+        ModTriggers.FIXED_LOW_GLOBE_TROTTER_LOCATION.get().trigger(
+          serverPlayer
+        );
         WaypointVisitTracker.tickPlayer(serverPlayer);
       }
     }
@@ -141,7 +140,8 @@ public final class TFCRealWorld {
       registrar.playToClient(
         OpenGeographyScreenPacket.TYPE,
         OpenGeographyScreenPacket.STREAM_CODEC,
-        net.yazloysasha.tfcrealworld.client.GeographyClientEvents::handleOpenGeographyScreen
+        net.yazloysasha.tfcrealworld.client
+          .GeographyClientEvents::handleOpenGeographyScreen
       );
     } else {
       registrar.playToClient(
@@ -210,8 +210,6 @@ public final class TFCRealWorld {
   private void clearCaches() {
     GlobalOceanDistanceCache.clear();
     GlobalWestCoastDistanceCache.clear();
-    KoppenParameterCache.clear();
-    SmoothedKoppenParameterMaps.clear();
     BasePNGNoise.clearImageCache();
   }
 }

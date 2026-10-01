@@ -8,7 +8,8 @@ import org.jetbrains.annotations.Nullable;
  * Holds per-{@link RegionGenerator} continent noise for biome-layer sampling.
  */
 public class ContinentNoiseRegistry
-  extends BaseNoiseRegistry<PNGContinentNoise> {
+  extends BaseNoiseRegistry<PNGContinentNoise>
+{
 
   private static final ContinentNoiseRegistry INSTANCE =
     new ContinentNoiseRegistry();
@@ -28,15 +29,11 @@ public class ContinentNoiseRegistry
   }
 
   /**
-   * The continent map registered for this process. Chunk fill does not hold
-   * the {@link RegionGenerator}; the image itself does not depend on which
-   * generator loaded it.
+   * The continent map of the world being generated. Chunk fill does not hold
+   * the {@link RegionGenerator}, so it takes the map registered last.
    */
   @Nullable
   public static PNGContinentNoise any() {
-    if (INSTANCE.registry.isEmpty()) {
-      return null;
-    }
-    return INSTANCE.registry.values().iterator().next();
+    return INSTANCE.latestNoise();
   }
 }

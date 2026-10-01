@@ -1,16 +1,23 @@
 package net.yazloysasha.tfcrealworld.mixin.world.biome;
 
+import net.dries007.tfc.world.TFCChunkGenerator;
 import net.dries007.tfc.world.biome.BiomeNoise;
 import net.dries007.tfc.world.noise.Noise2D;
+import net.dries007.tfc.world.noise.OpenSimplex2D;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = BiomeNoise.class, remap = false)
 public class BiomeNoiseMixin {
+
+  /** Vanilla rift lake floor: from the valley floor down by this much. */
+  @Unique
+  private static final double RIFT_LAKE_FLOOR_DEPTH = 15;
 
   @Inject(method = "activeHotSpots", at = @At("HEAD"), cancellable = true)
   private static void tfcrealworld$activeHotSpotsFromMap(
@@ -44,15 +51,51 @@ public class BiomeNoiseMixin {
     tfcrealworld$hotspotIntensityFromMap((byte) 4, seed, cir);
   }
 
+  /**
+   * Vanilla digs the rift lake along the cell edges of its own plate noise,
+   * where vanilla also places rift biomes. With tectonics, rift lakes are the
+   * map's lakes inside rift zones (continent.png lakes, e.g. Tanganyika,
+   * Malawi, Baikal), so the lake floor covers the whole biome: vanilla's
+   * valley floor depth and roughness, without the plate-edge profile.
+   */
+  @Inject(method = "riftValley", at = @At("HEAD"), cancellable = true)
+  private static void tfcrealworld$riftLakeFromMap(
+    long seed,
+    int minHeightIn,
+    int edgeHeightIn,
+    boolean isLake,
+    CallbackInfoReturnable<Noise2D> cir
+  ) {
+    if (
+      !isLake ||
+      !TFCRealWorldConfig.CONTINENT_FROM_MAP.get() ||
+      !TFCRealWorldConfig.TECTONICS_FROM_MAP.get()
+    ) {
+      return;
+    }
+    final double floor = TFCChunkGenerator.SEA_LEVEL_Y + minHeightIn;
+    cir.setReturnValue(
+      new OpenSimplex2D(seed)
+        .octaves(3)
+        .spread(0.04f)
+        .scaled(-8, 8)
+        .addConstant(floor - RIFT_LAKE_FLOOR_DEPTH / 2)
+    );
+  }
+
+  @Unique
   private static void tfcrealworld$hotspotIntensityFromMap(
     byte age,
     long seed,
     CallbackInfoReturnable<Noise2D> cir
   ) {
-    if (!TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
+    if (
+      !TFCRealWorldConfig.CONTINENT_FROM_MAP.get() ||
+      !TFCRealWorldConfig.TECTONICS_FROM_MAP.get()
+    ) {
       return;
     }
-    final var layout = HotspotsNoiseRegistry.biomeLayout();
+    final var layout = TectonicsRegistry.hotspotLayout();
     if (layout == null) {
       return;
     }

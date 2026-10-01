@@ -16,15 +16,12 @@ public class GlobalWestCoastDistanceCache extends BaseGlobalDistanceCache {
   }
 
   public static void initialize(PNGContinentNoise continentNoise) {
-    instance = initializeInstance(
-      instance,
-      new GlobalWestCoastDistanceCache(continentNoise),
-      "west coast distance"
-    );
+    if (instance == null || !instance.isBuiltFrom(continentNoise)) {
+      instance = new GlobalWestCoastDistanceCache(continentNoise);
+    }
   }
 
   public static void clear() {
-    clearInstance(instance, "west coast distance");
     instance = null;
   }
 

@@ -15,13 +15,4 @@ public enum GeographyKind {
   public String path() {
     return path;
   }
-
-  public static GeographyKind fromPath(String path) {
-    for (GeographyKind kind : values()) {
-      if (kind.path.equals(path)) {
-        return kind;
-      }
-    }
-    throw new IllegalArgumentException("Unknown geography kind: " + path);
-  }
 }

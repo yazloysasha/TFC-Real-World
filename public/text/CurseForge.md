@@ -42,13 +42,12 @@ Instead of random generation, the world's continents, mountains, oceans, and cli
 #### 🏞️ How It Works & Features
 
 <div class="spoiler">
-The mod works by replacing TFC's default noise generators with data sampled from customizable map images. This integrates seamlessly, letting TFC's rich procedural detail fill in the local terrain.<br><br>
+The mod works by replacing TFC's default noise generators with data sampled from customizable map images. This integrates seamlessly, letting TFC's rich procedural detail fill in the local terrain.<br>
 
 <ul>
-<li><b>Continent & Ocean Layout:</b> Shaped by a world map image, creating Earth-like landmasses.</li>
-<li><b>Elevation & Depth:</b> Real altitude data creates realistic mountains, plains, and ocean floors.</li>
-<li><b>Volcanic Activity:</b> Hotspot maps guide the placement of TFC's volcanoes to tectonically plausible areas.</li>
-<li><b>Climate System:</b> A Köppen climate map defines temperature and rainfall belts (tropical, arid, temperate, continental, polar), which TFC's existing systems use to create biomes.</li>
+<li><b>Continent &amp; Ocean Layout:</b> A world map shapes landmasses, islands, oceans and lakes.</li>
+<li><b>Tectonics &amp; Relief:</b> A tectonics map tells TFC what kind of place every region is: lowland or mountain, rift or collision belt, volcanic arc or hotspot. TFC then picks the biome itself, so the Himalayas become collisional mountains, East Africa gets rift valleys and Hawaii gets shield volcanoes.</li>
+<li><b>Climate System:</b> Temperature, rainfall and rainfall-seasonality maps give every place its real climate zone (tropical, arid, temperate, continental, polar), which TFC's existing systems use to create biomes.</li>
 <li><b>Non-Intrusive:</b> No new blocks, items, or mobs. Uses Mixins to only redirect worldgen rules.</li>
 <li><b>Enhanced Canyon Biomes:</b> Optional config to make canyon biomes purely erosional, removing volcanic features (1.21.1 only).</li>
 </ul>
@@ -65,55 +64,55 @@ All configuration is accessible directly from the <b>TFC world creation screen</
 <b>📋 Map Profiles</b><br>
 
 <ul>
-<li><b>Map Profile:</b> Select which set of map images to use for world generation (e.g., Full World, Old World). The default profile contains all necessary Earth map data.</li>
+<li><b>Map Profile</b>: Select which set of map images to use for world generation (e.g., Full World, Old World). The default profile contains all necessary Earth map data.</li>
 </ul>
 
 <b>📍 Spawn Settings</b><br>
 Choose where you start your adventure:<br>
 
 <ul>
-<li><b>Spawn Mode:</b><ul>
-  <li><code>GEOGRAPHIC</code> – Spawn using real-world coordinates! Set a latitude and longitude.</li>
-  <li><code>RANDOM</code> – A random location determined by the world seed.</li>
-  <li><code>CLASSIC</code> – Use TFC's original coordinate-based spawning system.</li>
+<li><b>Spawn Mode</b>:<ul>
+  <li><code>GEOGRAPHIC</code>: Spawn using real-world coordinates! Set a latitude and longitude.</li>
+  <li><code>RANDOM</code>: A random location determined by the world seed.</li>
+  <li><code>CLASSIC</code>: Use TFC's original coordinate-based spawning system.</li>
 </ul></li>
-<li><b>Geographic Spawn Center (Longitude/Latitude):</b> When using <code>GEOGRAPHIC</code> mode, set the exact center of the area where you can spawn. The game will pick a suitable nearby location.</li>
+<li><b>Geographic Spawn Center (Longitude/Latitude)</b>: When using <code>GEOGRAPHIC</code> mode, set the exact center of the area where you can spawn. The game will pick a suitable nearby location.</li>
 </ul>
 
 <b>🎯 TFC Spawn Settings</b><br>
 TFC's original coordinate-based spawning options (used in <code>CLASSIC</code> mode):<br>
 
 <ul>
-<li><b>Classic Spawn Center (X/Z):</b> When using <code>CLASSIC</code> mode, these TFC options define the center point for spawning.</li>
-<li><b>Spawn Distance:</b> Maximum spawn radius from the spawn center. Applies to both <code>GEOGRAPHIC</code> and <code>CLASSIC</code> modes.</li>
+<li><b>Classic Spawn Center (X/Z)</b>: When using <code>CLASSIC</code> mode, these TFC options define the center point for spawning.</li>
+<li><b>Spawn Distance</b>: Maximum spawn radius from the spawn center. Applies to both <code>GEOGRAPHIC</code> and <code>CLASSIC</code> modes.</li>
 </ul>
 
 <b>🌿 Biome Modifications</b><br>
 
 <ul>
-<li><b>Canyons Not Volcanic:</b> When enabled (default), removes volcanic rock and features from Canyon and Doline Canyon biomes, making them purely erosional landscapes.</li>
+<li><b>Canyons Not Volcanic</b>: When enabled (default), removes volcanic rock and features from Canyon and Doline Canyon biomes, making them purely erosional landscapes.</li>
 </ul>
 
 <b>⛰️ TFC World Parameters</b><br>
 Fine-tune familiar TFC world generation values.<br>
 
 <ul>
-<li><b>Flat Bedrock:</b> If enabled, the bottom of the world is a single, flat bedrock layer.</li>
-<li><b>Finite Continents:</b> If enabled, the world has a limited number of continents surrounded by a vast, deep ocean (1.21.1 only).</li>
-<li><b>Continentalness:</b> Controls landmass size. Lower values = more fragmented land and islands. Higher values = larger, solid continents (if continents and altitude from map is disabled).</li>
-<li><b>Grass Density:</b> Affects the amount of grass coverage globally (1.20.1+).</li>
-<li><b>Temperature Constant:</b> A number representing the temperature for an entire world, where -1.0 is polar and 1.0 is tropical (if climate from map is disabled, 1.20.1+).</li>
-<li><b>Rainfall Constant:</b> A number representing the rainfall for an entire world, where -1.0 is arid and 1.0 is tropical (if climate from map is disabled, 1.20.1+).</li>
-<li><b>Temperature Scale:</b> The distance (in blocks) between the hottest and coldest climate zones (if climate from map is disabled).</li>
-<li><b>Rainfall Scale:</b> The distance (in blocks) between the wettest and driest climate zones (if climate from map is disabled).</li>
+<li><b>Flat Bedrock</b>: If enabled, the bottom of the world is a single, flat bedrock layer.</li>
+<li><b>Finite Continents</b>: If enabled, the world has a limited number of continents surrounded by a vast, deep ocean (1.21.1 only).</li>
+<li><b>Continentalness</b>: Controls landmass size. Lower values = more fragmented land and islands. Higher values = larger, solid continents (if continents from map are disabled).</li>
+<li><b>Grass Density</b>: Affects the amount of grass coverage globally (1.20.1+).</li>
+<li><b>Temperature Constant</b>: A number representing the temperature for an entire world, where -1.0 is polar and 1.0 is tropical (if climate from map is disabled, 1.20.1+).</li>
+<li><b>Rainfall Constant</b>: A number representing the rainfall for an entire world, where -1.0 is arid and 1.0 is tropical (if climate from map is disabled, 1.20.1+).</li>
+<li><b>Temperature Scale</b>: The distance (in blocks) between the hottest and coldest climate zones (if climate from map is disabled).</li>
+<li><b>Rainfall Scale</b>: The distance (in blocks) between the wettest and driest climate zones (if climate from map is disabled).</li>
 </ul>
 
 <b>⚠️ Critical Scaling Settings</b><br>
 These two values are <b>crucial</b> for maintaining correct map proportions. They control how many Minecraft blocks represent the real-world data.<br>
 
 <ul>
-<li><b>Horizontal Scale:</b> The radius of the world map in blocks.</li>
-<li><b>Vertical Scale:</b> The height limit for terrain in blocks.</li>
+<li><b>Horizontal Scale</b>: The radius of the world map in blocks.</li>
+<li><b>Vertical Scale</b>: The height limit for terrain in blocks.</li>
 </ul>
 
 <b>Important:</b> The <b>ratio between Horizontal Scale and Vertical Scale must match the original map data's aspect ratio</b>. If these values are set to disproportionate sizes, the world will appear <b>stretched or squashed</b>. The default values are correctly calibrated.<br><br>
@@ -122,16 +121,15 @@ These two values are <b>crucial</b> for maintaining correct map proportions. The
 Toggle which aspects of the world are shaped by real data. Disabling a mode will revert that feature to TFC's standard procedural generation.<br>
 
 <ul>
-<li><b>Generate Continents from Map:</b> Shapes landmasses and oceans using the world map.</li>
-<li><b>Generate Altitude from Map:</b> Creates realistic mountains, hills, plains, and ocean depth.</li>
-<li><b>Generate Hotspots from Map:</b> Places TFC's volcanoes in tectonically plausible areas.</li>
-<li><b>Generate Climate from Map:</b> Uses the Köppen climate map to create logical temperature and rainfall belts (tropical, arid, temperate, etc.).</li>
+<li><b>Generate Continents from Map</b>: Shapes landmasses, islands, oceans and lakes using the world map.</li>
+<li><b>Generate Tectonics from Map</b>: Relief, plate boundaries, volcanism and hotspots from the tectonics map (needs continents from map).</li>
+<li><b>Generate Climate from Map</b>: Reads temperature, rainfall and rainfall variance from the climate maps instead of generating them procedurally.</li>
 </ul>
 
 <b>💡 Quick Tips</b><br>
 
 <ol>
-<li>For an authentic Earth experience, keep all four <code>Generate ... from Map</code> options enabled.</li>
+<li><b>For an authentic Earth experience</b>, keep all three <code>Generate ... from Map</code> options enabled.</li>
 <li>Use <b>Geographic Spawn</b> to start in a specific country or near famous landmarks.</li>
 <li><b>Do not change <code>Horizontal Scale</code> or <code>Vertical Scale</code></b> unless you understand the map's proportions and want a deliberately distorted world.</li>
 </ol>
@@ -144,18 +142,15 @@ Toggle which aspects of the world are shaped by real data. Disabling a mode will
 This guide explains how to create custom map profiles for advanced users who want to generate worlds using their own geographic data.<br><br>
 
 <b>🏗️ Map Profile Structure</b><br>
-Map profiles organize all the map images needed for world generation. Each profile must have a <code>maps/</code> directory containing the required map files:<br><br>
-
 <code>{namespace}/{profile_name}/<br>
-├─ maps/<br>
+├── maps/<br>
 │ ├── continent.png<br>
-│ ├── altitude.png<br>
-│ ├── divergence.png<br>
-│ ├── hotspots.png<br>
-│ ├── koppen.png<br>
+│ ├── tectonics.png<br>
 │ ├── temperature.png<br>
-│ └── rainfall.png<br>
-└── settings.json</code><br><br>
+│ ├── rainfall.png<br>
+│ └── rain_variance.png<br>
+├── settings.json<br>
+└── tectonics.json</code><br><br>
 
 Profiles can be placed in two locations:<br>
 
@@ -167,128 +162,98 @@ Profiles can be placed in two locations:<br>
 External profiles take priority over JAR profiles with the same namespace and name.<br><br>
 
 <b>🔧 Profile Settings (<code>settings.json</code>)</b><br>
-Each map profile requires a <code>settings.json</code> file that defines the profile's configuration. All fields are optional and will use default values if omitted.<br><br>
-
-<b>Display Settings:</b><br>
+All fields are optional and will use default values if omitted.<br>
 
 <ul>
-<li><b>Index</b> (Integer, default: <code>2147483647</code>): Display order in the profile selection list. Lower values appear first.</li>
-<li><b>Lang</b> (Object, default: <code>{}</code>): Localized display names for the profile. Keys are language codes (e.g., <code>"en_us"</code>, <code>"ru_ru"</code>), values are display strings.</li>
+<li><code>index</code> (Integer, default: <code>2147483647</code>): Display order in the profile selection list. Lower values appear first.</li>
+<li><code>lang</code> (Object, default: <code>{}</code>): Localized display names for the profile. Keys are language codes (e.g., <code>"en_us"</code>, <code>"ru_ru"</code>), values are display strings.</li>
+<li><code>spawn_center_longitude</code> / <code>spawn_center_latitude</code> (Double, default: <code>12.4964</code> / <code>41.9028</code>): Default geographic spawn center (Rome, Italy).</li>
+<li><code>horizontal_scale</code> / <code>vertical_scale</code> (Integer, default: <code>40000</code> / <code>20000</code>): The radius of the world map in blocks along X and Z. Their ratio should match your map's aspect ratio.</li>
+<li><code>west_edge_longitude</code> / <code>east_edge_longitude</code> (Double, default: <code>-170.0</code> / <code>190.0</code>): Western and eastern edges of the map.</li>
+<li><code>south_edge_latitude</code> / <code>north_edge_latitude</code> (Double, default: <code>-90.0</code> / <code>90.0</code>): Southern and northern edges of the map.</li>
+<li><code>map_projection</code> (String, default: <code>"EQUAL_EARTH"</code>): Map projection. Currently only <code>"EQUAL_EARTH"</code> is supported.</li>
+<li><code>waypoints</code> (String array, default: <code>[]</code>): Waypoints (<code>namespace:slug</code>) shown on the in-game geography map for this profile.</li>
 </ul>
 
-<b>Spawn Settings:</b><br>
+<b>📍 Custom Geography &amp; Waypoints</b><br>
+The in-game geography map (inventory globe tab) shows the waypoints listed in the active profile's <code>settings.json</code>. Waypoint and hierarchy JSON live separately from map images:<br>
 
 <ul>
-<li><b>Spawn Center Longitude</b> (Double, default: <code>12.4964</code>): Geographic longitude for the default spawn center (Rome, Italy).</li>
-<li><b>Spawn Center Latitude</b> (Double, default: <code>41.9028</code>): Geographic latitude for the default spawn center (Rome, Italy).</li>
+<li><b>JAR:</b> <code>data/tfc_real_world/geography/{namespace}/{continents|regions|subregions|waypoints}/</code></li>
+<li><b>External (folders or ZIP):</b> <code>config/tfc_real_world/geography/</code> — either <code>{namespace}/waypoints/my_place.json</code> or a <code>.zip</code> whose root contains the same <code>{namespace}/...</code> tree</li>
 </ul>
 
-<b>Scaling Settings:</b><br>
+Waypoints use <code>namespace:slug</code> IDs; continents, regions and subregions use <code>namespace:continent|region|subregion/slug</code>. External geography overrides JAR entries with the same ID. A waypoint appears on the map only if it is listed in the active profile and its JSON has <code>latitude</code> / <code>longitude</code>.<br><br>
+
+<b>🖼️ Map Images</b><br>
+All maps cover the same area in an equal-area projection (e.g., Equal Earth). The climate and tectonics maps share one size (e.g. 1248×624, one pixel per TFC region cell at the default scale); <code>continent.png</code> may be larger for detailed coastlines (e.g. 9984×4992).<br><br>
+
+<b>Continent Map (<code>continent.png</code>):</b> Grayscale PNG with five bands:<br>
 
 <ul>
-<li><b>Horizontal Scale</b> (Integer, default: <code>40000</code>): The radius of the world map in blocks.</li>
-<li><b>Vertical Scale</b> (Integer, default: <code>20000</code>): The height limit for terrain in blocks.</li>
+<li><code>0</code> (black) = Ocean</li>
+<li><code>64</code> = Island (small landmasses: TFC island biomes)</li>
+<li><code>128</code> = Fresh lake</li>
+<li><code>192</code> = Salt lake</li>
+<li><code>255</code> (white) = Land</li>
 </ul>
 
-<b>Important:</b> The ratio between <code>horizontal_scale</code> and <code>vertical_scale</code> should match your map's aspect ratio to avoid stretching or squashing.<br><br>
+<b>Tectonics Map (<code>tectonics.png</code> + <code>tectonics.json</code>):</b> Indexed (palette) or 8-bit grayscale PNG; each pixel value is a class index into <code>tectonics.json</code>, a list of classes in index order. A class never names a biome: it only describes the place, and TFC chooses the biome on its own. <code>continent.png</code> decides land versus water, so each class describes both: <code>land</code> is used on land, <code>water</code> at sea.<br><br>
 
-<b>Map Boundaries:</b><br>
+<code>[<br>
+{ "water": "shelf" },<br>
+{ "boundary": "convergent", "land": "mountain", "water": "trench" },<br>
+{ "land": "upland", "water": "shelf", "hotspot": 2 }<br>
+]</code><br>
 
 <ul>
-<li><b>West Edge Longitude</b> (Double, default: <code>-170.0</code>): Western edge of the map in degrees longitude.</li>
-<li><b>East Edge Longitude</b> (Double, default: <code>190.0</code>): Eastern edge of the map in degrees longitude.</li>
-<li><b>South Edge Latitude</b> (Double, default: <code>-90.0</code>): Southern edge of the map in degrees latitude.</li>
-<li><b>North Edge Latitude</b> (Double, default: <code>90.0</code>): Northern edge of the map in degrees latitude.</li>
+<li><code>boundary</code> — active plate boundary zone: <code>none</code>, <code>convergent</code> (collision belts on land, trenches at sea), <code>divergent</code> (rift valleys on land, spreading ridges at sea) or <code>transform</code>.</li>
+<li><code>land</code> — relief: <code>lowland</code>, <code>upland</code>, <code>highland</code> or <code>mountain</code>.</li>
+<li><code>water</code> — seafloor: <code>reef</code>, <code>shelf</code>, <code>ridge</code>, <code>deep</code> or <code>trench</code>.</li>
+<li><code>volcanism</code> — <code>none</code>, <code>arc</code> (subduction volcanoes), <code>rift</code> or <code>intraplate</code>.</li>
+<li><code>coast</code> — <code>true</code> for a mountain range the sea reaches into (fjords, steep island coasts): TFC's oceanic mountains.</li>
+<li><code>hotspot</code> — <code>0</code>, or hotspot age <code>1</code> (active) … <code>4</code> (ancient/sunken) at a shield volcano centre.</li>
 </ul>
 
-<b>Projection:</b><br>
+Omitted fields default to <code>none</code> / <code>lowland</code> / <code>deep</code> / <code>none</code> / <code>false</code> / <code>0</code>. Every palette index used in the PNG must have a class.<br><br>
 
-<ul>
-<li><b>Map Projection</b> (String, default: <code>"EQUAL_EARTH"</code>): Map projection type. Currently only <code>"EQUAL_EARTH"</code> is supported.</li>
-</ul>
-
-<b>🖼️ Required Map Images</b><br>
-All climate maps must be PNG and share dimensions (e.g. 1248×624); `continent.png` is higher-res (e.g. 9984×4992). Prefer an equal-area projection (e.g., Equal Earth).<br><br>
-
-<b>Continent Map (<code>continent.png</code>):</b> Defines landmass distribution and continental boundaries. Format: Grayscale PNG. Legend: <code>0</code> (black) = Ocean, <code>255</code> (white) = Land. This map shapes the basic layout of continents and oceans in your world.<br><br>
-
-<b>Altitude Map (<code>altitude.png</code>):</b> Defines terrain elevation and ocean depth. Format: Grayscale PNG. Legend: <code>0-127</code> = Ocean depth (darker = deeper), <code>128-255</code> = Land elevation (brighter = higher). Creates realistic mountains, hills, plains, and ocean floors. Example values: <code>0</code> = Deepest ocean, <code>64</code> = Shallow ocean, <code>128</code> = Sea level (coastline), <code>192</code> = Hills, <code>255</code> = Highest mountains.<br><br>
-
-<b>Hotspots Map (<code>hotspots.png</code>):</b> Defines volcanic hotspot locations and ages. Format: Grayscale PNG. Legend: <code>0</code> = No hotspot (age 0), <code>64</code> = Age 4 (oldest), <code>128</code> = Age 3, <code>192</code> = Age 2, <code>255</code> = Age 1 (youngest). Places TFC volcanoes in tectonically plausible areas.<br><br>
-
-<b>Köppen Climate Map (<code>koppen.png</code>):</b> Defines climate zones using the Köppen climate classification system. Format: RGB Color PNG. Each climate type has a specific RGB color that must match exactly.<br><br>
-
-Climate types and their RGB colors:<br>
-
-<ul>
-<li><b>AF</b> (Humid Tropical): <code>(0, 0, 220)</code></li>
-<li><b>AS</b> (Tropical Dry/Wet): <code>(0, 100, 240)</code></li>
-<li><b>AW</b> (Tropical Wet/Dry): <code>(0, 150, 220)</code></li>
-<li><b>AM</b> (Tropical Monsoon): <code>(40, 80, 200)</code></li>
-<li><b>BWH</b> (Hot Desert): <code>(210, 0, 0)</code></li>
-<li><b>BSH</b> (Hot Semi-Arid): <code>(210, 120, 0)</code></li>
-<li><b>BWK</b> (Cold Desert): <code>(200, 80, 80)</code></li>
-<li><b>BSK</b> (Cold Semi-Arid): <code>(200, 120, 60)</code></li>
-<li><b>CSA</b> (Coastal Subtropical): <code>(250, 250, 0)</code></li>
-<li><b>CSB</b> (Coastal): <code>(180, 180, 0)</code></li>
-<li><b>CSC</b> (Cold Coastal): <code>(120, 120, 0)</code></li>
-<li><b>CWA</b> (Monsoonal Subtropical): <code>(100, 240, 130)</code></li>
-<li><b>CWB</b> (Monsoonal Temperate): <code>(80, 210, 120)</code></li>
-<li><b>CWC</b> (Cold Monsoonal Temperate): <code>(70, 160, 110)</code></li>
-<li><b>CFA</b> (Oceanic Subtropical): <code>(170, 240, 90)</code></li>
-<li><b>CFB</b> (Oceanic): <code>(140, 200, 80)</code></li>
-<li><b>CFC</b> (Cold Oceanic): <code>(110, 170, 70)</code></li>
-<li><b>DSA</b> (Coastal Continental): <code>(190, 20, 190)</code></li>
-<li><b>DSB</b> (Cold Coastal Continental): <code>(160, 20, 180)</code></li>
-<li><b>DSC</b> (Coastal Subarctic): <code>(130, 20, 170)</code></li>
-<li><b>DSD</b> (Coastal Cold Subarctic): <code>(100, 20, 160)</code></li>
-<li><b>DFA</b> (Continental): <code>(40, 190, 190)</code></li>
-<li><b>DFB</b> (Cold Continental): <code>(30, 170, 170)</code></li>
-<li><b>DFC</b> (Subarctic): <code>(20, 150, 140)</code></li>
-<li><b>DFD</b> (Cold Subarctic): <code>(10, 130, 110)</code></li>
-<li><b>DWA</b> (Monsoonal Continental): <code>(80, 80, 220)</code></li>
-<li><b>DWB</b> (Cold Monsoonal Continental): <code>(70, 70, 190)</code></li>
-<li><b>DWC</b> (Monsoonal Subarctic): <code>(60, 60, 160)</code></li>
-<li><b>DWD</b> (Cold Monsoonal Subarctic): <code>(60, 60, 130)</code></li>
-<li><b>ET</b> (Tundra): <code>(190, 190, 190)</code></li>
-<li><b>EF</b> (Polar): <code>(80, 80, 80)</code></li>
-</ul>
-
-<b>Temperature Map (<code>temperature.png</code>):</b> Provides temperature data used in conjunction with the Köppen map. Format: Grayscale PNG. Legend: <code>0</code> (black) = Coldest, <code>255</code> (white) = Hottest. Each Köppen climate zone interprets grayscale values within its own temperature range, so higher brightness indicates warmer temperatures for that specific climate type.<br><br>
-
-<b>Rainfall Map (<code>rainfall.png</code>):</b> Provides rainfall data used in conjunction with the Köppen map. Format: Grayscale PNG. Legend: <code>0</code> (black) = Driest, <code>255</code> (white) = Wettest. Each Köppen climate zone interprets grayscale values within its own rainfall range, so higher brightness indicates more rainfall for that specific climate type.<br><br>
-
-<b>✅ Best Practices</b><br>
+<b>Painting the tectonics map:</b> The mod reads only the palette index of each pixel, never its color, so pick any colors you like:<br>
 
 <ol>
-<li><b>Consistency:</b> Ensure all maps align properly - continents should match altitude, climate should match temperature/rainfall patterns.</li>
-<li><b>Smooth Transitions:</b> Use gradual gradients rather than sharp boundaries to avoid visual artifacts in the generated world.</li>
-<li><b>Sea Level:</b> In the altitude map, keep the sea level boundary (128) consistent with your continent map - ocean areas should have values below 128.</li>
-<li><b>Color Accuracy:</b> For the Köppen map, use the exact RGB values provided. Even small deviations will cause the mod to use the nearest matching climate type.</li>
-<li><b>Testing:</b> Test your maps with a small world first to verify proportions and alignment before creating large-scale maps.</li>
-<li><b>Map Dimensions:</b> Climate maps share one size (e.g. 1248×624); <code>continent.png</code> is higher-res (e.g. 9984×4992). Use an equal-area projection.</li>
+<li>Write the classes you need in <code>tectonics.json</code>; the first entry is class <code>0</code>, the next class <code>1</code>, and so on.</li>
+<li>Create the image in indexed color mode (GIMP: <i>Image → Mode → Indexed</i>, Aseprite: <i>Indexed</i> color mode, Photoshop: <i>Image → Mode → Indexed Color</i>, then <i>Color Table</i>) and give it one palette entry per class, in the same order. Color number <code>N</code> is class <code>N</code>.</li>
+<li>Paint with those palette colors only, with antialiasing and color smoothing off, and save as an indexed PNG. Resizing must use nearest neighbour, or new colors appear between the classes.</li>
 </ol>
+
+A grayscale PNG works too: gray level <code>N</code> is class <code>N</code> (black is class <code>0</code>).<br><br>
+
+<b>Climate Maps:</b> 8-bit grayscale PNGs with the TFC climate of each pixel, read as is:<br>
+
+<ul>
+<li><code>temperature.png</code> — annual mean temperature: <code>0</code> = −25 °C … <code>255</code> = 30 °C.</li>
+<li><code>rainfall.png</code> — annual rainfall: <code>0</code> = 0 mm … <code>255</code> = 500 mm.</li>
+<li><code>rain_variance.png</code> — rainfall seasonality: <code>0</code> = −1 (wet January, dry July) … <code>128</code> ≈ even rain … <code>255</code> = 1 (dry January, wet July).</li>
+</ul>
+
+TFC derives the climate zone from these values (its Köppen classification), so the maps alone decide deserts, tundra, monsoon forests and the rest.<br><br>
 
 <b>🏝️ Example: Creating a Simple Island Map</b><br>
-Here's a minimal example for creating a basic island map profile:<br><br>
 
 <ol>
-<li><b>Continent Map:</b> Create a 9984×4992 grayscale image with most of the map at <code>0</code> (ocean) and a circular island in the center at <code>255</code> (land).</li>
-<li><b>Altitude Map:</b> Create a matching 1248×624 grayscale image with ocean areas at <code>64</code> (shallow ocean), island edges at <code>128</code> (sea level), and island center at <code>200</code> (hills).</li>
-<li><b>Hotspots Map:</b> Create a 1248×624 grayscale image with most areas at <code>0</code> (no volcanoes) and a small hotspot on the island at <code>192</code> (age 2).</li>
-<li><b>Köppen Map:</b> Create a 1248×624 RGB image using <code>(140, 200, 80)</code> for CFB (Oceanic climate).</li>
-<li><b>Temperature Map:</b> Create a 1248×624 grayscale image with a gradient from <code>120</code> (cooler) at the edges to <code>180</code> (warmer) at the center, representing temperature variation across the island.</li>
-<li><b>Rainfall Map:</b> Create a 1248×624 grayscale image with a gradient from <code>140</code> (drier) at the edges to <code>200</code> (wetter) at the center, representing rainfall variation across the island.</li>
+<li><b>Continent Map:</b> Create a 9984×4992 grayscale image at <code>0</code> (ocean) with a circular island in the center at <code>255</code> (land).</li>
+<li><b>Tectonics Map:</b> Create a 1248×624 grayscale image where <code>0</code> is the sea and coast around the island, <code>1</code> is the island interior and <code>2</code> is a single pixel at the island centre. In <code>tectonics.json</code> write <code>[{"water": "shelf"}, {"land": "upland", "water": "shelf"}, {"land": "upland", "water": "shelf", "hotspot": 2}]</code> for a dormant shield volcano.</li>
+<li><b>Temperature Map:</b> Create a 1248×624 grayscale image with a gradient from <code>171</code> (≈12 °C) at the edges to <code>190</code> (≈16 °C) at the center.</li>
+<li><b>Rainfall Map:</b> Create a 1248×624 grayscale image with a gradient from <code>102</code> (≈200 mm) at the edges to <code>153</code> (≈300 mm) at the center — together an oceanic (Cfb) climate.</li>
+<li><b>Rain Variance Map:</b> Create a 1248×624 image filled with <code>128</code> (rain all year round).</li>
 <li><b>Settings:</b> Create <code>settings.json</code> with <code>horizontal_scale</code> = <code>40000</code> and <code>vertical_scale</code> = <code>20000</code> to match the 2:1 aspect ratio of the maps. Note that due to the 2:1, a circular island in your map will appear as an oval in the generated world.</li>
 </ol>
-
-Climate maps must be 1248×624; <code>continent.png</code> must be 9984×4992. Save as PNG files in the profile's <code>maps/</code> directory.
 
 </div>
 
 #### 🗓️ Roadmap
 
 <div class="spoiler">
+
 <ol>
 <li>A similar mod for vanilla Minecraft.</li>
 <li>A version with a larger and more detailed world map.</li>
@@ -301,7 +266,7 @@ Climate maps must be 1248×624; <code>continent.png</code> must be 9984×4992. S
 
 ### 📎 Links
 
-- [Explore GutHub](https://github.com/yazloysasha/TFC-Real-World)
+- [Explore GitHub](https://github.com/yazloysasha/TFC-Real-World)
 - [Create issue](https://github.com/yazloysasha/TFC-Real-World/issues/new)
 
 If you have suggestions or want to report a bug, please create an issue and I will definitely respond.

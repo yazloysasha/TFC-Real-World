@@ -141,13 +141,7 @@ public final class MapLakeWater {
       column.salinity = atBlock(column.blockX, column.blockZ);
       column.resolved = true;
     }
-    if (column.salinity == Salinity.SALT) {
-      return Boolean.TRUE;
-    }
-    if (column.salinity == Salinity.FRESH) {
-      return Boolean.FALSE;
-    }
-    return null;
+    return column.salinity == null ? null : column.salinity == Salinity.SALT;
   }
 
   /**

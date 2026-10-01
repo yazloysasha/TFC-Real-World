@@ -1,0 +1,2417 @@
+{
+  "cities": [
+    { "waypoint": "amsterdam", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "berlin", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "moscow", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "saint_petersburg",
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    { "waypoint": "paris", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "london", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "warsaw", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "kyiv", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "minsk", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "riga", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "helsinki", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "stockholm", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "copenhagen", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "brussels", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "budapest", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "bucharest", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "vienna",
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "madrid",
+      "expect": ["land", "upland_or_highland", "not_volcanic"]
+    },
+    {
+      "waypoint": "lisbon",
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    { "waypoint": "bern", "expect": ["land", "not_lowland", "not_volcanic"] },
+    { "waypoint": "rome", "expect": ["land", "not_mountain"] },
+    { "waypoint": "athens", "expect": ["land", "not_mountain"] },
+    { "waypoint": "ankara", "expect": ["land", "upland_or_highland"] },
+    {
+      "waypoint": "nizhniy_novgorod",
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    {
+      "waypoint": "rostov_on_don",
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    {
+      "waypoint": "novosibirsk",
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    { "waypoint": "yakutsk", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "astana",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "tashkent", "expect": ["land", "not_highland_or_mountain"] },
+    { "waypoint": "cairo", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "baghdad", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "riyadh", "expect": ["land", "upland", "not_volcanic"] },
+    { "waypoint": "tehran", "expect": ["land", "not_lowland"] },
+    {
+      "waypoint": "kabul",
+      "expect": ["land", "highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "new_delhi", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "dhaka", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "kathmandu",
+      "expect": ["land", "highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "thimphu", "expect": ["land", "mountains", "not_volcanic"] },
+    {
+      "waypoint": "lhasa",
+      "expect": ["land", "highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "ulan_bator",
+      "expect": ["land", "upland_or_highland", "not_volcanic"]
+    },
+    {
+      "waypoint": "beijing",
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    { "waypoint": "shanghai", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "harbin", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "seoul",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "tokyo", "expect": ["land", "not_mountain"] },
+    { "waypoint": "hanoi", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "bangkok", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "phnom_penh", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "jakarta", "expect": ["land"] },
+    { "waypoint": "singapore", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "perth", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "adelaide",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "melbourne", "expect": ["land", "not_highland_or_mountain"] },
+    {
+      "waypoint": "brisbane",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "christchurch",
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    { "waypoint": "washington", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "atlanta",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "oklahoma_city",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "topeka",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "winnipeg", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "ottawa", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "austin",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "baton_rouge",
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    { "waypoint": "denver", "expect": ["land", "not_lowland", "not_volcanic"] },
+    {
+      "waypoint": "cheyenne",
+      "expect": ["land", "upland_or_highland", "not_volcanic"]
+    },
+    { "waypoint": "salt_lake_city", "expect": ["land", "not_lowland"] },
+    {
+      "waypoint": "phoenix",
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    { "waypoint": "sacramento", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "mexico_city", "expect": ["land", "not_lowland"] },
+    { "waypoint": "havana", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "bogota", "expect": ["land", "highland_or_mountain"] },
+    { "waypoint": "quito", "expect": ["land", "volcanic"] },
+    { "waypoint": "lima", "expect": ["land", "not_volcanic"] },
+    { "waypoint": "sucre", "expect": ["land", "highland_or_mountain"] },
+    {
+      "waypoint": "santiago",
+      "expect": ["land", "not_lowland", "not_volcanic_mountains"]
+    },
+    {
+      "waypoint": "buenos_aires",
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    { "waypoint": "montevideo", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "asuncion", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "manaus", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "sao_paulo", "expect": ["land", "upland", "not_volcanic"] },
+    { "waypoint": "lagos", "optional": true, "expect": ["land", "lowland"] },
+    { "waypoint": "dakar", "expect": ["land", "lowland"] },
+    {
+      "waypoint": "kinshasa",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "addis_ababa", "expect": ["land", "highland_or_mountain"] },
+    { "waypoint": "nairobi", "expect": ["land", "not_lowland"] },
+    {
+      "waypoint": "pretoria",
+      "expect": ["land", "upland_or_highland", "not_volcanic"]
+    },
+    {
+      "waypoint": "cape_town",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "khartoum",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "honolulu", "expect": ["volcanic"] },
+    { "waypoint": "reykjavik", "expect": ["land", "volcanic"] },
+    { "waypoint": "olympia", "expect": ["land", "not_volcanic"] },
+    { "waypoint": "salem", "expect": ["land", "not_mountain", "not_volcanic"] },
+    { "waypoint": "boise", "expect": ["land", "not_lowland"] },
+    { "waypoint": "helena", "expect": ["land", "not_lowland", "not_volcanic"] },
+    { "waypoint": "carson_city", "expect": ["land", "not_lowland"] },
+    {
+      "waypoint": "santa_fe_new_mexico",
+      "expect": ["land", "highland_or_mountain", "not_volcanic_mountains"]
+    },
+    {
+      "waypoint": "bismarck",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "lincoln",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "des_moines", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "jefferson_city",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "little_rock",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "jackson", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "nashville",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "columbus",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "indianapolis",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "lansing", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "madison",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "saint_paul",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "boston", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "hartford",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "richmond", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "raleigh", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "montgomery", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "tallahassee",
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    { "waypoint": "juneau", "expect": ["land", "mountains", "not_volcanic"] },
+    { "waypoint": "whitehorse", "expect": ["land", "not_lowland"] },
+    {
+      "waypoint": "yellowknife",
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    {
+      "waypoint": "edmonton",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "regina",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "quebec",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "halifax", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "guadalajara", "expect": ["land", "not_lowland"] },
+    {
+      "waypoint": "santiago_de_queretaro",
+      "expect": ["land", "highland_or_mountain"]
+    },
+    { "waypoint": "mexicali", "expect": ["land", "rift"] },
+    { "waypoint": "merida", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "guatemala_city", "expect": ["land", "volcanic"] },
+    { "waypoint": "san_salvador", "expect": ["land", "volcanic"] },
+    { "waypoint": "managua", "expect": ["land", "volcanic"] },
+    { "waypoint": "san_jose", "expect": ["land", "volcanic"] },
+    {
+      "waypoint": "panama_city",
+      "expect": ["land", "not_highland_or_mountain"]
+    },
+    {
+      "waypoint": "brasilia",
+      "expect": ["land", "upland_or_highland", "not_volcanic"]
+    },
+    {
+      "waypoint": "curitiba",
+      "expect": ["land", "not_lowland", "not_volcanic"]
+    },
+    {
+      "waypoint": "salvador",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "cayenne", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "paramaribo", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "santa_fe_argentina",
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    { "waypoint": "antofagasta", "expect": ["land", "not_volcanic_mountains"] },
+    {
+      "waypoint": "stanley",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "dublin",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "oslo", "expect": ["land", "not_mountain", "not_volcanic"] },
+    { "waypoint": "tallinn", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "vilnius", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "bratislava",
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "zagreb",
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    { "waypoint": "belgrade", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "sofia", "expect": ["land", "not_lowland", "not_volcanic"] },
+    {
+      "waypoint": "chisinau",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "andorra_la_vella",
+      "expect": ["land", "mountains", "not_volcanic"]
+    },
+    { "waypoint": "vaduz", "expect": ["land", "not_lowland", "not_volcanic"] },
+    {
+      "waypoint": "cagliari",
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    { "waypoint": "valletta", "expect": ["not_volcanic"] },
+    { "waypoint": "nicosia", "expect": ["land", "not_volcanic"] },
+    { "waypoint": "yerevan", "expect": ["land", "not_lowland"] },
+    { "waypoint": "tbilisi", "expect": ["land", "not_lowland"] },
+    { "waypoint": "baku", "expect": ["land", "not_mountain"] },
+    { "waypoint": "bishkek", "expect": ["land", "not_lowland"] },
+    {
+      "waypoint": "srinagar",
+      "expect": ["land", "highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "xining",
+      "expect": ["land", "highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "chongqing",
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    { "waypoint": "irkutsk", "expect": ["land", "not_mountain"] },
+    { "waypoint": "khabarovsk", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "petropavlovsk_kamchatsky", "expect": ["land", "volcanic"] },
+    {
+      "waypoint": "pyongyang",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "vientiane", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "colombo",
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    { "waypoint": "kuala_lumpur", "expect": ["land", "not_volcanic"] },
+    { "waypoint": "makassar", "expect": ["land", "not_mountain"] },
+    {
+      "waypoint": "rabat",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "tunis",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "tripoli", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "asmara", "expect": ["land", "highland_or_mountain"] },
+    { "waypoint": "mogadishu", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "kampala",
+      "expect": ["land", "upland_or_highland", "not_rift"]
+    },
+    {
+      "waypoint": "harare",
+      "expect": ["land", "upland_or_highland", "not_volcanic"]
+    },
+    {
+      "waypoint": "lusaka",
+      "expect": ["land", "upland_or_highland", "not_volcanic"]
+    },
+    { "waypoint": "maputo", "expect": ["land", "lowland", "not_volcanic"] },
+    {
+      "waypoint": "windhoek",
+      "expect": ["land", "upland_or_highland", "not_volcanic"]
+    },
+    {
+      "waypoint": "gaborone",
+      "expect": ["land", "upland_or_highland", "not_volcanic"]
+    },
+    {
+      "waypoint": "luanda",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "niamey",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    {
+      "waypoint": "bamako",
+      "expect": ["land", "not_highland_or_mountain", "not_volcanic"]
+    },
+    { "waypoint": "antananarivo", "expect": ["land", "not_lowland"] },
+    { "waypoint": "saint_denis", "expect": ["volcanic"] },
+    { "waypoint": "moroni", "expect": ["volcanic"] },
+    {
+      "waypoint": "canberra",
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    { "waypoint": "darwin", "expect": ["land", "lowland", "not_volcanic"] },
+    { "waypoint": "wellington", "expect": ["land", "not_volcanic_mountains"] },
+    { "waypoint": "port_vila", "expect": ["volcanic"] },
+    { "waypoint": "apia", "expect": ["volcanic"] },
+    { "waypoint": "papeete", "expect": ["volcanic"] }
+  ],
+  "nature": [
+    {
+      "name": "Mount Fuji",
+      "lat": 35.36,
+      "lon": 138.73,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Mount Asama",
+      "lat": 36.4,
+      "lon": 138.52,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Klyuchevskaya Sopka",
+      "lat": 56.06,
+      "lon": 160.64,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Kronotsky",
+      "lat": 54.75,
+      "lon": 160.53,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Mount Rainier",
+      "lat": 46.85,
+      "lon": -121.76,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Mount Hood",
+      "lat": 45.37,
+      "lon": -121.7,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Mount Shasta",
+      "lat": 41.41,
+      "lon": -122.19,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Popocatepetl",
+      "lat": 19.02,
+      "lon": -98.62,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Pico de Orizaba",
+      "lat": 19.03,
+      "lon": -97.27,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Volcan de Fuego",
+      "lat": 14.47,
+      "lon": -90.88,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Cotopaxi",
+      "lat": -0.68,
+      "lon": -78.44,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Chimborazo",
+      "lat": -1.47,
+      "lon": -78.82,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "El Misti",
+      "lat": -16.29,
+      "lon": -71.41,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Llullaillaco",
+      "lat": -24.72,
+      "lon": -68.54,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Ojos del Salado",
+      "lat": -27.11,
+      "lon": -68.54,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Villarrica",
+      "lat": -39.42,
+      "lon": -71.93,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Osorno",
+      "lat": -41.1,
+      "lon": -72.49,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Merapi",
+      "lat": -7.54,
+      "lon": 110.45,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Semeru",
+      "lat": -8.11,
+      "lon": 112.92,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Mount Kerinci",
+      "lat": -1.7,
+      "lon": 101.26,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Mount Mayon",
+      "lat": 13.26,
+      "lon": 123.69,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Mount Pinatubo",
+      "lat": 15.13,
+      "lon": 120.35,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Ruapehu",
+      "lat": -39.28,
+      "lon": 175.57,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Mount Etna",
+      "lat": 37.75,
+      "lon": 14.99,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Elbrus",
+      "lat": 43.35,
+      "lon": 42.44,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Mount Ararat",
+      "lat": 39.7,
+      "lon": 44.3,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Damavand",
+      "lat": 35.95,
+      "lon": 52.11,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Kilimanjaro",
+      "lat": -3.07,
+      "lon": 37.35,
+      "expect": ["land", "mountains"]
+    },
+    {
+      "name": "Everest",
+      "lat": 27.99,
+      "lon": 86.93,
+      "expect": ["land", "collisional"]
+    },
+    {
+      "name": "K2",
+      "lat": 35.88,
+      "lon": 76.51,
+      "expect": ["land", "collisional"]
+    },
+    {
+      "name": "Nanga Parbat",
+      "lat": 35.24,
+      "lon": 74.59,
+      "expect": ["land", "collisional"]
+    },
+    {
+      "name": "Annapurna",
+      "lat": 28.6,
+      "lon": 83.82,
+      "expect": ["land", "collisional"]
+    },
+    {
+      "name": "Kangchenjunga",
+      "lat": 27.7,
+      "lon": 88.15,
+      "expect": ["land", "collisional"]
+    },
+    {
+      "name": "Mont Blanc",
+      "lat": 45.83,
+      "lon": 6.86,
+      "expect": ["land", "collisional"]
+    },
+    {
+      "name": "Matterhorn",
+      "lat": 45.98,
+      "lon": 7.66,
+      "expect": ["land", "collisional"]
+    },
+    {
+      "name": "Grossglockner",
+      "lat": 47.07,
+      "lon": 12.69,
+      "expect": ["land", "collisional"]
+    },
+    {
+      "name": "Zagros Zard Kuh",
+      "lat": 32.37,
+      "lon": 50.07,
+      "expect": ["land", "collisional"]
+    },
+    {
+      "name": "Pamir Ismoil Somoni",
+      "lat": 38.94,
+      "lon": 72.02,
+      "expect": ["land", "collisional"]
+    },
+    {
+      "name": "Tian Shan Khan Tengri",
+      "lat": 42.21,
+      "lon": 80.17,
+      "expect": ["land", "collisional"]
+    },
+    {
+      "name": "Hindu Kush Tirich Mir",
+      "lat": 36.25,
+      "lon": 71.84,
+      "expect": ["land", "collisional"]
+    },
+    {
+      "name": "Caucasus Dykh-Tau",
+      "lat": 43.05,
+      "lon": 43.13,
+      "expect": ["land", "mountains"]
+    },
+    {
+      "name": "Hengduan Gongga",
+      "lat": 29.6,
+      "lon": 101.88,
+      "expect": ["land", "mountains", "not_volcanic"]
+    },
+    {
+      "name": "Aconcagua",
+      "lat": -32.65,
+      "lon": -70.01,
+      "expect": ["land", "mountains"]
+    },
+    {
+      "name": "Patagonian Andes Fitz Roy",
+      "lat": -49.27,
+      "lon": -73.04,
+      "expect": ["land", "mountains"]
+    },
+    {
+      "name": "Cordillera Blanca Huascaran",
+      "lat": -9.12,
+      "lon": -77.6,
+      "expect": ["land", "mountains", "not_volcanic_mountains"]
+    },
+    {
+      "name": "Rockies Longs Peak",
+      "lat": 40.25,
+      "lon": -105.62,
+      "expect": ["land", "mountains", "not_volcanic"]
+    },
+    {
+      "name": "Grand Teton",
+      "lat": 43.74,
+      "lon": -110.8,
+      "expect": ["land", "highland_or_mountain", "not_volcanic_mountains"]
+    },
+    {
+      "name": "Canadian Rockies Robson",
+      "lat": 53.11,
+      "lon": -119.16,
+      "expect": ["land", "mountains", "not_volcanic"]
+    },
+    {
+      "name": "Sierra Nevada Whitney",
+      "lat": 36.58,
+      "lon": -118.29,
+      "expect": ["land", "mountains", "not_volcanic_mountains"]
+    },
+    {
+      "name": "Alaska Range Denali",
+      "lat": 63.07,
+      "lon": -151.01,
+      "expect": ["land", "mountains"]
+    },
+    {
+      "name": "Saint Elias",
+      "lat": 60.29,
+      "lon": -140.93,
+      "expect": ["land", "mountains"]
+    },
+    {
+      "name": "Pyrenees Aneto",
+      "lat": 42.63,
+      "lon": 0.66,
+      "expect": ["land", "mountains", "not_volcanic"]
+    },
+    {
+      "name": "Atlas Toubkal",
+      "lat": 31.06,
+      "lon": -7.92,
+      "expect": ["land", "mountains", "not_volcanic"]
+    },
+    {
+      "name": "Norway Jotunheimen",
+      "lat": 61.64,
+      "lon": 8.31,
+      "expect": ["land", "mountains", "not_volcanic"]
+    },
+    {
+      "name": "Southern Alps Aoraki",
+      "lat": -43.6,
+      "lon": 170.14,
+      "expect": ["land", "mountains", "not_volcanic"]
+    },
+    {
+      "name": "Taiwan Yushan",
+      "lat": 23.47,
+      "lon": 120.96,
+      "expect": ["land", "mountains"]
+    },
+    {
+      "name": "New Guinea Puncak Jaya",
+      "lat": -4.08,
+      "lon": 137.16,
+      "expect": ["land", "mountains"]
+    },
+    {
+      "name": "Transantarctic Mountains Victoria Land",
+      "lat": -77.6,
+      "lon": 161.0,
+      "expect": ["land", "mountains"]
+    },
+    {
+      "name": "Ellsworth Vinson Massif",
+      "lat": -78.52,
+      "lon": -85.62,
+      "expect": ["land", "mountains"]
+    },
+    {
+      "name": "Admiralty Mountains Minto",
+      "lat": -71.78,
+      "lon": 168.75,
+      "expect": ["land", "mountains"]
+    },
+    {
+      "name": "Urals Narodnaya",
+      "lat": 65.03,
+      "lon": 60.12,
+      "expect": ["land", "old_mountains"]
+    },
+    {
+      "name": "Southern Urals",
+      "lat": 54.0,
+      "lon": 58.5,
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    {
+      "name": "Appalachians Mount Mitchell",
+      "lat": 35.76,
+      "lon": -82.27,
+      "expect": ["land", "old_mountains"]
+    },
+    {
+      "name": "Scottish Highlands",
+      "lat": 57.08,
+      "lon": -4.75,
+      "expect": ["land", "not_lowland", "not_mountain"]
+    },
+    {
+      "name": "Great Dividing Range Kosciuszko",
+      "lat": -36.46,
+      "lon": 148.26,
+      "expect": ["land", "mountains", "not_volcanic"]
+    },
+    {
+      "name": "Drakensberg",
+      "lat": -29.47,
+      "lon": 29.27,
+      "expect": ["land", "not_lowland", "not_volcanic"]
+    },
+    {
+      "name": "Tibetan Plateau Changtang",
+      "lat": 33.5,
+      "lon": 86.0,
+      "expect": ["land", "highland_or_mountain", "not_volcanic_mountains"]
+    },
+    {
+      "name": "Altiplano Oruro",
+      "lat": -18.0,
+      "lon": -67.5,
+      "expect": ["land", "highland"]
+    },
+    {
+      "name": "Ethiopian Highlands Gondar",
+      "lat": 12.6,
+      "lon": 37.47,
+      "expect": ["land", "highland_or_mountain"]
+    },
+    {
+      "name": "Iranian Plateau Isfahan",
+      "lat": 32.65,
+      "lon": 51.67,
+      "expect": ["land", "upland_or_highland"]
+    },
+    {
+      "name": "Colorado Plateau Holbrook",
+      "lat": 35.0,
+      "lon": -110.3,
+      "expect": ["land", "upland_or_highland", "not_mountain"]
+    },
+    {
+      "name": "Mexican Plateau Zacatecas",
+      "lat": 22.77,
+      "lon": -102.58,
+      "expect": ["land", "highland"]
+    },
+    {
+      "name": "Deccan Hyderabad",
+      "lat": 17.39,
+      "lon": 78.49,
+      "expect": ["land", "upland", "not_volcanic"]
+    },
+    {
+      "name": "Antarctic Plateau Dome A",
+      "lat": -80.37,
+      "lon": 77.35,
+      "expect": ["land", "highland_or_mountain"]
+    },
+    {
+      "name": "Greenland Summit",
+      "lat": 72.58,
+      "lon": -38.46,
+      "expect": ["land", "highland_or_mountain"]
+    },
+    {
+      "name": "Amazon basin",
+      "lat": -4.0,
+      "lon": -65.0,
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    {
+      "name": "West Siberian Plain",
+      "lat": 61.0,
+      "lon": 75.0,
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    {
+      "name": "Pampas",
+      "lat": -35.0,
+      "lon": -62.0,
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    {
+      "name": "Indo-Gangetic Plain Patna",
+      "lat": 25.6,
+      "lon": 85.1,
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    {
+      "name": "North China Plain",
+      "lat": 36.5,
+      "lon": 116.5,
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    {
+      "name": "Hungarian Plain",
+      "lat": 47.0,
+      "lon": 20.5,
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    {
+      "name": "Po Valley",
+      "lat": 45.1,
+      "lon": 10.5,
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    {
+      "name": "Mississippi Delta",
+      "lat": 30.0,
+      "lon": -90.8,
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    {
+      "name": "Congo Basin",
+      "lat": 0.0,
+      "lon": 21.0,
+      "expect": ["land", "lowland", "not_volcanic"]
+    },
+    {
+      "name": "Kansas Plains",
+      "lat": 38.5,
+      "lon": -98.0,
+      "expect": ["land", "upland", "not_volcanic"]
+    },
+    {
+      "name": "Sahara Tanezrouft",
+      "lat": 23.0,
+      "lon": 0.5,
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    {
+      "name": "Afar Danakil",
+      "lat": 13.6,
+      "lon": 40.7,
+      "expect": ["land", "rift"]
+    },
+    {
+      "name": "Main Ethiopian Rift",
+      "lat": 7.6,
+      "lon": 38.6,
+      "expect": ["land", "rift"]
+    },
+    {
+      "name": "Kenya Rift Naivasha",
+      "lat": -0.77,
+      "lon": 36.4,
+      "expect": ["land", "rift"]
+    },
+    {
+      "name": "Lake Tanganyika",
+      "lat": -6.0,
+      "lon": 29.6,
+      "expect": ["land", "rift"]
+    },
+    {
+      "name": "Lake Malawi",
+      "lat": -12.0,
+      "lon": 34.5,
+      "expect": ["land", "rift"]
+    },
+    {
+      "name": "Albertine Rift Lake Albert",
+      "lat": 1.7,
+      "lon": 30.9,
+      "expect": ["land", "rift"]
+    },
+    {
+      "name": "Lake Baikal",
+      "lat": 53.3,
+      "lon": 107.9,
+      "expect": ["land", "rift"]
+    },
+    {
+      "name": "Mariana Trench",
+      "lat": 11.35,
+      "lon": 142.2,
+      "expect": ["water", "trench"]
+    },
+    {
+      "name": "Tonga Trench",
+      "lat": -23.26,
+      "lon": -174.73,
+      "expect": ["water", "trench"]
+    },
+    {
+      "name": "Kermadec Trench",
+      "lat": -31.0,
+      "lon": -177.3,
+      "expect": ["water", "trench"]
+    },
+    {
+      "name": "Peru-Chile Trench",
+      "lat": -23.37,
+      "lon": -71.35,
+      "expect": ["water", "trench"]
+    },
+    {
+      "name": "Japan Trench",
+      "lat": 38.0,
+      "lon": 143.9,
+      "expect": ["water", "trench"]
+    },
+    {
+      "name": "Kuril-Kamchatka Trench",
+      "lat": 44.0,
+      "lon": 150.7,
+      "expect": ["water", "trench"]
+    },
+    {
+      "name": "Aleutian Trench",
+      "lat": 51.0,
+      "lon": -175.0,
+      "expect": ["water", "trench"]
+    },
+    {
+      "name": "Puerto Rico Trench",
+      "lat": 19.77,
+      "lon": -66.93,
+      "expect": ["water", "trench"]
+    },
+    {
+      "name": "Philippine Trench",
+      "lat": 10.4,
+      "lon": 126.7,
+      "expect": ["water", "trench"]
+    },
+    {
+      "name": "Java Trench",
+      "lat": -10.5,
+      "lon": 110.0,
+      "expect": ["water", "trench"]
+    },
+    {
+      "name": "Mid-Atlantic Ridge 30N",
+      "lat": 30.0,
+      "lon": -42.2,
+      "expect": ["water", "ridge"]
+    },
+    {
+      "name": "Mid-Atlantic Ridge equator south",
+      "lat": -10.0,
+      "lon": -13.5,
+      "expect": ["water", "ridge"]
+    },
+    {
+      "name": "Mid-Atlantic Ridge 45N",
+      "lat": 45.0,
+      "lon": -28.0,
+      "expect": ["water", "ridge"]
+    },
+    {
+      "name": "East Pacific Rise 10S",
+      "lat": -10.0,
+      "lon": -110.3,
+      "expect": ["water", "ridge"]
+    },
+    {
+      "name": "East Pacific Rise 30S",
+      "lat": -30.0,
+      "lon": -112.0,
+      "expect": ["water", "ridge"]
+    },
+    {
+      "name": "Southwest Indian Ridge",
+      "lat": -35.5,
+      "lon": 53.0,
+      "expect": ["water", "ridge"]
+    },
+    {
+      "name": "Southeast Indian Ridge",
+      "lat": -50.0,
+      "lon": 120.0,
+      "expect": ["water", "ridge"]
+    },
+    {
+      "name": "Carlsberg Ridge",
+      "lat": 5.0,
+      "lon": 61.5,
+      "expect": ["water", "ridge"]
+    },
+    {
+      "name": "Mauna Loa",
+      "lat": 19.48,
+      "lon": -155.61,
+      "expect": ["hotspot"]
+    },
+    { "name": "Kilauea", "lat": 19.41, "lon": -155.29, "expect": ["hotspot"] },
+    {
+      "name": "Piton de la Fournaise",
+      "lat": -21.24,
+      "lon": 55.71,
+      "expect": ["hotspot"]
+    },
+    {
+      "name": "Galapagos Fernandina",
+      "lat": -0.37,
+      "lon": -91.55,
+      "expect": ["hotspot"]
+    },
+    {
+      "name": "Tenerife Teide",
+      "lat": 28.27,
+      "lon": -16.64,
+      "expect": ["hotspot"]
+    },
+    {
+      "name": "Iceland Hekla",
+      "lat": 63.98,
+      "lon": -19.7,
+      "expect": ["volcanic"]
+    },
+    {
+      "name": "Azores Pico",
+      "lat": 38.47,
+      "lon": -28.4,
+      "expect": ["volcanic"]
+    },
+    {
+      "name": "Mariana Arc Anatahan",
+      "lat": 16.35,
+      "lon": 145.67,
+      "expect": ["volcanic", "not_hotspot"]
+    },
+    {
+      "name": "Tonga Arc Tofua",
+      "lat": -19.75,
+      "lon": -175.07,
+      "expect": ["volcanic", "not_hotspot"]
+    },
+    {
+      "name": "Lesser Antilles Montserrat",
+      "lat": 16.72,
+      "lon": -62.18,
+      "expect": ["volcanic", "not_hotspot"]
+    },
+    {
+      "name": "Aleutians Shishaldin",
+      "lat": 54.76,
+      "lon": -163.97,
+      "expect": ["volcanic", "not_hotspot"]
+    },
+    {
+      "name": "Kurils Sarychev",
+      "lat": 48.09,
+      "lon": 153.2,
+      "expect": ["volcanic", "not_hotspot"]
+    },
+    {
+      "name": "South Sandwich Islands",
+      "lat": -57.78,
+      "lon": -26.45,
+      "expect": ["volcanic", "not_hotspot"]
+    },
+    {
+      "name": "Izu Miyakejima",
+      "lat": 34.08,
+      "lon": 139.53,
+      "expect": ["volcanic", "not_hotspot"]
+    },
+    {
+      "name": "North Sea",
+      "lat": 56.0,
+      "lon": 3.0,
+      "expect": ["water", "shelf"]
+    },
+    {
+      "name": "Laptev Sea shelf",
+      "lat": 75.0,
+      "lon": 125.0,
+      "expect": ["water", "shelf"]
+    },
+    {
+      "name": "Sunda Shelf",
+      "lat": 5.0,
+      "lon": 108.0,
+      "expect": ["water", "shelf"]
+    },
+    {
+      "name": "Patagonian Shelf",
+      "lat": -47.0,
+      "lon": -63.0,
+      "expect": ["water", "shelf"]
+    },
+    {
+      "name": "Yellow Sea",
+      "lat": 35.0,
+      "lon": 123.0,
+      "expect": ["water", "shelf"]
+    },
+    {
+      "name": "Persian Gulf",
+      "lat": 27.0,
+      "lon": 51.0,
+      "expect": ["water", "shallow"]
+    },
+    {
+      "name": "Grand Banks",
+      "lat": 45.0,
+      "lon": -50.5,
+      "expect": ["water", "shelf"]
+    },
+    {
+      "name": "Central Pacific abyss",
+      "lat": 10.0,
+      "lon": -140.0,
+      "expect": ["water", "deep"]
+    },
+    {
+      "name": "Nares Abyssal Plain",
+      "lat": 24.0,
+      "lon": -62.0,
+      "expect": ["water", "deep"]
+    },
+    {
+      "name": "Indian Ocean abyss",
+      "lat": -20.0,
+      "lon": 85.0,
+      "expect": ["water", "deep"]
+    },
+    {
+      "name": "South Pacific abyss",
+      "lat": -40.0,
+      "lon": -135.0,
+      "expect": ["water", "deep"]
+    },
+    {
+      "name": "Argentine Basin",
+      "lat": -45.0,
+      "lon": -45.0,
+      "expect": ["water", "deep"]
+    },
+    {
+      "name": "Mount Baker",
+      "lat": 48.78,
+      "lon": -121.81,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Lassen Peak",
+      "lat": 40.49,
+      "lon": -121.51,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Mount Katmai",
+      "lat": 58.28,
+      "lon": -154.96,
+      "expect": ["land", "volcanic"]
+    },
+    { "name": "Pavlof", "lat": 55.42, "lon": -161.89, "expect": ["volcanic"] },
+    {
+      "name": "Makushin",
+      "lat": 53.89,
+      "lon": -166.92,
+      "expect": ["volcanic"]
+    },
+    {
+      "name": "Colima",
+      "lat": 19.51,
+      "lon": -103.62,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Arenal",
+      "lat": 10.46,
+      "lon": -84.7,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Sangay",
+      "lat": -2.0,
+      "lon": -78.34,
+      "expect": ["land", "volcanic_mountains"]
+    },
+    {
+      "name": "Lascar",
+      "lat": -23.37,
+      "lon": -67.73,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Sakurajima",
+      "lat": 31.58,
+      "lon": 130.66,
+      "expect": ["volcanic"]
+    },
+    {
+      "name": "Mount Aso",
+      "lat": 32.88,
+      "lon": 131.1,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Mount Taranaki",
+      "lat": -39.3,
+      "lon": 174.06,
+      "expect": ["land", "volcanic"]
+    },
+    { "name": "Tambora", "lat": -8.25, "lon": 118.0, "expect": ["volcanic"] },
+    { "name": "Rinjani", "lat": -8.42, "lon": 116.47, "expect": ["volcanic"] },
+    {
+      "name": "Mount Apo",
+      "lat": 6.99,
+      "lon": 125.27,
+      "expect": ["land", "mountains"]
+    },
+    {
+      "name": "Mount Cameroon",
+      "lat": 4.2,
+      "lon": 9.17,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Tibesti Emi Koussi",
+      "lat": 19.79,
+      "lon": 18.55,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Nyiragongo",
+      "lat": -1.52,
+      "lon": 29.25,
+      "expect": ["land", "volcanic"]
+    },
+    {
+      "name": "Vesuvius",
+      "lat": 40.82,
+      "lon": 14.43,
+      "expect": ["land", "volcanic"]
+    },
+    { "name": "Santorini", "lat": 36.4, "lon": 25.4, "expect": ["volcanic"] },
+    {
+      "name": "Vatnajokull",
+      "lat": 64.4,
+      "lon": -16.8,
+      "expect": ["volcanic"]
+    },
+    {
+      "name": "Lake Turkana",
+      "lat": 3.5,
+      "lon": 36.05,
+      "expect": ["land", "rift"]
+    },
+    {
+      "name": "Dead Sea Transform",
+      "lat": 31.5,
+      "lon": 35.5,
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    {
+      "name": "Harz",
+      "lat": 51.8,
+      "lon": 10.6,
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    {
+      "name": "Black Forest",
+      "lat": 48.0,
+      "lon": 8.1,
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    {
+      "name": "Ardennes",
+      "lat": 50.2,
+      "lon": 5.7,
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    {
+      "name": "Sudetes",
+      "lat": 50.7,
+      "lon": 15.7,
+      "expect": ["land", "not_mountain", "not_volcanic"]
+    },
+    {
+      "name": "Massif Central",
+      "lat": 45.5,
+      "lon": 2.8,
+      "expect": ["land", "not_mountain"]
+    },
+    {
+      "name": "Brooks Range",
+      "lat": 68.0,
+      "lon": -152.0,
+      "expect": ["land", "not_lowland"]
+    },
+    {
+      "name": "Verkhoyansk Range",
+      "lat": 66.0,
+      "lon": 130.0,
+      "expect": ["land", "not_lowland", "not_volcanic"]
+    },
+    {
+      "name": "Reykjanes Ridge",
+      "lat": 60.0,
+      "lon": -29.5,
+      "expect": ["water", "ridge"]
+    },
+    {
+      "name": "Juan de Fuca Ridge",
+      "lat": 46.0,
+      "lon": -129.8,
+      "expect": ["water", "ridge"]
+    },
+    {
+      "name": "Galapagos Rift",
+      "lat": 2.0,
+      "lon": -95.0,
+      "expect": ["water", "ridge"]
+    },
+    {
+      "name": "Central Indian Ridge",
+      "lat": -10.0,
+      "lon": 66.5,
+      "expect": ["water", "ridge"]
+    },
+    {
+      "name": "Pacific-Antarctic Ridge",
+      "lat": -60.0,
+      "lon": -150.0,
+      "expect": ["water", "ridge"]
+    },
+    {
+      "name": "Bering Shelf",
+      "lat": 62.0,
+      "lon": -172.0,
+      "expect": ["water", "shelf"]
+    },
+    {
+      "name": "East China Sea",
+      "lat": 29.0,
+      "lon": 125.0,
+      "expect": ["water", "shelf"]
+    },
+    {
+      "name": "Arafura Sea",
+      "lat": -10.0,
+      "lon": 135.0,
+      "expect": ["water", "shelf"]
+    },
+    {
+      "name": "Gulf of Thailand",
+      "lat": 10.0,
+      "lon": 102.0,
+      "expect": ["water", "shelf"]
+    },
+    {
+      "name": "East Siberian Sea",
+      "lat": 73.0,
+      "lon": 160.0,
+      "expect": ["water", "shelf"]
+    },
+    {
+      "name": "Hudson Bay",
+      "lat": 60.0,
+      "lon": -85.0,
+      "expect": ["water", "shelf"]
+    },
+    {
+      "name": "Baltic Sea",
+      "lat": 57.0,
+      "lon": 19.0,
+      "expect": ["water", "shelf"]
+    },
+    {
+      "name": "Tasman Sea",
+      "lat": -40.0,
+      "lon": 160.0,
+      "expect": ["water", "deep"]
+    },
+    {
+      "name": "Philippine Sea",
+      "lat": 20.0,
+      "lon": 135.0,
+      "expect": ["water", "deep"]
+    },
+    {
+      "name": "Canary Basin",
+      "lat": 30.0,
+      "lon": -25.0,
+      "expect": ["water", "deep"]
+    },
+    {
+      "name": "Weddell Sea",
+      "lat": -65.0,
+      "lon": -40.0,
+      "expect": ["water", "deep"]
+    },
+    {
+      "name": "Middle America Trench",
+      "lat": 13.95,
+      "lon": -93.45,
+      "expect": ["water", "trench"]
+    },
+    {
+      "name": "South Sandwich Trench",
+      "lat": -56.0,
+      "lon": -24.6,
+      "expect": ["water", "trench"]
+    },
+    {
+      "name": "Izu-Bonin Trench",
+      "lat": 30.0,
+      "lon": 142.5,
+      "expect": ["water", "trench"]
+    },
+    {
+      "name": "Sumatra Trench",
+      "lat": 0.0,
+      "lon": 96.5,
+      "expect": ["water", "trench"]
+    }
+  ],
+  "areas": [
+    {
+      "name": "Himalaya crest",
+      "path": [
+        [35.2, 74.6],
+        [34.0, 77.0],
+        [31.0, 79.5],
+        [29.5, 82.5],
+        [28.2, 85.5],
+        [27.9, 87.0],
+        [27.8, 89.5],
+        [27.9, 92.0],
+        [28.5, 95.0]
+      ],
+      "filter": "land",
+      "min": { "mountains": 0.7, "collisional": 0.5 },
+      "max": { "volcanic": 0.02, "oceanic_mountains": 0.02 }
+    },
+    {
+      "name": "Himalaya mountains",
+      "path": [
+        [35.2, 74.6],
+        [34.0, 77.0],
+        [31.0, 79.5],
+        [29.5, 82.5],
+        [28.2, 85.5],
+        [27.9, 87.0],
+        [27.8, 89.5],
+        [27.9, 92.0],
+        [28.5, 95.0]
+      ],
+      "filter": "mountains",
+      "max": { "coastal_mountains": 0.02 }
+    },
+    {
+      "name": "Alps crest",
+      "path": [
+        [44.1, 7.0],
+        [45.8, 6.9],
+        [46.0, 7.7],
+        [46.4, 8.9],
+        [46.6, 10.3],
+        [47.0, 11.5],
+        [47.1, 12.7],
+        [47.3, 14.0]
+      ],
+      "filter": "land",
+      "min": { "mountains": 0.6, "collisional": 0.4 },
+      "max": { "volcanic": 0.02 }
+    },
+    {
+      "name": "Caucasus crest",
+      "path": [
+        [43.3, 40.5],
+        [43.2, 42.5],
+        [42.7, 44.5],
+        [42.0, 46.0],
+        [41.4, 48.0]
+      ],
+      "filter": "land",
+      "min": { "mountains": 0.6 },
+      "max": {}
+    },
+    {
+      "name": "Zagros",
+      "path": [
+        [36.5, 45.5],
+        [34.5, 47.0],
+        [32.5, 49.5],
+        [30.5, 51.5],
+        [29.0, 53.0]
+      ],
+      "filter": "land",
+      "min": { "highland_or_mountain": 0.7 },
+      "max": { "volcanic": 0.1 }
+    },
+    {
+      "name": "Tian Shan",
+      "path": [
+        [41.5, 72.0],
+        [42.0, 75.0],
+        [42.2, 78.0],
+        [42.2, 80.2],
+        [43.0, 83.0],
+        [43.5, 86.0]
+      ],
+      "filter": "land",
+      "min": { "mountains": 0.6, "collisional": 0.4 },
+      "max": { "oceanic_mountains": 0.0, "volcanic": 0.02 }
+    },
+    {
+      "name": "Pyrenees crest",
+      "path": [
+        [43.0, -1.3],
+        [42.8, 0.0],
+        [42.6, 0.7],
+        [42.5, 1.8]
+      ],
+      "filter": "land",
+      "min": { "mountains": 0.5 },
+      "max": { "volcanic": 0.0 },
+      "min_cells": 3
+    },
+    {
+      "name": "Atlas",
+      "path": [
+        [30.8, -9.0],
+        [31.1, -7.9],
+        [31.8, -6.0],
+        [32.6, -5.0],
+        [33.2, -4.0]
+      ],
+      "filter": "land",
+      "min": { "highland_or_mountain": 0.6 },
+      "max": { "volcanic": 0.1 }
+    },
+    {
+      "name": "Rockies",
+      "path": [
+        [36.5, -105.5],
+        [39.0, -106.0],
+        [40.3, -105.7],
+        [43.7, -110.7],
+        [45.5, -110.5],
+        [48.7, -113.8],
+        [51.2, -116.0],
+        [53.1, -119.2]
+      ],
+      "filter": "land",
+      "min": { "mountains": 0.5 },
+      "max": { "volcanic_mountains": 0.1, "oceanic_mountains": 0.05 }
+    },
+    {
+      "name": "Sierra Nevada",
+      "path": [
+        [39.3, -120.3],
+        [38.0, -119.5],
+        [36.6, -118.3],
+        [35.8, -118.2]
+      ],
+      "filter": "land",
+      "min": { "mountains": 0.5 },
+      "max": { "volcanic_mountains": 0.3 }
+    },
+    {
+      "name": "Cascade volcanic front",
+      "path": [
+        [49.0, -121.7],
+        [46.85, -121.76],
+        [45.37, -121.7],
+        [44.1, -121.8],
+        [42.9, -122.1],
+        [41.4, -122.2]
+      ],
+      "filter": "land",
+      "min": { "volcanic": 0.6, "mountains": 0.5 }
+    },
+    {
+      "name": "Trans-Mexican Volcanic Belt",
+      "path": [
+        [20.5, -104.0],
+        [19.5, -103.6],
+        [19.3, -100.5],
+        [19.1, -98.6],
+        [19.0, -97.3]
+      ],
+      "filter": "land",
+      "min": { "volcanic": 0.5 }
+    },
+    {
+      "name": "Central America arc",
+      "path": [
+        [14.5, -91.5],
+        [13.8, -89.6],
+        [12.4, -86.9],
+        [10.5, -84.7]
+      ],
+      "filter": "land",
+      "min": { "volcanic": 0.5 }
+    },
+    {
+      "name": "Northern Andes arc",
+      "path": [
+        [4.9, -75.3],
+        [2.3, -76.4],
+        [0.0, -77.8],
+        [-1.5, -78.5],
+        [-2.0, -78.3]
+      ],
+      "filter": "land",
+      "min": { "volcanic": 0.5, "mountains": 0.5 }
+    },
+    {
+      "name": "Central Andes arc",
+      "path": [
+        [-15.8, -71.9],
+        [-18.1, -69.2],
+        [-21.0, -68.2],
+        [-24.7, -68.5],
+        [-27.1, -68.5]
+      ],
+      "filter": "land",
+      "min": { "volcanic": 0.5, "highland_or_mountain": 0.9 }
+    },
+    {
+      "name": "Southern Volcanic Zone",
+      "path": [
+        [-33.6, -70.0],
+        [-36.9, -71.4],
+        [-39.4, -71.9],
+        [-41.1, -72.5],
+        [-43.0, -72.6]
+      ],
+      "filter": "land",
+      "min": { "volcanic": 0.5 }
+    },
+    {
+      "name": "Kamchatka arc",
+      "path": [
+        [51.5, 157.3],
+        [53.3, 158.8],
+        [55.0, 160.0],
+        [56.6, 161.3]
+      ],
+      "filter": "land",
+      "min": { "volcanic": 0.6 }
+    },
+    {
+      "name": "Honshu spine",
+      "path": [
+        [41.5, 140.8],
+        [39.7, 140.9],
+        [38.0, 140.3],
+        [36.4, 138.5],
+        [35.4, 138.7]
+      ],
+      "filter": "land",
+      "min": { "volcanic": 0.4, "not_lowland": 0.7 }
+    },
+    {
+      "name": "Java arc",
+      "path": [
+        [-6.9, 106.7],
+        [-7.3, 109.2],
+        [-7.9, 112.3],
+        [-8.2, 113.9]
+      ],
+      "filter": "land",
+      "min": { "volcanic": 0.5 }
+    },
+    {
+      "name": "Lesser Antilles arc",
+      "path": [
+        [18.0, -63.0],
+        [16.7, -62.2],
+        [15.3, -61.4],
+        [14.0, -61.0],
+        [13.2, -61.2],
+        [12.1, -61.7]
+      ],
+      "filter": "any",
+      "min": { "volcanic": 0.6 },
+      "max": { "hotspot": 0.0 }
+    },
+    {
+      "name": "Aleutian island arc",
+      "path": [
+        [52.0, -176.0],
+        [52.2, -172.0],
+        [53.9, -166.9],
+        [54.8, -163.9]
+      ],
+      "filter": "any",
+      "min": { "volcanic": 0.5 }
+    },
+    {
+      "name": "Izu-Bonin arc",
+      "path": [
+        [34.1, 139.5],
+        [30.5, 140.3],
+        [27.1, 142.2],
+        [24.8, 141.3]
+      ],
+      "filter": "any",
+      "min": { "volcanic": 0.5 }
+    },
+    {
+      "name": "Kuril arc",
+      "path": [
+        [43.8, 145.5],
+        [45.4, 148.8],
+        [47.5, 152.0],
+        [50.2, 155.4]
+      ],
+      "filter": "any",
+      "min": { "volcanic": 0.5 }
+    },
+    {
+      "name": "Tonga arc",
+      "path": [
+        [-15.6, -175.6],
+        [-18.8, -174.6],
+        [-20.5, -175.4],
+        [-22.0, -175.9]
+      ],
+      "filter": "any",
+      "min": { "volcanic": 0.5 }
+    },
+    {
+      "name": "Appalachians crest",
+      "path": [
+        [34.63, -84.19],
+        [35.56, -83.5],
+        [35.76, -82.27],
+        [36.1, -81.8],
+        [36.66, -81.54],
+        [37.5, -79.6],
+        [38.5, -78.4],
+        [39.5, -78.9],
+        [40.5, -78.3],
+        [41.5, -77.0],
+        [42.1, -74.3],
+        [43.3, -73.0],
+        [44.5, -72.8],
+        [44.27, -71.3],
+        [45.9, -68.9]
+      ],
+      "filter": "land",
+      "min": { "not_lowland": 0.85, "highland_or_mountain": 0.3 },
+      "max": { "volcanic": 0.0, "collisional": 0.0 }
+    },
+    {
+      "name": "Urals crest",
+      "path": [
+        [52.6, 58.5],
+        [53.5, 58.4],
+        [54.25, 58.1],
+        [55.3, 59.0],
+        [56.8, 59.6],
+        [58.5, 59.3],
+        [59.6, 59.1],
+        [61.5, 59.3],
+        [63.5, 59.4],
+        [65.0, 60.1]
+      ],
+      "filter": "land",
+      "min": { "not_lowland": 0.8, "highland_or_mountain": 0.25 },
+      "max": { "volcanic": 0.0, "collisional": 0.0 }
+    },
+    {
+      "name": "Southern Appalachians Blue Ridge",
+      "path": [
+        [34.63, -84.19],
+        [35.56, -83.5],
+        [35.76, -82.27],
+        [36.1, -81.8],
+        [36.66, -81.54]
+      ],
+      "filter": "land",
+      "min": { "highland_or_mountain": 0.6 },
+      "max": { "volcanic": 0.0 }
+    },
+    {
+      "name": "White Mountains",
+      "path": [
+        [44.0, -71.9],
+        [44.27, -71.3],
+        [44.6, -71.1]
+      ],
+      "filter": "land",
+      "min": { "highland_or_mountain": 0.5 },
+      "min_cells": 2
+    },
+    {
+      "name": "Southern Urals",
+      "path": [
+        [53.0, 58.6],
+        [54.25, 58.1],
+        [54.8, 58.5]
+      ],
+      "filter": "land",
+      "min": { "highland_or_mountain": 0.5 },
+      "min_cells": 3
+    },
+    {
+      "name": "Northern Urals",
+      "path": [
+        [59.6, 59.1],
+        [61.5, 59.3],
+        [63.5, 59.4],
+        [65.0, 60.1]
+      ],
+      "filter": "land",
+      "min": { "highland_or_mountain": 0.6 }
+    },
+    {
+      "name": "Middle Urals",
+      "path": [
+        [55.3, 59.0],
+        [56.8, 59.6],
+        [58.5, 59.3]
+      ],
+      "filter": "land",
+      "min": { "not_lowland": 0.6 },
+      "max": { "mountains": 0.0 }
+    },
+    {
+      "name": "Great Dividing Range",
+      "path": [
+        [-37.3, 146.5],
+        [-36.4, 148.3],
+        [-33.5, 150.2],
+        [-30.5, 152.0],
+        [-28.3, 152.5]
+      ],
+      "filter": "land",
+      "min": { "not_lowland": 0.7 },
+      "max": { "volcanic": 0.1, "collisional": 0.0 }
+    },
+    {
+      "name": "Scottish Highlands",
+      "box": [56.5, -5.5, 57.6, -3.5],
+      "filter": "land",
+      "min": { "not_lowland": 0.7 },
+      "max": { "volcanic": 0.0 }
+    },
+    {
+      "name": "Scandinavian mountains",
+      "path": [
+        [59.8, 7.5],
+        [61.6, 8.3],
+        [62.5, 9.5],
+        [64.0, 13.0],
+        [66.5, 15.5],
+        [68.3, 18.0]
+      ],
+      "filter": "land",
+      "min": { "highland_or_mountain": 0.7 },
+      "max": { "volcanic": 0.0 }
+    },
+    {
+      "name": "Brazilian Serra do Mar",
+      "path": [
+        [-22.9, -43.9],
+        [-23.3, -45.5],
+        [-24.5, -48.5],
+        [-26.5, -49.3]
+      ],
+      "filter": "land",
+      "min": { "not_lowland": 0.6 },
+      "max": { "volcanic": 0.0 }
+    },
+    {
+      "name": "Drakensberg escarpment",
+      "path": [
+        [-28.7, 29.0],
+        [-29.5, 29.3],
+        [-30.5, 28.3],
+        [-31.5, 27.0]
+      ],
+      "filter": "land",
+      "min": { "not_lowland": 0.8 },
+      "max": { "volcanic": 0.0 }
+    },
+    {
+      "name": "Norway fjord coast",
+      "path": [
+        [59.3, 6.3],
+        [60.4, 6.4],
+        [61.2, 6.2],
+        [62.2, 6.4],
+        [63.3, 8.5],
+        [66.0, 13.5],
+        [67.5, 15.0],
+        [68.5, 16.0],
+        [69.6, 19.0]
+      ],
+      "filter": "mountains",
+      "min": { "coastal_mountains": 0.6 }
+    },
+    {
+      "name": "Patagonian fjord coast",
+      "path": [
+        [-45.0, -73.0],
+        [-48.0, -73.8],
+        [-51.0, -73.5],
+        [-53.5, -72.3]
+      ],
+      "filter": "mountains",
+      "min": { "coastal_mountains": 0.5 }
+    },
+    {
+      "name": "British Columbia Coast Mountains",
+      "path": [
+        [49.8, -123.2],
+        [51.5, -125.5],
+        [53.5, -128.2],
+        [55.5, -129.5]
+      ],
+      "filter": "mountains",
+      "min": { "coastal_mountains": 0.5 }
+    },
+    {
+      "name": "Alaska coast ranges",
+      "path": [
+        [58.5, -136.5],
+        [59.5, -138.5],
+        [60.4, -141.0],
+        [60.9, -145.0]
+      ],
+      "filter": "mountains",
+      "min": { "coastal_mountains": 0.5 }
+    },
+    {
+      "name": "New Zealand Southern Alps",
+      "path": [
+        [-45.0, 167.8],
+        [-44.0, 169.5],
+        [-43.4, 170.4],
+        [-42.7, 171.6]
+      ],
+      "filter": "mountains",
+      "min": { "coastal_mountains": 0.3 }
+    },
+    {
+      "name": "Tibetan Plateau",
+      "box": [31.0, 82.0, 35.0, 92.0],
+      "filter": "land",
+      "min": { "highland_or_mountain": 0.9 },
+      "max": { "lowland": 0.0, "oceanic_mountains": 0.0 }
+    },
+    {
+      "name": "Altiplano",
+      "box": [-20.0, -68.5, -16.5, -66.5],
+      "filter": "land",
+      "min": { "highland_or_mountain": 0.8 }
+    },
+    {
+      "name": "Colorado Plateau",
+      "box": [35.5, -111.5, 38.0, -109.0],
+      "filter": "land",
+      "min": { "not_lowland": 0.9 }
+    },
+    {
+      "name": "Ethiopian Highlands",
+      "box": [9.0, 37.0, 13.0, 39.5],
+      "filter": "land",
+      "min": { "highland_or_mountain": 0.6 }
+    },
+    {
+      "name": "Deccan Plateau",
+      "box": [17.0, 74.5, 20.0, 78.0],
+      "filter": "land",
+      "min": { "not_lowland": 0.7 },
+      "max": { "mountains": 0.1 }
+    },
+    {
+      "name": "Iranian Plateau",
+      "box": [31.0, 53.0, 34.0, 58.0],
+      "filter": "land",
+      "min": { "not_lowland": 0.9 }
+    },
+    {
+      "name": "Antarctic Plateau",
+      "box": [-85.0, 40.0, -78.0, 110.0],
+      "filter": "land",
+      "min": { "highland_or_mountain": 0.9 }
+    },
+    {
+      "name": "Greenland interior",
+      "box": [70.0, -45.0, 76.0, -35.0],
+      "filter": "land",
+      "min": { "highland_or_mountain": 0.9 }
+    },
+    {
+      "name": "Amazon basin",
+      "box": [-6.0, -68.0, -2.0, -56.0],
+      "filter": "land",
+      "min": { "lowland": 0.9 },
+      "max": { "volcanic": 0.0 }
+    },
+    {
+      "name": "West Siberian Plain",
+      "box": [56.0, 66.0, 66.0, 82.0],
+      "filter": "land",
+      "min": { "lowland": 0.9 },
+      "max": { "volcanic": 0.0 }
+    },
+    {
+      "name": "East European Plain",
+      "box": [52.0, 30.0, 58.0, 45.0],
+      "filter": "land",
+      "min": { "lowland": 0.8 },
+      "max": { "volcanic": 0.0, "mountains": 0.0 }
+    },
+    {
+      "name": "North European Plain",
+      "box": [52.0, 6.0, 53.5, 20.0],
+      "filter": "land",
+      "min": { "lowland": 0.85 },
+      "max": { "volcanic": 0.0 }
+    },
+    {
+      "name": "Great Plains",
+      "box": [37.0, -100.0, 45.0, -97.0],
+      "filter": "land",
+      "min": { "not_highland_or_mountain": 0.9 },
+      "max": { "volcanic": 0.0 }
+    },
+    {
+      "name": "Pampas",
+      "box": [-37.0, -64.0, -32.0, -59.0],
+      "filter": "land",
+      "min": { "lowland": 0.9 }
+    },
+    {
+      "name": "Indo-Gangetic Plain",
+      "box": [25.0, 78.0, 27.5, 87.0],
+      "filter": "land",
+      "min": { "lowland": 0.85 }
+    },
+    {
+      "name": "Congo Basin",
+      "box": [-2.0, 17.0, 2.0, 23.0],
+      "filter": "land",
+      "min": { "lowland": 0.8 }
+    },
+    {
+      "name": "Hungarian Plain",
+      "box": [46.2, 19.5, 47.5, 21.5],
+      "filter": "land",
+      "min": { "lowland": 0.8 }
+    },
+    {
+      "name": "North China Plain",
+      "box": [34.5, 114.5, 38.5, 116.5],
+      "filter": "land",
+      "min": { "lowland": 0.85 }
+    },
+    {
+      "name": "Mississippi Embayment",
+      "box": [31.0, -92.0, 36.0, -89.5],
+      "filter": "land",
+      "min": { "lowland": 0.9 }
+    },
+    {
+      "name": "Eastern Rift",
+      "path": [
+        [9.0, 39.9],
+        [7.0, 38.5],
+        [4.5, 36.3],
+        [2.5, 36.0],
+        [0.5, 36.1],
+        [-1.5, 36.2],
+        [-3.5, 35.8]
+      ],
+      "filter": "land",
+      "min": { "rift": 0.4 }
+    },
+    {
+      "name": "Western Rift",
+      "path": [
+        [2.0, 31.0],
+        [-1.5, 29.3],
+        [-3.5, 29.3],
+        [-6.0, 29.6],
+        [-8.5, 31.0],
+        [-10.5, 34.3],
+        [-12.5, 34.5]
+      ],
+      "filter": "land",
+      "min": { "rift": 0.4 }
+    },
+    {
+      "name": "Baikal Rift",
+      "path": [
+        [51.7, 104.0],
+        [52.5, 106.0],
+        [53.5, 108.0],
+        [55.5, 109.5]
+      ],
+      "filter": "land",
+      "min": { "rift": 0.4 }
+    },
+    {
+      "name": "Afar",
+      "path": [
+        [14.5, 40.0],
+        [13.0, 41.0],
+        [11.5, 41.5]
+      ],
+      "filter": "land",
+      "min": { "rift": 0.4 },
+      "min_cells": 3
+    },
+    {
+      "name": "Mid-Atlantic Ridge",
+      "path": [
+        [60, -29.5],
+        [52, -30],
+        [45, -28],
+        [38, -30.5],
+        [30, -42.2],
+        [22, -45],
+        [12, -44],
+        [0, -17],
+        [-10, -13.5],
+        [-20, -12.5],
+        [-30, -13.5],
+        [-40, -16.5],
+        [-50, -7]
+      ],
+      "filter": "water",
+      "min": { "ridge": 0.5 }
+    },
+    {
+      "name": "East Pacific Rise",
+      "path": [
+        [20, -108.5],
+        [10, -104.3],
+        [0, -102.5],
+        [-10, -110.3],
+        [-20, -113.3],
+        [-30, -112],
+        [-40, -111.5]
+      ],
+      "filter": "water",
+      "min": { "ridge": 0.5 }
+    },
+    {
+      "name": "Mariana Trench",
+      "path": [
+        [11.5, 142.45],
+        [12.5, 145.45],
+        [13.5, 146.65],
+        [14.5, 147.25],
+        [15.5, 147.75],
+        [17.5, 147.85],
+        [19.5, 147.55],
+        [21.5, 146.75],
+        [22.5, 145.75],
+        [23.5, 144.75],
+        [24.5, 143.55]
+      ],
+      "filter": "water",
+      "min": { "trench": 0.4 }
+    },
+    {
+      "name": "Tonga-Kermadec Trench",
+      "path": [
+        [-16, -172.8],
+        [-20, -173.3],
+        [-24, -175],
+        [-28, -176.5],
+        [-32, -177.3]
+      ],
+      "filter": "water",
+      "min": { "trench": 0.4 }
+    },
+    {
+      "name": "Peru-Chile Trench",
+      "path": [
+        [-5, -81.8],
+        [-12, -78.2],
+        [-20, -71.2],
+        [-25, -71.2],
+        [-32, -72.3],
+        [-38, -74.2]
+      ],
+      "filter": "water",
+      "min": { "trench": 0.4 }
+    },
+    {
+      "name": "Japan-Kuril Trench",
+      "path": [
+        [34, 142],
+        [38, 143.9],
+        [41, 144.5],
+        [44, 150.7],
+        [48, 155],
+        [52, 160]
+      ],
+      "filter": "water",
+      "min": { "trench": 0.4 }
+    },
+    {
+      "name": "Aleutian Trench",
+      "path": [
+        [51, -178],
+        [51.2, -172],
+        [52.5, -165],
+        [54, -158],
+        [56, -152]
+      ],
+      "filter": "water",
+      "min": { "trench": 0.4 }
+    },
+    {
+      "name": "North Sea shelf",
+      "box": [53.5, 1.0, 57.5, 7.0],
+      "filter": "water",
+      "min": { "shelf": 0.9 }
+    },
+    {
+      "name": "Sunda Shelf",
+      "box": [2.0, 105.0, 8.0, 112.0],
+      "filter": "water",
+      "min": { "shallow": 0.8 }
+    },
+    {
+      "name": "Siberian shelf",
+      "box": [72.0, 110.0, 76.0, 150.0],
+      "filter": "water",
+      "min": { "shelf": 0.9 }
+    },
+    {
+      "name": "Patagonian Shelf",
+      "box": [-50.0, -66.0, -42.0, -62.0],
+      "filter": "water",
+      "min": { "shelf": 0.9 }
+    },
+    {
+      "name": "Yellow Sea",
+      "box": [33.0, 121.0, 38.0, 124.0],
+      "filter": "water",
+      "min": { "shelf": 0.9 }
+    },
+    {
+      "name": "Central Pacific abyss",
+      "box": [5.0, -150.0, 15.0, -130.0],
+      "filter": "water",
+      "min": { "deep": 0.8 }
+    },
+    {
+      "name": "South Atlantic abyss",
+      "box": [-35.0, -30.0, -25.0, -20.0],
+      "filter": "water",
+      "min": { "deep": 0.7 }
+    },
+    {
+      "name": "Great Barrier Reef",
+      "path": [
+        [-11.0, 143.6],
+        [-14.0, 145.2],
+        [-16.5, 146.2],
+        [-19.0, 148.5],
+        [-21.5, 151.5],
+        [-23.4, 152.3]
+      ],
+      "filter": "water",
+      "min": { "reef": 0.4 }
+    },
+    {
+      "name": "Maldives",
+      "box": [-0.7, 72.6, 7.1, 73.8],
+      "filter": "any",
+      "min": { "reef_or_island": 0.3 }
+    },
+    {
+      "name": "Red Sea reef coast",
+      "path": [
+        [27.0, 34.0],
+        [24.0, 36.0],
+        [21.0, 37.3],
+        [18.0, 38.8]
+      ],
+      "filter": "water",
+      "min": { "reef": 0.2 }
+    },
+    {
+      "name": "Belize Barrier Reef",
+      "path": [
+        [18.3, -87.8],
+        [17.3, -88.0],
+        [16.2, -88.2]
+      ],
+      "filter": "water",
+      "min": { "reef": 0.3 },
+      "min_cells": 2
+    },
+    {
+      "name": "Hawaii",
+      "box": [18.9, -156.1, 20.3, -154.8],
+      "filter": "any",
+      "min": { "hotspot": 0.3 }
+    },
+    {
+      "name": "Iceland",
+      "box": [63.5, -22.5, 66.3, -13.5],
+      "filter": "land",
+      "min": { "volcanic": 0.8 }
+    },
+    {
+      "name": "Canary Islands",
+      "box": [27.6, -18.2, 29.3, -13.4],
+      "filter": "any",
+      "min": { "volcanic": 0.2 }
+    }
+  ]
+}

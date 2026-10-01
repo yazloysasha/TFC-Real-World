@@ -2,8 +2,8 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 
 import net.dries007.tfc.world.region.AnnotateBaseLandHeight;
 import net.dries007.tfc.world.region.RegionGenerator;
-import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.world.region.calculator.AltitudeCalculator;
+import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,16 +14,24 @@ public class AnnotateBaseLandHeightMixin {
 
   /**
    * Keep vanilla {@code distanceToLand} BFS (atolls need it), then overwrite
-   * land height / ocean depth from the altitude map.
+   * land height from the tectonic land relief.
    */
   @Inject(method = "apply", at = @At("TAIL"))
-  private void tfcrealworld$overrideBaseLandHeight(
+  private void tfcrealworld$baseLandHeightFromRelief(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    if (!TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
+    final TectonicsMap map = TectonicsRegistry.get(context.generator());
+    if (map == null) {
       return;
     }
-    new AltitudeCalculator().calculate(context.region, context.generator());
+    for (final var point : context.region.points()) {
+      if (point != null && point.land()) {
+        point.baseLandHeight = map
+          .classAtGrid(point.x, point.z)
+          .land()
+          .baseLandHeight();
+      }
+    }
   }
 }

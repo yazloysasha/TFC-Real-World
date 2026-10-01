@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.noise.OpenSimplex2D;
-import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.Units;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 
 /**
- * Map hotspot centers for intensity noise and age painting (no setLand).
+ * Hotspot centers from {@code tectonics.png} hotspot classes, used for
+ * intensity noise and age painting (no setLand).
  */
 public final class MapHotspotLayout {
 
@@ -20,7 +20,7 @@ public final class MapHotspotLayout {
   private static final double BIOME_RADIUS_SCALE = 1.05;
   private static final double HALF_GRID_BLOCK = Units.GRID_WIDTH_IN_BLOCK * 0.5;
 
-  private final PNGHotspotsNoise noise;
+  private final TectonicsMap noise;
   private final Center[] centers;
   private final List<Center>[] centersByAge;
   private final double blocksPerPixelX;
@@ -28,7 +28,7 @@ public final class MapHotspotLayout {
 
   @SuppressWarnings("unchecked")
   private MapHotspotLayout(
-    PNGHotspotsNoise noise,
+    TectonicsMap noise,
     Center[] centers,
     double blocksPerPixelX,
     double blocksPerPixelZ
@@ -46,10 +46,7 @@ public final class MapHotspotLayout {
     }
   }
 
-  public static MapHotspotLayout create(
-    PNGHotspotsNoise noise,
-    long worldSeed
-  ) {
+  public static MapHotspotLayout create(TectonicsMap noise, long worldSeed) {
     final double blocksPerPixelX =
       (2.0 * noise.getTileRadiusBlocksX()) / noise.getWidth();
     final double blocksPerPixelZ =
@@ -162,7 +159,7 @@ public final class MapHotspotLayout {
   }
 
   private static List<Center> scanCenters(
-    PNGHotspotsNoise noise,
+    TectonicsMap noise,
     double blocksPerPixelX,
     double blocksPerPixelZ
   ) {
@@ -177,9 +174,7 @@ public final class MapHotspotLayout {
         if (visited[index]) {
           continue;
         }
-        final byte age = PNGHotspotsNoise.ageFromBrightness(
-          noise.getBrightness(x, z)
-        );
+        final byte age = noise.hotspotAgeAtPixel(x, z);
         if (age == 0) {
           visited[index] = true;
           continue;
@@ -203,7 +198,7 @@ public final class MapHotspotLayout {
   }
 
   private static Center floodFill(
-    PNGHotspotsNoise noise,
+    TectonicsMap noise,
     boolean[] visited,
     int startX,
     int startZ,
@@ -269,7 +264,7 @@ public final class MapHotspotLayout {
   }
 
   private static void enqueueIfSameAge(
-    PNGHotspotsNoise noise,
+    TectonicsMap noise,
     boolean[] visited,
     ArrayDeque<Integer> queue,
     int x,
@@ -285,7 +280,7 @@ public final class MapHotspotLayout {
     if (visited[index]) {
       return;
     }
-    if (PNGHotspotsNoise.ageFromBrightness(noise.getBrightness(x, z)) != age) {
+    if (noise.hotspotAgeAtPixel(x, z) != age) {
       return;
     }
     visited[index] = true;

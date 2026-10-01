@@ -1,22 +1,52 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
-import java.util.Iterator;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.AnnotateClimate;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.dries007.tfc.world.region.Units;
-import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+/**
+ * Climate maps already hold the final climate (coasts, currents and rainfall
+ * seasonality included), so with them every point takes the map values as is,
+ * without vanilla's ocean and cell-edge biases. Procedural climate only gets
+ * the temperature band shifted by the configured scale.
+ */
 @Mixin(value = AnnotateClimate.class, remap = false)
 public class AnnotateClimateMixin {
+
+  @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
+  private void tfcrealworld$climateFromMap(
+    RegionGenerator.Context context,
+    CallbackInfo ci
+  ) {
+    if (!TFCRealWorldConfig.CLIMATE_FROM_MAP.get()) {
+      return;
+    }
+    final RegionGenerator generator = context.generator();
+    for (final Region.Point point : context.region.points()) {
+      final int x = point.x;
+      final int z = point.z;
+      point.temperature = (float) generator.temperatureNoise.noise(x, z);
+      point.rainfall = Math.clamp(
+        (float) generator.rainfallNoise.noise(x, z),
+        0,
+        500
+      );
+      point.rainfallVariance = Math.clamp(
+        (float) generator.rainfallVarianceNoise.noise(x, z),
+        -1,
+        1
+      );
+    }
+    ci.cancel();
+  }
 
   @Redirect(
     method = "apply",
@@ -26,136 +56,17 @@ public class AnnotateClimateMixin {
       ordinal = 0
     )
   )
-  private double tfcrealworld$transformZForTemperature(
+  private double tfcrealworld$shiftTemperatureBand(
     Noise2D instance,
     double x,
     double z
   ) {
-    if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
-      return instance.noise(x, z);
-    }
-
-    int temperatureScale = TFCRealWorldConfig.TEMPERATURE_SCALE.get();
+    final int temperatureScale = TFCRealWorldConfig.TEMPERATURE_SCALE.get();
     if (temperatureScale > 0) {
-      double offsetInGrid =
+      final double offsetInGrid =
         (double) (-temperatureScale / 2) / Units.GRID_WIDTH_IN_BLOCK;
       return instance.noise(x, z - offsetInGrid);
     }
-
     return instance.noise(x, z);
-  }
-
-  @Inject(
-    method = "apply",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/minecraft/util/Mth;lerp(FFF)F",
-      ordinal = 0
-    ),
-    locals = LocalCapture.CAPTURE_FAILHARD,
-    cancellable = false
-  )
-  private void tfcrealworld$overrideRainfallVariance(
-    RegionGenerator.Context context,
-    CallbackInfo ci,
-    Iterator<?> iterator,
-    Region.Point point,
-    int x,
-    int z,
-    float bias
-  ) {
-    if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
-      point.rainfallVariance = (float) context
-        .generator()
-        .rainfallVarianceNoise.noise(x, z);
-    }
-  }
-
-  /**
-   * Köppen map: skip bias/ocean temp lerp (return end).
-   */
-  @Redirect(
-    method = "apply",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/minecraft/util/Mth;lerp(FFF)F",
-      ordinal = 1
-    )
-  )
-  private float tfcrealworld$preserveTemperatureBiasTarget(
-    float delta,
-    float start,
-    float end
-  ) {
-    if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
-      return end;
-    }
-    return Mth.lerp(delta, start, end);
-  }
-
-  /**
-   * Köppen map: skip oceanic tempDelta lerp (return start).
-   */
-  @Redirect(
-    method = "apply",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/minecraft/util/Mth;lerp(FFF)F",
-      ordinal = 2
-    )
-  )
-  private float tfcrealworld$preserveTemperatureFromMap(
-    float delta,
-    float start,
-    float end
-  ) {
-    if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
-      return start;
-    }
-    return Mth.lerp(delta, start, end);
-  }
-
-  /**
-   * Map rainfall: skip bias/ocean rainfall lerp (return start).
-   */
-  @Redirect(
-    method = "apply",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/minecraft/util/Mth;lerp(FFF)F",
-      ordinal = 3
-    )
-  )
-  private float tfcrealworld$preserveRainfallFromMap(
-    float delta,
-    float start,
-    float end
-  ) {
-    if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
-      return start;
-    }
-    return Mth.lerp(delta, start, end);
-  }
-
-  /**
-   * Map rainVar: skip edge rainfallVariance lerp (return start).
-   */
-  @Redirect(
-    method = "apply",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/minecraft/util/Mth;lerp(FFF)F",
-      ordinal = 4
-    )
-  )
-  private float tfcrealworld$preserveRainfallVarianceFromMap(
-    float delta,
-    float start,
-    float end
-  ) {
-    if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
-      return start;
-    }
-    return Mth.lerp(delta, start, end);
   }
 }

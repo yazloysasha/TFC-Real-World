@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(AnnotateDistanceToWestCoast.class)
+@Mixin(value = AnnotateDistanceToWestCoast.class, remap = false)
 public class AnnotateDistanceToWestCoastMixin {
 
   @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
@@ -18,8 +18,7 @@ public class AnnotateDistanceToWestCoastMixin {
     CallbackInfo ci
   ) {
     if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
-      new WestCoastDistanceCalculator()
-        .calculate(context.region, context.generator());
+      WestCoastDistanceCalculator.apply(context.region);
       ci.cancel();
     }
   }

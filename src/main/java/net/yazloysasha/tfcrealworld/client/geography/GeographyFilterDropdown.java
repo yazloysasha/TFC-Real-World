@@ -45,10 +45,6 @@ public final class GeographyFilterDropdown {
     this.allWaypoints = allWaypoints;
   }
 
-  public int openIndex() {
-    return openDropdown;
-  }
-
   public boolean isOpen() {
     return openDropdown >= 0;
   }
@@ -113,8 +109,8 @@ public final class GeographyFilterDropdown {
     boolean showScroll = maxScroll > 0;
     int textRightPad = showScroll
       ? (GeographyUI.SCROLLBAR_PAD_LEFT +
-        GeographyUI.SCROLLBAR_W +
-        GeographyUI.SCROLLBAR_PAD_RIGHT)
+          GeographyUI.SCROLLBAR_W +
+          GeographyUI.SCROLLBAR_PAD_RIGHT)
       : 3;
 
     graphics.fill(boxX, boxY, boxX + boxW, boxY + boxH, 0xF0080C10);
@@ -122,12 +118,11 @@ public final class GeographyFilterDropdown {
     graphics.enableScissor(boxX + 1, boxY, boxX + boxW - 1, boxY + boxH);
 
     @Nullable
-    String selectedRef =
-      switch (openDropdown) {
-        case 0 -> GeographySessionState.filterContinent;
-        case 1 -> GeographySessionState.filterRegion;
-        default -> GeographySessionState.filterSubregion;
-      };
+    String selectedRef = switch (openDropdown) {
+      case 0 -> GeographySessionState.filterContinent;
+      case 1 -> GeographySessionState.filterRegion;
+      default -> GeographySessionState.filterSubregion;
+    };
 
     int y = boxY;
     for (
@@ -166,10 +161,10 @@ public final class GeographyFilterDropdown {
         boxW -
         36 -
         (showScroll
-            ? GeographyUI.SCROLLBAR_W +
+          ? GeographyUI.SCROLLBAR_W +
             GeographyUI.SCROLLBAR_PAD_LEFT +
             GeographyUI.SCROLLBAR_PAD_RIGHT
-            : 0);
+          : 0);
       String left = ellipsize(
         font,
         Component.literal(row.left()),
@@ -206,8 +201,8 @@ public final class GeographyFilterDropdown {
       int thumbY =
         trackY +
         (maxScroll == 0
-            ? 0
-            : Math.round(thumbTravel * (dropdownScroll / (float) maxScroll)));
+          ? 0
+          : Math.round(thumbTravel * (dropdownScroll / (float) maxScroll)));
       graphics.fill(
         trackX,
         thumbY,
@@ -334,7 +329,9 @@ public final class GeographyFilterDropdown {
   private int dropdownChipX() {
     return openDropdown == 0
       ? GeographyUI.CHIP_X0
-      : openDropdown == 1 ? GeographyUI.CHIP_X1 : GeographyUI.CHIP_X2;
+      : openDropdown == 1
+        ? GeographyUI.CHIP_X1
+        : GeographyUI.CHIP_X2;
   }
 
   private int dropdownBoxX(int leftPos) {
@@ -401,12 +398,11 @@ public final class GeographyFilterDropdown {
         countsFor(which, null)
       )
     );
-    Map<String, GeographyNode> pool =
-      switch (which) {
-        case 0 -> continents;
-        case 1 -> regions;
-        default -> subregions;
-      };
+    Map<String, GeographyNode> pool = switch (which) {
+      case 0 -> continents;
+      case 1 -> regions;
+      default -> subregions;
+    };
     List<GeographyNode> sorted = pool
       .values()
       .stream()
@@ -436,9 +432,10 @@ public final class GeographyFilterDropdown {
             continue;
           }
         } else if (GeographySessionState.filterContinent != null) {
-          GeographyNode region = node.parentRef() != null
-            ? GeographyManager.get(node.parentRef())
-            : null;
+          GeographyNode region =
+            node.parentRef() != null
+              ? GeographyManager.get(node.parentRef())
+              : null;
           if (
             region == null ||
             region.parentRef() == null ||
@@ -461,15 +458,14 @@ public final class GeographyFilterDropdown {
     int n = 0;
     int m = 0;
     for (PlottedWaypoint w : allWaypoints) {
-      boolean match =
-        switch (which) {
-          case 0 -> ref == null ||
-          (w.continentRef() != null && w.continentRef().equals(ref));
-          case 1 -> ref == null ||
-          (w.regionRef() != null && w.regionRef().equals(ref));
-          default -> ref == null ||
-          (w.subregionRef() != null && w.subregionRef().equals(ref));
-        };
+      boolean match = switch (which) {
+        case 0 -> ref == null ||
+        (w.continentRef() != null && w.continentRef().equals(ref));
+        case 1 -> ref == null ||
+        (w.regionRef() != null && w.regionRef().equals(ref));
+        default -> ref == null ||
+        (w.subregionRef() != null && w.subregionRef().equals(ref));
+      };
       if (!match) {
         continue;
       }

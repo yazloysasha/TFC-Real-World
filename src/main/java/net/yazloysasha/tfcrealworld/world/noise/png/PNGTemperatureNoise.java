@@ -1,6 +1,13 @@
 package net.yazloysasha.tfcrealworld.world.noise.png;
 
-public class PNGTemperatureNoise extends BasePNGNoise {
+/**
+ * {@code temperature.png}: TFC annual mean temperature, black = -25 °C,
+ * white = 30 °C.
+ */
+public class PNGTemperatureNoise extends BaseClimatePNGNoise {
+
+  public static final double MIN = -25.0;
+  public static final double MAX = 30.0;
 
   public PNGTemperatureNoise(int horizontalScale, int verticalScale) {
     super(
@@ -13,10 +20,6 @@ public class PNGTemperatureNoise extends BasePNGNoise {
 
   @Override
   protected double transformBrightness(double brightness) {
-    return brightness;
-  }
-
-  public double getGrayscaleValue(double x, double z) {
-    return sampleBrightnessAtWorld(x, z);
+    return MIN + (brightness / 255.0) * (MAX - MIN);
   }
 }

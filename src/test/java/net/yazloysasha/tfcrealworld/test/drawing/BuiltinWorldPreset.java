@@ -164,9 +164,9 @@ public final class BuiltinWorldPreset {
       .build();
 
   private static final Map<Rock, Boolean> ROCK_SET_KARST = ImmutableMap.<
-    Rock,
-    Boolean
-  >builder()
+      Rock,
+      Boolean
+    >builder()
     .put(GRANITE, Boolean.FALSE)
     .put(DIORITE, Boolean.FALSE)
     .put(GABBRO, Boolean.FALSE)
@@ -191,9 +191,9 @@ public final class BuiltinWorldPreset {
     .build();
 
   private static final Map<Rock, Boolean> ROCK_SET_MAFIC = ImmutableMap.<
-    Rock,
-    Boolean
-  >builder()
+      Rock,
+      Boolean
+    >builder()
     .put(GRANITE, Boolean.FALSE)
     .put(DIORITE, Boolean.FALSE)
     .put(GABBRO, Boolean.TRUE)

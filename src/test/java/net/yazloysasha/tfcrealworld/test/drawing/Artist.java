@@ -66,8 +66,12 @@ public abstract class Artist<T, A extends Artist<T, A>> {
     );
   }
 
-  protected int width = 1000, height = 1000;
-  protected int minX = 0, minY = 0, maxX = width, maxY = height;
+  protected int width = 1000,
+    height = 1000;
+  protected int minX = 0,
+    minY = 0,
+    maxX = width,
+    maxY = height;
 
   protected Artist() {}
 
@@ -260,10 +264,8 @@ public abstract class Artist<T, A extends Artist<T, A>> {
     };
     public static final DoubleFunction<Color> RANDOM_NEAREST_INT = value -> {
       int x = (int) Math.round(value);
-      return Artist.Colors.COLORS[Math.floorMod(
-        x,
-        Artist.Colors.COLORS.length
-      )];
+      return Artist.Colors
+        .COLORS[Math.floorMod(x, Artist.Colors.COLORS.length)];
     };
     public static final Function<Integer, Color> RANDOM_INT = value ->
       Colors.COLORS[Math.floorMod(value, Colors.COLORS.length)];
@@ -311,8 +313,8 @@ public abstract class Artist<T, A extends Artist<T, A>> {
         .toArray(DoubleFunction[]::new);
       return value ->
         parts[(int) Math.floor(value * parts.length)].apply(
-            (value * parts.length) % 1
-          );
+          (value * parts.length) % 1
+        );
     }
   }
 
@@ -395,10 +397,10 @@ public abstract class Artist<T, A extends Artist<T, A>> {
                 sourceMinMax[1]
               );
               distribution[clamp(
-                  (int) (scaled * histogramBins),
-                  0,
-                  histogramBins - 1
-                )]++;
+                (int) (scaled * histogramBins),
+                0,
+                histogramBins - 1
+              )]++;
             }
           })
           .map(

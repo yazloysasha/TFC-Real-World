@@ -16,21 +16,31 @@ public class GlobalOceanDistanceCache extends BaseGlobalDistanceCache {
   }
 
   public static void initialize(PNGContinentNoise continentNoise) {
-    instance = initializeInstance(
-      instance,
-      new GlobalOceanDistanceCache(continentNoise),
-      "ocean distance"
-    );
+    if (instance == null || !instance.isBuiltFrom(continentNoise)) {
+      instance = new GlobalOceanDistanceCache(continentNoise);
+    }
   }
 
   public static void clear() {
-    clearInstance(instance, "ocean distance");
     instance = null;
   }
 
   @Nullable
   public static GlobalOceanDistanceCache getInstance() {
     return instance;
+  }
+
+  /**
+   * {@link #getDistance} is measured in continent-map pixels (rivers are tuned
+   * to that). Vanilla biome rules compare against region grid cells, where
+   * land next to the sea is {@code 0} and every further ring adds one.
+   */
+  public static byte toGridCells(byte distance) {
+    final GlobalOceanDistanceCache cache = instance;
+    if (distance <= 0 || cache == null || cache.scaleX <= 0) {
+      return distance;
+    }
+    return (byte) Math.floor(distance / cache.scaleX);
   }
 
   public byte getDistance(int gridX, int gridZ, boolean isLand) {

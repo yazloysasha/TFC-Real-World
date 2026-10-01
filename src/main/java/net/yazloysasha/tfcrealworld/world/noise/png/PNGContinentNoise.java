@@ -2,7 +2,7 @@ package net.yazloysasha.tfcrealworld.world.noise.png;
 
 /**
  * {@code continent.png} grayscale bands (hotspot-style discrete centers).
- * Continuous shelf / trench continuum still comes from {@link PNGAltitudeNoise}.
+ * Ocean depth and relief come from {@code tectonics.png}, not from this map.
  *
  * <pre>
  * Band centers (uint8), step 64, land clamped to white:
@@ -66,14 +66,6 @@ public class PNGContinentNoise extends BasePNGNoise {
    */
   public static final double THRESHOLD_SALT_LAKE_MAX =
     (BAND_SALT_LAKE + BAND_LAND) / 2.0;
-
-  /**
-   * Legacy name: values above this were "land" on binary maps. Kept as
-   * documentation alias for the pre-band land/ocean cut (~127). Prefer
-   * {@link #bandFromBrightness} / {@link #THRESHOLD_SALT_LAKE_MAX} for band logic.
-   * Non-ocean membership is {@code band != OCEAN} (island/lake/land).
-   */
-  public static final int LAND_MASK_THRESHOLD = 127;
 
   /** Hard land sample in the 0–10 continent-noise scale. */
   public static final double LAND_NOISE = 10.0;
@@ -147,20 +139,42 @@ public class PNGContinentNoise extends BasePNGNoise {
     return bandAtPixel(x, z) != ContinentBand.OCEAN;
   }
 
+  /**
+   * Whether any non-ocean pixel lies inside region cell {@code [x, x + 1) ×
+   * [z, z + 1)}; catches islands smaller than a cell.
+   */
+  public boolean anyNonOceanInCell(int gridX, int gridZ) {
+    return anyBandInCell(gridX, gridZ, false);
+  }
+
+  /** Whether any island-band pixel lies inside region cell (x, z). */
+  public boolean anyIslandInCell(int gridX, int gridZ) {
+    return anyBandInCell(gridX, gridZ, true);
+  }
+
+  private boolean anyBandInCell(int gridX, int gridZ, boolean islandOnly) {
+    final double[] min = tileToImage(gridX, gridZ);
+    final double[] max = tileToImage(gridX + 1, gridZ + 1);
+    final int x0 = (int) Math.floor(Math.min(min[0], max[0]));
+    final int x1 = (int) Math.ceil(Math.max(min[0], max[0]));
+    final int z0 = (int) Math.floor(Math.min(min[1], max[1]));
+    final int z1 = (int) Math.ceil(Math.max(min[1], max[1]));
+    for (int z = Math.max(0, z0); z < Math.min(height, z1); z++) {
+      for (int x = Math.max(0, x0); x < Math.min(width, x1); x++) {
+        final ContinentBand band = bandAtPixel(x, z);
+        if (
+          islandOnly
+            ? band == ContinentBand.ISLAND
+            : band != ContinentBand.OCEAN
+        ) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   public boolean isOceanAtGridHard(double gridX, double gridZ) {
     return bandAtGridHard(gridX, gridZ) == ContinentBand.OCEAN;
-  }
-
-  public boolean isLakeAtGridHard(double gridX, double gridZ) {
-    final ContinentBand band = bandAtGridHard(gridX, gridZ);
-    return band == ContinentBand.LAKE || band == ContinentBand.SALT_LAKE;
-  }
-
-  public boolean isSaltLakeAtGridHard(double gridX, double gridZ) {
-    return bandAtGridHard(gridX, gridZ) == ContinentBand.SALT_LAKE;
-  }
-
-  public boolean isIslandAtGridHard(double gridX, double gridZ) {
-    return bandAtGridHard(gridX, gridZ) == ContinentBand.ISLAND;
   }
 }

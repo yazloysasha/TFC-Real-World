@@ -1,10 +1,8 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
-import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.river.River;
-import org.jetbrains.annotations.Nullable;
+import net.yazloysasha.tfcrealworld.world.region.DryLand;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -14,19 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
   remap = false
 )
 public class RegionRiverGeneratorMixin {
-
-  @Unique
-  private static final float NO_RIVERS_RAINFALL_THRESHOLD_MM = 75f;
-
-  private static boolean tfcrealworld$excludesRiversByRainfall(
-    @Nullable Region.Point point
-  ) {
-    return (
-      point != null &&
-      point.land() &&
-      point.rainfall < NO_RIVERS_RAINFALL_THRESHOLD_MM
-    );
-  }
 
   @Inject(method = "isLegal", at = @At("HEAD"), cancellable = true)
   private void tfcrealworld$blockDryRiverSteps(
@@ -39,8 +24,9 @@ public class RegionRiverGeneratorMixin {
     final int gridX = (int) Math.round(vertex.x());
     final int gridZ = (int) Math.round(vertex.y());
     if (
-      tfcrealworld$excludesRiversByRainfall(
-        self.tfcrealworld$getRegion().at(gridX, gridZ)
+      DryLand.isDrierThan(
+        self.tfcrealworld$getRegion().at(gridX, gridZ),
+        DryLand.RIVER_COURSE_MIN_RAINFALL
       )
     ) {
       cir.setReturnValue(false);

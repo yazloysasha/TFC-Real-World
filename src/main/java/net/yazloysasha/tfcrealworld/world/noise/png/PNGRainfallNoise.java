@@ -1,6 +1,11 @@
 package net.yazloysasha.tfcrealworld.world.noise.png;
 
-public class PNGRainfallNoise extends BasePNGNoise {
+/**
+ * {@code rainfall.png}: TFC annual rainfall, black = 0 mm, white = 500 mm.
+ */
+public class PNGRainfallNoise extends BaseClimatePNGNoise {
+
+  public static final double MAX = 500.0;
 
   public PNGRainfallNoise(int horizontalScale, int verticalScale) {
     super(
@@ -13,10 +18,6 @@ public class PNGRainfallNoise extends BasePNGNoise {
 
   @Override
   protected double transformBrightness(double brightness) {
-    return brightness;
-  }
-
-  public double getGrayscaleValue(double x, double z) {
-    return sampleBrightnessAtWorld(x, z);
+    return (brightness / 255.0) * MAX;
   }
 }
