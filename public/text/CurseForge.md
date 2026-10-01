@@ -1,39 +1,22 @@
 # TFC: Real World 🌍
 
-<p align="center"><b>🎉 Since v3.1.1 compatible with <a href="https://www.curseforge.com/minecraft/modpacks/terrafirmagreg-modern">TerraFirmaGreg Modern</a> on Minecraft 1.20.1!</b></p>
-
-<p align="center">Since v2.1.2/v3.1.2/v4.1.2 also compatible with <a href="https://www.curseforge.com/minecraft/mc-mods/auroras">Auroras</a>, <a href="https://www.curseforge.com/minecraft/mc-mods/tfc-caelum">TFC Caelum</a> and <a href="https://www.curseforge.com/minecraft/mc-mods/firmaciv">Firma: Civilization</a>.</p>
-
-<p align="center">Since v3.1.3 compatible with <a href="https://www.curseforge.com/minecraft/mc-mods/terrafirmaearth">TerraFirmaEarth</a> on Minecraft 1.20.1.</p>
-
 ![Earth Maps](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
 
 ### Explore a World You Know
 
-**TerraFirmaCraft** meets **real-world geography**! 🌄
+**TerraFirmaCraft** on the real Earth. 🌄
 
-Ever dreamed of surviving and thriving in a world that feels truly familiar? A world where vast oceans separate iconic continents, majestic mountain ranges scrape the sky, and sweeping deserts give way to frozen tundras - all governed by TFC's deep and authentic survival systems?
+**TFC: Real World** tells TFC what kind of place every spot of our planet is - coast or open sea, lake, river, mountain belt, volcano, desert or rainforest - and TFC builds its own biomes there. All of TFC's mechanics, resources and challenges stay exactly as they are; only the _stage_ changes. 🗺️
 
-**TFC: Real World** makes that dream a reality. ✨
+#### 🧭 What You Get:
 
-This mod reshapes your TFC world using the very layout of our own planet. Experience the ultimate exploration adventure on a grand, believable scale, where every journey feels like charting undiscovered territory on Earth itself - complete with TerraFirmaCraft's signature realism and progression. ⛏️🌱
+- **Real Rivers & Lakes:** The Nile, the Amazon, the Volga and thousands of kilometres of other great rivers run where they really do, wide where they are mighty, and fan out into deltas at the sea. Baikal, Victoria and the Great Lakes are there too, fresh or salt as in reality. 🏞️
+- **Real Islands & Seas:** Coastlines that mirror Earth's own, islands from Britain and Japan down to small ocean islets, and atolls where coral reefs actually grow. 🏝️
+- **Real Mountains & Volcanoes:** The Himalayas, the Andes and the Alps rise where plates collide, rift valleys cut East Africa, and Hawaii, Iceland and the Ring of Fire get their volcanoes. 🏔️🌋
+- **Real Climates:** From equatorial rainforests through savannas and deserts to taiga and the ice sheets of Greenland and Antarctica - each with TFC's authentic seasons. ☀️❄️
+- **A Map and a Goal:** A geography map in your inventory shows the whole world, where you are on it, and hundreds of real cities and landmarks. Every place you reach is marked as discovered and grants its own advancement. 🧭🏆
 
----
-
-### What This Mod Does
-
-**TFC: Real World** transforms the foundation of your world - not the gameplay. All the beloved TFC mechanics, resources, and challenges remain perfectly intact. What changes is the _stage_ on which you play. 🗺️
-
-Instead of random generation, the world's continents, mountains, oceans, and climate zones are guided by real-world data. This creates a uniquely immersive and logical geography for your survival saga.
-
-#### 🧭 Key Experiences & New Rules:
-
-- **Sail Across Familiar Waters:** Navigate vast oceans and coastlines that mirror Earth's great seas. ⛵
-- **Conquer Legendary Peaks:** Trek through towering mountain ranges and descend into deep oceanic trenches. 🏔️
-- **Traverse Global Climates:** Journey from lush equatorial rainforests, through arid deserts and vast grasslands, into temperate woodlands, all the way to the frozen poles - each with TFC's authentic seasonal effects. ☀️❄️
-- **Discover Logical Landscapes:** Find volcanoes where tectonic forces would place them, and experience climate transitions that make geographical sense. 🌋
-
-**The core TFC experience is unchanged.** I simply use map data to tell the game _where_ to place these incredible landscapes, making every world feel coherent, vast, and ripe for exploration.
+Continents, lakes, tectonics, volcanoes, rivers and climate can each be switched back to TFC's own generation.
 
 ---
 
@@ -45,10 +28,14 @@ Instead of random generation, the world's continents, mountains, oceans, and cli
 The mod works by replacing TFC's default noise generators with data sampled from customizable map images. This integrates seamlessly, letting TFC's rich procedural detail fill in the local terrain.<br>
 
 <ul>
-<li><b>Continent &amp; Ocean Layout:</b> A world map shapes landmasses, islands, oceans and lakes.</li>
-<li><b>Tectonics &amp; Relief:</b> A tectonics map tells TFC what kind of place every region is: lowland or mountain, rift or collision belt, volcanic arc or hotspot. TFC then picks the biome itself, so the Himalayas become collisional mountains, East Africa gets rift valleys and Hawaii gets shield volcanoes.</li>
+<li><b>Continents, Islands &amp; Lakes:</b> A world map shapes landmasses, oceans, islands down to single islets, and fresh and salt lakes.</li>
+<li><b>Tectonics &amp; Relief:</b> A tectonics map tells TFC what kind of place every region is: lowland or mountain, rift or collision belt, volcanic arc, coral reef sea. TFC then picks the biome itself, so the Himalayas become collisional mountains, East Africa gets rift valleys and fjord coasts get oceanic mountains.</li>
+<li><b>Volcanoes:</b> Hotspot shield volcanoes stand at their real locations, from active to ancient.</li>
+<li><b>Rivers:</b> The real river network of the profile, with widths from real discharge and deltas from real delta data. TFC carves, bends and floods them as its own rivers.</li>
 <li><b>Climate System:</b> Temperature, rainfall and rainfall-seasonality maps give every place its real climate zone (tropical, arid, temperate, continental, polar), which TFC's existing systems use to create biomes.</li>
-<li><b>Non-Intrusive:</b> No new blocks, items, or mobs. Uses Mixins to only redirect worldgen rules.</li>
+<li><b>Smooth Snow Line:</b> Snow and ice follow the climate block by block instead of chunk by chunk.</li>
+<li><b>Geography Map &amp; Advancements:</b> A new inventory tab shows the world map with your position and the profile's waypoints, filtered by continent, region and subregion. Coming close to a waypoint discovers it and grants its advancement.</li>
+<li><b>Non-Intrusive:</b> No new blocks, items, or mobs. Uses Mixins to feed TFC's own world generation with map data.</li>
 <li><b>Enhanced Canyon Biomes:</b> Optional config to make canyon biomes purely erosional, removing volcanic features (1.21.1 only).</li>
 </ul>
 
@@ -276,6 +263,14 @@ A river is a chain of edges that share vertices, running from source to drain. K
 </ol>
 
 </div>
+
+---
+
+### 🤝 Compatibility
+
+- [TerraFirmaGreg Modern](https://www.curseforge.com/minecraft/modpacks/terrafirmagreg-modern) on Minecraft 1.20.1, since v3.1.1.
+- [Auroras](https://www.curseforge.com/minecraft/mc-mods/auroras), [TFC Caelum](https://www.curseforge.com/minecraft/mc-mods/tfc-caelum) and [Firma: Civilization](https://www.curseforge.com/minecraft/mc-mods/firmaciv), since v2.1.2 / v3.1.2 / v4.1.2.
+- [TerraFirmaEarth](https://www.curseforge.com/minecraft/mc-mods/terrafirmaearth) on Minecraft 1.20.1, since v3.1.3.
 
 ---
 
