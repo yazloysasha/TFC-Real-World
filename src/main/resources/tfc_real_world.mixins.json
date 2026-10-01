@@ -35,6 +35,7 @@
   ],
   "client": [
     "client.advancement.DisplayInfoMixin",
+    "client.language.ClientLanguageMixin",
     "client.auroras.AHelpersMixin",
     "client.auroras.AuroraRendererMixin",
     "client.screen.CreateTFCWorldScreenMixin",

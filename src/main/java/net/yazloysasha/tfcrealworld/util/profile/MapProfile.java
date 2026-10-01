@@ -40,8 +40,8 @@ public record MapProfile(
     new ThreadLocal<>();
 
   private static final Integer DEFAULT_INDEX = Integer.MAX_VALUE;
-  private static final double DEFAULT_SPAWN_CENTER_LONGITUDE = 12.4964;
-  private static final double DEFAULT_SPAWN_CENTER_LATITUDE = 41.9028;
+  private static final double DEFAULT_SPAWN_CENTER_LONGITUDE = 12.51133;
+  private static final double DEFAULT_SPAWN_CENTER_LATITUDE = 41.89193;
   private static final int DEFAULT_HORIZONTAL_SCALE =
     TFCRealWorldConfig.DEFAULT_SCALE * 2;
   private static final int DEFAULT_VERTICAL_SCALE =
@@ -171,8 +171,8 @@ public record MapProfile(
         : DEFAULT_NORTH_EDGE_LATITUDE,
       json.has("map_projection")
         ? MapProjection.valueOf(
-          json.get("map_projection").getAsString().toUpperCase()
-        )
+            json.get("map_projection").getAsString().toUpperCase()
+          )
         : DEFAULT_MAP_PROJECTION,
       langMap,
       Collections.unmodifiableList(waypoints)
@@ -252,9 +252,8 @@ public record MapProfile(
       return namespace + ":" + name;
     }
 
-    String langKey = languageCode != null
-      ? languageCode.toLowerCase()
-      : "en_us";
+    String langKey =
+      languageCode != null ? languageCode.toLowerCase() : "en_us";
     return lang.getOrDefault(
       langKey,
       lang.getOrDefault("en_us", namespace + ":" + name)

@@ -1,0 +1,50 @@
+{
+  "parent": "default:subregion/west_siberia",
+  "title_lang": {
+    "de_de": "Tomsk",
+    "en_us": "Tomsk",
+    "es_es": "Tomsk",
+    "ja_jp": "トムスク",
+    "ko_kr": "톰스크",
+    "pl_pl": "Tomsk",
+    "pt_br": "Tomsk",
+    "ru_ru": "Томск",
+    "tr_tr": "Tomsk",
+    "uk_ua": "Томськ",
+    "zh_cn": "托木斯克",
+    "zh_hk": "托木斯克",
+    "zh_tw": "托木斯克"
+  },
+  "subtitle_lang": {
+    "de_de": "Geburtsort des Mod-Autors",
+    "en_us": "Birthplace of the mod author",
+    "es_es": "Lugar de nacimiento del autor del mod",
+    "ja_jp": "MOD作者の生まれ故郷",
+    "ko_kr": "모드 제작자의 출생지",
+    "pl_pl": "Miejsce urodzenia autora moda",
+    "pt_br": "Local de nascimento do autor do mod",
+    "ru_ru": "Здесь родился автор мода",
+    "tr_tr": "Mod yazarının doğum yeri",
+    "uk_ua": "Тут народився автор мода",
+    "zh_cn": "模组作者的出生地",
+    "zh_hk": "模組作者的出生地",
+    "zh_tw": "模組作者的出生地"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Stadt, in der der Mod-Autor geboren wurde",
+    "en_us": "Visit the city where the mod author was born",
+    "es_es": "Visita la ciudad donde nació el autor del mod",
+    "ja_jp": "MOD作者が生まれた街を訪れよう",
+    "ko_kr": "모드 제작자가 태어난 도시를 방문하세요",
+    "pl_pl": "Odwiedź miasto, w którym urodził się autor moda",
+    "pt_br": "Visite a cidade onde nasceu o autor do mod",
+    "ru_ru": "Посетите город, где родился автор мода",
+    "tr_tr": "Mod yazarının doğduğu şehri ziyaret edin",
+    "uk_ua": "Відвідайте місто, де народився автор мода",
+    "zh_cn": "访问模组作者出生的城市",
+    "zh_hk": "遊覽模組作者出生的城市",
+    "zh_tw": "造訪模組作者出生的城市"
+  },
+  "longitude": 84.98216,
+  "latitude": 56.50049
+}

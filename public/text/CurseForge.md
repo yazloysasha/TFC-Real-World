@@ -179,8 +179,8 @@ Each map profile requires a <code>settings.json</code> file that defines the pro
 <b>Spawn Settings:</b><br>
 
 <ul>
-<li><b>Spawn Center Longitude</b> (Double, default: <code>12.4964</code>): Geographic longitude for the default spawn center (Rome, Italy).</li>
-<li><b>Spawn Center Latitude</b> (Double, default: <code>41.9028</code>): Geographic latitude for the default spawn center (Rome, Italy).</li>
+<li><b>Spawn Center Longitude</b> (Double, default: <code>12.51133</code>): Geographic longitude for the default spawn center (Rome, Italy).</li>
+<li><b>Spawn Center Latitude</b> (Double, default: <code>41.89193</code>): Geographic latitude for the default spawn center (Rome, Italy).</li>
 </ul>
 
 <b>Scaling Settings:</b><br>

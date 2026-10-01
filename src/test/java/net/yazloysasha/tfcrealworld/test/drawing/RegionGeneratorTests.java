@@ -48,9 +48,9 @@ public class RegionGeneratorTests implements TestSetup {
   );
 
   private static final double[][] CITIES_GEOGRAPHIC_COORDS = {
-    { 12.4964, 41.9028 },
-    { -77.0369, 38.9072 },
-    { 38.7225, 14.1211 },
+    { 12.51133, 41.89193 },
+    { -77.03637, 38.89511 },
+    { 38.74689, 9.02497 },
   };
 
   final DoubleFunction<Color> blue = Artist.Colors.linearGradient(
@@ -123,10 +123,8 @@ public class RegionGeneratorTests implements TestSetup {
 
     final Map<KoppenClimateClassification, Integer> koppenCounts =
       new EnumMap<>(KoppenClimateClassification.class);
-    for (KoppenClimateClassification climate : KoppenClimateClassification.values()) koppenCounts.put(
-      climate,
-      0
-    );
+    for (KoppenClimateClassification climate : KoppenClimateClassification.values())
+      koppenCounts.put(climate, 0);
 
     final Map<Integer, Integer> biomeCounts = new HashMap<>();
 
@@ -136,22 +134,20 @@ public class RegionGeneratorTests implements TestSetup {
       centerX - radius + dx,
       centerZ - radius + dz,
       (task, region) -> {
-        for (DrawnTask drawnTask : taskParent.getOrDefault(
-          task,
-          List.of()
-        )) for (Region.Point point : region.points()) {
-          final int pointX = point.x - centerX + radius;
-          final int pointZ = point.z - centerZ + radius;
-          if (pointX >= 0 && pointX < size && pointZ >= 0 && pointZ < size) {
-            taskData[(pointX + size * pointZ) * taskIndex +
+        for (DrawnTask drawnTask : taskParent.getOrDefault(task, List.of()))
+          for (Region.Point point : region.points()) {
+            final int pointX = point.x - centerX + radius;
+            final int pointZ = point.z - centerZ + radius;
+            if (pointX >= 0 && pointX < size && pointZ >= 0 && pointZ < size) {
+              taskData[(pointX + size * pointZ) * taskIndex +
               taskOffset[drawnTask.ordinal()]] = taskColor(
-              drawnTask,
-              region,
-              point.x,
-              point.z
-            ).getRGB();
+                drawnTask,
+                region,
+                point.x,
+                point.z
+              ).getRGB();
+            }
           }
-        }
       }
     );
 
@@ -165,13 +161,10 @@ public class RegionGeneratorTests implements TestSetup {
       biomeCounts
     );
 
-    for (DrawnTask task : tasksToDraw) Draw.draw(
-      taskName(name, task),
-      size,
-      size,
-      (x, z) ->
+    for (DrawnTask task : tasksToDraw)
+      Draw.draw(taskName(name, task), size, size, (x, z) ->
         taskData[(x + size * z) * taskIndex + taskOffset[task.ordinal()]]
-    );
+      );
 
     logKoppenStatistics(koppenCounts);
     logBiomeStatistics(biomeCounts);
@@ -183,8 +176,10 @@ public class RegionGeneratorTests implements TestSetup {
   ) {
     // Unused for now until I figure out a better way to hook it into drawing that doesn't explode memory usage
     return (xi, zi) -> {
-      final int x = (int) xi, z = (int) zi;
-      final float xf = (float) xi, zf = (float) zi;
+      final int x = (int) xi,
+        z = (int) zi;
+      final float xf = (float) xi,
+        zf = (float) zi;
       final Region region = generator.getOrCreateRegion(x, z);
       final Region.Point point = generator.getOrCreateRegionPoint(x, z);
 
@@ -193,7 +188,8 @@ public class RegionGeneratorTests implements TestSetup {
         for (RiverEdge edge : generator
           .getOrCreatePartitionPoint(x, z)
           .rivers()) {
-          if (edge.fractal().intersect(xf, zf, 0.1f)) { // Use a slightly larger distance than is typical, so we draw it more visibly
+          if (edge.fractal().intersect(xf, zf, 0.1f)) {
+            // Use a slightly larger distance than is typical, so we draw it more visibly
             return new Color(100, 210, 250);
           }
         }
@@ -204,10 +200,10 @@ public class RegionGeneratorTests implements TestSetup {
 
   private String taskName(String name, DrawnTask task) {
     return "region%s_%02d_%s".formatted(
-        name,
-        task.ordinal(),
-        task.name().toLowerCase(Locale.ROOT)
-      );
+      name,
+      task.ordinal(),
+      task.name().toLowerCase(Locale.ROOT)
+    );
   }
 
   private Color taskColor(DrawnTask task, Region region, int x, int y) {
@@ -237,14 +233,18 @@ public class RegionGeneratorTests implements TestSetup {
         ? hotspot(point.hotSpotAge)
         : point.land()
           ? green.apply(
-            Mth.clampedMap(point.discreteBiomeAltitude(), 0, 3, 0, 1)
-          )
+              Mth.clampedMap(point.discreteBiomeAltitude(), 0, 3, 0, 1)
+            )
           : continentColor(point);
       case ANNOTATE_BOUNDARY_TYPES -> point.distanceToEdge < 2
-        ? point.divergence > 0 ? Color.MAGENTA : Color.RED
+        ? point.divergence > 0
+          ? Color.MAGENTA
+          : Color.RED
         : point.land()
           ? green.apply(0.5 * point.divergence + 0.5)
-          : point.divergence > 0 ? Color.BLUE : Color.ORANGE;
+          : point.divergence > 0
+            ? Color.BLUE
+            : Color.ORANGE;
       case TEMPERATURE -> temperatureGradient(
         point,
         point.temperature,
@@ -265,13 +265,13 @@ public class RegionGeneratorTests implements TestSetup {
       );
       case KOPPEN, KOPPEN_AFTER_RIVERS -> point.land()
         ? koppenClimateColor(
-          KoppenClimateClassification.classify(
-            point.temperature,
-            point.rainfall,
-            point.rainfallVariance,
-            isNorthernHemisphere(point.z)
+            KoppenClimateClassification.classify(
+              point.temperature,
+              point.rainfall,
+              point.rainfallVariance,
+              isNorthernHemisphere(point.z)
+            )
           )
-        )
         : continentColor(point);
       case CHOOSE_ROCKS -> {
         final double value = new Random(point.rock >> 2).nextDouble();
@@ -304,8 +304,8 @@ public class RegionGeneratorTests implements TestSetup {
       case ANNOTATE_GLACIAL_BIOMES -> glaciatedBiomeColor(point.biome);
       case ANNOTATE_TECTONIC_BIOMES -> tectonicBiomeColor(point.biome);
       case KAOLINITE_CAN_SPAWN -> point.temperature > 18f &&
-        point.rainfall > 300 &&
-        point.land()
+      point.rainfall > 300 &&
+      point.land()
         ? point.biome == HIGHLANDS ||
           point.biome == PLATEAU ||
           point.biome == OLD_MOUNTAINS ||
@@ -581,9 +581,8 @@ public class RegionGeneratorTests implements TestSetup {
     for (KoppenClimateClassification climate : KoppenClimateClassification.values()) {
       final int count = koppenCounts.get(climate);
       if (count == 0) continue;
-      final double percentage = totalLandCells > 0
-        ? ((count * 100.0) / totalLandCells)
-        : 0.0;
+      final double percentage =
+        totalLandCells > 0 ? ((count * 100.0) / totalLandCells) : 0.0;
       LOGGER.info(
         "  {}: {} cells ({})",
         climate,
@@ -612,9 +611,8 @@ public class RegionGeneratorTests implements TestSetup {
       .forEach(entry -> {
         final int biome = entry.getKey();
         final int count = entry.getValue();
-        final double percentage = totalBiomeCells > 0
-          ? ((count * 100.0) / totalBiomeCells)
-          : 0.0;
+        final double percentage =
+          totalBiomeCells > 0 ? ((count * 100.0) / totalBiomeCells) : 0.0;
         LOGGER.info(
           "  {}: {} cells ({})",
           getBiomeName(biome),
@@ -738,8 +736,8 @@ public class RegionGeneratorTests implements TestSetup {
     float max
   ) {
     return (point.land() ? temperature : blue).apply(
-        Mth.clampedMap(value, min, max, 0f, 0.999f)
-      );
+      Mth.clampedMap(value, min, max, 0f, 0.999f)
+    );
   }
 
   private Color oceanOutlineTemperatureGradient(
@@ -749,8 +747,8 @@ public class RegionGeneratorTests implements TestSetup {
     float max
   ) {
     return (point.shore() ? green : temperature).apply(
-        Mth.clampedMap(value, min, max, 0f, 0.999f)
-      );
+      Mth.clampedMap(value, min, max, 0f, 0.999f)
+    );
   }
 
   // Default biome color scheme, Karst Biomes invisible

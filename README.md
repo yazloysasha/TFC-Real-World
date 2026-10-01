@@ -173,8 +173,8 @@ Each map profile requires a `settings.json` file that defines the profile's conf
 
 **Spawn Settings:**
 
-- **Spawn Center Longitude** (Double, default: `12.4964`): Geographic longitude for the default spawn center (Rome, Italy).
-- **Spawn Center Latitude** (Double, default: `41.9028`): Geographic latitude for the default spawn center (Rome, Italy).
+- **Spawn Center Longitude** (Double, default: `12.51133`): Geographic longitude for the default spawn center (Rome, Italy).
+- **Spawn Center Latitude** (Double, default: `41.89193`): Geographic latitude for the default spawn center (Rome, Italy).
 
 **Scaling Settings:**
 
