@@ -8,17 +8,17 @@
 
 **The whole planet, block by block, with TerraFirmaCraft's survival on top.** 🌄
 
-Sail down the Nile to its delta. Winter on the shore of Baikal. Climb from the Ganges plain into the Himalayas, or cross the Pacific from atoll to atoll until Hawaii's volcanoes rise from the sea. Every coast, river and mountain range is where you know it should be - and everything you love about TFC is still there, untouched. 🗺️
+Sail down the Nile to its delta. Paddle up the Amazon through the rainforest. Cross the Sahara, climb into the Himalayas, winter on the shore of Baikal, or hop from atoll to atoll across the Pacific until Hawaii's volcanoes rise from the sea. Every coast, river and mountain range is where you know it should be - and everything you love about TFC is still there, untouched. 🗺️
 
 #### 🧭 What Awaits You:
 
-- **Real Rivers & Lakes:** The Nile, the Amazon, the Volga and thousands of kilometres of other great rivers run where they really do, wide where they are mighty, and fan out into deltas at the sea. Baikal, Victoria and the Great Lakes hold fresh water; the Dead Sea and the Great Salt Lake are salt, as in reality. 🏞️
-- **A Detailed Coastline & Real Islands:** Bays, peninsulas, fjords and inland seas drawn as on a real map, islands from Britain and Japan down to small ocean islets, and atolls where coral reefs actually grow. 🏝️
-- **Real Mountains & Volcanoes:** The Himalayas, the Andes and the Alps rise where plates collide, rift valleys cut East Africa, and Hawaii, Iceland and the Ring of Fire get their volcanoes. 🏔️🌋
-- **Real Climates:** From equatorial rainforests through savannas and deserts to taiga and the ice sheets of Greenland and Antarctica - each with TFC's authentic seasons. ☀️❄️
-- **Start Wherever You Like:** Type in a latitude and longitude and begin your survival in your home town, at the foot of Everest or on a Pacific island. 📍
+- **Real Rivers & Lakes:** The Mississippi, the Volga, the Yangtze and thousands of kilometres of other great rivers run where they really do, wide where they are mighty, and fan out into deltas at the sea. Victoria and the Great Lakes hold fresh water; the Dead Sea and the Great Salt Lake are salt, as in reality. 🏞️
+- **A Detailed Coastline & Real Islands:** The fjords of Norway, the boot of Italy, the thousand islands of Indonesia - bays, peninsulas and inland seas drawn as on a real map, islands from Britain and Japan down to small ocean islets, and atolls where coral reefs actually grow. 🏝️
+- **Real Mountains & Volcanoes:** The Andes and the Alps rise where plates collide, rift valleys open where they pull apart, and Iceland and the Ring of Fire get their volcanoes. 🏔️🌋
+- **Real Climates:** From the jungles of the Congo through the savannas and the Gobi to the Siberian taiga and the ice of Antarctica - each with TFC's authentic seasons. ☀️❄️
+- **Start Wherever You Like:** Type in a latitude and longitude and begin your survival in your home town, at the foot of Kilimanjaro or on a Caribbean island. 📍
 - **True to Size:** An equal-area map keeps every land its real size - Greenland is not bigger than Africa - on a world 80,000 by 40,000 blocks across, and you can make it larger or smaller. 📐
-- **Conquer the Whole Planet:** 400+ real cities and settlements, from national capitals to remote island villages and polar stations, are waiting on the geography map in your inventory, each with its own advancement. Reach Paris, Cairo, Tokyo, Honolulu, Cape Town... Can you set foot on every one of them? 🧭🏆
+- **Conquer the Whole Planet:** 400+ real cities and settlements, from national capitals to remote island villages and polar stations, are waiting on the geography map in your inventory, each with its own advancement. Reach Paris, Cairo, Tokyo, Canberra, Cape Town... Can you set foot on every one of them? 🧭🏆
 - **Or Bring Your Own World:** Play the whole Earth, the Old World or the New World alone - or drop in your own maps and play on any planet you can draw. 🪐
 
 **It is still TFC.** The mod only tells TerraFirmaCraft what kind of place every spot on Earth is; TFC builds the biomes, the rocks and the seasons itself. Prefer TFC's random generation for some part of the world? Continents, lakes, tectonics, volcanoes, rivers and climate each have their own switch on the world creation screen and in the config.
