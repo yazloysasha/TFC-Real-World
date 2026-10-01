@@ -1,6 +1,6 @@
 # TFC: Real World 🌍
 
-**🎉 The Ultra-Realistic Update is here! Real rivers, lakes and islands, a detailed coastline, and a world map with 400+ waypoints and advancements since v4.2.0 on Minecraft 1.21.1** (older Minecraft versions will get it later).
+**🎉 The Ultra-Realistic Update is here!** Real rivers, lakes and islands, a detailed coastline, and a world map with 400+ waypoints and advancements since v4.2.0 on Minecraft 1.21.1 (older Minecraft versions will get it later).
 
 ![Earth Maps](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
 
@@ -12,7 +12,7 @@ Sail down the Nile to its delta. Winter on the shore of Baikal. Climb from the G
 
 #### 🧭 What Awaits You:
 
-- **Real Rivers & Lakes:** The Nile, the Amazon, the Volga and thousands of kilometres of other great rivers run where they really do, wide where they are mighty, and fan out into deltas at the sea. Baikal, Victoria and the Great Lakes are there too, fresh or salt as in reality. 🏞️
+- **Real Rivers & Lakes:** The Nile, the Amazon, the Volga and thousands of kilometres of other great rivers run where they really do, wide where they are mighty, and fan out into deltas at the sea. Baikal, Victoria and the Great Lakes hold fresh water; the Dead Sea and the Great Salt Lake are salt, as in reality. 🏞️
 - **A Detailed Coastline & Real Islands:** Bays, peninsulas, fjords and inland seas drawn as on a real map, islands from Britain and Japan down to small ocean islets, and atolls where coral reefs actually grow. 🏝️
 - **Real Mountains & Volcanoes:** The Himalayas, the Andes and the Alps rise where plates collide, rift valleys cut East Africa, and Hawaii, Iceland and the Ring of Fire get their volcanoes. 🏔️🌋
 - **Real Climates:** From equatorial rainforests through savannas and deserts to taiga and the ice sheets of Greenland and Antarctica - each with TFC's authentic seasons. ☀️❄️
