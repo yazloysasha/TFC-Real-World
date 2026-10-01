@@ -1,6 +1,6 @@
 # TFC: Real World 🌍
 
-**🎉 The Ultra-Realistic Update is here! Real rivers, lakes and islands and a detailed coastline since v4.2.0 on Minecraft 1.21.1** (older Minecraft versions will get it later).
+**🎉 The Ultra-Realistic Update is here! Real rivers, lakes and islands, a detailed coastline, and a world map with 400+ waypoints and advancements since v4.2.0 on Minecraft 1.21.1** (older Minecraft versions will get it later).
 
 ![Earth Maps](public/img/collage.png)
 
@@ -16,9 +16,9 @@ Sail down the Nile to its delta. Winter on the shore of Baikal. Climb from the G
 - **A Detailed Coastline & Real Islands:** Bays, peninsulas, fjords and inland seas drawn as on a real map, islands from Britain and Japan down to small ocean islets, and atolls where coral reefs actually grow. 🏝️
 - **Real Mountains & Volcanoes:** The Himalayas, the Andes and the Alps rise where plates collide, rift valleys cut East Africa, and Hawaii, Iceland and the Ring of Fire get their volcanoes. 🏔️🌋
 - **Real Climates:** From equatorial rainforests through savannas and deserts to taiga and the ice sheets of Greenland and Antarctica - each with TFC's authentic seasons. ☀️❄️
-- **Conquer the Whole Planet:** 400 real cities and landmarks are waiting on the geography map in your inventory, each with its own advancement. Reach Paris, Cairo, Tokyo, Honolulu, Cape Town... Can you set foot on every one of them? 🧭🏆
+- **Conquer the Whole Planet:** 400+ real cities and landmarks are waiting on the geography map in your inventory, each with its own advancement. Reach Paris, Cairo, Tokyo, Honolulu, Cape Town... Can you set foot on every one of them? 🧭🏆
 
-**It is still TFC.** The mod only tells TerraFirmaCraft what kind of place every spot on Earth is; TFC builds the biomes, the rocks and the seasons itself. Continents, lakes, tectonics, volcanoes, rivers and climate can each be switched back to TFC's own generation.
+**It is still TFC.** The mod only tells TerraFirmaCraft what kind of place every spot on Earth is; TFC builds the biomes, the rocks and the seasons itself. Prefer TFC's random generation for some part of the world? Continents, lakes, tectonics, volcanoes, rivers and climate each have their own switch on the world creation screen and in the config.
 
 ---
 
