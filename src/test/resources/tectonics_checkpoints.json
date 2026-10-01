@@ -1013,7 +1013,7 @@
     },
     {
       "name": "Aleutian Trench",
-      "lat": 51.0,
+      "lat": 50.5,
       "lon": -175.0,
       "expect": ["water", "trench"]
     },

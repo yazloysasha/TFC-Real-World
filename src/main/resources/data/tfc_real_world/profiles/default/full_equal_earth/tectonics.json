@@ -31,6 +31,7 @@
   { "boundary": "divergent", "water": "shelf" },
   { "boundary": "divergent", "water": "shelf" },
   { "boundary": "divergent", "water": "shelf", "volcanism": "arc" },
+  { "boundary": "divergent", "water": "shelf", "volcanism": "arc" },
   { "boundary": "divergent", "water": "shelf", "volcanism": "rift" },
   { "boundary": "divergent", "water": "ridge" },
   { "boundary": "divergent", "water": "ridge", "volcanism": "arc" },
@@ -86,7 +87,6 @@
   { "boundary": "transform", "water": "shelf" },
   { "boundary": "transform" },
   { "boundary": "transform", "volcanism": "rift" },
-  { "boundary": "transform", "volcanism": "intraplate" },
   { "boundary": "transform", "land": "upland", "water": "shelf" },
   {
     "boundary": "transform",
@@ -117,7 +117,6 @@
   { "water": "shelf", "hotspot": 1 },
   { "water": "shelf", "hotspot": 1 },
   { "hotspot": 1 },
-  { "volcanism": "rift", "hotspot": 1 },
   { "volcanism": "intraplate", "hotspot": 1 },
   { "land": "upland", "water": "shelf", "volcanism": "rift", "hotspot": 1 },
   {
@@ -133,8 +132,8 @@
     "hotspot": 1
   },
   { "water": "shelf", "hotspot": 2 },
+  { "water": "shelf", "volcanism": "rift", "hotspot": 2 },
   { "water": "shelf", "volcanism": "intraplate", "hotspot": 2 },
-  { "volcanism": "rift", "hotspot": 2 },
   { "land": "upland", "water": "shelf", "volcanism": "rift", "hotspot": 2 },
   { "land": "highland", "water": "shelf", "volcanism": "rift", "hotspot": 2 },
   { "land": "mountain", "water": "shelf", "volcanism": "arc", "hotspot": 2 },
@@ -145,6 +144,7 @@
     "volcanism": "rift",
     "hotspot": 2
   },
+  { "water": "shelf", "volcanism": "rift", "hotspot": 3 },
   { "water": "shelf", "volcanism": "intraplate", "hotspot": 3 },
   { "volcanism": "intraplate", "hotspot": 3 },
   { "land": "highland", "water": "shelf", "volcanism": "rift", "hotspot": 3 },
@@ -163,7 +163,6 @@
   { "water": "shelf", "volcanism": "rift", "hotspot": 4 },
   { "water": "shelf", "volcanism": "intraplate", "hotspot": 4 },
   { "hotspot": 4 },
-  { "volcanism": "rift", "hotspot": 4 },
   { "volcanism": "intraplate", "hotspot": 4 },
   { "land": "upland", "water": "shelf", "hotspot": 4 },
   { "land": "upland", "water": "shelf", "volcanism": "rift", "hotspot": 4 },
@@ -311,8 +310,8 @@
   { "water": "shelf", "volcanism": "arc", "atolls": 1 },
   { "water": "shelf", "volcanism": "rift", "atolls": 1 },
   { "water": "shelf", "volcanism": "intraplate", "atolls": 1 },
-  { "water": "ridge", "atolls": 1 },
   { "water": "ridge", "volcanism": "arc", "atolls": 1 },
+  { "water": "ridge", "volcanism": "rift", "atolls": 1 },
   { "atolls": 1 },
   { "volcanism": "arc", "atolls": 1 },
   { "volcanism": "rift", "atolls": 1 },
@@ -328,6 +327,7 @@
     "atolls": 1
   },
   { "boundary": "divergent", "water": "reef", "atolls": 1 },
+  { "boundary": "divergent", "water": "shelf", "atolls": 1 },
   { "boundary": "divergent", "water": "ridge", "atolls": 1 },
   {
     "boundary": "divergent",
@@ -348,11 +348,24 @@
     "atolls": 1
   },
   { "boundary": "transform", "water": "reef", "atolls": 1 },
+  {
+    "boundary": "transform",
+    "water": "shelf",
+    "volcanism": "rift",
+    "atolls": 1
+  },
   { "boundary": "transform", "atolls": 1 },
   { "boundary": "transform", "volcanism": "arc", "atolls": 1 },
+  { "boundary": "transform", "volcanism": "rift", "atolls": 1 },
   { "water": "reef", "atolls": 1, "hotspot": 1 },
   { "volcanism": "rift", "atolls": 1, "hotspot": 1 },
-  { "volcanism": "rift", "atolls": 1, "hotspot": 2 },
+  {
+    "boundary": "divergent",
+    "water": "ridge",
+    "volcanism": "rift",
+    "atolls": 1,
+    "hotspot": 1
+  },
   {
     "boundary": "divergent",
     "water": "ridge",
@@ -360,7 +373,13 @@
     "atolls": 1,
     "hotspot": 2
   },
-  { "volcanism": "rift", "atolls": 1, "hotspot": 3 },
+  {
+    "boundary": "divergent",
+    "water": "ridge",
+    "volcanism": "rift",
+    "atolls": 1,
+    "hotspot": 3
+  },
   { "water": "reef", "volcanism": "intraplate", "atolls": 1, "hotspot": 4 },
   { "atolls": 1, "hotspot": 4 },
   { "volcanism": "arc", "atolls": 1, "hotspot": 4 },
