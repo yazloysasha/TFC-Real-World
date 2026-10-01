@@ -42,21 +42,15 @@ public class PNGContinentNoise extends BasePNGNoise {
   /** Painted land center (white; classic binary land). */
   public static final int BAND_LAND = 255;
 
-  /**
-   * Midpoint ocean↔island. {@code brightness ≤ this} → ocean.
-   */
+  /** Midpoint ocean↔island. {@code brightness ≤ this} → ocean. */
   public static final double THRESHOLD_OCEAN_MAX =
     (BAND_OCEAN + BAND_ISLAND) / 2.0;
 
-  /**
-   * Midpoint island↔fresh lake. {@code brightness ≤ this} → island.
-   */
+  /** Midpoint island↔fresh lake. {@code brightness ≤ this} → island. */
   public static final double THRESHOLD_ISLAND_MAX =
     (BAND_ISLAND + BAND_LAKE) / 2.0;
 
-  /**
-   * Midpoint fresh lake↔salt lake. {@code brightness ≤ this} → fresh lake.
-   */
+  /** Midpoint fresh lake↔salt lake. {@code brightness ≤ this} → fresh lake. */
   public static final double THRESHOLD_LAKE_MAX =
     (BAND_LAKE + BAND_SALT_LAKE) / 2.0;
 
@@ -132,9 +126,7 @@ public class PNGContinentNoise extends BasePNGNoise {
     return bandAtGridHard(gridX, gridZ) != ContinentBand.OCEAN;
   }
 
-  /**
-   * Pixel-space non-ocean test (same bands as {@link #isLandAtGridHard}).
-   */
+  /** Pixel-space non-ocean test (same bands as {@link #isLandAtGridHard}). */
   public boolean isLandPixel(int x, int z) {
     return bandAtPixel(x, z) != ContinentBand.OCEAN;
   }

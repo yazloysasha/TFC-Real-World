@@ -9,9 +9,7 @@ import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.Units;
 import net.dries007.tfc.world.volcano.CenteredFeatureNoise;
 
-/**
- * Snaps cellular cone centers onto a matching volcanic biome cell.
- */
+/** Snaps cellular cone centers onto a matching volcanic biome cell. */
 public final class CenteredFeatureAligner {
 
   private static final int MAX_CENTER_OFFSET_GRID = 2;

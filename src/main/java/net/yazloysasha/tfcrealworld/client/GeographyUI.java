@@ -8,7 +8,7 @@ public final class GeographyUI {
 
   private GeographyUI() {}
 
-  // --- Book panel (matches Patchouli GuiBook 272×180) ---
+  // Book panel (matches Patchouli GuiBook 272×180)
   public static final int PANEL_WIDTH = 272;
   public static final int PANEL_HEIGHT = 180;
 
@@ -26,7 +26,10 @@ public final class GeographyUI {
   public static final int MAP_X = MARGIN;
   public static final int MAP_Y = CHIP_Y + CHIP_H + MARGIN; // 44
   public static final int MAP_W = PANEL_WIDTH - 2 * MARGIN; // 256
-  /** Exact 2:1 with {@link #MAP_W} so full-profile contain fills with no gutters. */
+  /**
+   * Exact 2:1 with {@link #MAP_W} so full-profile contain fills with no
+   * gutters.
+   */
   public static final int MAP_H = 128;
 
   public static final int CHIP_GAP = 2;
@@ -49,7 +52,7 @@ public final class GeographyUI {
   public static final int ORB_SIZE_NORMAL = 7;
   public static final int ORB_SIZE_CAPITAL = 9;
 
-  // --- Overview map palette ---
+  // Overview map palette
   /** Ocean RGB(100, 140, 255) — artist stage-16 ocean. */
   public static final int OCEAN_ARGB = 0xFF648CFF;
   /** Land RGB(0, 130, 0) — artist stage-00 ADD_CONTINENTS. */

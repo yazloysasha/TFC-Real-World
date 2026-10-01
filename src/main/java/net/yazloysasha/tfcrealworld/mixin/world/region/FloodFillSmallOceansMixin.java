@@ -8,9 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/**
- * Continent map: skip flood-fill so inland seas on the map stay.
- */
+/** Continent map: skip flood-fill so inland seas on the map stay. */
 @Mixin(value = FloodFillSmallOceans.class, remap = false)
 public class FloodFillSmallOceansMixin {
 

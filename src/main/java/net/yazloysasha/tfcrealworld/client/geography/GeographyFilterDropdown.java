@@ -17,9 +17,7 @@ import net.yazloysasha.tfcrealworld.util.geography.GeographyManager;
 import net.yazloysasha.tfcrealworld.util.geography.GeographyNode;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Continent / region / subregion filter chips and their dropdown menus.
- */
+/** Continent / region / subregion filter chips and their dropdown menus. */
 public final class GeographyFilterDropdown {
 
   public record Row(@Nullable String ref, String left, String right) {}

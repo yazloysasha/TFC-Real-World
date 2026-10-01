@@ -14,9 +14,7 @@ public final class TfcContinentNoiseThresholds {
    */
   public static final double LAND = 4.4;
 
-  /**
-   * Vanilla: {@code else if (continent > 3.3) oceanDepth = 2} (shelf).
-   */
+  /** Vanilla: {@code else if (continent > 3.3) oceanDepth = 2} (shelf). */
   public static final double CONTINENTAL_SHELF = 3.3;
 
   /**

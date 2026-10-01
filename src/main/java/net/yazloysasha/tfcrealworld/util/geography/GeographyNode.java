@@ -36,9 +36,7 @@ public record GeographyNode(
     return pick(titleLang, languageCode, slug);
   }
 
-  /**
-   * Empty when no subtitle_lang entry (non-capitals / missing).
-   */
+  /** Empty when no subtitle_lang entry (non-capitals / missing). */
   public String getSubtitle(String languageCode) {
     if (subtitleLang == null || subtitleLang.isEmpty()) {
       return "";

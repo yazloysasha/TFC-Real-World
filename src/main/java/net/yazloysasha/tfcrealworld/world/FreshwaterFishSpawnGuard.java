@@ -6,9 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.material.FluidState;
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 
-/**
- * Keeps freshwater fish out of salt water at spawn time
- */
+/** Keeps freshwater fish out of salt water at spawn time */
 public final class FreshwaterFishSpawnGuard {
 
   private FreshwaterFishSpawnGuard() {}

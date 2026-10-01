@@ -169,34 +169,6 @@ public class RegionGeneratorTests implements TestSetup {
     logBiomeStatistics(biomeCounts);
   }
 
-  private Artist.Pixel<Color> drawWithRivers(
-    RegionGenerator generator,
-    DrawnTask task
-  ) {
-    // Unused for now until I figure out a better way to hook it into drawing that doesn't explode memory usage
-    return (xi, zi) -> {
-      final int x = (int) xi,
-        z = (int) zi;
-      final float xf = (float) xi,
-        zf = (float) zi;
-      final Region region = generator.getOrCreateRegion(x, z);
-      final Region.Point point = generator.getOrCreateRegionPoint(x, z);
-
-      // Early exit - we don't draw rivers over oceans
-      if (point.land() || point.shore()) {
-        for (RiverEdge edge : generator
-          .getOrCreatePartitionPoint(x, z)
-          .rivers()) {
-          if (edge.fractal().intersect(xf, zf, 0.1f)) {
-            // Use a slightly larger distance than is typical, so we draw it more visibly
-            return new Color(100, 210, 250);
-          }
-        }
-      }
-      return taskColor(task, region, x, z);
-    };
-  }
-
   private String taskName(String name, DrawnTask task) {
     return "region%s_%02d_%s".formatted(
       name,
@@ -551,7 +523,11 @@ public class RegionGeneratorTests implements TestSetup {
     }
   }
 
-  /** Matches {@link net.dries007.tfc.world.biome.BiomeSourceExtension#getBiomeExtension(int, int)} at cell center. */
+  /**
+   * Matches {@link
+   * net.dries007.tfc.world.biome.BiomeSourceExtension#getBiomeExtension(int,
+   * int)} at cell center.
+   */
   private int resolveWorldBiomeLayerId(
     RegionGenerator generator,
     Area biomeLayer,
@@ -722,7 +698,7 @@ public class RegionGeneratorTests implements TestSetup {
     );
   }
 
-  // Default biome color scheme, Karst Biomes invisible
+  /** Default biome color scheme, Karst Biomes invisible */
   private Color biomeColor(int biome) {
     if (biome == OCEAN_REEF) return new Color(150, 160, 255);
     if (biome == OCEAN || biome == OCEAN_ATOLLS) return new Color(
@@ -905,7 +881,7 @@ public class RegionGeneratorTests implements TestSetup {
     return Color.BLACK;
   }
 
-  // Only shows Karst biomes and water biomes, color coded by Karst Variety
+  /** Only shows Karst biomes and water biomes, color coded by Karst Variety */
   private Color karstBiomeColor(int biome) {
     if (biome == OCEAN_REEF || biome == OCEANIC_VOLCANIC_ARC) return new Color(
       150,
@@ -964,7 +940,7 @@ public class RegionGeneratorTests implements TestSetup {
     return Color.BLACK;
   }
 
-  // Shows only ice sheets, biomes effected by past ice sheets
+  /** Shows only ice sheets, biomes effected by past ice sheets */
   private Color glaciatedBiomeColor(int biome) {
     if (biome == OCEAN_REEF || biome == OCEANIC_VOLCANIC_ARC) return new Color(
       150,
@@ -1045,7 +1021,7 @@ public class RegionGeneratorTests implements TestSetup {
     return Color.BLACK;
   }
 
-  // Shows only ice sheets, biomes effected by past ice sheets
+  /** Shows only biomes of plate boundaries, volcanism and hotspots */
   private Color tectonicBiomeColor(int biome) {
     if (biome == OCEAN_REEF) return new Color(150, 160, 255);
     if (biome == OCEAN || biome == OCEAN_ATOLLS) return new Color(
@@ -1124,7 +1100,7 @@ public class RegionGeneratorTests implements TestSetup {
     return Color.BLACK;
   }
 
-  // Default biome color scheme, Karst Biomes invisible
+  /** Biomes color coded by their height band */
   private Color heightBiomeColor(int biome) {
     // Oceans
     if (biome == OCEAN_REEF || biome == OCEANIC_VOLCANIC_ARC) return new Color(
@@ -1359,9 +1335,7 @@ public class RegionGeneratorTests implements TestSetup {
     return new Color(150, 240, 150);
   }
 
-  /**
-   * Allows drawing additional visualizations between generation tasks.
-   */
+  /** Allows drawing additional visualizations between generation tasks. */
   enum DrawnTask {
     ADD_CONTINENTS(Task.ADD_CONTINENTS),
     ANNOTATE_DISTANCE_TO_CELL_EDGE(Task.ANNOTATE_DISTANCE_TO_CELL_EDGE),

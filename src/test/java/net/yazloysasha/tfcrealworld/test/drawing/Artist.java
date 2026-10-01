@@ -16,9 +16,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import javax.imageio.ImageIO;
 
-/**
- * Drawing utility.
- */
+/** Drawing utility. */
 @SuppressWarnings({ "unchecked", "UnusedReturnValue" })
 public abstract class Artist<T, A extends Artist<T, A>> {
 
@@ -219,9 +217,7 @@ public abstract class Artist<T, A extends Artist<T, A>> {
     T apply(float x, float y);
   }
 
-  /**
-   * A mapping from (x, y) -> value.
-   */
+  /** A mapping from (x, y) -> value. */
   @FunctionalInterface
   public interface NoisePixel {
     static NoisePixel coerceInt(IntNoisePixel pixel) {

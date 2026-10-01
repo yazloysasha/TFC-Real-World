@@ -11,9 +11,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public final class GeographySessionState {
 
-  /**
-   * 1 = fully zoomed out (contain-fit); higher = integer scale factor.
-   */
+  /** 1 = fully zoomed out (contain-fit); higher = integer scale factor. */
   public static int zoomLevel = 1;
 
   /**

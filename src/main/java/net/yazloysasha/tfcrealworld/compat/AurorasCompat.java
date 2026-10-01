@@ -6,9 +6,7 @@ import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.projection.ProjectionManager;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Optional Auroras ({@code auroras}) integration.
- */
+/** Optional Auroras ({@code auroras}) integration. */
 public final class AurorasCompat {
 
   public static final String MOD_ID = "auroras";

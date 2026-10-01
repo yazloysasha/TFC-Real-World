@@ -168,9 +168,7 @@ public final class GeographyMapTexture {
     }
   }
 
-  /**
-   * NativeImage expects ABGR packed ints.
-   */
+  /** NativeImage expects ABGR packed ints. */
   private static int toAbgr(int argb) {
     int a = (argb >> 24) & 0xFF;
     int r = (argb >> 16) & 0xFF;

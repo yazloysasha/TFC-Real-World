@@ -3,9 +3,7 @@ package net.yazloysasha.tfcrealworld.test.drawing;
 import net.dries007.tfc.world.region.Units;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 
-/**
- * Whether a region grid cell lies inside the primary (center) PNG map tile
- */
+/** Whether a region grid cell lies inside the primary (center) PNG map tile */
 public final class MapTileGridBounds {
 
   private MapTileGridBounds() {}

@@ -13,9 +13,7 @@ import net.yazloysasha.tfcrealworld.util.profile.MapProfile;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Proximity-based waypoint discovery with flat geography advancements.
- */
+/** Proximity-based waypoint discovery with flat geography advancements. */
 public final class WaypointVisitTracker {
 
   public static final int PROXIMITY_RADIUS = 32;

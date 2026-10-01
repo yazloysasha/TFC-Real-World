@@ -281,9 +281,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     return false;
   }
 
-  /**
-   * Sunken / shield-shore style biomes via TFC BiomeExtension (not IDs).
-   */
+  /** Sunken / shield-shore style biomes via TFC BiomeExtension (not IDs). */
   private static boolean isOceanicVolcanicBiome(int biome) {
     final BiomeExtension ext = TFCLayers.getFromLayerId(biome);
     return ext.isSalty() && (ext.hasTuffRings() || ext.hasCinderCones());

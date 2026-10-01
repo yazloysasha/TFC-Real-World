@@ -44,9 +44,7 @@ public final class MapLakeWater {
    */
   private static final int CELL_BITS = Units.QUART_BITS + 2;
 
-  /**
-   * Same value as {@code MapLandOceanCorrectionLayer#layerToGrid}.
-   */
+  /** Same value as {@code MapLandOceanCorrectionLayer#layerToGrid}. */
   private static final double CELL_TO_GRID =
     1.0 / (1 << (Units.GRID_BITS - CELL_BITS));
 
@@ -58,9 +56,7 @@ public final class MapLakeWater {
    */
   private static final int SEARCH_RADIUS_CELLS = 3;
 
-  /**
-   * Vote weight is {@code 1 / (1 + (distance / falloff)^2)}.
-   */
+  /** Vote weight is {@code 1 / (1 + (distance / falloff)^2)}. */
   private static final double FALLOFF_BLOCKS = CELL_SIZE;
 
   private static final class Column {
@@ -99,9 +95,7 @@ public final class MapLakeWater {
     COLUMN.get().active = false;
   }
 
-  /**
-   * @return true while this thread is sampling a column.
-   */
+  /** @return true while this thread is sampling a column. */
   public static boolean isColumnOpen() {
     return COLUMN.get().active;
   }

@@ -221,34 +221,6 @@ public class CreateTFCWorldScreenMixin {
   }
 
   @Unique
-  private static OptionInstance<String> stringOption(
-    String caption,
-    List<String> values,
-    String defaultValue
-  ) {
-    Codec<String> codec = Codec.STRING.xmap(
-      name -> values.contains(name) ? name : defaultValue,
-      value -> value
-    );
-
-    OptionInstance.Enum<String> enumValueSet = new OptionInstance.Enum<>(
-      values,
-      codec
-    );
-
-    return new OptionInstance<>(
-      caption,
-      OptionInstance.cachedConstantTooltip(
-        Component.translatable(caption + ".tooltip")
-      ),
-      (text, value) -> Component.translatable(caption + "." + value),
-      enumValueSet,
-      defaultValue,
-      v -> {}
-    );
-  }
-
-  @Unique
   private OptionInstance<String> stringOptionWithProfileCallback(
     String caption,
     List<String> values,

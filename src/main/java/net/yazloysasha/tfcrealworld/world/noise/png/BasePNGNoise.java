@@ -174,9 +174,7 @@ public abstract class BasePNGNoise implements Noise2D {
 
   protected abstract double transformBrightness(double brightness);
 
-  /**
-   * {@code ImageIO.getRGB} on gray PNGs applies sRGB and skews mid-tones.
-   */
+  /** {@code ImageIO.getRGB} on gray PNGs applies sRGB and skews mid-tones. */
   private static int[] copyPixelsWithoutColorManagement(BufferedImage image) {
     final int width = image.getWidth();
     final int height = image.getHeight();

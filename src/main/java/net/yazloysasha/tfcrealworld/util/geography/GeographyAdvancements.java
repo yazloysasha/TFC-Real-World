@@ -170,9 +170,7 @@ public final class GeographyAdvancements {
     }
   }
 
-  /**
-   * Duck-typed setters implemented by mixin.
-   */
+  /** Duck-typed setters implemented by mixin. */
   public interface GeographyAdvancementAccessor {
     void tfcrealworld$setAdvancements(
       Map<ResourceLocation, AdvancementHolder> advancements

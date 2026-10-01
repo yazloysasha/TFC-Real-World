@@ -53,7 +53,10 @@ public abstract class WeatherHelpersMixin {
   @Unique
   private static final float FREEZE_TEMPERATURE = -2f;
 
-  // TFC: 1 + 4000 / ticks per snow melt (80 * 3), 1 + 4000 / ticks per accumulation (80)
+  /**
+   * TFC: 1 + 4000 / ticks per snow melt (80 * 3), 1 + 4000 / ticks per
+   * accumulation (80).
+   */
   @Unique
   private static final int MELT_PER_STEP = 1 + 4_000 / 240;
 

@@ -14,9 +14,7 @@ import net.yazloysasha.tfcrealworld.client.ClientVisitedWaypoints;
 import net.yazloysasha.tfcrealworld.util.geography.GeographyNode;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Hit-testing, coord copy feedback, and tooltip lines for map waypoints.
- */
+/** Hit-testing, coord copy feedback, and tooltip lines for map waypoints. */
 public final class GeographyWaypointUI {
 
   private static final long COPY_FEEDBACK_MS = 2500L;

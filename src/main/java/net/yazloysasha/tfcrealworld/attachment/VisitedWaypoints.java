@@ -9,9 +9,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.neoforged.neoforge.common.util.INBTSerializable;
 
-/**
- * Player-persisted map of waypoint ref → discovery epoch millis.
- */
+/** Player-persisted map of waypoint ref → discovery epoch millis. */
 public final class VisitedWaypoints implements INBTSerializable<CompoundTag> {
 
   private final Map<String, Long> visited = new HashMap<>();

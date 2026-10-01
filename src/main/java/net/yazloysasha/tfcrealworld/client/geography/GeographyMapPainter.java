@@ -12,9 +12,7 @@ import net.yazloysasha.tfcrealworld.client.ClientVisitedWaypoints;
 import net.yazloysasha.tfcrealworld.client.GeographyMapTexture;
 import net.yazloysasha.tfcrealworld.client.GeographyUI;
 
-/**
- * Blits the overview map, waypoint orbs, and player marker into a viewport.
- */
+/** Blits the overview map, waypoint orbs, and player marker into a viewport. */
 public final class GeographyMapPainter {
 
   private static final ResourceLocation XP_ORB =
@@ -24,9 +22,7 @@ public final class GeographyMapPainter {
 
   private GeographyMapPainter() {}
 
-  /**
-   * Pixel size of the drawn orb — also used by hit-testing.
-   */
+  /** Pixel size of the drawn orb — also used by hit-testing. */
   public static int orbSize(boolean capital) {
     return capital ? GeographyUI.ORB_SIZE_CAPITAL : GeographyUI.ORB_SIZE_NORMAL;
   }
