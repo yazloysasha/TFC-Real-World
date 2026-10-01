@@ -40,13 +40,13 @@
     "world.settings.SettingsMixin"
   ],
   "client": [
-    "client.language.ClientLanguageMixin",
     "client.screen.CreateTFCWorldScreenAccessor",
     "client.screen.CreateTFCWorldScreenMixin",
     "compat.auroras.AHelpersMixin",
     "compat.auroras.AuroraRendererMixin",
     "minecraft.advancements.DisplayInfoMixin",
-    "minecraft.client.gui.screens.ScreenAccessor"
+    "minecraft.client.gui.screens.ScreenAccessor",
+    "minecraft.client.resources.language.ClientLanguageMixin"
   ],
   "server": [],
   "injectors": {

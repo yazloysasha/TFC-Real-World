@@ -1,4 +1,4 @@
-package net.yazloysasha.tfcrealworld.mixin.client.language;
+package net.yazloysasha.tfcrealworld.mixin.minecraft.client.resources.language;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.language.ClientLanguage;
