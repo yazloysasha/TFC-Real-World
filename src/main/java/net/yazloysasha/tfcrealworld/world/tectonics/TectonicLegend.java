@@ -23,11 +23,12 @@ import org.jetbrains.annotations.Nullable;
  * [
  *   { "water": "reef" },
  *   { "boundary": "divergent", "land": "upland", "volcanism": "rift" },
- *   { "land": "mountain", "coast": true, "hotspot": 2 },
- *   { "water": "shelf", "atolls": true }
+ *   { "land": "mountain", "coast": 1, "hotspot": 2 },
+ *   { "water": "shelf", "atolls": 1 }
  * ]
  * </pre>
- * Omitted fields use {@link TectonicClass#DEFAULT} values.
+ * Omitted fields use {@link TectonicClass#DEFAULT} values; flags are
+ * {@code 0} / {@code 1}.
  */
 public final class TectonicLegend {
 
@@ -104,10 +105,14 @@ public final class TectonicLegend {
         "volcanism",
         index
       ),
-      json.has("coast") && json.get("coast").getAsBoolean(),
-      json.has("atolls") && json.get("atolls").getAsBoolean(),
+      flag(json, "coast"),
+      flag(json, "atolls"),
       (byte) hotspot
     );
+  }
+
+  private static boolean flag(JsonObject json, String key) {
+    return json.has(key) && json.get(key).getAsInt() != 0;
   }
 
   @Nullable
