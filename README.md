@@ -1,6 +1,6 @@
 # TFC: Real World 🌍
 
-**🎉 The Ultra-Realistic Update is here! Real rivers, lakes, islands, mountains and volcanoes since v4.2.0 on Minecraft 1.21.1.**
+**🎉 The Ultra-Realistic Update is here! Real rivers, lakes and islands and a detailed coastline since v4.2.0 on Minecraft 1.21.1.**
 
 Older Minecraft versions will get it later.
 
@@ -15,7 +15,7 @@ Sail down the Nile to its delta. Winter on the shore of Baikal. Climb from the G
 #### 🧭 What Awaits You:
 
 - **Real Rivers & Lakes:** The Nile, the Amazon, the Volga and thousands of kilometres of other great rivers run where they really do, wide where they are mighty, and fan out into deltas at the sea. Baikal, Victoria and the Great Lakes are there too, fresh or salt as in reality. 🏞️
-- **Real Islands & Seas:** Coastlines that mirror Earth's own, islands from Britain and Japan down to small ocean islets, and atolls where coral reefs actually grow. 🏝️
+- **A Detailed Coastline & Real Islands:** Bays, peninsulas, fjords and inland seas drawn as on a real map, islands from Britain and Japan down to small ocean islets, and atolls where coral reefs actually grow. 🏝️
 - **Real Mountains & Volcanoes:** The Himalayas, the Andes and the Alps rise where plates collide, rift valleys cut East Africa, and Hawaii, Iceland and the Ring of Fire get their volcanoes. 🏔️🌋
 - **Real Climates:** From equatorial rainforests through savannas and deserts to taiga and the ice sheets of Greenland and Antarctica - each with TFC's authentic seasons. ☀️❄️
 - **Conquer the Whole Planet:** 400 real cities and landmarks are waiting on the geography map in your inventory, each with its own advancement. Reach Paris, Cairo, Tokyo, Honolulu, Cape Town... Can you set foot on every one of them? 🧭🏆
