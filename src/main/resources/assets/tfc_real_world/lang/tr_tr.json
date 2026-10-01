@@ -13,6 +13,8 @@
   "tfc_real_world.create_world.map_profile.tooltip": "Dünya oluşturma için kullanılan harita profili.",
   "tfc_real_world.create_world.tectonics_from_map": "Haritadan Tektonik",
   "tfc_real_world.create_world.tectonics_from_map.tooltip": "Tektonik haritadan rölyef, levha sınırları, volkanizma ve sıcak noktalar ya da prosedürel üretim.",
+  "tfc_real_world.create_world.rivers_from_map": "Haritadan Nehirler",
+  "tfc_real_world.create_world.rivers_from_map.tooltip": "Profilin nehir haritasından gerçek nehirler veya prosedürel nehirler.",
   "tfc_real_world.create_world.spawn_center_latitude": "Spawn Enlemi",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Spawn konumu için coğrafi enlem (coğrafi modda kullanılır).",
   "tfc_real_world.create_world.spawn_center_longitude": "Spawn Boylamı",

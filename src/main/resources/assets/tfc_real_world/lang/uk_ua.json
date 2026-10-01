@@ -13,6 +13,8 @@
   "tfc_real_world.create_world.map_profile.tooltip": "Профіль карти для генерації світу.",
   "tfc_real_world.create_world.tectonics_from_map": "Тектоніка з карти",
   "tfc_real_world.create_world.tectonics_from_map.tooltip": "Рельєф, межі плит, вулканізм і гарячі точки за картою тектоніки або процедурна генерація.",
+  "tfc_real_world.create_world.rivers_from_map": "Річки з карти",
+  "tfc_real_world.create_world.rivers_from_map.tooltip": "Справжні річки за картою профілю або процедурні річки.",
   "tfc_real_world.create_world.spawn_center_latitude": "Широта появи",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Географічна широта для точки появи (використовується в географічному режимі).",
   "tfc_real_world.create_world.spawn_center_longitude": "Довгота появи",

@@ -13,6 +13,8 @@
   "tfc_real_world.create_world.map_profile.tooltip": "월드 생성에 사용되는 지도 프로필.",
   "tfc_real_world.create_world.tectonics_from_map": "지도에서 지각 구조",
   "tfc_real_world.create_world.tectonics_from_map.tooltip": "지각 구조 지도에서 지형, 판 경계, 화산 활동, 열점을 가져오거나 절차적으로 생성합니다.",
+  "tfc_real_world.create_world.rivers_from_map": "지도에서 강",
+  "tfc_real_world.create_world.rivers_from_map.tooltip": "프로필의 강 지도에서 실제 강을 생성하거나 절차적 생성.",
   "tfc_real_world.create_world.spawn_center_latitude": "Spawn 위도",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Spawn 위치의 지리적 위도 (지리 모드에서 사용).",
   "tfc_real_world.create_world.spawn_center_longitude": "Spawn 경도",

@@ -10,7 +10,6 @@ import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.layouts.GridLayout;
-import net.minecraft.client.gui.layouts.LayoutElement;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
@@ -94,6 +93,9 @@ public class CreateTFCWorldScreenMixin {
 
   @Unique
   private OptionInstance<Boolean> tectonicsFromMap;
+
+  @Unique
+  private OptionInstance<Boolean> riversFromMap;
 
   @Unique
   private AbstractWidget spawnCenterLongitudeWidget;
@@ -507,6 +509,11 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.TECTONICS_FROM_MAP.get(),
       value -> {}
     );
+    riversFromMap = booleanOption(
+      getCaption("create_world.rivers_from_map"),
+      TFCRealWorldConfig.RIVERS_FROM_MAP.get(),
+      value -> {}
+    );
   }
 
   @Inject(
@@ -554,38 +561,6 @@ public class CreateTFCWorldScreenMixin {
     builder.addChild(accessor.tfcrealworld$invokeSmallButton(continentalness));
 
     tfcrealworld$optionsCount = 0;
-  }
-
-  @Redirect(
-    method = "init()V",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/minecraft/client/gui/layouts/GridLayout$RowHelper;addChild(Lnet/minecraft/client/gui/layouts/LayoutElement;)Lnet/minecraft/client/gui/layouts/LayoutElement;",
-      ordinal = 9
-    )
-  )
-  private LayoutElement tfcrealworld$addWideClimateRow(
-    GridLayout.RowHelper instance,
-    LayoutElement widget
-  ) {
-    AbstractWidget climateButton = (AbstractWidget) widget;
-    climateButton.setWidth(400);
-    return instance.addChild(climateButton, 2);
-  }
-
-  @Redirect(
-    method = "init()V",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/minecraft/client/gui/layouts/GridLayout$RowHelper;addChild(Lnet/minecraft/client/gui/layouts/LayoutElement;)Lnet/minecraft/client/gui/layouts/LayoutElement;",
-      ordinal = 10
-    )
-  )
-  private LayoutElement tfcrealworld$skipUnusedSlot(
-    GridLayout.RowHelper instance,
-    LayoutElement widget
-  ) {
-    return widget;
   }
 
   @Redirect(
@@ -692,6 +667,8 @@ public class CreateTFCWorldScreenMixin {
         return accessor.tfcrealworld$invokeSmallButton(tectonicsFromMap);
       case 10:
         return accessor.tfcrealworld$invokeSmallButton(climateFromMap);
+      case 11:
+        return accessor.tfcrealworld$invokeSmallButton(riversFromMap);
       default:
         return accessor.tfcrealworld$invokeSmallButton(option);
     }
@@ -727,6 +704,7 @@ public class CreateTFCWorldScreenMixin {
     TFCRealWorldConfig.CONTINENT_FROM_MAP.set(continentFromMap.get());
     TFCRealWorldConfig.CLIMATE_FROM_MAP.set(climateFromMap.get());
     TFCRealWorldConfig.TECTONICS_FROM_MAP.set(tectonicsFromMap.get());
+    TFCRealWorldConfig.RIVERS_FROM_MAP.set(riversFromMap.get());
 
     TFCRealWorldConfig.saveConfig();
 

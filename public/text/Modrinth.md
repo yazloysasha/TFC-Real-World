@@ -113,10 +113,11 @@ Toggle which aspects of the world are shaped by real data. Disabling a mode will
 - **Generate Continents from Map**: Shapes landmasses, islands, oceans and lakes using the world map.
 - **Generate Tectonics from Map**: Relief, plate boundaries, volcanism and hotspots from the tectonics map (needs continents from map).
 - **Generate Climate from Map**: Reads temperature, rainfall and rainfall variance from the climate maps instead of generating them procedurally.
+- **Generate Rivers from Map**: Places the real rivers of the profile instead of TFC's procedural rivers (needs continents from map).
 
 #### 💡 Quick Tips
 
-1. **For an authentic Earth experience**, keep all three `Generate ... from Map` options enabled.
+1. **For an authentic Earth experience**, keep all four `Generate ... from Map` options enabled.
 2. Use **Geographic Spawn** to start in a specific country or near famous landmarks.
 3. **Do not change `Horizontal Scale` or `Vertical Scale`** unless you understand the map's proportions and want a deliberately distorted world.
 
@@ -137,6 +138,7 @@ This guide explains how to create custom map profiles for advanced users who wan
 │   ├── temperature.png
 │   ├── rainfall.png
 │   └── rain_variance.png
+├── rivers.bin
 ├── settings.json
 └── tectonics.json
 ```
@@ -217,6 +219,14 @@ A grayscale PNG works too: gray level `N` is class `N` (black is class `0`).
 - `rain_variance.png` — rainfall seasonality: `0` = −1 (wet January, dry July) … `128` ≈ even rain … `255` = 1 (dry January, wet July).
 
 TFC derives the climate zone from these values (its Köppen classification), so the maps alone decide deserts, tundra, monsoon forests and the rest.
+
+**Rivers (`rivers.bin`, optional):** The river network as straight edges; TFC bends and carves them itself. A profile without the file gets TFC's procedural rivers. Several edges may leave one vertex (a delta). Big-endian binary:
+
+- `"TFRW"`, then `int` version (`1`).
+- `int` vertex count, then for each vertex `short x`, `short z`: `-32767` … `32767` from one edge of the map to the other.
+- `int` edge count, then for each edge `int` source vertex, `int` drain vertex, `byte` width in blocks (TFC uses `8` … `24`).
+
+A river is a chain of edges that share vertices, running from source to drain. Keep edges about 2.7 region cells long (345 blocks): TFC checks every edge near a column, so many short edges slow generation down. Rivers flow at sea level, and where an edge runs into the sea or a lake nothing is carved.
 
 #### 🏝️ Example: Creating a Simple Island Map
 

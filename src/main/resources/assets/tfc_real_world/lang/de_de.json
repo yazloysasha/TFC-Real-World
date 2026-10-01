@@ -13,6 +13,8 @@
   "tfc_real_world.create_world.map_profile.tooltip": "Kartenprofil für die Welterzeugung.",
   "tfc_real_world.create_world.tectonics_from_map": "Tektonik von Karte",
   "tfc_real_world.create_world.tectonics_from_map.tooltip": "Relief, Plattengrenzen, Vulkanismus und Hotspots aus der Tektonikkarte oder prozedurale Generierung.",
+  "tfc_real_world.create_world.rivers_from_map": "Flüsse von Karte",
+  "tfc_real_world.create_world.rivers_from_map.tooltip": "Echte Flüsse aus der Flusskarte des Profils oder prozedurale Flüsse.",
   "tfc_real_world.create_world.spawn_center_latitude": "Spawn Breitengrad",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Geografischer Breitengrad für Spawn (wird im geografischen Modus verwendet).",
   "tfc_real_world.create_world.spawn_center_longitude": "Spawn Längengrad",

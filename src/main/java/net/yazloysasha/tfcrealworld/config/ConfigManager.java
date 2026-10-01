@@ -179,6 +179,11 @@ public class ConfigManager {
           config,
           "generation_modes.tectonics_from_map",
           TFCRealWorldConfig.TECTONICS_FROM_MAP.get()
+        ),
+        getBoolean(
+          config,
+          "generation_modes.rivers_from_map",
+          TFCRealWorldConfig.RIVERS_FROM_MAP.get()
         )
       );
 
@@ -275,7 +280,8 @@ public class ConfigManager {
       TFCRealWorldConfig.VERTICAL_SCALE.get(),
       TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
       TFCRealWorldConfig.CLIMATE_FROM_MAP.get(),
-      TFCRealWorldConfig.TECTONICS_FROM_MAP.get()
+      TFCRealWorldConfig.TECTONICS_FROM_MAP.get(),
+      TFCRealWorldConfig.RIVERS_FROM_MAP.get()
     );
     player.connection.send(packet);
   }

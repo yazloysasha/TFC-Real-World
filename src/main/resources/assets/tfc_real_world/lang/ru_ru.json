@@ -13,6 +13,8 @@
   "tfc_real_world.create_world.map_profile.tooltip": "Профиль карты для генерации мира.",
   "tfc_real_world.create_world.tectonics_from_map": "Тектоника с карты",
   "tfc_real_world.create_world.tectonics_from_map.tooltip": "Рельеф, границы плит, вулканизм и горячие точки по карте тектоники или процедурная генерация.",
+  "tfc_real_world.create_world.rivers_from_map": "Реки с карты",
+  "tfc_real_world.create_world.rivers_from_map.tooltip": "Реальные реки по карте профиля или процедурные реки.",
   "tfc_real_world.create_world.spawn_center_latitude": "Широта появления игрока",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Географическая широта для точки появления игрока (используется в географическом режиме).",
   "tfc_real_world.create_world.spawn_center_longitude": "Долгота появления игрока",

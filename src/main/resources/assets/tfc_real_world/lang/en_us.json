@@ -13,6 +13,8 @@
   "tfc_real_world.create_world.map_profile.tooltip": "Map profile used for world generation.",
   "tfc_real_world.create_world.tectonics_from_map": "Tectonics From Map",
   "tfc_real_world.create_world.tectonics_from_map.tooltip": "Relief, plate boundaries, volcanism and hotspots from the tectonics map, or procedural generation.",
+  "tfc_real_world.create_world.rivers_from_map": "Rivers From Map",
+  "tfc_real_world.create_world.rivers_from_map.tooltip": "Real rivers from the profile's river map, or procedural rivers.",
   "tfc_real_world.create_world.spawn_center_latitude": "Spawn Latitude",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Geographic latitude for spawn location (used in Geographic mode).",
   "tfc_real_world.create_world.spawn_center_longitude": "Spawn Longitude",

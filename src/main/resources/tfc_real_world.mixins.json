@@ -35,8 +35,6 @@
     "world.region.FloodFillSmallOceansMixin",
     "world.region.RegionGeneratorMixin",
     "world.region.RegionPointAccessor",
-    "world.region.RegionRiverGeneratorAccessor",
-    "world.region.RegionRiverGeneratorMixin",
     "world.settings.SettingsMixin"
   ],
   "client": [

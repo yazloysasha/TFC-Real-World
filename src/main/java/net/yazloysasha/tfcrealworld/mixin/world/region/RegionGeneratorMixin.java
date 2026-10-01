@@ -12,6 +12,7 @@ import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.ContinentNoiseRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.RiftLakesRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.RiversRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainVarianceNoise;
@@ -19,6 +20,7 @@ import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
+import net.yazloysasha.tfcrealworld.world.river.MapRivers;
 import net.yazloysasha.tfcrealworld.world.tectonics.MapRiftLakes;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
@@ -34,7 +36,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  * Replaces the generator's procedural continent and climate noises with the
- * profile maps, and registers the maps the region tasks read.
+ * profile maps, and registers the maps and rivers the region tasks read.
  */
 @Mixin(value = RegionGenerator.class, remap = false)
 public class RegionGeneratorMixin {
@@ -90,6 +92,13 @@ public class RegionGeneratorMixin {
       ContinentNoiseRegistry.register(generator, continent);
       GlobalOceanDistanceCache.initialize(continent);
       GlobalWestCoastDistanceCache.initialize(continent);
+      final MapRivers rivers = MapRivers.tryLoad(
+        horizontalScale,
+        verticalScale
+      );
+      if (rivers != null) {
+        RiversRegistry.register(generator, rivers);
+      }
       TectonicsRegistry.clearHotspotLayout();
       if (TFCRealWorldConfig.TECTONICS_FROM_MAP.get()) {
         tfcrealworld$registerTectonics(

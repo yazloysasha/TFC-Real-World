@@ -2,50 +2,42 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 
 import net.dries007.tfc.world.region.AddRiversAndLakes;
 import net.dries007.tfc.world.region.Region;
+import net.dries007.tfc.world.region.RegionGenerator;
 import net.dries007.tfc.world.region.RiverEdge;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.world.region.DryLand;
-import org.jetbrains.annotations.Nullable;
+import net.yazloysasha.tfcrealworld.util.registry.RiversRegistry;
+import net.yazloysasha.tfcrealworld.world.river.MapRivers;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * A profile with {@code rivers.bin} gives each region the real rivers that
+ * lie in it. Without one, or with rivers from the map switched off, vanilla
+ * grows its rivers.
+ */
 @Mixin(value = AddRiversAndLakes.class, remap = false)
 public class AddRiversAndLakesMixin {
 
-  @Redirect(
-    method = "createInitialDrains",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/dries007/tfc/world/region/Region$Point;shore()Z"
-    )
-  )
-  private boolean tfcrealworld$skipDryShoreRiverSources(Region.Point point) {
-    return (
-      point.shore() &&
-      !DryLand.isDrierThan(point, DryLand.RIVER_SOURCE_MIN_RAINFALL)
-    );
-  }
-
-  @Inject(method = "setRiver", at = @At("HEAD"), cancellable = true)
-  private void tfcrealworld$skipDryRiverCells(
-    @Nullable Region.Point point,
+  @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
+  private void tfcrealworld$riversFromMap(
+    RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    if (DryLand.isDrierThan(point, DryLand.RIVER_SOURCE_MIN_RAINFALL)) {
+    final MapRivers rivers = RiversRegistry.get(context.generator());
+    if (rivers != null) {
+      rivers.addTo(context.region, context.generator().seed().seed());
       ci.cancel();
     }
   }
 
   /**
-   * When continents come from the map, lake pixels are authoritative
-   * ({@code setLake} in AddContinents). Skip procedural placeLakeNear so the
-   * map wins.
+   * With continents from the map its lake pixels are the lakes; vanilla's
+   * lakes at river sources are skipped.
    */
   @Inject(method = "placeLakeNear", at = @At("HEAD"), cancellable = true)
-  private void tfcrealworld$skipProceduralOrDryLakeNear(
+  private void tfcrealworld$skipProceduralLakes(
     Region region,
     RiverEdge edge,
     int offsetX,
@@ -53,17 +45,6 @@ public class AddRiversAndLakesMixin {
     CallbackInfo ci
   ) {
     if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
-      ci.cancel();
-      return;
-    }
-    final int gridX = (int) (edge.source().x() + 0.3f * offsetX);
-    final int gridZ = (int) (edge.source().y() + 0.3f * offsetZ);
-    if (
-      DryLand.isDrierThan(
-        region.at(gridX, gridZ),
-        DryLand.RIVER_SOURCE_MIN_RAINFALL
-      )
-    ) {
       ci.cancel();
     }
   }

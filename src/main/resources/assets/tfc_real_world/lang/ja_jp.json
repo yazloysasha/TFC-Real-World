@@ -13,6 +13,8 @@
   "tfc_real_world.create_world.map_profile.tooltip": "ワールド生成に使用するマッププロファイル。",
   "tfc_real_world.create_world.tectonics_from_map": "マップからの地殻構造",
   "tfc_real_world.create_world.tectonics_from_map.tooltip": "地殻構造マップからの地形・プレート境界・火山活動・ホットスポット、またはプロシージャル生成。",
+  "tfc_real_world.create_world.rivers_from_map": "マップから河川",
+  "tfc_real_world.create_world.rivers_from_map.tooltip": "プロファイルの河川マップから実在の河川を生成、または手続き生成。",
   "tfc_real_world.create_world.spawn_center_latitude": "Spawn緯度",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Spawn位置の地理的緯度（地理モードで使用）。",
   "tfc_real_world.create_world.spawn_center_longitude": "Spawn経度",

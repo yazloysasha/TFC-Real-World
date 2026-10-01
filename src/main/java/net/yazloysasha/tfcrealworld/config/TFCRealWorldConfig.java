@@ -44,6 +44,7 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Boolean> CONTINENT_FROM_MAP;
   public static final ConfigOption<Boolean> CLIMATE_FROM_MAP;
   public static final ConfigOption<Boolean> TECTONICS_FROM_MAP;
+  public static final ConfigOption<Boolean> RIVERS_FROM_MAP;
 
   private static final List<ConfigOption<?>> allOptions;
 
@@ -226,6 +227,12 @@ public class TFCRealWorldConfig {
       "Generate relief, plate boundaries, volcanism and hotspots from tectonics map or procedurally",
       true
     );
+    RIVERS_FROM_MAP = new ConfigOption<>(
+      BUILDER,
+      "rivers_from_map",
+      "Place the real rivers of the profile (needs continents from map) or generate rivers procedurally",
+      true
+    );
 
     BUILDER.pop();
     SPEC = BUILDER.build();
@@ -251,7 +258,8 @@ public class TFCRealWorldConfig {
       VERTICAL_SCALE,
       CONTINENT_FROM_MAP,
       CLIMATE_FROM_MAP,
-      TECTONICS_FROM_MAP
+      TECTONICS_FROM_MAP,
+      RIVERS_FROM_MAP
     );
   }
 
@@ -276,7 +284,8 @@ public class TFCRealWorldConfig {
     int verticalScale,
     boolean continentFromMap,
     boolean climateFromMap,
-    boolean tectonicsFromMap
+    boolean tectonicsFromMap,
+    boolean riversFromMap
   ) {
     MAP_PROFILE.setServerValue(mapProfile);
     SPAWN_MODE.setServerValue(spawnMode);
@@ -299,6 +308,7 @@ public class TFCRealWorldConfig {
     CONTINENT_FROM_MAP.setServerValue(continentFromMap);
     CLIMATE_FROM_MAP.setServerValue(climateFromMap);
     TECTONICS_FROM_MAP.setServerValue(tectonicsFromMap);
+    RIVERS_FROM_MAP.setServerValue(riversFromMap);
   }
 
   public static void clearServerConfig() {

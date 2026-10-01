@@ -13,6 +13,8 @@
   "tfc_real_world.create_world.map_profile.tooltip": "Profil mapy używany do generowania świata.",
   "tfc_real_world.create_world.tectonics_from_map": "Tektonika z mapy",
   "tfc_real_world.create_world.tectonics_from_map.tooltip": "Rzeźba terenu, granice płyt, wulkanizm i gorące punkty z mapy tektonicznej lub generowanie proceduralne.",
+  "tfc_real_world.create_world.rivers_from_map": "Rzeki Z Mapy",
+  "tfc_real_world.create_world.rivers_from_map.tooltip": "Prawdziwe rzeki z mapy profilu lub rzeki proceduralne.",
   "tfc_real_world.create_world.spawn_center_latitude": "Szerokość Geograficzna Odradzania",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Szerokość geograficzna dla lokalizacji miejsca odradzania (używana w trybie geograficznym).",
   "tfc_real_world.create_world.spawn_center_longitude": "Długość Geograficzna Odradzania",

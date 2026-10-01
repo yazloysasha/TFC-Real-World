@@ -13,6 +13,8 @@
   "tfc_real_world.create_world.map_profile.tooltip": "用于世界生成的地图配置文件。",
   "tfc_real_world.create_world.tectonics_from_map": "从地图生成构造",
   "tfc_real_world.create_world.tectonics_from_map.tooltip": "从构造地图生成地形、板块边界、火山活动和热点，或程序化生成。",
+  "tfc_real_world.create_world.rivers_from_map": "从地图生成河流",
+  "tfc_real_world.create_world.rivers_from_map.tooltip": "按配置的河流地图生成真实河流，或程序化生成。",
   "tfc_real_world.create_world.spawn_center_latitude": "Spawn纬度",
   "tfc_real_world.create_world.spawn_center_latitude.tooltip": "Spawn位置的地理纬度（在地理模式中使用）。",
   "tfc_real_world.create_world.spawn_center_longitude": "Spawn经度",
