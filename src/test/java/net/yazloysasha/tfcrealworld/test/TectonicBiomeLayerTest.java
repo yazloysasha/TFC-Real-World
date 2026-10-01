@@ -1,7 +1,9 @@
 package net.yazloysasha.tfcrealworld.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -128,6 +130,73 @@ public class TectonicBiomeLayerTest implements TestSetup {
       0,
       offending,
       "Land biomes painted over continent.png ocean (" + total + " samples)"
+    );
+  }
+
+  /**
+   * Hotspot shields raise land around their centre; the volcanic islands of
+   * the southern Red Sea must not close it off from the ocean.
+   */
+  @Test
+  public void redSeaReachesTheOcean() {
+    final RegionGenerator generator = generator();
+    final Area biomes = TFCLayers.createRegionBiomeLayer(
+      generator,
+      Seed.of(SEED)
+    ).get();
+    final int[] corner = WaypointCoordinates.toBlockXZ(26.0, 31.0);
+    final int[] opposite = WaypointCoordinates.toBlockXZ(8.0, 52.0);
+    final int minX = Math.min(corner[0], opposite[0]) / LAYER_STEP_BLOCKS;
+    final int minZ = Math.min(corner[1], opposite[1]) / LAYER_STEP_BLOCKS;
+    final int sizeX =
+      Math.max(corner[0], opposite[0]) / LAYER_STEP_BLOCKS - minX + 1;
+    final int sizeZ =
+      Math.max(corner[1], opposite[1]) / LAYER_STEP_BLOCKS - minZ + 1;
+    final int[] start = WaypointCoordinates.toBlockXZ(21.0, 38.0);
+    final int[] goal = WaypointCoordinates.toBlockXZ(12.5, 47.0);
+    final int goalIndex =
+      (goal[0] / LAYER_STEP_BLOCKS - minX) +
+      (goal[1] / LAYER_STEP_BLOCKS - minZ) * sizeX;
+
+    final boolean[] visited = new boolean[sizeX * sizeZ];
+    final ArrayDeque<Integer> queue = new ArrayDeque<>();
+    final int startIndex =
+      (start[0] / LAYER_STEP_BLOCKS - minX) +
+      (start[1] / LAYER_STEP_BLOCKS - minZ) * sizeX;
+    visited[startIndex] = true;
+    queue.add(startIndex);
+    while (!queue.isEmpty() && !visited[goalIndex]) {
+      final int index = queue.poll();
+      final int x = index % sizeX;
+      final int z = index / sizeX;
+      for (final int[] step : new int[][] {
+        { 1, 0 },
+        { -1, 0 },
+        { 0, 1 },
+        { 0, -1 },
+      }) {
+        final int nx = x + step[0];
+        final int nz = z + step[1];
+        if (nx < 0 || nz < 0 || nx >= sizeX || nz >= sizeZ) {
+          continue;
+        }
+        final int next = nx + nz * sizeX;
+        if (visited[next]) {
+          continue;
+        }
+        final int biome = biomes.get(
+          QuartPos.fromBlock((minX + nx) * LAYER_STEP_BLOCKS),
+          QuartPos.fromBlock((minZ + nz) * LAYER_STEP_BLOCKS)
+        );
+        if (TFCLayers.isOcean(biome)) {
+          visited[next] = true;
+          queue.add(next);
+        }
+      }
+    }
+    assertTrue(
+      visited[goalIndex],
+      "No sea route from the Red Sea to the Gulf of Aden"
     );
   }
 

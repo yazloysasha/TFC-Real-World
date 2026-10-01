@@ -172,7 +172,7 @@ Waypoints use `namespace:slug` IDs; continents, regions and subregions use `name
 
 #### 🖼️ Map Images
 
-All maps cover the same area in an equal-area projection (e.g., Equal Earth). The climate and tectonics maps share one size (e.g. 1248×624, one pixel per TFC region cell at the default scale); `continent.png` may be larger for detailed coastlines (e.g. 9984×4992).
+All maps cover the same area in an equal-area projection (e.g., Equal Earth). The climate and tectonics maps share one size (e.g. 1248×624); `continent.png` may be larger for detailed coastlines (e.g. 9984×4992).
 
 **Continent Map (`continent.png`):** Grayscale PNG with five bands:
 
@@ -198,7 +198,7 @@ All maps cover the same area in an equal-area projection (e.g., Equal Earth). Th
 - `volcanism` — `none`, `arc` (subduction volcanoes), `rift` or `intraplate`.
 - `coast` — `1` for a mountain range the sea reaches into (fjords, steep island coasts): TFC's oceanic mountains.
 - `atolls` — `1` for sea where coral reefs stand: TFC builds its atolls there if the water is warm enough, and nowhere else.
-- `hotspot` — `0`, or hotspot age `1` (active) … `4` (ancient/sunken) at a shield volcano centre.
+- `hotspot` — `0`, or hotspot age `1` (active) … `4` (ancient/sunken) at a shield volcano centre. As in TFC, every hotspot but a sunken one raises land around it, also in the sea, so keep it away from straits you want open.
 
 Omitted fields default to `none` / `lowland` / `deep` / `none` / `0` / `0` / `0`. Every palette index used in the PNG must have a class.
 

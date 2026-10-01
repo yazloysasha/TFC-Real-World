@@ -240,9 +240,9 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     final int gx = (int) Math.floor(gridX);
     final int gz = (int) Math.floor(gridZ);
     if (tectonicsFromMap) {
-      // Land biomes stand only on continent.png land. Mantle-plume shield
-      // volcanoes are the exception: their flanks and seamounts reach into
-      // the sea around the island.
+      // Land biomes stand only on continent.png land. Hotspot shield
+      // volcanoes are the exception: as in vanilla they raise land around
+      // their centre, and their flanks and seamounts reach into the sea.
       return hotspotNear(gx, gz);
     }
     if (isOceanicVolcanicBiome(biome)) {

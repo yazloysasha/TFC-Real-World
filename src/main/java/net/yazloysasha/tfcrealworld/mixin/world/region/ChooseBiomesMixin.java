@@ -21,8 +21,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
  * Vanilla ChooseBiomes picks every biome from the region-point fields written
- * from the maps. Adjusted inputs: hotspot shields stay off the ocean (sunken
- * shields may also cover ocean ridges), coastal decisions read distances in
+ * from the maps. Adjusted inputs: sunken hotspots keep the sea they stand in
+ * (and may also cover ocean ridges), coastal decisions read distances in
  * grid cells, and atolls stand where the tectonics map has coral reefs.
  */
 @Mixin(value = ChooseBiomes.class, remap = false)
@@ -35,7 +35,7 @@ public class ChooseBiomesMixin {
       target = "Lnet/dries007/tfc/world/region/ChooseBiomes;getHotSpotBiome(I)I"
     )
   )
-  private int tfcrealworld$hotspotBiomeWithoutRaisingLand(
+  private int tfcrealworld$hotspotBiomeAtSea(
     ChooseBiomes instance,
     int age,
     @Local Region.Point point

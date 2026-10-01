@@ -186,7 +186,7 @@ The in-game geography map (inventory globe tab) shows the waypoints listed in th
 Waypoints use <code>namespace:slug</code> IDs; continents, regions and subregions use <code>namespace:continent|region|subregion/slug</code>. External geography overrides JAR entries with the same ID. A waypoint appears on the map only if it is listed in the active profile and its JSON has <code>latitude</code> / <code>longitude</code>.<br><br>
 
 <b>🖼️ Map Images</b><br>
-All maps cover the same area in an equal-area projection (e.g., Equal Earth). The climate and tectonics maps share one size (e.g. 1248×624, one pixel per TFC region cell at the default scale); <code>continent.png</code> may be larger for detailed coastlines (e.g. 9984×4992).<br><br>
+All maps cover the same area in an equal-area projection (e.g., Equal Earth). The climate and tectonics maps share one size (e.g. 1248×624); <code>continent.png</code> may be larger for detailed coastlines (e.g. 9984×4992).<br><br>
 
 <b>Continent Map (<code>continent.png</code>):</b> Grayscale PNG with five bands:<br>
 
@@ -213,7 +213,7 @@ All maps cover the same area in an equal-area projection (e.g., Equal Earth). Th
 <li><code>volcanism</code> — <code>none</code>, <code>arc</code> (subduction volcanoes), <code>rift</code> or <code>intraplate</code>.</li>
 <li><code>coast</code> — <code>1</code> for a mountain range the sea reaches into (fjords, steep island coasts): TFC's oceanic mountains.</li>
 <li><code>atolls</code> — <code>1</code> for sea where coral reefs stand: TFC builds its atolls there if the water is warm enough, and nowhere else.</li>
-<li><code>hotspot</code> — <code>0</code>, or hotspot age <code>1</code> (active) … <code>4</code> (ancient/sunken) at a shield volcano centre.</li>
+<li><code>hotspot</code> — <code>0</code>, or hotspot age <code>1</code> (active) … <code>4</code> (ancient/sunken) at a shield volcano centre. As in TFC, every hotspot but a sunken one raises land around it, also in the sea, so keep it away from straits you want open.</li>
 </ul>
 
 Omitted fields default to <code>none</code> / <code>lowland</code> / <code>deep</code> / <code>none</code> / <code>0</code> / <code>0</code> / <code>0</code>. Every palette index used in the PNG must have a class.<br><br>

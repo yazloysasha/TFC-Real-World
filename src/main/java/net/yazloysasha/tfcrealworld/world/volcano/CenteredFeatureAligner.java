@@ -72,7 +72,7 @@ public final class CenteredFeatureAligner {
       if (center == null || matches.test(center.biome)) {
         continue;
       }
-      // Do not paint land-volcano biomes onto ocean (hotspots never setLand).
+      // Do not paint land-volcano biomes onto ocean.
       if (!center.land()) {
         continue;
       }

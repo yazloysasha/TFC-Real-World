@@ -10,7 +10,7 @@ import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 
 /**
  * Hotspot centers from {@code tectonics.png} hotspot classes, used for
- * intensity noise and age painting (no setLand).
+ * intensity noise and age painting.
  */
 public final class MapHotspotLayout {
 
