@@ -146,7 +146,9 @@ public class RegionGeneratorMixin {
     TectonicsRegistry.register(
       generator,
       tectonics,
-      MapHotspotLayout.create(tectonics, seed.seed())
+      TFCRealWorldConfig.VOLCANOES_FROM_MAP.get()
+        ? MapHotspotLayout.create(tectonics, seed.seed())
+        : null
     );
     RiftLakesRegistry.register(
       generator,

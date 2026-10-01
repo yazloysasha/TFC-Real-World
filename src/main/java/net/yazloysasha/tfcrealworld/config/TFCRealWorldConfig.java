@@ -42,9 +42,11 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Integer> HORIZONTAL_SCALE;
   public static final ConfigOption<Integer> VERTICAL_SCALE;
   public static final ConfigOption<Boolean> CONTINENT_FROM_MAP;
-  public static final ConfigOption<Boolean> CLIMATE_FROM_MAP;
+  public static final ConfigOption<Boolean> LAKES_FROM_MAP;
   public static final ConfigOption<Boolean> TECTONICS_FROM_MAP;
+  public static final ConfigOption<Boolean> VOLCANOES_FROM_MAP;
   public static final ConfigOption<Boolean> RIVERS_FROM_MAP;
+  public static final ConfigOption<Boolean> CLIMATE_FROM_MAP;
 
   private static final List<ConfigOption<?>> allOptions;
 
@@ -215,22 +217,34 @@ public class TFCRealWorldConfig {
       "Generate continents from map or procedurally",
       true
     );
-    CLIMATE_FROM_MAP = new ConfigOption<>(
+    LAKES_FROM_MAP = new ConfigOption<>(
       BUILDER,
-      "climate_from_map",
-      "Read climate parameters (temperature, rainfall, rainfall variance) from the climate maps or generate them procedurally",
+      "lakes_from_map",
+      "Place the lakes of the continent map (needs continents from map) or generate lakes procedurally",
       true
     );
     TECTONICS_FROM_MAP = new ConfigOption<>(
       BUILDER,
       "tectonics_from_map",
-      "Generate relief, plate boundaries, volcanism and hotspots from tectonics map or procedurally",
+      "Generate relief, plate boundaries and volcanism from tectonics map or procedurally",
+      true
+    );
+    VOLCANOES_FROM_MAP = new ConfigOption<>(
+      BUILDER,
+      "volcanoes_from_map",
+      "Place hotspot volcanoes where the tectonics map has them (needs tectonics from map) or procedurally",
       true
     );
     RIVERS_FROM_MAP = new ConfigOption<>(
       BUILDER,
       "rivers_from_map",
       "Place the real rivers of the profile (needs continents from map) or generate rivers procedurally",
+      true
+    );
+    CLIMATE_FROM_MAP = new ConfigOption<>(
+      BUILDER,
+      "climate_from_map",
+      "Read climate parameters (temperature, rainfall, rainfall variance) from the climate maps or generate them procedurally",
       true
     );
 
@@ -257,9 +271,11 @@ public class TFCRealWorldConfig {
       HORIZONTAL_SCALE,
       VERTICAL_SCALE,
       CONTINENT_FROM_MAP,
-      CLIMATE_FROM_MAP,
+      LAKES_FROM_MAP,
       TECTONICS_FROM_MAP,
-      RIVERS_FROM_MAP
+      VOLCANOES_FROM_MAP,
+      RIVERS_FROM_MAP,
+      CLIMATE_FROM_MAP
     );
   }
 
@@ -283,9 +299,11 @@ public class TFCRealWorldConfig {
     int horizontalScale,
     int verticalScale,
     boolean continentFromMap,
-    boolean climateFromMap,
+    boolean lakesFromMap,
     boolean tectonicsFromMap,
-    boolean riversFromMap
+    boolean volcanoesFromMap,
+    boolean riversFromMap,
+    boolean climateFromMap
   ) {
     MAP_PROFILE.setServerValue(mapProfile);
     SPAWN_MODE.setServerValue(spawnMode);
@@ -306,9 +324,11 @@ public class TFCRealWorldConfig {
     HORIZONTAL_SCALE.setServerValue(horizontalScale);
     VERTICAL_SCALE.setServerValue(verticalScale);
     CONTINENT_FROM_MAP.setServerValue(continentFromMap);
-    CLIMATE_FROM_MAP.setServerValue(climateFromMap);
+    LAKES_FROM_MAP.setServerValue(lakesFromMap);
     TECTONICS_FROM_MAP.setServerValue(tectonicsFromMap);
+    VOLCANOES_FROM_MAP.setServerValue(volcanoesFromMap);
     RIVERS_FROM_MAP.setServerValue(riversFromMap);
+    CLIMATE_FROM_MAP.setServerValue(climateFromMap);
   }
 
   public static void clearServerConfig() {

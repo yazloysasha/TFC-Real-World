@@ -13,6 +13,7 @@ import net.dries007.tfc.world.layer.framework.AreaContext;
 import net.dries007.tfc.world.layer.framework.TransformLayer;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.RiftLakesRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
@@ -48,6 +49,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
   private final RegionGenerator regionGenerator;
   private final double layerToGrid;
   private final boolean tectonicsFromMap;
+  private final boolean lakesFromMap;
   private final int shoreWidth;
 
   @Nullable
@@ -68,6 +70,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     this.regionGenerator = regionGenerator;
     this.layerToGrid = 1.0 / (1 << zoomsFromGrid);
     this.tectonicsFromMap = TectonicsRegistry.isActive(regionGenerator);
+    this.lakesFromMap = TFCRealWorldConfig.LAKES_FROM_MAP.get();
     this.shoreWidth = shoreWidth;
     this.riftLakes = RiftLakesRegistry.get(regionGenerator);
   }
@@ -92,7 +95,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     if (mapNonOcean && biomeOcean) {
       return landBiomeFromNeighbors(area, x, z);
     }
-    if (mapNonOcean && TFCLayers.isLake(center)) {
+    if (lakesFromMap && mapNonOcean && TFCLayers.isLake(center)) {
       // Map says dry land / island — strip procedural lake biome. Within the
       // shore band it takes its vanilla shore form instead (TOWER_KARST_LAKE
       // → TOWER_KARST_BAY), as the shore layers do for any coastal land.

@@ -17,7 +17,7 @@ public class TectonicsRegistry extends BaseNoiseRegistry<TectonicsMap> {
   public static void register(
     RegionGenerator generator,
     TectonicsMap map,
-    MapHotspotLayout layout
+    @Nullable MapHotspotLayout layout
   ) {
     INSTANCE.registerNoise(generator, map);
     hotspotLayout = layout;

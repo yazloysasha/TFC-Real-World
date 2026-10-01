@@ -110,14 +110,16 @@ These two values are **crucial** for maintaining correct map proportions. They c
 
 Toggle which aspects of the world are shaped by real data. Disabling a mode will revert that feature to TFC's standard procedural generation.
 
-- **Generate Continents from Map**: Shapes landmasses, islands, oceans and lakes using the world map.
-- **Generate Tectonics from Map**: Relief, plate boundaries, volcanism and hotspots from the tectonics map (needs continents from map).
-- **Generate Climate from Map**: Reads temperature, rainfall and rainfall variance from the climate maps instead of generating them procedurally.
+- **Generate Continents from Map**: Shapes landmasses, islands and oceans using the world map.
+- **Generate Lakes from Map**: Places the real lakes of the world map instead of TFC's procedural lakes (needs continents from map).
+- **Generate Tectonics from Map**: Relief, plate boundaries and volcanism from the tectonics map (needs continents from map).
+- **Generate Volcanoes from Map**: Places hotspot volcanoes where the tectonics map has them instead of at random (needs tectonics from map).
 - **Generate Rivers from Map**: Places the real rivers of the profile instead of TFC's procedural rivers (needs continents from map).
+- **Generate Climate from Map**: Reads temperature, rainfall and rainfall variance from the climate maps instead of generating them procedurally.
 
 #### 💡 Quick Tips
 
-1. **For an authentic Earth experience**, keep all four `Generate ... from Map` options enabled.
+1. **For an authentic Earth experience**, keep all six `Generate ... from Map` options enabled.
 2. Use **Geographic Spawn** to start in a specific country or near famous landmarks.
 3. **Do not change `Horizontal Scale` or `Vertical Scale`** unless you understand the map's proportions and want a deliberately distorted world.
 
@@ -200,7 +202,7 @@ All maps cover the same area in an equal-area projection (e.g., Equal Earth). Th
 - `volcanism` — `none`, `arc` (subduction volcanoes), `rift` or `intraplate`.
 - `coast` — `1` for a mountain range the sea reaches into (fjords, steep island coasts): TFC's oceanic mountains.
 - `atolls` — `1` for sea where coral reefs stand: TFC builds its atolls there if the water is warm enough, and nowhere else.
-- `hotspot` — `0`, or hotspot age `1` (active) … `4` (ancient/sunken) at a shield volcano centre. As in TFC, every hotspot but a sunken one raises land around it, also in the sea, so keep it away from straits you want open.
+- `hotspot` — `0`, or hotspot age `1` (active) … `4` (ancient) at a shield volcano centre. As in TFC, every hotspot but an ancient one raises land around it, also in the sea, so keep it away from straits you want open; an ancient one is a sunken shield in the open ocean and an ancient shield everywhere else.
 
 Omitted fields default to `none` / `lowland` / `deep` / `none` / `0` / `0` / `0`. Every palette index used in the PNG must have a class.
 

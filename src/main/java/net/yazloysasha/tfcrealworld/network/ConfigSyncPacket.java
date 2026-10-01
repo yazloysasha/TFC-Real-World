@@ -29,9 +29,11 @@ public record ConfigSyncPacket(
   int horizontalScale,
   int verticalScale,
   boolean continentFromMap,
-  boolean climateFromMap,
+  boolean lakesFromMap,
   boolean tectonicsFromMap,
-  boolean riversFromMap
+  boolean volcanoesFromMap,
+  boolean riversFromMap,
+  boolean climateFromMap
 ) implements CustomPacketPayload {
   public static final Type<ConfigSyncPacket> TYPE = new Type<>(
     ResourceLocation.fromNamespaceAndPath(TFCRealWorld.MOD_ID, "config_sync")
@@ -61,9 +63,11 @@ public record ConfigSyncPacket(
       buffer.writeInt(packet.horizontalScale);
       buffer.writeInt(packet.verticalScale);
       buffer.writeBoolean(packet.continentFromMap);
-      buffer.writeBoolean(packet.climateFromMap);
+      buffer.writeBoolean(packet.lakesFromMap);
       buffer.writeBoolean(packet.tectonicsFromMap);
+      buffer.writeBoolean(packet.volcanoesFromMap);
       buffer.writeBoolean(packet.riversFromMap);
+      buffer.writeBoolean(packet.climateFromMap);
     },
     buffer ->
       new ConfigSyncPacket(
@@ -85,6 +89,8 @@ public record ConfigSyncPacket(
         buffer.readInt(),
         buffer.readInt(),
         buffer.readInt(),
+        buffer.readBoolean(),
+        buffer.readBoolean(),
         buffer.readBoolean(),
         buffer.readBoolean(),
         buffer.readBoolean(),
@@ -119,9 +125,11 @@ public record ConfigSyncPacket(
         packet.horizontalScale(),
         packet.verticalScale(),
         packet.continentFromMap(),
-        packet.climateFromMap(),
+        packet.lakesFromMap(),
         packet.tectonicsFromMap(),
-        packet.riversFromMap()
+        packet.volcanoesFromMap(),
+        packet.riversFromMap(),
+        packet.climateFromMap()
       );
     });
   }

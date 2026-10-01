@@ -1,5 +1,7 @@
 package net.yazloysasha.tfcrealworld.world.noise.png;
 
+import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+
 /**
  * {@code continent.png} grayscale bands (hotspot-style discrete centers).
  * Ocean depth and relief come from {@code tectonics.png}, not from this map.
@@ -75,6 +77,9 @@ public class PNGContinentNoise extends BasePNGNoise {
     LAND,
   }
 
+  /** Without lakes from the map its lake pixels are land. */
+  private final boolean lakesFromMap = TFCRealWorldConfig.LAKES_FROM_MAP.get();
+
   public PNGContinentNoise(int horizontalScale, int verticalScale) {
     super(
       horizontalScale,
@@ -82,6 +87,16 @@ public class PNGContinentNoise extends BasePNGNoise {
       MAP_NAME,
       "Failed to load continent map. Map file is required when generating continents from map."
     );
+  }
+
+  private ContinentBand band(double brightness) {
+    final ContinentBand band = bandFromBrightness(brightness);
+    return (
+        !lakesFromMap &&
+        (band == ContinentBand.LAKE || band == ContinentBand.SALT_LAKE)
+      )
+      ? ContinentBand.LAND
+      : band;
   }
 
   /**
@@ -111,11 +126,11 @@ public class PNGContinentNoise extends BasePNGNoise {
   }
 
   public ContinentBand bandAtGridHard(double gridX, double gridZ) {
-    return bandFromBrightness(sampleGrayAtWorldRounded(gridX, gridZ));
+    return band(sampleGrayAtWorldRounded(gridX, gridZ));
   }
 
   public ContinentBand bandAtPixel(int x, int z) {
-    return bandFromBrightness(getBrightness(x, z));
+    return band(getBrightness(x, z));
   }
 
   /**
@@ -132,19 +147,10 @@ public class PNGContinentNoise extends BasePNGNoise {
   }
 
   /**
-   * Whether any non-ocean pixel lies inside region cell {@code [x, x + 1) ×
+   * Whether any island-band pixel lies inside region cell {@code [x, x + 1) ×
    * [z, z + 1)}; catches islands smaller than a cell.
    */
-  public boolean anyNonOceanInCell(int gridX, int gridZ) {
-    return anyBandInCell(gridX, gridZ, false);
-  }
-
-  /** Whether any island-band pixel lies inside region cell (x, z). */
   public boolean anyIslandInCell(int gridX, int gridZ) {
-    return anyBandInCell(gridX, gridZ, true);
-  }
-
-  private boolean anyBandInCell(int gridX, int gridZ, boolean islandOnly) {
     final double[] min = tileToImage(gridX, gridZ);
     final double[] max = tileToImage(gridX + 1, gridZ + 1);
     final int x0 = (int) Math.floor(Math.min(min[0], max[0]));
@@ -153,12 +159,7 @@ public class PNGContinentNoise extends BasePNGNoise {
     final int z1 = (int) Math.ceil(Math.max(min[1], max[1]));
     for (int z = Math.max(0, z0); z < Math.min(height, z1); z++) {
       for (int x = Math.max(0, x0); x < Math.min(width, x1); x++) {
-        final ContinentBand band = bandAtPixel(x, z);
-        if (
-          islandOnly
-            ? band == ContinentBand.ISLAND
-            : band != ContinentBand.OCEAN
-        ) {
+        if (bandAtPixel(x, z) == ContinentBand.ISLAND) {
           return true;
         }
       }

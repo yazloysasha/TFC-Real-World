@@ -33,8 +33,8 @@ public class AddRiversAndLakesMixin {
   }
 
   /**
-   * With continents from the map its lake pixels are the lakes; vanilla's
-   * lakes at river sources are skipped.
+   * With lakes from the map its lake pixels are the lakes; vanilla's lakes
+   * at river sources are skipped.
    */
   @Inject(method = "placeLakeNear", at = @At("HEAD"), cancellable = true)
   private void tfcrealworld$skipProceduralLakes(
@@ -44,7 +44,10 @@ public class AddRiversAndLakesMixin {
     int offsetZ,
     CallbackInfo ci
   ) {
-    if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
+    if (
+      TFCRealWorldConfig.CONTINENT_FROM_MAP.get() &&
+      TFCRealWorldConfig.LAKES_FROM_MAP.get()
+    ) {
       ci.cancel();
     }
   }

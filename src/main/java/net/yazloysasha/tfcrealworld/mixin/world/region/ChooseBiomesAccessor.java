@@ -6,9 +6,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(value = ChooseBiomes.class, remap = false)
 public interface ChooseBiomesAccessor {
-  @Invoker("getHotSpotBiome")
-  int tfcrealworld$invokeGetHotSpotBiome(int age);
-
   @Invoker("randomSeededFrom")
   int tfcrealworld$invokeRandomSeededFrom(
     long rngSeed,

@@ -10,8 +10,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Hotspots stand where the tectonics map has them instead of where vanilla's
- * noise puts them. As in vanilla, every hotspot but a sunken one raises land.
+ * With volcanoes from the map, hotspots stand where the tectonics map has
+ * them instead of where vanilla's noise puts them. As in vanilla, every
+ * hotspot but an ancient one raises land.
  */
 @Mixin(value = AddHotspots.class, remap = false)
 public class AddHotspotsMixin {
@@ -25,14 +26,15 @@ public class AddHotspotsMixin {
       return;
     }
     final MapHotspotLayout layout = TectonicsRegistry.hotspotLayout();
-    if (layout != null) {
-      for (final var point : context.region.points()) {
-        final byte age = layout.ageAtGrid(point.x, point.z);
-        if (age > 0) {
-          point.hotSpotAge = age;
-          if (age != 4) {
-            point.setLand();
-          }
+    if (layout == null) {
+      return;
+    }
+    for (final var point : context.region.points()) {
+      final byte age = layout.ageAtGrid(point.x, point.z);
+      if (age > 0) {
+        point.hotSpotAge = age;
+        if (age != 4) {
+          point.setLand();
         }
       }
     }

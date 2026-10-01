@@ -1,7 +1,5 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
-import static net.dries007.tfc.world.layer.TFCLayers.SUNKEN_SHIELD_VOLCANO;
-
 import com.llamalad7.mixinextras.sugar.Local;
 import java.util.function.IntPredicate;
 import java.util.stream.IntStream;
@@ -25,34 +23,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
  * Vanilla ChooseBiomes picks every biome from the region-point fields written
- * from the maps. Adjusted inputs: a sunken hotspot is a sunken shield in any
- * sea (vanilla raises an ancient shield out of ridges and atolls), islands
- * are volcanic where the map has volcanism and arc islands follow its
- * relief, coastal decisions read distances
- * in grid cells, and atolls stand where the tectonics map has coral reefs.
+ * from the maps. Adjusted inputs: islands are volcanic where the map has
+ * volcanism and arc islands follow its relief, coastal decisions read
+ * distances in grid cells, and atolls stand where the tectonics map has coral
+ * reefs. Without the maps every input is vanilla's.
  */
 @Mixin(value = ChooseBiomes.class, remap = false)
 public class ChooseBiomesMixin {
-
-  @Redirect(
-    method = "apply",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/dries007/tfc/world/region/ChooseBiomes;getHotSpotBiome(I)I"
-    )
-  )
-  private int tfcrealworld$hotspotBiomeAtSea(
-    ChooseBiomes instance,
-    int age,
-    @Local Region.Point point
-  ) {
-    if (!point.land()) {
-      return age == 4 ? SUNKEN_SHIELD_VOLCANO : point.biome;
-    }
-    return (
-      (ChooseBiomesAccessor) (Object) instance
-    ).tfcrealworld$invokeGetHotSpotBiome(age);
-  }
 
   /**
    * Vanilla gives an island any of its island biomes: volcanic or not,

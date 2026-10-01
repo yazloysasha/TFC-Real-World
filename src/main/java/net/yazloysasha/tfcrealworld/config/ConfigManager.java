@@ -172,8 +172,8 @@ public class ConfigManager {
         ),
         getBoolean(
           config,
-          "generation_modes.climate_from_map",
-          TFCRealWorldConfig.CLIMATE_FROM_MAP.get()
+          "generation_modes.lakes_from_map",
+          TFCRealWorldConfig.LAKES_FROM_MAP.get()
         ),
         getBoolean(
           config,
@@ -182,8 +182,18 @@ public class ConfigManager {
         ),
         getBoolean(
           config,
+          "generation_modes.volcanoes_from_map",
+          TFCRealWorldConfig.VOLCANOES_FROM_MAP.get()
+        ),
+        getBoolean(
+          config,
           "generation_modes.rivers_from_map",
           TFCRealWorldConfig.RIVERS_FROM_MAP.get()
+        ),
+        getBoolean(
+          config,
+          "generation_modes.climate_from_map",
+          TFCRealWorldConfig.CLIMATE_FROM_MAP.get()
         )
       );
 
@@ -279,9 +289,11 @@ public class ConfigManager {
       TFCRealWorldConfig.HORIZONTAL_SCALE.get(),
       TFCRealWorldConfig.VERTICAL_SCALE.get(),
       TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
-      TFCRealWorldConfig.CLIMATE_FROM_MAP.get(),
+      TFCRealWorldConfig.LAKES_FROM_MAP.get(),
       TFCRealWorldConfig.TECTONICS_FROM_MAP.get(),
-      TFCRealWorldConfig.RIVERS_FROM_MAP.get()
+      TFCRealWorldConfig.VOLCANOES_FROM_MAP.get(),
+      TFCRealWorldConfig.RIVERS_FROM_MAP.get(),
+      TFCRealWorldConfig.CLIMATE_FROM_MAP.get()
     );
     player.connection.send(packet);
   }

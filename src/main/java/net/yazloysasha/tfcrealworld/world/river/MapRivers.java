@@ -59,6 +59,13 @@ public final class MapRivers {
   private static final long EDGE_MASK = 0xFFFFFFFFL;
   private static final long TILE_MASK = ~EDGE_MASK;
   private static final long GOLDEN_RATIO = 0x9E3779B97F4A7C15L;
+  private static final long LAKE_SALT = 0x4C414B45L;
+
+  /** Vanilla AddRiversAndLakes: a lake at one river source in three. */
+  private static final int SOURCE_LAKE_RARITY = 3;
+
+  /** Vanilla placeLakeNear: how far from the source the lake cells lie. */
+  private static final float SOURCE_LAKE_OFFSET = 0.3f;
 
   /** Half the map in grid cells: river coordinates run from -half to half. */
   private final float halfGridX;
@@ -72,6 +79,9 @@ public final class MapRivers {
 
   /** The edge each edge drains into, or -1 at a mouth. */
   private final int[] downstream;
+
+  /** Whether any edge drains into the edge: false at a river's source. */
+  private final boolean[] fed;
 
   /** Edge indices by the bucket their midpoint lies in. */
   private final Long2ObjectOpenHashMap<IntArrayList> buckets =
@@ -95,6 +105,12 @@ public final class MapRivers {
     this.drainZ = drainZ;
     this.width = width;
     this.downstream = downstream;
+    this.fed = new boolean[width.length];
+    for (final int below : downstream) {
+      if (below >= 0) {
+        fed[below] = true;
+      }
+    }
     for (int edge = 0; edge < width.length; edge++) {
       buckets
         .computeIfAbsent(
@@ -247,6 +263,50 @@ public final class MapRivers {
     for (final RiverEdge river : rivers) {
       if (river.width >= VALLEY_MIN_WIDTH) {
         markValley(region, river);
+      }
+    }
+    if (!TFCRealWorldConfig.LAKES_FROM_MAP.get()) {
+      for (final var entry : edges.long2ObjectEntrySet()) {
+        final long key = entry.getLongKey();
+        if (!fed[(int) key]) {
+          placeSourceLakes(region, entry.getValue(), worldSeed, key);
+        }
+      }
+    }
+  }
+
+  /**
+   * Vanilla's lakes at river sources, for a world without lakes from the map:
+   * one source in three gets a lake on the cells around it.
+   */
+  private static void placeSourceLakes(
+    Region region,
+    RiverEdge river,
+    long worldSeed,
+    long key
+  ) {
+    final XoroshiroRandomSource random = new XoroshiroRandomSource(
+      worldSeed ^ ((key + 1) * GOLDEN_RATIO),
+      LAKE_SALT
+    );
+    if (random.nextInt(SOURCE_LAKE_RARITY) != 0) {
+      return;
+    }
+    for (int offsetX = -1; offsetX <= 1; offsetX += 2) {
+      for (int offsetZ = -1; offsetZ <= 1; offsetZ += 2) {
+        final Region.Point point = region.at(
+          (int) (river.source().x() + SOURCE_LAKE_OFFSET * offsetX),
+          (int) (river.source().y() + SOURCE_LAKE_OFFSET * offsetZ)
+        );
+        if (
+          point != null &&
+          point.land() &&
+          point.distanceToOcean >= 2 &&
+          point.distanceToEdge >= 2
+        ) {
+          point.setLake();
+          point.rainfall += VALLEY_RAINFALL_SHARE * (500f - point.rainfall);
+        }
       }
     }
   }

@@ -121,16 +121,18 @@ These two values are <b>crucial</b> for maintaining correct map proportions. The
 Toggle which aspects of the world are shaped by real data. Disabling a mode will revert that feature to TFC's standard procedural generation.<br>
 
 <ul>
-<li><b>Generate Continents from Map</b>: Shapes landmasses, islands, oceans and lakes using the world map.</li>
-<li><b>Generate Tectonics from Map</b>: Relief, plate boundaries, volcanism and hotspots from the tectonics map (needs continents from map).</li>
-<li><b>Generate Climate from Map</b>: Reads temperature, rainfall and rainfall variance from the climate maps instead of generating them procedurally.</li>
+<li><b>Generate Continents from Map</b>: Shapes landmasses, islands and oceans using the world map.</li>
+<li><b>Generate Lakes from Map</b>: Places the real lakes of the world map instead of TFC's procedural lakes (needs continents from map).</li>
+<li><b>Generate Tectonics from Map</b>: Relief, plate boundaries and volcanism from the tectonics map (needs continents from map).</li>
+<li><b>Generate Volcanoes from Map</b>: Places hotspot volcanoes where the tectonics map has them instead of at random (needs tectonics from map).</li>
 <li><b>Generate Rivers from Map</b>: Places the real rivers of the profile instead of TFC's procedural rivers (needs continents from map).</li>
+<li><b>Generate Climate from Map</b>: Reads temperature, rainfall and rainfall variance from the climate maps instead of generating them procedurally.</li>
 </ul>
 
 <b>💡 Quick Tips</b><br>
 
 <ol>
-<li><b>For an authentic Earth experience</b>, keep all four <code>Generate ... from Map</code> options enabled.</li>
+<li><b>For an authentic Earth experience</b>, keep all six <code>Generate ... from Map</code> options enabled.</li>
 <li>Use <b>Geographic Spawn</b> to start in a specific country or near famous landmarks.</li>
 <li><b>Do not change <code>Horizontal Scale</code> or <code>Vertical Scale</code></b> unless you understand the map's proportions and want a deliberately distorted world.</li>
 </ol>
@@ -215,7 +217,7 @@ All maps cover the same area in an equal-area projection (e.g., Equal Earth). Th
 <li><code>volcanism</code> — <code>none</code>, <code>arc</code> (subduction volcanoes), <code>rift</code> or <code>intraplate</code>.</li>
 <li><code>coast</code> — <code>1</code> for a mountain range the sea reaches into (fjords, steep island coasts): TFC's oceanic mountains.</li>
 <li><code>atolls</code> — <code>1</code> for sea where coral reefs stand: TFC builds its atolls there if the water is warm enough, and nowhere else.</li>
-<li><code>hotspot</code> — <code>0</code>, or hotspot age <code>1</code> (active) … <code>4</code> (ancient/sunken) at a shield volcano centre. As in TFC, every hotspot but a sunken one raises land around it, also in the sea, so keep it away from straits you want open.</li>
+<li><code>hotspot</code> — <code>0</code>, or hotspot age <code>1</code> (active) … <code>4</code> (ancient) at a shield volcano centre. As in TFC, every hotspot but an ancient one raises land around it, also in the sea, so keep it away from straits you want open; an ancient one is a sunken shield in the open ocean and an ancient shield everywhere else.</li>
 </ul>
 
 Omitted fields default to <code>none</code> / <code>lowland</code> / <code>deep</code> / <code>none</code> / <code>0</code> / <code>0</code> / <code>0</code>. Every palette index used in the PNG must have a class.<br><br>

@@ -91,7 +91,8 @@ public class BiomeNoiseMixin {
   ) {
     if (
       !TFCRealWorldConfig.CONTINENT_FROM_MAP.get() ||
-      !TFCRealWorldConfig.TECTONICS_FROM_MAP.get()
+      !TFCRealWorldConfig.TECTONICS_FROM_MAP.get() ||
+      !TFCRealWorldConfig.VOLCANOES_FROM_MAP.get()
     ) {
       return;
     }

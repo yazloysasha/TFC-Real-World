@@ -89,13 +89,19 @@ public class CreateTFCWorldScreenMixin {
   private OptionInstance<Boolean> continentFromMap;
 
   @Unique
-  private OptionInstance<Boolean> climateFromMap;
+  private OptionInstance<Boolean> lakesFromMap;
 
   @Unique
   private OptionInstance<Boolean> tectonicsFromMap;
 
   @Unique
+  private OptionInstance<Boolean> volcanoesFromMap;
+
+  @Unique
   private OptionInstance<Boolean> riversFromMap;
+
+  @Unique
+  private OptionInstance<Boolean> climateFromMap;
 
   @Unique
   private AbstractWidget spawnCenterLongitudeWidget;
@@ -471,9 +477,9 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
       value -> {}
     );
-    climateFromMap = booleanOption(
-      getCaption("create_world.climate_from_map"),
-      TFCRealWorldConfig.CLIMATE_FROM_MAP.get(),
+    lakesFromMap = booleanOption(
+      getCaption("create_world.lakes_from_map"),
+      TFCRealWorldConfig.LAKES_FROM_MAP.get(),
       value -> {}
     );
     tectonicsFromMap = booleanOption(
@@ -481,9 +487,19 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.TECTONICS_FROM_MAP.get(),
       value -> {}
     );
+    volcanoesFromMap = booleanOption(
+      getCaption("create_world.volcanoes_from_map"),
+      TFCRealWorldConfig.VOLCANOES_FROM_MAP.get(),
+      value -> {}
+    );
     riversFromMap = booleanOption(
       getCaption("create_world.rivers_from_map"),
       TFCRealWorldConfig.RIVERS_FROM_MAP.get(),
+      value -> {}
+    );
+    climateFromMap = booleanOption(
+      getCaption("create_world.climate_from_map"),
+      TFCRealWorldConfig.CLIMATE_FROM_MAP.get(),
       value -> {}
     );
   }
@@ -531,6 +547,10 @@ public class CreateTFCWorldScreenMixin {
     builder.addChild(accessor.tfcrealworld$invokeSmallButton(flatBedrock));
     builder.addChild(accessor.tfcrealworld$invokeSmallButton(finiteContinents));
     builder.addChild(accessor.tfcrealworld$invokeSmallButton(continentalness));
+    builder.addChild(accessor.tfcrealworld$invokeSmallButton(grassDensity));
+    builder.addChild(
+      accessor.tfcrealworld$invokeSmallButton(temperatureConstant)
+    );
 
     tfcrealworld$optionsCount = 0;
   }
@@ -614,33 +634,33 @@ public class CreateTFCWorldScreenMixin {
 
     switch (tfcrealworld$optionsCount) {
       case 1:
-        return accessor.tfcrealworld$invokeSmallButton(grassDensity);
-      case 2:
-        return accessor.tfcrealworld$invokeSmallButton(temperatureConstant);
-      case 3:
         return accessor.tfcrealworld$invokeSmallButton(rainfallConstant);
-      case 4:
+      case 2:
         return accessor.tfcrealworld$invokeSmallButton(temperatureScale);
-      case 5:
+      case 3:
         return accessor.tfcrealworld$invokeSmallButton(rainfallScale);
-      case 6:
+      case 4:
         horizontalScaleWidget = accessor.tfcrealworld$invokeSmallButton(
           horizontalScale
         );
         return horizontalScaleWidget;
-      case 7:
+      case 5:
         verticalScaleWidget = accessor.tfcrealworld$invokeSmallButton(
           verticalScale
         );
         return verticalScaleWidget;
-      case 8:
+      case 6:
         return accessor.tfcrealworld$invokeSmallButton(continentFromMap);
-      case 9:
+      case 7:
+        return accessor.tfcrealworld$invokeSmallButton(lakesFromMap);
+      case 8:
         return accessor.tfcrealworld$invokeSmallButton(tectonicsFromMap);
+      case 9:
+        return accessor.tfcrealworld$invokeSmallButton(volcanoesFromMap);
       case 10:
-        return accessor.tfcrealworld$invokeSmallButton(climateFromMap);
-      case 11:
         return accessor.tfcrealworld$invokeSmallButton(riversFromMap);
+      case 11:
+        return accessor.tfcrealworld$invokeSmallButton(climateFromMap);
       default:
         return accessor.tfcrealworld$invokeSmallButton(option);
     }
@@ -674,9 +694,11 @@ public class CreateTFCWorldScreenMixin {
     TFCRealWorldConfig.HORIZONTAL_SCALE.set(horizontalScale.get());
     TFCRealWorldConfig.VERTICAL_SCALE.set(verticalScale.get());
     TFCRealWorldConfig.CONTINENT_FROM_MAP.set(continentFromMap.get());
-    TFCRealWorldConfig.CLIMATE_FROM_MAP.set(climateFromMap.get());
+    TFCRealWorldConfig.LAKES_FROM_MAP.set(lakesFromMap.get());
     TFCRealWorldConfig.TECTONICS_FROM_MAP.set(tectonicsFromMap.get());
+    TFCRealWorldConfig.VOLCANOES_FROM_MAP.set(volcanoesFromMap.get());
     TFCRealWorldConfig.RIVERS_FROM_MAP.set(riversFromMap.get());
+    TFCRealWorldConfig.CLIMATE_FROM_MAP.set(climateFromMap.get());
 
     TFCRealWorldConfig.saveConfig();
 
