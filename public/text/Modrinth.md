@@ -16,7 +16,7 @@ Sail down the Nile to its delta. Paddle up the Amazon through the rainforest. Cr
 - **A Detailed Coastline & Real Islands:** The fjords of Norway, the boot of Italy, the thousand islands of Indonesia - bays, peninsulas and inland seas drawn as on a real map, islands from Britain and Japan down to small ocean islets, and atolls where coral reefs actually grow. 🏝️
 - **Real Mountains & Volcanoes:** The Andes and the Alps rise where plates collide, rift valleys open where they pull apart, and Iceland and the Ring of Fire get their volcanoes. 🏔️🌋
 - **Real Climates:** From the jungles of the Congo through the savannas and the Gobi to the Siberian taiga and the ice of Antarctica - each with TFC's authentic seasons. ☀️❄️
-- **Start Wherever You Like:** Type in a latitude and longitude and begin your survival in your home town, at the foot of Kilimanjaro or on a Caribbean island. 📍
+- **Start Wherever You Like:** Type in any latitude and longitude and begin your survival exactly there - in your home town, for example, at the foot of Kilimanjaro or on a Caribbean island. 📍
 - **True to Size:** An equal-area map keeps every land its real size - Greenland is not bigger than Africa - on a world 80,000 by 40,000 blocks across, and you can make it larger or smaller. 📐
 - **Conquer the Whole Planet:** 400+ real cities and settlements, from national capitals to remote island villages and polar stations, are waiting on the geography map in your inventory, each with its own advancement. Reach Paris, Cairo, Tokyo, Canberra, Cape Town... Can you set foot on every one of them? 🧭🏆
 - **Or Bring Your Own World:** Play the whole Earth, the Old World or the New World alone - or drop in your own maps and play on any planet you can draw. 🪐
