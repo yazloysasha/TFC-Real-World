@@ -170,7 +170,6 @@
   { "water": "shelf", "volcanism": "intraplate", "hotspot": 4 },
   { "hotspot": 4 },
   { "volcanism": "intraplate", "hotspot": 4 },
-  { "land": "upland", "water": "shelf", "hotspot": 4 },
   { "land": "upland", "water": "shelf", "volcanism": "rift", "hotspot": 4 },
   {
     "land": "upland",
