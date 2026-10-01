@@ -1,8 +1,6 @@
 # TFC: Real World 🌍
 
-**🎉 The Ultra-Realistic Update is here! Real rivers, lakes and islands and a detailed coastline since v4.2.0 on Minecraft 1.21.1.**
-
-Older Minecraft versions will get it later.
+**🎉 The Ultra-Realistic Update is here! Real rivers, lakes and islands and a detailed coastline since v4.2.0 on Minecraft 1.21.1** (older Minecraft versions will get it later).
 
 ![Earth Maps](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
 
