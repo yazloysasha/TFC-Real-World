@@ -21,7 +21,6 @@
     "world.region.AddContinentsAndSetOceanDepthsMixin",
     "world.region.AddHotspotsMixin",
     "world.region.AddIslandsMixin",
-    "world.region.AddMountainsAndBarrierIslandsAccessor",
     "world.region.AddMountainsAndBarrierIslandsMixin",
     "world.region.AddRiversAndLakesMixin",
     "world.region.AnnotateBaseLandHeightMixin",
