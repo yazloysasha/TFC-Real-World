@@ -7,8 +7,10 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.client.ClientVisitedWaypoints;
 
-public record VisitedWaypointUpdatePacket(String ref, long visitedAt)
-  implements CustomPacketPayload {
+public record VisitedWaypointUpdatePacket(
+  String ref,
+  long visitedAt
+) implements CustomPacketPayload {
   public static final Type<VisitedWaypointUpdatePacket> TYPE = new Type<>(
     TFCRealWorld.id("visited_waypoint_update")
   );

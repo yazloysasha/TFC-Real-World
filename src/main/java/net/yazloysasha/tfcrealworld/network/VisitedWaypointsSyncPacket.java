@@ -9,8 +9,9 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.client.ClientVisitedWaypoints;
 
-public record VisitedWaypointsSyncPacket(Map<String, Long> visited)
-  implements CustomPacketPayload {
+public record VisitedWaypointsSyncPacket(
+  Map<String, Long> visited
+) implements CustomPacketPayload {
   public static final Type<VisitedWaypointsSyncPacket> TYPE = new Type<>(
     TFCRealWorld.id("visited_waypoints_sync")
   );

@@ -10,7 +10,8 @@ import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.server.level.ServerPlayer;
 
 public class VisitWaypointTrigger
-  extends SimpleCriterionTrigger<VisitWaypointTrigger.TriggerInstance> {
+  extends SimpleCriterionTrigger<VisitWaypointTrigger.TriggerInstance>
+{
 
   @Override
   public Codec<TriggerInstance> codec() {
@@ -25,8 +26,7 @@ public class VisitWaypointTrigger
   public record TriggerInstance(
     Optional<ContextAwarePredicate> player,
     String waypoint
-  )
-    implements SimpleCriterionTrigger.SimpleInstance {
+  ) implements SimpleCriterionTrigger.SimpleInstance {
     public static final Codec<TriggerInstance> CODEC =
       RecordCodecBuilder.create(instance ->
         instance

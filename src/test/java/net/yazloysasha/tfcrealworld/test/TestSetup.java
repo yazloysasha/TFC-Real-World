@@ -31,8 +31,9 @@ public interface TestSetup {
     return field;
   });
   Method TAG_CONTENTS_PROVIDER = Helpers.uncheck(() -> {
-    final var method =
-      TagsProvider.class.getDeclaredMethod("createContentsProvider");
+    final var method = TagsProvider.class.getDeclaredMethod(
+      "createContentsProvider"
+    );
     method.setAccessible(true);
     return method;
   });
@@ -54,12 +55,12 @@ public interface TestSetup {
               ? resolve(e.getId())
               : Stream.empty()
             : Stream.of(
-              registry.wrapAsHolder(
-                registry.getOrThrow(
-                  ResourceKey.create(registry.key(), e.getId())
+                registry.wrapAsHolder(
+                  registry.getOrThrow(
+                    ResourceKey.create(registry.key(), e.getId())
+                  )
                 )
               )
-            )
         );
     }
   }

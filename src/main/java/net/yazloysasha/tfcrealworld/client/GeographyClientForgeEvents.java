@@ -43,8 +43,8 @@ public final class GeographyClientForgeEvents {
       screen instanceof CalendarScreen
     ) {
       AbstractContainerScreen<?> container = (AbstractContainerScreen<
-          ?
-        >) screen;
+        ?
+      >) screen;
       event.addListener(
         new GeographyInventoryTabButton(
           container.getGuiLeft(),

@@ -144,8 +144,9 @@ public final class GeographyAdvancements {
         Optional.empty(),
         node.ref().toLowerCase(Locale.ROOT)
       );
-    Criterion<?> criterion = ModTriggers.VISIT_WAYPOINT.get()
-      .createCriterion(instance);
+    Criterion<?> criterion = ModTriggers.VISIT_WAYPOINT.get().createCriterion(
+      instance
+    );
     Advancement adv = new Advancement(
       Optional.of(ROOT_ID),
       Optional.of(display),

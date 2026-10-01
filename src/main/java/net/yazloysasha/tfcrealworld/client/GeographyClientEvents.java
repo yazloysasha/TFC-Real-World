@@ -15,12 +15,11 @@ public final class GeographyClientEvents {
     IPayloadContext context
   ) {
     context.enqueueWork(() ->
-      Minecraft.getInstance()
-        .setScreen(
-          new GeographyScreen(
-            Component.translatable("tfc_real_world.screen.geography")
-          )
+      Minecraft.getInstance().setScreen(
+        new GeographyScreen(
+          Component.translatable("tfc_real_world.screen.geography")
         )
+      )
     );
   }
 }

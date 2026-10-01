@@ -185,15 +185,16 @@ public class GeographyScreen extends Screen {
         continue;
       }
       int[] xz = WaypointCoordinates.toBlockXZ(wp.latitude(), wp.longitude());
-      GeographyNode sub = wp.parentRef() != null
-        ? GeographyManager.get(wp.parentRef())
-        : null;
-      GeographyNode region = sub != null && sub.parentRef() != null
-        ? GeographyManager.get(sub.parentRef())
-        : null;
-      GeographyNode continent = region != null && region.parentRef() != null
-        ? GeographyManager.get(region.parentRef())
-        : null;
+      GeographyNode sub =
+        wp.parentRef() != null ? GeographyManager.get(wp.parentRef()) : null;
+      GeographyNode region =
+        sub != null && sub.parentRef() != null
+          ? GeographyManager.get(sub.parentRef())
+          : null;
+      GeographyNode continent =
+        region != null && region.parentRef() != null
+          ? GeographyManager.get(region.parentRef())
+          : null;
       if (sub != null) {
         subregions.put(sub.ref(), sub);
       }

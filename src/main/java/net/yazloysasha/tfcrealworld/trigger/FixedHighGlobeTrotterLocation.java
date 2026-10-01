@@ -10,9 +10,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 
 public class FixedHighGlobeTrotterLocation
-  extends SimpleCriterionTrigger<
-    FixedHighGlobeTrotterLocation.TriggerInstance
-  > {
+  extends SimpleCriterionTrigger<FixedHighGlobeTrotterLocation.TriggerInstance>
+{
 
   @Override
   public Codec<TriggerInstance> codec() {
@@ -23,8 +22,9 @@ public class FixedHighGlobeTrotterLocation
     this.trigger(player, instance -> instance.matches(player));
   }
 
-  public static record TriggerInstance(Optional<ContextAwarePredicate> player)
-    implements SimpleCriterionTrigger.SimpleInstance {
+  public static record TriggerInstance(
+    Optional<ContextAwarePredicate> player
+  ) implements SimpleCriterionTrigger.SimpleInstance {
     public static final Codec<TriggerInstance> CODEC =
       RecordCodecBuilder.create(instance ->
         instance
@@ -38,8 +38,7 @@ public class FixedHighGlobeTrotterLocation
 
     public boolean matches(ServerPlayer player) {
       return (
-        player.blockPosition().getZ() >=
-        TFCRealWorldConfig.VERTICAL_SCALE.get()
+        player.blockPosition().getZ() >= TFCRealWorldConfig.VERTICAL_SCALE.get()
       );
     }
   }

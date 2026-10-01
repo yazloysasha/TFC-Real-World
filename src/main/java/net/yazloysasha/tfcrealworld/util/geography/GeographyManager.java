@@ -105,9 +105,10 @@ public final class GeographyManager {
       }
       String namespace = body.substring(0, idx);
       String slug = body.substring(idx + marker.length());
-      GeographyNode node = kind == GeographyKind.WAYPOINT
-        ? get(namespace + ":" + slug)
-        : get(namespace + ":" + kind.path() + "/" + slug);
+      GeographyNode node =
+        kind == GeographyKind.WAYPOINT
+          ? get(namespace + ":" + slug)
+          : get(namespace + ":" + kind.path() + "/" + slug);
       if (node == null) {
         return null;
       }
@@ -249,13 +250,12 @@ public final class GeographyManager {
     GeographyKind kind,
     boolean skipIfExists
   ) {
-    String folderName =
-      switch (kind) {
-        case CONTINENT -> "continents";
-        case REGION -> "regions";
-        case SUBREGION -> "subregions";
-        case WAYPOINT -> "waypoints";
-      };
+    String folderName = switch (kind) {
+      case CONTINENT -> "continents";
+      case REGION -> "regions";
+      case SUBREGION -> "subregions";
+      case WAYPOINT -> "waypoints";
+    };
     Path folder = namespacePath.resolve(folderName);
     if (!Files.isDirectory(folder)) {
       return;
@@ -281,9 +281,10 @@ public final class GeographyManager {
   ) {
     String fileName = path.getFileName().toString();
     String slug = fileName.substring(0, fileName.length() - ".json".length());
-    String ref = kind == GeographyKind.WAYPOINT
-      ? namespace + ":" + slug
-      : namespace + ":" + kind.path() + "/" + slug;
+    String ref =
+      kind == GeographyKind.WAYPOINT
+        ? namespace + ":" + slug
+        : namespace + ":" + kind.path() + "/" + slug;
     String key = normalizeRef(ref);
     if (skipIfExists && NODES.containsKey(key)) {
       return;
