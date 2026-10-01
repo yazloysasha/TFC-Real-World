@@ -1,6 +1,5 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
-import static net.dries007.tfc.world.layer.TFCLayers.OCEAN_RIDGE;
 import static net.dries007.tfc.world.layer.TFCLayers.SUNKEN_SHIELD_VOLCANO;
 
 import com.llamalad7.mixinextras.sugar.Local;
@@ -21,9 +20,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
  * Vanilla ChooseBiomes picks every biome from the region-point fields written
- * from the maps. Adjusted inputs: sunken hotspots keep the sea they stand in
- * (and may also cover ocean ridges), coastal decisions read distances in
- * grid cells, and atolls stand where the tectonics map has coral reefs.
+ * from the maps. Adjusted inputs: a sunken hotspot is a sunken shield in any
+ * sea (vanilla raises an ancient shield out of ridges and atolls), coastal
+ * decisions read distances in grid cells, and atolls stand where the
+ * tectonics map has coral reefs.
  */
 @Mixin(value = ChooseBiomes.class, remap = false)
 public class ChooseBiomesMixin {
@@ -41,10 +41,7 @@ public class ChooseBiomesMixin {
     @Local Region.Point point
   ) {
     if (!point.land()) {
-      if (age == 4 && point.biome == OCEAN_RIDGE) {
-        return SUNKEN_SHIELD_VOLCANO;
-      }
-      return point.biome;
+      return age == 4 ? SUNKEN_SHIELD_VOLCANO : point.biome;
     }
     return (
       (ChooseBiomesAccessor) (Object) instance
