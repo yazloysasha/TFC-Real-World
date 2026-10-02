@@ -1,11 +1,15 @@
 package net.yazloysasha.tfcrealworld.world.layer;
 
 import static net.dries007.tfc.world.layer.TFCLayers.LAKE;
+import static net.dries007.tfc.world.layer.TFCLayers.MELTWATER_LAKE;
 import static net.dries007.tfc.world.layer.TFCLayers.OCEAN;
 import static net.dries007.tfc.world.layer.TFCLayers.PLAINS;
 import static net.dries007.tfc.world.layer.TFCLayers.RIFT_LAKE;
+import static net.dries007.tfc.world.layer.TFCLayers.SUBGLACIAL_LAKE;
 
 import com.google.common.base.Suppliers;
+import it.unimi.dsi.fastutil.longs.LongArrayFIFOQueue;
+import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import java.util.Arrays;
 import java.util.function.IntPredicate;
 import java.util.function.Supplier;
@@ -16,6 +20,7 @@ import net.dries007.tfc.world.layer.framework.AreaContext;
 import net.dries007.tfc.world.layer.framework.TransformLayer;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.minecraft.world.level.ChunkPos;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.mixin.world.layer.TFCLayersAccessor;
 import net.yazloysasha.tfcrealworld.util.registry.RiftLakesRegistry;
@@ -30,13 +35,17 @@ import org.jetbrains.annotations.Nullable;
  * 16-block cells, before vanilla shores and again after them. A biome on the
  * wrong side takes a neighbouring biome of the right kind; map lakes take the
  * lake form of the land around them, except that a lake in a rift is a rift
- * lake as a whole ({@link MapRiftLakes}). With tectonics only hotspot shields
+ * lake as a whole ({@link MapRiftLakes}) and a lake at the edge of an ice
+ * sheet a meltwater lake as a whole. With tectonics only hotspot shields
  * may reach into the sea; without, islands and volcanic arcs may too.
  */
 public final class MapLandOceanCorrectionLayer implements TransformLayer {
 
   /** Cells searched around a map-only land cell for a land biome. */
   private static final int LAND_SEARCH_RADIUS = 4;
+
+  /** Cells of a map lake searched for its form: past any lake at an edge. */
+  private static final int MAX_LAKE_CELLS = 1024;
 
   /** No matching neighbour (layer biome ids are non-negative). */
   private static final int NONE = -1;
@@ -128,8 +137,20 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     return center;
   }
 
-  /** The lake of a map lake pixel: vanilla's lake form of the land there. */
+  /**
+   * The lake of a map lake pixel: vanilla's lake form of the land there.
+   * Under a flat ice sheet that is a subglacial lake, at the sheet's edge a
+   * meltwater lake; a map lake that reaches the edge is a meltwater lake as
+   * a whole, or the ice over one half would lift the other out of the water.
+   */
   private int lakeBiomeFrom(int center, Area area, int x, int z) {
+    final int lake = ownLakeForm(center, area, x, z);
+    return lake == SUBGLACIAL_LAKE && lakeReachesMeltwater(area, x, z)
+      ? MELTWATER_LAKE
+      : lake;
+  }
+
+  private int ownLakeForm(int center, Area area, int x, int z) {
     if (TFCLayers.isLake(center)) {
       return center;
     }
@@ -143,6 +164,38 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
       return TFCLayers.lakeFor(land);
     }
     return LAKE;
+  }
+
+  /**
+   * Whether the map lake of the cell has a cell that is a meltwater lake on
+   * its own, looking no further than MAX_LAKE_CELLS cells of the lake.
+   */
+  private boolean lakeReachesMeltwater(Area area, int x, int z) {
+    final LongOpenHashSet seen = new LongOpenHashSet();
+    final LongArrayFIFOQueue queue = new LongArrayFIFOQueue();
+    seen.add(ChunkPos.asLong(x, z));
+    queue.enqueue(ChunkPos.asLong(x, z));
+    while (!queue.isEmpty() && seen.size() <= MAX_LAKE_CELLS) {
+      final long cell = queue.dequeueLong();
+      final int cellX = ChunkPos.getX(cell);
+      final int cellZ = ChunkPos.getZ(cell);
+      for (final int[] offset : NEIGHBOURS) {
+        final int nx = cellX + offset[0];
+        final int nz = cellZ + offset[1];
+        final boolean mapLake = continentNoise.isLakeAtGridHard(
+          nx * layerToGrid,
+          nz * layerToGrid
+        );
+        if (!mapLake || !seen.add(ChunkPos.asLong(nx, nz))) {
+          continue;
+        }
+        if (ownLakeForm(area.get(nx, nz), area, nx, nz) == MELTWATER_LAKE) {
+          return true;
+        }
+        queue.enqueue(ChunkPos.asLong(nx, nz));
+      }
+    }
+    return false;
   }
 
   /**
