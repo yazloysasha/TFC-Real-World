@@ -1,11 +1,14 @@
 package net.yazloysasha.tfcrealworld.world.layer;
 
+import static net.dries007.tfc.world.layer.TFCLayers.INVERTED_PATTERNED_GROUND;
+import static net.dries007.tfc.world.layer.TFCLayers.KNOB_AND_KETTLE;
 import static net.dries007.tfc.world.layer.TFCLayers.LAKE;
 import static net.dries007.tfc.world.layer.TFCLayers.MELTWATER_LAKE;
 import static net.dries007.tfc.world.layer.TFCLayers.OCEAN;
+import static net.dries007.tfc.world.layer.TFCLayers.PATTERNED_GROUND;
 import static net.dries007.tfc.world.layer.TFCLayers.PLAINS;
 import static net.dries007.tfc.world.layer.TFCLayers.RIFT_LAKE;
-import static net.dries007.tfc.world.layer.TFCLayers.SUBGLACIAL_LAKE;
+import static net.dries007.tfc.world.layer.TFCLayers.STONE_CIRCLES;
 
 import com.google.common.base.Suppliers;
 import it.unimi.dsi.fastutil.longs.LongArrayFIFOQueue;
@@ -159,12 +162,25 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
    */
   private int lakeBiomeFrom(int center, Area area, int x, int z) {
     final int lake = ownLakeForm(center, area, x, z);
-    return (
-        (lake == SUBGLACIAL_LAKE || lake == LAKE) &&
-        lakeReachesMeltwater(area, x, z)
-      )
+    return isByIceSheet(center) && lakeReachesMeltwater(area, x, z)
       ? MELTWATER_LAKE
       : lake;
+  }
+
+  /**
+   * Land a lake at an ice sheet's edge can lie on besides the edge itself:
+   * the flat ice sheet and the bare ground vanilla finds before it (the
+   * biomes IceSheetEdgeLayer makes its edge of). No other lake is looked at,
+   * so a land of lakes far from the ice costs nothing.
+   */
+  private static boolean isByIceSheet(int land) {
+    return (
+      (TFCLayers.isFlatIceSheet(land) && !TFCLayers.isLake(land)) ||
+      land == KNOB_AND_KETTLE ||
+      land == PATTERNED_GROUND ||
+      land == INVERTED_PATTERNED_GROUND ||
+      land == STONE_CIRCLES
+    );
   }
 
   private int ownLakeForm(int center, Area area, int x, int z) {
@@ -185,8 +201,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
 
   /**
    * Whether the map lake of the cell has a cell that is a meltwater lake on
-   * its own within LAKE_SEARCH_RADIUS. Only lakes by an ice sheet are
-   * followed: a land of lakes far from any ice would pay for every cell.
+   * its own within LAKE_SEARCH_RADIUS, if there is an ice sheet near at all.
    */
   private boolean lakeReachesMeltwater(Area area, int x, int z) {
     if (!iceSheetNear(x, z)) {
