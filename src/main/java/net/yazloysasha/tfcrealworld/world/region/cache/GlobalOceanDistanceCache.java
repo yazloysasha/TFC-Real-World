@@ -78,6 +78,19 @@ public class GlobalOceanDistanceCache extends BaseGlobalDistanceCache {
     }
   }
 
+  private boolean hasLandNeighbour(int x, int z) {
+    final int lastX = Math.min(width - 1, x + 1);
+    final int lastZ = Math.min(height - 1, z + 1);
+    for (int nz = Math.max(0, z - 1); nz <= lastZ; nz++) {
+      for (int nx = Math.max(0, x - 1); nx <= lastX; nx++) {
+        if (distanceMap[nz * width + nx] == 0) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   private void calculateDistances(PNGContinentNoise continentNoise) {
     final BitSet explored = new BitSet(width * height);
     final IntArrayFIFOQueue queue = new IntArrayFIFOQueue();
@@ -85,14 +98,18 @@ public class GlobalOceanDistanceCache extends BaseGlobalDistanceCache {
     for (int z = 0; z < height; z++) {
       int zWidth = z * width;
       for (int x = 0; x < width; x++) {
-        int index = zWidth + x;
-        boolean isOcean = isOceanPixel(x, z);
-        if (isOcean) {
-          distanceMap[index] = -1;
-          queue.enqueue(index);
-          explored.set(index);
-        } else {
-          distanceMap[index] = 0;
+        if (isOceanPixel(x, z)) {
+          distanceMap[zWidth + x] = -1;
+          explored.set(zWidth + x);
+        }
+      }
+    }
+    // The flood only ever steps from sea onto land, so it starts from the
+    // sea next to land, not from every pixel of the ocean.
+    for (int z = 0; z < height; z++) {
+      for (int x = 0; x < width; x++) {
+        if (distanceMap[z * width + x] == -1 && hasLandNeighbour(x, z)) {
+          queue.enqueue(z * width + x);
         }
       }
     }

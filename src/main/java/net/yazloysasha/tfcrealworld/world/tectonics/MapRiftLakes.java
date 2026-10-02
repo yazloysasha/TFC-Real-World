@@ -1,5 +1,6 @@
 package net.yazloysasha.tfcrealworld.world.tectonics;
 
+import java.util.Arrays;
 import java.util.BitSet;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise.ContinentBand;
@@ -38,7 +39,7 @@ public final class MapRiftLakes {
     final int height = continent.getHeight();
     final BitSet visited = new BitSet(width * height);
     final BitSet riftLakePixels = new BitSet(width * height);
-    final int[] component = new int[width * height];
+    int[] component = new int[64];
     for (int start = 0; start < width * height; start++) {
       if (visited.get(start) || !isLake(continent, start, width)) {
         continue;
@@ -61,6 +62,9 @@ public final class MapRiftLakes {
           final int next = nz * width + nx;
           if (!visited.get(next) && isLake(continent, next, width)) {
             visited.set(next);
+            if (size == component.length) {
+              component = Arrays.copyOf(component, size * 2);
+            }
             component[size++] = next;
           }
         }
