@@ -98,40 +98,39 @@ public abstract class ChunkHeightFillerMixin {
       return height;
     }
     double lakes = 0;
+    double beds = 0;
     double lowest = Double.MAX_VALUE;
+    double lowestWeight = 0;
     for (final Object2DoubleMap.Entry<
       BiomeExtension
     > entry : biomeWeights.object2DoubleEntrySet()) {
-      if (entry.getKey().biomeBlendType() == BiomeBlendType.LAKE) {
-        lakes += entry.getDoubleValue();
-        final double bed = biomeNoiseSamplers.get(entry.getKey()).height();
-        if (bed < lowest) {
-          lowest = bed;
-          tfcrealworld$lake = entry.getKey();
-        }
+      final BiomeExtension biome = entry.getKey();
+      if (biome.biomeBlendType() != BiomeBlendType.LAKE) {
+        continue;
+      }
+      final double weight = entry.getDoubleValue();
+      final double bed = biomeNoiseSamplers.get(biome).height();
+      lakes += weight;
+      beds += weight * bed;
+      if (bed < lowest) {
+        lowest = bed;
+        lowestWeight = weight;
+        tfcrealworld$lake = biome;
       }
     }
-    if (tfcrealworld$lake == null) {
+    // One lake form, or none: nothing to level.
+    if (lowestWeight == lakes) {
+      tfcrealworld$lake = null;
       return height;
     }
     tfcrealworld$sink = Mth.clampedMap(
-      biomeWeights.getDouble(tfcrealworld$lake) / lakes,
+      lowestWeight / lakes,
       LOW_LAKE_SHARE_NONE,
       LOW_LAKE_SHARE_WHOLE,
       0,
       1
     );
-    for (final Object2DoubleMap.Entry<
-      BiomeExtension
-    > entry : biomeWeights.object2DoubleEntrySet()) {
-      if (entry.getKey().biomeBlendType() == BiomeBlendType.LAKE) {
-        height -=
-          tfcrealworld$sink *
-          entry.getDoubleValue() *
-          (biomeNoiseSamplers.get(entry.getKey()).height() - lowest);
-      }
-    }
-    return height;
+    return height - tfcrealworld$sink * (beds - lakes * lowest);
   }
 
   /** A lake column sunk to the lowest bed is that lake's. */
