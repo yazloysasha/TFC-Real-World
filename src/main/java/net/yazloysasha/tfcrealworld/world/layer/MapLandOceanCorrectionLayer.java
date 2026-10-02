@@ -44,8 +44,17 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
   /** Cells searched around a map-only land cell for a land biome. */
   private static final int LAND_SEARCH_RADIUS = 4;
 
-  /** Cells of a map lake searched for its form: past any lake at an edge. */
-  private static final int MAX_LAKE_CELLS = 1024;
+  /**
+   * Cells from a lake cell its map lake is followed for the lake's form:
+   * 1.5 region cells, more than the lakes strewn along an ice sheet's edge.
+   */
+  private static final int LAKE_SEARCH_RADIUS = 12;
+
+  /**
+   * Region cells around a lake cell looked at for an ice sheet before the
+   * lake is followed at all: the search radius and the width of the edge.
+   */
+  private static final int ICE_SEARCH_RADIUS = 3;
 
   /** No matching neighbour (layer biome ids are non-negative). */
   private static final int NONE = -1;
@@ -75,6 +84,10 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
 
   @Nullable
   private final MapRiftLakes riftLakes;
+
+  /** The last answer of {@link #iceSheetNear}, shared between threads. */
+  @Nullable
+  private volatile IceCheck lastIceCheck;
 
   /**
    * @param zoomsFromGrid zooms since region grid (3 → 16-block cells).
@@ -172,20 +185,30 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
 
   /**
    * Whether the map lake of the cell has a cell that is a meltwater lake on
-   * its own, looking no further than MAX_LAKE_CELLS cells of the lake.
+   * its own within LAKE_SEARCH_RADIUS. Only lakes by an ice sheet are
+   * followed: a land of lakes far from any ice would pay for every cell.
    */
   private boolean lakeReachesMeltwater(Area area, int x, int z) {
+    if (!iceSheetNear(x, z)) {
+      return false;
+    }
     final LongOpenHashSet seen = new LongOpenHashSet();
     final LongArrayFIFOQueue queue = new LongArrayFIFOQueue();
     seen.add(ChunkPos.asLong(x, z));
     queue.enqueue(ChunkPos.asLong(x, z));
-    while (!queue.isEmpty() && seen.size() <= MAX_LAKE_CELLS) {
+    while (!queue.isEmpty()) {
       final long cell = queue.dequeueLong();
       final int cellX = ChunkPos.getX(cell);
       final int cellZ = ChunkPos.getZ(cell);
       for (final int[] offset : NEIGHBOURS) {
         final int nx = cellX + offset[0];
         final int nz = cellZ + offset[1];
+        if (
+          Math.abs(nx - x) > LAKE_SEARCH_RADIUS ||
+          Math.abs(nz - z) > LAKE_SEARCH_RADIUS
+        ) {
+          continue;
+        }
         final boolean mapLake = continentNoise.isLakeAtGridHard(
           nx * layerToGrid,
           nz * layerToGrid
@@ -201,6 +224,33 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     }
     return false;
   }
+
+  private boolean iceSheetNear(int x, int z) {
+    final int gx = (int) Math.floor(x * layerToGrid);
+    final int gz = (int) Math.floor(z * layerToGrid);
+    // Neighbouring cells ask about the same region cell: keep the last one.
+    final IceCheck last = lastIceCheck;
+    if (last != null && last.gridX == gx && last.gridZ == gz) {
+      return last.near;
+    }
+    boolean near = false;
+    for (int dz = -ICE_SEARCH_RADIUS; dz <= ICE_SEARCH_RADIUS && !near; dz++) {
+      for (int dx = -ICE_SEARCH_RADIUS; dx <= ICE_SEARCH_RADIUS; dx++) {
+        final Region.Point point = regionGenerator.getOrCreateRegionPoint(
+          gx + dx,
+          gz + dz
+        );
+        if (TFCLayers.isFlatIceSheet(point.biome)) {
+          near = true;
+          break;
+        }
+      }
+    }
+    lastIceCheck = new IceCheck(gx, gz, near);
+    return near;
+  }
+
+  private record IceCheck(int gridX, int gridZ, boolean near) {}
 
   /**
    * The land a lake biome stands for where the map has no lake: a biome
