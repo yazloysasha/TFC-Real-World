@@ -12,6 +12,7 @@
     "util.tracker.WeatherHelpersMixin",
     "world.ChunkBaseBlockSourceMixin",
     "world.ChunkHeightFillerMixin",
+    "world.ChunkNoiseFillerMixin",
     "world.biome.BiomeExtensionMixin",
     "world.biome.BiomeNoiseMixin",
     "world.biome.BiomeSourceExtensionMixin",

@@ -140,12 +140,16 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
   /**
    * The lake of a map lake pixel: vanilla's lake form of the land there.
    * Under a flat ice sheet that is a subglacial lake, at the sheet's edge a
-   * meltwater lake; a map lake that reaches the edge is a meltwater lake as
-   * a whole, or the ice over one half would lift the other out of the water.
+   * meltwater lake, on the bare ground before it a plain lake; a map lake
+   * that reaches the edge is a meltwater lake as a whole, or the ice over
+   * one part would lift another out of the water.
    */
   private int lakeBiomeFrom(int center, Area area, int x, int z) {
     final int lake = ownLakeForm(center, area, x, z);
-    return lake == SUBGLACIAL_LAKE && lakeReachesMeltwater(area, x, z)
+    return (
+        (lake == SUBGLACIAL_LAKE || lake == LAKE) &&
+        lakeReachesMeltwater(area, x, z)
+      )
       ? MELTWATER_LAKE
       : lake;
   }

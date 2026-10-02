@@ -19,6 +19,13 @@ public class LakeTest implements TestSetup {
 
   private static final long SEED = 20261002L;
 
+  private static final int[][] SIDES = {
+    { 1, 0 },
+    { -1, 0 },
+    { 0, 1 },
+    { 0, -1 },
+  };
+
   /**
    * Finland is a land of small lakes: whole region cells are lakes, and the
    * land the map has inside them must be the land of the place, never a
@@ -56,10 +63,11 @@ public class LakeTest implements TestSetup {
   }
 
   /**
-   * At the ice sheet edge of Greenland a map lake lies half under the flat
-   * ice sheet, half at its edge. It is one lake form as a whole, a meltwater
-   * lake: a subglacial lake has the height of the ice, and beside it the
-   * meltwater would be lifted out of the water.
+   * At the ice sheet edge of Greenland a map lake lies partly under the flat
+   * ice sheet, partly at its edge, partly on the bare ground before it. It
+   * is one lake form as a whole, a meltwater lake: a subglacial lake has the
+   * height of the ice, and beside it the meltwater would be lifted out of
+   * the water.
    */
   @Test
   public void lakeAtTheIceEdgeIsOneForm() {
@@ -79,18 +87,16 @@ public class LakeTest implements TestSetup {
           continue;
         }
         meltwater++;
-        if (
-          layer.get(x + 1, z) == TFCLayers.SUBGLACIAL_LAKE ||
-          layer.get(x - 1, z) == TFCLayers.SUBGLACIAL_LAKE ||
-          layer.get(x, z + 1) == TFCLayers.SUBGLACIAL_LAKE ||
-          layer.get(x, z - 1) == TFCLayers.SUBGLACIAL_LAKE
-        ) {
-          mixed++;
+        for (final int[] side : SIDES) {
+          final int beside = layer.get(x + side[0], z + side[1]);
+          if (beside == TFCLayers.SUBGLACIAL_LAKE || beside == TFCLayers.LAKE) {
+            mixed++;
+          }
         }
       }
     }
     assertTrue(meltwater > 100, "meltwater lake samples: " + meltwater);
-    assertEquals(0, mixed, "meltwater next to a subglacial lake");
+    assertEquals(0, mixed, "meltwater next to another lake form");
   }
 
   @Test

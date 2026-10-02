@@ -3,6 +3,7 @@ package net.yazloysasha.tfcrealworld.test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import net.dries007.tfc.world.Seed;
@@ -182,5 +183,22 @@ public class MapRiversTest implements TestSetup {
       }
     }
     return nearest;
+  }
+
+  /**
+   * Chunk filling is not run by the tests, so its mixin (the sea is no
+   * river) is applied here: loading the class fails if it does not fit.
+   */
+  @Test
+  public void seaIsNoRiverMixinApplies() throws ReflectiveOperationException {
+    final Class<?> filler = Class.forName(
+      "net.dries007.tfc.world.ChunkNoiseFiller"
+    );
+    assertEquals(
+      1,
+      Arrays.stream(filler.getDeclaredFields())
+        .filter(field -> field.getName().contains("tfcrealworld$sea"))
+        .count()
+    );
   }
 }
