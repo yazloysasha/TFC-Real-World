@@ -136,8 +136,10 @@ public abstract class BasePNGNoise implements Noise2D {
     double localX = x - tileCenterX;
     double localZ = z - tileCenterZ;
 
-    if (Math.floorMod(tileZ, 2) != 0) {
+    if (Math.floorMod(tileX + tileZ, 2) != 0) {
       localX = -localX;
+    }
+    if (Math.floorMod(tileZ, 2) != 0) {
       localZ = -localZ;
     }
 

@@ -146,9 +146,10 @@ public final class MapRidges {
   ) {
     final int tileX = Mth.floor((worldX + halfX) / (2.0 * halfX));
     final int tileZ = Mth.floor((worldZ + halfZ) / (2.0 * halfZ));
-    final int turn = (tileZ & 1) == 0 ? 1 : -1;
-    final double x = (worldX - tileX * 2.0 * halfX) * turn;
-    final double z = (worldZ - tileZ * 2.0 * halfZ) * turn;
+    final double x =
+      (worldX - tileX * 2.0 * halfX) * (((tileX + tileZ) & 1) == 0 ? 1 : -1);
+    final double z =
+      (worldZ - tileZ * 2.0 * halfZ) * ((tileZ & 1) == 0 ? 1 : -1);
     final IntArrayList near = buckets.get(
       ChunkPos.asLong(bucketOf(x), bucketOf(z))
     );

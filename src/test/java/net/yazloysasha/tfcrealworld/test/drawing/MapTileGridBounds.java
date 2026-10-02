@@ -8,6 +8,24 @@ public final class MapTileGridBounds {
 
   private MapTileGridBounds() {}
 
+  /** Whether the cell lies in the map or within {@code padding} of it. */
+  public static boolean isNearPrimaryMapTile(
+    int gridX,
+    int gridZ,
+    int padding
+  ) {
+    final int radiusX =
+      TFCRealWorldConfig.HORIZONTAL_SCALE.get() / Units.GRID_WIDTH_IN_BLOCK;
+    final int radiusZ =
+      TFCRealWorldConfig.VERTICAL_SCALE.get() / Units.GRID_WIDTH_IN_BLOCK;
+    return (
+      gridX >= -radiusX - padding &&
+      gridX <= radiusX + padding &&
+      gridZ >= -radiusZ - padding &&
+      gridZ <= radiusZ + padding
+    );
+  }
+
   public static boolean isInsidePrimaryMapTile(int gridX, int gridZ) {
     final double tileRadiusGridX =
       TFCRealWorldConfig.HORIZONTAL_SCALE.get() /
@@ -38,21 +56,6 @@ public final class MapTileGridBounds {
     final int tileZ = (int) Math.floor(
       (gridZ + tileRadiusGridZ) / (2.0 * tileRadiusGridZ)
     );
-    if (tileX != 0 || tileZ != 0) {
-      return false;
-    }
-    final double tileCenterX = tileX * 2.0 * tileRadiusGridX;
-    final double tileCenterZ = tileZ * 2.0 * tileRadiusGridZ;
-    double localX = gridX - tileCenterX;
-    double localZ = gridZ - tileCenterZ;
-    if (Math.floorMod(tileX, 2) != 0) {
-      localX = -localX;
-    }
-    if (Math.floorMod(tileZ, 2) != 0) {
-      localZ = -localZ;
-    }
-    return (
-      Math.abs(localX) <= tileRadiusGridX && Math.abs(localZ) <= tileRadiusGridZ
-    );
+    return tileX == 0 && tileZ == 0;
   }
 }

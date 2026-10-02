@@ -74,14 +74,14 @@ public class MapRiversTest implements TestSetup {
         failures.add("river at " + place.name());
       }
     }
-    // Past the east edge the world is the map again, past the north edge
-    // the map turned round, rivers included.
+    // Past the east edge the world is the map mirrored, past the north
+    // edge the map turned round, rivers included.
     final int[] manaus = WaypointCoordinates.toBlockXZ(-3.14, -59.98);
     final int width = 2 * TFCRealWorldConfig.HORIZONTAL_SCALE.get();
     final int height = 2 * TFCRealWorldConfig.VERTICAL_SCALE.get();
-    final double repeated = distanceToRiver(
+    final double mirrored = distanceToRiver(
       generator,
-      Units.blockToGridExact(manaus[0] + width),
+      Units.blockToGridExact(width - manaus[0]),
       Units.blockToGridExact(manaus[1])
     );
     final double turned = distanceToRiver(
@@ -93,11 +93,11 @@ public class MapRiversTest implements TestSetup {
       String.format(
         Locale.ROOT,
         "Amazon on the map to the east: %.2f cells, past the pole: %.2f%n",
-        repeated,
+        mirrored,
         turned
       )
     );
-    if (repeated > RIVER_TOLERANCE_CELLS) {
+    if (mirrored > RIVER_TOLERANCE_CELLS) {
       failures.add("no river on the map to the east");
     }
     if (turned > RIVER_TOLERANCE_CELLS) {

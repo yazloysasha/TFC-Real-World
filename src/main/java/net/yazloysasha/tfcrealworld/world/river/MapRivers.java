@@ -257,7 +257,7 @@ public final class MapRivers {
    * Gives the region the map rivers that lie in it, in place of vanilla's
    * AddRiversAndLakes: the edges, their widths and downstream links, and the
    * river flag along the wide ones (vanilla river valleys). Past the edge of
-   * the map the world is the map again, and its rivers with it.
+   * the map the world is mirrored, and its rivers with it.
    */
   public void addTo(Region region, long worldSeed) {
     final Long2ObjectOpenHashMap<RiverEdge> edges =
@@ -345,8 +345,8 @@ public final class MapRivers {
   }
 
   /**
-   * The rivers of one copy of the map: itself, or turned round as the maps
-   * are in every other row (BasePNGNoise). The
+   * The rivers of one copy of the map: itself, or mirrored as the maps are
+   * (BasePNGNoise: mirrored past an edge, turned round past a pole). The
    * region owns the edges whose middle lies in it; a valley is marked by
    * every edge that runs near, also by those of the regions next to it.
    */
@@ -361,8 +361,8 @@ public final class MapRivers {
   ) {
     final float centreX = tileX * 2f * halfGridX;
     final float centreZ = tileZ * 2f * halfGridZ;
+    final float signX = ((tileX + tileZ) & 1) == 0 ? 1f : -1f;
     final float signZ = (tileZ & 1) == 0 ? 1f : -1f;
-    final float signX = signZ;
     final float fromX = signX * (region.minX() - centreX);
     final float toX = signX * (region.maxX() - centreX);
     final float fromZ = signZ * (region.minZ() - centreZ);
@@ -422,8 +422,8 @@ public final class MapRivers {
     final int edge = (int) key;
     final float centreX = tileX * 2f * halfGridX;
     final float centreZ = tileZ * 2f * halfGridZ;
+    final float signX = ((tileX + tileZ) & 1) == 0 ? 1f : -1f;
     final float signZ = (tileZ & 1) == 0 ? 1f : -1f;
-    final float signX = signZ;
     final float fromX = centreX + signX * sourceX[edge];
     final float fromZ = centreZ + signZ * sourceZ[edge];
     final double dx = centreX + signX * drainX[edge] - fromX;

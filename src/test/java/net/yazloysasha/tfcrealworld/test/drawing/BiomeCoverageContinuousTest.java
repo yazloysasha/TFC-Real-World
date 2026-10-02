@@ -366,7 +366,16 @@ public class BiomeCoverageContinuousTest implements TestSetup {
 
       for (int dx = 0; dx < size; dx++) {
         for (int dz = 0; dz < size; dz++) {
-          if (regionGenerated[dx + size * dz]) {
+          // Only the map itself is counted: the copies of it past its
+          // top and bottom edges are not generated at all.
+          if (
+            regionGenerated[dx + size * dz] ||
+            !MapTileGridBounds.isNearPrimaryMapTile(
+              centerX - radius + dx,
+              centerZ - radius + dz,
+              REGION_LAYER_PADDING
+            )
+          ) {
             continue;
           }
           generator.visualizeRegion(
@@ -449,7 +458,9 @@ public class BiomeCoverageContinuousTest implements TestSetup {
           gridZ < centerZ + radius + padding;
           gridZ++
         ) {
-          generator.getOrCreateRegionPoint(gridX, gridZ);
+          if (MapTileGridBounds.isNearPrimaryMapTile(gridX, gridZ, padding)) {
+            generator.getOrCreateRegionPoint(gridX, gridZ);
+          }
         }
       }
       return true;
