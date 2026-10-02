@@ -2,6 +2,7 @@ package net.yazloysasha.tfcrealworld.util.registry;
 
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.world.tectonics.MapRidges;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
 import org.jetbrains.annotations.Nullable;
@@ -12,15 +13,19 @@ public class TectonicsRegistry extends BaseNoiseRegistry<TectonicsMap> {
 
   private static volatile @Nullable MapHotspotLayout hotspotLayout;
 
+  private static volatile @Nullable MapRidges ridges;
+
   private TectonicsRegistry() {}
 
   public static void register(
     RegionGenerator generator,
     TectonicsMap map,
-    @Nullable MapHotspotLayout layout
+    @Nullable MapHotspotLayout layout,
+    @Nullable MapRidges ridgeAxes
   ) {
     INSTANCE.registerNoise(generator, map);
     hotspotLayout = layout;
+    ridges = ridgeAxes;
   }
 
   @Nullable
@@ -47,7 +52,15 @@ public class TectonicsRegistry extends BaseNoiseRegistry<TectonicsMap> {
     return hotspotLayout;
   }
 
-  public static void clearHotspotLayout() {
+  /** Ridge axes of the most recently created generator, as the layout. */
+  @Nullable
+  public static MapRidges ridges() {
+    return ridges;
+  }
+
+  /** Forgets what the last generator with tectonics from the map left. */
+  public static void clearStatics() {
     hotspotLayout = null;
+    ridges = null;
   }
 }

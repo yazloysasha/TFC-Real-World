@@ -2,10 +2,12 @@ package net.yazloysasha.tfcrealworld.mixin.world.biome;
 
 import net.dries007.tfc.world.TFCChunkGenerator;
 import net.dries007.tfc.world.biome.BiomeNoise;
+import net.dries007.tfc.world.noise.FastNoiseLite;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.noise.OpenSimplex2D;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
+import net.yazloysasha.tfcrealworld.world.tectonics.MapRidges;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -81,6 +83,37 @@ public class BiomeNoiseMixin {
         .scaled(-8, 8)
         .addConstant(floor - RIFT_LAKE_FLOOR_DEPTH / 2)
     );
+  }
+
+  /**
+   * Vanilla measures a ridge from the edges of its own plate noise, which
+   * the map's ridges do not follow. With tectonics the crest, its seafloor
+   * and its vents are measured from the real axis ({@link MapRidges}).
+   */
+  @Inject(
+    method = "getOceanRidgeWarpedEdgeDistanceAndScale",
+    at = @At("HEAD"),
+    cancellable = true
+  )
+  private static void tfcrealworld$ridgeAlongMapAxis(
+    double x,
+    double y,
+    long seed,
+    boolean getDistanceToGaps,
+    CallbackInfoReturnable<FastNoiseLite.Vector2> cir
+  ) {
+    if (
+      !TFCRealWorldConfig.CONTINENT_FROM_MAP.get() ||
+      !TFCRealWorldConfig.TECTONICS_FROM_MAP.get()
+    ) {
+      return;
+    }
+    final MapRidges ridges = TectonicsRegistry.ridges();
+    if (ridges != null) {
+      cir.setReturnValue(
+        ridges.warpedAxisDistanceAndScale(x, y, seed, getDistanceToGaps)
+      );
+    }
   }
 
   @Unique

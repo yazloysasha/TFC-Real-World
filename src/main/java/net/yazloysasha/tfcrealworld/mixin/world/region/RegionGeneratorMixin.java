@@ -22,6 +22,7 @@ import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
 import net.yazloysasha.tfcrealworld.world.river.MapRivers;
+import net.yazloysasha.tfcrealworld.world.tectonics.MapRidges;
 import net.yazloysasha.tfcrealworld.world.tectonics.MapRiftLakes;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
@@ -107,7 +108,7 @@ public class RegionGeneratorMixin {
       if (rivers != null) {
         RiversRegistry.register(generator, rivers);
       }
-      TectonicsRegistry.clearHotspotLayout();
+      TectonicsRegistry.clearStatics();
       if (TFCRealWorldConfig.TECTONICS_FROM_MAP.get()) {
         tfcrealworld$registerTectonics(
           generator,
@@ -156,7 +157,8 @@ public class RegionGeneratorMixin {
       tectonics,
       TFCRealWorldConfig.VOLCANOES_FROM_MAP.get()
         ? MapHotspotLayout.create(tectonics, seed.seed())
-        : null
+        : null,
+      MapRidges.tryLoad(horizontalScale, verticalScale)
     );
     RiftLakesRegistry.register(
       generator,
