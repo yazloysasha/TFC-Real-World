@@ -207,7 +207,7 @@ A grayscale PNG works too: gray level `N` is class `N` (black is class `0`).
 
 **Climate Maps:** 8-bit grayscale PNGs with the TFC climate of each pixel, read as is:
 
-- `temperature.png` — annual mean temperature: `0` = −25 °C … `255` = 30 °C.
+- `temperature.png` — annual mean temperature: `0` = −50 °C … `255` = 50 °C.
 - `rainfall.png` — annual rainfall: `0` = 0 mm … `255` = 500 mm.
 - `rain_variance.png` — rainfall seasonality by the local season, the same in both hemispheres: `0` = −1 (wet winter, dry summer) … `128` ≈ even rain … `255` = 1 (wet summer, dry winter).
 
@@ -225,7 +225,7 @@ A river is a chain of edges that share vertices, running from source to drain. K
 
 1. **Continent Map:** Create a 9984×4992 grayscale image at `0` (ocean) with a circular island in the center at `255` (land).
 2. **Tectonics Map:** Create a 1248×624 grayscale image where `0` is the sea and coast around the island, `1` is the island interior and `2` is a single pixel at the island centre. In `tectonics.json` write `[{"water": "shelf"}, {"land": "upland", "water": "shelf"}, {"land": "upland", "water": "shelf", "hotspot": 2}]` for a dormant shield volcano.
-3. **Temperature Map:** Create a 1248×624 grayscale image with a gradient from `171` (≈12 °C) at the edges to `190` (≈16 °C) at the center.
+3. **Temperature Map:** Create a 1248×624 grayscale image with a gradient from `158` (≈12 °C) at the edges to `168` (≈16 °C) at the center.
 4. **Rainfall Map:** Create a 1248×624 grayscale image with a gradient from `102` (≈200 mm) at the edges to `153` (≈300 mm) at the center — together an oceanic (Cfb) climate.
 5. **Rain Variance Map:** Create a 1248×624 image filled with `128` (rain all year round).
 6. **Settings:** Create `settings.json` with `horizontal_scale` = `40000` and `vertical_scale` = `20000` to match the 2:1 aspect ratio of the maps. Note that due to the 2:1, a circular island in your map will appear as an oval in the generated world.

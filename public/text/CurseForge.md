@@ -226,7 +226,7 @@ A grayscale PNG works too: gray level <code>N</code> is class <code>N</code> (bl
 <b>Climate Maps:</b> 8-bit grayscale PNGs with the TFC climate of each pixel, read as is:<br>
 
 <ul>
-<li><code>temperature.png</code> — annual mean temperature: <code>0</code> = −25 °C … <code>255</code> = 30 °C.</li>
+<li><code>temperature.png</code> — annual mean temperature: <code>0</code> = −50 °C … <code>255</code> = 50 °C.</li>
 <li><code>rainfall.png</code> — annual rainfall: <code>0</code> = 0 mm … <code>255</code> = 500 mm.</li>
 <li><code>rain_variance.png</code> — rainfall seasonality by the local season, the same in both hemispheres: <code>0</code> = −1 (wet winter, dry summer) … <code>128</code> ≈ even rain … <code>255</code> = 1 (wet summer, dry winter).</li>
 </ul>
@@ -248,7 +248,7 @@ A river is a chain of edges that share vertices, running from source to drain. K
 <ol>
 <li><b>Continent Map:</b> Create a 9984×4992 grayscale image at <code>0</code> (ocean) with a circular island in the center at <code>255</code> (land).</li>
 <li><b>Tectonics Map:</b> Create a 1248×624 grayscale image where <code>0</code> is the sea and coast around the island, <code>1</code> is the island interior and <code>2</code> is a single pixel at the island centre. In <code>tectonics.json</code> write <code>[{"water": "shelf"}, {"land": "upland", "water": "shelf"}, {"land": "upland", "water": "shelf", "hotspot": 2}]</code> for a dormant shield volcano.</li>
-<li><b>Temperature Map:</b> Create a 1248×624 grayscale image with a gradient from <code>171</code> (≈12 °C) at the edges to <code>190</code> (≈16 °C) at the center.</li>
+<li><b>Temperature Map:</b> Create a 1248×624 grayscale image with a gradient from <code>158</code> (≈12 °C) at the edges to <code>168</code> (≈16 °C) at the center.</li>
 <li><b>Rainfall Map:</b> Create a 1248×624 grayscale image with a gradient from <code>102</code> (≈200 mm) at the edges to <code>153</code> (≈300 mm) at the center — together an oceanic (Cfb) climate.</li>
 <li><b>Rain Variance Map:</b> Create a 1248×624 image filled with <code>128</code> (rain all year round).</li>
 <li><b>Settings:</b> Create <code>settings.json</code> with <code>horizontal_scale</code> = <code>40000</code> and <code>vertical_scale</code> = <code>20000</code> to match the 2:1 aspect ratio of the maps. Note that due to the 2:1, a circular island in your map will appear as an oval in the generated world.</li>
