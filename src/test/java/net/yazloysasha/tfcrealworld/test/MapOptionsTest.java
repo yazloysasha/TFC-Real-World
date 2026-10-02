@@ -10,6 +10,8 @@ import java.util.function.Predicate;
 import net.dries007.tfc.world.Seed;
 import net.dries007.tfc.world.chunkdata.ChunkData;
 import net.dries007.tfc.world.chunkdata.RegionChunkDataGenerator;
+import net.dries007.tfc.world.layer.TFCLayers;
+import net.dries007.tfc.world.layer.framework.Area;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.dries007.tfc.world.region.RiverEdge;
@@ -116,14 +118,11 @@ public class MapOptionsTest implements TestSetup {
   @Test
   public void lakesFollowTheirOption() {
     RegionGenerator generator = generator(true, true, true, true, true, true);
-    assertEquals(LAKES.length, count(generator, LAKES, Region.Point::lake));
+    assertEquals(LAKES.length, lakes(generator));
 
     generator = generator(true, false, true, true, true, true);
     assertEquals(LAKES.length, count(generator, LAKES, Region.Point::land));
-    assertTrue(
-      count(generator, LAKES, Region.Point::lake) < LAKES.length,
-      "map lakes are gone"
-    );
+    assertTrue(lakes(generator) < LAKES.length, "map lakes are gone");
     assertTrue(scan(generator, Region.Point::lake) > 0, "procedural lakes");
   }
 
@@ -137,7 +136,7 @@ public class MapOptionsTest implements TestSetup {
       true,
       true
     );
-    assertTrue(count(generator, LAKES, Region.Point::lake) < LAKES.length);
+    assertTrue(lakes(generator) < LAKES.length);
   }
 
   @Test
@@ -316,6 +315,25 @@ public class MapOptionsTest implements TestSetup {
       BuiltinWorldPreset.defaultSettings(),
       Seed.of(SEED)
     );
+  }
+
+  /** How many of the lake places are a lake biome on the final layer. */
+  private static int lakes(RegionGenerator generator) {
+    final Area layer = TFCLayers.createRegionBiomeLayer(
+      generator,
+      Seed.of(SEED)
+    ).get();
+    int count = 0;
+    for (final Place place : LAKES) {
+      final int[] block = WaypointCoordinates.toBlockXZ(
+        place.latitude(),
+        place.longitude()
+      );
+      if (TFCLayers.isLake(layer.get(block[0] >> 2, block[1] >> 2))) {
+        count++;
+      }
+    }
+    return count;
   }
 
   private static boolean hotspot(Region.Point point) {

@@ -4,12 +4,14 @@ import net.dries007.tfc.world.BiomeNoiseSampler;
 import net.dries007.tfc.world.Seed;
 import net.dries007.tfc.world.biome.BiomeExtension;
 import net.dries007.tfc.world.biome.BiomeNoise;
+import net.dries007.tfc.world.biome.TFCBiomes;
 import net.dries007.tfc.world.surface.builder.NormalSurfaceBuilder;
 import net.dries007.tfc.world.surface.builder.SurfaceBuilder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.world.MapLakeWater;
+import net.yazloysasha.tfcrealworld.world.surface.FrozenWaterSurfaceBuilder;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -108,6 +110,29 @@ public class BiomeExtensionMixin {
   ) {
     if (tfcrealworld$shouldRemoveCinderCones()) {
       cir.setReturnValue(NormalSurfaceBuilder.INSTANCE.apply(seed));
+    }
+  }
+
+  /**
+   * Water freezes over in every biome where vanilla's sea does (in the
+   * biomes of vanilla's shore and ocean surface it already has: there
+   * nothing is left to freeze). A meltwater lake is open water by its
+   * nature.
+   */
+  @Inject(
+    method = "createSurfaceBuilder",
+    at = @At("RETURN"),
+    cancellable = true
+  )
+  private void tfcrealworld$frozenWater(
+    Seed seed,
+    CallbackInfoReturnable<SurfaceBuilder> cir
+  ) {
+    final BiomeExtension biome = (BiomeExtension) (Object) this;
+    if (biome != TFCBiomes.MELTWATER_LAKE) {
+      cir.setReturnValue(
+        new FrozenWaterSurfaceBuilder(cir.getReturnValue(), seed)
+      );
     }
   }
 }

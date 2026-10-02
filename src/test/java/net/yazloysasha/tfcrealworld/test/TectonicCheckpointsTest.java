@@ -297,13 +297,7 @@ public class TectonicCheckpointsTest implements TestSetup {
     );
     map.put("hotspot", p -> p.hotSpotAge > 0 && name(p).contains("SHIELD"));
     map.put("not_hotspot", p -> p.hotSpotAge == 0);
-    // A map lake inside a rift zone becomes vanilla lakeFor(RIFT_VALLEY).
-    map.put(
-      "rift",
-      p ->
-        name(p).contains("RIFT") ||
-        (p.lake() && p.divergence > 0 && p.distanceToEdge < 3)
-    );
+    map.put("rift", p -> name(p).contains("RIFT"));
     map.put("not_rift", p -> !name(p).contains("RIFT"));
     map.put("ridge", p -> p.biome == TFCLayers.OCEAN_RIDGE);
     map.put("trench", p -> p.biome == TFCLayers.DEEP_OCEAN_TRENCH);

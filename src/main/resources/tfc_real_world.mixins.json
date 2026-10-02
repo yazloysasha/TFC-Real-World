@@ -35,7 +35,8 @@
     "world.region.FloodFillSmallOceansMixin",
     "world.region.RegionGeneratorMixin",
     "world.region.RegionPointAccessor",
-    "world.settings.SettingsMixin"
+    "world.settings.SettingsMixin",
+    "world.surface.builder.ShoreAndOceanSurfaceBuilderAccessor"
   ],
   "client": [
     "client.screen.CreateTFCWorldScreenAccessor",

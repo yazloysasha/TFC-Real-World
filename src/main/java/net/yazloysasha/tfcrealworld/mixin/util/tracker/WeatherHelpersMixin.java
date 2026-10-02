@@ -54,6 +54,14 @@ public abstract class WeatherHelpersMixin {
   private static final float FREEZE_TEMPERATURE = -2f;
 
   /**
+   * How much colder than the reference column a column of the chunk may be:
+   * TFC cools by 0.16 °C a block, and no chunk spans 125 blocks of height
+   * above its own random column.
+   */
+  @Unique
+  private static final float COLUMN_SPREAD = 20f;
+
+  /**
    * TFC: 1 + 4000 / ticks per snow melt (80 * 3), 1 + 4000 / ticks per
    * accumulation (80).
    */
@@ -118,14 +126,18 @@ public abstract class WeatherHelpersMixin {
     }
 
     final int maxUpdates = TFCConfig.SERVER.snowMaxAccumulationOnUpdate.get();
-    final int accumulations = Math.min(
-      maxUpdates,
-      CHUNK_COLUMNS -
-        WeatherHelpersInvoker.tfcrealworld$countExistingSnowInChunk(
-          level,
-          chunkPos
+    // Most chunks are nowhere near snow: no column is colder than the
+    // reference by more than the spread, so none of them is looked at.
+    final int accumulations = tfcrealworld$snowPossible(history)
+      ? Math.min(
+          maxUpdates,
+          CHUNK_COLUMNS -
+            WeatherHelpersInvoker.tfcrealworld$countExistingSnowInChunk(
+              level,
+              chunkPos
+            )
         )
-    );
+      : 0;
     for (int i = 0; i < accumulations; i++) {
       final BlockPos column = data.getNextSnowPos(chunkPos);
       data.iterateSnowPos(chunk);
@@ -203,6 +215,17 @@ public abstract class WeatherHelpersMixin {
         WeatherHelpersInvoker.tfcrealworld$removeSnowAt(level, pos);
       }
     }
+  }
+
+  /** Whether it snowed at a step cold enough for some column to keep it. */
+  @Unique
+  private static boolean tfcrealworld$snowPossible(List<float[]> history) {
+    for (final float[] step : history) {
+      if (step[1] > 0 && step[0] < FREEZE_TEMPERATURE + COLUMN_SPREAD) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**

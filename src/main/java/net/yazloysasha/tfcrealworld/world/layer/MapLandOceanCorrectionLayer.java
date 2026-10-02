@@ -38,9 +38,6 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
   /** Cells searched around a map-only land cell for a land biome. */
   private static final int LAND_SEARCH_RADIUS = 4;
 
-  /** Region cells searched around it when no cell of the layer has one. */
-  private static final int REGION_SEARCH_RADIUS = 4;
-
   /** No matching neighbour (layer biome ids are non-negative). */
   private static final int NONE = -1;
 
@@ -97,7 +94,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     final double gridZ = z * layerToGrid;
     final ContinentBand band = continentNoise.bandAtGridHard(gridX, gridZ);
 
-    if (band == ContinentBand.LAKE || band == ContinentBand.SALT_LAKE) {
+    if (continentNoise.isLakeAtGridHard(gridX, gridZ)) {
       if (riftLakes != null && riftLakes.isRiftLakeAtGrid(gridX, gridZ)) {
         return RIFT_LAKE;
       }
@@ -111,9 +108,11 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
       return landBiomeFromNeighbors(area, x, z);
     }
     if (lakesFromMap && mapNonOcean && TFCLayers.isLake(center)) {
-      // Map says dry land / island — strip procedural lake biome. Within the
-      // shore band it takes its vanilla shore form instead (TOWER_KARST_LAKE
-      // → TOWER_KARST_BAY), as the shore layers do for any coastal land.
+      // The region has no lakes of its own with lakes from the map, so this
+      // is a lake vanilla chose as the form of the land (flooded tower
+      // karst). Within the shore band it takes its vanilla shore form
+      // (TOWER_KARST_LAKE → TOWER_KARST_BAY), as the shore layers do for any
+      // coastal land; elsewhere the land it stands for.
       if (mapOceanWithin(x, z, shoreWidth)) {
         return TFCLayers.shoreFor(center);
       }
@@ -129,10 +128,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     return center;
   }
 
-  /**
-   * Hi-res lake outline from ×16 continent band. Vanilla ChooseBiomes already
-   * set lake flags at grid scale; this refines the biome footprint.
-   */
+  /** The lake of a map lake pixel: vanilla's lake form of the land there. */
   private int lakeBiomeFrom(int center, Area area, int x, int z) {
     if (TFCLayers.isLake(center)) {
       return center;
@@ -155,10 +151,6 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
    * nearest one around the cell or else the first vanilla lists. Vanilla can
    * flood land far wider than any neighbour search (tower karst lowlands),
    * so the answer never depends on what other land happens to be near.
-   * <p>
-   * {@code LAKE} is vanilla's lake of every land without a lake of its own,
-   * so it says nothing about the land: there the land around the cell is
-   * taken.
    */
   private int dryFormOf(int lake, Area area, int x, int z) {
     final IntPredicate floodsIntoLake = biome ->
@@ -168,9 +160,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
       return near;
     }
     final int first = FIRST_DRY_FORM.get()[lake];
-    return lake != LAKE && first != NONE
-      ? first
-      : landBiomeFromNeighbors(area, x, z);
+    return first != NONE ? first : landBiomeFromNeighbors(area, x, z);
   }
 
   private static int[] firstDryForms() {
@@ -217,7 +207,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
 
   /**
    * Land biome for a cell continent.png calls land: a land neighbour, else
-   * the nearest land further out, else the land of the nearest region cells,
+   * the nearest land further out, else the land of the nearest region cell,
    * so a stretch of map-only land takes its surroundings' biome (ice sheet
    * in Antarctica, not plains).
    */
@@ -233,19 +223,14 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     }
     final int gx = (int) Math.floor(x * layerToGrid);
     final int gz = (int) Math.floor(z * layerToGrid);
-    for (int radius = 1; radius <= REGION_SEARCH_RADIUS; radius++) {
-      for (int dz = -radius; dz <= radius; dz++) {
-        for (int dx = -radius; dx <= radius; dx++) {
-          if (Math.max(Math.abs(dx), Math.abs(dz)) != radius) {
-            continue;
-          }
-          final Region.Point point = regionGenerator.getOrCreateRegionPoint(
-            gx + dx,
-            gz + dz
-          );
-          if (point.land() && isCopyableLand(point.biome)) {
-            return point.biome;
-          }
+    for (int dz = -1; dz <= 1; dz++) {
+      for (int dx = -1; dx <= 1; dx++) {
+        final Region.Point point = regionGenerator.getOrCreateRegionPoint(
+          gx + dx,
+          gz + dz
+        );
+        if (point.land() && isCopyableLand(point.biome)) {
+          return point.biome;
         }
       }
     }

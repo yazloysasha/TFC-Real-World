@@ -30,6 +30,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * land with mountain relief; a low one is one of vanilla's two islands, on a
  * volcanic arc the vanilla volcanic island chain (built at sea, as vanilla
  * places arcs over subduction zones), elsewhere a vanilla island.
+ * <p>
+ * A lake of the map is land here: a region cell is far larger than the
+ * map's lakes, so the biome layer floods exactly the map's lake pixels
+ * ({@code MapLandOceanCorrectionLayer}), each into the lake of its own land.
  */
 @Mixin(value = AddContinentsAndSetOceanDepths.class, remap = false)
 public class AddContinentsAndSetOceanDepthsMixin {
@@ -115,9 +119,6 @@ public class AddContinentsAndSetOceanDepthsMixin {
     }
 
     point.setLand();
-    if (band == ContinentBand.LAKE || band == ContinentBand.SALT_LAKE) {
-      point.setLake();
-    }
     tfcrealworld$setVolcanism(point, volcanism);
   }
 
@@ -143,14 +144,10 @@ public class AddContinentsAndSetOceanDepthsMixin {
     RegionGenerator generator
   ) {
     switch (band) {
-      case LAND -> point.setLand();
+      case LAND, LAKE, SALT_LAKE -> point.setLand();
       case ISLAND -> {
         point.setLand();
         point.setIsland();
-      }
-      case LAKE, SALT_LAKE -> {
-        point.setLand();
-        point.setLake();
       }
       case OCEAN -> {
         final double continent =

@@ -141,6 +141,12 @@ public class PNGContinentNoise extends BasePNGNoise {
     return bandAtGridHard(gridX, gridZ) != ContinentBand.OCEAN;
   }
 
+  /** Whether the map has a lake, fresh or salt, at the grid position. */
+  public boolean isLakeAtGridHard(double gridX, double gridZ) {
+    final ContinentBand band = bandAtGridHard(gridX, gridZ);
+    return band == ContinentBand.LAKE || band == ContinentBand.SALT_LAKE;
+  }
+
   /** Pixel-space non-ocean test (same bands as {@link #isLandAtGridHard}). */
   public boolean isLandPixel(int x, int z) {
     return bandAtPixel(x, z) != ContinentBand.OCEAN;
