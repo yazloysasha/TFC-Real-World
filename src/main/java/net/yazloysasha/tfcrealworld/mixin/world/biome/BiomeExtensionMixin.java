@@ -114,10 +114,8 @@ public class BiomeExtensionMixin {
   }
 
   /**
-   * Water freezes over in every biome where vanilla's sea does (in the
-   * biomes of vanilla's shore and ocean surface it already has: there
-   * nothing is left to freeze). A meltwater lake is open water by its
-   * nature.
+   * Water freezes over, with icebergs, in every biome where vanilla's sea
+   * does. A meltwater lake is open water by its nature.
    */
   @Inject(
     method = "createSurfaceBuilder",

@@ -7,12 +7,12 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(value = ShoreAndOceanSurfaceBuilder.class, remap = false)
 public interface ShoreAndOceanSurfaceBuilderAccessor {
-  @Invoker("placeSeaIce")
-  void tfcrealworld$invokePlaceSeaIce(
+  @Invoker("frozenOceanExtension")
+  void tfcrealworld$invokeFrozenOceanExtension(
     SurfaceBuilderContext context,
-    int x,
-    int z,
-    int seaLevel,
-    float maxAnnualTemperature
+    int startY,
+    int endY,
+    int oceanFloorY,
+    int seaLevel
   );
 }

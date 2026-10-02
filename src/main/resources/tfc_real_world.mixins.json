@@ -36,7 +36,8 @@
     "world.region.RegionGeneratorMixin",
     "world.region.RegionPointAccessor",
     "world.settings.SettingsMixin",
-    "world.surface.builder.ShoreAndOceanSurfaceBuilderAccessor"
+    "world.surface.builder.ShoreAndOceanSurfaceBuilderAccessor",
+    "world.surface.builder.ShoreAndOceanSurfaceBuilderMixin"
   ],
   "client": [
     "client.screen.CreateTFCWorldScreenAccessor",
