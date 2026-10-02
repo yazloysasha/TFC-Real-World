@@ -6,6 +6,7 @@ import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.dries007.tfc.world.region.Units;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainVarianceNoise;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -39,10 +40,9 @@ public class AnnotateClimateMixin {
         0,
         500
       );
-      point.rainfallVariance = Math.clamp(
-        (float) generator.rainfallVarianceNoise.noise(x, z),
-        -1,
-        1
+      point.rainfallVariance = PNGRainVarianceNoise.calendarVariance(
+        generator.rainfallVarianceNoise.noise(x, z),
+        z
       );
     }
     ci.cancel();

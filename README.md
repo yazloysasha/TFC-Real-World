@@ -209,7 +209,7 @@ A grayscale PNG works too: gray level `N` is class `N` (black is class `0`).
 
 - `temperature.png` — annual mean temperature: `0` = −25 °C … `255` = 30 °C.
 - `rainfall.png` — annual rainfall: `0` = 0 mm … `255` = 500 mm.
-- `rain_variance.png` — rainfall seasonality: `0` = −1 (wet January, dry July) … `128` ≈ even rain … `255` = 1 (dry January, wet July).
+- `rain_variance.png` — rainfall seasonality by the local season, the same in both hemispheres: `0` = −1 (wet winter, dry summer) … `128` ≈ even rain … `255` = 1 (wet summer, dry winter).
 
 TFC derives the climate zone from these values (its Köppen classification), so the maps alone decide deserts, tundra, monsoon forests and the rest.
 

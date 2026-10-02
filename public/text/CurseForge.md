@@ -228,7 +228,7 @@ A grayscale PNG works too: gray level <code>N</code> is class <code>N</code> (bl
 <ul>
 <li><code>temperature.png</code> — annual mean temperature: <code>0</code> = −25 °C … <code>255</code> = 30 °C.</li>
 <li><code>rainfall.png</code> — annual rainfall: <code>0</code> = 0 mm … <code>255</code> = 500 mm.</li>
-<li><code>rain_variance.png</code> — rainfall seasonality: <code>0</code> = −1 (wet January, dry July) … <code>128</code> ≈ even rain … <code>255</code> = 1 (dry January, wet July).</li>
+<li><code>rain_variance.png</code> — rainfall seasonality by the local season, the same in both hemispheres: <code>0</code> = −1 (wet winter, dry summer) … <code>128</code> ≈ even rain … <code>255</code> = 1 (wet summer, dry winter).</li>
 </ul>
 
 TFC derives the climate zone from these values (its Köppen classification), so the maps alone decide deserts, tundra, monsoon forests and the rest.<br><br>

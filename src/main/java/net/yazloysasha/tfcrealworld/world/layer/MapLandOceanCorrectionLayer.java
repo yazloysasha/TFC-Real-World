@@ -5,7 +5,10 @@ import static net.dries007.tfc.world.layer.TFCLayers.OCEAN;
 import static net.dries007.tfc.world.layer.TFCLayers.PLAINS;
 import static net.dries007.tfc.world.layer.TFCLayers.RIFT_LAKE;
 
+import com.google.common.base.Suppliers;
+import java.util.Arrays;
 import java.util.function.IntPredicate;
+import java.util.function.Supplier;
 import net.dries007.tfc.world.biome.BiomeExtension;
 import net.dries007.tfc.world.layer.TFCLayers;
 import net.dries007.tfc.world.layer.framework.Area;
@@ -14,6 +17,7 @@ import net.dries007.tfc.world.layer.framework.TransformLayer;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.mixin.world.layer.TFCLayersAccessor;
 import net.yazloysasha.tfcrealworld.util.registry.RiftLakesRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
@@ -44,6 +48,14 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     { 0, 1 },
     { -1, 0 },
   };
+
+  /**
+   * By lake biome: the first biome vanilla lists that it floods into the
+   * lake. Built on first use, after every biome has its layer id.
+   */
+  private static final Supplier<int[]> FIRST_DRY_FORM = Suppliers.memoize(
+    MapLandOceanCorrectionLayer::firstDryForms
+  );
 
   private final PNGContinentNoise continentNoise;
   private final RegionGenerator regionGenerator;
@@ -102,7 +114,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
       if (mapOceanWithin(x, z, shoreWidth)) {
         return TFCLayers.shoreFor(center);
       }
-      return landBiomeFromNeighbors(area, x, z);
+      return dryFormOf(center, area, x, z);
     }
     if (
       !mapNonOcean &&
@@ -135,18 +147,44 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
   }
 
   /**
-   * Land biome for a cell continent.png calls land: a land neighbour, else
-   * the nearest land further out, else the land of the nearest region cell,
-   * so a stretch of map-only land takes its surroundings' biome (ice sheet
-   * in Antarctica, not plains).
+   * The land a lake biome stands for where the map has no lake: a biome
+   * vanilla would flood into this very lake ({@link TFCLayers#lakeFor}), the
+   * nearest one around the cell or else the first vanilla lists. Vanilla can
+   * flood land far wider than any neighbour search (tower karst lowlands),
+   * so the answer never depends on what other land happens to be near.
    */
-  private int landBiomeFromNeighbors(Area area, int x, int z) {
-    final int neighbour = firstNeighbour(
-      area,
-      x,
-      z,
-      MapLandOceanCorrectionLayer::isCopyableLand
-    );
+  private int dryFormOf(int lake, Area area, int x, int z) {
+    final IntPredicate floodsIntoLake = biome ->
+      TFCLayers.hasLake(biome) && TFCLayers.lakeFor(biome) == lake;
+    final int near = nearestBiome(area, x, z, floodsIntoLake);
+    if (near != NONE) {
+      return near;
+    }
+    final int first = FIRST_DRY_FORM.get()[lake];
+    return first != NONE ? first : landBiomeFromNeighbors(area, x, z);
+  }
+
+  private static int[] firstDryForms() {
+    final BiomeExtension[] biomes =
+      TFCLayersAccessor.tfcrealworld$getBiomeLayers();
+    final int[] forms = new int[biomes.length];
+    Arrays.fill(forms, NONE);
+    for (int biome = biomes.length - 1; biome >= 0; biome--) {
+      if (biomes[biome] != null && TFCLayers.hasLake(biome)) {
+        forms[TFCLayers.lakeFor(biome)] = biome;
+      }
+    }
+    return forms;
+  }
+
+  /** The matching biome nearest to the cell within LAND_SEARCH_RADIUS. */
+  private static int nearestBiome(
+    Area area,
+    int x,
+    int z,
+    IntPredicate matches
+  ) {
+    final int neighbour = firstNeighbour(area, x, z, matches);
     if (neighbour != NONE) {
       return neighbour;
     }
@@ -159,11 +197,30 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
           { radius, d },
         }) {
           final int biome = area.get(x + offset[0], z + offset[1]);
-          if (isCopyableLand(biome)) {
+          if (matches.test(biome)) {
             return biome;
           }
         }
       }
+    }
+    return NONE;
+  }
+
+  /**
+   * Land biome for a cell continent.png calls land: a land neighbour, else
+   * the nearest land further out, else the land of the nearest region cell,
+   * so a stretch of map-only land takes its surroundings' biome (ice sheet
+   * in Antarctica, not plains).
+   */
+  private int landBiomeFromNeighbors(Area area, int x, int z) {
+    final int near = nearestBiome(
+      area,
+      x,
+      z,
+      MapLandOceanCorrectionLayer::isCopyableLand
+    );
+    if (near != NONE) {
+      return near;
     }
     final int gx = (int) Math.floor(x * layerToGrid);
     final int gz = (int) Math.floor(z * layerToGrid);

@@ -8,10 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.function.Predicate;
 import net.dries007.tfc.world.Seed;
+import net.dries007.tfc.world.chunkdata.ChunkData;
+import net.dries007.tfc.world.chunkdata.RegionChunkDataGenerator;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.dries007.tfc.world.region.RiverEdge;
 import net.dries007.tfc.world.region.Units;
+import net.dries007.tfc.world.settings.Settings;
+import net.minecraft.world.level.ChunkPos;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.test.drawing.BuiltinWorldPreset;
 import net.yazloysasha.tfcrealworld.util.geography.WaypointCoordinates;
@@ -34,6 +38,7 @@ public class MapOptionsTest implements TestSetup {
   private static final int SCAN_RADIUS = 96;
 
   private static final double RIVER_TOLERANCE_CELLS = 1.5;
+  private static final float SEASONAL_VARIANCE = 0.3f;
   private static final double DRY_DISTANCE_CELLS = 3.0;
 
   private record Place(String name, double latitude, double longitude) {}
@@ -238,6 +243,59 @@ public class MapOptionsTest implements TestSetup {
     }
     assertTrue(difference > 1f, "procedural climate");
     assertEquals(LAND.length, count(generator, LAND, Region.Point::land));
+  }
+
+  /**
+   * TFC's rainfall variance changes sign at the equator. A chunk between a
+   * region point north of it and one south of it must not blend the two
+   * signs into an even climate: its seasonality stays as strong as theirs.
+   */
+  @Test
+  public void seasonsDoNotFadeAtTheEquator() {
+    final RegionGenerator generator = generator(
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    );
+    final Settings settings = BuiltinWorldPreset.defaultSettings();
+    final RegionChunkDataGenerator chunks = new RegionChunkDataGenerator(
+      generator,
+      settings.rockLayerSettings(),
+      Seed.of(SEED)
+    );
+    int seasonal = 0;
+    for (int gridX = -312; gridX < 312; gridX++) {
+      final float north = generator.getOrCreateRegionPoint(
+        gridX,
+        -1
+      ).rainfallVariance;
+      final float south = generator.getOrCreateRegionPoint(
+        gridX,
+        0
+      ).rainfallVariance;
+      // Strongly seasonal on both sides, wet in the local summer.
+      if (north < SEASONAL_VARIANCE || south > -SEASONAL_VARIANCE) {
+        continue;
+      }
+      seasonal++;
+      final float weakest = Math.min(north, -south);
+      for (int chunkZ = -8; chunkZ < 0; chunkZ++) {
+        final ChunkPos pos = new ChunkPos(gridX * 8, chunkZ);
+        final ChunkData data = chunks.generate(new ChunkData(chunks, pos));
+        final float variance = data.getRainVariance(
+          pos.getMinBlockX(),
+          pos.getMinBlockZ()
+        );
+        assertTrue(
+          variance >= weakest - 0.01f,
+          "seasons fade to " + variance + " at chunk " + pos
+        );
+      }
+    }
+    assertTrue(seasonal > 0, "the equator crosses a seasonal climate");
   }
 
   private static RegionGenerator generator(
