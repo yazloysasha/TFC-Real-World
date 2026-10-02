@@ -3,10 +3,7 @@ package net.yazloysasha.tfcrealworld.mixin.world;
 import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import net.dries007.tfc.world.ChunkHeightFiller;
 import net.dries007.tfc.world.biome.BiomeExtension;
-import net.dries007.tfc.world.region.RegionPartition;
 import net.dries007.tfc.world.region.Units;
-import net.dries007.tfc.world.river.RiverInfo;
-import net.yazloysasha.tfcrealworld.util.registry.ContinentNoiseRegistry;
 import net.yazloysasha.tfcrealworld.world.MapLakeWater;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -55,17 +52,6 @@ public abstract class ChunkHeightFillerMixin {
     CallbackInfoReturnable<Double> cir
   ) {
     MapLakeWater.leaveColumn();
-  }
-
-  /** At sea there is no river to carve a bed or to flow. */
-  @Inject(method = "sampleRiverEdge", at = @At("HEAD"), cancellable = true)
-  private void tfcrealworld$noRiverAtSea(
-    RegionPartition.Point point,
-    CallbackInfoReturnable<RiverInfo> cir
-  ) {
-    if (ContinentNoiseRegistry.isSeaAtBlock(blockX, blockZ)) {
-      cir.setReturnValue(null);
-    }
   }
 
   @ModifyConstant(
