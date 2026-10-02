@@ -49,18 +49,21 @@ public final class MapRivers {
   public static final float MAX_RAINFALL = 500f;
 
   /**
-   * Vanilla adds its share at every step along a river, about twice to a
-   * cell the river runs through.
+   * Vanilla adds its share at every step along a river edge, about twice to
+   * a cell the edge runs through; edges that meet add up, so a valley is
+   * wettest at bends and confluences.
    */
   private static final float VALLEY_RAINFALL_SHARE =
     1f - (1f - RAINFALL_SHARE) * (1f - RAINFALL_SHARE);
 
   /**
-   * A valley is as wet as vanilla's within this many cells of the river and
-   * no wetter than the land around it beyond the reach.
+   * Vanilla wets the square of cells an edge steps through, a strip about a
+   * cell to each side. Here an edge wets a cell in full within the core
+   * distance of it and not at all beyond the reach, so the strip is as
+   * narrow but ends in a slope, not at cell borders.
    */
   private static final float VALLEY_WET_CORE = 0.5f;
-  private static final float VALLEY_WET_REACH = 2f;
+  private static final float VALLEY_WET_REACH = 1.25f;
 
   /**
    * How far outside a region the middle of an edge may lie and still mark a
@@ -260,7 +263,9 @@ public final class MapRivers {
     final Long2ObjectOpenHashMap<RiverEdge> edges =
       new Long2ObjectOpenHashMap<>();
     final List<RiverEdge> rivers = new ArrayList<>();
-    final Int2FloatOpenHashMap wetness = new Int2FloatOpenHashMap();
+    // By cell: the share of the way to the wettest climate still left.
+    final Int2FloatOpenHashMap dryness = new Int2FloatOpenHashMap();
+    dryness.defaultReturnValue(1f);
     for (
       int tileZ = tile(region.minZ(), halfGridZ);
       tileZ <= tile(region.maxZ(), halfGridZ);
@@ -271,7 +276,7 @@ public final class MapRivers {
         tileX <= tile(region.maxX(), halfGridX);
         tileX++
       ) {
-        addTile(region, worldSeed, tileX, tileZ, edges, rivers, wetness);
+        addTile(region, worldSeed, tileX, tileZ, edges, rivers, dryness);
       }
     }
     for (final var entry : edges.long2ObjectEntrySet()) {
@@ -288,12 +293,10 @@ public final class MapRivers {
       }
     }
     region.setRivers(rivers);
-    for (final var entry : wetness.int2FloatEntrySet()) {
+    for (final var entry : dryness.int2FloatEntrySet()) {
       final Region.Point point = region.atIndex(entry.getIntKey());
       point.rainfall +=
-        VALLEY_RAINFALL_SHARE *
-        entry.getFloatValue() *
-        (MAX_RAINFALL - point.rainfall);
+        (1f - entry.getFloatValue()) * (MAX_RAINFALL - point.rainfall);
     }
     if (!TFCRealWorldConfig.LAKES_FROM_MAP.get()) {
       for (final var entry : edges.long2ObjectEntrySet()) {
@@ -353,7 +356,7 @@ public final class MapRivers {
     int tileZ,
     Long2ObjectOpenHashMap<RiverEdge> edges,
     List<RiverEdge> rivers,
-    Int2FloatOpenHashMap wetness
+    Int2FloatOpenHashMap dryness
   ) {
     final float centreX = tileX * 2f * halfGridX;
     final float centreZ = tileZ * 2f * halfGridZ;
@@ -387,7 +390,7 @@ public final class MapRivers {
           final float x1 = centreX + signX * drainX[edge];
           final float z1 = centreZ + signZ * drainZ[edge];
           if (width[edge] >= VALLEY_MIN_WIDTH) {
-            markValley(region, x0, z0, x1, z1, wetness);
+            markValley(region, x0, z0, x1, z1, dryness);
           }
           if (
             region.at(
@@ -451,9 +454,9 @@ public final class MapRivers {
   /**
    * Vanilla annotateRiverGridScale: the cells a wide river runs through, and
    * how much wetter the valley makes the cells around it. Vanilla makes the
-   * river's own cells wetter, again at every step along the river; here a
-   * cell gets wetter once, the more the nearer the river runs to it, so the
-   * wet strip fades to the sides instead of ending at cell borders.
+   * river's own cells wetter, again at every step along the river; here
+   * every edge makes a cell wetter the nearer it runs to it, so the wet strip
+   * fades to the sides instead of ending at cell borders.
    */
   private static void markValley(
     Region region,
@@ -461,7 +464,7 @@ public final class MapRivers {
     float z0,
     float x1,
     float z1,
-    Int2FloatOpenHashMap wetness
+    Int2FloatOpenHashMap dryness
   ) {
     final int fromX = (int) x0;
     final int fromZ = (int) z0;
@@ -505,8 +508,11 @@ public final class MapRivers {
           0f,
           1f
         );
-        if (wet > wetness.get(point.index)) {
-          wetness.put(point.index, wet);
+        if (wet > 0f) {
+          dryness.put(
+            point.index,
+            dryness.get(point.index) * (1f - VALLEY_RAINFALL_SHARE * wet)
+          );
         }
       }
     }
