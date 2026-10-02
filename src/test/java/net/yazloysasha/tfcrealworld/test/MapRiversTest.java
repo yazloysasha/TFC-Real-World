@@ -103,6 +103,47 @@ public class MapRiversTest implements TestSetup {
     );
   }
 
+  /**
+   * A river running along a cell border is seen from both sides of it: the
+   * Marañón at the equator once ended in a straight wall there, where its
+   * region touched none of the corners vanilla gathers rivers at.
+   */
+  @Test
+  public void riversAreNotCutAtCellBorders() {
+    final RegionGenerator generator = new RegionGenerator(
+      BuiltinWorldPreset.defaultSettings(),
+      Seed.of(1014214308696438978L)
+    );
+    final double gridX = Units.blockToGridExact(-17148);
+    assertEquals(
+      distanceInOwnPartition(generator, gridX, 0.01),
+      distanceInOwnPartition(generator, gridX, -0.01),
+      0.05,
+      "river seen from both sides of z = 0"
+    );
+  }
+
+  /** Distance to the nearest river the chunk at the place would carve. */
+  private static double distanceInOwnPartition(
+    RegionGenerator generator,
+    double gridX,
+    double gridZ
+  ) {
+    double nearest = Double.MAX_VALUE;
+    for (final RiverEdge edge : generator
+      .getOrCreatePartitionPoint(
+        (int) Math.floor(gridX),
+        (int) Math.floor(gridZ)
+      )
+      .rivers()) {
+      nearest = Math.min(
+        nearest,
+        Math.sqrt(edge.fractal().intersectDistance(gridX, gridZ))
+      );
+    }
+    return nearest;
+  }
+
   /** Distance in grid cells to the nearest river edge around the place. */
   private static double distanceToRiver(
     RegionGenerator generator,

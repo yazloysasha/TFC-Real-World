@@ -63,6 +63,14 @@ public final class MapRivers {
   private static final float VALLEY_WET_REACH = 2f;
 
   /**
+   * How far outside a region the middle of an edge may lie and still mark a
+   * valley in it: half the longest edge and the wet reach.
+   */
+  private static final int EDGE_MARGIN = Mth.ceil(
+    0.5f * MAX_EDGE_LENGTH + VALLEY_WET_REACH
+  );
+
+  /**
    * Rivers this wide have a floodplain (vanilla's river valley). Map widths
    * run from 6 to 40 by the river's discharge, where vanilla's run 8 to 24.
    */
@@ -252,6 +260,7 @@ public final class MapRivers {
     final Long2ObjectOpenHashMap<RiverEdge> edges =
       new Long2ObjectOpenHashMap<>();
     final List<RiverEdge> rivers = new ArrayList<>();
+    final Int2FloatOpenHashMap wetness = new Int2FloatOpenHashMap();
     for (
       int tileZ = tile(region.minZ(), halfGridZ);
       tileZ <= tile(region.maxZ(), halfGridZ);
@@ -262,26 +271,23 @@ public final class MapRivers {
         tileX <= tile(region.maxX(), halfGridX);
         tileX++
       ) {
-        addTile(region, worldSeed, tileX, tileZ, edges, rivers);
+        addTile(region, worldSeed, tileX, tileZ, edges, rivers, wetness);
       }
     }
     for (final var entry : edges.long2ObjectEntrySet()) {
       final long key = entry.getLongKey();
       final int below = downstream[(int) key];
       if (below >= 0) {
-        // Null across a region border: the width then stays constant there.
-        entry
-          .getValue()
-          .linkToDrain(edges.get((key & TILE_MASK) | (below & EDGE_MASK)));
+        final long belowKey = (key & TILE_MASK) | (below & EDGE_MASK);
+        // An edge that drains into another region still narrows or widens
+        // towards the edge below it.
+        final RiverEdge drain = edges.containsKey(belowKey)
+          ? edges.get(belowKey)
+          : createEdge(belowKey, worldSeed);
+        entry.getValue().linkToDrain(drain);
       }
     }
     region.setRivers(rivers);
-    final Int2FloatOpenHashMap wetness = new Int2FloatOpenHashMap();
-    for (final RiverEdge river : rivers) {
-      if (river.width >= VALLEY_MIN_WIDTH) {
-        markValley(region, river, wetness);
-      }
-    }
     for (final var entry : wetness.int2FloatEntrySet()) {
       final Region.Point point = region.atIndex(entry.getIntKey());
       point.rainfall +=
@@ -335,14 +341,19 @@ public final class MapRivers {
     }
   }
 
-  /** The rivers of one copy of the map: itself, or mirrored on odd tiles. */
+  /**
+   * The rivers of one copy of the map: itself, or mirrored on odd tiles. The
+   * region owns the edges whose middle lies in it; a valley is marked by
+   * every edge that runs near, also by those of the regions next to it.
+   */
   private void addTile(
     Region region,
     long worldSeed,
     int tileX,
     int tileZ,
     Long2ObjectOpenHashMap<RiverEdge> edges,
-    List<RiverEdge> rivers
+    List<RiverEdge> rivers,
+    Int2FloatOpenHashMap wetness
   ) {
     final float centreX = tileX * 2f * halfGridX;
     final float centreZ = tileZ * 2f * halfGridZ;
@@ -352,16 +363,17 @@ public final class MapRivers {
     final float toX = signX * (region.maxX() - centreX);
     final float fromZ = signZ * (region.minZ() - centreZ);
     final float toZ = signZ * (region.maxZ() - centreZ);
-    final long tileKey =
-      ((long) (tileX & 0xFFFF) << 48) | ((long) (tileZ & 0xFFFF) << 32);
+    final long tileKey = tileKey(tileX, tileZ);
     for (
-      int bucketZ = Mth.floor(Math.min(fromZ, toZ) - 1) >> BUCKET_BITS;
-      bucketZ <= Mth.floor(Math.max(fromZ, toZ) + 1) >> BUCKET_BITS;
+      int bucketZ =
+        Mth.floor(Math.min(fromZ, toZ) - EDGE_MARGIN) >> BUCKET_BITS;
+      bucketZ <= Mth.floor(Math.max(fromZ, toZ) + EDGE_MARGIN) >> BUCKET_BITS;
       bucketZ++
     ) {
       for (
-        int bucketX = Mth.floor(Math.min(fromX, toX) - 1) >> BUCKET_BITS;
-        bucketX <= Mth.floor(Math.max(fromX, toX) + 1) >> BUCKET_BITS;
+        int bucketX =
+          Mth.floor(Math.min(fromX, toX) - EDGE_MARGIN) >> BUCKET_BITS;
+        bucketX <= Mth.floor(Math.max(fromX, toX) + EDGE_MARGIN) >> BUCKET_BITS;
         bucketX++
       ) {
         final IntArrayList inBucket = buckets.get(bucket(bucketX, bucketZ));
@@ -370,28 +382,24 @@ public final class MapRivers {
         }
         for (int i = 0; i < inBucket.size(); i++) {
           final int edge = inBucket.getInt(i);
-          final float fromSourceX = centreX + signX * sourceX[edge];
-          final float fromSourceZ = centreZ + signZ * sourceZ[edge];
-          final float toDrainX = centreX + signX * drainX[edge];
-          final float toDrainZ = centreZ + signZ * drainZ[edge];
+          final float x0 = centreX + signX * sourceX[edge];
+          final float z0 = centreZ + signZ * sourceZ[edge];
+          final float x1 = centreX + signX * drainX[edge];
+          final float z1 = centreZ + signZ * drainZ[edge];
+          if (width[edge] >= VALLEY_MIN_WIDTH) {
+            markValley(region, x0, z0, x1, z1, wetness);
+          }
           if (
             region.at(
-              Math.round(0.5f * (fromSourceX + toDrainX)),
-              Math.round(0.5f * (fromSourceZ + toDrainZ))
+              Math.round(0.5f * (x0 + x1)),
+              Math.round(0.5f * (z0 + z1))
             ) ==
             null
           ) {
             continue;
           }
           final long key = tileKey | edge;
-          final RiverEdge river = createEdge(
-            fromSourceX,
-            fromSourceZ,
-            toDrainX,
-            toDrainZ,
-            width[edge],
-            worldSeed ^ ((key + 1) * GOLDEN_RATIO)
-          );
+          final RiverEdge river = createEdge(key, worldSeed);
           edges.put(key, river);
           rivers.add(river);
         }
@@ -399,26 +407,39 @@ public final class MapRivers {
     }
   }
 
-  private static RiverEdge createEdge(
-    float fromX,
-    float fromZ,
-    float toX,
-    float toZ,
-    int width,
-    long seed
-  ) {
-    final double dx = toX - fromX;
-    final double dz = toZ - fromZ;
+  private static long tileKey(int tileX, int tileZ) {
+    return ((long) (tileX & 0xFFFF) << 48) | ((long) (tileZ & 0xFFFF) << 32);
+  }
+
+  /** The edge of a tile and edge index, the same whichever region asks. */
+  private RiverEdge createEdge(long key, long worldSeed) {
+    final int tileX = (short) (key >>> 48);
+    final int tileZ = (short) (key >>> 32);
+    final int edge = (int) key;
+    final float centreX = tileX * 2f * halfGridX;
+    final float centreZ = tileZ * 2f * halfGridZ;
+    final float signX = (tileX & 1) == 0 ? 1f : -1f;
+    final float signZ = (tileZ & 1) == 0 ? 1f : -1f;
+    final float fromX = centreX + signX * sourceX[edge];
+    final float fromZ = centreZ + signZ * sourceZ[edge];
+    final double dx = centreX + signX * drainX[edge] - fromX;
+    final double dz = centreZ + signZ * drainZ[edge] - fromZ;
     final double angle = Math.atan2(dz, dx);
     final double length = Math.sqrt(dx * dx + dz * dz);
     final RiverEdge river = new RiverEdge(
       new River.Edge(
         new River.Vertex(fromX, fromZ, angle, length, 0),
-        new River.Vertex(toX, toZ, angle, length, 0)
+        new River.Vertex(
+          (float) (fromX + dx),
+          (float) (fromZ + dz),
+          angle,
+          length,
+          0
+        )
       ),
-      new XoroshiroRandomSource(seed)
+      new XoroshiroRandomSource(worldSeed ^ ((key + 1) * GOLDEN_RATIO))
     );
-    river.width = width;
+    river.width = width[edge];
     return river;
   }
 
@@ -436,13 +457,16 @@ public final class MapRivers {
    */
   private static void markValley(
     Region region,
-    RiverEdge river,
+    float x0,
+    float z0,
+    float x1,
+    float z1,
     Int2FloatOpenHashMap wetness
   ) {
-    final int fromX = (int) river.source().x();
-    final int fromZ = (int) river.source().y();
-    final int dx = (int) river.drain().x() - fromX;
-    final int dz = (int) river.drain().y() - fromZ;
+    final int fromX = (int) x0;
+    final int fromZ = (int) z0;
+    final int dx = (int) x1 - fromX;
+    final int dz = (int) z1 - fromZ;
     final double length = Math.sqrt(dx * dx + dz * dz);
     for (double step = 0; step <= length; step++) {
       final int x = (int) (fromX + (length == 0 ? 0 : dx / length) * step);
@@ -453,10 +477,6 @@ public final class MapRivers {
       markRiver(region.at(x + 1, z + 1));
     }
 
-    final float x0 = (float) river.source().x();
-    final float z0 = (float) river.source().y();
-    final float x1 = (float) river.drain().x();
-    final float z1 = (float) river.drain().y();
     final int reach = Mth.ceil(VALLEY_WET_REACH);
     for (
       int z = Mth.floor(Math.min(z0, z1)) - reach;

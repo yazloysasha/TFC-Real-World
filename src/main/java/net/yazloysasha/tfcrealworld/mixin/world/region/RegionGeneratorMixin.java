@@ -1,5 +1,6 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
+import java.util.List;
 import net.dries007.tfc.world.Seed;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.Region;
@@ -71,6 +72,13 @@ public class RegionGeneratorMixin {
 
   @Unique
   private static final float FINITE_CONTINENTS_FADE = 1.2f;
+
+  /**
+   * Grid cells between the points a cell is searched for regions at: more
+   * than a river edge reaches (6), far less than a region is wide.
+   */
+  @Unique
+  private static final int REGION_SEARCH_STEP = 8;
 
   @Inject(method = "<init>", at = @At("TAIL"))
   private void tfcrealworld$replaceNoises(
@@ -190,5 +198,37 @@ public class RegionGeneratorMixin {
     return scale == 0
       ? 1f
       : Mth.clampedMap(Math.abs(block), scale, fade * scale, 1, 0);
+  }
+
+  /**
+   * Vanilla gathers the rivers of a partition from the regions at the corners
+   * of the cells around it. Its own rivers grow inland from a region's shores
+   * and rarely reach a part of the region that touches none of those corners;
+   * map rivers run wherever the map has them, and one in such a part would be
+   * cut off along the cell border. Every region that reaches into the cell,
+   * or within a river's reach of it, is gathered.
+   */
+  @Inject(method = "getAllRegionsIn3x3CellArea", at = @At("RETURN"))
+  private void tfcrealworld$gatherEveryRegionOfTheCell(
+    int cellX,
+    int cellZ,
+    CallbackInfoReturnable<List<Region>> cir
+  ) {
+    final RegionGenerator generator = (RegionGenerator) (Object) this;
+    if (RiversRegistry.get(generator) == null) {
+      return;
+    }
+    final List<Region> regions = cir.getReturnValue();
+    final int minX = Units.cellToGrid(cellX) - REGION_SEARCH_STEP;
+    final int minZ = Units.cellToGrid(cellZ) - REGION_SEARCH_STEP;
+    final int size = Units.CELL_WIDTH_IN_GRID + 2 * REGION_SEARCH_STEP;
+    for (int dz = 0; dz <= size; dz += REGION_SEARCH_STEP) {
+      for (int dx = 0; dx <= size; dx += REGION_SEARCH_STEP) {
+        final Region region = generator.getOrCreateRegion(minX + dx, minZ + dz);
+        if (!regions.contains(region)) {
+          regions.add(region);
+        }
+      }
+    }
   }
 }
