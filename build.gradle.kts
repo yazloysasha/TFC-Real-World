@@ -154,6 +154,9 @@ tasks {
     if (project.hasProperty("biomeCoverageOnce")) {
       systemProperty("biomeCoverageOnce", "true")
     }
+    if (project.hasProperty("biomeCoverageRuns")) {
+      systemProperty("biomeCoverageRuns", project.property("biomeCoverageRuns").toString())
+    }
     if (project.hasProperty("worldCellDump")) {
       systemProperty("worldCellDump", "true")
     }

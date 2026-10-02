@@ -147,6 +147,92 @@ public class BiomeCoverageContinuousTest implements TestSetup {
     System.out.print(out);
   }
 
+  /**
+   * Many random seeds, with the count of every biome on the final layer kept
+   * for each: how often a biome is missing and how close to missing the rare
+   * ones come. Counts go to build/minecraft-junit/biome_coverage_runs.csv,
+   * one row per seed.
+   * Run with {@code ./gradlew test -PbiomeCoverageRuns=100 --tests
+   * "*BiomeCoverageContinuousTest"}.
+   */
+  @Test
+  @EnabledIfSystemProperty(named = "biomeCoverageRuns", matches = "\\d+")
+  @Timeout(value = 12, unit = TimeUnit.HOURS)
+  public void biomeCoverageRuns() throws java.io.IOException {
+    final int runs = Integer.getInteger("biomeCoverageRuns");
+    final java.util.List<Integer> biomes = getAllPossibleBiomes()
+      .stream()
+      .sorted()
+      .toList();
+    final Map<Integer, int[]> counts = new HashMap<>();
+    for (final int biome : biomes) {
+      counts.put(biome, new int[runs]);
+    }
+    final StringBuilder csv = new StringBuilder("seed");
+    for (final int biome : biomes) {
+      csv.append(',').append(getBiomeName(biome));
+    }
+    csv.append('\n');
+    for (int run = 0; run < runs; ) {
+      final long seed = RandomSupport.generateUniqueSeed();
+      final Map<Integer, Integer> seedCounts = countBiomes(
+        seed,
+        0,
+        0,
+        MAP_RADIUS
+      );
+      if (seedCounts == null) {
+        continue;
+      }
+      csv.append(seed);
+      for (final int biome : biomes) {
+        final int count = seedCounts.getOrDefault(biome, 0);
+        counts.get(biome)[run] = count;
+        csv.append(',').append(count);
+      }
+      csv.append('\n');
+      run++;
+      java.nio.file.Files.writeString(
+        java.nio.file.Path.of("biome_coverage_runs.csv"),
+        csv
+      );
+      System.out.println("Biome coverage run " + run + " of " + runs);
+    }
+    final StringBuilder out = new StringBuilder(
+      "\n=== Biome layer samples over " +
+        runs +
+        " seeds: missing runs, min, 5th percentile, median ===\n"
+    );
+    counts
+      .entrySet()
+      .stream()
+      .sorted(
+        java.util.Comparator.comparingInt(e ->
+          java.util.Arrays.stream(e.getValue()).sorted().toArray()[runs / 20]
+        )
+      )
+      .forEach(e -> {
+        final int[] sorted = java.util.Arrays.stream(e.getValue())
+          .sorted()
+          .toArray();
+        final long missing = java.util.Arrays.stream(sorted)
+          .filter(count -> count == 0)
+          .count();
+        out.append(
+          String.format(
+            Locale.ROOT,
+            "%-44s %3d %7d %7d %7d%n",
+            getBiomeName(e.getKey()),
+            missing,
+            sorted[0],
+            sorted[runs / 20],
+            sorted[runs / 2]
+          )
+        );
+      });
+    System.out.print(out);
+  }
+
   private void printCumulativeReport(
     int runs,
     int runsWithAnyMissing,
