@@ -154,10 +154,8 @@ public class ProjectionManager {
     double localX = gridX - tileCenterX;
     double localZ = gridZ - tileCenterZ;
 
-    if (Math.floorMod(tileX, 2) != 0) {
-      localX = -localX;
-    }
     if (Math.floorMod(tileZ, 2) != 0) {
+      localX = -localX;
       localZ = -localZ;
     }
 

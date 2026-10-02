@@ -24,6 +24,7 @@ import net.yazloysasha.tfcrealworld.util.geography.WaypointCoordinates;
 import net.yazloysasha.tfcrealworld.util.registry.ContinentNoiseRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.RiversRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -242,6 +243,50 @@ public class MapOptionsTest implements TestSetup {
     }
     assertTrue(difference > 1f, "procedural climate");
     assertEquals(LAND.length, count(generator, LAND, Region.Point::land));
+  }
+
+  /**
+   * Past the top edge of the map the world is the map turned round, as the
+   * globe is beyond the pole: a step north of the edge is the same latitude
+   * on the opposite side of the map, not the same place again. To the east
+   * the map repeats as it is.
+   */
+  @Test
+  public void pastThePoleTheMapIsTurnedRound() {
+    final RegionGenerator generator = generator(
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    );
+    final PNGContinentNoise continent = ContinentNoiseRegistry.get(generator);
+    final double halfX = continent.getTileRadiusGridX();
+    final double top = -continent.getTileRadiusGridZ();
+    int land = 0;
+    int same = 0;
+    int samples = 0;
+    for (double depth = 3.5; depth < 0.8 * -top; depth += 7) {
+      for (double x = -0.95 * halfX; x < 0.95 * halfX; x += 7) {
+        final boolean inMap = continent.isLandAtGridHard(-x, top + depth);
+        samples++;
+        if (inMap) {
+          land++;
+        }
+        if (
+          inMap == continent.isLandAtGridHard(x, top - depth) &&
+          inMap == continent.isLandAtGridHard(-x + 2 * halfX, top + depth)
+        ) {
+          same++;
+        }
+      }
+    }
+    assertTrue(land > 0.2 * samples, "land samples: " + land);
+    assertTrue(
+      same > 0.99 * samples,
+      "turned round past the pole, repeated east: " + same + " of " + samples
+    );
   }
 
   /**

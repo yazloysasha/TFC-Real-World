@@ -41,6 +41,10 @@ public final class MapRidges {
   /** Segments are found by the square of this many blocks they pass near. */
   private static final int BUCKET_BITS = 9;
 
+  /** Half the map in blocks: the axes lie from -half to half. */
+  private final int halfX;
+  private final int halfZ;
+
   /** Ends of every segment, in blocks. */
   private final double[] x0;
   private final double[] z0;
@@ -54,7 +58,16 @@ public final class MapRidges {
   @Nullable
   private volatile Warps warps;
 
-  private MapRidges(double[] x0, double[] z0, double[] x1, double[] z1) {
+  private MapRidges(
+    int halfX,
+    int halfZ,
+    double[] x0,
+    double[] z0,
+    double[] x1,
+    double[] z1
+  ) {
+    this.halfX = halfX;
+    this.halfZ = halfZ;
     this.x0 = x0;
     this.z0 = z0;
     this.x1 = x1;
@@ -104,7 +117,14 @@ public final class MapRidges {
             (end % 2 == 0 ? horizontalScale : verticalScale);
         }
       }
-      return new MapRidges(ends[0], ends[1], ends[2], ends[3]);
+      return new MapRidges(
+        horizontalScale,
+        verticalScale,
+        ends[0],
+        ends[1],
+        ends[2],
+        ends[3]
+      );
     } catch (IOException e) {
       throw new IllegalStateException(
         "Failed to read " + FILE + " for profile " + profileId,
@@ -119,11 +139,16 @@ public final class MapRidges {
    * blocks and, if asked, the distance to the nearest gap in the crest.
    */
   public FastNoiseLite.Vector2 warpedAxisDistanceAndScale(
-    double x,
-    double z,
+    double worldX,
+    double worldZ,
     long seed,
     boolean getDistanceToGaps
   ) {
+    final int tileX = Mth.floor((worldX + halfX) / (2.0 * halfX));
+    final int tileZ = Mth.floor((worldZ + halfZ) / (2.0 * halfZ));
+    final int turn = (tileZ & 1) == 0 ? 1 : -1;
+    final double x = (worldX - tileX * 2.0 * halfX) * turn;
+    final double z = (worldZ - tileZ * 2.0 * halfZ) * turn;
     final IntArrayList near = buckets.get(
       ChunkPos.asLong(bucketOf(x), bucketOf(z))
     );
@@ -165,7 +190,8 @@ public final class MapRidges {
     }
     final Warps noise = warps(seed);
     // As vanilla: the warps move the axis, the same way on both its sides.
-    final double warp = noise.small.noise(x, z) + noise.big.noise(axisX, axisZ);
+    final double warp =
+      noise.small.noise(worldX, worldZ) + noise.big.noise(axisX, axisZ);
     return new FastNoiseLite.Vector2(
       Math.abs(Math.sqrt(nearest) + (side > 0 ? -warp : warp)),
       getDistanceToGaps

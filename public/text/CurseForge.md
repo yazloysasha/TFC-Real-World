@@ -243,6 +243,13 @@ TFC derives the climate zone from these values (its Köppen classification), so 
 
 A river is a chain of edges that share vertices, running from source to drain. Keep edges about 2.7 region cells long (345 blocks): TFC checks every edge near a column, so many short edges slow generation down. Rivers flow at sea level, and where an edge runs into the sea or a lake nothing is carved.<br><br>
 
+<b>Ridges (<code>ridges.bin</code>, optional):</b> The axes of the mid-ocean ridges as straight segments. TFC's ocean ridge biome raises its crest along them; a profile without the file keeps TFC's own crest, which does not follow the map. Keep the segments of one ridge in one direction, so its two sides stay the same sides along it. Big-endian binary:
+
+<ul>
+<li><code>"TFRG"</code>, then <code>int</code> version (<code>1</code>).</li>
+<li><code>int</code> segment count, then for each segment <code>short x0</code>, <code>short z0</code>, <code>short x1</code>, <code>short z1</code>: <code>-32767</code> … <code>32767</code> from one edge of the map to the other.</li>
+</ul>
+
 <b>🏝️ Example: Creating a Simple Island Map</b><br>
 
 <ol>

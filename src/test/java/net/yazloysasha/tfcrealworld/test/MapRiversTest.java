@@ -74,20 +74,34 @@ public class MapRiversTest implements TestSetup {
         failures.add("river at " + place.name());
       }
     }
-    // Past the east edge of the map the world is mirrored, rivers included.
+    // Past the east edge the world is the map again, past the north edge
+    // the map turned round, rivers included.
     final int[] manaus = WaypointCoordinates.toBlockXZ(-3.14, -59.98);
-    final double mirrored = distanceToRiver(
+    final int width = 2 * TFCRealWorldConfig.HORIZONTAL_SCALE.get();
+    final int height = 2 * TFCRealWorldConfig.VERTICAL_SCALE.get();
+    final double repeated = distanceToRiver(
       generator,
-      Units.blockToGridExact(
-        2 * TFCRealWorldConfig.HORIZONTAL_SCALE.get() - manaus[0]
-      ),
+      Units.blockToGridExact(manaus[0] + width),
       Units.blockToGridExact(manaus[1])
     );
-    report.append(
-      String.format(Locale.ROOT, "Mirrored Amazon: %.2f cells%n", mirrored)
+    final double turned = distanceToRiver(
+      generator,
+      Units.blockToGridExact(-manaus[0]),
+      Units.blockToGridExact(-height - manaus[1])
     );
-    if (mirrored > RIVER_TOLERANCE_CELLS) {
-      failures.add("no river on the mirrored map");
+    report.append(
+      String.format(
+        Locale.ROOT,
+        "Amazon on the map to the east: %.2f cells, past the pole: %.2f%n",
+        repeated,
+        turned
+      )
+    );
+    if (repeated > RIVER_TOLERANCE_CELLS) {
+      failures.add("no river on the map to the east");
+    }
+    if (turned > RIVER_TOLERANCE_CELLS) {
+      failures.add("no river on the map past the pole");
     }
     System.out.println(report);
     assertEquals(List.of(), failures);
