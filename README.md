@@ -21,7 +21,7 @@ Sail down the Nile to its delta. Paddle up the Amazon through the rainforest. Cr
 - **Conquer the Whole Planet:** 400+ real cities and settlements, from national capitals to remote island villages and polar stations, are waiting on the geography map in your inventory, each with its own advancement. Reach Paris, Cairo, Tokyo, Canberra, Cape Town... Can you set foot on every one of them? 🧭🏆
 - **Or Bring Your Own World:** Play the whole Earth, the Old World or the New World alone - or drop in your own maps and play on any planet you can draw. 🪐
 
-**It is still TFC.** The mod only tells TerraFirmaCraft what kind of place every spot on Earth is; TFC builds the biomes, the rocks and the seasons itself. Prefer TFC's random generation for some part of the world? Continents, lakes, tectonics, volcanoes, rivers and climate each have their own switch on the world creation screen and in the config.
+**It is still TFC.** The mod only tells TerraFirmaCraft what kind of place every spot on Earth is; TFC builds the biomes, the rocks and the seasons itself.
 
 ![Altitude, biomes and climate of the generated world](public/img/collage.png)
 
