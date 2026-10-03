@@ -9,6 +9,10 @@ val forgeVersion: String = "40.1.73"
 val minTfcVersion: String = "2.2.25"
 val maxTfcVersion: String = "2.2.33"
 
+val compatMods: List<String> = listOf(
+  "firmaciv-714158:4890799", // FirmaCivilization-0.0.44-alpha-1.18.2
+)
+
 val modId: String = "tfc_real_world"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
 val modJavaVersion: String = "17"
@@ -57,13 +61,7 @@ repositories {
 }
 
 sourceSets {
-  create("stub") {
-    java.srcDirs("src/stub/firmaciv/java")
-    compileClasspath += sourceSets["main"].compileClasspath
-  }
-
   main {
-    compileClasspath += sourceSets["stub"].output
     resources {
       srcDir(generateModMetadata)
     }
@@ -110,6 +108,7 @@ dependencies {
 
   // TerraFirmaCraft
   compileOnly(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$maxTfcVersion@jar"))
+  compatMods.forEach { compileOnly(fg.deobf("curse.maven:$it")) }
 
   // Mixin
   annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
@@ -121,7 +120,6 @@ tasks {
   }
 
   jar {
-    exclude("com/hyperdash/firmaciv/**")
     manifest {
       attributes["Implementation-Version"] = project.version
       attributes["MixinConfigs"] = "$modId.mixins.json"
