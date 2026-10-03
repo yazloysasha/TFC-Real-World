@@ -2,7 +2,7 @@
 
 **🎉 The Ultra-Realistic Update is here!** Real rivers, lakes and islands, a detailed coastline, and a world map with 400+ waypoints and advancements since v4.2.0 on Minecraft 1.21.1 (older Minecraft versions will get it later).
 
-![Earth Maps](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
+![The world from above](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/satellite.png)
 
 ### Survive on the Real Earth
 
@@ -31,6 +31,8 @@ Sail down the Nile to its delta. Paddle up the Amazon through the rainforest. Cr
 <summary><b>How It Works & Features 🏞️</b></summary>
 
 The mod works by replacing TFC's default noise generators with data sampled from customizable map images. This integrates seamlessly, letting TFC's rich procedural detail fill in the local terrain.
+
+![Altitude, biomes and climate of the generated world](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
 
 - **Continents, Islands & Lakes:** A world map shapes landmasses, oceans, islands down to single islets, and fresh and salt lakes.
 - **Tectonics & Relief:** A tectonics map tells TFC what kind of place every region is: lowland or mountain, rift or collision belt, volcanic arc, coral reef sea. TFC then picks the biome itself, so the Himalayas become collisional mountains, East Africa gets rift valleys and fjord coasts get oceanic mountains.

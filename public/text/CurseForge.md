@@ -2,7 +2,7 @@
 
 <p align="center"><b>🎉 The Ultra-Realistic Update is here!</b> Real rivers, lakes and islands, a detailed coastline, and a world map with 400+ waypoints and advancements since v4.2.0 on Minecraft 1.21.1 (older Minecraft versions will get it later).</p>
 
-![Earth Maps](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
+![The world from above](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/satellite.png)
 
 ### Survive on the Real Earth
 
@@ -31,6 +31,8 @@ Sail down the Nile to its delta. Paddle up the Amazon through the rainforest. Cr
 
 <div class="spoiler">
 The mod works by replacing TFC's default noise generators with data sampled from customizable map images. This integrates seamlessly, letting TFC's rich procedural detail fill in the local terrain.<br>
+
+<img src="https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png" alt="Altitude, biomes and climate of the generated world"><br>
 
 <ul>
 <li><b>Continents, Islands &amp; Lakes:</b> A world map shapes landmasses, oceans, islands down to single islets, and fresh and salt lakes.</li>
