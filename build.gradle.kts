@@ -9,6 +9,15 @@ val forgeVersion: String = "47.1.3"
 val minTfcVersion: String = "3.2.4"
 val maxTfcVersion: String = "3.2.25"
 
+val compatMods: List<String> = listOf(
+  "auroras-1105290:6040671", // Auroras-1.20.1-1.6.2
+  "caelum-556708:4674619", // caelum-1.20.1-2.0.0.0
+  "tfc-caelum-999031:5307466", // TFCCaelum-1.20.1-1.2
+  "firmaciv-714158:5737719", // FirmaCivilization-1.20.1-1.0.9
+  "terrafirmagreg-core-513402:8810011", // TerraFirmaGreg-Core-Modern-0.9.23
+  "terrafirmaearth-1526100:9010843", // Wildfire_TerraFirmaEarth-1.20.1-forge-2.2.2
+)
+
 val modId: String = "tfc_real_world"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
 val modJavaVersion: String = "17"
@@ -57,20 +66,7 @@ repositories {
 }
 
 sourceSets {
-  create("stub") {
-    java.srcDirs(
-      "src/stub/auroras/java",
-      "src/stub/caelum/java",
-      "src/stub/tfccaelum/java",
-      "src/stub/firmaciv/java",
-      "src/stub/tfg/java",
-      "src/stub/tfe/java",
-    )
-    compileClasspath += sourceSets["main"].compileClasspath
-  }
-
   main {
-    compileClasspath += sourceSets["stub"].output
     resources {
       srcDir(generateModMetadata)
     }
@@ -115,6 +111,7 @@ dependencies {
   minecraft("net.minecraftforge", "forge", version = "$minecraftVersion-$forgeVersion")
 
   compileOnly(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$maxTfcVersion@jar"))
+  compatMods.forEach { compileOnly(fg.deobf("curse.maven:$it")) }
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
@@ -129,12 +126,6 @@ tasks {
   }
 
   jar {
-    exclude("auroras/**")
-    exclude("nuparu/caelum/**")
-    exclude("tfccaelum/**")
-    exclude("com/alekiponi/firmaciv/**")
-    exclude("su/terrafirmagreg/**")
-    exclude("com/newterraearth/**")
     manifest {
       attributes["Implementation-Version"] = project.version
       attributes["MixinConfigs"] = "$modId.mixins.json"
