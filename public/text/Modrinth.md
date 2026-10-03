@@ -23,6 +23,8 @@ Sail down the Nile to its delta. Paddle up the Amazon through the rainforest. Cr
 
 **It is still TFC.** The mod only tells TerraFirmaCraft what kind of place every spot on Earth is; TFC builds the biomes, the rocks and the seasons itself. Prefer TFC's random generation for some part of the world? Continents, lakes, tectonics, volcanoes, rivers and climate each have their own switch on the world creation screen and in the config.
 
+![Altitude, biomes and climate of the generated world](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
+
 ---
 
 ### ⚙️ Technical Details & Configuration
@@ -31,8 +33,6 @@ Sail down the Nile to its delta. Paddle up the Amazon through the rainforest. Cr
 <summary><b>How It Works & Features 🏞️</b></summary>
 
 The mod works by replacing TFC's default noise generators with data sampled from customizable map images. This integrates seamlessly, letting TFC's rich procedural detail fill in the local terrain.
-
-![Altitude, biomes and climate of the generated world](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
 
 - **Continents, Islands & Lakes:** A world map shapes landmasses, oceans, islands down to single islets, and fresh and salt lakes.
 - **Tectonics & Relief:** A tectonics map tells TFC what kind of place every region is: lowland or mountain, rift or collision belt, volcanic arc, coral reef sea. TFC then picks the biome itself, so the Himalayas become collisional mountains, East Africa gets rift valleys and fjord coasts get oceanic mountains.
