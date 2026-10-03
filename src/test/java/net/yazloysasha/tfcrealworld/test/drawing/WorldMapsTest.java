@@ -67,12 +67,15 @@ import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
  */
 public class WorldMapsTest implements TestSetup {
 
-  /** The profiles that are drawn. */
+  /** The profiles that are drawn: the view as from a satellite. */
   private static final String[] PROFILES = {
     "DEFAULT:FULL_EQUAL_EARTH",
     "DEFAULT:OLD_WORLD_EQUAL_EARTH",
     "DEFAULT:NEW_WORLD_EQUAL_EARTH",
   };
+
+  /** The profile drawn in altitude, biomes and climate zones as well. */
+  private static final String IN_FULL = "DEFAULT:OLD_WORLD_EQUAL_EARTH";
 
   private static final int SEA_LEVEL = TFCChunkGenerator.SEA_LEVEL_Y;
 
@@ -251,7 +254,8 @@ public class WorldMapsTest implements TestSetup {
           profile.substring(profile.indexOf(':') + 1).toLowerCase(),
           settings.horizontalScale(),
           settings.verticalScale(),
-          Seed.of(seed)
+          Seed.of(seed),
+          profile.equals(IN_FULL)
         );
       }
     } finally {
@@ -262,8 +266,13 @@ public class WorldMapsTest implements TestSetup {
     }
   }
 
-  private static void draw(String name, int halfX, int halfZ, Seed seed)
-    throws IOException {
+  private static void draw(
+    String name,
+    int halfX,
+    int halfZ,
+    Seed seed,
+    boolean inFull
+  ) throws IOException {
     final RegionGenerator generator = new RegionGenerator(
       BuiltinWorldPreset.defaultSettings(),
       seed
@@ -354,11 +363,13 @@ public class WorldMapsTest implements TestSetup {
         }
       });
 
-    tintLand(altitude, heights, surface, width, height);
-    shadeRelief(altitude, heights, surface, width, height);
-    write(name + "_altitude", altitude, width, height);
-    write(name + "_biomes", biomes, width, height);
-    write(name + "_climate", climate, width, height);
+    if (inFull) {
+      tintLand(altitude, heights, surface, width, height);
+      shadeRelief(altitude, heights, surface, width, height);
+      write(name + "_altitude", altitude, width, height);
+      write(name + "_biomes", biomes, width, height);
+      write(name + "_climate", climate, width, height);
+    }
     write(
       name + "_satellite",
       satellite(heights, surface, temperature, rainfall, width, height),
