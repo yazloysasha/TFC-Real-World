@@ -11,7 +11,9 @@ val patchouliVersion: String = "1.21.1-92-NEOFORGE"
 val minTfcVersion: String = "4.2.0"
 val maxTfcVersion: String = "4.2.11"
 
-val aurorasFile: String = "auroras-1105290:6040674" // Auroras-1.21-1.6.2
+val compatMods: List<String> = listOf(
+  "auroras-1105290:6040674", // Auroras-1.21-1.6.2
+)
 
 val modId: String = "tfc_real_world"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
@@ -110,7 +112,7 @@ neoForge {
 dependencies {
   compileOnly("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$maxTfcVersion@jar")
   compileOnly("vazkii.patchouli:Patchouli:$patchouliVersion")
-  compileOnly("curse.maven:$aurorasFile")
+  compatMods.forEach { compileOnly("curse.maven:$it") }
 
   testImplementation("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$maxTfcVersion@jar")
   testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
