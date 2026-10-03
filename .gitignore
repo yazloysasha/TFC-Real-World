@@ -37,6 +37,9 @@
 # Public resources
 !/public/**
 
+# Migration scripts for map profiles
+!/migration/**
+
 # Other exclusions
 __pycache__/
 *.pyc
