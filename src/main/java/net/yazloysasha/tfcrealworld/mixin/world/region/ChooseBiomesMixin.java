@@ -8,9 +8,7 @@ import net.dries007.tfc.world.layer.TFCLayers;
 import net.dries007.tfc.world.region.ChooseBiomes;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
-import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
-import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 import net.yazloysasha.tfcrealworld.world.volcano.CenteredFeatureAligner;
 import org.objectweb.asm.Opcodes;
@@ -136,25 +134,12 @@ public class ChooseBiomesMixin {
   /**
    * Coastal decisions read {@code distanceToOcean} four times: rift valley vs
    * rift lake (0), oceanic collisional mountains (1), oceanic ice sheet (2)
-   * and salt marsh (3). They are vanilla thresholds in grid cells, except
-   * where vanilla means "meets the sea". With tectonics, collisional
-   * mountains are oceanic where the sea reaches into the range (the
-   * {@code coast} property), as every other mountain; ice sheets meet the sea
-   * only where vanilla's ice sheet edge layer finds the ocean next to them.
+   * and salt marsh (3). Two of them mean "meets the sea": with tectonics,
+   * collisional mountains are oceanic where the sea reaches into the range
+   * (the {@code coast} property), as every other mountain; ice sheets meet
+   * the sea only where vanilla's ice sheet edge layer finds the ocean next
+   * to them.
    */
-  @Redirect(
-    method = "apply",
-    at = @At(
-      value = "FIELD",
-      target = "Lnet/dries007/tfc/world/region/Region$Point;distanceToOcean:B",
-      opcode = Opcodes.GETFIELD,
-      ordinal = 0
-    )
-  )
-  private byte tfcrealworld$riftDistanceToOcean(Region.Point point) {
-    return tfcrealworld$gridCellsToOcean(point);
-  }
-
   @Redirect(
     method = "apply",
     at = @At(
@@ -171,7 +156,7 @@ public class ChooseBiomesMixin {
     if (TectonicsRegistry.isActive(context.generator())) {
       return point.coastalMountain() ? 0 : Byte.MAX_VALUE;
     }
-    return tfcrealworld$gridCellsToOcean(point);
+    return point.distanceToOcean;
   }
 
   @Redirect(
@@ -190,20 +175,7 @@ public class ChooseBiomesMixin {
     if (TectonicsRegistry.isActive(context.generator())) {
       return Byte.MAX_VALUE;
     }
-    return tfcrealworld$gridCellsToOcean(point);
-  }
-
-  @Redirect(
-    method = "apply",
-    at = @At(
-      value = "FIELD",
-      target = "Lnet/dries007/tfc/world/region/Region$Point;distanceToOcean:B",
-      opcode = Opcodes.GETFIELD,
-      ordinal = 3
-    )
-  )
-  private byte tfcrealworld$saltMarshDistanceToOcean(Region.Point point) {
-    return tfcrealworld$gridCellsToOcean(point);
+    return point.distanceToOcean;
   }
 
   /**
@@ -231,13 +203,6 @@ public class ChooseBiomesMixin {
     return tectonics.classAtGrid(point.x, point.z).atolls()
       ? Byte.MAX_VALUE
       : 0;
-  }
-
-  @Unique
-  private static byte tfcrealworld$gridCellsToOcean(Region.Point point) {
-    return TFCRealWorldConfig.CONTINENT_FROM_MAP.get()
-      ? GlobalOceanDistanceCache.toGridCells(point.distanceToOcean)
-      : point.distanceToOcean;
   }
 
   @Inject(method = "apply", at = @At("TAIL"))

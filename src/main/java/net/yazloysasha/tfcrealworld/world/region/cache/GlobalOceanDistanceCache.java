@@ -1,23 +1,61 @@
 package net.yazloysasha.tfcrealworld.world.region.cache;
 
 import it.unimi.dsi.fastutil.ints.IntArrayFIFOQueue;
-import java.util.BitSet;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import org.jetbrains.annotations.Nullable;
 
-public class GlobalOceanDistanceCache extends BaseGlobalDistanceCache {
+/**
+ * Vanilla's AnnotateDistanceToOcean over the whole map: land next to the sea
+ * is 0 and every cell further inland one more. The sea is -1, and -2 where
+ * it lies next to land.
+ */
+public class GlobalOceanDistanceCache extends BaseDistanceCache {
+
+  private static final byte SEA = -1;
+  private static final byte SEA_BY_LAND = -2;
 
   @Nullable
   private static GlobalOceanDistanceCache instance = null;
 
-  private GlobalOceanDistanceCache(PNGContinentNoise continentNoise) {
-    super(continentNoise);
-    calculateDistances(continentNoise);
+  private GlobalOceanDistanceCache(PNGContinentNoise continent) {
+    super(continent);
+    final IntArrayFIFOQueue queue = new IntArrayFIFOQueue();
+    for (int z = 0; z < height; z++) {
+      for (int x = 0; x < width; x++) {
+        final int cell = z * width + x;
+        if (land[cell]) {
+          // Not reached yet; no land is this far from the sea.
+          distances[cell] = Byte.MAX_VALUE;
+        } else {
+          distances[cell] = hasLandNeighbour(x, z) ? SEA_BY_LAND : SEA;
+          if (distances[cell] == SEA_BY_LAND) {
+            queue.enqueue(cell);
+          }
+        }
+      }
+    }
+    while (!queue.isEmpty()) {
+      final int last = queue.dequeueInt();
+      final int next = Math.min(
+        Math.max(distances[last], SEA) + 1,
+        Byte.MAX_VALUE - 1
+      );
+      for (int dz = -1; dz <= 1; dz++) {
+        for (int dx = -1; dx <= 1; dx++) {
+          final int x = (last % width) + dx;
+          final int z = last / width + dz;
+          if (isLand(x, z) && distances[z * width + x] == Byte.MAX_VALUE) {
+            distances[z * width + x] = (byte) next;
+            queue.enqueue(z * width + x);
+          }
+        }
+      }
+    }
   }
 
-  public static void initialize(PNGContinentNoise continentNoise) {
-    if (instance == null || !instance.isBuiltFrom(continentNoise)) {
-      instance = new GlobalOceanDistanceCache(continentNoise);
+  public static void initialize(PNGContinentNoise continent) {
+    if (instance == null || !instance.isBuiltFrom(continent)) {
+      instance = new GlobalOceanDistanceCache(continent);
     }
   }
 
@@ -31,158 +69,22 @@ public class GlobalOceanDistanceCache extends BaseGlobalDistanceCache {
   }
 
   /**
-   * {@link #getDistance} is measured in continent-map pixels (rivers are tuned
-   * to that). Vanilla biome rules compare against region grid cells, where
-   * land next to the sea is {@code 0} and every further ring adds one.
+   * @param isLand whether the region has land at the point: an islet the
+   *     map's cell centre misses is land by the sea.
    */
-  public static byte toGridCells(byte distance) {
-    final GlobalOceanDistanceCache cache = instance;
-    if (distance <= 0 || cache == null || cache.scaleX <= 0) {
-      return distance;
-    }
-    return (byte) Math.floor(distance / cache.scaleX);
-  }
-
   public byte getDistance(int gridX, int gridZ, boolean isLand) {
-    BaseDistanceCache.InterpolationResult interpolation = getInterpolationData(
-      gridX,
-      gridZ
-    );
-    byte[] distances = getDistanceValues(interpolation);
-    byte dist00 = distances[0];
-    byte dist10 = distances[1];
-    byte dist01 = distances[2];
-    byte dist11 = distances[3];
-
-    if (isLand) {
-      double dist00Pos = dist00 > 0 ? dist00 : 0;
-      double dist10Pos = dist10 > 0 ? dist10 : 0;
-      double dist01Pos = dist01 > 0 ? dist01 : 0;
-      double dist11Pos = dist11 > 0 ? dist11 : 0;
-
-      double dist0 =
-        dist00Pos * (1 - interpolation.fx) + dist10Pos * interpolation.fx;
-      double dist1 =
-        dist01Pos * (1 - interpolation.fx) + dist11Pos * interpolation.fx;
-      double finalDist =
-        dist0 * (1 - interpolation.fz) + dist1 * interpolation.fz;
-      return (byte) Math.max(0, Math.round(finalDist));
-    } else {
-      if (dist00 == -2 || dist10 == -2 || dist01 == -2 || dist11 == -2) {
-        return -2;
-      }
-      return (byte) Math.min(
-        Math.min(dist00, dist10),
-        Math.min(dist01, dist11)
-      );
-    }
+    final byte distance = distanceAt(gridX, gridZ);
+    return isLand ? (byte) Math.max(distance, 0) : distance;
   }
 
   private boolean hasLandNeighbour(int x, int z) {
-    final int lastX = Math.min(width - 1, x + 1);
-    final int lastZ = Math.min(height - 1, z + 1);
-    for (int nz = Math.max(0, z - 1); nz <= lastZ; nz++) {
-      for (int nx = Math.max(0, x - 1); nx <= lastX; nx++) {
-        if (distanceMap[nz * width + nx] == 0) {
+    for (int dz = -1; dz <= 1; dz++) {
+      for (int dx = -1; dx <= 1; dx++) {
+        if (isLand(x + dx, z + dz)) {
           return true;
         }
       }
     }
     return false;
-  }
-
-  private void calculateDistances(PNGContinentNoise continentNoise) {
-    final BitSet explored = new BitSet(width * height);
-    final IntArrayFIFOQueue queue = new IntArrayFIFOQueue();
-
-    for (int z = 0; z < height; z++) {
-      int zWidth = z * width;
-      for (int x = 0; x < width; x++) {
-        if (isOceanPixel(x, z)) {
-          distanceMap[zWidth + x] = -1;
-          explored.set(zWidth + x);
-        }
-      }
-    }
-    // The flood only ever steps from sea onto land, so it starts from the
-    // sea next to land, not from every pixel of the ocean.
-    for (int z = 0; z < height; z++) {
-      for (int x = 0; x < width; x++) {
-        if (distanceMap[z * width + x] == -1 && hasLandNeighbour(x, z)) {
-          queue.enqueue(z * width + x);
-        }
-      }
-    }
-
-    while (!queue.isEmpty()) {
-      final int last = queue.dequeueInt();
-      final int lastX = last % width;
-      final int lastZ = last / width;
-      final byte lastDist = distanceMap[last];
-      final int nextDistance = lastDist + 1;
-
-      processNeighbors(lastX, lastZ, nextDistance, explored, queue, d ->
-        Math.min(d, 127)
-      );
-    }
-
-    for (int z = 0; z < height; z++) {
-      int zWidth = z * width;
-      boolean zValid = z > 0 && z < height - 1;
-      for (int x = 0; x < width; x++) {
-        int index = zWidth + x;
-        if (distanceMap[index] == -1) {
-          boolean hasLandNeighbor = false;
-          boolean xValid = x > 0 && x < width - 1;
-
-          if (xValid && zValid) {
-            int idxLeft = zWidth + (x - 1);
-            int idxRight = zWidth + (x + 1);
-            int idxUp = (z - 1) * width + x;
-            int idxDown = (z + 1) * width + x;
-            int idxUpLeft = (z - 1) * width + (x - 1);
-            int idxUpRight = (z - 1) * width + (x + 1);
-            int idxDownLeft = (z + 1) * width + (x - 1);
-            int idxDownRight = (z + 1) * width + (x + 1);
-
-            if (
-              distanceMap[idxLeft] > 0 ||
-              distanceMap[idxRight] > 0 ||
-              distanceMap[idxUp] > 0 ||
-              distanceMap[idxDown] > 0 ||
-              distanceMap[idxUpLeft] > 0 ||
-              distanceMap[idxUpRight] > 0 ||
-              distanceMap[idxDownLeft] > 0 ||
-              distanceMap[idxDownRight] > 0
-            ) {
-              hasLandNeighbor = true;
-            }
-          } else {
-            for (int dx = -1; dx <= 1; dx++) {
-              for (int dz = -1; dz <= 1; dz++) {
-                if (dx == 0 && dz == 0) continue;
-                int nx = x + dx;
-                int nz = z + dz;
-                if (
-                  nx >= 0 &&
-                  nx < width &&
-                  nz >= 0 &&
-                  nz < height &&
-                  distanceMap[nz * width + nx] > 0
-                ) {
-                  hasLandNeighbor = true;
-                  break;
-                }
-              }
-              if (hasLandNeighbor) break;
-            }
-          }
-
-          if (hasLandNeighbor) {
-            distanceMap[index] = -2;
-          }
-        }
-      }
-    }
   }
 }
