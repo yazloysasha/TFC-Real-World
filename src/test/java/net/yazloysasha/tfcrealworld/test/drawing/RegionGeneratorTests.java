@@ -1290,7 +1290,7 @@ public class RegionGeneratorTests implements TestSetup {
   /**
    * Colors matched to the map on the <a href="https://en.wikipedia.org/wiki/K%C3%B6ppen_climate_classification#/media/File:Koppen-Geiger_Map_v2_World_1991%E2%80%932020.svg">Koppen Climate Wikipedia</a> page.
    */
-  private Color koppenClimateColor(KoppenClimateClassification koppen) {
+  static Color koppenClimateColor(KoppenClimateClassification koppen) {
     return switch (koppen) {
       case AF -> new Color(0, 0, 220);
       case AS -> new Color(0, 100, 240);

@@ -16,7 +16,7 @@ public class GlobalWestCoastDistanceCache extends BaseDistanceCache {
   private static final int SEA_TURN = 40;
 
   @Nullable
-  private static GlobalWestCoastDistanceCache instance = null;
+  private static volatile GlobalWestCoastDistanceCache instance = null;
 
   private GlobalWestCoastDistanceCache(PNGContinentNoise continent) {
     super(continent);

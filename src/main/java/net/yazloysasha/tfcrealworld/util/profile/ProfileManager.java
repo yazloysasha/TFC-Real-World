@@ -16,6 +16,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.stream.Stream;
 import net.neoforged.fml.loading.FMLPaths;
@@ -28,7 +29,9 @@ public class ProfileManager {
   public static final String SETTINGS_FILE = "settings.json";
   public static final String MAPS_DIR = "maps";
 
-  private static final Map<String, MapProfile> PROFILE_CACHE = new HashMap<>();
+  /** Read from every thread that generates a region. */
+  private static final Map<String, MapProfile> PROFILE_CACHE =
+    new ConcurrentHashMap<>();
   private static final Map<String, ProfileLocation> PROFILE_LOCATIONS =
     new HashMap<>();
   private static boolean initialized = false;

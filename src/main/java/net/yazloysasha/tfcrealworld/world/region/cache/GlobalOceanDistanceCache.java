@@ -15,7 +15,7 @@ public class GlobalOceanDistanceCache extends BaseDistanceCache {
   private static final byte SEA_BY_LAND = -2;
 
   @Nullable
-  private static GlobalOceanDistanceCache instance = null;
+  private static volatile GlobalOceanDistanceCache instance = null;
 
   private GlobalOceanDistanceCache(PNGContinentNoise continent) {
     super(continent);
