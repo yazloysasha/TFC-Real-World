@@ -2,8 +2,6 @@
 
 <p align="center"><b>🎉 The Ultra-Realistic Update is here!</b> Real rivers, lakes and islands, a detailed coastline, and a world map with 400+ waypoints and advancements since v4.2.0 on Minecraft 1.21.1 (older Minecraft versions will get it later).</p>
 
-![The world from above](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/satellite.png)
-
 ### Survive on the Real Earth
 
 **The whole planet, block by block, with TerraFirmaCraft's survival on top.** 🌄
