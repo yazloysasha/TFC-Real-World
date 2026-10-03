@@ -11,6 +11,8 @@ val patchouliVersion: String = "1.21.1-92-NEOFORGE"
 val minTfcVersion: String = "4.2.0"
 val maxTfcVersion: String = "4.2.11"
 
+val aurorasFile: String = "auroras-1105290:6040674" // Auroras-1.21-1.6.2
+
 val modId: String = "tfc_real_world"
 val modVersion: String = System.getenv("VERSION") ?: "0.0.0-indev"
 val modJavaVersion: String = "21"
@@ -50,6 +52,10 @@ repositories {
     forRepository { maven("https://maven.blamejared.com") }
     filter { includeGroup("vazkii.patchouli") }
   }
+  exclusiveContent {
+    forRepository { maven("https://cursemaven.com") }
+    filter { includeGroup("curse.maven") }
+  }
   ivy {
     url = uri("https://github.com/TerraFirmaCraft/TerraFirmaCraft/releases/download")
     patternLayout {
@@ -62,13 +68,7 @@ repositories {
 }
 
 sourceSets {
-  create("stub") {
-    java.srcDirs("src/stub/auroras/java")
-    compileClasspath += sourceSets["main"].compileClasspath
-  }
-
   main {
-    compileClasspath += sourceSets["stub"].output
     resources {
       srcDir(generateModMetadata)
     }
@@ -110,6 +110,7 @@ neoForge {
 dependencies {
   compileOnly("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$maxTfcVersion@jar")
   compileOnly("vazkii.patchouli:Patchouli:$patchouliVersion")
+  compileOnly("curse.maven:$aurorasFile")
 
   testImplementation("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$maxTfcVersion@jar")
   testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
@@ -132,14 +133,9 @@ tasks {
   }
 
   jar {
-    exclude("auroras/**")
     manifest {
       attributes["Implementation-Version"] = project.version
     }
-  }
-
-  named<JavaCompile>("compileJava") {
-    dependsOn("compileStubJava")
   }
 
   named("neoForgeIdeSync") {
