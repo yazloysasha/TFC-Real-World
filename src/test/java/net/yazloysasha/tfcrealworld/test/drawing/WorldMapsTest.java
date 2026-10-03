@@ -10,14 +10,15 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 import java.util.EnumMap;
 import java.util.IdentityHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import javax.imageio.ImageIO;
 import net.dries007.tfc.util.climate.KoppenClimateClassification;
 import net.dries007.tfc.world.BiomeNoiseSampler;
@@ -63,7 +64,8 @@ import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
  * Draws a whole profile a chunk to a pixel, as the game generates it:
  * altitude, biomes, climate zones and a view as from a satellite. Run with
  * {@code ./gradlew test -PworldMaps=<seed> --tests "*WorldMapsTest"}; the
- * images are written to the artist directory.
+ * images are written to the artist directory. A map that is already there
+ * is left as it is: delete it to have it drawn again.
  */
 public class WorldMapsTest implements TestSetup {
 
@@ -76,6 +78,12 @@ public class WorldMapsTest implements TestSetup {
 
   /** The profile drawn in altitude, biomes and climate zones as well. */
   private static final String IN_FULL = "DEFAULT:OLD_WORLD_EQUAL_EARTH";
+
+  private static final String ALTITUDE = "altitude";
+  private static final String BIOMES = "biomes";
+  private static final String CLIMATE = "climate";
+  private static final String SATELLITE = "satellite";
+  private static final String[] MAPS = { ALTITUDE, BIOMES, CLIMATE, SATELLITE };
 
   private static final int SEA_LEVEL = TFCChunkGenerator.SEA_LEVEL_Y;
 
@@ -241,6 +249,18 @@ public class WorldMapsTest implements TestSetup {
     final int oldVertical = TFCRealWorldConfig.VERTICAL_SCALE.get();
     try {
       for (final String profile : PROFILES) {
+        final String name = profile
+          .substring(profile.indexOf(':') + 1)
+          .toLowerCase();
+        // Only the maps that are not there yet are drawn.
+        final List<String> missing = Stream.of(
+          profile.equals(IN_FULL) ? MAPS : new String[] { SATELLITE }
+        )
+          .filter(map -> !file(name, map).exists())
+          .toList();
+        if (missing.isEmpty()) {
+          continue;
+        }
         final MapProfile settings = MapProfile.loadFromResources(profile);
         TFCRealWorldConfig.MAP_PROFILE.setServerValue(profile);
         TFCRealWorldConfig.HORIZONTAL_SCALE.setServerValue(
@@ -251,11 +271,11 @@ public class WorldMapsTest implements TestSetup {
         );
         BasePNGNoise.clearImageCache();
         draw(
-          profile.substring(profile.indexOf(':') + 1).toLowerCase(),
+          name,
           settings.horizontalScale(),
           settings.verticalScale(),
           Seed.of(seed),
-          profile.equals(IN_FULL)
+          missing
         );
       }
     } finally {
@@ -271,7 +291,7 @@ public class WorldMapsTest implements TestSetup {
     int halfX,
     int halfZ,
     Seed seed,
-    boolean inFull
+    List<String> maps
   ) throws IOException {
     final RegionGenerator generator = new RegionGenerator(
       BuiltinWorldPreset.defaultSettings(),
@@ -363,19 +383,29 @@ public class WorldMapsTest implements TestSetup {
         }
       });
 
-    if (inFull) {
+    if (maps.contains(ALTITUDE)) {
       tintLand(altitude, heights, surface, width, height);
       shadeRelief(altitude, heights, surface, width, height);
-      write(name + "_altitude", altitude, width, height);
-      write(name + "_biomes", biomes, width, height);
-      write(name + "_climate", climate, width, height);
+      write(file(name, ALTITUDE), altitude, width, height);
     }
-    write(
-      name + "_satellite",
-      satellite(heights, surface, temperature, rainfall, width, height),
-      width,
-      height
-    );
+    if (maps.contains(BIOMES)) {
+      write(file(name, BIOMES), biomes, width, height);
+    }
+    if (maps.contains(CLIMATE)) {
+      write(file(name, CLIMATE), climate, width, height);
+    }
+    if (maps.contains(SATELLITE)) {
+      write(
+        file(name, SATELLITE),
+        satellite(heights, surface, temperature, rainfall, width, height),
+        width,
+        height
+      );
+    }
+  }
+
+  private static File file(String profile, String map) {
+    return new File(Artist.ARTIST_DIRECTORY, profile + "_" + map + ".png");
   }
 
   /** The biome palette of World Preview TFC (its biome_colors.json). */
@@ -678,7 +708,7 @@ public class WorldMapsTest implements TestSetup {
     return new Color(top[1], top[2], top[3]).getRGB();
   }
 
-  private static void write(String name, int[] pixels, int width, int height)
+  private static void write(File file, int[] pixels, int width, int height)
     throws IOException {
     final BufferedImage image = new BufferedImage(
       width,
@@ -686,14 +716,8 @@ public class WorldMapsTest implements TestSetup {
       BufferedImage.TYPE_INT_RGB
     );
     image.setRGB(0, 0, width, height, pixels, 0, width);
-    final File directory = new File(Artist.ARTIST_DIRECTORY);
-    directory.mkdirs();
-    final File file = new File(directory, name + ".png");
-    try {
-      ImageIO.write(image, "PNG", file);
-    } catch (IOException e) {
-      throw new UncheckedIOException(e);
-    }
+    file.getParentFile().mkdirs();
+    ImageIO.write(image, "PNG", file);
     System.out.println("World map written: " + file.getCanonicalPath());
   }
 
