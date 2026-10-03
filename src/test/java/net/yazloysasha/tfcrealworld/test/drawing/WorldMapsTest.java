@@ -51,6 +51,7 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.biome.Biome;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.test.TestSetup;
+import net.yazloysasha.tfcrealworld.util.profile.MapProfile;
 import net.yazloysasha.tfcrealworld.world.MapLakeWater;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainVarianceNoise;
@@ -66,8 +67,12 @@ import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
  */
 public class WorldMapsTest implements TestSetup {
 
-  /** The profile that is drawn. */
-  private static final String PROFILE = "DEFAULT:OLD_WORLD_EQUAL_EARTH";
+  /** The profiles that are drawn. */
+  private static final String[] PROFILES = {
+    "DEFAULT:FULL_EQUAL_EARTH",
+    "DEFAULT:OLD_WORLD_EQUAL_EARTH",
+    "DEFAULT:NEW_WORLD_EQUAL_EARTH",
+  };
 
   private static final int SEA_LEVEL = TFCChunkGenerator.SEA_LEVEL_Y;
 
@@ -227,30 +232,28 @@ public class WorldMapsTest implements TestSetup {
   @EnabledIfSystemProperty(named = "worldMaps", matches = "-?\\d+")
   @Timeout(value = 12, unit = TimeUnit.HOURS)
   public void drawWorldMaps() throws IOException {
-    final String profile = PROFILE;
     final long seed = Long.parseLong(System.getProperty("worldMaps"));
     final String oldProfile = TFCRealWorldConfig.MAP_PROFILE.get();
     final int oldHorizontal = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
     final int oldVertical = TFCRealWorldConfig.VERTICAL_SCALE.get();
-    final var settings =
-      net.yazloysasha.tfcrealworld.util.profile.MapProfile.loadFromResources(
-        profile
-      );
     try {
-      TFCRealWorldConfig.MAP_PROFILE.setServerValue(profile);
-      TFCRealWorldConfig.HORIZONTAL_SCALE.setServerValue(
-        settings.horizontalScale()
-      );
-      TFCRealWorldConfig.VERTICAL_SCALE.setServerValue(
-        settings.verticalScale()
-      );
-      BasePNGNoise.clearImageCache();
-      draw(
-        profile.substring(profile.indexOf(':') + 1).toLowerCase(),
-        settings.horizontalScale(),
-        settings.verticalScale(),
-        Seed.of(seed)
-      );
+      for (final String profile : PROFILES) {
+        final MapProfile settings = MapProfile.loadFromResources(profile);
+        TFCRealWorldConfig.MAP_PROFILE.setServerValue(profile);
+        TFCRealWorldConfig.HORIZONTAL_SCALE.setServerValue(
+          settings.horizontalScale()
+        );
+        TFCRealWorldConfig.VERTICAL_SCALE.setServerValue(
+          settings.verticalScale()
+        );
+        BasePNGNoise.clearImageCache();
+        draw(
+          profile.substring(profile.indexOf(':') + 1).toLowerCase(),
+          settings.horizontalScale(),
+          settings.verticalScale(),
+          Seed.of(seed)
+        );
+      }
     } finally {
       TFCRealWorldConfig.MAP_PROFILE.setServerValue(oldProfile);
       TFCRealWorldConfig.HORIZONTAL_SCALE.setServerValue(oldHorizontal);
@@ -353,11 +356,11 @@ public class WorldMapsTest implements TestSetup {
 
     tintLand(altitude, heights, surface, width, height);
     shadeRelief(altitude, heights, surface, width, height);
-    write(name + "_a_altitude", altitude, width, height);
-    write(name + "_b_biomes", biomes, width, height);
-    write(name + "_c_climate", climate, width, height);
+    write(name + "_altitude", altitude, width, height);
+    write(name + "_biomes", biomes, width, height);
+    write(name + "_climate", climate, width, height);
     write(
-      name + "_s_satellite",
+      name + "_satellite",
       satellite(heights, surface, temperature, rainfall, width, height),
       width,
       height
