@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southern_africa",
+  "title_lang": {
+    "de_de": "Botswana",
+    "en_us": "Botswana",
+    "es_es": "Botsuana",
+    "ja_jp": "ボツワナ",
+    "ko_kr": "보츠와나",
+    "pl_pl": "Botswana",
+    "pt_br": "Botsuana",
+    "ru_ru": "Ботсвана",
+    "tr_tr": "Botsvana",
+    "uk_ua": "Ботсвана",
+    "zh_cn": "博茨瓦纳",
+    "zh_hk": "博茨瓦納",
+    "zh_tw": "博茨瓦納"
+  }
+}

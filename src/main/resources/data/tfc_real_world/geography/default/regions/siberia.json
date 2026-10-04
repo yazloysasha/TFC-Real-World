@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/asia_temperate",
+  "title_lang": {
+    "de_de": "Sibirien",
+    "en_us": "Siberia",
+    "es_es": "Siberia",
+    "ja_jp": "シベリア",
+    "ko_kr": "시베리아",
+    "pl_pl": "Syberia",
+    "pt_br": "Sibéria",
+    "ru_ru": "Сибирь",
+    "tr_tr": "Sibirya",
+    "uk_ua": "Сибір",
+    "zh_cn": "西伯利亚",
+    "zh_hk": "西伯利亞",
+    "zh_tw": "西伯利亞"
+  }
+}

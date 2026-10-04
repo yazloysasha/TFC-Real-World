@@ -1,204 +1,187 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
-import java.lang.reflect.Field;
+import java.util.List;
 import net.dries007.tfc.world.noise.Noise2D;
+import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.dries007.tfc.world.region.Units;
+import net.dries007.tfc.world.settings.Settings;
+import net.minecraft.util.RandomSource;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
-import net.yazloysasha.tfcrealworld.compat.TfeCompat;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
-import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
-import net.yazloysasha.tfcrealworld.util.registry.DivergenceNoiseRegistry;
-import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
-import net.yazloysasha.tfcrealworld.world.backport.HotspotGeneratorNoises;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedRainfallNoise;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedRainfallVarianceNoise;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenBasedTemperatureNoise;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
+import net.yazloysasha.tfcrealworld.util.registry.ContinentNoiseRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.LevelSeedRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.RainVarianceRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.RiftLakesRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.RiversRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
+import net.yazloysasha.tfcrealworld.world.backend.Backends;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGDivergenceNoise;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGKoppenNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainVarianceNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
+import net.yazloysasha.tfcrealworld.world.river.MapRivers;
+import net.yazloysasha.tfcrealworld.world.tectonics.MapRidges;
+import net.yazloysasha.tfcrealworld.world.tectonics.MapRiftLakes;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
+import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import sun.misc.Unsafe;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Replaces the generator's procedural continent and climate noises with the
+ * profile maps, and registers the maps and rivers the region tasks read.
+ */
 @Mixin(value = RegionGenerator.class, remap = false, priority = 500)
 public class RegionGeneratorMixin {
 
   @Shadow
   @Final
+  @Mutable
   public Noise2D continentNoise;
 
   @Shadow
   @Final
+  @Mutable
   public Noise2D temperatureNoise;
 
   @Shadow
   @Final
+  @Mutable
   public Noise2D rainfallNoise;
 
-  @Shadow
-  @Final
-  private long seed;
-
-  private static final Unsafe UNSAFE;
-
-  static {
-    try {
-      Field unsafeField = Unsafe.class.getDeclaredField("theUnsafe");
-      unsafeField.setAccessible(true);
-      UNSAFE = (Unsafe) unsafeField.get(null);
-    } catch (Exception e) {
-      throw new RuntimeException("Failed to get Unsafe instance", e);
-    }
-  }
+  /**
+   * Grid cells between the points a cell is searched for regions at: more
+   * than a river edge reaches (6), far less than a region is wide.
+   */
+  @Unique
+  private static final int REGION_SEARCH_STEP = 8;
 
   @Inject(method = "<init>", at = @At("TAIL"))
-  private void tfcrealworld$replaceNoises(CallbackInfo ci) {
-    RegionGenerator instance = (RegionGenerator) (Object) this;
-
-    WorldSeedHolder.setSeed(seed);
-
-    try {
-      int horizontalScale = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
-      int verticalScale = TFCRealWorldConfig.VERTICAL_SCALE.get();
-
-      PNGContinentNoise continentNoise = null;
-      if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
-        continentNoise = new PNGContinentNoise(horizontalScale, verticalScale);
-        initializeContinentMap(instance, continentNoise);
-
-        GlobalOceanDistanceCache.initialize(continentNoise);
-        GlobalWestCoastDistanceCache.initialize(continentNoise);
-
-        if (
-          TFCRealWorldConfig.TECTONICS_FROM_MAP.get() &&
-          TfeCompat.isModPresent()
-        ) {
-          PNGDivergenceNoise divergenceNoise = PNGDivergenceNoise.tryCreate(
-            horizontalScale,
-            verticalScale
-          );
-          if (divergenceNoise != null) {
-            DivergenceNoiseRegistry.register(instance, divergenceNoise);
-          } else {
-            TFCRealWorld.LOGGER.warn(
-              "Tectonics from map enabled but divergence.png is missing for profile {}",
-              TFCRealWorldConfig.MAP_PROFILE.get()
-            );
-          }
-        }
+  private void tfcrealworld$replaceNoises(
+    Settings settings,
+    RandomSource random,
+    CallbackInfo ci
+  ) {
+    final RegionGenerator generator = (RegionGenerator) (Object) this;
+    final long levelSeed = Backends.current().levelSeed(
+      WorldSeedHolder.getSeed()
+    );
+    LevelSeedRegistry.register(generator, levelSeed);
+    final int horizontalScale = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
+    final int verticalScale = TFCRealWorldConfig.VERTICAL_SCALE.get();
+    if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
+      final PNGContinentNoise continent = new PNGContinentNoise(
+        horizontalScale,
+        verticalScale
+      );
+      continentNoise = continent;
+      ContinentNoiseRegistry.register(generator, continent);
+      GlobalOceanDistanceCache.initialize(continent);
+      GlobalWestCoastDistanceCache.initialize(continent);
+      final MapRivers rivers = MapRivers.tryLoad(
+        horizontalScale,
+        verticalScale
+      );
+      if (rivers != null) {
+        RiversRegistry.register(generator, rivers);
       }
-
-      if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
-        PNGAltitudeNoise altitudeNoise = new PNGAltitudeNoise(
-          horizontalScale,
-          verticalScale
-        );
-        initializeAltitudeMap(instance, altitudeNoise);
-      }
-
-      if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
-        PNGHotspotsNoise hotspotsNoise = new PNGHotspotsNoise(
-          horizontalScale,
-          verticalScale,
-          seed
-        );
-        HotspotsNoiseRegistry.register(instance, hotspotsNoise);
-        HotspotGeneratorNoises.overwriteHotspots(instance, hotspotsNoise);
-      } else {
-        HotspotsNoiseRegistry.clearBiomeLayout();
-      }
-
-      if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
-        initializeKoppenBasedClimateMaps(
-          instance,
+      TectonicsRegistry.clearStatics();
+      if (TFCRealWorldConfig.TECTONICS_FROM_MAP.get()) {
+        tfcrealworld$registerTectonics(
+          generator,
+          continent,
+          levelSeed,
           horizontalScale,
           verticalScale
         );
       }
-    } catch (NoSuchFieldException e) {
-      throw new RuntimeException(
-        "Failed to find required field in RegionGenerator. This should not happen.",
-        e
+    }
+    if (TFCRealWorldConfig.CLIMATE_FROM_MAP.get()) {
+      temperatureNoise = new PNGTemperatureNoise(
+        horizontalScale,
+        verticalScale
+      );
+      rainfallNoise = new PNGRainfallNoise(horizontalScale, verticalScale);
+      RainVarianceRegistry.register(
+        generator,
+        new PNGRainVarianceNoise(horizontalScale, verticalScale)
       );
     }
   }
 
-  private void initializeContinentMap(
-    RegionGenerator instance,
-    PNGContinentNoise continentNoise
-  ) throws NoSuchFieldException {
-    Field continentField =
-      RegionGenerator.class.getDeclaredField("continentNoise");
-    long offset = UNSAFE.objectFieldOffset(continentField);
-    UNSAFE.putObject(instance, offset, continentNoise);
-  }
-
-  private void initializeAltitudeMap(
-    RegionGenerator instance,
-    PNGAltitudeNoise altitudeNoise
-  ) {
-    AltitudeNoiseRegistry.register(instance, altitudeNoise);
-  }
-
-  private void initializeKoppenBasedClimateMaps(
-    RegionGenerator instance,
+  @Unique
+  private static void tfcrealworld$registerTectonics(
+    RegionGenerator generator,
+    PNGContinentNoise continent,
+    long levelSeed,
     int horizontalScale,
     int verticalScale
-  ) throws NoSuchFieldException {
-    PNGKoppenNoise koppenNoise = new PNGKoppenNoise(
+  ) {
+    final TectonicsMap tectonics = TectonicsMap.tryCreate(
       horizontalScale,
       verticalScale
     );
+    if (tectonics == null) {
+      TFCRealWorld.LOGGER.warn(
+        "Tectonics from map enabled but tectonics.png is missing for profile {}",
+        TFCRealWorldConfig.MAP_PROFILE.get()
+      );
+      return;
+    }
+    TectonicsRegistry.register(
+      generator,
+      tectonics,
+      TFCRealWorldConfig.VOLCANOES_FROM_MAP.get()
+        ? MapHotspotLayout.create(tectonics, levelSeed)
+        : null,
+      MapRidges.tryLoad(horizontalScale, verticalScale)
+    );
+    RiftLakesRegistry.register(
+      generator,
+      MapRiftLakes.create(continent, tectonics)
+    );
+  }
 
-    PNGTemperatureNoise temperatureNoise = new PNGTemperatureNoise(
-      horizontalScale,
-      verticalScale
-    );
-    PNGRainfallNoise rainfallNoise = new PNGRainfallNoise(
-      horizontalScale,
-      verticalScale
-    );
-
-    Field tempField =
-      RegionGenerator.class.getDeclaredField("temperatureNoise");
-    long tempOffset = UNSAFE.objectFieldOffset(tempField);
-    UNSAFE.putObject(
-      instance,
-      tempOffset,
-      new KoppenBasedTemperatureNoise(
-        koppenNoise,
-        temperatureNoise,
-        rainfallNoise
-      )
-    );
-
-    Field rainfallField =
-      RegionGenerator.class.getDeclaredField("rainfallNoise");
-    long rainfallOffset = UNSAFE.objectFieldOffset(rainfallField);
-    UNSAFE.putObject(
-      instance,
-      rainfallOffset,
-      new KoppenBasedRainfallNoise(koppenNoise, temperatureNoise, rainfallNoise)
-    );
-
-    HotspotGeneratorNoises.overwriteRainfallVariance(
-      instance,
-      new KoppenBasedRainfallVarianceNoise(
-        koppenNoise,
-        temperatureNoise,
-        rainfallNoise
-      )
-    );
+  /**
+   * Vanilla gathers the rivers of a partition from the regions at the corners
+   * of the cells around it. Its own rivers grow inland from a region's shores
+   * and rarely reach a part of the region that touches none of those corners;
+   * map rivers run wherever the map has them, and one in such a part would be
+   * cut off along the cell border. Every region that reaches into the cell,
+   * or within a river's reach of it, is gathered.
+   */
+  @Inject(method = "getAllRegionsIn3x3CellArea", at = @At("RETURN"))
+  private void tfcrealworld$gatherEveryRegionOfTheCell(
+    int cellX,
+    int cellZ,
+    CallbackInfoReturnable<List<Region>> cir
+  ) {
+    final RegionGenerator generator = (RegionGenerator) (Object) this;
+    if (RiversRegistry.get(generator) == null) {
+      return;
+    }
+    final List<Region> regions = cir.getReturnValue();
+    final int minX = Units.cellToGrid(cellX) - REGION_SEARCH_STEP;
+    final int minZ = Units.cellToGrid(cellZ) - REGION_SEARCH_STEP;
+    final int size = Units.CELL_WIDTH_IN_GRID + 2 * REGION_SEARCH_STEP;
+    for (int dz = 0; dz <= size; dz += REGION_SEARCH_STEP) {
+      for (int dx = 0; dx <= size; dx += REGION_SEARCH_STEP) {
+        final Region region = generator.getOrCreateRegion(minX + dx, minZ + dz);
+        if (!regions.contains(region)) {
+          regions.add(region);
+        }
+      }
+    }
   }
 }

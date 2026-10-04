@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northeastern_usa",
+  "title_lang": {
+    "de_de": "New Jersey",
+    "en_us": "New Jersey",
+    "es_es": "Nueva Jersey",
+    "ja_jp": "ニュージャージー",
+    "ko_kr": "뉴저지",
+    "pl_pl": "New Jersey",
+    "pt_br": "Nova Jersey",
+    "ru_ru": "Нью-Джерси",
+    "tr_tr": "New Jersey",
+    "uk_ua": "Нью-Джерсі",
+    "zh_cn": "新泽西",
+    "zh_hk": "新澤西",
+    "zh_tw": "新澤西"
+  }
+}

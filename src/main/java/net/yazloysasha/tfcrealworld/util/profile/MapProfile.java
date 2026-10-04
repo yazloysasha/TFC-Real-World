@@ -5,9 +5,13 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
+import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.types.CachedClassicCoords;
 import net.yazloysasha.tfcrealworld.types.MapProjection;
 import net.yazloysasha.tfcrealworld.util.projection.ProjectionManager;
@@ -25,7 +29,8 @@ public record MapProfile(
   double southEdgeLatitude,
   double northEdgeLatitude,
   MapProjection mapProjection,
-  Map<String, String> lang
+  Map<String, String> lang,
+  List<String> waypoints
 ) {
   private static final Gson GSON = new GsonBuilder()
     .setPrettyPrinting()
@@ -35,10 +40,12 @@ public record MapProfile(
     new ThreadLocal<>();
 
   private static final Integer DEFAULT_INDEX = Integer.MAX_VALUE;
-  private static final double DEFAULT_SPAWN_CENTER_LONGITUDE = 12.4964;
-  private static final double DEFAULT_SPAWN_CENTER_LATITUDE = 41.9028;
-  private static final int DEFAULT_HORIZONTAL_SCALE = 40_000;
-  private static final int DEFAULT_VERTICAL_SCALE = 20_000;
+  private static final double DEFAULT_SPAWN_CENTER_LONGITUDE = 12.51133;
+  private static final double DEFAULT_SPAWN_CENTER_LATITUDE = 41.89193;
+  private static final int DEFAULT_HORIZONTAL_SCALE =
+    TFCRealWorldConfig.DEFAULT_SCALE * 2;
+  private static final int DEFAULT_VERTICAL_SCALE =
+    TFCRealWorldConfig.DEFAULT_SCALE;
   private static final double DEFAULT_WEST_EDGE_LONGITUDE = -170.0;
   private static final double DEFAULT_EAST_EDGE_LONGITUDE = 190.0;
   private static final double DEFAULT_SOUTH_EDGE_LATITUDE = -90.0;
@@ -55,36 +62,10 @@ public record MapProfile(
     String namespace = namespaceLower.toUpperCase();
     String profileName = profileNameLower.toUpperCase();
 
-    ProfileManager.ProfileLocation location = ProfileManager.getProfileLocation(
-      profileId
+    final InputStream stream = ProfileManager.getProfileFileStream(
+      profileId,
+      ProfileManager.SETTINGS_FILE
     );
-
-    InputStream stream = null;
-    if (location != null) {
-      if (location.isZip()) {
-        stream = ProfileManager.getSettingsStreamFromZip(
-          location.zipPath(),
-          namespaceLower,
-          profileNameLower
-        );
-      } else if (location.directoryPath() != null) {
-        stream = ProfileManager.getSettingsStreamFromDirectory(
-          location.directoryPath()
-        );
-      }
-    }
-
-    if (stream == null) {
-      String settingsPath =
-        "/data/" +
-        TFCRealWorld.MOD_ID +
-        "/profiles/" +
-        namespaceLower +
-        "/" +
-        profileNameLower +
-        "/settings.json";
-      stream = TFCRealWorld.class.getResourceAsStream(settingsPath);
-    }
 
     if (stream == null) {
       TFCRealWorld.LOGGER.error(
@@ -125,6 +106,15 @@ public record MapProfile(
       }
     }
 
+    List<String> waypoints = new ArrayList<>();
+    if (json.has("waypoints") && json.get("waypoints").isJsonArray()) {
+      for (var element : json.getAsJsonArray("waypoints")) {
+        if (element.isJsonPrimitive()) {
+          waypoints.add(element.getAsString().toLowerCase());
+        }
+      }
+    }
+
     return new MapProfile(
       namespace,
       name,
@@ -137,14 +127,10 @@ public record MapProfile(
         : DEFAULT_SPAWN_CENTER_LATITUDE,
       json.has("horizontal_scale")
         ? json.get("horizontal_scale").getAsInt()
-        : json.has("horizontal_tile_size")
-          ? json.get("horizontal_tile_size").getAsInt() / 2
-          : DEFAULT_HORIZONTAL_SCALE,
+        : DEFAULT_HORIZONTAL_SCALE,
       json.has("vertical_scale")
         ? json.get("vertical_scale").getAsInt()
-        : json.has("vertical_tile_size")
-          ? json.get("vertical_tile_size").getAsInt() / 2
-          : DEFAULT_VERTICAL_SCALE,
+        : DEFAULT_VERTICAL_SCALE,
       json.has("west_edge_longitude")
         ? json.get("west_edge_longitude").getAsDouble()
         : DEFAULT_WEST_EDGE_LONGITUDE,
@@ -159,10 +145,11 @@ public record MapProfile(
         : DEFAULT_NORTH_EDGE_LATITUDE,
       json.has("map_projection")
         ? MapProjection.valueOf(
-          json.get("map_projection").getAsString().toUpperCase()
-        )
+            json.get("map_projection").getAsString().toUpperCase()
+          )
         : DEFAULT_MAP_PROJECTION,
-      langMap
+      langMap,
+      Collections.unmodifiableList(waypoints)
     );
   }
 
@@ -180,7 +167,8 @@ public record MapProfile(
       DEFAULT_SOUTH_EDGE_LATITUDE,
       DEFAULT_NORTH_EDGE_LATITUDE,
       DEFAULT_MAP_PROJECTION,
-      new HashMap<>()
+      new HashMap<>(),
+      List.of()
     );
   }
 
@@ -238,9 +226,8 @@ public record MapProfile(
       return namespace + ":" + name;
     }
 
-    String langKey = languageCode != null
-      ? languageCode.toLowerCase()
-      : "en_us";
+    String langKey =
+      languageCode != null ? languageCode.toLowerCase() : "en_us";
     return lang.getOrDefault(
       langKey,
       lang.getOrDefault("en_us", namespace + ":" + name)

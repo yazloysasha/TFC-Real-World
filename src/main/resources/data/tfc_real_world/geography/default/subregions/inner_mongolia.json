@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/china",
+  "title_lang": {
+    "de_de": "Innere Mongolei",
+    "en_us": "Inner Mongolia",
+    "es_es": "Mongolia Interior",
+    "ja_jp": "内モンゴル",
+    "ko_kr": "내몽골",
+    "pl_pl": "Mongolia Wewnętrzna",
+    "pt_br": "Mongólia Interior",
+    "ru_ru": "Внутренняя Монголия",
+    "tr_tr": "İç Moğolistan",
+    "uk_ua": "Внутрішня Монголія",
+    "zh_cn": "内蒙古",
+    "zh_hk": "內蒙古",
+    "zh_tw": "內蒙古"
+  }
+}

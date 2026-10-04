@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/middle_europe",
+  "title_lang": {
+    "de_de": "Belgien",
+    "en_us": "Belgium",
+    "es_es": "Bélgica",
+    "ja_jp": "ベルギー",
+    "ko_kr": "벨기에",
+    "pl_pl": "Belgia",
+    "pt_br": "Bélgica",
+    "ru_ru": "Бельгия",
+    "tr_tr": "Belçika",
+    "uk_ua": "Бельгія",
+    "zh_cn": "比利时",
+    "zh_hk": "比利時",
+    "zh_tw": "比利時"
+  }
+}

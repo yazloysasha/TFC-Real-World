@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/south_central_usa",
+  "title_lang": {
+    "de_de": "New Mexico",
+    "en_us": "New Mexico",
+    "es_es": "Nuevo México",
+    "ja_jp": "ニューメキシコ",
+    "ko_kr": "뉴멕시코",
+    "pl_pl": "Nowy Meksyk",
+    "pt_br": "Novo México",
+    "ru_ru": "Нью-Мексико",
+    "tr_tr": "New Mexico",
+    "uk_ua": "Нью-Мексико",
+    "zh_cn": "新墨西哥",
+    "zh_hk": "新墨西哥",
+    "zh_tw": "新墨西哥"
+  }
+}

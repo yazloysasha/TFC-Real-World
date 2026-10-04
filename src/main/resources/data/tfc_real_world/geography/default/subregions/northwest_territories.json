@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/subarctic_america",
+  "title_lang": {
+    "de_de": "Nordwest-Territorien",
+    "en_us": "Northwest Territories",
+    "es_es": "Territorios del Noroeste",
+    "ja_jp": "ノースウエスト準州",
+    "ko_kr": "노스웨스트 준주",
+    "pl_pl": "Terytoria Północno-Zachodnie",
+    "pt_br": "Territórios do Noroeste",
+    "ru_ru": "Северо-Западные территории",
+    "tr_tr": "Kuzeybatı Toprakları",
+    "uk_ua": "Північно-Західні території",
+    "zh_cn": "西北地区",
+    "zh_hk": "西北地區",
+    "zh_tw": "西北地區"
+  }
+}

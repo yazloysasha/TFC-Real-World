@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/northern_america",
+  "title_lang": {
+    "de_de": "Westkanada",
+    "en_us": "Western Canada",
+    "es_es": "Canadá Occidental",
+    "ja_jp": "カナダ西部",
+    "ko_kr": "캐나다 서부",
+    "pl_pl": "Kanada Zachodnia",
+    "pt_br": "Canadá Ocidental",
+    "ru_ru": "Западная Канада",
+    "tr_tr": "Batı Kanada",
+    "uk_ua": "Західна Канада",
+    "zh_cn": "加拿大西部",
+    "zh_hk": "加拿大西部",
+    "zh_tw": "加拿大西部"
+  }
+}

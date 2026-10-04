@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/west_tropical_africa",
+  "title_lang": {
+    "de_de": "Elfenbeinküste",
+    "en_us": "Ivory Coast",
+    "es_es": "Costa de Marfil",
+    "ja_jp": "コートジボワール",
+    "ko_kr": "코트디부아르",
+    "pl_pl": "Wybrzeże Kości Słoniowej",
+    "pt_br": "Costa do Marfim",
+    "ru_ru": "Кот-д’Ивуар",
+    "tr_tr": "Fildişi Sahili",
+    "uk_ua": "Кот-д'Івуар",
+    "zh_cn": "科特迪瓦",
+    "zh_hk": "科特迪瓦",
+    "zh_tw": "科特迪瓦"
+  }
+}

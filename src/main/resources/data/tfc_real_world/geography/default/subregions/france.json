@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southwestern_europe",
+  "title_lang": {
+    "de_de": "Frankreich",
+    "en_us": "France",
+    "es_es": "Francia",
+    "ja_jp": "フランス",
+    "ko_kr": "프랑스",
+    "pl_pl": "Francja",
+    "pt_br": "França",
+    "ru_ru": "Франция",
+    "tr_tr": "Fransa",
+    "uk_ua": "Франція",
+    "zh_cn": "法国",
+    "zh_hk": "法國",
+    "zh_tw": "法國"
+  }
+}

@@ -2,10 +2,6 @@ package net.yazloysasha.tfcrealworld.util.projection;
 
 import net.minecraft.util.Mth;
 
-/**
- * Equal Earth projection implementation for converting geographic coordinates to classic coordinates.
- * Uses the exact mathematical formulas of the Equal Earth projection.
- */
 public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
 
   private static final double A1 = 1.340264;
@@ -23,8 +19,7 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double northEdgeLatitude,
     double tileCenterLongitude
   ) {
-    double tileDiameter = verticalScale * 2;
-    double normalizedY = 1.0 - (z + verticalScale) / tileDiameter;
+    double normalizedY = 1.0 - (z + verticalScale) / (2.0 * verticalScale);
 
     double southLatRad = Math.toRadians(southEdgeLatitude);
     double northLatRad = Math.toRadians(northEdgeLatitude);
@@ -109,22 +104,12 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double normalizedX = (projX - westProjX) / projWidth;
     double normalizedY = 1.0 - (projY - southProjY) / projHeight;
 
-    double horizontalDiameter = horizontalScale * 2;
-    double verticalDiameter = verticalScale * 2;
-    double x = (normalizedX * horizontalDiameter - horizontalScale);
-    double z = (normalizedY * verticalDiameter - verticalScale);
+    double x = (normalizedX * 2.0 * horizontalScale - horizontalScale);
+    double z = (normalizedY * 2.0 * verticalScale - verticalScale);
 
     return new double[] { x, z };
   }
 
-  /**
-   * Forward projection of Equal Earth.
-   * Converts geographic coordinates (latitude, longitude difference) to projection coordinates (x, y).
-   *
-   * @param phi latitude in radians
-   * @param deltaLambda longitude difference from central meridian in radians
-   * @return array [x, y] of projection coordinates
-   */
   private static double[] forwardProjection(double phi, double deltaLambda) {
     double sinPhi = Math.sin(phi);
     double theta = Math.asin((SQRT_3 / 2.0) * sinPhi);
@@ -192,10 +177,8 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     double projWidth = Math.abs(eastProjX - westProjX);
     double projHeight = Math.abs(northProjY - southProjY);
 
-    double horizontalDiameter = horizontalScale * 2;
-    double verticalDiameter = verticalScale * 2;
-    double normalizedX = (x + horizontalScale) / horizontalDiameter;
-    double normalizedY = 1.0 - (z + verticalScale) / verticalDiameter;
+    double normalizedX = (x + horizontalScale) / (2.0 * horizontalScale);
+    double normalizedY = 1.0 - (z + verticalScale) / (2.0 * verticalScale);
 
     double projX = westProjX + normalizedX * projWidth;
     double projY = southProjY + normalizedY * projHeight;
@@ -210,15 +193,6 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
     return new double[] { longitude, latitude };
   }
 
-  /**
-   * Inverse projection of Equal Earth.
-   * Converts projection coordinates (x, y) to geographic coordinates (longitude, latitude).
-   *
-   * @param projX projection X coordinate
-   * @param projY projection Y coordinate
-   * @param lambda0 central meridian longitude in radians
-   * @return array [longitude, latitude] in radians
-   */
   private static double[] inverseProjection(
     double projX,
     double projY,
@@ -250,11 +224,7 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
   }
 
   /**
-   * Solves for theta given y in the Equal Earth projection.
-   * Uses Newton's method to solve: y = R * theta * (A1 + A2 * theta^2 + theta^6 * (A3 + A4 * theta^2))
-   *
-   * @param y projection Y coordinate
-   * @return theta in radians
+   * Newton solve: y = R * theta * (A1 + A2 * theta^2 + theta^6 * (A3 + A4 * theta^2)).
    */
   private static double solveThetaForY(double y) {
     double targetY = y / R;

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/south_tropical_africa",
+  "title_lang": {
+    "de_de": "Mosambik",
+    "en_us": "Mozambique",
+    "es_es": "Mozambique",
+    "ja_jp": "モザンビーク",
+    "ko_kr": "모잠비크",
+    "pl_pl": "Mozambik",
+    "pt_br": "Moçambique",
+    "ru_ru": "Мозамбик",
+    "tr_tr": "Mozambik",
+    "uk_ua": "Мозамбік",
+    "zh_cn": "莫桑比克",
+    "zh_hk": "莫桑比克",
+    "zh_tw": "莫桑比克"
+  }
+}

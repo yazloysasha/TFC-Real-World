@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/western_asia",
+  "title_lang": {
+    "de_de": "Palästina",
+    "en_us": "Palestine",
+    "es_es": "Palestina",
+    "ja_jp": "パレスチナ",
+    "ko_kr": "팔레스타인",
+    "pl_pl": "Palestyna",
+    "pt_br": "Palestina",
+    "ru_ru": "Палестина",
+    "tr_tr": "Filistin",
+    "uk_ua": "Палестина",
+    "zh_cn": "巴勒斯坦",
+    "zh_hk": "巴勒斯坦",
+    "zh_tw": "巴勒斯坦"
+  }
+}

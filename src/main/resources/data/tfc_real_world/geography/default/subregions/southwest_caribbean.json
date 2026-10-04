@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/caribbean",
+  "title_lang": {
+    "de_de": "Südwestkaribik",
+    "en_us": "Southwest Caribbean",
+    "es_es": "Caribe suroccidental",
+    "ja_jp": "南西カリブ",
+    "ko_kr": "남서 카리브",
+    "pl_pl": "Południowo-zachodnie Karaiby",
+    "pt_br": "Caribe Sudoeste",
+    "ru_ru": "Юго-западные Карибы",
+    "tr_tr": "Güneybatı Karayipler",
+    "uk_ua": "Південно-західні Кариби",
+    "zh_cn": "西南加勒比",
+    "zh_hk": "西南加勒比",
+    "zh_tw": "西南加勒比"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/eastern_europe",
+  "title_lang": {
+    "de_de": "Belarus",
+    "en_us": "Belarus",
+    "es_es": "Bielorrusia",
+    "ja_jp": "ベラルーシ",
+    "ko_kr": "벨라루스",
+    "pl_pl": "Białoruś",
+    "pt_br": "Bielorrússia",
+    "ru_ru": "Беларусь",
+    "tr_tr": "Belarus",
+    "uk_ua": "Білорусь",
+    "zh_cn": "白俄罗斯",
+    "zh_hk": "白俄羅斯",
+    "zh_tw": "白俄羅斯"
+  }
+}

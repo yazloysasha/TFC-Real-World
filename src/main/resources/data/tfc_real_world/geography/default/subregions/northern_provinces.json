@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southern_africa",
+  "title_lang": {
+    "de_de": "Nordprovinzen",
+    "en_us": "Northern Provinces",
+    "es_es": "Provincias del Norte",
+    "ja_jp": "北部州",
+    "ko_kr": "북부 주들",
+    "pl_pl": "Prowincje Północne",
+    "pt_br": "Províncias do Norte",
+    "ru_ru": "Северные провинции",
+    "tr_tr": "Kuzey Eyaletleri",
+    "uk_ua": "Північні провінції",
+    "zh_cn": "北部诸省",
+    "zh_hk": "北部諸省",
+    "zh_tw": "北部諸省"
+  }
+}

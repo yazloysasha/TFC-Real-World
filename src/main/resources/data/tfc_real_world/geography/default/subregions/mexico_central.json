@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/mexico",
+  "title_lang": {
+    "de_de": "Zentralmexiko",
+    "en_us": "Mexico Central",
+    "es_es": "México central",
+    "ja_jp": "メキシコ中部",
+    "ko_kr": "멕시코 중부",
+    "pl_pl": "Meksyk środkowy",
+    "pt_br": "México Central",
+    "ru_ru": "Центральная Мексика",
+    "tr_tr": "Orta Meksika",
+    "uk_ua": "Центральна Мексика",
+    "zh_cn": "墨西哥中部",
+    "zh_hk": "墨西哥中部",
+    "zh_tw": "墨西哥中部"
+  }
+}

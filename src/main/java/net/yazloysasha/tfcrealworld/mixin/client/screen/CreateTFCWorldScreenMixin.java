@@ -16,10 +16,6 @@ import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
 import net.yazloysasha.tfcrealworld.util.profile.MapProfile;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.SmoothedKoppenParameterMaps;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.TfeKoppenParameterCache;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.TfeSmoothedKoppenParameterMaps;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -84,13 +80,16 @@ public class CreateTFCWorldScreenMixin {
   private OptionInstance<Boolean> continentFromMap;
 
   @Unique
-  private OptionInstance<Boolean> altitudeFromMap;
+  private OptionInstance<Boolean> lakesFromMap;
 
   @Unique
-  private OptionInstance<Boolean> hotspotsFromMap;
+  private OptionInstance<Boolean> volcanoesFromMap;
 
   @Unique
-  private OptionInstance<Boolean> koppenFromMap;
+  private OptionInstance<Boolean> riversFromMap;
+
+  @Unique
+  private OptionInstance<Boolean> climateFromMap;
 
   @Unique
   private OptionInstance<Boolean> tectonicsFromMap;
@@ -398,13 +397,9 @@ public class CreateTFCWorldScreenMixin {
     options.addSmall(temperatureConstant, rainfallConstant);
     options.addSmall(temperatureScale, rainfallScale);
     options.addSmall(horizontalScale, verticalScale);
-    options.addSmall(continentFromMap, altitudeFromMap);
-    if (TfeCompat.isModPresent()) {
-      options.addSmall(hotspotsFromMap, tectonicsFromMap);
-      options.addBig(koppenFromMap);
-    } else {
-      options.addSmall(hotspotsFromMap, koppenFromMap);
-    }
+    options.addSmall(continentFromMap, lakesFromMap);
+    options.addSmall(tectonicsFromMap, volcanoesFromMap);
+    options.addSmall(riversFromMap, climateFromMap);
   }
 
   @Redirect(
@@ -518,28 +513,31 @@ public class CreateTFCWorldScreenMixin {
       TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
       value -> {}
     );
-    altitudeFromMap = booleanOption(
-      getCaption("create_world.altitude_from_map"),
-      TFCRealWorldConfig.ALTITUDE_FROM_MAP.get(),
+    lakesFromMap = booleanOption(
+      getCaption("create_world.lakes_from_map"),
+      TFCRealWorldConfig.LAKES_FROM_MAP.get(),
       value -> {}
     );
-    hotspotsFromMap = booleanOption(
-      getCaption("create_world.hotspots_from_map"),
-      TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get(),
+    tectonicsFromMap = booleanOption(
+      getCaption("create_world.tectonics_from_map"),
+      TFCRealWorldConfig.TECTONICS_FROM_MAP.get(),
       value -> {}
     );
-    koppenFromMap = booleanOption(
-      getCaption("create_world.koppen_from_map"),
-      TFCRealWorldConfig.KOPPEN_FROM_MAP.get(),
+    volcanoesFromMap = booleanOption(
+      getCaption("create_world.volcanoes_from_map"),
+      TFCRealWorldConfig.VOLCANOES_FROM_MAP.get(),
       value -> {}
     );
-    if (TfeCompat.isModPresent()) {
-      tectonicsFromMap = booleanOption(
-        getCaption("create_world.rifts_from_map"),
-        TFCRealWorldConfig.TECTONICS_FROM_MAP.get(),
-        value -> {}
-      );
-    }
+    riversFromMap = booleanOption(
+      getCaption("create_world.rivers_from_map"),
+      TFCRealWorldConfig.RIVERS_FROM_MAP.get(),
+      value -> {}
+    );
+    climateFromMap = booleanOption(
+      getCaption("create_world.climate_from_map"),
+      TFCRealWorldConfig.CLIMATE_FROM_MAP.get(),
+      value -> {}
+    );
     canyonsNotVolcanic = OptionInstance.createBoolean(
       getCaption("create_world.canyons_not_volcanic"),
       TFCRealWorldConfig.CANYONS_NOT_VOLCANIC.get(),
@@ -604,21 +602,16 @@ public class CreateTFCWorldScreenMixin {
     TFCRealWorldConfig.HORIZONTAL_SCALE.set(horizontalScale.get());
     TFCRealWorldConfig.VERTICAL_SCALE.set(verticalScale.get());
     TFCRealWorldConfig.CONTINENT_FROM_MAP.set(continentFromMap.get());
-    TFCRealWorldConfig.ALTITUDE_FROM_MAP.set(altitudeFromMap.get());
-    TFCRealWorldConfig.HOTSPOTS_FROM_MAP.set(hotspotsFromMap.get());
-    TFCRealWorldConfig.KOPPEN_FROM_MAP.set(koppenFromMap.get());
-    if (tectonicsFromMap != null) {
-      TFCRealWorldConfig.TECTONICS_FROM_MAP.set(tectonicsFromMap.get());
-    }
+    TFCRealWorldConfig.LAKES_FROM_MAP.set(lakesFromMap.get());
+    TFCRealWorldConfig.TECTONICS_FROM_MAP.set(tectonicsFromMap.get());
+    TFCRealWorldConfig.VOLCANOES_FROM_MAP.set(volcanoesFromMap.get());
+    TFCRealWorldConfig.RIVERS_FROM_MAP.set(riversFromMap.get());
+    TFCRealWorldConfig.CLIMATE_FROM_MAP.set(climateFromMap.get());
 
     TFCRealWorldConfig.saveConfig();
 
     if (!newProfile.equals(previousProfile)) {
       BasePNGNoise.clearImageCache();
-      KoppenParameterCache.clear();
-      SmoothedKoppenParameterMaps.clear();
-      TfeKoppenParameterCache.clear();
-      TfeSmoothedKoppenParameterMaps.clear();
     }
   }
 }

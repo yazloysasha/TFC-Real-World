@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/east_tropical_africa",
+  "title_lang": {
+    "de_de": "Kenia",
+    "en_us": "Kenya",
+    "es_es": "Kenia",
+    "ja_jp": "ケニア",
+    "ko_kr": "케냐",
+    "pl_pl": "Kenia",
+    "pt_br": "Quênia",
+    "ru_ru": "Кения",
+    "tr_tr": "Kenya",
+    "uk_ua": "Кенія",
+    "zh_cn": "肯尼亚",
+    "zh_hk": "肯尼亞",
+    "zh_tw": "肯尼亞"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/caribbean",
+  "title_lang": {
+    "de_de": "Caymaninseln",
+    "en_us": "Cayman Islands",
+    "es_es": "Islas Caimán",
+    "ja_jp": "ケイマン諸島",
+    "ko_kr": "케이맨 제도",
+    "pl_pl": "Kajmany",
+    "pt_br": "Ilhas Cayman",
+    "ru_ru": "Каймановы острова",
+    "tr_tr": "Cayman Adaları",
+    "uk_ua": "Кайманові острови",
+    "zh_cn": "开曼群岛",
+    "zh_hk": "開曼群島",
+    "zh_tw": "開曼群島"
+  }
+}

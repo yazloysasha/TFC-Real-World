@@ -6,9 +6,10 @@ public class ModTriggers {
 
   public static final FixedHighGlobeTrotterLocation FIXED_HIGH_GLOBE_TROTTER_LOCATION =
     CriteriaTriggers.register(new FixedHighGlobeTrotterLocation());
-
   public static final FixedLowGlobeTrotterLocation FIXED_LOW_GLOBE_TROTTER_LOCATION =
     CriteriaTriggers.register(new FixedLowGlobeTrotterLocation());
+  public static final VisitWaypointTrigger VISIT_WAYPOINT =
+    CriteriaTriggers.register(new VisitWaypointTrigger());
 
   public static void init() {}
 }

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southern_africa",
+  "title_lang": {
+    "de_de": "Lesotho",
+    "en_us": "Lesotho",
+    "es_es": "Lesoto",
+    "ja_jp": "レソト",
+    "ko_kr": "레소토",
+    "pl_pl": "Lesotho",
+    "pt_br": "Lesoto",
+    "ru_ru": "Лесото",
+    "tr_tr": "Lesotho",
+    "uk_ua": "Лесото",
+    "zh_cn": "莱索托",
+    "zh_hk": "萊索托",
+    "zh_tw": "萊索托"
+  }
+}

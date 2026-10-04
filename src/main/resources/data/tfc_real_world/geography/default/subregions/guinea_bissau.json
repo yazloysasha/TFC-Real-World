@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/west_tropical_africa",
+  "title_lang": {
+    "de_de": "Guinea-Bissau",
+    "en_us": "Guinea-Bissau",
+    "es_es": "Guinea-Bisáu",
+    "ja_jp": "ギニアビサウ",
+    "ko_kr": "기니비사우",
+    "pl_pl": "Gwinea Bissau",
+    "pt_br": "Guiné-Bissau",
+    "ru_ru": "Гвинея-Бисау",
+    "tr_tr": "Gine-Bissau",
+    "uk_ua": "Гвінея-Бісау",
+    "zh_cn": "几内亚比绍",
+    "zh_hk": "幾內亞比紹",
+    "zh_tw": "幾內亞比紹"
+  }
+}

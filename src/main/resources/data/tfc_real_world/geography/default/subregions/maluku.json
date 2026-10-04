@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/malesia",
+  "title_lang": {
+    "de_de": "Molukken",
+    "en_us": "Maluku",
+    "es_es": "Molucas",
+    "ja_jp": "マルク諸島",
+    "ko_kr": "말루쿠",
+    "pl_pl": "Moluki",
+    "pt_br": "Maluku",
+    "ru_ru": "Молуккские острова",
+    "tr_tr": "Maluku",
+    "uk_ua": "Молуккські острови",
+    "zh_cn": "马鲁古",
+    "zh_hk": "馬魯古",
+    "zh_tw": "馬魯古"
+  }
+}

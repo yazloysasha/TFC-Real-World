@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/eastern_canada",
+  "title_lang": {
+    "de_de": "Nova Scotia",
+    "en_us": "Nova Scotia",
+    "es_es": "Nueva Escocia",
+    "ja_jp": "ノバスコシア",
+    "ko_kr": "노바스코샤",
+    "pl_pl": "Nowa Szkocja",
+    "pt_br": "Nova Escócia",
+    "ru_ru": "Новая Шотландия",
+    "tr_tr": "Yeni İskoçya",
+    "uk_ua": "Нова Шотландія",
+    "zh_cn": "新斯科舍",
+    "zh_hk": "新斯科舍",
+    "zh_tw": "新斯科舍"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southeastern_usa",
+  "title_lang": {
+    "de_de": "Mississippi",
+    "en_us": "Mississippi",
+    "es_es": "Misisipi",
+    "ja_jp": "ミシシッピ",
+    "ko_kr": "미시시피",
+    "pl_pl": "Missisipi",
+    "pt_br": "Mississippi",
+    "ru_ru": "Миссисипи",
+    "tr_tr": "Mississippi",
+    "uk_ua": "Міссісіпі",
+    "zh_cn": "密西西比",
+    "zh_hk": "密西西比",
+    "zh_tw": "密西西比"
+  }
+}

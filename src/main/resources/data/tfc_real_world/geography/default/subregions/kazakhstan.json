@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/middle_asia",
+  "title_lang": {
+    "de_de": "Kasachstan",
+    "en_us": "Kazakhstan",
+    "es_es": "Kazajistán",
+    "ja_jp": "カザフスタン",
+    "ko_kr": "카자흐스탄",
+    "pl_pl": "Kazachstan",
+    "pt_br": "Cazaquistão",
+    "ru_ru": "Казахстан",
+    "tr_tr": "Kazakistan",
+    "uk_ua": "Казахстан",
+    "zh_cn": "哈萨克斯坦",
+    "zh_hk": "哈薩克斯坦",
+    "zh_tw": "哈薩克斯坦"
+  }
+}

@@ -11,7 +11,6 @@ import net.dries007.tfc.world.surface.builder.SurfaceBuilder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.world.volcano.TfeMapShieldHeightNoise;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -56,14 +55,6 @@ public abstract class TfeBiomeExtensionMixin {
     long seed,
     CallbackInfoReturnable<@Nullable BiomeNoiseSampler> cir
   ) {
-    final BiomeNoiseSampler mapShield = TfeMapShieldHeightNoise.createSampler(
-      key.location().getPath(),
-      seed
-    );
-    if (mapShield != null) {
-      cir.setReturnValue(mapShield);
-      return;
-    }
     if (!tfcrealworld$shouldStripCanyonVolcanoes()) {
       return;
     }

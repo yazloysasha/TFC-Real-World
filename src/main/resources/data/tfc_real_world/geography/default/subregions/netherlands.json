@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/middle_europe",
+  "title_lang": {
+    "de_de": "Niederlande",
+    "en_us": "Netherlands",
+    "es_es": "Países Bajos",
+    "ja_jp": "オランダ",
+    "ko_kr": "네덜란드",
+    "pl_pl": "Holandia",
+    "pt_br": "Países Baixos",
+    "ru_ru": "Нидерланды",
+    "tr_tr": "Hollanda",
+    "uk_ua": "Нідерланди",
+    "zh_cn": "荷兰",
+    "zh_hk": "荷蘭",
+    "zh_tw": "荷蘭"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/siberia",
+  "title_lang": {
+    "de_de": "Burjatien",
+    "en_us": "Buryatia",
+    "es_es": "Buriatia",
+    "ja_jp": "ブリヤート",
+    "ko_kr": "부랴티야",
+    "pl_pl": "Buriacja",
+    "pt_br": "Buriácia",
+    "ru_ru": "Бурятия",
+    "tr_tr": "Buryatya",
+    "uk_ua": "Бурятія",
+    "zh_cn": "布里亚特",
+    "zh_hk": "布里亞特",
+    "zh_tw": "布里亞特"
+  }
+}

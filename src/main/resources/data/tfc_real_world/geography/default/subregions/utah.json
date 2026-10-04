@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southwestern_usa",
+  "title_lang": {
+    "de_de": "Utah",
+    "en_us": "Utah",
+    "es_es": "Utah",
+    "ja_jp": "ユタ",
+    "ko_kr": "유타",
+    "pl_pl": "Utah",
+    "pt_br": "Utah",
+    "ru_ru": "Юта",
+    "tr_tr": "Utah",
+    "uk_ua": "Юта",
+    "zh_cn": "犹他",
+    "zh_hk": "猶他",
+    "zh_tw": "猶他"
+  }
+}

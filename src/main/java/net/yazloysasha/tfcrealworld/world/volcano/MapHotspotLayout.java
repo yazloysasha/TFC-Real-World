@@ -5,46 +5,31 @@ import java.util.ArrayList;
 import java.util.List;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.noise.OpenSimplex2D;
-import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.Units;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
 import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
-import org.jetbrains.annotations.Nullable;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 
 /**
- * Scans the hotspot PNG into discrete volcanic centers. Used to keep map
- * mountain cells from being overwritten by TFG shield-volcano overlay, and to
- * paint TFC 3 volcanic mountains instead of canyons on those cores.
+ * Hotspot centers from {@code tectonics.png} hotspot classes, used for
+ * intensity noise and age painting.
  */
 public final class MapHotspotLayout {
 
-  private static final double POLE_CURVE_EXPONENT = 1.25;
-  private static final double MAP_PLACEMENT_CHANCE_EQUATOR = 0.75;
-  private static final double MAP_PLACEMENT_CHANCE_POLE = 1.0;
-  private static final double MOUNTAIN_STRATOVOLCANO_CHANCE_EQUATOR = 0.5;
-  private static final double MOUNTAIN_STRATOVOLCANO_CHANCE_POLE = 1.0;
   private static final double INV_GRID_WIDTH_IN_BLOCK =
     1.0 / Units.GRID_WIDTH_IN_BLOCK;
   private static final double MIN_RADIUS_BLOCKS = 384;
   private static final double BIOME_RADIUS_SCALE = 1.05;
   private static final double HALF_GRID_BLOCK = Units.GRID_WIDTH_IN_BLOCK * 0.5;
 
-  public enum MountainStyle {
-    SHIELD,
-    STRATOVOLCANO,
-    NATURAL_MOUNTAIN,
-  }
-
-  private final PNGHotspotsNoise noise;
+  private final TectonicsMap noise;
   private final Center[] centers;
   private final List<Center>[] centersByAge;
-  private final MountainStyle[] mountainStyles;
   private final double blocksPerPixelX;
   private final double blocksPerPixelZ;
 
   @SuppressWarnings("unchecked")
   private MapHotspotLayout(
-    PNGHotspotsNoise noise,
+    TectonicsMap noise,
     Center[] centers,
     double blocksPerPixelX,
     double blocksPerPixelZ
@@ -53,7 +38,6 @@ public final class MapHotspotLayout {
     this.centers = centers;
     this.blocksPerPixelX = blocksPerPixelX;
     this.blocksPerPixelZ = blocksPerPixelZ;
-    this.mountainStyles = new MountainStyle[centers.length];
     this.centersByAge = new List[5];
     for (int age = 1; age <= 4; age++) {
       centersByAge[age] = new ArrayList<>();
@@ -63,10 +47,7 @@ public final class MapHotspotLayout {
     }
   }
 
-  public static MapHotspotLayout create(
-    PNGHotspotsNoise noise,
-    long worldSeed
-  ) {
+  public static MapHotspotLayout create(TectonicsMap noise, long worldSeed) {
     final double blocksPerPixelX =
       (2.0 * noise.getTileRadiusBlocksX()) / noise.getWidth();
     final double blocksPerPixelZ =
@@ -76,19 +57,13 @@ public final class MapHotspotLayout {
       blocksPerPixelX,
       blocksPerPixelZ
     );
-    final List<Center> placed = new ArrayList<>();
-    int nextId = 0;
-    for (final Center center : scanned) {
-      if (
-        seededChance(worldSeed, center, 0x9e3779b97f4a7c15L) <
-        center.placementChance()
-      ) {
-        placed.add(center.withId(nextId++));
-      }
+    final Center[] placed = new Center[scanned.size()];
+    for (int i = 0; i < scanned.size(); i++) {
+      placed[i] = scanned.get(i).withId(i);
     }
     return new MapHotspotLayout(
       noise,
-      placed.toArray(Center[]::new),
+      placed,
       blocksPerPixelX,
       blocksPerPixelZ
     );
@@ -98,87 +73,15 @@ public final class MapHotspotLayout {
     if (age < 1 || age > 4) {
       return (x, z) -> 0;
     }
-    final OpenSimplex2D warp = warpForAge(age, seed);
-    return (x, z) -> intensityAtBlock(x, z, age, warp);
-  }
-
-  /**
-   * Block-space sample for lazy {@link HotspotIntensityFromMap} delegates.
-   */
-  public double sampleIntensityForAge(
-    byte age,
-    long seed,
-    double blockX,
-    double blockZ
-  ) {
-    if (age < 1 || age > 4) {
-      return 0;
+    final List<Center> scoped = centersByAge[age];
+    if (scoped.isEmpty()) {
+      return (x, z) -> 0;
     }
-    return intensityAtBlock(blockX, blockZ, age, warpForAge(age, seed));
-  }
-
-  /**
-   * Max hotspot intensity across all ages at block coordinates. Matches TFC 4
-   * {@code NTERegionNoise#hotSpotIntensity} input for shield heightmaps.
-   */
-  public double combinedIntensity(double blockX, double blockZ, long seed) {
-    double best = 0;
-    for (byte age = 1; age <= 4; age++) {
-      best = Math.max(
-        best,
-        intensityAtBlock(blockX, blockZ, age, warpForAge(age, seed))
-      );
-    }
-    return best;
-  }
-
-  /**
-   * Sample intensity where TFE passes grid coordinates (often {@code grid + 0.5})
-   * into {@code Noise2D} after {@code spread(GRID_WIDTH_IN_BLOCK)} was replaced
-   * on the region generator field.
-   */
-  public double combinedIntensityAtGridCoords(
-    double gridX,
-    double gridZ,
-    long seed
-  ) {
-    return combinedIntensity(
-      gridX * Units.GRID_WIDTH_IN_BLOCK,
-      gridZ * Units.GRID_WIDTH_IN_BLOCK,
-      seed
-    );
-  }
-
-  public double combinedIntensityAtGrid(int gridX, int gridZ, long seed) {
-    return combinedIntensityAtGridCoords(gridX + 0.5, gridZ + 0.5, seed);
-  }
-
-  /**
-   * Age whose map intensity wins at this grid cell (same rule as procedural
-   * {@code mapAges}, but per PNG hotspot layer).
-   */
-  public byte dominantAgeAtGrid(int gridX, int gridZ, long seed) {
-    final double blockX = RegionCoords.gridToBlock(gridX) + HALF_GRID_BLOCK;
-    final double blockZ = RegionCoords.gridToBlock(gridZ) + HALF_GRID_BLOCK;
-    return dominantAgeAtBlock(blockX, blockZ, seed);
-  }
-
-  public byte dominantAgeAtBlock(double blockX, double blockZ, long seed) {
-    double best = 0;
-    byte result = 0;
-    for (byte age = 1; age <= 4; age++) {
-      final double value = intensityAtBlock(
-        blockX,
-        blockZ,
-        age,
-        warpForAge(age, seed)
-      );
-      if (value > best) {
-        best = value;
-        result = age;
-      }
-    }
-    return result;
+    final OpenSimplex2D warp = new OpenSimplex2D(seed + 7919L * age)
+      .octaves(2)
+      .spread(0.004)
+      .scaled(-0.1, 0.1);
+    return (x, z) -> peakAt(x, z, scoped, warp.noise(x, z));
   }
 
   public byte ageAtGrid(int gridX, int gridZ) {
@@ -186,30 +89,6 @@ public final class MapHotspotLayout {
     return center == null ? 0 : center.age();
   }
 
-  private OpenSimplex2D warpForAge(byte age, long seed) {
-    return new OpenSimplex2D(seed + 7919L * age)
-      .octaves(2)
-      .spread(0.004)
-      .scaled(-0.1, 0.1);
-  }
-
-  private double intensityAtBlock(
-    double blockX,
-    double blockZ,
-    byte age,
-    OpenSimplex2D warp
-  ) {
-    if (age < 1 || age > 4) {
-      return 0;
-    }
-    final List<Center> scoped = centersByAge[age];
-    if (scoped.isEmpty()) {
-      return 0;
-    }
-    return peakAt(blockX, blockZ, scoped, warp.noise(blockX, blockZ));
-  }
-
-  @Nullable
   public Center nearestCenterAtGrid(int gridX, int gridZ) {
     final double blockX = RegionCoords.gridToBlock(gridX) + HALF_GRID_BLOCK;
     final double blockZ = RegionCoords.gridToBlock(gridZ) + HALF_GRID_BLOCK;
@@ -247,94 +126,6 @@ public final class MapHotspotLayout {
     return nearest;
   }
 
-  public void resolveMountainStyles(Region region, long worldSeed) {
-    for (final Center center : centers) {
-      if (mountainStyles[center.id()] != null) {
-        continue;
-      }
-      final Region.Point centerPoint = region.maybeAt(
-        center.gridX(),
-        center.gridZ()
-      );
-      if (centerPoint == null) {
-        continue;
-      }
-      if (!centerPoint.mountain()) {
-        mountainStyles[center.id()] = MountainStyle.SHIELD;
-        continue;
-      }
-      mountainStyles[center.id()] = seededChance(
-          worldSeed,
-          center,
-          0x6c622b72L
-        ) <
-        center.stratovolcanoChance()
-        ? MountainStyle.STRATOVOLCANO
-        : MountainStyle.NATURAL_MOUNTAIN;
-    }
-  }
-
-  public MountainStyle mountainStyle(int centerId) {
-    final MountainStyle style = mountainStyles[centerId];
-    return style == null ? MountainStyle.SHIELD : style;
-  }
-
-  public MountainStyle styleAtGrid(int gridX, int gridZ) {
-    final Center center = nearestCenterAtGrid(gridX, gridZ);
-    if (center == null) {
-      return MountainStyle.SHIELD;
-    }
-    return mountainStyle(center.id());
-  }
-
-  public void prepareChooseBiomes(Region region, long worldSeed) {
-    resolveMountainStyles(region, worldSeed);
-  }
-
-  public boolean keepMountainBiome(
-    int gridX,
-    int gridZ,
-    boolean mountain,
-    byte hotSpotAge
-  ) {
-    if (hotSpotAge <= 0 || !mountain) {
-      return false;
-    }
-    final MountainStyle style = styleAtGrid(gridX, gridZ);
-    return (
-      style == MountainStyle.NATURAL_MOUNTAIN ||
-      style == MountainStyle.STRATOVOLCANO
-    );
-  }
-
-  public boolean keepMountainBiome(
-    Region region,
-    Region.Point point,
-    byte hotSpotAge
-  ) {
-    final int index = RegionCoords.indexOf(region, point);
-    if (index < 0) {
-      return false;
-    }
-    return keepMountainBiome(
-      RegionCoords.gridX(region, index),
-      RegionCoords.gridZ(region, index),
-      point.mountain(),
-      hotSpotAge
-    );
-  }
-
-  public MountainStyle styleAt(Region region, Region.Point point) {
-    final int index = RegionCoords.indexOf(region, point);
-    if (index < 0) {
-      return MountainStyle.SHIELD;
-    }
-    return styleAtGrid(
-      RegionCoords.gridX(region, index),
-      RegionCoords.gridZ(region, index)
-    );
-  }
-
   private double peakAt(
     double blockX,
     double blockZ,
@@ -349,8 +140,7 @@ public final class MapHotspotLayout {
     final double imageZ = image[1];
     double best = 0;
     for (final Center center : scoped) {
-      final double radius =
-        center.radiusBlocks() * BIOME_RADIUS_SCALE * (1 + warp);
+      final double radius = center.radiusBlocks() * (1 + warp);
       if (radius <= 0) {
         continue;
       }
@@ -369,24 +159,8 @@ public final class MapHotspotLayout {
     return best;
   }
 
-  private static double seededChance(long worldSeed, Center center, long salt) {
-    long hash = worldSeed;
-    hash ^= salt;
-    hash ^= (long) center.age() * 0x632BE59BD9B4E019L;
-    hash ^= Double.doubleToLongBits(center.imageX()) * 0x517cc1b727220a95L;
-    hash ^= Double.doubleToLongBits(center.imageZ()) * 0x6C078965L;
-    hash = mix64(hash);
-    return (hash >>> 11) * (1.0 / (1L << 53));
-  }
-
-  private static long mix64(long z) {
-    z = (z ^ (z >>> 33)) * 0xff51afd7ed558ccdL;
-    z = (z ^ (z >>> 33)) * 0xc4ceb9fe1a85ec53L;
-    return z ^ (z >>> 33);
-  }
-
   private static List<Center> scanCenters(
-    PNGHotspotsNoise noise,
+    TectonicsMap noise,
     double blocksPerPixelX,
     double blocksPerPixelZ
   ) {
@@ -401,15 +175,13 @@ public final class MapHotspotLayout {
         if (visited[index]) {
           continue;
         }
-        final byte age = PNGHotspotsNoise.ageFromBrightness(
-          noise.getBrightness(x, z)
-        );
+        final byte age = noise.hotspotAgeAtPixel(x, z);
         if (age == 0) {
           visited[index] = true;
           continue;
         }
         centers.add(
-          withPoleChances(
+          withMaxGridRadius(
             floodFill(
               noise,
               visited,
@@ -418,8 +190,7 @@ public final class MapHotspotLayout {
               age,
               blocksPerPixelX,
               blocksPerPixelZ
-            ),
-            height
+            )
           )
         );
       }
@@ -428,7 +199,7 @@ public final class MapHotspotLayout {
   }
 
   private static Center floodFill(
-    PNGHotspotsNoise noise,
+    TectonicsMap noise,
     boolean[] visited,
     int startX,
     int startZ,
@@ -474,19 +245,10 @@ public final class MapHotspotLayout {
     final int gridZ = (int) Math.round(
       (imageZ - noise.getCenterZ()) / noise.getScaleZ()
     );
-    return new Center(0, age, imageX, imageZ, radius, gridX, gridZ, 0, 0, 0);
+    return new Center(0, age, imageX, imageZ, radius, gridX, gridZ, 0);
   }
 
-  private static Center withPoleChances(Center center, int mapHeight) {
-    final double w = poleCurveWeight(center.imageZ(), mapHeight);
-    final double placement =
-      MAP_PLACEMENT_CHANCE_EQUATOR +
-      (MAP_PLACEMENT_CHANCE_POLE - MAP_PLACEMENT_CHANCE_EQUATOR) * w;
-    final double stratovolcano =
-      MOUNTAIN_STRATOVOLCANO_CHANCE_EQUATOR +
-      (MOUNTAIN_STRATOVOLCANO_CHANCE_POLE -
-        MOUNTAIN_STRATOVOLCANO_CHANCE_EQUATOR) *
-      w;
+  private static Center withMaxGridRadius(Center center) {
     final int maxGrid = (int) Math.ceil(
       center.radiusBlocks() * BIOME_RADIUS_SCALE * INV_GRID_WIDTH_IN_BLOCK
     );
@@ -498,29 +260,12 @@ public final class MapHotspotLayout {
       center.radiusBlocks(),
       center.gridX(),
       center.gridZ(),
-      placement,
-      stratovolcano,
       maxGrid
     );
   }
 
-  private static double poleCurveWeight(double imageZ, int mapHeight) {
-    if (mapHeight <= 1) {
-      return 1.0;
-    }
-    final double equatorZ = mapHeight * 0.5;
-    final double t = Math.min(1.0, Math.abs(imageZ - equatorZ) / equatorZ);
-    if (t <= 0.0) {
-      return 0.0;
-    }
-    if (t >= 1.0) {
-      return 1.0;
-    }
-    return Math.pow(t, POLE_CURVE_EXPONENT);
-  }
-
   private static void enqueueIfSameAge(
-    PNGHotspotsNoise noise,
+    TectonicsMap noise,
     boolean[] visited,
     ArrayDeque<Integer> queue,
     int x,
@@ -536,7 +281,7 @@ public final class MapHotspotLayout {
     if (visited[index]) {
       return;
     }
-    if (PNGHotspotsNoise.ageFromBrightness(noise.getBrightness(x, z)) != age) {
+    if (noise.hotspotAgeAtPixel(x, z) != age) {
       return;
     }
     visited[index] = true;
@@ -551,8 +296,6 @@ public final class MapHotspotLayout {
     double radiusBlocks,
     int gridX,
     int gridZ,
-    double placementChance,
-    double stratovolcanoChance,
     int maxGridRadius
   ) {
     Center withId(int newId) {
@@ -564,8 +307,6 @@ public final class MapHotspotLayout {
         radiusBlocks,
         gridX,
         gridZ,
-        placementChance,
-        stratovolcanoChance,
         maxGridRadius
       );
     }

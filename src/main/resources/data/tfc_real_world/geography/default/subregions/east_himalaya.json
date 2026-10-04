@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/indian_subcontinent",
+  "title_lang": {
+    "de_de": "Osthimalaya",
+    "en_us": "East Himalaya",
+    "es_es": "Himalaya Oriental",
+    "ja_jp": "東ヒマラヤ",
+    "ko_kr": "동히말라야",
+    "pl_pl": "Himalaje Wschodnie",
+    "pt_br": "Himalaia Oriental",
+    "ru_ru": "Восточные Гималаи",
+    "tr_tr": "Doğu Himalaya",
+    "uk_ua": "Східні Гімалаї",
+    "zh_cn": "东喜马拉雅",
+    "zh_hk": "東喜馬拉雅",
+    "zh_tw": "東喜馬拉雅"
+  }
+}

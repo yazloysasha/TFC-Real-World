@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/mexico",
+  "title_lang": {
+    "de_de": "Nordostmexiko",
+    "en_us": "Mexico Northeast",
+    "es_es": "México nororiental",
+    "ja_jp": "メキシコ北東部",
+    "ko_kr": "멕시코 북동부",
+    "pl_pl": "Meksyk północno-wschodni",
+    "pt_br": "México Nordeste",
+    "ru_ru": "Северо-Восточная Мексика",
+    "tr_tr": "Kuzeydoğu Meksika",
+    "uk_ua": "Північно-східна Мексика",
+    "zh_cn": "墨西哥东北部",
+    "zh_hk": "墨西哥東北部",
+    "zh_tw": "墨西哥東北部"
+  }
+}

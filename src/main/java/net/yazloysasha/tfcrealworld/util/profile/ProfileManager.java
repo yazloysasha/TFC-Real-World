@@ -16,15 +16,22 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.stream.Stream;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import org.jetbrains.annotations.Nullable;
 
 public class ProfileManager {
 
-  private static final Map<String, MapProfile> PROFILE_CACHE = new HashMap<>();
+  public static final String SETTINGS_FILE = "settings.json";
+  public static final String MAPS_DIR = "maps";
+
+  /** Read from every thread that generates a region. */
+  private static final Map<String, MapProfile> PROFILE_CACHE =
+    new ConcurrentHashMap<>();
   private static final Map<String, ProfileLocation> PROFILE_LOCATIONS =
     new HashMap<>();
   private static boolean initialized = false;
@@ -202,7 +209,7 @@ public class ProfileManager {
         String fileName = path.getFileName().toString();
         if (Files.isDirectory(path)) {
           String profileName = fileName;
-          Path settingsPath = path.resolve("settings.json");
+          Path settingsPath = path.resolve(SETTINGS_FILE);
           if (Files.exists(settingsPath)) {
             addProfile(
               namespace,
@@ -290,10 +297,6 @@ public class ProfileManager {
     };
   }
 
-  public static ProfileLocation getProfileLocation(String profileId) {
-    return PROFILE_LOCATIONS.get(profileId.toUpperCase());
-  }
-
   private static List<String> getDefaultProfileList() {
     return List.of(TFCRealWorldConfig.DEFAULT_MAP_PROFILE);
   }
@@ -306,63 +309,94 @@ public class ProfileManager {
   }
 
   public static InputStream getMapStream(String profileId, String mapName) {
-    String[] parts = parseProfileId(profileId.toLowerCase());
-    String namespace = parts[0];
-    String profileName = parts[1];
-
-    ProfileLocation location = PROFILE_LOCATIONS.get(profileId.toUpperCase());
-    if (location != null) {
-      if (location.isZip()) {
-        return getMapStreamFromZip(
-          location.zipPath(),
-          namespace,
-          profileName,
-          mapName
-        );
-      } else if (location.directoryPath() != null) {
-        return getMapStreamFromDirectory(location.directoryPath(), mapName);
-      }
-    }
-
-    String resourcePath =
-      "/data/" +
-      TFCRealWorld.MOD_ID +
-      "/profiles/" +
-      namespace +
-      "/" +
-      profileName +
-      "/maps/" +
-      mapName +
-      ".png";
-    return TFCRealWorld.class.getResourceAsStream(resourcePath);
+    return getProfileFileStream(profileId, MAPS_DIR + "/" + mapName + ".png");
   }
 
-  private static InputStream getMapStreamFromZip(
-    Path zipPath,
-    String namespace,
-    String profileName,
-    String mapName
+  /**
+   * A file of the profile by its path inside the profile folder, such as
+   * {@code settings.json}, {@code tectonics.json} or {@code maps/continent.png}.
+   * Falls back to the built-in profile of the same id.
+   */
+  @Nullable
+  public static InputStream getProfileFileStream(
+    String profileId,
+    String path
   ) {
+    final String[] parts = parseProfileId(profileId.toLowerCase());
+    final String namespace = parts[0];
+    final String profileName = parts[1];
+
+    InputStream stream = null;
+    final ProfileLocation location = PROFILE_LOCATIONS.get(
+      profileId.toUpperCase()
+    );
+    if (location != null) {
+      if (location.isZip()) {
+        stream = getStreamFromZip(
+          location.zipPath(),
+          "/" + namespace + "/" + profileName + "/" + path
+        );
+      } else if (location.directoryPath() != null) {
+        stream = getStreamFromDirectory(location.directoryPath(), path);
+      }
+    }
+    if (stream != null) {
+      return stream;
+    }
+    return TFCRealWorld.class.getResourceAsStream(
+      "/data/" +
+        TFCRealWorld.MOD_ID +
+        "/profiles/" +
+        namespace +
+        "/" +
+        profileName +
+        "/" +
+        path
+    );
+  }
+
+  @Nullable
+  private static InputStream getStreamFromZip(Path zipPath, String path) {
     return withZipFileSystem(zipPath, zipFs -> {
       try {
-        Path mapPath = zipFs.getPath(
-          "/" + namespace + "/" + profileName + "/maps/" + mapName + ".png"
-        );
-        if (Files.exists(mapPath)) {
+        final Path filePath = zipFs.getPath(path);
+        if (Files.exists(filePath)) {
           return new ZipInputStreamWrapper(
-            Files.newInputStream(mapPath),
+            Files.newInputStream(filePath),
             zipFs
           );
         }
       } catch (IOException e) {
         TFCRealWorld.LOGGER.error(
-          "Failed to read map from ZIP: {}",
+          "Failed to read {} from ZIP: {}",
+          path,
           zipPath,
           e
         );
       }
       return null;
     });
+  }
+
+  @Nullable
+  private static InputStream getStreamFromDirectory(
+    Path profilePath,
+    String path
+  ) {
+    try {
+      final Path filePath = profilePath.resolve(path);
+      if (Files.exists(filePath)) {
+        return Files.newInputStream(filePath);
+      }
+    } catch (IOException e) {
+      TFCRealWorld.LOGGER.error(
+        "Failed to read {} from directory: {}",
+        path,
+        profilePath,
+        e
+      );
+    }
+    return null;
   }
 
   private static class ZipInputStreamWrapper extends InputStream {
@@ -395,68 +429,6 @@ public class ProfileManager {
       delegate.close();
       fileSystem.close();
     }
-  }
-
-  private static InputStream getMapStreamFromDirectory(
-    Path profilePath,
-    String mapName
-  ) {
-    try {
-      Path mapPath = profilePath.resolve("maps").resolve(mapName + ".png");
-      if (Files.exists(mapPath)) {
-        return Files.newInputStream(mapPath);
-      }
-    } catch (IOException e) {
-      TFCRealWorld.LOGGER.error(
-        "Failed to read map from directory: {}",
-        profilePath,
-        e
-      );
-    }
-    return null;
-  }
-
-  static InputStream getSettingsStreamFromZip(
-    Path zipPath,
-    String namespace,
-    String profileName
-  ) {
-    return withZipFileSystem(zipPath, zipFs -> {
-      try {
-        Path settingsPath = zipFs.getPath(
-          "/" + namespace + "/" + profileName + "/settings.json"
-        );
-        if (Files.exists(settingsPath)) {
-          return new ZipInputStreamWrapper(
-            Files.newInputStream(settingsPath),
-            zipFs
-          );
-        }
-      } catch (IOException e) {
-        TFCRealWorld.LOGGER.error(
-          "Failed to read settings from ZIP: {}",
-          zipPath,
-          e
-        );
-      }
-      return null;
-    });
-  }
-
-  static InputStream getSettingsStreamFromDirectory(Path profilePath) {
-    try {
-      Path settingsPath = profilePath.resolve("settings.json");
-      if (Files.exists(settingsPath)) {
-        return Files.newInputStream(settingsPath);
-      }
-    } catch (IOException e) {
-      TFCRealWorld.LOGGER.error(
-        "Failed to read settings from directory: {}",
-        profilePath,
-        e
-      );
-    }
-    return null;
   }
 
   /**

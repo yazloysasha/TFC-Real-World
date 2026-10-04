@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/subantarctic_islands",
+  "title_lang": {
+    "de_de": "Crozetinseln",
+    "en_us": "Crozet Islands",
+    "es_es": "Islas Crozet",
+    "ja_jp": "クローゼー諸島",
+    "ko_kr": "크로제 제도",
+    "pl_pl": "Wyspy Crozeta",
+    "pt_br": "Ilhas Crozet",
+    "ru_ru": "Острова Крозе",
+    "tr_tr": "Crozet Adaları",
+    "uk_ua": "Острови Крозе",
+    "zh_cn": "克罗泽群岛",
+    "zh_hk": "克羅澤群島",
+    "zh_tw": "克羅澤群島"
+  }
+}

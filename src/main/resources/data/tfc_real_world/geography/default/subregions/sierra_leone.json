@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/west_tropical_africa",
+  "title_lang": {
+    "de_de": "Sierra Leone",
+    "en_us": "Sierra Leone",
+    "es_es": "Sierra Leona",
+    "ja_jp": "シエラレオネ",
+    "ko_kr": "시에라리온",
+    "pl_pl": "Sierra Leone",
+    "pt_br": "Serra Leoa",
+    "ru_ru": "Сьерра-Леоне",
+    "tr_tr": "Sierra Leone",
+    "uk_ua": "Сьєрра-Леоне",
+    "zh_cn": "塞拉利昂",
+    "zh_hk": "塞拉利昂",
+    "zh_tw": "塞拉利昂"
+  }
+}

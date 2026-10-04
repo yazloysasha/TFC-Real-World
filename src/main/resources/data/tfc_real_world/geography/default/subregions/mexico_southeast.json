@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/mexico",
+  "title_lang": {
+    "de_de": "Südostmexiko",
+    "en_us": "Mexico Southeast",
+    "es_es": "México suroriental",
+    "ja_jp": "メキシコ南東部",
+    "ko_kr": "멕시코 남동부",
+    "pl_pl": "Meksyk południowo-wschodni",
+    "pt_br": "México Sudeste",
+    "ru_ru": "Юго-Восточная Мексика",
+    "tr_tr": "Güneydoğu Meksika",
+    "uk_ua": "Південно-східна Мексика",
+    "zh_cn": "墨西哥东南部",
+    "zh_hk": "墨西哥東南部",
+    "zh_tw": "墨西哥東南部"
+  }
+}

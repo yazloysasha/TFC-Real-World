@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/southern_america",
+  "title_lang": {
+    "de_de": "Westliches Südamerika",
+    "en_us": "Western South America",
+    "es_es": "Oeste de Sudamérica",
+    "ja_jp": "南アメリカ西部",
+    "ko_kr": "남아메리카 서부",
+    "pl_pl": "Zachodnia Ameryka Południowa",
+    "pt_br": "Oeste da América do Sul",
+    "ru_ru": "Запад Южной Америки",
+    "tr_tr": "Güney Amerika'nın Batısı",
+    "uk_ua": "Захід Південної Америки",
+    "zh_cn": "南美洲西部",
+    "zh_hk": "南美洲西部",
+    "zh_tw": "南美洲西部"
+  }
+}

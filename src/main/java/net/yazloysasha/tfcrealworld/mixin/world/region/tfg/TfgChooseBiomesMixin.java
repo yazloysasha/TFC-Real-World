@@ -1,286 +1,136 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region.tfg;
 
-import static su.terrafirmagreg.core.world.new_ow_wg.TFGLayers.*;
-
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
-import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
-import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
-import net.yazloysasha.tfcrealworld.world.backport.ChooseBiomesSupport;
-import net.yazloysasha.tfcrealworld.world.region.MapBiomeLakeRolls;
-import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotBiomes;
-import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
-import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout.MountainStyle;
-import net.yazloysasha.tfcrealworld.world.volcano.TfgCenteredFeatureAligner;
+import net.yazloysasha.tfcrealworld.world.region.MapBiomeChoice;
 import org.objectweb.asm.Opcodes;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import su.terrafirmagreg.core.world.new_ow_wg.TFGLayers;
 import su.terrafirmagreg.core.world.new_ow_wg.region.IRegionPoint;
 import su.terrafirmagreg.core.world.new_ow_wg.region.TFGChooseBiomesTask;
 
 /**
- * TFG still chooses biomes. Map mountain cores follow TFC 4
- * {@code ChooseBiomes} ({@code mountain()} → ice / {@code MOUNTAINS} /
- * oceanic, never the high-land table). Stratovolcano mountain hotspots paint
- * {@code VOLCANIC_MOUNTAINS} instead of shield or canyons. Burren/tower-karst
- * extra bases match 1.21.1 {@code ChooseBiomesMixin}. Centered volcano cells
- * align to TFG noise.
+ * TerraFirmaGreg picks every biome from the region-point fields written
+ * from the maps. Its island and mountain pools mix volcanic and other
+ * biomes at random; with tectonics the map says which ground is volcanic,
+ * and an ice sheet meets the sea only where its edge layer finds it.
  */
 @Mixin(value = TFGChooseBiomesTask.class, remap = false)
 public class TfgChooseBiomesMixin {
 
   @Unique
-  private static final ThreadLocal<Boolean> ASSIGNING_HOTSPOT_BIOME =
-    ThreadLocal.withInitial(() -> Boolean.FALSE);
+  private static final String RANDOM_SEEDED_FROM =
+    "Lsu/terrafirmagreg/core/world/new_ow_wg/region/TFGChooseBiomesTask;randomSeededFrom(JI[I)I";
 
-  @Unique
-  private static final ThreadLocal<Region> CURRENT_REGION = new ThreadLocal<>();
+  @Shadow
+  @Final
+  private static int[] MOUNTAIN_ALTITUDE_BIOMES;
 
-  @Unique
-  private static final ThreadLocal<Region.Point> CURRENT_POINT =
-    new ThreadLocal<>();
+  @Shadow
+  @Final
+  private static int[] OCEANIC_MOUNTAIN_ALTITUDE_BIOMES;
 
   @Inject(method = "apply", at = @At("HEAD"))
-  private void tfcrealworld$prepareMapHotspotLayout(
+  private void tfcrealworld$enter(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    CURRENT_REGION.set(context.region);
-    if (!TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
-      return;
-    }
-    final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
-    if (layout != null) {
-      layout.prepareChooseBiomes(context.region, WorldSeedHolder.getSeed());
-    }
+    MapBiomeChoice.enter(context);
   }
 
-  @Inject(method = "apply", at = @At("TAIL"))
-  private void tfcrealworld$cleanupChooseBiomes(
-    RegionGenerator.Context context,
-    CallbackInfo ci
+  /** The first thing the task asks of each point. */
+  @Redirect(
+    method = "apply",
+    at = @At(
+      value = "INVOKE",
+      target = "Lnet/dries007/tfc/world/region/Region$Point;island()Z"
+    )
+  )
+  private boolean tfcrealworld$at(Region.Point point) {
+    final IRegionPoint coords = (IRegionPoint) (Object) point;
+    MapBiomeChoice.current().at(point, coords.tfg$getX(), coords.tfg$getZ());
+    return point.island();
+  }
+
+  @Redirect(
+    method = "apply",
+    at = @At(value = "INVOKE", target = RANDOM_SEEDED_FROM, ordinal = 0)
+  )
+  private int tfcrealworld$islandBiomeByVolcanism(
+    TFGChooseBiomesTask instance,
+    long rngSeed,
+    int areaSeed,
+    int[] choices
   ) {
-    ChooseBiomesSupport.rollIceSheetEdgeLakes(
-      context.region,
-      WorldSeedHolder.getSeed(),
-      ICE_SHEET_EDGE,
-      TFGLayers::lakeFor
+    return MapBiomeChoice.current().pickIsland(rngSeed, areaSeed, choices);
+  }
+
+  @Redirect(
+    method = "apply",
+    at = @At(value = "INVOKE", target = RANDOM_SEEDED_FROM, ordinal = 1)
+  )
+  private int tfcrealworld$coastalMountainBiomeByVolcanism(
+    TFGChooseBiomesTask instance,
+    long rngSeed,
+    int areaSeed,
+    int[] choices
+  ) {
+    return tfcrealworld$pickMountain(rngSeed, areaSeed, choices);
+  }
+
+  @Redirect(
+    method = "apply",
+    at = @At(value = "INVOKE", target = RANDOM_SEEDED_FROM, ordinal = 2)
+  )
+  private int tfcrealworld$inlandMountainBiomeByVolcanism(
+    TFGChooseBiomesTask instance,
+    long rngSeed,
+    int areaSeed,
+    int[] choices
+  ) {
+    return tfcrealworld$pickMountain(rngSeed, areaSeed, choices);
+  }
+
+  @Unique
+  private static int tfcrealworld$pickMountain(
+    long rngSeed,
+    int areaSeed,
+    int[] choices
+  ) {
+    return MapBiomeChoice.current().pickMountain(
+      rngSeed,
+      areaSeed,
+      choices,
+      MOUNTAIN_ALTITUDE_BIOMES,
+      OCEANIC_MOUNTAIN_ALTITUDE_BIOMES
     );
-    MapBiomeLakeRolls.rollOceanicMountainLakes(
-      context.region,
-      WorldSeedHolder.getSeed(),
-      OCEANIC_MOUNTAINS,
-      VOLCANIC_OCEANIC_MOUNTAINS,
-      TFGLayers::lakeFor
-    );
-    if (
-      TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get() ||
-      TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()
-    ) {
-      TfgCenteredFeatureAligner.align(
-        context.region,
-        WorldSeedHolder.getSeed()
-      );
-    }
-    CURRENT_REGION.remove();
-    CURRENT_POINT.remove();
-    ASSIGNING_HOTSPOT_BIOME.remove();
   }
 
-  @Redirect(
-    method = "apply",
-    at = @At(
-      value = "INVOKE",
-      target = "Lsu/terrafirmagreg/core/world/new_ow_wg/region/TFGChooseBiomesTask;getHotSpotBiome(I)I"
-    )
-  )
-  private int tfcrealworld$markHotspotBiomeAssignment(
-    TFGChooseBiomesTask instance,
-    int age
-  ) {
-    ASSIGNING_HOTSPOT_BIOME.set(Boolean.TRUE);
-    return (
-      (TfgChooseBiomesAccessor) (Object) instance
-    ).tfcrealworld$invokeGetHotSpotBiome(age);
-  }
-
-  @Redirect(
-    method = "apply",
-    at = @At(
-      value = "INVOKE",
-      target = "Lsu/terrafirmagreg/core/world/new_ow_wg/region/TFGChooseBiomesTask;getBurrenBiome(I)I"
-    )
-  )
-  private int tfcrealworld$burrenBasesForVanilla(
-    TFGChooseBiomesTask instance,
-    int biome
-  ) {
-    return (
-      (TfgChooseBiomesAccessor) (Object) instance
-    ).tfcrealworld$invokeGetBurrenBiome(tfcrealworld$burrenBase(biome));
-  }
-
-  /**
-   * Vanilla already maps {@code SALT_MARSH → TOWER_KARST_BAY} inside
-   * {@code getTowerKarstBiome}, but paints mangrove marshes after karst.
-   * Feed drowned coastal karst into that vanilla call so climate stays in TFC.
-   */
-  @Redirect(
-    method = "apply",
-    at = @At(
-      value = "INVOKE",
-      target = "Lsu/terrafirmagreg/core/world/new_ow_wg/region/TFGChooseBiomesTask;getTowerKarstBiome(I)I"
-    )
-  )
-  private int tfcrealworld$coastalLowlandsAsMarshForTowerKarst(
-    TFGChooseBiomesTask instance,
-    int biome
-  ) {
-    final Region.Point point = CURRENT_POINT.get();
-    if (
-      point != null &&
-      point.distanceToOcean <= 2 &&
-      (biome == LOWLANDS || biome == PLAINS || biome == LOW_CANYONS)
-    ) {
-      biome = SALT_MARSH;
-    }
-    return (
-      (TfgChooseBiomesAccessor) (Object) instance
-    ).tfcrealworld$invokeGetTowerKarstBiome(biome);
-  }
-
+  /** The task reads the distance for the oceanic ice sheet, then salt marsh. */
   @Redirect(
     method = "apply",
     at = @At(
       value = "FIELD",
-      target = "Lnet/dries007/tfc/world/region/Region$Point;biome:I",
-      opcode = Opcodes.PUTFIELD
+      target = "Lnet/dries007/tfc/world/region/Region$Point;distanceToOcean:B",
+      opcode = Opcodes.GETFIELD,
+      ordinal = 0
     )
   )
-  private void tfcrealworld$keepMapMountainBiomeUnderHotspot(
-    Region.Point point,
-    int proposedBiome
+  private byte tfcrealworld$iceSheetDistanceToOcean(Region.Point point) {
+    return MapBiomeChoice.current().iceSheetDistanceToOcean(point);
+  }
+
+  @Inject(method = "apply", at = @At("TAIL"))
+  private void tfcrealworld$leave(
+    RegionGenerator.Context context,
+    CallbackInfo ci
   ) {
-    CURRENT_POINT.set(point);
-    try {
-      if (
-        TFCRealWorldConfig.ALTITUDE_FROM_MAP.get() &&
-        point.mountain() &&
-        tfcrealworld$isSoftMountainFill(proposedBiome)
-      ) {
-        proposedBiome = point.coastalMountain() ? OCEANIC_MOUNTAINS : MOUNTAINS;
-      }
-      if (
-        Boolean.TRUE.equals(ASSIGNING_HOTSPOT_BIOME.get()) &&
-        tfcrealworld$shouldKeepMountainBiome(point)
-      ) {
-        if (tfcrealworld$shouldPaintStratovolcano(point)) {
-          proposedBiome = MapHotspotBiomes.volcanicMountainFor(
-            point,
-            VOLCANIC_MOUNTAINS,
-            VOLCANIC_OCEANIC_MOUNTAINS
-          );
-        } else {
-          return;
-        }
-      }
-      point.biome = proposedBiome;
-    } finally {
-      ASSIGNING_HOTSPOT_BIOME.set(Boolean.FALSE);
-    }
-  }
-
-  /**
-   * Vanilla Burren only remaps a few bases. Paleo ice-margin biomes,
-   * ice-sheet rim, humid-high {@code OLD_MOUNTAINS}, and mesa/canyon leftovers
-   * fall through. Climate is already decided by TFC before this call.
-   */
-  @Unique
-  private static int tfcrealworld$burrenBase(int biome) {
-    if (
-      biome == KNOB_AND_KETTLE ||
-      biome == PATTERNED_GROUND ||
-      biome == INVERTED_PATTERNED_GROUND ||
-      biome == ICE_SHEET_EDGE
-    ) {
-      return DRUMLINS;
-    }
-    if (biome == LOW_CANYONS || biome == LOWLANDS) {
-      return PLAINS;
-    }
-    if (biome == OLD_MOUNTAINS) {
-      return HIGHLANDS;
-    }
-    if (biome == STAIR_STEP_CANYONS || biome == MESAS || biome == BUTTES) {
-      return PLATEAU;
-    }
-    return biome;
-  }
-
-  /**
-   * TFC 4 never picks these for {@code point.mountain()}. TFG still samples
-   * {@code MOUNTAIN_ALTITUDE_BIOMES} / {@code OCEANIC_MOUNTAIN_ALTITUDE_BIOMES},
-   * which include them. Ice and volcanic mountain biomes are left alone — TFC 4
-   * assigns those from climate (and {@code volcanic()}) in the same branch.
-   */
-  @Unique
-  private static boolean tfcrealworld$isSoftMountainFill(int biome) {
-    return (
-      biome == OLD_MOUNTAINS ||
-      biome == PLATEAU ||
-      biome == PLATEAU_WIDE ||
-      biome == HIGHLANDS ||
-      biome == ROLLING_HILLS ||
-      biome == ROCKY_PLATEAU
-    );
-  }
-
-  @Unique
-  private static boolean tfcrealworld$shouldKeepMountainBiome(
-    Region.Point point
-  ) {
-    final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
-    final Region region = CURRENT_REGION.get();
-    if (layout == null || region == null) {
-      return false;
-    }
-    return layout.keepMountainBiome(
-      region,
-      point,
-      ((IRegionPoint) point).tfg$getHotSpotAge()
-    );
-  }
-
-  @Unique
-  private static boolean tfcrealworld$shouldPaintStratovolcano(
-    Region.Point point
-  ) {
-    if (tfcrealworld$isIceMountain(point.biome)) {
-      return false;
-    }
-    final MapHotspotLayout layout = HotspotsNoiseRegistry.biomeLayout();
-    final Region region = CURRENT_REGION.get();
-    if (layout == null || region == null) {
-      return false;
-    }
-    return layout.styleAt(region, point) == MountainStyle.STRATOVOLCANO;
-  }
-
-  @Unique
-  private static boolean tfcrealworld$isIceMountain(int biome) {
-    return (
-      biome == ICE_SHEET_MOUNTAINS ||
-      biome == ICE_SHEET_OCEANIC_MOUNTAINS ||
-      biome == GLACIATED_MOUNTAINS ||
-      biome == GLACIATED_OCEANIC_MOUNTAINS ||
-      biome == GLACIALLY_CARVED_MOUNTAINS ||
-      biome == GLACIALLY_CARVED_OCEANIC_MOUNTAINS
-    );
+    MapBiomeChoice.leave(context);
   }
 }

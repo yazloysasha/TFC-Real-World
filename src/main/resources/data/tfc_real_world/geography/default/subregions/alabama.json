@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southeastern_usa",
+  "title_lang": {
+    "de_de": "Alabama",
+    "en_us": "Alabama",
+    "es_es": "Alabama",
+    "ja_jp": "アラバマ",
+    "ko_kr": "앨라배마",
+    "pl_pl": "Alabama",
+    "pt_br": "Alabama",
+    "ru_ru": "Алабама",
+    "tr_tr": "Alabama",
+    "uk_ua": "Алабама",
+    "zh_cn": "阿拉巴马",
+    "zh_hk": "阿拉巴馬",
+    "zh_tw": "阿拉巴馬"
+  }
+}

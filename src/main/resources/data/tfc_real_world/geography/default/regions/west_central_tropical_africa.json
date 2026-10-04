@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/africa",
+  "title_lang": {
+    "de_de": "Westlich-zentrales tropisches Afrika",
+    "en_us": "West-Central Tropical Africa",
+    "es_es": "África Tropical Centro-occidental",
+    "ja_jp": "中西部熱帯アフリカ",
+    "ko_kr": "중서부 열대 아프리카",
+    "pl_pl": "Zachodnio-środkowa Afryka tropikalna",
+    "pt_br": "África Tropical Centro-Ocidental",
+    "ru_ru": "Западно-центральная тропическая Африка",
+    "tr_tr": "Batı-Orta Tropikal Afrika",
+    "uk_ua": "Західно-центральна тропічна Африка",
+    "zh_cn": "中西部热带非洲",
+    "zh_hk": "中西部熱帶非洲",
+    "zh_tw": "中西部熱帶非洲"
+  }
+}

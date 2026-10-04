@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/caucasus",
+  "title_lang": {
+    "de_de": "Nordkaukasus",
+    "en_us": "North Caucasus",
+    "es_es": "Cáucaso Norte",
+    "ja_jp": "北カフカース",
+    "ko_kr": "북캅카스",
+    "pl_pl": "Kaukaz Północny",
+    "pt_br": "Cáucaso Setentrional",
+    "ru_ru": "Северный Кавказ",
+    "tr_tr": "Kuzey Kafkasya",
+    "uk_ua": "Північний Кавказ",
+    "zh_cn": "北高加索",
+    "zh_hk": "北高加索",
+    "zh_tw": "北高加索"
+  }
+}

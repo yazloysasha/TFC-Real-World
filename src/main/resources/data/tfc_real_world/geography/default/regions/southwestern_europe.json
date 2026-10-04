@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/europe",
+  "title_lang": {
+    "de_de": "Südwesteuropa",
+    "en_us": "Southwestern Europe",
+    "es_es": "Europa del Suroeste",
+    "ja_jp": "南西ヨーロッパ",
+    "ko_kr": "남서유럽",
+    "pl_pl": "Europa Południowo-Zachodnia",
+    "pt_br": "Europa do Sudoeste",
+    "ru_ru": "Юго-Западная Европа",
+    "tr_tr": "Güneybatı Avrupa",
+    "uk_ua": "Південно-Західна Європа",
+    "zh_cn": "西南欧",
+    "zh_hk": "西南歐",
+    "zh_tw": "西南歐"
+  }
+}

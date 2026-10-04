@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/eastern_asia",
+  "title_lang": {
+    "de_de": "Korea",
+    "en_us": "Korea",
+    "es_es": "Corea",
+    "ja_jp": "朝鮮半島",
+    "ko_kr": "한반도",
+    "pl_pl": "Korea",
+    "pt_br": "Coreia",
+    "ru_ru": "Корея",
+    "tr_tr": "Kore",
+    "uk_ua": "Корея",
+    "zh_cn": "朝鲜半岛",
+    "zh_hk": "朝鮮半島",
+    "zh_tw": "朝鮮半島"
+  }
+}

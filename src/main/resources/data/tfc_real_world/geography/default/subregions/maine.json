@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northeastern_usa",
+  "title_lang": {
+    "de_de": "Maine",
+    "en_us": "Maine",
+    "es_es": "Maine",
+    "ja_jp": "メイン",
+    "ko_kr": "메인",
+    "pl_pl": "Maine",
+    "pt_br": "Maine",
+    "ru_ru": "Мэн",
+    "tr_tr": "Maine",
+    "uk_ua": "Мен",
+    "zh_cn": "缅因",
+    "zh_hk": "緬因",
+    "zh_tw": "緬因"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/russian_far_east",
+  "title_lang": {
+    "de_de": "Magadan",
+    "en_us": "Magadan",
+    "es_es": "Magadán",
+    "ja_jp": "マガダン",
+    "ko_kr": "마가단",
+    "pl_pl": "Magadan",
+    "pt_br": "Magadan",
+    "ru_ru": "Магадан",
+    "tr_tr": "Magadan",
+    "uk_ua": "Магадан",
+    "zh_cn": "马加丹",
+    "zh_hk": "馬加丹",
+    "zh_tw": "馬加丹"
+  }
+}

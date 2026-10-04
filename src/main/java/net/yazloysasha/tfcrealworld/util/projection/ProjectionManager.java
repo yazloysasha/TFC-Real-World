@@ -45,10 +45,9 @@ public class ProjectionManager {
   }
 
   public static double resolveLatitudeFromWorldZ(double worldZ) {
-    int verticalScale = TFCRealWorldConfig.VERTICAL_SCALE.get();
     int localZ = transformWorldZToLocal(
       (int) Math.floor(worldZ),
-      verticalScale
+      TFCRealWorldConfig.VERTICAL_SCALE.get()
     );
     return getLatitudeByZ(localZ);
   }
@@ -156,7 +155,7 @@ public class ProjectionManager {
     double localX = gridX - tileCenterX;
     double localZ = gridZ - tileCenterZ;
 
-    if (Math.floorMod(tileX, 2) != 0) {
+    if (Math.floorMod(tileX + tileZ, 2) != 0) {
       localX = -localX;
     }
     if (Math.floorMod(tileZ, 2) != 0) {

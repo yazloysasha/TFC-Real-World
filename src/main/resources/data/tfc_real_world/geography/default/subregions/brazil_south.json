@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/brazil",
+  "title_lang": {
+    "de_de": "Südbrasilien",
+    "en_us": "Brazil South",
+    "es_es": "Brasil Sur",
+    "ja_jp": "ブラジル南部",
+    "ko_kr": "브라질 남부",
+    "pl_pl": "Brazylia Południowa",
+    "pt_br": "Sul do Brasil",
+    "ru_ru": "Юг Бразилии",
+    "tr_tr": "Güney Brezilya",
+    "uk_ua": "Південь Бразилії",
+    "zh_cn": "巴西南部",
+    "zh_hk": "巴西南部",
+    "zh_tw": "巴西南部"
+  }
+}

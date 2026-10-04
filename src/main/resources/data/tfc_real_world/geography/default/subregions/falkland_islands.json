@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/subantarctic_islands",
+  "title_lang": {
+    "de_de": "Falklandinseln",
+    "en_us": "Falkland Islands",
+    "es_es": "Islas Malvinas",
+    "ja_jp": "フォークランド諸島",
+    "ko_kr": "포클랜드 제도",
+    "pl_pl": "Falklandy",
+    "pt_br": "Ilhas Malvinas",
+    "ru_ru": "Фолклендские острова",
+    "tr_tr": "Falkland Adaları",
+    "uk_ua": "Фолклендські острови",
+    "zh_cn": "福克兰群岛",
+    "zh_hk": "福克蘭群島",
+    "zh_tw": "福克蘭群島"
+  }
+}

@@ -2,8 +2,7 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 
 import net.dries007.tfc.world.region.AnnotateBaseLandHeight;
 import net.dries007.tfc.world.region.RegionGenerator;
-import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.world.region.calculator.AltitudeCalculator;
+import net.yazloysasha.tfcrealworld.world.region.MapRegionTasks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -13,13 +12,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class AnnotateBaseLandHeightMixin {
 
   @Inject(method = "apply", at = @At("TAIL"))
-  private void tfcrealworld$overrideBaseLandHeight(
+  private void tfcrealworld$baseLandHeightFromRelief(
     RegionGenerator.Context context,
     CallbackInfo ci
   ) {
-    if (!TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
-      return;
-    }
-    new AltitudeCalculator().calculate(context.region, context.generator());
+    MapRegionTasks.baseLandHeight(context);
   }
 }

@@ -3,6 +3,7 @@ package net.yazloysasha.tfcrealworld.compat;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.LoadingModList;
 import org.jetbrains.annotations.Nullable;
+import su.terrafirmagreg.core.world.new_ow_wg.TfgClientPreviewState;
 
 /**
  * Optional Core-Modern (mod id {@code tfg}) detection. Mixins targeting TFG
@@ -13,8 +14,8 @@ public final class TfgCompat {
 
   public static final String MOD_ID = "tfg";
 
-  private static final String PREVIEW_STATE =
-    "su.terrafirmagreg.core.world.new_ow_wg.TfgClientPreviewState";
+  @Nullable
+  private static Boolean modPresent;
 
   private TfgCompat() {}
 
@@ -31,17 +32,15 @@ public final class TfgCompat {
    * False when TFG is absent, or when an old world stays on classic TFC 3.
    */
   public static boolean useTfgOverworldPipeline() {
-    if (!isModPresent()) {
-      return false;
+    Boolean present = modPresent;
+    if (present == null) {
+      if (ModList.get() == null) {
+        return false;
+      }
+      present = isModPresent();
+      modPresent = present;
     }
-    try {
-      final Class<?> preview = Class.forName(PREVIEW_STATE);
-      return (Boolean) preview
-        .getMethod("useTfgOverworldPipeline")
-        .invoke(null);
-    } catch (ReflectiveOperationException | LinkageError ignored) {
-      return false;
-    }
+    return present && Pipeline.active();
   }
 
   @Nullable
@@ -50,5 +49,17 @@ public final class TfgCompat {
       return "Core-Modern (tfg) is not loaded";
     }
     return null;
+  }
+
+  /** Loaded only with TerraFirmaGreg present. */
+  private static final class Pipeline {
+
+    static boolean active() {
+      try {
+        return TfgClientPreviewState.useTfgOverworldPipeline();
+      } catch (LinkageError ignored) {
+        return false;
+      }
+    }
   }
 }

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/western_indian_ocean",
+  "title_lang": {
+    "de_de": "Seychellen",
+    "en_us": "Seychelles",
+    "es_es": "Seychelles",
+    "ja_jp": "セーシェル",
+    "ko_kr": "세이셸",
+    "pl_pl": "Seszele",
+    "pt_br": "Seicheles",
+    "ru_ru": "Сейшельские Острова",
+    "tr_tr": "Seyşeller",
+    "uk_ua": "Сейшельські Острови",
+    "zh_cn": "塞舌尔",
+    "zh_hk": "塞舌爾",
+    "zh_tw": "塞舌爾"
+  }
+}

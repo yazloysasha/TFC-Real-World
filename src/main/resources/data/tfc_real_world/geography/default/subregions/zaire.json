@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/west_central_tropical_africa",
+  "title_lang": {
+    "de_de": "Zaire",
+    "en_us": "Zaire",
+    "es_es": "Zaire",
+    "ja_jp": "ザイール",
+    "ko_kr": "자이르",
+    "pl_pl": "Zair",
+    "pt_br": "Zaire",
+    "ru_ru": "Заир",
+    "tr_tr": "Zaire",
+    "uk_ua": "Заїр",
+    "zh_cn": "扎伊尔",
+    "zh_hk": "扎伊爾",
+    "zh_tw": "扎伊爾"
+  }
+}

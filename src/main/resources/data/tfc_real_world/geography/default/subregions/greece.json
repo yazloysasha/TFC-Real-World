@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southeastern_europe",
+  "title_lang": {
+    "de_de": "Griechenland",
+    "en_us": "Greece",
+    "es_es": "Grecia",
+    "ja_jp": "ギリシャ",
+    "ko_kr": "그리스",
+    "pl_pl": "Grecja",
+    "pt_br": "Grécia",
+    "ru_ru": "Греция",
+    "tr_tr": "Yunanistan",
+    "uk_ua": "Греція",
+    "zh_cn": "希腊",
+    "zh_hk": "希臘",
+    "zh_tw": "希臘"
+  }
+}

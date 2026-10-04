@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southeastern_usa",
+  "title_lang": {
+    "de_de": "District of Columbia",
+    "en_us": "District of Columbia",
+    "es_es": "Distrito de Columbia",
+    "ja_jp": "コロンビア特別区",
+    "ko_kr": "컬럼비아 특별구",
+    "pl_pl": "Dystrykt Kolumbii",
+    "pt_br": "Distrito de Columbia",
+    "ru_ru": "Округ Колумбия",
+    "tr_tr": "Columbia Bölgesi",
+    "uk_ua": "Округ Колумбія",
+    "zh_cn": "哥伦比亚特区",
+    "zh_hk": "哥倫比亞特區",
+    "zh_tw": "哥倫比亞特區"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/china",
+  "title_lang": {
+    "de_de": "Xinjiang",
+    "en_us": "Xinjiang",
+    "es_es": "Sinkiang",
+    "ja_jp": "新疆",
+    "ko_kr": "신장",
+    "pl_pl": "Sinciang",
+    "pt_br": "Xinjiang",
+    "ru_ru": "Синьцзян",
+    "tr_tr": "Sincan",
+    "uk_ua": "Сіньцзян",
+    "zh_cn": "新疆",
+    "zh_hk": "新疆",
+    "zh_tw": "新疆"
+  }
+}

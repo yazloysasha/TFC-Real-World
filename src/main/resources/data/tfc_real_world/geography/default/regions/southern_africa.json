@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/africa",
+  "title_lang": {
+    "de_de": "Südliches Afrika",
+    "en_us": "Southern Africa",
+    "es_es": "África Austral",
+    "ja_jp": "南部アフリカ",
+    "ko_kr": "남부 아프리카",
+    "pl_pl": "Afryka Południowa",
+    "pt_br": "África Austral",
+    "ru_ru": "Южная Африка",
+    "tr_tr": "Güney Afrika",
+    "uk_ua": "Південна Африка",
+    "zh_cn": "南部非洲",
+    "zh_hk": "南部非洲",
+    "zh_tw": "南部非洲"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/subantarctic_islands",
+  "title_lang": {
+    "de_de": "Südliche Sandwichinseln",
+    "en_us": "South Sandwich Islands",
+    "es_es": "Islas Sandwich del Sur",
+    "ja_jp": "サウスサンドウィッチ諸島",
+    "ko_kr": "사우스샌드위치 제도",
+    "pl_pl": "Wyspy Sandwich Południowe",
+    "pt_br": "Ilhas Sandwich do Sul",
+    "ru_ru": "Южные Сандвичевы острова",
+    "tr_tr": "Güney Sandwich Adaları",
+    "uk_ua": "Південні Сандвічеві острови",
+    "zh_cn": "南桑威奇群岛",
+    "zh_hk": "南桑威奇群島",
+    "zh_tw": "南桑威奇群島"
+  }
+}

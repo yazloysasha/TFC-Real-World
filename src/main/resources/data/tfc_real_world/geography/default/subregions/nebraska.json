@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/north_central_usa",
+  "title_lang": {
+    "de_de": "Nebraska",
+    "en_us": "Nebraska",
+    "es_es": "Nebraska",
+    "ja_jp": "ネブラスカ",
+    "ko_kr": "네브래스카",
+    "pl_pl": "Nebraska",
+    "pt_br": "Nebraska",
+    "ru_ru": "Небраска",
+    "tr_tr": "Nebraska",
+    "uk_ua": "Небраска",
+    "zh_cn": "内布拉斯加",
+    "zh_hk": "內布拉斯加",
+    "zh_tw": "內布拉斯加"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/middle_europe",
+  "title_lang": {
+    "de_de": "Tschechoslowakei",
+    "en_us": "Czechoslovakia",
+    "es_es": "Checoslovaquia",
+    "ja_jp": "チェコスロバキア",
+    "ko_kr": "체코슬로바키아",
+    "pl_pl": "Czechosłowacja",
+    "pt_br": "Tchecoslováquia",
+    "ru_ru": "Чехословакия",
+    "tr_tr": "Çekoslovakya",
+    "uk_ua": "Чехословаччина",
+    "zh_cn": "捷克斯洛伐克",
+    "zh_hk": "捷克斯洛伐克",
+    "zh_tw": "捷克斯洛伐克"
+  }
+}

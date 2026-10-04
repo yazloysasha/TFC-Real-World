@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/south_central_pacific",
+  "title_lang": {
+    "de_de": "Cookinseln",
+    "en_us": "Cook Islands",
+    "es_es": "Islas Cook",
+    "ja_jp": "クック諸島",
+    "ko_kr": "쿡 제도",
+    "pl_pl": "Wyspy Cooka",
+    "pt_br": "Ilhas Cook",
+    "ru_ru": "Острова Кука",
+    "tr_tr": "Cook Adaları",
+    "uk_ua": "Острови Кука",
+    "zh_cn": "库克群岛",
+    "zh_hk": "庫克群島",
+    "zh_tw": "庫克群島"
+  }
+}

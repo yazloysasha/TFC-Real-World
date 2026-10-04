@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/south_tropical_africa",
+  "title_lang": {
+    "de_de": "Angola",
+    "en_us": "Angola",
+    "es_es": "Angola",
+    "ja_jp": "アンゴラ",
+    "ko_kr": "앙골라",
+    "pl_pl": "Angola",
+    "pt_br": "Angola",
+    "ru_ru": "Ангола",
+    "tr_tr": "Angola",
+    "uk_ua": "Ангола",
+    "zh_cn": "安哥拉",
+    "zh_hk": "安哥拉",
+    "zh_tw": "安哥拉"
+  }
+}

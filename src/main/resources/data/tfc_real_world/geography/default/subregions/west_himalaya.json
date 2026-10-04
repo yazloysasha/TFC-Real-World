@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/indian_subcontinent",
+  "title_lang": {
+    "de_de": "Westhimalaya",
+    "en_us": "West Himalaya",
+    "es_es": "Himalaya Occidental",
+    "ja_jp": "西ヒマラヤ",
+    "ko_kr": "서히말라야",
+    "pl_pl": "Himalaje Zachodnie",
+    "pt_br": "Himalaia Ocidental",
+    "ru_ru": "Западные Гималаи",
+    "tr_tr": "Batı Himalaya",
+    "uk_ua": "Західні Гімалаї",
+    "zh_cn": "西喜马拉雅",
+    "zh_hk": "西喜馬拉雅",
+    "zh_tw": "西喜馬拉雅"
+  }
+}

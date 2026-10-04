@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northeast_tropical_africa",
+  "title_lang": {
+    "de_de": "Tschad",
+    "en_us": "Chad",
+    "es_es": "Chad",
+    "ja_jp": "チャド",
+    "ko_kr": "차드",
+    "pl_pl": "Czad",
+    "pt_br": "Chade",
+    "ru_ru": "Чад",
+    "tr_tr": "Çad",
+    "uk_ua": "Чад",
+    "zh_cn": "乍得",
+    "zh_hk": "乍得",
+    "zh_tw": "乍得"
+  }
+}

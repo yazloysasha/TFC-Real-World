@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/siberia",
+  "title_lang": {
+    "de_de": "Irkutsk",
+    "en_us": "Irkutsk",
+    "es_es": "Irkutsk",
+    "ja_jp": "イルクーツク",
+    "ko_kr": "이르쿠츠크",
+    "pl_pl": "Irkuck",
+    "pt_br": "Irkutsk",
+    "ru_ru": "Иркутск",
+    "tr_tr": "İrkutsk",
+    "uk_ua": "Іркутськ",
+    "zh_cn": "伊尔库茨克",
+    "zh_hk": "伊爾庫茨克",
+    "zh_tw": "伊爾庫茨克"
+  }
+}

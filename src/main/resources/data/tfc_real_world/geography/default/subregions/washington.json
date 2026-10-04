@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northwestern_usa",
+  "title_lang": {
+    "de_de": "Washington",
+    "en_us": "Washington",
+    "es_es": "Washington",
+    "ja_jp": "ワシントン",
+    "ko_kr": "워싱턴",
+    "pl_pl": "Waszyngton",
+    "pt_br": "Washington",
+    "ru_ru": "Вашингтон",
+    "tr_tr": "Washington",
+    "uk_ua": "Вашингтон",
+    "zh_cn": "华盛顿",
+    "zh_hk": "華盛頓",
+    "zh_tw": "華盛頓"
+  }
+}

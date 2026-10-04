@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/asia_temperate",
+  "title_lang": {
+    "de_de": "Kaukasus",
+    "en_us": "Caucasus",
+    "es_es": "Cáucaso",
+    "ja_jp": "コーカサス",
+    "ko_kr": "코카서스",
+    "pl_pl": "Kaukaz",
+    "pt_br": "Cáucaso",
+    "ru_ru": "Кавказ",
+    "tr_tr": "Kafkasya",
+    "uk_ua": "Кавказ",
+    "zh_cn": "高加索",
+    "zh_hk": "高加索",
+    "zh_tw": "高加索"
+  }
+}

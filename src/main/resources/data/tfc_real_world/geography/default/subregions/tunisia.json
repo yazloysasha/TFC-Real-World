@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northern_africa",
+  "title_lang": {
+    "de_de": "Tunesien",
+    "en_us": "Tunisia",
+    "es_es": "Túnez",
+    "ja_jp": "チュニジア",
+    "ko_kr": "튀니지",
+    "pl_pl": "Tunezja",
+    "pt_br": "Tunísia",
+    "ru_ru": "Тунис",
+    "tr_tr": "Tunus",
+    "uk_ua": "Туніс",
+    "zh_cn": "突尼斯",
+    "zh_hk": "突尼斯",
+    "zh_tw": "突尼斯"
+  }
+}

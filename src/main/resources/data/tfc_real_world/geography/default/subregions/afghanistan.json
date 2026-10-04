@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/western_asia",
+  "title_lang": {
+    "de_de": "Afghanistan",
+    "en_us": "Afghanistan",
+    "es_es": "Afganistán",
+    "ja_jp": "アフガニスタン",
+    "ko_kr": "아프가니스탄",
+    "pl_pl": "Afganistan",
+    "pt_br": "Afeganistão",
+    "ru_ru": "Афганистан",
+    "tr_tr": "Afganistan",
+    "uk_ua": "Афганістан",
+    "zh_cn": "阿富汗",
+    "zh_hk": "阿富汗",
+    "zh_tw": "阿富汗"
+  }
+}

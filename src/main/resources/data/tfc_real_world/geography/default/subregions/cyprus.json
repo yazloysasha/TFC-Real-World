@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/western_asia",
+  "title_lang": {
+    "de_de": "Zypern",
+    "en_us": "Cyprus",
+    "es_es": "Chipre",
+    "ja_jp": "キプロス",
+    "ko_kr": "키프로스",
+    "pl_pl": "Cypr",
+    "pt_br": "Chipre",
+    "ru_ru": "Кипр",
+    "tr_tr": "Kıbrıs",
+    "uk_ua": "Кіпр",
+    "zh_cn": "塞浦路斯",
+    "zh_hk": "塞浦路斯",
+    "zh_tw": "塞浦路斯"
+  }
+}

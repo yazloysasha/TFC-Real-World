@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/russian_far_east",
+  "title_lang": {
+    "de_de": "Kamtschatka",
+    "en_us": "Kamchatka",
+    "es_es": "Kamchatka",
+    "ja_jp": "カムチャツカ",
+    "ko_kr": "캄차카",
+    "pl_pl": "Kamczatka",
+    "pt_br": "Kamtchatka",
+    "ru_ru": "Камчатка",
+    "tr_tr": "Kamçatka",
+    "uk_ua": "Камчатка",
+    "zh_cn": "堪察加",
+    "zh_hk": "堪察加",
+    "zh_tw": "堪察加"
+  }
+}

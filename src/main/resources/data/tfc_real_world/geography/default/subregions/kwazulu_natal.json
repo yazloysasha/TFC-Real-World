@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southern_africa",
+  "title_lang": {
+    "de_de": "KwaZulu-Natal",
+    "en_us": "KwaZulu-Natal",
+    "es_es": "KwaZulu-Natal",
+    "ja_jp": "クワズール・ナタール",
+    "ko_kr": "콰줄루나탈",
+    "pl_pl": "KwaZulu-Natal",
+    "pt_br": "KwaZulu-Natal",
+    "ru_ru": "Квазулу-Натал",
+    "tr_tr": "KwaZulu-Natal",
+    "uk_ua": "Квазулу-Наталь",
+    "zh_cn": "夸祖鲁-纳塔尔",
+    "zh_hk": "誇祖魯-納塔爾",
+    "zh_tw": "誇祖魯-納塔爾"
+  }
+}

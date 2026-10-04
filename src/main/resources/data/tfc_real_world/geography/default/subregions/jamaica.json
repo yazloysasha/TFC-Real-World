@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/caribbean",
+  "title_lang": {
+    "de_de": "Jamaika",
+    "en_us": "Jamaica",
+    "es_es": "Jamaica",
+    "ja_jp": "ジャマイカ",
+    "ko_kr": "자메이카",
+    "pl_pl": "Jamajka",
+    "pt_br": "Jamaica",
+    "ru_ru": "Ямайка",
+    "tr_tr": "Jamaika",
+    "uk_ua": "Ямайка",
+    "zh_cn": "牙买加",
+    "zh_hk": "牙買加",
+    "zh_tw": "牙買加"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/malesia",
+  "title_lang": {
+    "de_de": "Sumatra",
+    "en_us": "Sumatra",
+    "es_es": "Sumatra",
+    "ja_jp": "スマトラ",
+    "ko_kr": "수마트라",
+    "pl_pl": "Sumatra",
+    "pt_br": "Sumatra",
+    "ru_ru": "Суматра",
+    "tr_tr": "Sumatra",
+    "uk_ua": "Суматра",
+    "zh_cn": "苏门答腊",
+    "zh_hk": "蘇門答臘",
+    "zh_tw": "蘇門答臘"
+  }
+}

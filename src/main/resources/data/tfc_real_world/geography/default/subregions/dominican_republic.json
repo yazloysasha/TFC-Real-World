@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/caribbean",
+  "title_lang": {
+    "de_de": "Dominikanische Republik",
+    "en_us": "Dominican Republic",
+    "es_es": "República Dominicana",
+    "ja_jp": "ドミニカ共和国",
+    "ko_kr": "도미니카 공화국",
+    "pl_pl": "Dominikana",
+    "pt_br": "República Dominicana",
+    "ru_ru": "Доминиканская Республика",
+    "tr_tr": "Dominik Cumhuriyeti",
+    "uk_ua": "Домініканська Республіка",
+    "zh_cn": "多米尼加共和国",
+    "zh_hk": "多米尼加共和國",
+    "zh_tw": "多米尼加共和國"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/west_central_tropical_africa",
+  "title_lang": {
+    "de_de": "Inseln im Golf von Guinea",
+    "en_us": "Gulf of Guinea Islands",
+    "es_es": "Islas del golfo de Guinea",
+    "ja_jp": "ギニア湾諸島",
+    "ko_kr": "기니만 제도",
+    "pl_pl": "Wyspy Zatoki Gwinejskiej",
+    "pt_br": "Ilhas do golfo da Guiné",
+    "ru_ru": "Острова Гвинейского залива",
+    "tr_tr": "Gine Körfezi Adaları",
+    "uk_ua": "Острови Гвінейської затоки",
+    "zh_cn": "几内亚湾群岛",
+    "zh_hk": "幾內亞灣群島",
+    "zh_tw": "幾內亞灣群島"
+  }
+}

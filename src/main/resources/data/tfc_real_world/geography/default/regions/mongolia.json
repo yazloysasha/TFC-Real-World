@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/asia_temperate",
+  "title_lang": {
+    "de_de": "Mongolei",
+    "en_us": "Mongolia",
+    "es_es": "Mongolia",
+    "ja_jp": "モンゴル",
+    "ko_kr": "몽골",
+    "pl_pl": "Mongolia",
+    "pt_br": "Mongólia",
+    "ru_ru": "Монголия",
+    "tr_tr": "Moğolistan",
+    "uk_ua": "Монголія",
+    "zh_cn": "蒙古",
+    "zh_hk": "蒙古",
+    "zh_tw": "蒙古"
+  }
+}

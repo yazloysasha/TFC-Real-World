@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northwestern_pacific",
+  "title_lang": {
+    "de_de": "Marianen",
+    "en_us": "Marianas",
+    "es_es": "Islas Marianas",
+    "ja_jp": "マリアナ諸島",
+    "ko_kr": "마리아나 제도",
+    "pl_pl": "Mariany",
+    "pt_br": "Ilhas Marianas",
+    "ru_ru": "Марианские острова",
+    "tr_tr": "Mariana Adaları",
+    "uk_ua": "Маріанські острови",
+    "zh_cn": "马里亚纳群岛",
+    "zh_hk": "馬里亞納群島",
+    "zh_tw": "馬里亞納群島"
+  }
+}

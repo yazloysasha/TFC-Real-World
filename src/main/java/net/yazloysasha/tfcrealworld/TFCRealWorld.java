@@ -2,6 +2,7 @@ package net.yazloysasha.tfcrealworld;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
@@ -13,16 +14,17 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.yazloysasha.tfcrealworld.attachment.VisitedWaypoints;
 import net.yazloysasha.tfcrealworld.config.ConfigManager;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.item.ModItems;
 import net.yazloysasha.tfcrealworld.network.PacketHandler;
+import net.yazloysasha.tfcrealworld.network.VisitedWaypointsSyncPacket;
 import net.yazloysasha.tfcrealworld.trigger.ModTriggers;
+import net.yazloysasha.tfcrealworld.util.geography.GeographyManager;
+import net.yazloysasha.tfcrealworld.util.geography.WaypointVisitTracker;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
-import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.KoppenParameterCache;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.SmoothedKoppenParameterMaps;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.TfeKoppenParameterCache;
-import net.yazloysasha.tfcrealworld.world.noise.koppen.TfeSmoothedKoppenParameterMaps;
+import net.yazloysasha.tfcrealworld.world.FreshwaterFishSpawnGuard;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
@@ -35,23 +37,28 @@ public final class TFCRealWorld {
   public static final String MOD_NAME = "TFC: Real World";
   public static final Logger LOGGER = LogUtils.getLogger();
 
+  public static ResourceLocation id(String path) {
+    return new ResourceLocation(MOD_ID, path);
+  }
+
   public TFCRealWorld() {
     ProfileManager.initialize();
+    GeographyManager.initialize();
 
     IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-    ModLoadingContext.get()
-      .registerConfig(
-        ModConfig.Type.COMMON,
-        TFCRealWorldConfig.SPEC,
-        MOD_ID + "/common.toml"
-      );
+    ModLoadingContext.get().registerConfig(
+      ModConfig.Type.COMMON,
+      TFCRealWorldConfig.SPEC,
+      MOD_ID + "/common.toml"
+    );
 
     modEventBus.addListener(this::onModConfigLoading);
 
     MinecraftForge.EVENT_BUS.register(ConfigManager.class);
 
     ModTriggers.init();
+    ModItems.ITEMS.register(modEventBus);
 
     MinecraftForge.EVENT_BUS.addListener(this::onPlayerTick);
 
@@ -66,6 +73,10 @@ public final class TFCRealWorld {
     MinecraftForge.EVENT_BUS.addListener(this::onClientLoggingOut);
 
     MinecraftForge.EVENT_BUS.addListener(this::onLevelUnload);
+
+    MinecraftForge.EVENT_BUS.addListener(
+      FreshwaterFishSpawnGuard::onPositionCheck
+    );
   }
 
   private void onModConfigLoading(ModConfigEvent.Loading event) {
@@ -82,6 +93,7 @@ public final class TFCRealWorld {
       if (serverPlayer.tickCount % 20 == 0) {
         ModTriggers.FIXED_HIGH_GLOBE_TROTTER_LOCATION.trigger(serverPlayer);
         ModTriggers.FIXED_LOW_GLOBE_TROTTER_LOCATION.trigger(serverPlayer);
+        WaypointVisitTracker.tickPlayer(serverPlayer);
       }
     }
   }
@@ -89,6 +101,12 @@ public final class TFCRealWorld {
   private void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
     if (event.getEntity() instanceof ServerPlayer serverPlayer) {
       ConfigManager.sendConfigToClient(serverPlayer);
+      PacketHandler.sendToPlayer(
+        serverPlayer,
+        new VisitedWaypointsSyncPacket(
+          VisitedWaypoints.of(serverPlayer).asMap()
+        )
+      );
     }
   }
 
@@ -135,11 +153,6 @@ public final class TFCRealWorld {
   private void clearCaches() {
     GlobalOceanDistanceCache.clear();
     GlobalWestCoastDistanceCache.clear();
-    HotspotsNoiseRegistry.clearBiomeLayout();
-    KoppenParameterCache.clear();
-    SmoothedKoppenParameterMaps.clear();
-    TfeKoppenParameterCache.clear();
-    TfeSmoothedKoppenParameterMaps.clear();
     BasePNGNoise.clearImageCache();
   }
 }

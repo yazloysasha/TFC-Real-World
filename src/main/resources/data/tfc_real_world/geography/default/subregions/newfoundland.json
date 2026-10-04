@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/eastern_canada",
+  "title_lang": {
+    "de_de": "Neufundland",
+    "en_us": "Newfoundland",
+    "es_es": "Terranova",
+    "ja_jp": "ニューファンドランド",
+    "ko_kr": "뉴펀들랜드",
+    "pl_pl": "Nowa Fundlandia",
+    "pt_br": "Terra Nova",
+    "ru_ru": "Ньюфаундленд",
+    "tr_tr": "Newfoundland",
+    "uk_ua": "Ньюфаундленд",
+    "zh_cn": "纽芬兰",
+    "zh_hk": "紐芬蘭",
+    "zh_tw": "紐芬蘭"
+  }
+}

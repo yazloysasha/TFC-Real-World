@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/south_central_pacific",
+  "title_lang": {
+    "de_de": "Tubuai-Inseln",
+    "en_us": "Tubuai Islands",
+    "es_es": "Islas Tubuai",
+    "ja_jp": "トゥブアイ諸島",
+    "ko_kr": "투부아이 제도",
+    "pl_pl": "Wyspy Tubuai",
+    "pt_br": "Ilhas Tubuai",
+    "ru_ru": "Острова Тубуаи",
+    "tr_tr": "Tubuai Adaları",
+    "uk_ua": "Острови Тубуаї",
+    "zh_cn": "图布艾群岛",
+    "zh_hk": "圖布艾群島",
+    "zh_tw": "圖布艾群島"
+  }
+}

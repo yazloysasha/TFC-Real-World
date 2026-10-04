@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/europe",
+  "title_lang": {
+    "de_de": "Osteuropa",
+    "en_us": "Eastern Europe",
+    "es_es": "Europa Oriental",
+    "ja_jp": "東ヨーロッパ",
+    "ko_kr": "동유럽",
+    "pl_pl": "Europa Wschodnia",
+    "pt_br": "Europa Oriental",
+    "ru_ru": "Восточная Европа",
+    "tr_tr": "Doğu Avrupa",
+    "uk_ua": "Східна Європа",
+    "zh_cn": "东欧",
+    "zh_hk": "東歐",
+    "zh_tw": "東歐"
+  }
+}

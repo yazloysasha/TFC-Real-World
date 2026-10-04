@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/indo_china",
+  "title_lang": {
+    "de_de": "Andamanen",
+    "en_us": "Andaman Islands",
+    "es_es": "Islas Andamán",
+    "ja_jp": "アンダマン諸島",
+    "ko_kr": "안다만 제도",
+    "pl_pl": "Andamany",
+    "pt_br": "Ilhas Andamão",
+    "ru_ru": "Андаманские острова",
+    "tr_tr": "Andaman Adaları",
+    "uk_ua": "Андаманські острови",
+    "zh_cn": "安达曼群岛",
+    "zh_hk": "安達曼群島",
+    "zh_tw": "安達曼群島"
+  }
+}

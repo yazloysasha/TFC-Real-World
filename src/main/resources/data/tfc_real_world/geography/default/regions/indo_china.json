@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/asia_tropical",
+  "title_lang": {
+    "de_de": "Indochina",
+    "en_us": "Indo-China",
+    "es_es": "Indochina",
+    "ja_jp": "インドシナ",
+    "ko_kr": "인도차이나",
+    "pl_pl": "Indochiny",
+    "pt_br": "Indochina",
+    "ru_ru": "Индокитай",
+    "tr_tr": "Hindiçin",
+    "uk_ua": "Індокитай",
+    "zh_cn": "印度支那",
+    "zh_hk": "印度支那",
+    "zh_tw": "印度支那"
+  }
+}

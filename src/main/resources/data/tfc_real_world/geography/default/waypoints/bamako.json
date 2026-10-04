@@ -1,0 +1,51 @@
+{
+  "parent": "default:subregion/mali",
+  "title_lang": {
+    "de_de": "Bamako",
+    "en_us": "Bamako",
+    "es_es": "Bamako",
+    "ja_jp": "バマコ",
+    "ko_kr": "바마코",
+    "pl_pl": "Bamako",
+    "pt_br": "Bamaco",
+    "ru_ru": "Бамако",
+    "tr_tr": "Bamako",
+    "uk_ua": "Бамако",
+    "zh_cn": "巴马科",
+    "zh_hk": "巴馬科",
+    "zh_tw": "巴馬科"
+  },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt der Republik Mali",
+    "en_us": "Capital of the Republic of Mali",
+    "es_es": "Capital de la República de Malí",
+    "ja_jp": "マリ共和国の首都",
+    "ko_kr": "말리 공화국의 수도",
+    "pl_pl": "Stolica Republiki Mali",
+    "pt_br": "Capital da República do Mali",
+    "ru_ru": "Столица Республики Мали",
+    "tr_tr": "Mali Cumhuriyeti'nin başkenti",
+    "uk_ua": "Столиця Республіки Малі",
+    "zh_cn": "马里共和国的首都",
+    "zh_hk": "馬裏共和國的首都",
+    "zh_tw": "馬裏共和國的首都"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt der Republik Mali",
+    "en_us": "Visit the capital of the Republic of Mali",
+    "es_es": "Visita la capital de la República de Malí",
+    "ja_jp": "マリ共和国の首都を訪れよう",
+    "ko_kr": "말리 공화국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Republiki Mali",
+    "pt_br": "Visite a capital da República do Mali",
+    "ru_ru": "Посетите столицу Республики Мали",
+    "tr_tr": "Mali Cumhuriyeti'nin başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Республіки Малі",
+    "zh_cn": "访问马里共和国的首都",
+    "zh_hk": "遊覽馬裏共和國的首都",
+    "zh_tw": "造訪馬裏共和國的首都"
+  },
+  "longitude": -7.97522,
+  "latitude": 12.60915,
+  "capital": 1
+}

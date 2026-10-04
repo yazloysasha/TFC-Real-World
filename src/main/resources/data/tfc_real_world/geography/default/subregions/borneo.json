@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/malesia",
+  "title_lang": {
+    "de_de": "Borneo",
+    "en_us": "Borneo",
+    "es_es": "Borneo",
+    "ja_jp": "ボルネオ",
+    "ko_kr": "보르네오",
+    "pl_pl": "Borneo",
+    "pt_br": "Bornéu",
+    "ru_ru": "Борнео",
+    "tr_tr": "Borneo",
+    "uk_ua": "Борнео",
+    "zh_cn": "婆罗洲",
+    "zh_hk": "婆羅洲",
+    "zh_tw": "婆羅洲"
+  }
+}

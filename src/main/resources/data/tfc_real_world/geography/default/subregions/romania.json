@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southeastern_europe",
+  "title_lang": {
+    "de_de": "Rumänien",
+    "en_us": "Romania",
+    "es_es": "Rumania",
+    "ja_jp": "ルーマニア",
+    "ko_kr": "루마니아",
+    "pl_pl": "Rumunia",
+    "pt_br": "Romênia",
+    "ru_ru": "Румыния",
+    "tr_tr": "Romanya",
+    "uk_ua": "Румунія",
+    "zh_cn": "罗马尼亚",
+    "zh_hk": "羅馬尼亞",
+    "zh_tw": "羅馬尼亞"
+  }
+}

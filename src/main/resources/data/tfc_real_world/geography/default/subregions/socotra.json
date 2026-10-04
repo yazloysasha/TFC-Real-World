@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northeast_tropical_africa",
+  "title_lang": {
+    "de_de": "Sokotra",
+    "en_us": "Socotra",
+    "es_es": "Socotra",
+    "ja_jp": "ソコトラ",
+    "ko_kr": "소코트라",
+    "pl_pl": "Sokotra",
+    "pt_br": "Socotra",
+    "ru_ru": "Сокотра",
+    "tr_tr": "Sokotra",
+    "uk_ua": "Сокотра",
+    "zh_cn": "索科特拉",
+    "zh_hk": "索科特拉",
+    "zh_tw": "索科特拉"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/siberia",
+  "title_lang": {
+    "de_de": "Tuwa",
+    "en_us": "Tuva",
+    "es_es": "Tuvá",
+    "ja_jp": "トゥヴァ",
+    "ko_kr": "투바",
+    "pl_pl": "Tuwa",
+    "pt_br": "Tuva",
+    "ru_ru": "Тыва",
+    "tr_tr": "Tuva",
+    "uk_ua": "Тива",
+    "zh_cn": "图瓦",
+    "zh_hk": "圖瓦",
+    "zh_tw": "圖瓦"
+  }
+}

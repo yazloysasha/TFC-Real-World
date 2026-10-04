@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/north_central_usa",
+  "title_lang": {
+    "de_de": "Kansas",
+    "en_us": "Kansas",
+    "es_es": "Kansas",
+    "ja_jp": "カンザス",
+    "ko_kr": "캔자스",
+    "pl_pl": "Kansas",
+    "pt_br": "Kansas",
+    "ru_ru": "Канзас",
+    "tr_tr": "Kansas",
+    "uk_ua": "Канзас",
+    "zh_cn": "堪萨斯",
+    "zh_hk": "堪薩斯",
+    "zh_tw": "堪薩斯"
+  }
+}

@@ -1,43 +1,56 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
-import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
+import it.unimi.dsi.fastutil.ints.IntSets;
 import net.dries007.tfc.world.region.AddMountains;
 import net.dries007.tfc.world.region.Region;
+import net.dries007.tfc.world.region.RegionGenerator;
 import net.minecraft.util.RandomSource;
-import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
- * Same rule as 1.21.1 {@code AddMountainsAndBarrierIslandsMixin}: when altitude
- * comes from the map, skip procedural contour ranges and let
- * {@code AnnotateBiomeAltitudeMixin} mark mountain cores. TFC 3 has no
- * {@code placeBarrier}/{@code placeVolcanicArc}; those stay with TFG/TFC if
- * they appear later.
+ * With {@code tectonics.png}, mountain ranges and volcanic arcs are real
+ * data, so the random ranges and shelf arcs are suppressed. Barrier islands
+ * stay procedural. TerraFirmaEarth rewrites the task around methods of its
+ * own, which are named here beside TFC 3's.
  */
-@Mixin(value = AddMountains.class, remap = false)
+@Mixin(value = AddMountains.class, remap = false, priority = 1500)
 public class AddMountainsMixin {
 
-  @Redirect(
-    method = "apply",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/dries007/tfc/world/region/AddMountains;placeRange(Lnet/dries007/tfc/world/region/Region;Lnet/minecraft/util/RandomSource;I)Lit/unimi/dsi/fastutil/ints/IntSet;"
-    )
+  /** Whether the region being worked on takes its ranges from the map. */
+  @Unique
+  private static final ThreadLocal<Boolean> FROM_MAP = ThreadLocal.withInitial(
+    () -> false
+  );
+
+  @Inject(method = "apply", at = @At("HEAD"))
+  private void tfcrealworld$findTectonics(
+    RegionGenerator.Context context,
+    CallbackInfo ci
+  ) {
+    FROM_MAP.set(TectonicsRegistry.isActive(context.generator()));
+  }
+
+  @Inject(
+    method = { "placeRange", "tfe$placeRange", "tfe$placeVolcanicArc" },
+    at = @At("HEAD"),
+    cancellable = true,
+    require = 1
   )
-  private IntSet tfcrealworld$skipProceduralMountainRangesWhenUsingAltitudeMap(
-    AddMountains instance,
+  private void tfcrealworld$skipRandomRangesAndArcs(
     Region region,
     RandomSource random,
-    int originIndex
+    int originIndex,
+    CallbackInfoReturnable<IntSet> cir
   ) {
-    if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
-      return new IntOpenHashSet();
+    if (FROM_MAP.get()) {
+      cir.setReturnValue(IntSets.EMPTY_SET);
     }
-    return (
-      (AddMountainsAccessor) (Object) instance
-    ).tfcrealworld$invokePlaceRange(region, random, originIndex);
   }
 }

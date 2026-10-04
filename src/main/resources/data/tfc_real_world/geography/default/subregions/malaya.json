@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/malesia",
+  "title_lang": {
+    "de_de": "Malaya",
+    "en_us": "Malaya",
+    "es_es": "Malaya",
+    "ja_jp": "マラヤ",
+    "ko_kr": "말라야",
+    "pl_pl": "Malaje",
+    "pt_br": "Malaia",
+    "ru_ru": "Малайя",
+    "tr_tr": "Malaya",
+    "uk_ua": "Малайя",
+    "zh_cn": "马来亚",
+    "zh_hk": "馬來亞",
+    "zh_tw": "馬來亞"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/subantarctic_islands",
+  "title_lang": {
+    "de_de": "Bouvetinsel",
+    "en_us": "Bouvet Island",
+    "es_es": "Isla Bouvet",
+    "ja_jp": "ブーベ島",
+    "ko_kr": "부베섬",
+    "pl_pl": "Wyspa Bouveta",
+    "pt_br": "Ilha Bouvet",
+    "ru_ru": "Остров Буве",
+    "tr_tr": "Bouvet Adası",
+    "uk_ua": "Острів Буве",
+    "zh_cn": "布韦岛",
+    "zh_hk": "布韋島",
+    "zh_tw": "布韋島"
+  }
+}

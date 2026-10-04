@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/eastern_canada",
+  "title_lang": {
+    "de_de": "New Brunswick",
+    "en_us": "New Brunswick",
+    "es_es": "Nuevo Brunswick",
+    "ja_jp": "ニューブランズウィック",
+    "ko_kr": "뉴브런즈윅",
+    "pl_pl": "Nowy Brunszwik",
+    "pt_br": "Novo Brunswick",
+    "ru_ru": "Нью-Брансуик",
+    "tr_tr": "New Brunswick",
+    "uk_ua": "Нью-Брансвік",
+    "zh_cn": "新不伦瑞克",
+    "zh_hk": "新不倫瑞克",
+    "zh_tw": "新不倫瑞克"
+  }
+}

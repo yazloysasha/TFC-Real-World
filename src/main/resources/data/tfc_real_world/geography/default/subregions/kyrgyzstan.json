@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/middle_asia",
+  "title_lang": {
+    "de_de": "Kirgisistan",
+    "en_us": "Kyrgyzstan",
+    "es_es": "Kirguistán",
+    "ja_jp": "キルギス",
+    "ko_kr": "키르기스스탄",
+    "pl_pl": "Kirgistan",
+    "pt_br": "Quirguistão",
+    "ru_ru": "Киргизия",
+    "tr_tr": "Kırgızistan",
+    "uk_ua": "Киргизстан",
+    "zh_cn": "吉尔吉斯斯坦",
+    "zh_hk": "吉爾吉斯斯坦",
+    "zh_tw": "吉爾吉斯斯坦"
+  }
+}

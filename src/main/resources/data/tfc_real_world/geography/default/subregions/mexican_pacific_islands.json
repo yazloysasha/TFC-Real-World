@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/mexico",
+  "title_lang": {
+    "de_de": "Mexikanische Pazifikinseln",
+    "en_us": "Mexican Pacific Islands",
+    "es_es": "Islas del Pacífico mexicano",
+    "ja_jp": "メキシコ太平洋諸島",
+    "ko_kr": "멕시코 태평양 제도",
+    "pl_pl": "Meksykańskie wyspy Pacyfiku",
+    "pt_br": "Ilhas do Pacífico mexicano",
+    "ru_ru": "Мексиканские тихоокеанские острова",
+    "tr_tr": "Meksika Pasifik Adaları",
+    "uk_ua": "Мексиканські тихоокеанські острови",
+    "zh_cn": "墨西哥太平洋岛屿",
+    "zh_hk": "墨西哥太平洋島嶼",
+    "zh_tw": "墨西哥太平洋島嶼"
+  }
+}

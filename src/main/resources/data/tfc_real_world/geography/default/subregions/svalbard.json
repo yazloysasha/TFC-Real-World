@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northern_europe",
+  "title_lang": {
+    "de_de": "Spitzbergen",
+    "en_us": "Svalbard",
+    "es_es": "Svalbard",
+    "ja_jp": "スヴァールバル",
+    "ko_kr": "스발바르",
+    "pl_pl": "Svalbard",
+    "pt_br": "Svalbard",
+    "ru_ru": "Шпицберген",
+    "tr_tr": "Svalbard",
+    "uk_ua": "Шпіцберген",
+    "zh_cn": "斯瓦尔巴",
+    "zh_hk": "斯瓦爾巴",
+    "zh_tw": "斯瓦爾巴"
+  }
+}

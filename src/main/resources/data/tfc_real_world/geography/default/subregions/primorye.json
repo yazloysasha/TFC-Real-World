@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/russian_far_east",
+  "title_lang": {
+    "de_de": "Primorje",
+    "en_us": "Primorye",
+    "es_es": "Primorie",
+    "ja_jp": "沿海地方",
+    "ko_kr": "연해주",
+    "pl_pl": "Nadmorskie",
+    "pt_br": "Primorie",
+    "ru_ru": "Приморье",
+    "tr_tr": "Primorye",
+    "uk_ua": "Примор'я",
+    "zh_cn": "滨海边疆区",
+    "zh_hk": "濱海邊疆區",
+    "zh_tw": "濱海邊疆區"
+  }
+}

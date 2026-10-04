@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northeastern_usa",
+  "title_lang": {
+    "de_de": "Massachusetts",
+    "en_us": "Massachusetts",
+    "es_es": "Massachusetts",
+    "ja_jp": "マサチューセッツ",
+    "ko_kr": "매사추세츠",
+    "pl_pl": "Massachusetts",
+    "pt_br": "Massachusetts",
+    "ru_ru": "Массачусетс",
+    "tr_tr": "Massachusetts",
+    "uk_ua": "Массачусетс",
+    "zh_cn": "马萨诸塞",
+    "zh_hk": "馬薩諸塞",
+    "zh_tw": "馬薩諸塞"
+  }
+}

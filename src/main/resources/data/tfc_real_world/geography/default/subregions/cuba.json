@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/caribbean",
+  "title_lang": {
+    "de_de": "Kuba",
+    "en_us": "Cuba",
+    "es_es": "Cuba",
+    "ja_jp": "キューバ",
+    "ko_kr": "쿠바",
+    "pl_pl": "Kuba",
+    "pt_br": "Cuba",
+    "ru_ru": "Куба",
+    "tr_tr": "Küba",
+    "uk_ua": "Куба",
+    "zh_cn": "古巴",
+    "zh_hk": "古巴",
+    "zh_tw": "古巴"
+  }
+}

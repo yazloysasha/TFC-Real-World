@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/western_south_america",
+  "title_lang": {
+    "de_de": "Ecuador",
+    "en_us": "Ecuador",
+    "es_es": "Ecuador",
+    "ja_jp": "エクアドル",
+    "ko_kr": "에콰도르",
+    "pl_pl": "Ekwador",
+    "pt_br": "Equador",
+    "ru_ru": "Эквадор",
+    "tr_tr": "Ekvador",
+    "uk_ua": "Еквадор",
+    "zh_cn": "厄瓜多尔",
+    "zh_hk": "厄瓜多爾",
+    "zh_tw": "厄瓜多爾"
+  }
+}

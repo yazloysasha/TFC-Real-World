@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/western_south_america",
+  "title_lang": {
+    "de_de": "Bolivien",
+    "en_us": "Bolivia",
+    "es_es": "Bolivia",
+    "ja_jp": "ボリビア",
+    "ko_kr": "볼리비아",
+    "pl_pl": "Boliwia",
+    "pt_br": "Bolívia",
+    "ru_ru": "Боливия",
+    "tr_tr": "Bolivya",
+    "uk_ua": "Болівія",
+    "zh_cn": "玻利维亚",
+    "zh_hk": "玻利維亞",
+    "zh_tw": "玻利維亞"
+  }
+}

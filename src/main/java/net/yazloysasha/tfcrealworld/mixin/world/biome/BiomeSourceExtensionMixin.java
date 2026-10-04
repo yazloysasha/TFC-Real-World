@@ -34,11 +34,9 @@ public interface BiomeSourceExtensionMixin {
         for (int dz = -radius; dz <= radius; dz += step) {
           final int quartX = centerX + dz;
           final int quartZ = centerZ + dx;
-          final BiomeExtension biome =
-            ((BiomeSourceExtension) this).getBiomeExtensionNoRiver(
-                quartX,
-                quartZ
-              );
+          final BiomeExtension biome = (
+            (BiomeSourceExtension) this
+          ).getBiomeExtensionNoRiver(quartX, quartZ);
           if (biome.isSpawnable()) {
             if (found == null || random.nextInt(count + 1) == 0) {
               found = new BlockPos(

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/western_canada",
+  "title_lang": {
+    "de_de": "Saskatchewan",
+    "en_us": "Saskatchewan",
+    "es_es": "Saskatchewan",
+    "ja_jp": "サスカチュワン",
+    "ko_kr": "서스캐처원",
+    "pl_pl": "Saskatchewan",
+    "pt_br": "Saskatchewan",
+    "ru_ru": "Саскачеван",
+    "tr_tr": "Saskatchewan",
+    "uk_ua": "Саскачеван",
+    "zh_cn": "萨斯喀彻温",
+    "zh_hk": "薩斯喀徹温",
+    "zh_tw": "薩斯喀徹溫"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southwestern_pacific",
+  "title_lang": {
+    "de_de": "Gilbertinseln",
+    "en_us": "Gilbert Islands",
+    "es_es": "Islas Gilbert",
+    "ja_jp": "ギルバート諸島",
+    "ko_kr": "길버트 제도",
+    "pl_pl": "Wyspy Gilberta",
+    "pt_br": "Ilhas Gilbert",
+    "ru_ru": "Острова Гилберта",
+    "tr_tr": "Gilbert Adaları",
+    "uk_ua": "Острови Гілберта",
+    "zh_cn": "吉尔伯特群岛",
+    "zh_hk": "吉爾伯特群島",
+    "zh_tw": "吉爾伯特群島"
+  }
+}

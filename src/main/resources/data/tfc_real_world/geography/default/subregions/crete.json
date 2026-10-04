@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southeastern_europe",
+  "title_lang": {
+    "de_de": "Kreta",
+    "en_us": "Crete",
+    "es_es": "Creta",
+    "ja_jp": "クレタ島",
+    "ko_kr": "크레타",
+    "pl_pl": "Kreta",
+    "pt_br": "Creta",
+    "ru_ru": "Крит",
+    "tr_tr": "Girit",
+    "uk_ua": "Крит",
+    "zh_cn": "克里特",
+    "zh_hk": "克里特",
+    "zh_tw": "克里特"
+  }
+}

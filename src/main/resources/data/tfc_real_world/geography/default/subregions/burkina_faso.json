@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/west_tropical_africa",
+  "title_lang": {
+    "de_de": "Burkina Faso",
+    "en_us": "Burkina Faso",
+    "es_es": "Burkina Faso",
+    "ja_jp": "ブルキナファソ",
+    "ko_kr": "부르키나파소",
+    "pl_pl": "Burkina Faso",
+    "pt_br": "Burquina Faso",
+    "ru_ru": "Буркина-Фасо",
+    "tr_tr": "Burkina Faso",
+    "uk_ua": "Буркіна-Фасо",
+    "zh_cn": "布基纳法索",
+    "zh_hk": "布基納法索",
+    "zh_tw": "布基納法索"
+  }
+}

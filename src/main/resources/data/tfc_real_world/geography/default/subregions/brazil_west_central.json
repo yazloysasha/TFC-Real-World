@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/brazil",
+  "title_lang": {
+    "de_de": "Westzentralbrasilien",
+    "en_us": "Brazil West-Central",
+    "es_es": "Brasil Centro-Oeste",
+    "ja_jp": "ブラジル中西部",
+    "ko_kr": "브라질 중서부",
+    "pl_pl": "Brazylia Środkowo-Zachodnia",
+    "pt_br": "Centro-Oeste do Brasil",
+    "ru_ru": "Центрально-Западная Бразилия",
+    "tr_tr": "Orta-Batı Brezilya",
+    "uk_ua": "Центрально-західна Бразилія",
+    "zh_cn": "巴西中西部",
+    "zh_hk": "巴西中西部",
+    "zh_tw": "巴西中西部"
+  }
+}

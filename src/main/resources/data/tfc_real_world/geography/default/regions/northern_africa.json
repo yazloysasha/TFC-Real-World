@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/africa",
+  "title_lang": {
+    "de_de": "Nordafrika",
+    "en_us": "Northern Africa",
+    "es_es": "África del Norte",
+    "ja_jp": "北アフリカ",
+    "ko_kr": "북아프리카",
+    "pl_pl": "Afryka Północna",
+    "pt_br": "África do Norte",
+    "ru_ru": "Северная Африка",
+    "tr_tr": "Kuzey Afrika",
+    "uk_ua": "Північна Африка",
+    "zh_cn": "北非",
+    "zh_hk": "北非",
+    "zh_tw": "北非"
+  }
+}

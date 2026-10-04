@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/central_america",
+  "title_lang": {
+    "de_de": "Costa Rica",
+    "en_us": "Costa Rica",
+    "es_es": "Costa Rica",
+    "ja_jp": "コスタリカ",
+    "ko_kr": "코스타리카",
+    "pl_pl": "Kostaryka",
+    "pt_br": "Costa Rica",
+    "ru_ru": "Коста-Рика",
+    "tr_tr": "Kosta Rika",
+    "uk_ua": "Коста-Рика",
+    "zh_cn": "哥斯达黎加",
+    "zh_hk": "哥斯達黎加",
+    "zh_tw": "哥斯達黎加"
+  }
+}

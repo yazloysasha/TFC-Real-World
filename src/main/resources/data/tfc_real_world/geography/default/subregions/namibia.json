@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southern_africa",
+  "title_lang": {
+    "de_de": "Namibia",
+    "en_us": "Namibia",
+    "es_es": "Namibia",
+    "ja_jp": "ナミビア",
+    "ko_kr": "나미비아",
+    "pl_pl": "Namibia",
+    "pt_br": "Namíbia",
+    "ru_ru": "Намибия",
+    "tr_tr": "Namibya",
+    "uk_ua": "Намібія",
+    "zh_cn": "纳米比亚",
+    "zh_hk": "納米比亞",
+    "zh_tw": "納米比亞"
+  }
+}

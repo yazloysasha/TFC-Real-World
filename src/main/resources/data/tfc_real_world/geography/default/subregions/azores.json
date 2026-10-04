@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/macaronesia",
+  "title_lang": {
+    "de_de": "Azoren",
+    "en_us": "Azores",
+    "es_es": "Azores",
+    "ja_jp": "アゾレス諸島",
+    "ko_kr": "아조레스 제도",
+    "pl_pl": "Azory",
+    "pt_br": "Açores",
+    "ru_ru": "Азорские острова",
+    "tr_tr": "Azorlar",
+    "uk_ua": "Азорські острови",
+    "zh_cn": "亚速尔群岛",
+    "zh_hk": "亞速爾群島",
+    "zh_tw": "亞速爾群島"
+  }
+}

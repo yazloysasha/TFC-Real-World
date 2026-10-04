@@ -2,15 +2,32 @@ package net.yazloysasha.tfcrealworld.mixin.world.region;
 
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.AnnotateClimate;
+import net.dries007.tfc.world.region.RegionGenerator;
 import net.dries007.tfc.world.region.Units;
-import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.world.region.MapRegionTasks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = AnnotateClimate.class)
+/**
+ * Climate from the maps as it is. Procedural climate only gets the
+ * temperature band shifted by the configured scale.
+ */
+@Mixin(value = AnnotateClimate.class, remap = false, priority = 1500)
 public class AnnotateClimateMixin {
+
+  @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
+  private void tfcrealworld$climateFromMap(
+    RegionGenerator.Context context,
+    CallbackInfo ci
+  ) {
+    if (MapRegionTasks.climate(context)) {
+      ci.cancel();
+    }
+  }
 
   @Redirect(
     method = "apply",
@@ -18,69 +35,19 @@ public class AnnotateClimateMixin {
       value = "INVOKE",
       target = "Lnet/dries007/tfc/world/noise/Noise2D;noise(DD)D",
       ordinal = 0
-    ),
-    remap = false
+    )
   )
-  private double tfcrealworld$transformZForTemperature(
+  private double tfcrealworld$shiftTemperatureBand(
     Noise2D instance,
     double x,
     double z
   ) {
-    if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
-      return instance.noise(x, z);
-    }
-
-    int temperatureScale = TFCRealWorldConfig.TEMPERATURE_SCALE.get();
+    final int temperatureScale = TFCRealWorldConfig.TEMPERATURE_SCALE.get();
     if (temperatureScale > 0) {
-      double offsetInGrid =
+      final double offsetInGrid =
         (double) (-temperatureScale / 2) / Units.GRID_WIDTH_IN_BLOCK;
       return instance.noise(x, z - offsetInGrid);
     }
-
     return instance.noise(x, z);
-  }
-
-  /**
-   * Disables temperature modification based on bias and ocean proximity when using Köppen map.
-   */
-  @Redirect(
-    method = "apply",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/minecraft/util/Mth;lerp(FFF)F",
-      ordinal = 2
-    )
-  )
-  private float tfcrealworld$preserveTemperatureFromMap(
-    float delta,
-    float start,
-    float end
-  ) {
-    if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
-      return start;
-    }
-    return Mth.lerp(delta, start, end);
-  }
-
-  /**
-   * Disables rainfall modification based on bias and ocean proximity when using rainfall map.
-   */
-  @Redirect(
-    method = "apply",
-    at = @At(
-      value = "INVOKE",
-      target = "Lnet/minecraft/util/Mth;lerp(FFF)F",
-      ordinal = 3
-    )
-  )
-  private float tfcrealworld$preserveRainfallFromMap(
-    float delta,
-    float start,
-    float end
-  ) {
-    if (TFCRealWorldConfig.KOPPEN_FROM_MAP.get()) {
-      return start;
-    }
-    return Mth.lerp(delta, start, end);
   }
 }

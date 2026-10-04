@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/asia_temperate",
+  "title_lang": {
+    "de_de": "Ostasien",
+    "en_us": "Eastern Asia",
+    "es_es": "Asia Oriental",
+    "ja_jp": "東アジア",
+    "ko_kr": "동아시아",
+    "pl_pl": "Azja Wschodnia",
+    "pt_br": "Ásia Oriental",
+    "ru_ru": "Восточная Азия",
+    "tr_tr": "Doğu Asya",
+    "uk_ua": "Східна Азія",
+    "zh_cn": "东亚",
+    "zh_hk": "東亞",
+    "zh_tw": "東亞"
+  }
+}

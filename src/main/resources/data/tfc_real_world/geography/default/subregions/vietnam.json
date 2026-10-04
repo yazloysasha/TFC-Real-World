@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/indo_china",
+  "title_lang": {
+    "de_de": "Vietnam",
+    "en_us": "Vietnam",
+    "es_es": "Vietnam",
+    "ja_jp": "ベトナム",
+    "ko_kr": "베트남",
+    "pl_pl": "Wietnam",
+    "pt_br": "Vietnã",
+    "ru_ru": "Вьетнам",
+    "tr_tr": "Vietnam",
+    "uk_ua": "В'єтнам",
+    "zh_cn": "越南",
+    "zh_hk": "越南",
+    "zh_tw": "越南"
+  }
+}

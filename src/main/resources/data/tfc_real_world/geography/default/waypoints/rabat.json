@@ -1,0 +1,51 @@
+{
+  "parent": "default:subregion/morocco",
+  "title_lang": {
+    "de_de": "Rabat",
+    "en_us": "Rabat",
+    "es_es": "Rabat",
+    "ja_jp": "ラバト",
+    "ko_kr": "라바트",
+    "pl_pl": "Rabat",
+    "pt_br": "Rabat",
+    "ru_ru": "Рабат",
+    "tr_tr": "Rabat",
+    "uk_ua": "Рабат",
+    "zh_cn": "拉巴特",
+    "zh_hk": "拉巴特",
+    "zh_tw": "拉巴特"
+  },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Königreichs Marokko",
+    "en_us": "Capital of the Kingdom of Morocco",
+    "es_es": "Capital del Reino de Marruecos",
+    "ja_jp": "モロッコ王国の首都",
+    "ko_kr": "모로코 왕국의 수도",
+    "pl_pl": "Stolica Królestwa Maroka",
+    "pt_br": "Capital do Reino do Marrocos",
+    "ru_ru": "Столица Королевства Марокко",
+    "tr_tr": "Fas Krallığı'nın başkenti",
+    "uk_ua": "Столиця Королівства Марокко",
+    "zh_cn": "摩洛哥王国的首都",
+    "zh_hk": "摩洛哥王國的首都",
+    "zh_tw": "摩洛哥王國的首都"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt des Königreichs Marokko",
+    "en_us": "Visit the capital of the Kingdom of Morocco",
+    "es_es": "Visita la capital del Reino de Marruecos",
+    "ja_jp": "モロッコ王国の首都を訪れよう",
+    "ko_kr": "모로코 왕국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Królestwa Maroka",
+    "pt_br": "Visite a capital do Reino do Marrocos",
+    "ru_ru": "Посетите столицу Королевства Марокко",
+    "tr_tr": "Fas Krallığı'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Королівства Марокко",
+    "zh_cn": "访问摩洛哥王国的首都",
+    "zh_hk": "遊覽摩洛哥王國的首都",
+    "zh_tw": "造訪摩洛哥王國的首都"
+  },
+  "longitude": -6.83255,
+  "latitude": 34.01325,
+  "capital": 1
+}

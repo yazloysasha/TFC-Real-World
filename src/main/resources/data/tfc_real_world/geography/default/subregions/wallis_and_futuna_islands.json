@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southwestern_pacific",
+  "title_lang": {
+    "de_de": "Wallis- und Futuna-Inseln",
+    "en_us": "Wallis and Futuna Islands",
+    "es_es": "Islas Wallis y Futuna",
+    "ja_jp": "ウォリス・フツナ諸島",
+    "ko_kr": "월리스 푸투나 제도",
+    "pl_pl": "Wyspy Wallis i Futuna",
+    "pt_br": "Ilhas Wallis e Futuna",
+    "ru_ru": "Острова Уоллис и Футуна",
+    "tr_tr": "Wallis ve Futuna Adaları",
+    "uk_ua": "Острови Волліс і Футуна",
+    "zh_cn": "瓦利斯和富图纳群岛",
+    "zh_hk": "瓦利斯和富圖納群島",
+    "zh_tw": "瓦利斯和富圖納群島"
+  }
+}

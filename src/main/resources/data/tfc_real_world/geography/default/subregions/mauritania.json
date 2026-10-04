@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/west_tropical_africa",
+  "title_lang": {
+    "de_de": "Mauretanien",
+    "en_us": "Mauritania",
+    "es_es": "Mauritania",
+    "ja_jp": "モーリタニア",
+    "ko_kr": "모리타니",
+    "pl_pl": "Mauretania",
+    "pt_br": "Mauritânia",
+    "ru_ru": "Мавритания",
+    "tr_tr": "Moritanya",
+    "uk_ua": "Мавританія",
+    "zh_cn": "毛里塔尼亚",
+    "zh_hk": "毛里塔尼亞",
+    "zh_tw": "毛里塔尼亞"
+  }
+}

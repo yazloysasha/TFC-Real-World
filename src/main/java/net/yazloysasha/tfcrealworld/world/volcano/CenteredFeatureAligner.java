@@ -1,134 +1,91 @@
 package net.yazloysasha.tfcrealworld.world.volcano;
 
 import it.unimi.dsi.fastutil.longs.Long2IntOpenHashMap;
-import net.dries007.tfc.world.layer.TFCLayers;
-import net.dries007.tfc.world.noise.Cellular2D;
+import java.util.function.IntPredicate;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.Units;
+import net.yazloysasha.tfcrealworld.world.backend.WorldBackend;
 import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass.Volcanism;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 
-/**
- * Stamp the volcano biome onto the cellular cell center so the cone sits on
- * the map hotspot, matching 1.21.1 {@code CenteredFeatureAligner}.
- *
- * <p>TFC 3 {@code VolcanoNoise} uses {@code Cellular2D(seed).spread(0.009)}.
- * TFE/TFG cinder and stratovolcano alignment use {@link #stamp} via
- * {@link TfeCenteredFeatureAligner} and {@link TfgCenteredFeatureAligner} so
- * this class loads without TerraFirmaEarth or Core-Modern.
- */
+/** Snaps cellular cone centers onto a matching volcanic biome cell. */
 public final class CenteredFeatureAligner {
 
-  static final int MAX_CENTER_OFFSET_GRID = 2;
-  static final int HALF_GRID_BLOCK = Units.GRID_WIDTH_IN_BLOCK / 2;
+  private static final int MAX_CENTER_OFFSET_GRID = 2;
+  private static final int HALF_GRID_BLOCK = Units.GRID_WIDTH_IN_BLOCK / 2;
+
+  /** The centre, in blocks, of the cone cell a block lies in. */
+  @FunctionalInterface
+  public interface CellLookup {
+    double[] centerOf(int blockX, int blockZ);
+  }
 
   private CenteredFeatureAligner() {}
 
-  public static void alignTfc(Region region, long seed) {
-    final Cellular2D cells = new Cellular2D(seed).spread(0.009);
-    stamp(
-      region,
-      (blockX, blockZ) -> {
-        final Cellular2D.Cell cell = cells.cell(blockX, blockZ);
-        return new SampledCell(cell.x(), cell.y());
-      },
-      MapHotspotBiomes::isTfcVolcanoBiome,
-      CenteredFeatureAligner::skipTfcCenter
-    );
-  }
-
-  static void stamp(
+  /**
+   * @param matches biomes that build the cone of these cells
+   * @param keeps biomes of a centre cell that are left as they are
+   */
+  public static void stamp(
     Region region,
+    WorldBackend backend,
+    TectonicsMap tectonics,
     CellLookup cells,
-    BiomePredicate matches,
-    CenterFilter skipCenter
+    IntPredicate matches,
+    IntPredicate keeps
   ) {
-    final Long2IntOpenHashMap pending = new Long2IntOpenHashMap();
     final Region.Point[] data = region.data();
+    final Long2IntOpenHashMap pending = new Long2IntOpenHashMap();
     for (int index = 0; index < data.length; index++) {
       final Region.Point point = data[index];
       if (point == null || !matches.test(point.biome)) {
         continue;
       }
-      final int gridX = RegionCoords.gridX(region, index);
-      final int gridZ = RegionCoords.gridZ(region, index);
-      final int blockX = RegionCoords.gridToBlock(gridX) + HALF_GRID_BLOCK;
-      final int blockZ = RegionCoords.gridToBlock(gridZ) + HALF_GRID_BLOCK;
-      final SampledCell cell = cells.cell(blockX, blockZ);
-      final int centerGridX = Units.blockToGrid((int) Math.round(cell.x()));
-      final int centerGridZ = Units.blockToGrid((int) Math.round(cell.y()));
+      final int x = RegionCoords.gridX(region, index);
+      final int z = RegionCoords.gridZ(region, index);
+      final double[] center = cells.centerOf(
+        RegionCoords.gridToBlock(x) + HALF_GRID_BLOCK,
+        RegionCoords.gridToBlock(z) + HALF_GRID_BLOCK
+      );
+      final int centerX = Units.blockToGrid((int) Math.round(center[0]));
+      final int centerZ = Units.blockToGrid((int) Math.round(center[1]));
       if (
-        Math.abs(centerGridX - gridX) > MAX_CENTER_OFFSET_GRID ||
-        Math.abs(centerGridZ - gridZ) > MAX_CENTER_OFFSET_GRID
+        Math.abs(centerX - x) > MAX_CENTER_OFFSET_GRID ||
+        Math.abs(centerZ - z) > MAX_CENTER_OFFSET_GRID ||
+        !region.isIn(centerX, centerZ)
       ) {
         continue;
       }
-      if (!contains(region, centerGridX, centerGridZ)) {
-        continue;
-      }
-      pending.putIfAbsent(pack(centerGridX, centerGridZ), point.biome);
+      pending.putIfAbsent(pack(centerX, centerZ), point.biome);
     }
-
     for (final var entry : pending.long2IntEntrySet()) {
-      final long key = entry.getLongKey();
-      final Region.Point center = region.maybeAt(unpackX(key), unpackZ(key));
-      if (center == null || matches.test(center.biome)) {
+      final int x = (int) (entry.getLongKey() >> 32);
+      final int z = (int) entry.getLongKey();
+      final Region.Point center = region.at(x, z);
+      // A cone moves only within volcanic land: never onto the sea or onto
+      // a cell the tectonics map left non-volcanic.
+      if (
+        center == null ||
+        !center.land() ||
+        center.lake() ||
+        matches.test(center.biome) ||
+        keeps.test(center.biome) ||
+        backend.isLake(center.biome)
+      ) {
         continue;
       }
-      if (skipCenter.skip(center, entry.getIntValue())) {
+      if (
+        backend.hotSpotAge(center) == 0 &&
+        tectonics.classAtGrid(x, z).volcanism() == Volcanism.NONE
+      ) {
         continue;
       }
       center.biome = entry.getIntValue();
     }
   }
 
-  private static boolean skipTfcCenter(Region.Point center, int sourceBiome) {
-    if (center.lake() || MapHotspotBiomes.isTfcLakeBiome(center.biome)) {
-      return true;
-    }
-    if (!center.land()) {
-      return true;
-    }
-    return (
-      sourceBiome == TFCLayers.CANYONS &&
-      (center.mountain() || TFCLayers.isMountains(center.biome))
-    );
-  }
-
-  private static boolean contains(Region region, int x, int z) {
-    return (
-      x >= region.minX() &&
-      x <= region.maxX() &&
-      z >= region.minZ() &&
-      z <= region.maxZ()
-    );
-  }
-
   private static long pack(int x, int z) {
     return ((long) x << 32) | (z & 0xffffffffL);
   }
-
-  private static int unpackX(long key) {
-    return (int) (key >> 32);
-  }
-
-  private static int unpackZ(long key) {
-    return (int) key;
-  }
-
-  @FunctionalInterface
-  interface BiomePredicate {
-    boolean test(int biome);
-  }
-
-  @FunctionalInterface
-  interface CellLookup {
-    SampledCell cell(double blockX, double blockZ);
-  }
-
-  @FunctionalInterface
-  interface CenterFilter {
-    boolean skip(Region.Point center, int sourceBiome);
-  }
-
-  record SampledCell(double x, double y) {}
 }

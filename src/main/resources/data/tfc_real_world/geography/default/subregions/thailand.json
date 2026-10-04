@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/indo_china",
+  "title_lang": {
+    "de_de": "Thailand",
+    "en_us": "Thailand",
+    "es_es": "Tailandia",
+    "ja_jp": "タイ",
+    "ko_kr": "태국",
+    "pl_pl": "Tajlandia",
+    "pt_br": "Tailândia",
+    "ru_ru": "Таиланд",
+    "tr_tr": "Tayland",
+    "uk_ua": "Таїланд",
+    "zh_cn": "泰国",
+    "zh_hk": "泰國",
+    "zh_tw": "泰國"
+  }
+}

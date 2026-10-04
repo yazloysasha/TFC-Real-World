@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/russian_far_east",
+  "title_lang": {
+    "de_de": "Amur",
+    "en_us": "Amur",
+    "es_es": "Amur",
+    "ja_jp": "アムール",
+    "ko_kr": "아무르",
+    "pl_pl": "Amur",
+    "pt_br": "Amur",
+    "ru_ru": "Амур",
+    "tr_tr": "Amur",
+    "uk_ua": "Амур",
+    "zh_cn": "阿穆尔",
+    "zh_hk": "阿穆爾",
+    "zh_tw": "阿穆爾"
+  }
+}

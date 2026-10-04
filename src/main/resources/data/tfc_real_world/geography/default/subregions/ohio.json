@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northeastern_usa",
+  "title_lang": {
+    "de_de": "Ohio",
+    "en_us": "Ohio",
+    "es_es": "Ohio",
+    "ja_jp": "オハイオ",
+    "ko_kr": "오하이오",
+    "pl_pl": "Ohio",
+    "pt_br": "Ohio",
+    "ru_ru": "Огайо",
+    "tr_tr": "Ohio",
+    "uk_ua": "Огайо",
+    "zh_cn": "俄亥俄",
+    "zh_hk": "俄亥俄",
+    "zh_tw": "俄亥俄"
+  }
+}
