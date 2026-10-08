@@ -3,14 +3,14 @@ package net.yazloysasha.tfcrealworld.world.backend;
 import java.util.Random;
 import java.util.function.LongSupplier;
 import net.dries007.tfc.world.biome.BiomeExtension;
-import net.dries007.tfc.world.layer.MoreShoresLayer;
 import net.dries007.tfc.world.layer.RegionEdgeBiomeLayer;
-import net.dries007.tfc.world.layer.ShoreLayer;
 import net.dries007.tfc.world.layer.TFCLayers;
 import net.dries007.tfc.world.layer.framework.AreaContext;
 import net.dries007.tfc.world.layer.framework.AreaFactory;
 import net.dries007.tfc.world.noise.Cellular2D;
 import net.dries007.tfc.world.region.Region;
+import net.yazloysasha.tfcrealworld.world.layer.LowCoastShoreLayer;
+import net.yazloysasha.tfcrealworld.world.layer.ShoreBeforeTidalFlatsLayer;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 import net.yazloysasha.tfcrealworld.world.volcano.CenteredFeatureAligner;
 
@@ -64,12 +64,13 @@ public class Tfc3Backend implements WorldBackend {
 
   @Override
   public AreaFactory shores(long seed, AreaFactory layer) {
-    return ShoreLayer.INSTANCE.apply(seed, layer);
+    return LowCoastShoreLayer.INSTANCE.apply(seed, layer);
   }
 
   @Override
   public AreaFactory moreShores(long seed, AreaFactory layer) {
-    return MoreShoresLayer.INSTANCE.apply(seed, layer);
+    // TFC 3's own layer lays tidal flats on the sea: see LowCoastShoreLayer.
+    return ShoreBeforeTidalFlatsLayer.INSTANCE.apply(seed, layer);
   }
 
   @Override
@@ -81,7 +82,7 @@ public class Tfc3Backend implements WorldBackend {
     int west,
     int center
   ) {
-    return MoreShoresLayer.INSTANCE.apply(
+    return ShoreBeforeTidalFlatsLayer.INSTANCE.apply(
       context,
       north,
       east,
@@ -128,7 +129,21 @@ public class Tfc3Backend implements WorldBackend {
 
   @Override
   public int shoreFor(int biome) {
-    return TFCLayers.shoreFor(biome);
+    return shoreOf(biome);
+  }
+
+  /**
+   * The shore TFC 4 gives a land, among the shores TFC 3 has: its dunes,
+   * cliffs and rocky shores are all TFC 3's shore, and the tidal flats of
+   * its other coasts are TFC 3's tidal flats.
+   */
+  public static int shoreOf(int biome) {
+    final int shore = TFCLayers.shoreFor(biome);
+    final boolean flat =
+      biome == TFCLayers.PLAINS ||
+      biome == TFCLayers.BADLANDS ||
+      biome == TFCLayers.INVERTED_BADLANDS;
+    return shore == TFCLayers.SHORE && flat ? TFCLayers.TIDAL_FLATS : shore;
   }
 
   @Override
@@ -164,12 +179,6 @@ public class Tfc3Backend implements WorldBackend {
   @Override
   public int oldMountains() {
     return TFCLayers.OLD_MOUNTAINS;
-  }
-
-  /** TFC 3 lays its tidal flats on the sea beside a shore. */
-  @Override
-  public boolean isSeawardShore(int biome) {
-    return biome == tidalFlats();
   }
 
   @Override

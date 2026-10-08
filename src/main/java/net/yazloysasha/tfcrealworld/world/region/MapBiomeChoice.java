@@ -2,6 +2,7 @@ package net.yazloysasha.tfcrealworld.world.region;
 
 import java.util.function.IntPredicate;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
@@ -32,6 +33,10 @@ public final class MapBiomeChoice {
 
   @Nullable
   private MapHotspotLayout volcanoesAsMountains;
+
+  /** The answer of volcanicGround() for the point at hand, once asked. */
+  @Nullable
+  private Boolean volcanicGround;
 
   private Region.Point point;
   private int x;
@@ -89,6 +94,7 @@ public final class MapBiomeChoice {
     this.point = point;
     this.x = x;
     this.z = z;
+    this.volcanicGround = null;
   }
 
   public boolean fromMap() {
@@ -97,15 +103,16 @@ public final class MapBiomeChoice {
 
   /** Whether the map has volcanism, of a boundary or a hotspot, here. */
   public boolean volcanicGround() {
-    if (tectonics == null) {
-      return false;
+    Boolean volcanic = volcanicGround;
+    if (volcanic == null) {
+      volcanic =
+        tectonics != null &&
+        (tectonics.classAtGrid(x, z).volcanism() != Volcanism.NONE ||
+          (volcanoesAsMountains != null &&
+            volcanoesAsMountains.ageAtGrid(x, z) > 0));
+      volcanicGround = volcanic;
     }
-    if (tectonics.classAtGrid(x, z).volcanism() != Volcanism.NONE) {
-      return true;
-    }
-    return (
-      volcanoesAsMountains != null && volcanoesAsMountains.ageAtGrid(x, z) > 0
-    );
+    return volcanic;
   }
 
   /** The sea where coral reefs stand, per the tectonics map. */
@@ -194,6 +201,48 @@ public final class MapBiomeChoice {
       IntStream.concat(IntStream.of(inland), IntStream.of(coastal)).toArray(),
       volcanic.and(biome -> backend.biome(biome).isSalty() == oceanic),
       volcanic
+    );
+  }
+
+  /**
+   * A generator may keep a volcanic biome among its land that is no
+   * mountain and pick it at random (TFC 3's canyons). With tectonics all
+   * of the map's volcanic ground is such a biome, whatever the relief, and
+   * no other ground is.
+   */
+  public int pickLand(
+    long rngSeed,
+    int areaSeed,
+    int[] choices,
+    int[][] pools
+  ) {
+    if (tectonics == null) {
+      return pick(rngSeed, areaSeed, choices);
+    }
+    final IntPredicate volcanic = backend::isVolcanicBiome;
+    if (volcanicGround()) {
+      final int[] cones = Stream.of(pools)
+        .flatMapToInt(IntStream::of)
+        .filter(volcanic)
+        .distinct()
+        .toArray();
+      if (cones.length > 0) {
+        return pick(rngSeed, areaSeed, cones);
+      }
+    }
+    return pick(rngSeed, areaSeed, choices, volcanic.negate());
+  }
+
+  /**
+   * Whether a biome the generator swaps in after its pick may stand here:
+   * TFC 3 turns dry low canyons into canyons, which build volcanoes.
+   */
+  public boolean allows(int biome) {
+    return (
+      tectonics == null ||
+      volcanicGround() ||
+      backend.isMountains(biome) ||
+      !backend.isVolcanicBiome(biome)
     );
   }
 

@@ -152,12 +152,6 @@ public final class TfgBackend extends Tfc3Backend {
     return TFGLayers.OLD_MOUNTAINS;
   }
 
-  /** Its tidal flats stand on land. */
-  @Override
-  public boolean isSeawardShore(int biome) {
-    return false;
-  }
-
   @Override
   public int meltwaterLake() {
     return TFGLayers.MELTWATER_LAKE;

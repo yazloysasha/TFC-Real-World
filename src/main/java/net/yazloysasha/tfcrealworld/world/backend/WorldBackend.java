@@ -81,14 +81,6 @@ public interface WorldBackend {
   int oldMountains();
 
   /**
-   * A shore biome the generator lays on the sea side of the waterline, so
-   * it stands on cells the map calls sea.
-   */
-  default boolean isSeawardShore(int biome) {
-    return false;
-  }
-
-  /**
    * The annual mean temperature of the climate maps in the generator's own
    * scale. The maps are drawn in TFC 4's.
    */

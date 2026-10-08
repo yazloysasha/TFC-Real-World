@@ -138,7 +138,6 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     if (
       !mapNonOcean &&
       !biomeOcean &&
-      !(shoreWidth == 0 && backend.isSeawardShore(center)) &&
       !shouldPreserveOnMapOcean(center, gridX, gridZ)
     ) {
       return tectonicsFromMap
@@ -432,6 +431,9 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
   }
 
   private boolean hotspotNear(int gx, int gz) {
+    if (!backend.hasHotspots()) {
+      return false;
+    }
     for (int dz = -1; dz <= 1; dz++) {
       for (int dx = -1; dx <= 1; dx++) {
         if (

@@ -14,6 +14,9 @@ import com.newterraearth.tfe.world.region.NTEPointAccess;
 import com.newterraearth.tfe.world.region.NTERegionGeneratorAccess;
 import java.util.function.IntPredicate;
 import java.util.function.LongSupplier;
+import net.dries007.tfc.world.layer.MoreShoresLayer;
+import net.dries007.tfc.world.layer.TFCLayers;
+import net.dries007.tfc.world.layer.framework.AreaContext;
 import net.dries007.tfc.world.layer.framework.AreaFactory;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
@@ -36,6 +39,30 @@ public final class TfeBackend extends Tfc3Backend {
   }
 
   @Override
+  public AreaFactory moreShores(long seed, AreaFactory layer) {
+    return MoreShoresLayer.INSTANCE.apply(seed, layer);
+  }
+
+  @Override
+  public int moreShores(
+    AreaContext context,
+    int north,
+    int east,
+    int south,
+    int west,
+    int center
+  ) {
+    return MoreShoresLayer.INSTANCE.apply(
+      context,
+      north,
+      east,
+      south,
+      west,
+      center
+    );
+  }
+
+  @Override
   public AreaFactory shores(long seed, AreaFactory layer) {
     return NTERiverShoreLayer.INSTANCE.apply(seed, layer);
   }
@@ -50,12 +77,12 @@ public final class TfeBackend extends Tfc3Backend {
     return NTEIceSheetEdgeLayer.INSTANCE.apply(seed, layer);
   }
 
-  /** Its tidal flats stand on land, and its climate is TFC 4's. */
   @Override
-  public boolean isSeawardShore(int biome) {
-    return false;
+  public int shoreFor(int biome) {
+    return TFCLayers.shoreFor(biome);
   }
 
+  /** Its climate is TFC 4's. */
   @Override
   public float climateTemperature(float mapTemperature) {
     return mapTemperature;

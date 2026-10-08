@@ -34,6 +34,10 @@ public class ChooseBiomesMixin {
   @Final
   private static int[] OCEANIC_MOUNTAIN_ALTITUDE_BIOMES;
 
+  @Shadow
+  @Final
+  private static int[][] ALTITUDE_BIOMES;
+
   @Inject(method = "apply", at = @At("HEAD"))
   private void tfcrealworld$enter(
     RegionGenerator.Context context,
@@ -89,6 +93,24 @@ public class ChooseBiomesMixin {
 
   @Redirect(
     method = "apply",
+    at = @At(value = "INVOKE", target = RANDOM_SEEDED_FROM, ordinal = 2)
+  )
+  private int tfcrealworld$landBiomeByVolcanism(
+    ChooseBiomes instance,
+    long rngSeed,
+    int areaSeed,
+    int[] choices
+  ) {
+    return MapBiomeChoice.current().pickLand(
+      rngSeed,
+      areaSeed,
+      choices,
+      ALTITUDE_BIOMES
+    );
+  }
+
+  @Redirect(
+    method = "apply",
     at = @At(value = "INVOKE", target = RANDOM_SEEDED_FROM, ordinal = 3)
   )
   private int tfcrealworld$reefByMap(
@@ -114,6 +136,23 @@ public class ChooseBiomesMixin {
   )
   private byte tfcrealworld$reefAtAnyBoundary(Region.Point point) {
     return MapBiomeChoice.current().oceanDistanceToEdge(point);
+  }
+
+  @Redirect(
+    method = "apply",
+    at = @At(
+      value = "FIELD",
+      target = "Lnet/dries007/tfc/world/region/Region$Point;biome:I",
+      opcode = Opcodes.PUTFIELD
+    )
+  )
+  private void tfcrealworld$noVolcanoesOnQuietGround(
+    Region.Point point,
+    int biome
+  ) {
+    if (MapBiomeChoice.current().allows(biome)) {
+      point.biome = biome;
+    }
   }
 
   @Inject(method = "apply", at = @At("TAIL"))

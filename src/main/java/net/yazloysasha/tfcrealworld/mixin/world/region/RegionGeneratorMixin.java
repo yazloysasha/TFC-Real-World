@@ -1,9 +1,11 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
 import java.util.List;
+import net.dries007.tfc.world.FastConcurrentCache;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.dries007.tfc.world.region.RegionPartition;
 import net.dries007.tfc.world.region.Units;
 import net.dries007.tfc.world.settings.Settings;
 import net.minecraft.util.RandomSource;
@@ -21,6 +23,7 @@ import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainVarianceNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
+import net.yazloysasha.tfcrealworld.world.region.cache.EvictedEntries;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
 import net.yazloysasha.tfcrealworld.world.river.MapRivers;
@@ -35,6 +38,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -66,6 +70,91 @@ public class RegionGeneratorMixin {
    */
   @Unique
   private static final int REGION_SEARCH_STEP = 8;
+
+  /** As many regions as TFC's own cache holds at the most. */
+  @Unique
+  private static final int KEPT_REGIONS = 128;
+
+  @Unique
+  private static final int KEPT_PARTITIONS = 512;
+
+  @Unique
+  private static final String CACHE_GET =
+    "Lnet/dries007/tfc/world/FastConcurrentCache;getIfPresent(II)Ljava/lang/Object;";
+
+  @Unique
+  private static final String CACHE_SET =
+    "Lnet/dries007/tfc/world/FastConcurrentCache;set(IILjava/lang/Object;)V";
+
+  @Unique
+  private static final String REGION_OF_CELL =
+    "getOrCreateRegion(Lnet/dries007/tfc/world/noise/Cellular2D$Cell;)Lnet/dries007/tfc/world/region/Region;";
+
+  @Unique
+  private final EvictedEntries<Region> tfcrealworld$regions =
+    new EvictedEntries<>(KEPT_REGIONS);
+
+  @Unique
+  private final EvictedEntries<RegionPartition> tfcrealworld$partitions =
+    new EvictedEntries<>(KEPT_PARTITIONS);
+
+  /**
+   * A region thrown out of its cache slot by another is taken back from
+   * the store instead of being generated again.
+   */
+  @Redirect(
+    method = REGION_OF_CELL,
+    at = @At(value = "INVOKE", target = CACHE_GET)
+  )
+  private Object tfcrealworld$regionKeptPastEviction(
+    FastConcurrentCache<Region> cache,
+    int x,
+    int z
+  ) {
+    final Region cached = cache.getIfPresent(x, z);
+    return cached != null ? cached : tfcrealworld$regions.get(x, z);
+  }
+
+  @Redirect(
+    method = REGION_OF_CELL,
+    at = @At(value = "INVOKE", target = CACHE_SET)
+  )
+  private void tfcrealworld$keepRegion(
+    FastConcurrentCache<Region> cache,
+    int x,
+    int z,
+    Object region
+  ) {
+    cache.set(x, z, (Region) region);
+    tfcrealworld$regions.put(x, z, (Region) region);
+  }
+
+  @Redirect(
+    method = "getOrCreatePartition",
+    at = @At(value = "INVOKE", target = CACHE_GET)
+  )
+  private Object tfcrealworld$partitionKeptPastEviction(
+    FastConcurrentCache<RegionPartition> cache,
+    int x,
+    int z
+  ) {
+    final RegionPartition cached = cache.getIfPresent(x, z);
+    return cached != null ? cached : tfcrealworld$partitions.get(x, z);
+  }
+
+  @Redirect(
+    method = "getOrCreatePartition",
+    at = @At(value = "INVOKE", target = CACHE_SET)
+  )
+  private void tfcrealworld$keepPartition(
+    FastConcurrentCache<RegionPartition> cache,
+    int x,
+    int z,
+    Object partition
+  ) {
+    cache.set(x, z, (RegionPartition) partition);
+    tfcrealworld$partitions.put(x, z, (RegionPartition) partition);
+  }
 
   @Inject(method = "<init>", at = @At("TAIL"))
   private void tfcrealworld$replaceNoises(
