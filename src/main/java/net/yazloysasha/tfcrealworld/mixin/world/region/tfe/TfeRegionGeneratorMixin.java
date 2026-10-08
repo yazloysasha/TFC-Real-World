@@ -71,7 +71,9 @@ public class TfeRegionGeneratorMixin {
   /**
    * Divergence is a property of the boundary zone a point lies in: negative
    * in convergent zones, positive in divergent zones, zero elsewhere.
+   * TerraFirmaEarth adds the method, so it is not there at compile time.
    */
+  @SuppressWarnings("target")
   @Inject(
     method = "nte$getDivergence(II)D",
     at = @At("HEAD"),
