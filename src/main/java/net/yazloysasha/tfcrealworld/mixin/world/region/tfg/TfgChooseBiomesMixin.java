@@ -126,6 +126,35 @@ public class TfgChooseBiomesMixin {
     return MapBiomeChoice.current().iceSheetDistanceToOcean(point);
   }
 
+  @Redirect(
+    method = "apply",
+    at = @At(value = "INVOKE", target = RANDOM_SEEDED_FROM, ordinal = 9)
+  )
+  private int tfcrealworld$reefByMap(
+    TFGChooseBiomesTask instance,
+    long rngSeed,
+    int areaSeed,
+    int[] choices
+  ) {
+    return MapBiomeChoice.current().pickMidDepthOcean(
+      rngSeed,
+      areaSeed,
+      choices
+    );
+  }
+
+  @Redirect(
+    method = "apply",
+    at = @At(
+      value = "FIELD",
+      target = "Lnet/dries007/tfc/world/region/Region$Point;distanceToEdge:B",
+      opcode = Opcodes.GETFIELD
+    )
+  )
+  private byte tfcrealworld$reefAtAnyBoundary(Region.Point point) {
+    return MapBiomeChoice.current().oceanDistanceToEdge(point);
+  }
+
   @Inject(method = "apply", at = @At("TAIL"))
   private void tfcrealworld$leave(
     RegionGenerator.Context context,

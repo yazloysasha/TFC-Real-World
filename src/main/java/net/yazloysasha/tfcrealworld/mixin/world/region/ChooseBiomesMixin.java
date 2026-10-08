@@ -4,6 +4,7 @@ import net.dries007.tfc.world.region.ChooseBiomes;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.world.region.MapBiomeChoice;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -84,6 +85,35 @@ public class ChooseBiomesMixin {
       MOUNTAIN_ALTITUDE_BIOMES,
       OCEANIC_MOUNTAIN_ALTITUDE_BIOMES
     );
+  }
+
+  @Redirect(
+    method = "apply",
+    at = @At(value = "INVOKE", target = RANDOM_SEEDED_FROM, ordinal = 3)
+  )
+  private int tfcrealworld$reefByMap(
+    ChooseBiomes instance,
+    long rngSeed,
+    int areaSeed,
+    int[] choices
+  ) {
+    return MapBiomeChoice.current().pickMidDepthOcean(
+      rngSeed,
+      areaSeed,
+      choices
+    );
+  }
+
+  @Redirect(
+    method = "apply",
+    at = @At(
+      value = "FIELD",
+      target = "Lnet/dries007/tfc/world/region/Region$Point;distanceToEdge:B",
+      opcode = Opcodes.GETFIELD
+    )
+  )
+  private byte tfcrealworld$reefAtAnyBoundary(Region.Point point) {
+    return MapBiomeChoice.current().oceanDistanceToEdge(point);
   }
 
   @Inject(method = "apply", at = @At("TAIL"))

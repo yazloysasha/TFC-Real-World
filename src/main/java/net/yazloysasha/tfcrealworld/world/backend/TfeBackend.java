@@ -50,6 +50,17 @@ public final class TfeBackend extends Tfc3Backend {
     return NTEIceSheetEdgeLayer.INSTANCE.apply(seed, layer);
   }
 
+  /** Its tidal flats stand on land, and its climate is TFC 4's. */
+  @Override
+  public boolean isSeawardShore(int biome) {
+    return false;
+  }
+
+  @Override
+  public float climateTemperature(float mapTemperature) {
+    return mapTemperature;
+  }
+
   @Override
   public int meltwaterLake() {
     return MELTWATER_LAKE;

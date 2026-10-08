@@ -4,6 +4,7 @@ import java.util.function.IntPredicate;
 import java.util.stream.IntStream;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.LevelSeedRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
 import net.yazloysasha.tfcrealworld.world.backend.Backends;
@@ -56,6 +57,7 @@ public final class MapBiomeChoice {
   /** Volcanic cones are moved onto the volcanic biomes the map gave. */
   public static void leave(RegionGenerator.Context context) {
     final MapBiomeChoice choice = CURRENT.get();
+    toGeneratorClimate(context.region, choice.backend);
     if (choice.tectonics != null) {
       choice.backend.alignCenteredFeatures(
         context.region,
@@ -64,6 +66,23 @@ public final class MapBiomeChoice {
       );
     }
     choice.point = null;
+  }
+
+  /**
+   * The climate maps are drawn in TFC 4's temperature scale, which a
+   * generator's biome choice is written in too where it reads temperature.
+   * Once the biomes are chosen, the temperatures go into the scale of the
+   * generator's own climate.
+   */
+  private static void toGeneratorClimate(Region region, WorldBackend backend) {
+    if (!TFCRealWorldConfig.CLIMATE_FROM_MAP.get()) {
+      return;
+    }
+    for (final Region.Point point : region.data()) {
+      if (point != null) {
+        point.temperature = backend.climateTemperature(point.temperature);
+      }
+    }
   }
 
   public void at(Region.Point point, int x, int z) {
@@ -154,8 +173,17 @@ public final class MapBiomeChoice {
       return pick(rngSeed, areaSeed, choices);
     }
     if (!volcanicGround()) {
-      return pick(rngSeed, areaSeed, choices, biome ->
-        !backend.isVolcanicBiome(biome)
+      // Mountain relief of the map is a young range: the generator's old
+      // mountains, plateaus and highlands come from its highland relief.
+      final IntPredicate quiet = biome -> !backend.isVolcanicBiome(biome);
+      return pick(
+        rngSeed,
+        areaSeed,
+        choices,
+        quiet.and(
+          biome -> backend.isMountains(biome) && biome != backend.oldMountains()
+        ),
+        quiet
       );
     }
     final boolean oceanic = point.coastalMountain();
@@ -167,6 +195,24 @@ public final class MapBiomeChoice {
       volcanic.and(biome -> backend.biome(biome).isSalty() == oceanic),
       volcanic
     );
+  }
+
+  /**
+   * TFC 3 fills its shallower seafloor with open sea, reefs and deep sea
+   * at random, and only away from a plate boundary. With tectonics the
+   * map's reef seafloor is its reefs, wherever the boundaries run.
+   */
+  public int pickMidDepthOcean(long rngSeed, int areaSeed, int[] choices) {
+    return pick(
+      rngSeed,
+      areaSeed,
+      choices,
+      biome -> biome == backend.oceanReef()
+    );
+  }
+
+  public byte oceanDistanceToEdge(Region.Point point) {
+    return tectonics != null ? Byte.MAX_VALUE : point.distanceToEdge;
   }
 
   /**

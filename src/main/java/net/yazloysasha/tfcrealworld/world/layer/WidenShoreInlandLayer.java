@@ -35,7 +35,12 @@ public final class WidenShoreInlandLayer implements AdjacentTransformLayer {
     int west,
     int center
   ) {
-    if (center == backend.riverValley() || backend.isLake(center)) {
+    // Not every generator's hasShore leaves the sea out.
+    if (
+      center == backend.riverValley() ||
+      backend.isLake(center) ||
+      backend.isOcean(center)
+    ) {
       return center;
     }
     if (!backend.hasShore(center) || isShoreBiome(center)) {

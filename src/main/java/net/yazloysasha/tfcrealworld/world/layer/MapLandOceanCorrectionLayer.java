@@ -138,6 +138,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     if (
       !mapNonOcean &&
       !biomeOcean &&
+      !(shoreWidth == 0 && backend.isSeawardShore(center)) &&
       !shouldPreserveOnMapOcean(center, gridX, gridZ)
     ) {
       return tectonicsFromMap
