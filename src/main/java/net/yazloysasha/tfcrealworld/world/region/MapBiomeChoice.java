@@ -7,12 +7,10 @@ import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.LevelSeedRegistry;
-import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
 import net.yazloysasha.tfcrealworld.world.backend.Backends;
 import net.yazloysasha.tfcrealworld.world.backend.WorldBackend;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass.Volcanism;
-import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
-import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicPlaces;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -29,10 +27,7 @@ public final class MapBiomeChoice {
   private WorldBackend backend;
 
   @Nullable
-  private TectonicsMap tectonics;
-
-  @Nullable
-  private MapHotspotLayout volcanoesAsMountains;
+  private TectonicPlaces places;
 
   /** The answer of volcanicGround() for the point at hand, once asked. */
   @Nullable
@@ -47,11 +42,7 @@ public final class MapBiomeChoice {
   public static MapBiomeChoice enter(RegionGenerator.Context context) {
     final MapBiomeChoice choice = CURRENT.get();
     choice.backend = Backends.current();
-    choice.tectonics = TectonicsRegistry.get(context.generator());
-    choice.volcanoesAsMountains =
-      choice.tectonics == null || choice.backend.hasHotspots()
-        ? null
-        : TectonicsRegistry.hotspotLayout();
+    choice.places = TectonicPlaces.of(context.generator(), choice.backend);
     return choice;
   }
 
@@ -63,11 +54,11 @@ public final class MapBiomeChoice {
   public static void leave(RegionGenerator.Context context) {
     final MapBiomeChoice choice = CURRENT.get();
     toGeneratorClimate(context.region, choice.backend);
-    if (choice.tectonics != null) {
+    if (choice.places != null) {
       choice.backend.alignCenteredFeatures(
         context.region,
         LevelSeedRegistry.get(context.generator()),
-        choice.tectonics
+        choice.places.map()
       );
     }
     choice.point = null;
@@ -98,7 +89,7 @@ public final class MapBiomeChoice {
   }
 
   public boolean fromMap() {
-    return tectonics != null;
+    return places != null;
   }
 
   /** Whether the map has volcanism, of a boundary or a hotspot, here. */
@@ -106,10 +97,7 @@ public final class MapBiomeChoice {
     Boolean volcanic = volcanicGround;
     if (volcanic == null) {
       volcanic =
-        tectonics != null &&
-        (tectonics.classAtGrid(x, z).volcanism() != Volcanism.NONE ||
-          (volcanoesAsMountains != null &&
-            volcanoesAsMountains.ageAtGrid(x, z) > 0));
+        places != null && places.at(x, z).volcanism() != Volcanism.NONE;
       volcanicGround = volcanic;
     }
     return volcanic;
@@ -117,7 +105,7 @@ public final class MapBiomeChoice {
 
   /** The sea where coral reefs stand, per the tectonics map. */
   public boolean atolls() {
-    return tectonics != null && tectonics.classAtGrid(x, z).atolls();
+    return places != null && places.at(x, z).atolls();
   }
 
   /**
@@ -132,7 +120,7 @@ public final class MapBiomeChoice {
     IntPredicate... rules
   ) {
     int[] fitting = choices;
-    if (tectonics != null) {
+    if (places != null) {
       for (final IntPredicate rule : rules) {
         final int[] kept = IntStream.of(choices).filter(rule).toArray();
         if (kept.length > 0) {
@@ -176,7 +164,7 @@ public final class MapBiomeChoice {
     int[] inland,
     int[] coastal
   ) {
-    if (tectonics == null) {
+    if (places == null) {
       return pick(rngSeed, areaSeed, choices);
     }
     if (!volcanicGround()) {
@@ -216,7 +204,7 @@ public final class MapBiomeChoice {
     int[] choices,
     int[][] pools
   ) {
-    if (tectonics == null) {
+    if (places == null) {
       return pick(rngSeed, areaSeed, choices);
     }
     final IntPredicate volcanic = backend::isVolcanicBiome;
@@ -239,7 +227,7 @@ public final class MapBiomeChoice {
    */
   public boolean allows(int biome) {
     return (
-      tectonics == null ||
+      places == null ||
       volcanicGround() ||
       backend.isMountains(biome) ||
       !backend.isVolcanicBiome(biome)
@@ -261,7 +249,7 @@ public final class MapBiomeChoice {
   }
 
   public byte oceanDistanceToEdge(Region.Point point) {
-    return tectonics != null ? Byte.MAX_VALUE : point.distanceToEdge;
+    return places != null ? Byte.MAX_VALUE : point.distanceToEdge;
   }
 
   /**
@@ -269,7 +257,7 @@ public final class MapBiomeChoice {
    * sheet edge layer finds the ocean next to it, never by distance.
    */
   public byte iceSheetDistanceToOcean(Region.Point point) {
-    return tectonics != null ? Byte.MAX_VALUE : point.distanceToOcean;
+    return places != null ? Byte.MAX_VALUE : point.distanceToOcean;
   }
 
   /**
@@ -277,7 +265,7 @@ public final class MapBiomeChoice {
    * (the {@code coast} property), as every other mountain.
    */
   public byte collisionalDistanceToOcean(Region.Point point) {
-    if (tectonics == null) {
+    if (places == null) {
       return point.distanceToOcean;
     }
     return point.coastalMountain() ? 0 : Byte.MAX_VALUE;
@@ -289,7 +277,7 @@ public final class MapBiomeChoice {
    * distance is replaced by the {@code atolls} property.
    */
   public byte atollDistanceToLand(byte distanceToLand) {
-    if (tectonics == null) {
+    if (places == null) {
       return distanceToLand;
     }
     return atolls() ? Byte.MAX_VALUE : 0;

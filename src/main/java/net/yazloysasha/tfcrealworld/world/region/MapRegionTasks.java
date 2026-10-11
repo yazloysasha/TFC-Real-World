@@ -21,6 +21,7 @@ import net.yazloysasha.tfcrealworld.world.river.MapRivers;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass.LandRelief;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass.Volcanism;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicPlaces;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
 import org.jetbrains.annotations.Nullable;
@@ -55,8 +56,7 @@ public final class MapRegionTasks {
       return false;
     }
     final WorldBackend backend = Backends.current();
-    final TectonicsMap tectonics = TectonicsRegistry.get(generator);
-    final MapHotspotLayout volcanoes = volcanoesAsMountains(backend, tectonics);
+    final TectonicPlaces places = TectonicPlaces.of(generator, backend);
     final Region region = context.region;
     final Region.Point[] data = region.data();
     for (int index = 0; index < data.length; index++) {
@@ -69,16 +69,21 @@ public final class MapRegionTasks {
       clear(point, (short) (FLAG_LAND | FLAG_ISLAND));
       // A region point covers [x, x + 1): sample the centre of its cell.
       final ContinentBand band = continent.bandAtGridHard(x + 0.5, z + 0.5);
-      if (tectonics == null) {
+      if (places == null) {
         applyProcedural(point, band, continent, generator, backend, x, z);
         continue;
       }
-      final TectonicClass place = tectonics.classAtGrid(x, z);
+      final TectonicClass place = places.at(x, z);
       backend.setDivergence(point, place.boundary().divergence());
-      applyTectonics(point, band, place, continent, backend, x, z);
-      if (volcanoes != null && raisesLand(volcanoes.ageAtGrid(x, z))) {
-        point.setLand();
-      }
+      applyTectonics(
+        point,
+        places.risesFromTheSea(x, z) ? ContinentBand.LAND : band,
+        place,
+        continent,
+        backend,
+        x,
+        z
+      );
     }
     return true;
   }
@@ -262,11 +267,14 @@ public final class MapRegionTasks {
    * seafloor there, which its pass has just measured from the coast.
    */
   public static void baseLandHeight(RegionGenerator.Context context) {
-    final TectonicsMap tectonics = TectonicsRegistry.get(context.generator());
-    if (tectonics == null) {
+    final WorldBackend backend = Backends.current();
+    final TectonicPlaces places = TectonicPlaces.of(
+      context.generator(),
+      backend
+    );
+    if (places == null) {
       return;
     }
-    final WorldBackend backend = Backends.current();
     final Region region = context.region;
     final Region.Point[] data = region.data();
     for (int index = 0; index < data.length; index++) {
@@ -274,7 +282,7 @@ public final class MapRegionTasks {
       if (point == null) {
         continue;
       }
-      final TectonicClass place = tectonics.classAtGrid(
+      final TectonicClass place = places.at(
         RegionCoords.gridX(region, index),
         RegionCoords.gridZ(region, index)
       );
@@ -294,14 +302,13 @@ public final class MapRegionTasks {
    * hotspot is a mountain, which the map's volcanism then makes volcanic.
    */
   public static boolean biomeAltitude(RegionGenerator.Context context) {
-    final TectonicsMap tectonics = TectonicsRegistry.get(context.generator());
-    if (tectonics == null) {
+    final TectonicPlaces places = TectonicPlaces.of(
+      context.generator(),
+      Backends.current()
+    );
+    if (places == null) {
       return false;
     }
-    final MapHotspotLayout volcanoes = volcanoesAsMountains(
-      Backends.current(),
-      tectonics
-    );
     final Region region = context.region;
     final Region.Point[] data = region.data();
     for (int index = 0; index < data.length; index++) {
@@ -314,12 +321,11 @@ public final class MapRegionTasks {
         point.biomeAltitude = 0;
         continue;
       }
-      final int x = RegionCoords.gridX(region, index);
-      final int z = RegionCoords.gridZ(region, index);
-      final TectonicClass place = tectonics.classAtGrid(x, z);
-      final boolean volcano =
-        volcanoes != null && raisesLand(volcanoes.ageAtGrid(x, z));
-      final LandRelief relief = volcano ? LandRelief.MOUNTAIN : place.land();
+      final TectonicClass place = places.at(
+        RegionCoords.gridX(region, index),
+        RegionCoords.gridZ(region, index)
+      );
+      final LandRelief relief = place.land();
       point.biomeAltitude = (byte) (relief.discreteAltitude() *
         AnnotateBiomeAltitude.WIDTH);
       if (relief == LandRelief.MOUNTAIN) {
@@ -424,17 +430,6 @@ public final class MapRegionTasks {
     return TFCRealWorldConfig.CONTINENT_FROM_MAP.get()
       ? ContinentNoiseRegistry.get(generator)
       : null;
-  }
-
-  /** The hotspots of the map for a generator with no hotspots of its own. */
-  @Nullable
-  private static MapHotspotLayout volcanoesAsMountains(
-    WorldBackend backend,
-    @Nullable TectonicsMap tectonics
-  ) {
-    return tectonics == null || backend.hasHotspots()
-      ? null
-      : TectonicsRegistry.hotspotLayout();
   }
 
   private static boolean raisesLand(byte hotSpotAge) {

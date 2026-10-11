@@ -18,6 +18,7 @@ import net.yazloysasha.tfcrealworld.world.backend.WorldBackend;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise.ContinentBand;
 import net.yazloysasha.tfcrealworld.world.tectonics.MapRiftLakes;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicPlaces;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -73,6 +74,10 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
   @Nullable
   private final MapRiftLakes riftLakes;
 
+  /** What the map says each region cell is, with tectonics from it. */
+  @Nullable
+  private final TectonicPlaces places;
+
   /** The last answer of {@link #iceSheetNear}, shared between threads. */
   @Nullable
   private volatile IceCheck lastIceCheck;
@@ -98,6 +103,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     this.lakesFromMap = TFCRealWorldConfig.LAKES_FROM_MAP.get();
     this.shoreWidth = shoreWidth;
     this.riftLakes = RiftLakesRegistry.get(regionGenerator);
+    this.places = TectonicPlaces.of(regionGenerator, backend);
   }
 
   @Override
@@ -432,7 +438,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
 
   private boolean hotspotNear(int gx, int gz) {
     if (!backend.hasHotspots()) {
-      return false;
+      return landRisenFromTheSeaNear(gx, gz);
     }
     for (int dz = -1; dz <= 1; dz++) {
       for (int dx = -1; dx <= 1; dx++) {
@@ -442,6 +448,21 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
           ) >
           0
         ) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  /** Land the map's places have where continent.png has sea. */
+  private boolean landRisenFromTheSeaNear(int gx, int gz) {
+    if (places == null) {
+      return false;
+    }
+    for (int dz = -1; dz <= 1; dz++) {
+      for (int dx = -1; dx <= 1; dx++) {
+        if (places.risesFromTheSea(gx + dx, gz + dz)) {
           return true;
         }
       }
