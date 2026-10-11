@@ -5,6 +5,8 @@ import net.dries007.tfc.world.biome.BiomeExtension;
 import net.dries007.tfc.world.layer.framework.AreaContext;
 import net.dries007.tfc.world.layer.framework.AreaFactory;
 import net.dries007.tfc.world.region.Region;
+import net.yazloysasha.tfcrealworld.mixin.world.surface.builder.tfg.TfgShoreAndOceanSurfaceBuilderAccessor;
+import net.yazloysasha.tfcrealworld.world.surface.FrozenWaterSurfaceBuilder;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 import net.yazloysasha.tfcrealworld.world.volcano.CenteredFeatureAligner;
 import su.terrafirmagreg.core.world.new_ow_wg.Seed;
@@ -15,6 +17,7 @@ import su.terrafirmagreg.core.world.new_ow_wg.layers.TFGRegionEdgeBiomeLayer;
 import su.terrafirmagreg.core.world.new_ow_wg.layers.TFGShoreLayer;
 import su.terrafirmagreg.core.world.new_ow_wg.noise.TFGCellular2D;
 import su.terrafirmagreg.core.world.new_ow_wg.region.IRegionPoint;
+import su.terrafirmagreg.core.world.new_ow_wg.surface_builders.ShoreAndOceanSurfaceBuilder;
 
 /**
  * TerraFirmaGreg's backport: its own biome table and tasks, with hotspots
@@ -23,9 +26,23 @@ import su.terrafirmagreg.core.world.new_ow_wg.region.IRegionPoint;
  */
 public final class TfgBackend extends Tfc3Backend {
 
+  private final FrozenWaterSurfaceBuilder.IceBySeed ice =
+    new FrozenWaterSurfaceBuilder.IceBySeed(seed ->
+      (
+        (TfgShoreAndOceanSurfaceBuilderAccessor) ShoreAndOceanSurfaceBuilder.OCEAN.apply(
+          seed
+        )
+      )::tfcrealworld$invokeFrozenOceanExtension
+    );
+
   @Override
   public boolean freezesAllOpenWater() {
     return true;
+  }
+
+  @Override
+  public FrozenWaterSurfaceBuilder.Ice openWaterIce(long seed) {
+    return ice.get(seed);
   }
 
   @Override

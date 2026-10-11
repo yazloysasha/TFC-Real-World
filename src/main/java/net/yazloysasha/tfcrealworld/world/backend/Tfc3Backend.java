@@ -34,6 +34,17 @@ public class Tfc3Backend implements WorldBackend {
   /** By biome id, whether it is a lake. Built on first use. */
   private volatile boolean[] lakes;
 
+  /** Whether the generator's climate is TFC 4's, the scale of the maps. */
+  private final boolean tfc4Climate;
+
+  public Tfc3Backend() {
+    this(false);
+  }
+
+  protected Tfc3Backend(boolean tfc4Climate) {
+    this.tfc4Climate = tfc4Climate;
+  }
+
   @Override
   public boolean isLake(int biome) {
     boolean[] known = lakes;
@@ -183,6 +194,9 @@ public class Tfc3Backend implements WorldBackend {
 
   @Override
   public float climateTemperature(float mapTemperature) {
+    if (tfc4Climate) {
+      return mapTemperature;
+    }
     final int last = TFC4_TEMPERATURES.length - 1;
     if (mapTemperature <= TFC4_TEMPERATURES[0]) {
       return mapTemperature + TFC3_TEMPERATURES[0] - TFC4_TEMPERATURES[0];

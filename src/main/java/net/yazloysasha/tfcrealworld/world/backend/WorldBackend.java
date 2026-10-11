@@ -6,7 +6,9 @@ import net.dries007.tfc.world.layer.framework.AreaContext;
 import net.dries007.tfc.world.layer.framework.AreaFactory;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.yazloysasha.tfcrealworld.world.surface.FrozenWaterSurfaceBuilder;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * What the world generator in use offers beyond TFC 3: its biome layer ids
@@ -120,6 +122,12 @@ public interface WorldBackend {
    */
   default boolean freezesAllOpenWater() {
     return false;
+  }
+
+  /** The generator's sea ice and iceberg routine, where it freezes all water. */
+  @Nullable
+  default FrozenWaterSurfaceBuilder.Ice openWaterIce(long seed) {
+    return null;
   }
 
   /** Whether hotspots are a point field with biomes of their own. */

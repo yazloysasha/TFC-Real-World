@@ -1,5 +1,6 @@
 package net.yazloysasha.tfcrealworld.world.surface;
 
+import java.util.function.LongFunction;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.world.surface.SurfaceBuilderContext;
 import net.dries007.tfc.world.surface.builder.SurfaceBuilder;
@@ -27,6 +28,33 @@ public final class FrozenWaterSurfaceBuilder implements SurfaceBuilder {
       int oceanFloorY,
       int seaLevel
     );
+  }
+
+  /**
+   * The generator's routine, made once per world seed. River surfaces ask
+   * a biome for its surface builder in every column, and the routine's
+   * iceberg noises are too costly to make that often.
+   */
+  public static final class IceBySeed {
+
+    private record Made(long seed, Ice ice) {}
+
+    private final LongFunction<Ice> factory;
+
+    private volatile Made made;
+
+    public IceBySeed(LongFunction<Ice> factory) {
+      this.factory = factory;
+    }
+
+    public Ice get(long seed) {
+      Made last = made;
+      if (last == null || last.seed() != seed) {
+        last = new Made(seed, factory.apply(seed));
+        made = last;
+      }
+      return last.ice();
+    }
   }
 
   private final SurfaceBuilder surface;

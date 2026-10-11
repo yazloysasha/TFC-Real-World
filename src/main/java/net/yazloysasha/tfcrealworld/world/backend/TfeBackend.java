@@ -12,6 +12,7 @@ import com.newterraearth.tfe.world.layer.NTERiverShoreLayer;
 import com.newterraearth.tfe.world.noise.NTECellular2D;
 import com.newterraearth.tfe.world.region.NTEPointAccess;
 import com.newterraearth.tfe.world.region.NTERegionGeneratorAccess;
+import com.newterraearth.tfe.world.surface.ShorelineSurfaceBuilder;
 import java.util.function.IntPredicate;
 import java.util.function.LongSupplier;
 import net.dries007.tfc.world.layer.MoreShoresLayer;
@@ -20,6 +21,8 @@ import net.dries007.tfc.world.layer.framework.AreaContext;
 import net.dries007.tfc.world.layer.framework.AreaFactory;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
+import net.yazloysasha.tfcrealworld.mixin.world.surface.builder.tfe.TfeShorelineSurfaceBuilderAccessor;
+import net.yazloysasha.tfcrealworld.world.surface.FrozenWaterSurfaceBuilder;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 import net.yazloysasha.tfcrealworld.world.volcano.CenteredFeatureAligner;
 
@@ -32,6 +35,20 @@ public final class TfeBackend extends Tfc3Backend {
 
   private static final float STRATOVOLCANO_SPREAD = 0.0021f;
   private static final float SHIELD_CINDER_SPREAD = 0.009f;
+
+  private final FrozenWaterSurfaceBuilder.IceBySeed ice =
+    new FrozenWaterSurfaceBuilder.IceBySeed(seed ->
+      (
+        (TfeShorelineSurfaceBuilderAccessor) ShorelineSurfaceBuilder.OCEAN.apply(
+          seed
+        )
+      )::tfcrealworld$invokeFrozenOceanExtension
+    );
+
+  /** Its climate is TFC 4's: its own TFC 4 seasons. */
+  public TfeBackend() {
+    super(true);
+  }
 
   @Override
   public LongSupplier layerSeeds(long seed) {
@@ -82,12 +99,6 @@ public final class TfeBackend extends Tfc3Backend {
     return TFCLayers.shoreFor(biome);
   }
 
-  /** Its climate is TFC 4's. */
-  @Override
-  public float climateTemperature(float mapTemperature) {
-    return mapTemperature;
-  }
-
   @Override
   public int meltwaterLake() {
     return MELTWATER_LAKE;
@@ -128,6 +139,11 @@ public final class TfeBackend extends Tfc3Backend {
   @Override
   public boolean freezesAllOpenWater() {
     return true;
+  }
+
+  @Override
+  public FrozenWaterSurfaceBuilder.Ice openWaterIce(long seed) {
+    return ice.get(seed);
   }
 
   @Override

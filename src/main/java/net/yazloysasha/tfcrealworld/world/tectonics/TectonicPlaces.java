@@ -115,6 +115,10 @@ public final class TectonicPlaces {
       gridX,
       gridZ
     );
-    return hotspot != null && hotspot.age() != ANCIENT_HOTSPOT ? hotspot : null;
+    return hotspot != null &&
+      hotspot.age() > 0 &&
+      hotspot.age() != ANCIENT_HOTSPOT
+      ? hotspot
+      : null;
   }
 }

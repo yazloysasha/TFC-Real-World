@@ -2,7 +2,6 @@ package net.yazloysasha.tfcrealworld.mixin.world.biome.tfe;
 
 import com.newterraearth.tfe.world.NTEBiomeExtensionAccess;
 import com.newterraearth.tfe.world.NTEBiomeNoise;
-import com.newterraearth.tfe.world.surface.ShorelineSurfaceBuilder;
 import com.newterraearth.tfe.world.volcano.NTECenteredFeatureBlendType;
 import net.dries007.tfc.world.BiomeNoiseSampler;
 import net.dries007.tfc.world.biome.BiomeExtension;
@@ -12,7 +11,6 @@ import net.dries007.tfc.world.surface.builder.SurfaceBuilder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.mixin.world.surface.builder.tfe.TfeShorelineSurfaceBuilderAccessor;
 import net.yazloysasha.tfcrealworld.world.backend.Backends;
 import net.yazloysasha.tfcrealworld.world.surface.FrozenWaterSurfaceBuilder;
 import org.jetbrains.annotations.Nullable;
@@ -82,16 +80,14 @@ public abstract class TfeBiomeExtensionMixin {
   ) {
     if (tfcrealworld$shouldStripCanyonVolcanoes()) {
       tfcrealworld$disableCenteredFeatureBlend();
-      cir.setReturnValue(
-        tfcrealworld$withFrozenWater(
-          NormalSurfaceBuilder.INSTANCE.apply(seed),
-          seed
-        )
-      );
+      cir.setReturnValue(NormalSurfaceBuilder.INSTANCE.apply(seed));
     }
   }
 
-  /** A head inject that returned skips this: it wraps its own builder. */
+  /**
+   * Water freezes over, with icebergs, in every biome where the sea does.
+   * A meltwater lake is open water by its nature.
+   */
   @Inject(
     method = "createSurfaceBuilder",
     at = @At("RETURN"),
@@ -101,34 +97,14 @@ public abstract class TfeBiomeExtensionMixin {
     long seed,
     CallbackInfoReturnable<SurfaceBuilder> cir
   ) {
-    cir.setReturnValue(
-      tfcrealworld$withFrozenWater(cir.getReturnValue(), seed)
+    final FrozenWaterSurfaceBuilder.Ice ice = Backends.current().openWaterIce(
+      seed
     );
-  }
-
-  /**
-   * Water freezes over, with icebergs, in every biome where the sea does.
-   * A meltwater lake is open water by its nature.
-   */
-  @Unique
-  private SurfaceBuilder tfcrealworld$withFrozenWater(
-    SurfaceBuilder surface,
-    long seed
-  ) {
-    if (
-      !Backends.current().freezesAllOpenWater() ||
-      key.location().getPath().equals("meltwater_lake")
-    ) {
-      return surface;
-    }
-    final TfeShorelineSurfaceBuilderAccessor ice =
-      (TfeShorelineSurfaceBuilderAccessor) ShorelineSurfaceBuilder.OCEAN.apply(
-        seed
+    if (ice != null && !(key.location().getPath().equals("meltwater_lake"))) {
+      cir.setReturnValue(
+        new FrozenWaterSurfaceBuilder(cir.getReturnValue(), ice)
       );
-    return new FrozenWaterSurfaceBuilder(
-      surface,
-      ice::tfcrealworld$invokeFrozenOceanExtension
-    );
+    }
   }
 
   @Unique
