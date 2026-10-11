@@ -126,6 +126,11 @@ public final class TfeBackend extends Tfc3Backend {
   }
 
   @Override
+  public boolean freezesAllOpenWater() {
+    return true;
+  }
+
+  @Override
   public boolean hasHotspots() {
     return true;
   }

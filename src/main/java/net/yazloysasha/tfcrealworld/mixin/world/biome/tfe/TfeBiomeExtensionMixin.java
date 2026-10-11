@@ -11,6 +11,8 @@ import net.dries007.tfc.world.surface.builder.SurfaceBuilder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.world.backend.Backends;
+import net.yazloysasha.tfcrealworld.world.surface.tfe.TfeFrozenWaterSurfaceBuilder;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -78,8 +80,46 @@ public abstract class TfeBiomeExtensionMixin {
   ) {
     if (tfcrealworld$shouldStripCanyonVolcanoes()) {
       tfcrealworld$disableCenteredFeatureBlend();
-      cir.setReturnValue(NormalSurfaceBuilder.INSTANCE.apply(seed));
+      cir.setReturnValue(
+        tfcrealworld$withFrozenWater(
+          NormalSurfaceBuilder.INSTANCE.apply(seed),
+          seed
+        )
+      );
     }
+  }
+
+  /** A head inject that returned skips this: it wraps its own builder. */
+  @Inject(
+    method = "createSurfaceBuilder",
+    at = @At("RETURN"),
+    cancellable = true
+  )
+  private void tfcrealworld$frozenWater(
+    long seed,
+    CallbackInfoReturnable<SurfaceBuilder> cir
+  ) {
+    cir.setReturnValue(
+      tfcrealworld$withFrozenWater(cir.getReturnValue(), seed)
+    );
+  }
+
+  /**
+   * Water freezes over, with icebergs, in every biome where the sea does.
+   * A meltwater lake is open water by its nature.
+   */
+  @Unique
+  private SurfaceBuilder tfcrealworld$withFrozenWater(
+    SurfaceBuilder surface,
+    long seed
+  ) {
+    if (
+      !Backends.current().freezesAllOpenWater() ||
+      key.location().getPath().equals("meltwater_lake")
+    ) {
+      return surface;
+    }
+    return new TfeFrozenWaterSurfaceBuilder(surface, seed);
   }
 
   @Unique

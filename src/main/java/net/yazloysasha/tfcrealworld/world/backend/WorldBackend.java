@@ -114,6 +114,14 @@ public interface WorldBackend {
     return false;
   }
 
+  /**
+   * Whether the generator's sea ice and icebergs are laid on all open water
+   * rather than only in the biomes of its shore and ocean surface.
+   */
+  default boolean freezesAllOpenWater() {
+    return false;
+  }
+
   /** Whether hotspots are a point field with biomes of their own. */
   default boolean hasHotspots() {
     return false;
