@@ -2,6 +2,7 @@ package net.yazloysasha.tfcrealworld.mixin.world.biome.tfe;
 
 import com.newterraearth.tfe.world.NTEBiomeExtensionAccess;
 import com.newterraearth.tfe.world.NTEBiomeNoise;
+import com.newterraearth.tfe.world.surface.ShorelineSurfaceBuilder;
 import com.newterraearth.tfe.world.volcano.NTECenteredFeatureBlendType;
 import net.dries007.tfc.world.BiomeNoiseSampler;
 import net.dries007.tfc.world.biome.BiomeExtension;
@@ -11,8 +12,9 @@ import net.dries007.tfc.world.surface.builder.SurfaceBuilder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.mixin.world.surface.builder.tfe.TfeShorelineSurfaceBuilderAccessor;
 import net.yazloysasha.tfcrealworld.world.backend.Backends;
-import net.yazloysasha.tfcrealworld.world.surface.tfe.TfeFrozenWaterSurfaceBuilder;
+import net.yazloysasha.tfcrealworld.world.surface.FrozenWaterSurfaceBuilder;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -119,7 +121,14 @@ public abstract class TfeBiomeExtensionMixin {
     ) {
       return surface;
     }
-    return new TfeFrozenWaterSurfaceBuilder(surface, seed);
+    final TfeShorelineSurfaceBuilderAccessor ice =
+      (TfeShorelineSurfaceBuilderAccessor) ShorelineSurfaceBuilder.OCEAN.apply(
+        seed
+      );
+    return new FrozenWaterSurfaceBuilder(
+      surface,
+      ice::tfcrealworld$invokeFrozenOceanExtension
+    );
   }
 
   @Unique

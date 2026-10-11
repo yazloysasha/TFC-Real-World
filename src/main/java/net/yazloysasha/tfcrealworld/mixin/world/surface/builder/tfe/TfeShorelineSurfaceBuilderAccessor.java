@@ -1,4 +1,4 @@
-package net.yazloysasha.tfcrealworld.mixin.world.surface.tfe;
+package net.yazloysasha.tfcrealworld.mixin.world.surface.builder.tfe;
 
 import com.newterraearth.tfe.world.surface.ShorelineSurfaceBuilder;
 import net.dries007.tfc.world.surface.SurfaceBuilderContext;

@@ -24,6 +24,11 @@ import su.terrafirmagreg.core.world.new_ow_wg.region.IRegionPoint;
 public final class TfgBackend extends Tfc3Backend {
 
   @Override
+  public boolean freezesAllOpenWater() {
+    return true;
+  }
+
+  @Override
   public BiomeExtension biome(int id) {
     return TFGLayers.getFromLayerId(id);
   }

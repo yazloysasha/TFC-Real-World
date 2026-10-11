@@ -9,6 +9,9 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.yazloysasha.tfcrealworld.compat.TfgCompat;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.mixin.world.surface.builder.tfg.TfgShoreAndOceanSurfaceBuilderAccessor;
+import net.yazloysasha.tfcrealworld.world.backend.Backends;
+import net.yazloysasha.tfcrealworld.world.surface.FrozenWaterSurfaceBuilder;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,7 +20,9 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import su.terrafirmagreg.core.world.new_ow_wg.biome.TFGBiomes;
 import su.terrafirmagreg.core.world.new_ow_wg.noise.TFGBiomeNoise;
+import su.terrafirmagreg.core.world.new_ow_wg.surface_builders.ShoreAndOceanSurfaceBuilder;
 
 /**
  * TFG canyons still carry cinder cones. Same option as 1.21.1
@@ -92,7 +97,52 @@ public abstract class TfgBiomeExtensionMixin {
     CallbackInfoReturnable<SurfaceBuilder> cir
   ) {
     if (tfcrealworld$shouldStripCanyonVolcanoes()) {
-      cir.setReturnValue(NormalSurfaceBuilder.INSTANCE.apply(seed));
+      cir.setReturnValue(
+        tfcrealworld$withFrozenWater(
+          NormalSurfaceBuilder.INSTANCE.apply(seed),
+          seed
+        )
+      );
     }
+  }
+
+  /** A head inject that returned skips this: it wraps its own builder. */
+  @Inject(
+    method = "createSurfaceBuilder",
+    at = @At("RETURN"),
+    cancellable = true
+  )
+  private void tfcrealworld$frozenWater(
+    long seed,
+    CallbackInfoReturnable<SurfaceBuilder> cir
+  ) {
+    cir.setReturnValue(
+      tfcrealworld$withFrozenWater(cir.getReturnValue(), seed)
+    );
+  }
+
+  /**
+   * Water freezes over, with icebergs, in every biome where the sea does.
+   * A meltwater lake is open water by its nature.
+   */
+  @Unique
+  private SurfaceBuilder tfcrealworld$withFrozenWater(
+    SurfaceBuilder surface,
+    long seed
+  ) {
+    if (
+      !Backends.current().freezesAllOpenWater() ||
+      (Object) this == TFGBiomes.MELTWATER_LAKE
+    ) {
+      return surface;
+    }
+    final TfgShoreAndOceanSurfaceBuilderAccessor ice =
+      (TfgShoreAndOceanSurfaceBuilderAccessor) ShoreAndOceanSurfaceBuilder.OCEAN.apply(
+        seed
+      );
+    return new FrozenWaterSurfaceBuilder(
+      surface,
+      ice::tfcrealworld$invokeFrozenOceanExtension
+    );
   }
 }

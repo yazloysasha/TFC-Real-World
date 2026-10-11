@@ -50,8 +50,10 @@
     "world.region.tfg.TfgChooseBiomesMixin",
     "world.region.tfg.TfgAnnotateDistanceToOceanMixin",
     "world.region.tfg.TfgAnnotateDistanceToWestCoastMixin",
-    "world.surface.tfe.TfeShorelineSurfaceBuilderAccessor",
-    "world.surface.tfe.TfeShorelineSurfaceBuilderMixin",
+    "world.surface.builder.tfe.TfeShorelineSurfaceBuilderAccessor",
+    "world.surface.builder.tfe.TfeShorelineSurfaceBuilderMixin",
+    "world.surface.builder.tfg.TfgShoreAndOceanSurfaceBuilderAccessor",
+    "world.surface.builder.tfg.TfgShoreAndOceanSurfaceBuilderMixin",
     "firmaciv.AbstractNavItemMixin",
     "tfg.TfgCustomSpawnHelperMixin"
   ],

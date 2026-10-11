@@ -1,33 +1,40 @@
-package net.yazloysasha.tfcrealworld.world.surface.tfe;
+package net.yazloysasha.tfcrealworld.world.surface;
 
-import com.newterraearth.tfe.world.surface.ShorelineSurfaceBuilder;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.world.surface.SurfaceBuilderContext;
 import net.dries007.tfc.world.surface.builder.SurfaceBuilder;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.yazloysasha.tfcrealworld.mixin.world.surface.tfe.TfeShorelineSurfaceBuilderAccessor;
 
 /**
- * TerraFirmaEarth lays sea ice and icebergs where the warmest month stays
- * near freezing, but only in the biomes of its shore and ocean surface
- * builder: a lake, a river or a salt marsh in the same cold stays open
- * water, and an iceberg ends in a straight wall at the biome's border. This
- * builds a biome's own surface and then runs the generator's routine on the
- * open water at sea level, in every biome alike, with fresh ice on fresh
- * water.
+ * TerraFirmaEarth and TerraFirmaGreg lay sea ice and icebergs where the
+ * warmest month stays near freezing, but only in the biomes of their shore
+ * and ocean surface builder: a lake, a river or a salt marsh in the same cold
+ * stays open water, and an iceberg ends in a straight wall at the biome's
+ * border. This builds a biome's own surface and then runs the generator's
+ * routine on the open water at sea level, in every biome alike, with fresh
+ * ice on fresh water.
  */
-public final class TfeFrozenWaterSurfaceBuilder implements SurfaceBuilder {
+public final class FrozenWaterSurfaceBuilder implements SurfaceBuilder {
+
+  /** The generator's sea ice and iceberg routine for one column. */
+  @FunctionalInterface
+  public interface Ice {
+    void freeze(
+      SurfaceBuilderContext context,
+      int startY,
+      int endY,
+      int oceanFloorY,
+      int seaLevel
+    );
+  }
 
   private final SurfaceBuilder surface;
-  private final TfeShorelineSurfaceBuilderAccessor ice;
+  private final Ice ice;
 
-  public TfeFrozenWaterSurfaceBuilder(SurfaceBuilder surface, long seed) {
+  public FrozenWaterSurfaceBuilder(SurfaceBuilder surface, Ice ice) {
     this.surface = surface;
-    this.ice =
-      (TfeShorelineSurfaceBuilderAccessor) ShorelineSurfaceBuilder.OCEAN.apply(
-        seed
-      );
+    this.ice = ice;
   }
 
   @Override
@@ -55,7 +62,7 @@ public final class TfeFrozenWaterSurfaceBuilder implements SurfaceBuilder {
     ) {
       return;
     }
-    ice.tfcrealworld$invokeFrozenOceanExtension(
+    ice.freeze(
       context,
       startY,
       endY,
