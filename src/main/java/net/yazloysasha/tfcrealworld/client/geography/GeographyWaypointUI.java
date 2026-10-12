@@ -5,12 +5,15 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
+import net.minecraft.world.phys.Vec3;
 import net.yazloysasha.tfcrealworld.client.ClientVisitedWaypoints;
+import net.yazloysasha.tfcrealworld.compat.FirmaCivCompat;
 import net.yazloysasha.tfcrealworld.util.geography.GeographyNode;
 import org.jetbrains.annotations.Nullable;
 
@@ -99,7 +102,9 @@ public final class GeographyWaypointUI {
   }
 
   public void copyCoords(Minecraft minecraft, PlottedWaypoint w) {
-    String coords = w.x() + " ~ " + w.z();
+    String coords = FirmaCivCompat.isModPresent()
+      ? geographic(w)
+      : w.x() + " ~ " + w.z();
     if (minecraft != null) {
       minecraft.keyboardHandler.setClipboard(coords);
       copiedWaypointRef = w.node().ref();
@@ -199,10 +204,13 @@ public final class GeographyWaypointUI {
       );
     }
     lines.add(
-      Component.translatable(
-        "tfc_real_world.geography.tooltip.xz",
-        w.x(),
-        w.z()
+      (FirmaCivCompat.isModPresent()
+        ? Component.literal(geographic(w))
+        : Component.translatable(
+            "tfc_real_world.geography.tooltip.xz",
+            w.x(),
+            w.z()
+          )
       ).withStyle(ChatFormatting.YELLOW)
     );
     if (showingCopiedFeedback(w)) {
@@ -219,5 +227,23 @@ public final class GeographyWaypointUI {
       );
     }
     return lines;
+  }
+
+  /**
+   * Firma: Civilization hides block coordinates, so the map gives the place
+   * as its navigation tools do, e.g. 55.75°N 37.62°E.
+   */
+  private static String geographic(PlottedWaypoint w) {
+    final double[] nav = FirmaCivCompat.getNavLocation(
+      new Vec3(w.x(), 0, w.z())
+    );
+    return String.format(
+      Locale.ROOT,
+      "%.2f°%s %.2f°%s",
+      Math.abs(nav[0]),
+      nav[0] < 0 ? "S" : "N",
+      Math.abs(nav[1]),
+      nav[1] < 0 ? "W" : "E"
+    );
   }
 }

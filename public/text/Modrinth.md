@@ -252,10 +252,9 @@ A river is a chain of edges that share vertices, running from source to drain. K
 
 ### 🤝 Compatibility
 
-- Minecraft 1.20.1 with Forge 47.1.3+ and [TerraFirmaCraft](https://modrinth.com/mod/terrafirmacraft) 3.2.6+ (required).
-- [TerraFirmaGreg Modern](https://www.curseforge.com/minecraft/modpacks/terrafirmagreg-modern) (TerraFirmaGreg Core 0.9.15+, including 0.9.24+ with its own TFC), since v3.1.1.
-- [TerraFirmaEarth](https://www.curseforge.com/minecraft/mc-mods/terrafirmaearth) 2.1.0+, since v3.1.3.
-- [Auroras](https://modrinth.com/mod/auroras), [TFC Caelum](https://modrinth.com/mod/tfc-caelum) and [Firma: Civilization](https://modrinth.com/mod/firmaciv), since v3.1.2.
+- [TerraFirmaGreg Modern](https://www.curseforge.com/minecraft/modpacks/terrafirmagreg-modern) on Minecraft 1.20.1, since v3.1.1.
+- [Auroras](https://modrinth.com/mod/auroras), [TFC Caelum](https://modrinth.com/mod/tfc-caelum) and [Firma: Civilization](https://modrinth.com/mod/firmaciv), since v2.1.2 / v3.1.2 / v4.1.2.
+- [TerraFirmaEarth](https://www.curseforge.com/minecraft/mc-mods/terrafirmaearth) on Minecraft 1.20.1, since v3.1.3.
 
 ---
 
