@@ -75,14 +75,14 @@ TFC's original coordinate-based spawning options (used in `CLASSIC` mode):
 
 #### 🌿 Biome Modifications
 
-- **Canyons Not Volcanic**: When enabled (default), removes volcanic rock and features from Canyon and Doline Canyon biomes, making them purely erosional landscapes.
+- **Canyons Not Volcanic**: When enabled (default), removes volcanic rock and features from Canyon and Doline Canyon biomes, making them purely erosional landscapes (on 1.20.1 with TerraFirmaEarth or TerraFirmaGreg only; with TerraFirmaGreg set in the config file).
 
 #### ⛰️ TFC World Parameters
 
 Fine-tune familiar TFC world generation values.
 
 - **Flat Bedrock**: If enabled, the bottom of the world is a single, flat bedrock layer.
-- **Finite Continents**: If enabled, the world has a limited number of continents surrounded by a vast, deep ocean (1.21.1 only).
+- **Finite Continents**: If enabled, the world has a limited number of continents surrounded by a vast, deep ocean (1.21.1, or 1.20.1 with TerraFirmaEarth).
 - **Continentalness**: Controls landmass size. Lower values = more fragmented land and islands. Higher values = larger, solid continents (if continents from map are disabled).
 - **Grass Density**: Affects the amount of grass coverage globally (1.20.1+).
 - **Temperature Constant**: A number representing the temperature for an entire world, where -1.0 is polar and 1.0 is tropical (if climate from map is disabled, 1.20.1+).
