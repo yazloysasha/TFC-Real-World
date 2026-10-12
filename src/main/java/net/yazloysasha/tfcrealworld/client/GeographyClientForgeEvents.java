@@ -1,8 +1,5 @@
 package net.yazloysasha.tfcrealworld.client;
 
-import net.dries007.tfc.client.screen.CalendarScreen;
-import net.dries007.tfc.client.screen.ClimateScreen;
-import net.dries007.tfc.client.screen.NutritionScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
@@ -12,6 +9,7 @@ import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
+import net.yazloysasha.tfcrealworld.client.tab.InventoryTabs;
 import net.yazloysasha.tfcrealworld.client.widget.GeographyInventoryTabButton;
 
 @Mod.EventBusSubscriber(modid = TFCRealWorld.MOD_ID, value = Dist.CLIENT)
@@ -33,13 +31,9 @@ public final class GeographyClientForgeEvents {
       return;
     }
     if (
-      screen instanceof ClimateScreen ||
-      screen instanceof NutritionScreen ||
-      screen instanceof CalendarScreen
+      screen instanceof AbstractContainerScreen<?> container &&
+      InventoryTabs.CURRENT.isTabScreen(screen)
     ) {
-      AbstractContainerScreen<?> container = (AbstractContainerScreen<
-        ?
-      >) screen;
       event.addListener(
         new GeographyInventoryTabButton(
           container.getGuiLeft(),

@@ -4,15 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import net.dries007.tfc.client.screen.button.PlayerInventoryTabButton;
-import net.dries007.tfc.compat.patchouli.PatchouliIntegration;
-import net.dries007.tfc.network.SwitchInventoryTabPacket;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.network.PacketDistributor;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.client.GeographySessionState;
 import net.yazloysasha.tfcrealworld.client.GeographyUI;
@@ -21,6 +16,7 @@ import net.yazloysasha.tfcrealworld.client.geography.GeographyMapPainter;
 import net.yazloysasha.tfcrealworld.client.geography.GeographyMapViewport;
 import net.yazloysasha.tfcrealworld.client.geography.GeographyWaypointUI;
 import net.yazloysasha.tfcrealworld.client.geography.PlottedWaypoint;
+import net.yazloysasha.tfcrealworld.client.tab.InventoryTabs;
 import net.yazloysasha.tfcrealworld.client.widget.GeographyInventoryTabButton;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.geography.GeographyKind;
@@ -90,73 +86,14 @@ public class GeographyScreen extends Screen {
     // hang on the right edge of the panel.
     final int tabsLeft =
       leftPos + PANEL_WIDTH - GeographyInventoryTabButton.TAB_X_IN;
-    addRenderableWidget(
-      tab(tabsLeft, 4, 0, 0, button -> {
-        if (minecraft != null && minecraft.player != null) {
-          minecraft.player.containerMenu = minecraft.player.inventoryMenu;
-          minecraft.setScreen(new InventoryScreen(minecraft.player));
-          switchTab(SwitchInventoryTabPacket.Type.INVENTORY);
-        }
-      })
-    );
-    addRenderableWidget(
-      tab(tabsLeft, 27, 32, 0, SwitchInventoryTabPacket.Type.CALENDAR)
-    );
-    addRenderableWidget(
-      tab(tabsLeft, 50, 64, 0, SwitchInventoryTabPacket.Type.NUTRITION)
-    );
-    addRenderableWidget(
-      tab(tabsLeft, 73, 96, 0, SwitchInventoryTabPacket.Type.CLIMATE)
-    );
-    PatchouliIntegration.ifEnabled(() ->
-      addRenderableWidget(
-        tab(tabsLeft, 96, 0, 32, SwitchInventoryTabPacket.Type.BOOK)
-      )
-    );
+    InventoryTabs.CURRENT.tfcTabs(tabsLeft, topPos, () -> {
+      if (minecraft != null && minecraft.player != null) {
+        minecraft.player.containerMenu = minecraft.player.inventoryMenu;
+        minecraft.setScreen(new InventoryScreen(minecraft.player));
+      }
+    }).forEach(this::addRenderableWidget);
     addRenderableWidget(
       new GeographyInventoryTabButton(tabsLeft, topPos, true, b -> {})
-    );
-  }
-
-  /** One of TFC's own tabs, as TFC hangs them beside the inventory. */
-  private PlayerInventoryTabButton tab(
-    int tabsLeft,
-    int y,
-    int iconU,
-    int iconV,
-    SwitchInventoryTabPacket.Type type
-  ) {
-    return tab(tabsLeft, y, iconU, iconV, button -> switchTab(type));
-  }
-
-  private PlayerInventoryTabButton tab(
-    int tabsLeft,
-    int y,
-    int iconU,
-    int iconV,
-    Button.OnPress onPress
-  ) {
-    return new PlayerInventoryTabButton(
-      tabsLeft,
-      topPos,
-      GeographyInventoryTabButton.TAB_X_IN,
-      y,
-      20,
-      22,
-      128,
-      0,
-      1,
-      3,
-      iconU,
-      iconV,
-      onPress
-    );
-  }
-
-  private static void switchTab(SwitchInventoryTabPacket.Type type) {
-    net.dries007.tfc.network.PacketHandler.send(
-      PacketDistributor.SERVER.noArg(),
-      new SwitchInventoryTabPacket(type)
     );
   }
 

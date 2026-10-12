@@ -9,6 +9,7 @@ import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
+import net.yazloysasha.tfcrealworld.client.tab.InventoryTabs;
 import net.yazloysasha.tfcrealworld.network.OpenGeographyTabPacket;
 import net.yazloysasha.tfcrealworld.network.PacketHandler;
 
@@ -21,13 +22,7 @@ public class GeographyInventoryTabButton extends Button {
   /** Where TFC's tabs hang on the right edge of a 176-wide inventory. */
   public static final int TAB_X_IN = 176;
   public static final int TAB_Y_IN = 119;
-  /** TFC's chrome of the open tab is wider and starts further left. */
-  private static final int ACTIVE_X_IN = TAB_X_IN - 3;
-  private static final int TAB_WIDTH = 20;
-  private static final int ACTIVE_TAB_WIDTH = 23;
   private static final int TAB_HEIGHT = 22;
-  private static final int TEXTURE_U = 128;
-  private static final int ACTIVE_TEXTURE_U = 148;
 
   private static final ResourceLocation GLOBE_ICON = TFCRealWorld.id(
     "textures/item/globe.png"
@@ -38,7 +33,7 @@ public class GeographyInventoryTabButton extends Button {
   private int prevGuiLeft;
   private int prevGuiTop;
   private final boolean active;
-  private final int textureU;
+  private final InventoryTabs.TabChrome chrome;
   private Runnable tickCallback = () -> {};
 
   public GeographyInventoryTabButton(int guiLeft, int guiTop) {
@@ -53,10 +48,26 @@ public class GeographyInventoryTabButton extends Button {
     boolean active,
     OnPress onPress
   ) {
+    this(
+      guiLeft,
+      guiTop,
+      active,
+      InventoryTabs.CURRENT.chrome(active),
+      onPress
+    );
+  }
+
+  private GeographyInventoryTabButton(
+    int guiLeft,
+    int guiTop,
+    boolean active,
+    InventoryTabs.TabChrome chrome,
+    OnPress onPress
+  ) {
     super(
-      guiLeft + (active ? ACTIVE_X_IN : TAB_X_IN),
+      guiLeft + chrome.xIn(),
       guiTop + TAB_Y_IN,
-      active ? ACTIVE_TAB_WIDTH : TAB_WIDTH,
+      chrome.width(),
       TAB_HEIGHT,
       Component.empty(),
       onPress,
@@ -64,8 +75,8 @@ public class GeographyInventoryTabButton extends Button {
     );
     this.prevGuiLeft = guiLeft;
     this.prevGuiTop = guiTop;
-    this.textureU = active ? ACTIVE_TEXTURE_U : TEXTURE_U;
-    this.iconX = getX() + 1;
+    this.chrome = chrome;
+    this.iconX = getX() + chrome.iconX();
     this.iconY = getY() + 3;
     this.active = active;
   }
@@ -104,8 +115,8 @@ public class GeographyInventoryTabButton extends Button {
       getX(),
       getY(),
       0,
-      (float) textureU,
-      0.0F,
+      (float) chrome.textureU(),
+      (float) chrome.textureV(),
       width,
       height,
       256,
