@@ -1,6 +1,6 @@
 # TFC: Real World 🌍
 
-<p align="center"><b>🎉 The Ultra-Realistic Update is here!</b> Real rivers, lakes and islands, a detailed coastline, and a world map with 400+ waypoints and advancements since v4.2.0 on Minecraft 1.21.1 and v3.2.0 on Minecraft 1.20.1 (Minecraft 1.18.2 will get it later).</p>
+<p align="center"><b>🎉 The Ultra-Realistic Update is here!</b> Real rivers, lakes and islands, a detailed coastline, and a world map with 400+ waypoints and advancements since v4.2.0 on Minecraft 1.21.1 (older Minecraft versions will get it later).</p>
 
 ### Survive on the Real Earth
 
@@ -14,14 +14,14 @@ Sail down the Nile to its delta. Paddle up the Amazon through the rainforest. Cr
 - **A Detailed Coastline & Real Islands:** The fjords of Norway, the boot of Italy, the thousand islands of Indonesia - bays, peninsulas and inland seas drawn as on a real map, islands from Britain and Japan down to small ocean islets, and atolls where coral reefs actually grow. 🏝️
 - **Real Mountains & Volcanoes:** The Andes and the Alps rise where plates collide, rift valleys open where they pull apart, and Iceland and the Ring of Fire get their volcanoes. 🏔️🌋
 - **Real Climates:** From the jungles of the Congo through the savannas and the Gobi to the Siberian taiga and the ice of Antarctica - each with TFC's authentic seasons. ☀️❄️
-- **Start Wherever You Like:** Type in any latitude and longitude and begin your survival exactly there - in your home town, for example, at the foot of Kilimanjaro or on a Caribbean island. 📍 In TerraFirmaGreg the Real World spawn option starts you at your geographic spawn center, and its climate options (polar, tundra and the rest) take you to a real place with that climate. 📍
+- **Start Wherever You Like:** Type in any latitude and longitude and begin your survival exactly there - in your home town, for example, at the foot of Kilimanjaro or on a Caribbean island. 📍
 - **True to Size:** An equal-area map keeps every land its real size - Greenland is not bigger than Africa - on a world 80,000 by 40,000 blocks across, and you can make it larger or smaller. 📐
 - **Conquer the Whole Planet:** 400+ real cities and settlements, from national capitals to remote island villages and polar stations, are waiting on the geography map in your inventory, each with its own advancement. Reach Paris, Cairo, Tokyo, Canberra, Cape Town... Can you set foot on every one of them? 🧭🏆
 - **Or Bring Your Own World:** Play the whole Earth, the Old World or the New World alone - or drop in your own maps and play on any planet you can draw. 🪐
 
 **It is still TFC.** The mod only tells TerraFirmaCraft what kind of place every spot on Earth is; TFC builds the biomes, the rocks and the seasons itself.
 
-![Altitude, biomes and climate of the generated world](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.20.x/public/img/collage.png)
+![Altitude, biomes and climate of the generated world](https://raw.githubusercontent.com/yazloysasha/TFC-Real-World/refs/heads/1.21.x/public/img/collage.png)
 
 ---
 
@@ -35,12 +35,12 @@ The mod works by replacing TFC's default noise generators with data sampled from
 <ul>
 <li><b>Continents, Islands &amp; Lakes:</b> A world map shapes landmasses, oceans, islands down to single islets, and fresh and salt lakes.</li>
 <li><b>Tectonics &amp; Relief:</b> A tectonics map tells TFC what kind of place every region is: lowland or mountain, rift or collision belt, volcanic arc, coral reef sea. TFC then picks the biome itself, so the Himalayas become collisional mountains, East Africa gets rift valleys and fjord coasts get oceanic mountains.</li>
-<li><b>Volcanoes:</b> Hotspot shield volcanoes stand at their real locations, from active to ancient (with TerraFirmaEarth or TerraFirmaGreg; TFC 3 itself has no shield volcanoes).</li>
+<li><b>Volcanoes:</b> Hotspot shield volcanoes stand at their real locations, from active to ancient.</li>
 <li><b>Rivers:</b> The real river network of the profile, with widths from real discharge and deltas from real delta data. TFC carves, bends and floods them as its own rivers.</li>
 <li><b>Climate System:</b> Temperature, rainfall and rainfall-seasonality maps give every place its real climate zone (tropical, arid, temperate, continental, polar), which TFC's existing systems use to create biomes.</li>
 <li><b>Geography Map &amp; Advancements:</b> A new inventory tab shows the world map with your position and the profile's waypoints, filtered by continent, region and subregion. Coming close to a waypoint discovers it and grants its advancement.</li>
 <li><b>Non-Intrusive:</b> No new blocks, items, or mobs. Uses Mixins to feed TFC's own world generation with map data.</li>
-<li><b>Enhanced Canyon Biomes:</b> Optional config to make canyon biomes purely erosional, removing volcanic features (with TerraFirmaEarth or TerraFirmaGreg).</li>
+<li><b>Enhanced Canyon Biomes:</b> Optional config to make canyon biomes purely erosional, removing volcanic features (1.21.1 only).</li>
 </ul>
 
 </div>
@@ -81,7 +81,7 @@ TFC's original coordinate-based spawning options (used in <code>CLASSIC</code> m
 <b>🌿 Biome Modifications</b><br>
 
 <ul>
-<li><b>Canyons Not Volcanic</b>: When enabled (default), removes volcanic rock and features from Canyon and Doline Canyon biomes, making them purely erosional landscapes. Works with TerraFirmaEarth or TerraFirmaGreg; with TerraFirmaGreg it is set in the config file.</li>
+<li><b>Canyons Not Volcanic</b>: When enabled (default), removes volcanic rock and features from Canyon and Doline Canyon biomes, making them purely erosional landscapes (on 1.20.1 with TerraFirmaEarth or TerraFirmaGreg only; with TerraFirmaGreg set in the config file).</li>
 </ul>
 
 <b>⛰️ TFC World Parameters</b><br>
@@ -89,11 +89,11 @@ Fine-tune familiar TFC world generation values.<br>
 
 <ul>
 <li><b>Flat Bedrock</b>: If enabled, the bottom of the world is a single, flat bedrock layer.</li>
-<li><b>Finite Continents</b>: If enabled, the world has a limited number of continents surrounded by a vast, deep ocean (TerraFirmaEarth only).</li>
+<li><b>Finite Continents</b>: If enabled, the world has a limited number of continents surrounded by a vast, deep ocean (1.21.1, or 1.20.1 with TerraFirmaEarth).</li>
 <li><b>Continentalness</b>: Controls landmass size. Lower values = more fragmented land and islands. Higher values = larger, solid continents (if continents from map are disabled).</li>
-<li><b>Grass Density</b>: Affects the amount of grass coverage globally.</li>
-<li><b>Temperature Constant</b>: A number representing the temperature for an entire world, where -1.0 is polar and 1.0 is tropical (if climate from map is disabled).</li>
-<li><b>Rainfall Constant</b>: A number representing the rainfall for an entire world, where -1.0 is arid and 1.0 is tropical (if climate from map is disabled).</li>
+<li><b>Grass Density</b>: Affects the amount of grass coverage globally (1.20.1+).</li>
+<li><b>Temperature Constant</b>: A number representing the temperature for an entire world, where -1.0 is polar and 1.0 is tropical (if climate from map is disabled, 1.20.1+).</li>
+<li><b>Rainfall Constant</b>: A number representing the rainfall for an entire world, where -1.0 is arid and 1.0 is tropical (if climate from map is disabled, 1.20.1+).</li>
 <li><b>Temperature Scale</b>: The distance (in blocks) between the hottest and coldest climate zones (if climate from map is disabled).</li>
 <li><b>Rainfall Scale</b>: The distance (in blocks) between the wettest and driest climate zones (if climate from map is disabled).</li>
 </ul>
@@ -243,7 +243,7 @@ TFC derives the climate zone from these values (its Köppen classification), so 
 
 A river is a chain of edges that share vertices, running from source to drain. Keep edges about 2.7 region cells long (345 blocks): TFC checks every edge near a column, so many short edges slow generation down. Rivers flow at sea level, and where an edge runs into the sea or a lake nothing is carved.<br><br>
 
-<b>Ridges (<code>ridges.bin</code>, optional):</b> The axes of the mid-ocean ridges as straight segments. The ocean ridge biome of TerraFirmaEarth raises its crest along them; a profile without the file keeps the biome's own crest, which does not follow the map. TFC 3 and TerraFirmaGreg have no ridge biome and ignore the file. Keep the segments of one ridge in one direction, so its two sides stay the same sides along it. Big-endian binary:
+<b>Ridges (<code>ridges.bin</code>, optional):</b> The axes of the mid-ocean ridges as straight segments. TFC's ocean ridge biome raises its crest along them; a profile without the file keeps TFC's own crest, which does not follow the map. Keep the segments of one ridge in one direction, so its two sides stay the same sides along it. Big-endian binary:
 
 <ul>
 <li><code>"TFRG"</code>, then <code>int</code> version (<code>1</code>).</li>
