@@ -136,9 +136,46 @@ public final class TfgSpawn {
       1,
       Units.blockToGrid(TFCRealWorldConfig.VERTICAL_SCALE.get())
     );
-    int stepX = Math.max(1, extentX / CLIMATE_GRID_SAMPLES);
-    int stepZ = Math.max(1, extentZ / CLIMATE_GRID_SAMPLES);
+    // A small zone, such as polar coasts, can fall between coarse samples:
+    // the grid refines until a sample lands in it.
+    int[] found = null;
+    for (int samples = CLIMATE_GRID_SAMPLES; found == null; samples *= 2) {
+      final int stepX = Math.max(1, extentX / samples);
+      final int stepZ = Math.max(1, extentZ / samples);
+      found = pickClimateCell(
+        generator,
+        condition,
+        extentX,
+        extentZ,
+        stepX,
+        stepZ,
+        random
+      );
+      if (stepX == 1 && stepZ == 1) {
+        break;
+      }
+    }
 
+    if (found == null) {
+      found = new int[] {
+        SpawnCenterHelper.getSpawnCenterX(),
+        SpawnCenterHelper.getSpawnCenterZ(),
+      };
+    }
+    CLIMATE_CENTER.set(new ClimateCache(condition.id(), found));
+    return found;
+  }
+
+  /** A random land cell of the condition's climate on this grid, if any. */
+  private static int[] pickClimateCell(
+    RegionGenerator generator,
+    CustomSpawnCondition condition,
+    int extentX,
+    int extentZ,
+    int stepX,
+    int stepZ,
+    RandomSource random
+  ) {
     int[] found = null;
     int matches = 0;
     for (int gx = -extentX; gx <= extentX; gx += stepX) {
@@ -166,14 +203,6 @@ public final class TfgSpawn {
         matches++;
       }
     }
-
-    if (found == null) {
-      found = new int[] {
-        SpawnCenterHelper.getSpawnCenterX(),
-        SpawnCenterHelper.getSpawnCenterZ(),
-      };
-    }
-    CLIMATE_CENTER.set(new ClimateCache(condition.id(), found));
     return found;
   }
 

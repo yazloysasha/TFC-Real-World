@@ -14,8 +14,21 @@ import net.minecraftforge.network.PacketDistributor;
 /** TFC 3's tabs, also in TerraFirmaGreg before 0.9.24. */
 final class Tfc3InventoryTabs implements InventoryTabs {
 
-  private static final TabChrome INACTIVE = new TabChrome(176, 20, 128, 0, 1);
-  private static final TabChrome ACTIVE = new TabChrome(173, 23, 148, 0, 1);
+  private static final TabChrome INACTIVE = new TabChrome(
+    176,
+    0,
+    20,
+    128,
+    0,
+    1
+  );
+  private static final TabChrome ACTIVE = new TabChrome(173, 0, 23, 148, 0, 1);
+
+  /** On a panel, the tabs hang off its right edge. */
+  @Override
+  public Anchor panelAnchor(int left, int top, int width) {
+    return new Anchor(left + width - INACTIVE.xIn(), top, false);
+  }
 
   @Override
   public boolean isTabScreen(Screen screen) {
@@ -26,7 +39,9 @@ final class Tfc3InventoryTabs implements InventoryTabs {
   }
 
   @Override
-  public List<Button> tfcTabs(int guiLeft, int guiTop, Runnable openInventory) {
+  public List<Button> tfcTabs(Anchor anchor, Runnable openInventory) {
+    final int guiLeft = anchor.guiLeft();
+    final int guiTop = anchor.guiTop();
     final List<Button> tabs = new ArrayList<>();
     tabs.add(
       tab(guiLeft, guiTop, 4, 0, 0, button -> {
@@ -55,7 +70,7 @@ final class Tfc3InventoryTabs implements InventoryTabs {
   }
 
   @Override
-  public TabChrome chrome(boolean active) {
+  public TabChrome chrome(boolean active, boolean detached) {
     return active ? ACTIVE : INACTIVE;
   }
 

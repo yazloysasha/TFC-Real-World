@@ -21,6 +21,14 @@ public final class GeographyClientForgeEvents {
   @SubscribeEvent
   public static void onScreenInit(ScreenEvent.Init.Post event) {
     Screen screen = event.getScreen();
+    final InventoryTabs.Anchor book = InventoryTabs.CURRENT.bookAnchor(
+      screen,
+      event.getListenersList()
+    );
+    if (book != null) {
+      event.addListener(new GeographyInventoryTabButton(book, false));
+      return;
+    }
     if (screen instanceof InventoryScreen inventoryScreen) {
       event.addListener(
         new GeographyInventoryTabButton(

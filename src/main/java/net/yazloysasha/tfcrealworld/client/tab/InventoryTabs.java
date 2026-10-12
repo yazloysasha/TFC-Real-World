@@ -4,6 +4,7 @@ import java.util.List;
 import net.dries007.tfc.client.screen.CalendarScreen;
 import net.dries007.tfc.client.screen.ClimateScreen;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.Screen;
 import org.jetbrains.annotations.Nullable;
 
@@ -34,20 +35,48 @@ public interface InventoryTabs {
     );
   }
 
-  /**
-   * TFC's own tabs, inactive, hung on a screen with this corner. The
-   * inventory tab runs {@code openInventory} before switching back.
-   */
-  List<Button> tfcTabs(int guiLeft, int guiTop, Runnable openInventory);
-
-  /** How TFC draws a tab, open or not. */
-  TabChrome chrome(boolean active);
+  /** Where TFC's tabs hang on a book-sized panel with this corner. */
+  Anchor panelAnchor(int left, int top, int width);
 
   /**
-   * A tab's place right of a 176-wide inventory, its width, its chrome in
-   * TFC's GUI icons, and its icon's offset from the tab's left edge.
+   * Where TFC's tabs hang on this screen if it is a field guide that shows
+   * them, given the screen's widgets.
    */
-  record TabChrome(int xIn, int width, int textureU, int textureV, int iconX) {}
+  @Nullable
+  default Anchor bookAnchor(
+    Screen screen,
+    List<? extends GuiEventListener> widgets
+  ) {
+    return null;
+  }
+
+  /**
+   * TFC's own tabs, inactive. The inventory tab runs {@code openInventory}
+   * before switching back.
+   */
+  List<Button> tfcTabs(Anchor anchor, Runnable openInventory);
+
+  /** How TFC draws a tab, open or not, beside a screen or apart from it. */
+  TabChrome chrome(boolean active, boolean detached);
+
+  /**
+   * The corner TFC hangs its tabs from, as if of a 176-wide inventory, and
+   * whether they hang apart from the screen, as beside a book.
+   */
+  record Anchor(int guiLeft, int guiTop, boolean detached) {}
+
+  /**
+   * A tab's offset from its anchor, its width, its chrome in TFC's GUI
+   * icons, and its icon's offset from the tab's left edge.
+   */
+  record TabChrome(
+    int xIn,
+    int yIn,
+    int width,
+    int textureU,
+    int textureV,
+    int iconX
+  ) {}
 
   @Nullable
   private static Class<?> classOrNull(String name) {

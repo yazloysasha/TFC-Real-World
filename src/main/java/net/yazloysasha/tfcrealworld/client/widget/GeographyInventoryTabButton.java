@@ -19,9 +19,8 @@ import net.yazloysasha.tfcrealworld.network.PacketHandler;
  */
 public class GeographyInventoryTabButton extends Button {
 
-  /** Where TFC's tabs hang on the right edge of a 176-wide inventory. */
-  public static final int TAB_X_IN = 176;
-  public static final int TAB_Y_IN = 119;
+  /** Below TFC's five tabs. */
+  private static final int TAB_Y_IN = 119;
   private static final int TAB_HEIGHT = 22;
 
   private static final ResourceLocation GLOBE_ICON = TFCRealWorld.id(
@@ -36,23 +35,31 @@ public class GeographyInventoryTabButton extends Button {
   private final InventoryTabs.TabChrome chrome;
   private Runnable tickCallback = () -> {};
 
+  /** On an inventory-like screen with this corner: opens the map. */
   public GeographyInventoryTabButton(int guiLeft, int guiTop) {
-    this(guiLeft, guiTop, false, button ->
+    this(new InventoryTabs.Anchor(guiLeft, guiTop, false), false);
+  }
+
+  /** Hung from this anchor: opens the map. */
+  public GeographyInventoryTabButton(
+    InventoryTabs.Anchor anchor,
+    boolean active
+  ) {
+    this(anchor, active, button ->
       PacketHandler.INSTANCE.sendToServer(new OpenGeographyTabPacket())
     );
   }
 
   public GeographyInventoryTabButton(
-    int guiLeft,
-    int guiTop,
+    InventoryTabs.Anchor anchor,
     boolean active,
     OnPress onPress
   ) {
     this(
-      guiLeft,
-      guiTop,
+      anchor.guiLeft(),
+      anchor.guiTop(),
       active,
-      InventoryTabs.CURRENT.chrome(active),
+      InventoryTabs.CURRENT.chrome(active, anchor.detached()),
       onPress
     );
   }
@@ -66,7 +73,7 @@ public class GeographyInventoryTabButton extends Button {
   ) {
     super(
       guiLeft + chrome.xIn(),
-      guiTop + TAB_Y_IN,
+      guiTop + TAB_Y_IN + chrome.yIn(),
       chrome.width(),
       TAB_HEIGHT,
       Component.empty(),

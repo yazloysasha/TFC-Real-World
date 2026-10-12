@@ -82,19 +82,18 @@ public class GeographyScreen extends Screen {
     leftPos = (width - PANEL_WIDTH) / 2;
     topPos = (height - PANEL_HEIGHT) / 2;
 
-    // TFC's tabs hang on the right edge of a 176-wide inventory: here they
-    // hang on the right edge of the panel.
-    final int tabsLeft =
-      leftPos + PANEL_WIDTH - GeographyInventoryTabButton.TAB_X_IN;
-    InventoryTabs.CURRENT.tfcTabs(tabsLeft, topPos, () -> {
+    final InventoryTabs.Anchor tabs = InventoryTabs.CURRENT.panelAnchor(
+      leftPos,
+      topPos,
+      PANEL_WIDTH
+    );
+    InventoryTabs.CURRENT.tfcTabs(tabs, () -> {
       if (minecraft != null && minecraft.player != null) {
         minecraft.player.containerMenu = minecraft.player.inventoryMenu;
         minecraft.setScreen(new InventoryScreen(minecraft.player));
       }
     }).forEach(this::addRenderableWidget);
-    addRenderableWidget(
-      new GeographyInventoryTabButton(tabsLeft, topPos, true, b -> {})
-    );
+    addRenderableWidget(new GeographyInventoryTabButton(tabs, true, b -> {}));
   }
 
   private void rebuildWaypointIndex() {
