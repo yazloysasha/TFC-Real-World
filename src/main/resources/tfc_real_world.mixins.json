@@ -34,7 +34,7 @@
     "firmaciv.AbstractNavItemMixin"
   ],
   "client": [
-    "client.advancements.DisplayInfoMixin",
+    "minecraft.advancements.DisplayInfoMixin",
     "minecraft.client.resources.language.ClientLanguageMixin"
   ],
   "server": [],
