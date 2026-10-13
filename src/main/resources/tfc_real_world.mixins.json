@@ -58,7 +58,7 @@
     "tfg.TfgCustomSpawnHelperMixin"
   ],
   "client": [
-    "client.advancements.DisplayInfoMixin",
+    "minecraft.advancements.DisplayInfoMixin",
     "minecraft.client.resources.language.ClientLanguageMixin",
     "client.auroras.AHelpersMixin",
     "client.auroras.AuroraRendererMixin",

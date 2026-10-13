@@ -1,4 +1,4 @@
-package net.yazloysasha.tfcrealworld.mixin.client.advancements;
+package net.yazloysasha.tfcrealworld.mixin.minecraft.advancements;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
