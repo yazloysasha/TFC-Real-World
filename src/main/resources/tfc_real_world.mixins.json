@@ -11,6 +11,7 @@
     "world.ChunkHeightFillerMixin",
     "world.TFCChunkGeneratorMixin",
     "world.biome.BiomeExtensionMixin",
+    "world.biome.BiomeNoiseMixin",
     "world.biome.TFCBiomeSourceMixin",
     "world.chunkdata.TFCChunkDataGeneratorMixin",
     "world.layer.TFCLayersMixin",
