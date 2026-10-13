@@ -1,24 +1,21 @@
 package net.yazloysasha.tfcrealworld.world.layer;
 
-import it.unimi.dsi.fastutil.longs.LongArrayFIFOQueue;
-import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
+import com.google.common.base.Suppliers;
 import java.util.Arrays;
 import java.util.function.IntPredicate;
+import java.util.function.Supplier;
 import net.dries007.tfc.world.biome.BiomeExtension;
+import net.dries007.tfc.world.layer.TFCLayers;
 import net.dries007.tfc.world.layer.framework.Area;
 import net.dries007.tfc.world.layer.framework.AreaContext;
 import net.dries007.tfc.world.layer.framework.TransformLayer;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
-import net.minecraft.world.level.ChunkPos;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.util.registry.RiftLakesRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
-import net.yazloysasha.tfcrealworld.world.backend.WorldBackend;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise.ContinentBand;
 import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
-import net.yazloysasha.tfcrealworld.world.tectonics.MapRiftLakes;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicPlaces;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,27 +23,13 @@ import org.jetbrains.annotations.Nullable;
  * Makes land, sea and lakes of the biome layer match {@code continent.png} at
  * 16-block cells, before vanilla shores and again after them. A biome on the
  * wrong side takes a neighbouring biome of the right kind; map lakes take the
- * lake form of the land around them, except that a lake in a rift is a rift
- * lake as a whole ({@link MapRiftLakes}) and a lake at the edge of an ice
- * sheet a meltwater lake as a whole. With tectonics only hotspot shields
- * may reach into the sea; without, islands and volcanic arcs may too.
+ * lake form of the land around them. With tectonics only hotspot volcanoes
+ * may reach into the sea; without, islands and volcanic ones may too.
  */
 public final class MapLandOceanCorrectionLayer implements TransformLayer {
 
   /** Cells searched around a map-only land cell for a land biome. */
   private static final int LAND_SEARCH_RADIUS = 4;
-
-  /**
-   * Cells from a lake cell its map lake is followed for the lake's form:
-   * 1.5 region cells, more than the lakes strewn along an ice sheet's edge.
-   */
-  private static final int LAKE_SEARCH_RADIUS = 12;
-
-  /**
-   * Region cells around a lake cell looked at for an ice sheet before the
-   * lake is followed at all: the search radius and the width of the edge.
-   */
-  private static final int ICE_SEARCH_RADIUS = 3;
 
   /** No matching neighbour (layer biome ids are non-negative). */
   private static final int NONE = -1;
@@ -59,12 +42,17 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     { -1, 0 },
   };
 
-  /** Layer ids looked at for the land of a lake: more than any backend has. */
+  /** Layer ids looked at for the land of a lake: more than TFC has. */
   private static final int MAX_BIOMES = 256;
 
-  private final WorldBackend backend;
-  /** By lake biome: the first biome vanilla lists that it floods into it. */
-  private final int[] firstDryForm;
+  /**
+   * By lake biome: the first biome vanilla lists that it floods into the
+   * lake. Built on first use, after every biome has its layer id.
+   */
+  private static final Supplier<int[]> FIRST_DRY_FORM = Suppliers.memoize(
+    MapLandOceanCorrectionLayer::firstDryForms
+  );
+
   private final PNGContinentNoise continentNoise;
   private final RegionGenerator regionGenerator;
   private final double layerToGrid;
@@ -72,16 +60,9 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
   private final boolean lakesFromMap;
   private final int shoreWidth;
 
-  @Nullable
-  private final MapRiftLakes riftLakes;
-
   /** What the map says each region cell is, with tectonics from it. */
   @Nullable
   private final TectonicPlaces places;
-
-  /** The last answer of {@link #iceSheetNear}, shared between threads. */
-  @Nullable
-  private volatile IceCheck lastIceCheck;
 
   /**
    * @param zoomsFromGrid zooms since region grid (3 → 16-block cells).
@@ -91,20 +72,16 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
   public MapLandOceanCorrectionLayer(
     PNGContinentNoise continentNoise,
     RegionGenerator regionGenerator,
-    WorldBackend backend,
     int zoomsFromGrid,
     int shoreWidth
   ) {
-    this.backend = backend;
-    this.firstDryForm = firstDryForms(backend);
     this.continentNoise = continentNoise;
     this.regionGenerator = regionGenerator;
     this.layerToGrid = 1.0 / (1 << zoomsFromGrid);
     this.tectonicsFromMap = TectonicsRegistry.isActive(regionGenerator);
     this.lakesFromMap = TFCRealWorldConfig.LAKES_FROM_MAP.get();
     this.shoreWidth = shoreWidth;
-    this.riftLakes = RiftLakesRegistry.get(regionGenerator);
-    this.places = TectonicPlaces.of(regionGenerator, backend);
+    this.places = TectonicPlaces.of(regionGenerator);
   }
 
   @Override
@@ -115,30 +92,23 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     final ContinentBand band = continentNoise.bandAtGridHard(gridX, gridZ);
 
     if (continentNoise.isLakeAtGridHard(gridX, gridZ)) {
-      if (
-        riftLakes != null &&
-        backend.riftLake() != WorldBackend.NONE &&
-        riftLakes.isRiftLakeAtGrid(gridX, gridZ)
-      ) {
-        return backend.riftLake();
-      }
       return lakeBiomeFrom(center, area, x, z);
     }
 
     final boolean mapNonOcean = band != ContinentBand.OCEAN;
-    final boolean biomeOcean = backend.isOcean(center);
+    final boolean biomeOcean = TFCLayers.isOcean(center);
 
     if (mapNonOcean && biomeOcean) {
       return landBiomeFromNeighbors(area, x, z);
     }
-    if (lakesFromMap && mapNonOcean && backend.isLake(center)) {
+    if (lakesFromMap && mapNonOcean && TFCLayers.isLake(center)) {
       // The region has no lakes of its own with lakes from the map, so this
       // is a lake vanilla chose as the form of the land (flooded tower
       // karst). Within the shore band it takes its vanilla shore form
       // (TOWER_KARST_LAKE → TOWER_KARST_BAY), as the shore layers do for any
       // coastal land; elsewhere the land it stands for.
       if (mapOceanWithin(x, z, shoreWidth)) {
-        return backend.shoreFor(center);
+        return TFCLayers.shoreFor(center);
       }
       return dryFormOf(center, area, x, z);
     }
@@ -149,125 +119,27 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     ) {
       return tectonicsFromMap
         ? oceanBiomeFromNeighbors(area, x, z)
-        : backend.ocean();
+        : TFCLayers.OCEAN;
     }
     return center;
   }
 
-  /**
-   * The lake of a map lake pixel: vanilla's lake form of the land there.
-   * Under a flat ice sheet that is a subglacial lake, at the sheet's edge a
-   * meltwater lake, on the bare ground before it a plain lake; a map lake
-   * that reaches the edge is a meltwater lake as a whole, or the ice over
-   * one part would lift another out of the water.
-   */
+  /** The lake of a map lake pixel: vanilla's lake form of the land there. */
   private int lakeBiomeFrom(int center, Area area, int x, int z) {
-    final int lake = ownLakeForm(center, area, x, z);
-    return isByIceSheet(center) && lakeReachesMeltwater(area, x, z)
-      ? backend.meltwaterLake()
-      : lake;
-  }
-
-  /**
-   * Land a lake at an ice sheet's edge can lie on besides the edge itself:
-   * the flat ice sheet and the bare ground vanilla finds before it (the
-   * biomes IceSheetEdgeLayer makes its edge of). No other lake is looked at,
-   * so a land of lakes far from the ice costs nothing.
-   */
-  private boolean isByIceSheet(int land) {
-    return (
-      backend.meltwaterLake() != WorldBackend.NONE &&
-      ((backend.isFlatIceSheet(land) && !backend.isLake(land)) ||
-        backend.isIceSheetForeland(land))
-    );
-  }
-
-  private int ownLakeForm(int center, Area area, int x, int z) {
-    if (backend.isLake(center)) {
+    if (TFCLayers.isLake(center)) {
       return center;
     }
-    if (backend.hasLake(center)) {
-      return backend.lakeFor(center);
+    if (TFCLayers.hasLake(center)) {
+      return TFCLayers.lakeFor(center);
     }
-    final int land = backend.isOcean(center)
+    final int land = TFCLayers.isOcean(center)
       ? landBiomeFromNeighbors(area, x, z)
       : center;
-    if (backend.hasLake(land)) {
-      return backend.lakeFor(land);
+    if (TFCLayers.hasLake(land)) {
+      return TFCLayers.lakeFor(land);
     }
-    return backend.lake();
+    return TFCLayers.LAKE;
   }
-
-  /**
-   * Whether the map lake of the cell has a cell that is a meltwater lake on
-   * its own within LAKE_SEARCH_RADIUS, if there is an ice sheet near at all.
-   */
-  private boolean lakeReachesMeltwater(Area area, int x, int z) {
-    if (!iceSheetNear(x, z)) {
-      return false;
-    }
-    final LongOpenHashSet seen = new LongOpenHashSet();
-    final LongArrayFIFOQueue queue = new LongArrayFIFOQueue();
-    seen.add(ChunkPos.asLong(x, z));
-    queue.enqueue(ChunkPos.asLong(x, z));
-    while (!queue.isEmpty()) {
-      final long cell = queue.dequeueLong();
-      final int cellX = ChunkPos.getX(cell);
-      final int cellZ = ChunkPos.getZ(cell);
-      for (final int[] offset : NEIGHBOURS) {
-        final int nx = cellX + offset[0];
-        final int nz = cellZ + offset[1];
-        if (
-          Math.abs(nx - x) > LAKE_SEARCH_RADIUS ||
-          Math.abs(nz - z) > LAKE_SEARCH_RADIUS
-        ) {
-          continue;
-        }
-        final boolean mapLake = continentNoise.isLakeAtGridHard(
-          nx * layerToGrid,
-          nz * layerToGrid
-        );
-        if (!mapLake || !seen.add(ChunkPos.asLong(nx, nz))) {
-          continue;
-        }
-        if (
-          ownLakeForm(area.get(nx, nz), area, nx, nz) == backend.meltwaterLake()
-        ) {
-          return true;
-        }
-        queue.enqueue(ChunkPos.asLong(nx, nz));
-      }
-    }
-    return false;
-  }
-
-  private boolean iceSheetNear(int x, int z) {
-    final int gx = (int) Math.floor(x * layerToGrid);
-    final int gz = (int) Math.floor(z * layerToGrid);
-    // Neighbouring cells ask about the same region cell: keep the last one.
-    final IceCheck last = lastIceCheck;
-    if (last != null && last.gridX == gx && last.gridZ == gz) {
-      return last.near;
-    }
-    boolean near = false;
-    for (int dz = -ICE_SEARCH_RADIUS; dz <= ICE_SEARCH_RADIUS && !near; dz++) {
-      for (int dx = -ICE_SEARCH_RADIUS; dx <= ICE_SEARCH_RADIUS; dx++) {
-        final Region.Point point = RegionCoords.pointAt(
-          regionGenerator,
-          gx + dx,
-          gz + dz
-        );
-        if (backend.isFlatIceSheet(point.biome)) {
-          near = true;
-          break;
-        }
-      }
-    }
-    lastIceCheck = new IceCheck(gx, gz, near);
-    return near;
-  }
-
-  private record IceCheck(int gridX, int gridZ, boolean near) {}
 
   /**
    * The land a lake biome stands for where the map has no lake: a biome
@@ -278,21 +150,21 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
    */
   private int dryFormOf(int lake, Area area, int x, int z) {
     final IntPredicate floodsIntoLake = biome ->
-      backend.hasLake(biome) && backend.lakeFor(biome) == lake;
+      TFCLayers.hasLake(biome) && TFCLayers.lakeFor(biome) == lake;
     final int near = nearestBiome(area, x, z, floodsIntoLake);
     if (near != NONE) {
       return near;
     }
-    final int first = firstDryForm[lake];
+    final int first = FIRST_DRY_FORM.get()[lake];
     return first != NONE ? first : landBiomeFromNeighbors(area, x, z);
   }
 
-  private static int[] firstDryForms(WorldBackend backend) {
+  private static int[] firstDryForms() {
     final int[] forms = new int[MAX_BIOMES];
     Arrays.fill(forms, NONE);
     for (int biome = MAX_BIOMES - 1; biome >= 0; biome--) {
-      if (backend.hasLake(biome)) {
-        forms[backend.lakeFor(biome)] = biome;
+      if (TFCLayers.hasLake(biome)) {
+        forms[TFCLayers.lakeFor(biome)] = biome;
       }
     }
     return forms;
@@ -325,8 +197,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
   /**
    * Land biome for a cell continent.png calls land: a land neighbour, else
    * the nearest land further out, else the land of the nearest region cell,
-   * so a stretch of map-only land takes its surroundings' biome (ice sheet
-   * in Antarctica, not plains).
+   * so a stretch of map-only land takes its surroundings' biome.
    */
   private int landBiomeFromNeighbors(Area area, int x, int z) {
     final int near = nearestBiome(area, x, z, this::isCopyableLand);
@@ -347,16 +218,16 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
         }
       }
     }
-    return backend.plains();
+    return TFCLayers.PLAINS;
   }
 
   /**
    * Sea around a clipped land biome keeps the seafloor of the neighbouring
-   * cells (volcanic arc, reef, shelf) instead of a generic ocean.
+   * cells (reef, shelf) instead of a generic ocean.
    */
   private int oceanBiomeFromNeighbors(Area area, int x, int z) {
-    final int neighbour = firstNeighbour(area, x, z, backend::isOcean);
-    return neighbour != NONE ? neighbour : backend.ocean();
+    final int neighbour = firstNeighbour(area, x, z, TFCLayers::isOcean);
+    return neighbour != NONE ? neighbour : TFCLayers.OCEAN;
   }
 
   /** First of the north, east, south and west neighbours that matches. */
@@ -396,13 +267,13 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
   }
 
   private boolean isCopyableLand(int biome) {
-    return !backend.isOcean(biome) && !backend.isLake(biome);
+    return !TFCLayers.isOcean(biome) && !TFCLayers.isLake(biome);
   }
 
   /**
-   * Keep islands / volcanic arcs / hotspot seamounts (incl. sunken shields) and
-   * their ZoomLayer smear. Uses Region flags (3×3) plus salty+tuff/cinder
-   * BiomeExtension traits for outskirts that left the hotspot grid cell.
+   * Keep islands / oceanic volcanoes and their ZoomLayer smear. Uses Region
+   * flags (3×3) plus salty+volcanic BiomeExtension traits for outskirts
+   * that left the island grid cell.
    */
   private boolean shouldPreserveOnMapOcean(
     int biome,
@@ -412,10 +283,8 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     final int gx = (int) Math.floor(gridX);
     final int gz = (int) Math.floor(gridZ);
     if (tectonicsFromMap) {
-      // Land biomes stand only on continent.png land. Hotspot shield
-      // volcanoes are the exception: as in vanilla they raise land around
-      // their centre, and their flanks and seamounts reach into the sea.
-      return hotspotNear(gx, gz);
+      // Land biomes stand only on continent.png land, but for hotspots.
+      return landRisenFromTheSeaNear(gx, gz);
     }
     if (isOceanicVolcanicBiome(biome)) {
       return true;
@@ -427,12 +296,7 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
           gx + dx,
           gz + dz
         );
-        if (
-          point.island() ||
-          backend.barrierIsland(point) ||
-          backend.volcanic(point) ||
-          backend.hotSpotAge(point) > 0
-        ) {
+        if (point.island()) {
           return true;
         }
       }
@@ -440,26 +304,11 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     return false;
   }
 
-  private boolean hotspotNear(int gx, int gz) {
-    if (!backend.hasHotspots()) {
-      return landRisenFromTheSeaNear(gx, gz);
-    }
-    for (int dz = -1; dz <= 1; dz++) {
-      for (int dx = -1; dx <= 1; dx++) {
-        if (
-          backend.hotSpotAge(
-            RegionCoords.pointAt(regionGenerator, gx + dx, gz + dz)
-          ) >
-          0
-        ) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  /** Land the map's places have where continent.png has sea. */
+  /**
+   * Land the map's places have where continent.png has sea: hotspot
+   * volcanoes, which as in vanilla raise land around their centre, and
+   * whose flanks reach into the sea.
+   */
   private boolean landRisenFromTheSeaNear(int gx, int gz) {
     if (places == null) {
       return false;
@@ -474,9 +323,9 @@ public final class MapLandOceanCorrectionLayer implements TransformLayer {
     return false;
   }
 
-  /** Sunken / shield-shore style biomes via TFC BiomeExtension (not IDs). */
+  /** Oceanic volcanic biomes via TFC BiomeExtension (not IDs). */
   private boolean isOceanicVolcanicBiome(int biome) {
-    final BiomeExtension ext = backend.biome(biome);
+    final BiomeExtension ext = TFCLayers.getFromLayerId(biome);
     return ext.isSalty() && ext.isVolcanic();
   }
 }

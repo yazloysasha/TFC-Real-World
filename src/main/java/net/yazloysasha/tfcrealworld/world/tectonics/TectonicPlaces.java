@@ -3,7 +3,6 @@ package net.yazloysasha.tfcrealworld.world.tectonics;
 import net.dries007.tfc.world.region.RegionGenerator;
 import net.yazloysasha.tfcrealworld.util.registry.ContinentNoiseRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
-import net.yazloysasha.tfcrealworld.world.backend.WorldBackend;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass.LandRelief;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass.Volcanism;
@@ -11,11 +10,9 @@ import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * What kind of place each region cell is, as the generator in use can
- * build it. For a generator with hotspots that is the class of the
- * tectonics map. A generator without them cannot build a hotspot as such,
- * so there a hotspot of the map that raises land is described by what it
- * is: a volcanic mountain, risen from the sea where it stands in it, and
+ * What kind of place each region cell is, as TFC can build it. TFC has no
+ * hotspots, so a hotspot of the map that raises land is described by what
+ * it is: a volcanic mountain, risen from the sea where it stands in it, and
  * coastal where the sea of the map is at hand. Every task reads the
  * place from here, so none of them knows about hotspots.
  */
@@ -26,7 +23,7 @@ public final class TectonicPlaces {
 
   private final TectonicsMap map;
 
-  /** The map's hotspots, for a generator with none of its own. */
+  /** The map's hotspots. */
   @Nullable
   private final MapHotspotLayout volcanoes;
 
@@ -45,17 +42,14 @@ public final class TectonicPlaces {
 
   /** @return the places of the generator's map, or null without tectonics */
   @Nullable
-  public static TectonicPlaces of(
-    RegionGenerator generator,
-    WorldBackend backend
-  ) {
+  public static TectonicPlaces of(RegionGenerator generator) {
     final TectonicsMap map = TectonicsRegistry.get(generator);
     if (map == null) {
       return null;
     }
     return new TectonicPlaces(
       map,
-      backend.hasHotspots() ? null : TectonicsRegistry.hotspotLayout(),
+      TectonicsRegistry.hotspotLayout(),
       ContinentNoiseRegistry.get(generator)
     );
   }

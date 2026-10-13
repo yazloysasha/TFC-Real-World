@@ -11,27 +11,21 @@ import net.yazloysasha.tfcrealworld.util.registry.ContinentNoiseRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.LevelSeedRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.RiversRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
-import net.yazloysasha.tfcrealworld.world.backend.Backends;
-import net.yazloysasha.tfcrealworld.world.backend.WorldBackend;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise.ContinentBand;
 import net.yazloysasha.tfcrealworld.world.region.calculator.OceanDistanceCalculator;
-import net.yazloysasha.tfcrealworld.world.region.calculator.WestCoastDistanceCalculator;
 import net.yazloysasha.tfcrealworld.world.river.MapRivers;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass.LandRelief;
-import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass.Volcanism;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicPlaces;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
-import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * The region tasks that read the maps, written once for every world
- * generator: {@code continent.png} decides land and water,
- * {@code tectonics.png} what kind of place it is, and the generator's own
+ * The region tasks that read the maps: {@code continent.png} decides land
+ * and water, {@code tectonics.png} what kind of place it is, and TFC's own
  * ChooseBiomes turns the point fields written here into biomes. A task
- * answers whether it took the generator's place.
+ * answers whether it took TFC's place.
  */
 public final class MapRegionTasks {
 
@@ -39,8 +33,8 @@ public final class MapRegionTasks {
   private static final short FLAG_ISLAND = 0b10;
   private static final short FLAG_MOUNTAIN = 0b10000;
   private static final short FLAG_COASTAL_MOUNTAIN = 0b100000;
-  /** Age of an ancient hotspot, the only one that raises no land. */
-  private static final byte ANCIENT_HOTSPOT = 4;
+  /** TFC base ocean depths its biome choice reads as each depth class. */
+  private static final byte[] BASE_OCEAN_DEPTH = { 0, 3, 1, 1, 6, 10 };
 
   private MapRegionTasks() {}
 
@@ -55,8 +49,7 @@ public final class MapRegionTasks {
     if (continent == null) {
       return false;
     }
-    final WorldBackend backend = Backends.current();
-    final TectonicPlaces places = TectonicPlaces.of(generator, backend);
+    final TectonicPlaces places = TectonicPlaces.of(generator);
     final Region region = context.region;
     final Region.Point[] data = region.data();
     for (int index = 0; index < data.length; index++) {
@@ -70,17 +63,14 @@ public final class MapRegionTasks {
       // A region point covers [x, x + 1): sample the centre of its cell.
       final ContinentBand band = continent.bandAtGridHard(x + 0.5, z + 0.5);
       if (places == null) {
-        applyProcedural(point, band, continent, generator, backend, x, z);
+        applyProcedural(point, band);
         continue;
       }
-      final TectonicClass place = places.at(x, z);
-      backend.setDivergence(point, place.boundary().divergence());
       applyTectonics(
         point,
         places.risesFromTheSea(x, z) ? ContinentBand.LAND : band,
-        place,
+        places.at(x, z),
         continent,
-        backend,
         x,
         z
       );
@@ -91,139 +81,43 @@ public final class MapRegionTasks {
   /**
    * continent.png says what is an island (island band, also islets inside
    * ocean cells). tectonics.png says what kind: a mountainous island is
-   * plain land with mountain relief; a low one is one of the generator's
-   * islands, on a volcanic arc its volcanic island chain where it has one.
+   * plain land with mountain relief; a low one is one of TFC's islands.
    */
   private static void applyTectonics(
     Region.Point point,
     ContinentBand band,
     TectonicClass place,
     PNGContinentNoise continent,
-    WorldBackend backend,
     int x,
     int z
   ) {
-    final Volcanism volcanism = place.volcanism();
-    final boolean arc =
-      volcanism == Volcanism.ARC && backend.hasTectonicFields();
     final boolean island =
       place.land() != LandRelief.MOUNTAIN &&
       (band == ContinentBand.ISLAND ||
         (band == ContinentBand.OCEAN && continent.anyIslandInCell(x, z)));
-    if (island && arc) {
-      // The volcanic island chain, trimmed to continent.png land later.
-      backend.setOceanDepth(point, 1);
-      backend.setVolcanic(point);
-      backend.setBarrierIsland(point);
-      return;
-    }
     if (island) {
       point.setLand();
       point.setIsland();
-      setVolcanism(point, volcanism, backend);
       return;
     }
     if (band == ContinentBand.OCEAN) {
-      if (arc) {
-        backend.setOceanDepth(point, 1);
-        backend.setVolcanic(point);
-      } else {
-        backend.setOceanDepth(point, place.water().oceanDepth());
-      }
+      setOceanDepth(point, place.water().oceanDepth());
       return;
     }
     point.setLand();
-    setVolcanism(point, volcanism, backend);
-  }
-
-  private static void setVolcanism(
-    Region.Point point,
-    Volcanism volcanism,
-    WorldBackend backend
-  ) {
-    if (volcanism != Volcanism.NONE) {
-      backend.setVolcanic(point);
-    }
   }
 
   /**
-   * Continent map without tectonics: the generator's ocean depth buckets
-   * over the binary continent continuum and its own plate boundaries.
+   * Continent map without tectonics: land and islands of the map, and
+   * TFC's own ocean depths.
    */
-  private static void applyProcedural(
-    Region.Point point,
-    ContinentBand band,
-    PNGContinentNoise continent,
-    RegionGenerator generator,
-    WorldBackend backend,
-    int x,
-    int z
-  ) {
+  private static void applyProcedural(Region.Point point, ContinentBand band) {
     if (band != ContinentBand.OCEAN) {
       point.setLand();
       if (band == ContinentBand.ISLAND) {
         point.setIsland();
       }
-      return;
     }
-    if (!backend.hasTectonicFields()) {
-      return;
-    }
-    final float divergence = backend.divergence(point);
-    final double riftSeas =
-      point.distanceToEdge <= 5 && divergence > 0
-        ? (5 - point.distanceToEdge) * -0.12
-        : 0;
-    final double depth =
-      (continent.noise(x, z) + riftSeas) *
-      backend.continentFactor(generator, x, z);
-    if (divergence > 0 && point.distanceToEdge < 2) {
-      backend.setOceanDepth(point, 3);
-    } else if (depth > TfcContinentNoiseThresholds.CONTINENTAL_SHELF) {
-      backend.setOceanDepth(point, 2);
-    } else if (
-      depth > TfcContinentNoiseThresholds.TRENCH_CONTINENT && divergence < 0
-    ) {
-      backend.setOceanDepth(point, 5);
-    } else if (point.distanceToEdge < 2 && !(divergence < 0 && depth > 2)) {
-      backend.setOceanDepth(point, 3);
-    } else {
-      backend.setOceanDepth(point, 4);
-    }
-  }
-
-  /**
-   * With volcanoes from the map, hotspots stand where the tectonics map has
-   * them. As in the generator, every hotspot but an ancient one raises land.
-   */
-  public static boolean hotspots(RegionContext context) {
-    if (!TectonicsRegistry.isActive(context.generator())) {
-      return false;
-    }
-    final MapHotspotLayout layout = TectonicsRegistry.hotspotLayout();
-    if (layout == null) {
-      return false;
-    }
-    final WorldBackend backend = Backends.current();
-    final Region region = context.region;
-    final Region.Point[] data = region.data();
-    for (int index = 0; index < data.length; index++) {
-      final Region.Point point = data[index];
-      if (point == null) {
-        continue;
-      }
-      final byte age = layout.ageAtGrid(
-        RegionCoords.gridX(region, index),
-        RegionCoords.gridZ(region, index)
-      );
-      if (age > 0) {
-        backend.setHotSpotAge(point, age);
-        if (raisesLand(age)) {
-          point.setLand();
-        }
-      }
-    }
-    return true;
   }
 
   /** Distance to the nearest plate boundary zone of the tectonics map. */
@@ -253,25 +147,12 @@ public final class MapRegionTasks {
     return true;
   }
 
-  public static boolean distanceToWestCoast(RegionContext context) {
-    if (continentOf(context.generator()) == null) {
-      return false;
-    }
-    WestCoastDistanceCalculator.apply(context.region, Backends.current());
-    return true;
-  }
-
   /**
-   * After the generator's own pass: land height from the tectonic relief,
-   * and for a generator whose ocean depth is TFC 3's, the depth of the
-   * seafloor there, which its pass has just measured from the coast.
+   * After TFC's own pass: land height from the tectonic relief, and the
+   * depth of the seafloor, which its pass has just measured from the coast.
    */
   public static void baseLandHeight(RegionContext context) {
-    final WorldBackend backend = Backends.current();
-    final TectonicPlaces places = TectonicPlaces.of(
-      context.generator(),
-      backend
-    );
+    final TectonicPlaces places = TectonicPlaces.of(context.generator());
     if (places == null) {
       return;
     }
@@ -288,24 +169,21 @@ public final class MapRegionTasks {
       );
       if (point.land()) {
         point.baseLandHeight = place.land().baseLandHeight();
-      } else if (!backend.hasTectonicFields()) {
-        backend.setOceanDepth(point, place.water().oceanDepth());
+      } else {
+        setOceanDepth(point, place.water().oceanDepth());
       }
     }
   }
 
   /**
-   * Land relief of the tectonics map as the generator's discrete biome
+   * Land relief of the tectonics map as TFC's discrete biome
    * altitude and mountain flag, in place of its mountain ranges and
    * altitude spread: which land is mountainous is data. Coastal mountains
-   * are the ranges the sea reaches into. Without hotspot biomes a young
-   * hotspot is a mountain, which the map's volcanism then makes volcanic.
+   * are the ranges the sea reaches into. A young hotspot is a mountain,
+   * which the map's volcanism then makes volcanic.
    */
   public static boolean biomeAltitude(RegionContext context) {
-    final TectonicPlaces places = TectonicPlaces.of(
-      context.generator(),
-      Backends.current()
-    );
+    final TectonicPlaces places = TectonicPlaces.of(context.generator());
     if (places == null) {
       return false;
     }
@@ -341,14 +219,12 @@ public final class MapRegionTasks {
   /**
    * Climate maps hold the final climate (coasts, currents and rainfall
    * included), so every point takes the map values as they are,
-   * without the generator's ocean and cell-edge biases.
+   * without TFC's ocean and cell-edge biases.
    */
   public static boolean climate(RegionContext context) {
     if (!TFCRealWorldConfig.CLIMATE_FROM_MAP.get()) {
       return false;
     }
-    // A generator without a west coast task measures it with the climate.
-    distanceToWestCoast(context);
     final RegionGenerator generator = context.generator();
     final RegionGeneratorAccessor noises = (RegionGeneratorAccessor) generator;
     final Region region = context.region;
@@ -385,7 +261,7 @@ public final class MapRegionTasks {
   }
 
   /**
-   * The generator makes the cell of every lake it places a little wetter.
+   * TFC makes the cell of every lake it places a little wetter.
    * The lakes of the map are not placed by it, so they get the same here.
    */
   public static void wetMapLakes(RegionContext context) {
@@ -425,8 +301,12 @@ public final class MapRegionTasks {
       : null;
   }
 
-  private static boolean raisesLand(byte hotSpotAge) {
-    return hotSpotAge > 0 && hotSpotAge != ANCIENT_HOTSPOT;
+  /**
+   * Ocean depth in TFC 4 classes: 1 shallows of an arc or reef, 2 shelf,
+   * 3 ridge, 4 deep ocean, 5 trench.
+   */
+  private static void setOceanDepth(Region.Point point, int depth) {
+    point.baseOceanDepth = BASE_OCEAN_DEPTH[depth];
   }
 
   private static void clear(Region.Point point, short flags) {

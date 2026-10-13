@@ -4,11 +4,10 @@ import java.util.Collections;
 import java.util.IdentityHashMap;
 import java.util.Set;
 import net.dries007.tfc.world.biome.BiomeExtension;
+import net.dries007.tfc.world.layer.TFCLayers;
 import net.dries007.tfc.world.region.Units;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.ContinentNoiseRegistry;
-import net.yazloysasha.tfcrealworld.world.backend.Backends;
-import net.yazloysasha.tfcrealworld.world.backend.WorldBackend;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise.ContinentBand;
 import org.jetbrains.annotations.Nullable;
@@ -78,6 +77,11 @@ public final class MapLakeWater {
     Column::new
   );
 
+  /** Layer ids looked at for lake biomes: more than TFC has. */
+  private static final int MAX_BIOMES = 256;
+
+  private static volatile Set<BiomeExtension> lakeBiomes;
+
   private MapLakeWater() {}
 
   public static void enterColumn(int blockX, int blockZ) {
@@ -98,32 +102,22 @@ public final class MapLakeWater {
     return COLUMN.get().active;
   }
 
-  /** @return true for every biome the generator in use floods land into. */
+  /**
+   * @return true for every biome TFC itself treats as a lake
+   * ({@link TFCLayers#isLake}), so no biome is listed here.
+   */
   public static boolean isLakeBiome(BiomeExtension biome) {
-    return LakeBiomes.of(Backends.current()).contains(biome);
-  }
-
-  /** The lake biomes of a generator, found once per generator. */
-  private static final class LakeBiomes {
-
-    private static final int MAX_BIOMES = 256;
-    private static volatile WorldBackend owner;
-    private static volatile Set<BiomeExtension> biomes;
-
-    static Set<BiomeExtension> of(WorldBackend backend) {
-      Set<BiomeExtension> set = biomes;
-      if (set == null || owner != backend) {
-        set = Collections.newSetFromMap(new IdentityHashMap<>());
-        for (int id = 0; id < MAX_BIOMES; id++) {
-          if (backend.isLake(id)) {
-            set.add(backend.biome(id));
-          }
+    Set<BiomeExtension> set = lakeBiomes;
+    if (set == null) {
+      set = Collections.newSetFromMap(new IdentityHashMap<>());
+      for (int id = 0; id < MAX_BIOMES; id++) {
+        if (TFCLayers.isLake(id)) {
+          set.add(TFCLayers.getFromLayerId(id));
         }
-        biomes = set;
-        owner = backend;
       }
-      return set;
+      lakeBiomes = set;
     }
+    return set.contains(biome);
   }
 
   /**

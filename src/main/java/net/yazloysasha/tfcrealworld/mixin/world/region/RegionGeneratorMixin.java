@@ -12,18 +12,14 @@ import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
 import net.yazloysasha.tfcrealworld.util.registry.ContinentNoiseRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.LevelSeedRegistry;
-import net.yazloysasha.tfcrealworld.util.registry.RiftLakesRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.RiversRegistry;
 import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
-import net.yazloysasha.tfcrealworld.world.backend.Backends;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
 import net.yazloysasha.tfcrealworld.world.region.cache.EvictedEntries;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
-import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
 import net.yazloysasha.tfcrealworld.world.river.MapRivers;
-import net.yazloysasha.tfcrealworld.world.tectonics.MapRiftLakes;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
 import org.spongepowered.asm.mixin.Final;
@@ -154,9 +150,7 @@ public class RegionGeneratorMixin {
   @Inject(method = "<init>", at = @At("TAIL"))
   private void tfcrealworld$replaceNoises(long seed, CallbackInfo ci) {
     final RegionGenerator generator = (RegionGenerator) (Object) this;
-    final long levelSeed = Backends.current().levelSeed(
-      WorldSeedHolder.getSeed()
-    );
+    final long levelSeed = WorldSeedHolder.getSeed();
     LevelSeedRegistry.register(generator, levelSeed);
     final int horizontalScale = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
     final int verticalScale = TFCRealWorldConfig.VERTICAL_SCALE.get();
@@ -168,7 +162,6 @@ public class RegionGeneratorMixin {
       continentNoise = continent;
       ContinentNoiseRegistry.register(generator, continent);
       GlobalOceanDistanceCache.initialize(continent);
-      GlobalWestCoastDistanceCache.initialize(continent);
       final MapRivers rivers = MapRivers.tryLoad(
         horizontalScale,
         verticalScale
@@ -180,7 +173,6 @@ public class RegionGeneratorMixin {
       if (TFCRealWorldConfig.TECTONICS_FROM_MAP.get()) {
         tfcrealworld$registerTectonics(
           generator,
-          continent,
           levelSeed,
           horizontalScale,
           verticalScale
@@ -199,7 +191,6 @@ public class RegionGeneratorMixin {
   @Unique
   private static void tfcrealworld$registerTectonics(
     RegionGenerator generator,
-    PNGContinentNoise continent,
     long levelSeed,
     int horizontalScale,
     int verticalScale
@@ -221,10 +212,6 @@ public class RegionGeneratorMixin {
       TFCRealWorldConfig.VOLCANOES_FROM_MAP.get()
         ? MapHotspotLayout.create(tectonics, levelSeed)
         : null
-    );
-    RiftLakesRegistry.register(
-      generator,
-      MapRiftLakes.create(continent, tectonics)
     );
   }
 

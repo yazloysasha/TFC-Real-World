@@ -4,10 +4,9 @@ import net.dries007.tfc.world.chunkdata.TFCChunkDataGenerator;
 import net.dries007.tfc.world.noise.Noise2D;
 import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
-import net.yazloysasha.tfcrealworld.world.backend.Backends;
-import net.yazloysasha.tfcrealworld.world.backend.WorldBackend;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
+import net.yazloysasha.tfcrealworld.world.region.ClimateScale;
 import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -54,9 +53,8 @@ public class TFCChunkDataGeneratorMixin {
       horizontalScale,
       verticalScale
     );
-    final WorldBackend backend = Backends.current();
     temperatureNoise = (x, z) ->
-      backend.climateTemperature(
+      ClimateScale.temperature(
         (float) temperature.noise(
           tfcrealworld$toGrid(x),
           tfcrealworld$toGrid(z)

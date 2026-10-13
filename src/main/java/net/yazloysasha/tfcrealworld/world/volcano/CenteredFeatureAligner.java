@@ -2,8 +2,8 @@ package net.yazloysasha.tfcrealworld.world.volcano;
 
 import it.unimi.dsi.fastutil.longs.Long2IntOpenHashMap;
 import java.util.function.IntPredicate;
+import net.dries007.tfc.world.layer.TFCLayers;
 import net.dries007.tfc.world.region.Region;
-import net.yazloysasha.tfcrealworld.world.backend.WorldBackend;
 import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass.Volcanism;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
@@ -25,15 +25,12 @@ public final class CenteredFeatureAligner {
 
   /**
    * @param matches biomes that build the cone of these cells
-   * @param keeps biomes of a centre cell that are left as they are
    */
   public static void stamp(
     Region region,
-    WorldBackend backend,
     TectonicsMap tectonics,
     CellLookup cells,
-    IntPredicate matches,
-    IntPredicate keeps
+    IntPredicate matches
   ) {
     final Region.Point[] data = region.data();
     final Long2IntOpenHashMap pending = new Long2IntOpenHashMap();
@@ -70,15 +67,11 @@ public final class CenteredFeatureAligner {
         !center.land() ||
         center.lake() ||
         matches.test(center.biome) ||
-        keeps.test(center.biome) ||
-        backend.isLake(center.biome)
+        TFCLayers.isLake(center.biome)
       ) {
         continue;
       }
-      if (
-        backend.hotSpotAge(center) == 0 &&
-        tectonics.classAtGrid(x, z).volcanism() == Volcanism.NONE
-      ) {
+      if (tectonics.classAtGrid(x, z).volcanism() == Volcanism.NONE) {
         continue;
       }
       center.biome = entry.getIntValue();

@@ -67,11 +67,6 @@ public final class MapHotspotLayout {
     );
   }
 
-  public byte ageAtGrid(int gridX, int gridZ) {
-    final Center center = nearestCenterAtGrid(gridX, gridZ);
-    return center == null ? 0 : center.age();
-  }
-
   public Center nearestCenterAtGrid(int gridX, int gridZ) {
     final double blockX = RegionCoords.gridToBlock(gridX) + HALF_GRID_BLOCK;
     final double blockZ = RegionCoords.gridToBlock(gridZ) + HALF_GRID_BLOCK;

@@ -3,18 +3,19 @@ package net.yazloysasha.tfcrealworld.world.region;
 import java.util.function.IntPredicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import net.dries007.tfc.world.layer.TFCLayers;
+import net.dries007.tfc.world.noise.Cellular2D;
 import net.dries007.tfc.world.region.Region;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.registry.LevelSeedRegistry;
-import net.yazloysasha.tfcrealworld.world.backend.Backends;
-import net.yazloysasha.tfcrealworld.world.backend.WorldBackend;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicClass.Volcanism;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicPlaces;
+import net.yazloysasha.tfcrealworld.world.volcano.CenteredFeatureAligner;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * What a generator's ChooseBiomes is told about the point it is choosing
- * for. The generator still picks every biome from its own pools; with
+ * What TFC's ChooseBiomes is told about the point it is choosing for.
+ * TFC still picks every biome from its own pools; with
  * tectonics a pool is narrowed to the biomes that fit the map.
  */
 public final class MapBiomeChoice {
@@ -22,8 +23,6 @@ public final class MapBiomeChoice {
   /** The region a thread is choosing biomes for. */
   private static final ThreadLocal<MapBiomeChoice> CURRENT =
     ThreadLocal.withInitial(MapBiomeChoice::new);
-
-  private WorldBackend backend;
 
   @Nullable
   private TectonicPlaces places;
@@ -40,8 +39,7 @@ public final class MapBiomeChoice {
 
   public static MapBiomeChoice enter(RegionContext context) {
     final MapBiomeChoice choice = CURRENT.get();
-    choice.backend = Backends.current();
-    choice.places = TectonicPlaces.of(context.generator(), choice.backend);
+    choice.places = TectonicPlaces.of(context.generator());
     return choice;
   }
 
@@ -52,30 +50,37 @@ public final class MapBiomeChoice {
   /** Volcanic cones are moved onto the volcanic biomes the map gave. */
   public static void leave(RegionContext context) {
     final MapBiomeChoice choice = CURRENT.get();
-    toGeneratorClimate(context.region, choice.backend);
+    toTfcClimate(context.region);
     if (choice.places != null) {
-      choice.backend.alignCenteredFeatures(
+      // TFC stands every volcano in the cells of one noise.
+      final Cellular2D cells = new Cellular2D(
+        LevelSeedRegistry.get(context.generator())
+      ).spread(0.009f);
+      CenteredFeatureAligner.stamp(
         context.region,
-        LevelSeedRegistry.get(context.generator()),
-        choice.places.map()
+        choice.places.map(),
+        (x, z) -> {
+          final Cellular2D.Cell cell = cells.cell(x, z);
+          return new double[] { cell.x(), cell.y() };
+        },
+        biome -> isVolcanic(biome) && TFCLayers.isMountains(biome)
       );
     }
     choice.point = null;
   }
 
   /**
-   * The climate maps are drawn in TFC 4's temperature scale, which a
-   * generator's biome choice is written in too where it reads temperature.
-   * Once the biomes are chosen, the temperatures go into the scale of the
-   * generator's own climate.
+   * The climate maps are drawn in TFC 4's temperature scale, which the
+   * biome choice is written in too where it reads temperature. Once the
+   * biomes are chosen, the temperatures go into TFC 2's scale.
    */
-  private static void toGeneratorClimate(Region region, WorldBackend backend) {
+  private static void toTfcClimate(Region region) {
     if (!TFCRealWorldConfig.CLIMATE_FROM_MAP.get()) {
       return;
     }
     for (final Region.Point point : region.data()) {
       if (point != null) {
-        point.temperature = backend.climateTemperature(point.temperature);
+        point.temperature = ClimateScale.temperature(point.temperature);
       }
     }
   }
@@ -102,13 +107,8 @@ public final class MapBiomeChoice {
     return volcanic;
   }
 
-  /** The sea where coral reefs stand, per the tectonics map. */
-  public boolean atolls() {
-    return places != null && places.at(x, z).atolls();
-  }
-
   /**
-   * The generator's seeded pick among the choices that fit the first rule
+   * TFC's seeded pick among the choices that fit the first rule
    * that leaves any, or among all of them if no rule does or the map has no
    * tectonics.
    */
@@ -132,20 +132,19 @@ public final class MapBiomeChoice {
   }
 
   /**
-   * An island takes any of the generator's island biomes. With tectonics
+   * An island takes any of TFC's island biomes. With tectonics
    * the map decides: islands here are the low ones (a mountainous island is
    * ordinary land with mountain relief), volcanic where the map has
    * volcanism and not where it has none.
    */
   public int pickIsland(long rngSeed, int areaSeed, int[] choices) {
-    final boolean volcanic = volcanicGround() || backend.volcanic(point);
-    final IntPredicate volcanism = biome ->
-      backend.isVolcanicBiome(biome) == volcanic;
+    final boolean volcanic = volcanicGround();
+    final IntPredicate volcanism = biome -> isVolcanic(biome) == volcanic;
     return pick(
       rngSeed,
       areaSeed,
       choices,
-      volcanism.and(biome -> !backend.isMountains(biome)),
+      volcanism.and(biome -> !TFCLayers.isMountains(biome)),
       volcanism
     );
   }
@@ -167,33 +166,36 @@ public final class MapBiomeChoice {
       return pick(rngSeed, areaSeed, choices);
     }
     if (!volcanicGround()) {
-      // Mountain relief of the map is a young range: the generator's old
-      // mountains, plateaus and highlands come from its highland relief.
-      final IntPredicate quiet = biome -> !backend.isVolcanicBiome(biome);
+      // Mountain relief of the map is a young range: TFC's old mountains
+      // and plateaus come from its highland relief.
+      final IntPredicate quiet = biome -> !isVolcanic(biome);
       return pick(
         rngSeed,
         areaSeed,
         choices,
         quiet.and(
-          biome -> backend.isMountains(biome) && biome != backend.oldMountains()
+          biome ->
+            TFCLayers.isMountains(biome) && biome != TFCLayers.OLD_MOUNTAINS
         ),
         quiet
       );
     }
     final boolean oceanic = point.coastalMountain();
-    final IntPredicate volcanic = backend::isVolcanicBiome;
+    final IntPredicate volcanic = MapBiomeChoice::isVolcanic;
     return pick(
       rngSeed,
       areaSeed,
       IntStream.concat(IntStream.of(inland), IntStream.of(coastal)).toArray(),
-      volcanic.and(biome -> backend.biome(biome).isSalty() == oceanic),
+      volcanic.and(
+        biome -> TFCLayers.getFromLayerId(biome).isSalty() == oceanic
+      ),
       volcanic
     );
   }
 
   /**
-   * A generator may keep a volcanic biome among its land that is no
-   * mountain and pick it at random (TFC's canyons). With tectonics all
+   * TFC keeps a volcanic biome among its land that is no mountain and
+   * picks it at random (its canyons). With tectonics all
    * of the map's volcanic ground is such a biome, whatever the relief, and
    * no other ground is.
    */
@@ -206,7 +208,7 @@ public final class MapBiomeChoice {
     if (places == null) {
       return pick(rngSeed, areaSeed, choices);
     }
-    final IntPredicate volcanic = backend::isVolcanicBiome;
+    final IntPredicate volcanic = MapBiomeChoice::isVolcanic;
     if (volcanicGround()) {
       final int[] cones = Stream.of(pools)
         .flatMapToInt(IntStream::of)
@@ -221,14 +223,14 @@ public final class MapBiomeChoice {
   }
 
   /**
-   * Whether a biome the generator swaps in after its pick may stand here.
+   * Whether a biome TFC swaps in after its pick may stand here.
    */
   public boolean allows(int biome) {
     return (
       places == null ||
       volcanicGround() ||
-      backend.isMountains(biome) ||
-      !backend.isVolcanicBiome(biome)
+      TFCLayers.isMountains(biome) ||
+      !isVolcanic(biome)
     );
   }
 
@@ -242,7 +244,7 @@ public final class MapBiomeChoice {
       rngSeed,
       areaSeed,
       choices,
-      biome -> biome == backend.oceanReef()
+      biome -> biome == TFCLayers.OCEAN_REEF
     );
   }
 
@@ -250,34 +252,8 @@ public final class MapBiomeChoice {
     return places != null ? Byte.MAX_VALUE : point.distanceToEdge;
   }
 
-  /**
-   * "Meets the sea" for an ice sheet: with tectonics only where the ice
-   * sheet edge layer finds the ocean next to it, never by distance.
-   */
-  public byte iceSheetDistanceToOcean(Region.Point point) {
-    return places != null ? Byte.MAX_VALUE : point.distanceToOcean;
-  }
-
-  /**
-   * Collisional mountains are oceanic where the sea reaches into the range
-   * (the {@code coast} property), as every other mountain.
-   */
-  public byte collisionalDistanceToOcean(Region.Point point) {
-    if (places == null) {
-      return point.distanceToOcean;
-    }
-    return point.coastalMountain() ? 0 : Byte.MAX_VALUE;
-  }
-
-  /**
-   * The generator builds atolls in warm sea far enough from land, which on
-   * a real map is nearly all of the tropical ocean. With tectonics the
-   * distance is replaced by the {@code atolls} property.
-   */
-  public byte atollDistanceToLand(byte distanceToLand) {
-    if (places == null) {
-      return distanceToLand;
-    }
-    return atolls() ? Byte.MAX_VALUE : 0;
+  /** A biome that builds volcanoes. */
+  private static boolean isVolcanic(int biome) {
+    return TFCLayers.getFromLayerId(biome).isVolcanic();
   }
 }
