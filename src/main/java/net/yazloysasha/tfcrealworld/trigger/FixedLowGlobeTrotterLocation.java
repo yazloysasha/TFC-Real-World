@@ -11,7 +11,8 @@ import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 
 public class FixedLowGlobeTrotterLocation
-  extends SimpleCriterionTrigger<FixedLowGlobeTrotterLocation.TriggerInstance> {
+  extends SimpleCriterionTrigger<FixedLowGlobeTrotterLocation.TriggerInstance>
+{
 
   private static final ResourceLocation ID = new ResourceLocation(
     TFCRealWorld.MOD_ID,

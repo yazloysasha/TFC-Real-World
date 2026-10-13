@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/pacific",
+  "title_lang": {
+    "de_de": "Südwestpazifik",
+    "en_us": "Southwestern Pacific",
+    "es_es": "Pacífico Suroccidental",
+    "ja_jp": "南西太平洋",
+    "ko_kr": "남서태평양",
+    "pl_pl": "Południowo-zachodni Pacyfik",
+    "pt_br": "Pacífico Sudoeste",
+    "ru_ru": "Юго-запад Тихого океана",
+    "tr_tr": "Güneybatı Pasifik",
+    "uk_ua": "Південний захід Тихого океану",
+    "zh_cn": "西南太平洋",
+    "zh_hk": "西南太平洋",
+    "zh_tw": "西南太平洋"
+  }
+}

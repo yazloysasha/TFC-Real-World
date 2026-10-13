@@ -1,145 +1,262 @@
 package net.yazloysasha.tfcrealworld.mixin.world.region;
 
-import java.lang.reflect.Field;
-import net.dries007.tfc.world.noise.Cellular2D;
+import java.util.List;
+import net.dries007.tfc.world.FastConcurrentCache;
 import net.dries007.tfc.world.noise.Noise2D;
-import net.dries007.tfc.world.noise.OpenSimplex2D;
+import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
-import net.minecraft.world.level.levelgen.RandomSource;
-import net.minecraft.world.level.levelgen.XoroshiroRandomSource;
+import net.dries007.tfc.world.region.RegionPartition;
+import net.dries007.tfc.world.region.Units;
+import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.helpers.WorldSeedHolder;
-import net.yazloysasha.tfcrealworld.util.registry.AltitudeNoiseRegistry;
-import net.yazloysasha.tfcrealworld.util.registry.HotspotsNoiseRegistry;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGAltitudeNoise;
+import net.yazloysasha.tfcrealworld.util.registry.ContinentNoiseRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.LevelSeedRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.RiftLakesRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.RiversRegistry;
+import net.yazloysasha.tfcrealworld.util.registry.TectonicsRegistry;
+import net.yazloysasha.tfcrealworld.world.backend.Backends;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGHotspotsNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainfallNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGTemperatureNoise;
+import net.yazloysasha.tfcrealworld.world.region.cache.EvictedEntries;
 import net.yazloysasha.tfcrealworld.world.region.cache.GlobalOceanDistanceCache;
+import net.yazloysasha.tfcrealworld.world.region.cache.GlobalWestCoastDistanceCache;
+import net.yazloysasha.tfcrealworld.world.river.MapRivers;
+import net.yazloysasha.tfcrealworld.world.tectonics.MapRiftLakes;
+import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
+import net.yazloysasha.tfcrealworld.world.volcano.MapHotspotLayout;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import sun.misc.Unsafe;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = RegionGenerator.class, remap = false)
+/**
+ * Replaces the generator's procedural continent and climate noises with the
+ * profile maps, and registers the maps and rivers the region tasks read.
+ */
+@Mixin(value = RegionGenerator.class, remap = false, priority = 500)
 public class RegionGeneratorMixin {
 
   @Shadow
   @Final
-  public Noise2D continentNoise;
+  @Mutable
+  Noise2D continentNoise;
 
   @Shadow
   @Final
-  public Noise2D temperatureNoise;
+  @Mutable
+  Noise2D temperatureNoise;
 
   @Shadow
   @Final
-  public Noise2D rainfallNoise;
+  @Mutable
+  Noise2D rainfallNoise;
 
-  @Shadow
-  @Final
-  private long seed;
+  /**
+   * Grid cells between the points a cell is searched for regions at: more
+   * than a river edge reaches (6), far less than a region is wide.
+   */
+  @Unique
+  private static final int REGION_SEARCH_STEP = 8;
 
-  @Shadow
-  @Final
-  private Cellular2D cellNoise;
+  /** As many regions as TFC's own cache holds at the most. */
+  @Unique
+  private static final int KEPT_REGIONS = 128;
 
-  private static final Unsafe UNSAFE;
+  @Unique
+  private static final int KEPT_PARTITIONS = 512;
 
-  static {
-    try {
-      Field unsafeField = Unsafe.class.getDeclaredField("theUnsafe");
-      unsafeField.setAccessible(true);
-      UNSAFE = (Unsafe) unsafeField.get(null);
-    } catch (Exception e) {
-      throw new RuntimeException("Failed to get Unsafe instance", e);
-    }
+  @Unique
+  private static final String CACHE_GET =
+    "Lnet/dries007/tfc/world/FastConcurrentCache;getIfPresent(II)Ljava/lang/Object;";
+
+  @Unique
+  private static final String CACHE_SET =
+    "Lnet/dries007/tfc/world/FastConcurrentCache;set(IILjava/lang/Object;)V";
+
+  @Unique
+  private static final String REGION_OF_CELL =
+    "getOrCreateRegion(Lnet/dries007/tfc/world/noise/Cellular2D$Cell;)Lnet/dries007/tfc/world/region/Region;";
+
+  @Unique
+  private final EvictedEntries<Region> tfcrealworld$regions =
+    new EvictedEntries<>(KEPT_REGIONS);
+
+  @Unique
+  private final EvictedEntries<RegionPartition> tfcrealworld$partitions =
+    new EvictedEntries<>(KEPT_PARTITIONS);
+
+  /**
+   * A region thrown out of its cache slot by another is taken back from
+   * the store instead of being generated again.
+   */
+  @Redirect(
+    method = REGION_OF_CELL,
+    at = @At(value = "INVOKE", target = CACHE_GET)
+  )
+  private Object tfcrealworld$regionKeptPastEviction(
+    FastConcurrentCache<Region> cache,
+    int x,
+    int z
+  ) {
+    final Region cached = cache.getIfPresent(x, z);
+    return cached != null ? cached : tfcrealworld$regions.get(x, z);
+  }
+
+  @Redirect(
+    method = REGION_OF_CELL,
+    at = @At(value = "INVOKE", target = CACHE_SET)
+  )
+  private void tfcrealworld$keepRegion(
+    FastConcurrentCache<Region> cache,
+    int x,
+    int z,
+    Object region
+  ) {
+    cache.set(x, z, (Region) region);
+    tfcrealworld$regions.put(x, z, (Region) region);
+  }
+
+  @Redirect(
+    method = "getOrCreatePartition",
+    at = @At(value = "INVOKE", target = CACHE_GET)
+  )
+  private Object tfcrealworld$partitionKeptPastEviction(
+    FastConcurrentCache<RegionPartition> cache,
+    int x,
+    int z
+  ) {
+    final RegionPartition cached = cache.getIfPresent(x, z);
+    return cached != null ? cached : tfcrealworld$partitions.get(x, z);
+  }
+
+  @Redirect(
+    method = "getOrCreatePartition",
+    at = @At(value = "INVOKE", target = CACHE_SET)
+  )
+  private void tfcrealworld$keepPartition(
+    FastConcurrentCache<RegionPartition> cache,
+    int x,
+    int z,
+    Object partition
+  ) {
+    cache.set(x, z, (RegionPartition) partition);
+    tfcrealworld$partitions.put(x, z, (RegionPartition) partition);
   }
 
   @Inject(method = "<init>", at = @At("TAIL"))
-  private void tfcrealworld$replaceNoises(CallbackInfo ci) {
-    RegionGenerator instance = (RegionGenerator) (Object) this;
-
-    WorldSeedHolder.setSeed(seed);
-
-    try {
-      int horizontalScale = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
-      int verticalScale = TFCRealWorldConfig.VERTICAL_SCALE.get();
-
-      PNGContinentNoise continentNoise = null;
-      if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
-        continentNoise = new PNGContinentNoise(horizontalScale, verticalScale);
-        initializeContinentMap(instance, continentNoise);
-
-        GlobalOceanDistanceCache.initialize(continentNoise);
-      } else {
-        initializeContinentNoiseWithContinentalness(
-          instance,
-          TFCRealWorldConfig.CONTINENTALNESS.get().floatValue() * 10f - 2.5f
-        );
-      }
-
-      if (TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()) {
-        PNGAltitudeNoise altitudeNoise = new PNGAltitudeNoise(
-          horizontalScale,
-          verticalScale
-        );
-        initializeAltitudeMap(instance, altitudeNoise);
-      }
-
-      if (TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()) {
-        PNGHotspotsNoise hotspotsNoise = new PNGHotspotsNoise(
-          horizontalScale,
-          verticalScale
-        );
-        HotspotsNoiseRegistry.register(instance, hotspotsNoise);
-      } else {
-        HotspotsNoiseRegistry.clearBiomeLayout();
-      }
-    } catch (NoSuchFieldException e) {
-      throw new RuntimeException(
-        "Failed to find required field in RegionGenerator. This should not happen.",
-        e
+  private void tfcrealworld$replaceNoises(long seed, CallbackInfo ci) {
+    final RegionGenerator generator = (RegionGenerator) (Object) this;
+    final long levelSeed = Backends.current().levelSeed(
+      WorldSeedHolder.getSeed()
+    );
+    LevelSeedRegistry.register(generator, levelSeed);
+    final int horizontalScale = TFCRealWorldConfig.HORIZONTAL_SCALE.get();
+    final int verticalScale = TFCRealWorldConfig.VERTICAL_SCALE.get();
+    if (TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
+      final PNGContinentNoise continent = new PNGContinentNoise(
+        horizontalScale,
+        verticalScale
       );
+      continentNoise = continent;
+      ContinentNoiseRegistry.register(generator, continent);
+      GlobalOceanDistanceCache.initialize(continent);
+      GlobalWestCoastDistanceCache.initialize(continent);
+      final MapRivers rivers = MapRivers.tryLoad(
+        horizontalScale,
+        verticalScale
+      );
+      if (rivers != null) {
+        RiversRegistry.register(generator, rivers);
+      }
+      TectonicsRegistry.clearStatics();
+      if (TFCRealWorldConfig.TECTONICS_FROM_MAP.get()) {
+        tfcrealworld$registerTectonics(
+          generator,
+          continent,
+          levelSeed,
+          horizontalScale,
+          verticalScale
+        );
+      }
+    }
+    if (TFCRealWorldConfig.CLIMATE_FROM_MAP.get()) {
+      temperatureNoise = new PNGTemperatureNoise(
+        horizontalScale,
+        verticalScale
+      );
+      rainfallNoise = new PNGRainfallNoise(horizontalScale, verticalScale);
     }
   }
 
-  private void initializeContinentMap(
-    RegionGenerator instance,
-    PNGContinentNoise continentNoise
-  ) throws NoSuchFieldException {
-    Field continentField =
-      RegionGenerator.class.getDeclaredField("continentNoise");
-    long offset = UNSAFE.objectFieldOffset(continentField);
-    UNSAFE.putObject(instance, offset, continentNoise);
-  }
-
-  private void initializeAltitudeMap(
-    RegionGenerator instance,
-    PNGAltitudeNoise altitudeNoise
+  @Unique
+  private static void tfcrealworld$registerTectonics(
+    RegionGenerator generator,
+    PNGContinentNoise continent,
+    long levelSeed,
+    int horizontalScale,
+    int verticalScale
   ) {
-    AltitudeNoiseRegistry.register(instance, altitudeNoise);
+    final TectonicsMap tectonics = TectonicsMap.tryCreate(
+      horizontalScale,
+      verticalScale
+    );
+    if (tectonics == null) {
+      TFCRealWorld.LOGGER.warn(
+        "Tectonics from map enabled but tectonics.png is missing for profile {}",
+        TFCRealWorldConfig.MAP_PROFILE.get()
+      );
+      return;
+    }
+    TectonicsRegistry.register(
+      generator,
+      tectonics,
+      TFCRealWorldConfig.VOLCANOES_FROM_MAP.get()
+        ? MapHotspotLayout.create(tectonics, levelSeed)
+        : null
+    );
+    RiftLakesRegistry.register(
+      generator,
+      MapRiftLakes.create(continent, tectonics)
+    );
   }
 
-  private void initializeContinentNoiseWithContinentalness(
-    RegionGenerator instance,
-    float min
-  ) throws NoSuchFieldException {
-    RandomSource random = new XoroshiroRandomSource(seed);
-    Noise2D newContinentNoise = cellNoise
-      .then(c -> 1 - c.f1() / (0.37f + c.f2()))
-      .lazyProduct(
-        new OpenSimplex2D(random.nextLong())
-          .spread(0.24f)
-          .scaled(min, 8.7f)
-          .octaves(4)
-      );
-
-    Field continentField =
-      RegionGenerator.class.getDeclaredField("continentNoise");
-    long offset = UNSAFE.objectFieldOffset(continentField);
-    UNSAFE.putObject(instance, offset, newContinentNoise);
+  /**
+   * Vanilla gathers the rivers of a partition from the regions at the corners
+   * of the cells around it. Its own rivers grow inland from a region's shores
+   * and rarely reach a part of the region that touches none of those corners;
+   * map rivers run wherever the map has them, and one in such a part would be
+   * cut off along the cell border. Every region that reaches into the cell,
+   * or within a river's reach of it, is gathered.
+   */
+  @Inject(method = "getAllRegionsIn3x3CellArea", at = @At("RETURN"))
+  private void tfcrealworld$gatherEveryRegionOfTheCell(
+    int cellX,
+    int cellZ,
+    CallbackInfoReturnable<List<Region>> cir
+  ) {
+    final RegionGenerator generator = (RegionGenerator) (Object) this;
+    if (RiversRegistry.get(generator) == null) {
+      return;
+    }
+    final List<Region> regions = cir.getReturnValue();
+    final int minX = Units.cellToGrid(cellX) - REGION_SEARCH_STEP;
+    final int minZ = Units.cellToGrid(cellZ) - REGION_SEARCH_STEP;
+    final int size = Units.CELL_WIDTH_IN_GRID + 2 * REGION_SEARCH_STEP;
+    for (int dz = 0; dz <= size; dz += REGION_SEARCH_STEP) {
+      for (int dx = 0; dx <= size; dx += REGION_SEARCH_STEP) {
+        final Region region = generator.getOrCreateRegion(minX + dx, minZ + dz);
+        if (!regions.contains(region)) {
+          regions.add(region);
+        }
+      }
+    }
   }
 }

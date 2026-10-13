@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/south_central_usa",
+  "title_lang": {
+    "de_de": "Texas",
+    "en_us": "Texas",
+    "es_es": "Texas",
+    "ja_jp": "テキサス",
+    "ko_kr": "텍사스",
+    "pl_pl": "Teksas",
+    "pt_br": "Texas",
+    "ru_ru": "Техас",
+    "tr_tr": "Teksas",
+    "uk_ua": "Техас",
+    "zh_cn": "得克萨斯",
+    "zh_hk": "得克薩斯",
+    "zh_tw": "得克薩斯"
+  }
+}

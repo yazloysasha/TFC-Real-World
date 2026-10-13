@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southern_africa",
+  "title_lang": {
+    "de_de": "Kapprovinzen",
+    "en_us": "Cape Provinces",
+    "es_es": "Provincias del Cabo",
+    "ja_jp": "ケープ諸州",
+    "ko_kr": "케이프 주들",
+    "pl_pl": "Prowincje Przylądkowe",
+    "pt_br": "Províncias do Cabo",
+    "ru_ru": "Капские провинции",
+    "tr_tr": "Kap Eyaletleri",
+    "uk_ua": "Капські провінції",
+    "zh_cn": "开普诸省",
+    "zh_hk": "開普諸省",
+    "zh_tw": "開普諸省"
+  }
+}

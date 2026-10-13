@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/eastern_europe",
+  "title_lang": {
+    "de_de": "Krim",
+    "en_us": "Crimea",
+    "es_es": "Crimea",
+    "ja_jp": "クリミア",
+    "ko_kr": "크림",
+    "pl_pl": "Krym",
+    "pt_br": "Crimeia",
+    "ru_ru": "Крым",
+    "tr_tr": "Kırım",
+    "uk_ua": "Крим",
+    "zh_cn": "克里米亚",
+    "zh_hk": "克里米亞",
+    "zh_tw": "克里米亞"
+  }
+}

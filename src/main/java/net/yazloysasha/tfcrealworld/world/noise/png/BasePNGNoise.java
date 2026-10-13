@@ -5,6 +5,7 @@ import java.awt.image.IndexColorModel;
 import java.awt.image.Raster;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.SoftReference;
 import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
@@ -13,15 +14,22 @@ import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
+import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
 
 public abstract class BasePNGNoise implements Noise2D {
 
-  private static final Map<String, BufferedImage> imageCache = new HashMap<>();
+  /**
+   * Decoded maps by profile and name. Soft: a map is needed again only by a
+   * new world or the map screen, and the continent map is tens of megabytes.
+   */
+  private static final Map<String, SoftReference<BufferedImage>> imageCache =
+    new HashMap<>();
 
   private static final ThreadLocal<double[]> TILE_IMAGE_SCRATCH =
     ThreadLocal.withInitial(() -> new double[2]);
 
-  protected final int[] pixels;
+  /** Brightness of every pixel, 0 to 255, row by row. */
+  protected final byte[] pixels;
   protected final int width;
   protected final int height;
   protected final double centerX;
@@ -42,9 +50,9 @@ public abstract class BasePNGNoise implements Noise2D {
     this.tileRadiusBlocksX = horizontalScale;
     this.tileRadiusBlocksZ = verticalScale;
     this.tileRadiusGridX =
-      tileRadiusBlocksX / (double) TFCRealWorld.GRID_WIDTH_IN_BLOCK;
+      tileRadiusBlocksX / (double) RegionCoords.GRID_WIDTH_IN_BLOCK;
     this.tileRadiusGridZ =
-      tileRadiusBlocksZ / (double) TFCRealWorld.GRID_WIDTH_IN_BLOCK;
+      tileRadiusBlocksZ / (double) RegionCoords.GRID_WIDTH_IN_BLOCK;
 
     BufferedImage image = loadImage(mapName);
     if (image == null) {
@@ -53,7 +61,7 @@ public abstract class BasePNGNoise implements Noise2D {
 
     this.width = image.getWidth();
     this.height = image.getHeight();
-    this.pixels = copyPixelsWithoutColorManagement(image);
+    this.pixels = readBrightness(image);
 
     this.centerX = width / 2.0;
     this.centerZ = height / 2.0;
@@ -62,9 +70,14 @@ public abstract class BasePNGNoise implements Noise2D {
     this.scaleZ = height / (2.0 * tileRadiusGridZ);
   }
 
+  /** TFC's noise is in floats; the maps are read in doubles. */
   @Override
   public float noise(float x, float z) {
-    return (float) transformBrightness(sampleBrightnessAtWorld(x, z));
+    return (float) noise((double) x, (double) z);
+  }
+
+  public double noise(double x, double z) {
+    return transformBrightness(sampleBrightnessAtWorld(x, z));
   }
 
   protected double sampleBrightnessAtWorld(double x, double z) {
@@ -73,68 +86,41 @@ public abstract class BasePNGNoise implements Noise2D {
     return sampleBrightness(imageCoords[0], imageCoords[1]);
   }
 
+  protected int sampleGrayAtWorldRounded(double x, double z) {
+    return brightnessAt(pixelIndexAtWorldRounded(x, z));
+  }
+
+  /** Index of the pixel nearest to {@code (x, z)}, as hard samples read it. */
+  public int pixelIndexAtWorldRounded(double x, double z) {
+    final double[] imageCoords = tileImageScratch();
+    fillTileImageCoords(x, z, imageCoords);
+    final int ix = Mth.clamp((int) Math.round(imageCoords[0]), 0, width - 1);
+    final int iz = Mth.clamp((int) Math.round(imageCoords[1]), 0, height - 1);
+    return iz * width + ix;
+  }
+
   protected double[] tileImageScratch() {
     return TILE_IMAGE_SCRATCH.get();
   }
 
-  protected InterpolationCoords calculateInterpolationCoords(
-    double imageX,
-    double imageZ
-  ) {
-    int x0 = (int) Math.floor(imageX);
-    int z0 = (int) Math.floor(imageZ);
-    int x1 = Math.min(x0 + 1, width - 1);
-    int z1 = Math.min(z0 + 1, height - 1);
-
-    double fx = imageX - x0;
-    double fz = imageZ - z0;
-
-    return new InterpolationCoords(x0, z0, x1, z1, fx, fz);
-  }
-
   protected double sampleBrightness(double imageX, double imageZ) {
-    InterpolationCoords coords = calculateInterpolationCoords(imageX, imageZ);
-
-    double brightness00 = getBrightness(pixels[coords.z0 * width + coords.x0]);
-    double brightness10 = getBrightness(pixels[coords.z0 * width + coords.x1]);
-    double brightness01 = getBrightness(pixels[coords.z1 * width + coords.x0]);
-    double brightness11 = getBrightness(pixels[coords.z1 * width + coords.x1]);
-
-    double brightness0 =
-      brightness00 * (1 - coords.fx) + brightness10 * coords.fx;
-    double brightness1 =
-      brightness01 * (1 - coords.fx) + brightness11 * coords.fx;
-    return brightness0 * (1 - coords.fz) + brightness1 * coords.fz;
+    final int x0 = (int) Math.floor(imageX);
+    final int z0 = (int) Math.floor(imageZ);
+    final int x1 = Math.min(x0 + 1, width - 1);
+    final int z1 = Math.min(z0 + 1, height - 1);
+    final double fx = imageX - x0;
+    final double fz = imageZ - z0;
+    final double top =
+      brightnessAt(z0 * width + x0) * (1 - fx) +
+      brightnessAt(z0 * width + x1) * fx;
+    final double bottom =
+      brightnessAt(z1 * width + x0) * (1 - fx) +
+      brightnessAt(z1 * width + x1) * fx;
+    return top * (1 - fz) + bottom * fz;
   }
 
-  protected int[] samplePixels(double imageX, double imageZ) {
-    InterpolationCoords coords = calculateInterpolationCoords(imageX, imageZ);
-
-    return new int[] {
-      pixels[coords.z0 * width + coords.x0],
-      pixels[coords.z0 * width + coords.x1],
-      pixels[coords.z1 * width + coords.x0],
-      pixels[coords.z1 * width + coords.x1],
-    };
-  }
-
-  protected static class InterpolationCoords {
-
-    final int x0;
-    final int z0;
-    final int x1;
-    final int z1;
-    final double fx;
-    final double fz;
-
-    InterpolationCoords(int x0, int z0, int x1, int z1, double fx, double fz) {
-      this.x0 = x0;
-      this.z0 = z0;
-      this.x1 = x1;
-      this.z1 = z1;
-      this.fx = fx;
-      this.fz = fz;
-    }
+  protected int brightnessAt(int pixel) {
+    return pixels[pixel] & 0xFF;
   }
 
   public double[] tileToImage(double x, double z) {
@@ -156,7 +142,7 @@ public abstract class BasePNGNoise implements Noise2D {
     double localX = x - tileCenterX;
     double localZ = z - tileCenterZ;
 
-    if (Math.floorMod(tileX, 2) != 0) {
+    if (Math.floorMod(tileX + tileZ, 2) != 0) {
       localX = -localX;
     }
     if (Math.floorMod(tileZ, 2) != 0) {
@@ -173,43 +159,45 @@ public abstract class BasePNGNoise implements Noise2D {
   protected abstract double transformBrightness(double brightness);
 
   /**
-   * {@code ImageIO.getRGB} on gray PNGs applies sRGB and skews mid-tones.
+   * Gray samples are read raw: {@code ImageIO.getRGB} on gray PNGs applies
+   * sRGB and skews mid-tones. Anything else is read as colour, row by row.
    */
-  private static int[] copyPixelsWithoutColorManagement(BufferedImage image) {
+  private static byte[] readBrightness(BufferedImage image) {
     final int width = image.getWidth();
     final int height = image.getHeight();
-    final int[] pixels = new int[width * height];
+    final byte[] pixels = new byte[width * height];
     final Raster raster = image.getRaster();
-    if (
+    final boolean gray =
       raster.getNumBands() == 1 &&
-      !(image.getColorModel() instanceof IndexColorModel)
-    ) {
-      final int[] samples = raster.getPixels(0, 0, width, height, (int[]) null);
-      for (int i = 0; i < samples.length; i++) {
-        final int gray = samples[i] & 0xFF;
-        pixels[i] = 0xFF000000 | (gray << 16) | (gray << 8) | gray;
+      !(image.getColorModel() instanceof IndexColorModel);
+    final int[] row = new int[width];
+    for (int z = 0; z < height; z++) {
+      if (gray) {
+        raster.getSamples(0, z, width, 1, 0, row);
+      } else {
+        image.getRGB(0, z, width, 1, row, 0, width);
       }
-      return pixels;
+      for (int x = 0; x < width; x++) {
+        pixels[z * width + x] = (byte) (gray ? row[x] : brightness(row[x]));
+      }
     }
-    image.getRGB(0, 0, width, height, pixels, 0, width);
     return pixels;
   }
 
-  protected double getBrightness(int rgb) {
-    int r = (rgb >> 16) & 0xFF;
-    int g = (rgb >> 8) & 0xFF;
-    int b = rgb & 0xFF;
-    if (r == g && g == b) {
-      return r;
-    }
-    return 0.299 * r + 0.587 * g + 0.114 * b;
+  private static int brightness(int rgb) {
+    final int r = (rgb >> 16) & 0xFF;
+    final int g = (rgb >> 8) & 0xFF;
+    final int b = rgb & 0xFF;
+    return r == g && g == b
+      ? r
+      : (int) Math.round(0.299 * r + 0.587 * g + 0.114 * b);
   }
 
   public double getBrightness(int x, int z) {
     if (x < 0 || x >= width || z < 0 || z >= height) {
       return 0.0;
     }
-    return getBrightness(pixels[z * width + x]);
+    return brightnessAt(z * width + x);
   }
 
   public int getWidth() {
@@ -255,7 +243,8 @@ public abstract class BasePNGNoise implements Noise2D {
   public static BufferedImage loadImage(String mapName) {
     String cacheKey = getProfileId() + ":" + mapName;
     synchronized (imageCache) {
-      BufferedImage cached = imageCache.get(cacheKey);
+      final SoftReference<BufferedImage> reference = imageCache.get(cacheKey);
+      final BufferedImage cached = reference == null ? null : reference.get();
       if (cached != null) {
         return cached;
       }
@@ -276,7 +265,7 @@ public abstract class BasePNGNoise implements Noise2D {
       BufferedImage image = ImageIO.read(mapStream);
       if (image != null) {
         synchronized (imageCache) {
-          imageCache.put(cacheKey, image);
+          imageCache.put(cacheKey, new SoftReference<>(image));
         }
       }
       return image;

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northern_europe",
+  "title_lang": {
+    "de_de": "Schweden",
+    "en_us": "Sweden",
+    "es_es": "Suecia",
+    "ja_jp": "スウェーデン",
+    "ko_kr": "스웨덴",
+    "pl_pl": "Szwecja",
+    "pt_br": "Suécia",
+    "ru_ru": "Швеция",
+    "tr_tr": "İsveç",
+    "uk_ua": "Швеція",
+    "zh_cn": "瑞典",
+    "zh_hk": "瑞典",
+    "zh_tw": "瑞典"
+  }
+}

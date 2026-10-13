@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/south_tropical_africa",
+  "title_lang": {
+    "de_de": "Sambia",
+    "en_us": "Zambia",
+    "es_es": "Zambia",
+    "ja_jp": "ザンビア",
+    "ko_kr": "잠비아",
+    "pl_pl": "Zambia",
+    "pt_br": "Zâmbia",
+    "ru_ru": "Замбия",
+    "tr_tr": "Zambiya",
+    "uk_ua": "Замбія",
+    "zh_cn": "赞比亚",
+    "zh_hk": "贊比亞",
+    "zh_tw": "贊比亞"
+  }
+}

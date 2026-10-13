@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/middle_europe",
+  "title_lang": {
+    "de_de": "Schweiz",
+    "en_us": "Switzerland",
+    "es_es": "Suiza",
+    "ja_jp": "スイス",
+    "ko_kr": "스위스",
+    "pl_pl": "Szwajcaria",
+    "pt_br": "Suíça",
+    "ru_ru": "Швейцария",
+    "tr_tr": "İsviçre",
+    "uk_ua": "Швейцарія",
+    "zh_cn": "瑞士",
+    "zh_hk": "瑞士",
+    "zh_tw": "瑞士"
+  }
+}

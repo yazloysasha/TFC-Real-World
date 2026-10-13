@@ -66,24 +66,23 @@ public class SpawnCenterHelper {
       return cachedSpawnCenter.coords();
     }
 
-    int[] result =
-      switch (mode) {
-        case GEOGRAPHIC -> {
-          double[] geoCoords = ProjectionManager.geographicToClassic(
-            TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.get(),
-            TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.get()
-          );
-          yield new int[] {
-            (int) Math.round(geoCoords[0]),
-            (int) Math.round(geoCoords[1]),
-          };
-        }
-        case CLASSIC -> new int[] {
-          TFCRealWorldConfig.SPAWN_CENTER_X.get(),
-          TFCRealWorldConfig.SPAWN_CENTER_Z.get(),
+    int[] result = switch (mode) {
+      case GEOGRAPHIC -> {
+        double[] geoCoords = ProjectionManager.geographicToClassic(
+          TFCRealWorldConfig.SPAWN_CENTER_LONGITUDE.get(),
+          TFCRealWorldConfig.SPAWN_CENTER_LATITUDE.get()
+        );
+        yield new int[] {
+          (int) Math.round(geoCoords[0]),
+          (int) Math.round(geoCoords[1]),
         };
-        case RANDOM -> generateRandomSpawnCenter(seed);
+      }
+      case CLASSIC -> new int[] {
+        TFCRealWorldConfig.SPAWN_CENTER_X.get(),
+        TFCRealWorldConfig.SPAWN_CENTER_Z.get(),
       };
+      case RANDOM -> generateRandomSpawnCenter(seed);
+    };
 
     SPAWN_CENTER_CACHE.set(new CachedSpawnCenter(mode, seed, result));
 

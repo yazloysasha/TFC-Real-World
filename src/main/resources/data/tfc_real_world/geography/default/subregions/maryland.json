@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southeastern_usa",
+  "title_lang": {
+    "de_de": "Maryland",
+    "en_us": "Maryland",
+    "es_es": "Maryland",
+    "ja_jp": "メリーランド",
+    "ko_kr": "메릴랜드",
+    "pl_pl": "Maryland",
+    "pt_br": "Maryland",
+    "ru_ru": "Мэриленд",
+    "tr_tr": "Maryland",
+    "uk_ua": "Меріленд",
+    "zh_cn": "马里兰",
+    "zh_hk": "馬里蘭",
+    "zh_tw": "馬里蘭"
+  }
+}

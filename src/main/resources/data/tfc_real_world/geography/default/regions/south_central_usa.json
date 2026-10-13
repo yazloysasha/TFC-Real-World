@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/northern_america",
+  "title_lang": {
+    "de_de": "Süd-Zentral-USA",
+    "en_us": "South-Central U.S.A.",
+    "es_es": "Centro-sur de EE. UU.",
+    "ja_jp": "アメリカ中南部",
+    "ko_kr": "미국 중남부",
+    "pl_pl": "Południowo-środkowe USA",
+    "pt_br": "Centro-sul dos EUA",
+    "ru_ru": "Юг США",
+    "tr_tr": "Güney-Orta ABD",
+    "uk_ua": "Південь США",
+    "zh_cn": "美国中南部",
+    "zh_hk": "美國中南部",
+    "zh_tw": "美國中南部"
+  }
+}

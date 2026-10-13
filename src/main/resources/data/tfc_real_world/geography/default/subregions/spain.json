@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southwestern_europe",
+  "title_lang": {
+    "de_de": "Spanien",
+    "en_us": "Spain",
+    "es_es": "España",
+    "ja_jp": "スペイン",
+    "ko_kr": "스페인",
+    "pl_pl": "Hiszpania",
+    "pt_br": "Espanha",
+    "ru_ru": "Испания",
+    "tr_tr": "İspanya",
+    "uk_ua": "Іспанія",
+    "zh_cn": "西班牙",
+    "zh_hk": "西班牙",
+    "zh_tw": "西班牙"
+  }
+}

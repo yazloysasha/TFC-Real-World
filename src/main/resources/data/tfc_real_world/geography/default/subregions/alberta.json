@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/western_canada",
+  "title_lang": {
+    "de_de": "Alberta",
+    "en_us": "Alberta",
+    "es_es": "Alberta",
+    "ja_jp": "アルバータ",
+    "ko_kr": "앨버타",
+    "pl_pl": "Alberta",
+    "pt_br": "Alberta",
+    "ru_ru": "Альберта",
+    "tr_tr": "Alberta",
+    "uk_ua": "Альберта",
+    "zh_cn": "艾伯塔",
+    "zh_hk": "艾伯塔",
+    "zh_tw": "艾伯塔"
+  }
+}

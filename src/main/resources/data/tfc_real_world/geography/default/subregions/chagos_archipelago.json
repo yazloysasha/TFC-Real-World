@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/western_indian_ocean",
+  "title_lang": {
+    "de_de": "Chagos-Archipel",
+    "en_us": "Chagos Archipelago",
+    "es_es": "Archipiélago de Chagos",
+    "ja_jp": "チャゴス諸島",
+    "ko_kr": "차고스 제도",
+    "pl_pl": "Archipelag Czagos",
+    "pt_br": "Arquipélago de Chagos",
+    "ru_ru": "Архипелаг Чагос",
+    "tr_tr": "Chagos Takımadaları",
+    "uk_ua": "Архіпелаг Чагос",
+    "zh_cn": "查戈斯群岛",
+    "zh_hk": "查戈斯群島",
+    "zh_tw": "查戈斯群島"
+  }
+}

@@ -6,8 +6,9 @@ import net.minecraftforge.common.ForgeConfigSpec;
 public class ConfigOption<T> implements Supplier<T> {
 
   private final ForgeConfigSpec.ConfigValue<T> configValue;
-  private T serverValue;
-  private boolean serverConfigActive = false;
+  /** Set by the server's config sync, read by world generation threads. */
+  private volatile T serverValue;
+  private volatile boolean serverConfigActive = false;
 
   @SuppressWarnings("rawtypes")
   private Class<? extends Enum> enumClass;

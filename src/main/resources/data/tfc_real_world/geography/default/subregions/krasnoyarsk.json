@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/siberia",
+  "title_lang": {
+    "de_de": "Krasnojarsk",
+    "en_us": "Krasnoyarsk",
+    "es_es": "Krasnoyarsk",
+    "ja_jp": "クラスノヤルスク",
+    "ko_kr": "크라스노야르스크",
+    "pl_pl": "Krasnojarsk",
+    "pt_br": "Krasnoiarsk",
+    "ru_ru": "Красноярск",
+    "tr_tr": "Krasnoyarsk",
+    "uk_ua": "Красноярськ",
+    "zh_cn": "克拉斯诺亚尔斯克",
+    "zh_hk": "克拉斯諾亞爾斯克",
+    "zh_tw": "克拉斯諾亞爾斯克"
+  }
+}

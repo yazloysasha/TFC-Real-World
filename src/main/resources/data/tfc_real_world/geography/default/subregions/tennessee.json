@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southeastern_usa",
+  "title_lang": {
+    "de_de": "Tennessee",
+    "en_us": "Tennessee",
+    "es_es": "Tennessee",
+    "ja_jp": "テネシー",
+    "ko_kr": "테네시",
+    "pl_pl": "Tennessee",
+    "pt_br": "Tennessee",
+    "ru_ru": "Теннесси",
+    "tr_tr": "Tennessee",
+    "uk_ua": "Теннессі",
+    "zh_cn": "田纳西",
+    "zh_hk": "田納西",
+    "zh_tw": "田納西"
+  }
+}

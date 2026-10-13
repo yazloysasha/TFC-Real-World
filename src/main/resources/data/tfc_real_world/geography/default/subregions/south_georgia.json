@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/subantarctic_islands",
+  "title_lang": {
+    "de_de": "Südgeorgien",
+    "en_us": "South Georgia",
+    "es_es": "Georgia del Sur",
+    "ja_jp": "サウスジョージア",
+    "ko_kr": "사우스조지아",
+    "pl_pl": "Georgia Południowa",
+    "pt_br": "Geórgia do Sul",
+    "ru_ru": "Южная Георгия",
+    "tr_tr": "Güney Georgia",
+    "uk_ua": "Південна Джорджія",
+    "zh_cn": "南乔治亚",
+    "zh_hk": "南喬治亞",
+    "zh_tw": "南喬治亞"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/indo_china",
+  "title_lang": {
+    "de_de": "Myanmar",
+    "en_us": "Myanmar",
+    "es_es": "Myanmar",
+    "ja_jp": "ミャンマー",
+    "ko_kr": "미얀마",
+    "pl_pl": "Mjanma",
+    "pt_br": "Mianmar",
+    "ru_ru": "Мьянма",
+    "tr_tr": "Myanmar",
+    "uk_ua": "М'янма",
+    "zh_cn": "缅甸",
+    "zh_hk": "緬甸",
+    "zh_tw": "緬甸"
+  }
+}

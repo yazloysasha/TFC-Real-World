@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southeastern_usa",
+  "title_lang": {
+    "de_de": "Georgia",
+    "en_us": "Georgia",
+    "es_es": "Georgia",
+    "ja_jp": "ジョージア",
+    "ko_kr": "조지아",
+    "pl_pl": "Georgia",
+    "pt_br": "Geórgia",
+    "ru_ru": "Джорджия",
+    "tr_tr": "Georgia",
+    "uk_ua": "Джорджія",
+    "zh_cn": "佐治亚",
+    "zh_hk": "佐治亞",
+    "zh_tw": "佐治亞"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northern_europe",
+  "title_lang": {
+    "de_de": "Finnland",
+    "en_us": "Finland",
+    "es_es": "Finlandia",
+    "ja_jp": "フィンランド",
+    "ko_kr": "핀란드",
+    "pl_pl": "Finlandia",
+    "pt_br": "Finlândia",
+    "ru_ru": "Финляндия",
+    "tr_tr": "Finlandiya",
+    "uk_ua": "Фінляндія",
+    "zh_cn": "芬兰",
+    "zh_hk": "芬蘭",
+    "zh_tw": "芬蘭"
+  }
+}

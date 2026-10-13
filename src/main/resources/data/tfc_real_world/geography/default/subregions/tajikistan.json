@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/middle_asia",
+  "title_lang": {
+    "de_de": "Tadschikistan",
+    "en_us": "Tajikistan",
+    "es_es": "Tayikistán",
+    "ja_jp": "タジキスタン",
+    "ko_kr": "타지키스탄",
+    "pl_pl": "Tadżykistan",
+    "pt_br": "Tajiquistão",
+    "ru_ru": "Таджикистан",
+    "tr_tr": "Tacikistan",
+    "uk_ua": "Таджикистан",
+    "zh_cn": "塔吉克斯坦",
+    "zh_hk": "塔吉克斯坦",
+    "zh_tw": "塔吉克斯坦"
+  }
+}

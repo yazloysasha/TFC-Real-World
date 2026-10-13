@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southern_africa",
+  "title_lang": {
+    "de_de": "Freistaat",
+    "en_us": "Free State",
+    "es_es": "Estado Libre",
+    "ja_jp": "フリーステート",
+    "ko_kr": "프리스테이트",
+    "pl_pl": "Wolne Państwo",
+    "pt_br": "Estado Livre",
+    "ru_ru": "Фри-стейт",
+    "tr_tr": "Serbest Devlet",
+    "uk_ua": "Фрі-Стейт",
+    "zh_cn": "自由邦",
+    "zh_hk": "自由邦",
+    "zh_tw": "自由邦"
+  }
+}

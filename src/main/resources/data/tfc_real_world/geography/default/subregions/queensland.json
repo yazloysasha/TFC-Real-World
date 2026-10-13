@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/australia",
+  "title_lang": {
+    "de_de": "Queensland",
+    "en_us": "Queensland",
+    "es_es": "Queensland",
+    "ja_jp": "クイーンズランド",
+    "ko_kr": "퀸즐랜드",
+    "pl_pl": "Queensland",
+    "pt_br": "Queensland",
+    "ru_ru": "Квинсленд",
+    "tr_tr": "Queensland",
+    "uk_ua": "Квінсленд",
+    "zh_cn": "昆士兰",
+    "zh_hk": "昆士蘭",
+    "zh_tw": "昆士蘭"
+  }
+}

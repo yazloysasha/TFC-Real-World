@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/indian_subcontinent",
+  "title_lang": {
+    "de_de": "Bangladesch",
+    "en_us": "Bangladesh",
+    "es_es": "Bangladés",
+    "ja_jp": "バングラデシュ",
+    "ko_kr": "방글라데시",
+    "pl_pl": "Bangladesz",
+    "pt_br": "Bangladesh",
+    "ru_ru": "Бангладеш",
+    "tr_tr": "Bangladeş",
+    "uk_ua": "Бангладеш",
+    "zh_cn": "孟加拉国",
+    "zh_hk": "孟加拉國",
+    "zh_tw": "孟加拉國"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/west_tropical_africa",
+  "title_lang": {
+    "de_de": "Mali",
+    "en_us": "Mali",
+    "es_es": "Malí",
+    "ja_jp": "マリ",
+    "ko_kr": "말리",
+    "pl_pl": "Mali",
+    "pt_br": "Mali",
+    "ru_ru": "Мали",
+    "tr_tr": "Mali",
+    "uk_ua": "Малі",
+    "zh_cn": "马里",
+    "zh_hk": "馬裏",
+    "zh_tw": "馬裡"
+  }
+}

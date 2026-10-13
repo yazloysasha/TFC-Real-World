@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southern_africa",
+  "title_lang": {
+    "de_de": "Caprivi-Streifen",
+    "en_us": "Caprivi Strip",
+    "es_es": "Franja de Caprivi",
+    "ja_jp": "カプリビ地帯",
+    "ko_kr": "카프리비 스트립",
+    "pl_pl": "Pas Caprivi",
+    "pt_br": "Faixa de Caprivi",
+    "ru_ru": "Полоса Каприви",
+    "tr_tr": "Caprivi Şeridi",
+    "uk_ua": "Смуга Капріві",
+    "zh_cn": "卡普里维地带",
+    "zh_hk": "卡普里維地帶",
+    "zh_tw": "卡普里維地帶"
+  }
+}

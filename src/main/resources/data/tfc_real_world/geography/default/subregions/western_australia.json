@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/australia",
+  "title_lang": {
+    "de_de": "Western Australia",
+    "en_us": "Western Australia",
+    "es_es": "Australia Occidental",
+    "ja_jp": "西オーストラリア",
+    "ko_kr": "웨스턴오스트레일리아",
+    "pl_pl": "Australia Zachodnia",
+    "pt_br": "Austrália Ocidental",
+    "ru_ru": "Западная Австралия",
+    "tr_tr": "Batı Avustralya",
+    "uk_ua": "Західна Австралія",
+    "zh_cn": "西澳大利亚",
+    "zh_hk": "西澳大利亞",
+    "zh_tw": "西澳大利亞"
+  }
+}

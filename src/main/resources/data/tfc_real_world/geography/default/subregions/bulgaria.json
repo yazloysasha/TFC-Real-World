@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southeastern_europe",
+  "title_lang": {
+    "de_de": "Bulgarien",
+    "en_us": "Bulgaria",
+    "es_es": "Bulgaria",
+    "ja_jp": "ブルガリア",
+    "ko_kr": "불가리아",
+    "pl_pl": "Bułgaria",
+    "pt_br": "Bulgária",
+    "ru_ru": "Болгария",
+    "tr_tr": "Bulgaristan",
+    "uk_ua": "Болгарія",
+    "zh_cn": "保加лия",
+    "zh_hk": "保加лия",
+    "zh_tw": "保加лия"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/north_central_pacific",
+  "title_lang": {
+    "de_de": "Hawaii",
+    "en_us": "Hawaii",
+    "es_es": "Hawái",
+    "ja_jp": "ハワイ",
+    "ko_kr": "하와이",
+    "pl_pl": "Hawaje",
+    "pt_br": "Havaí",
+    "ru_ru": "Гавайи",
+    "tr_tr": "Hawaii",
+    "uk_ua": "Гаваї",
+    "zh_cn": "夏威夷",
+    "zh_hk": "夏威夷",
+    "zh_tw": "夏威夷"
+  }
+}

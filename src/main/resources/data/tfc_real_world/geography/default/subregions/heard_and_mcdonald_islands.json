@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/subantarctic_islands",
+  "title_lang": {
+    "de_de": "Heard und McDonaldinseln",
+    "en_us": "Heard and McDonald Islands",
+    "es_es": "Islas Heard y McDonald",
+    "ja_jp": "ハード島とマクドナルド諸島",
+    "ko_kr": "허드 맥도널드 제도",
+    "pl_pl": "Wyspy Heard i McDonalda",
+    "pt_br": "Ilhas Heard e McDonald",
+    "ru_ru": "Острова Херд и Макдональд",
+    "tr_tr": "Heard ve McDonald Adaları",
+    "uk_ua": "Острови Херд і Макдональд",
+    "zh_cn": "赫德和麦克唐纳群岛",
+    "zh_hk": "赫德和麥克唐納群島",
+    "zh_tw": "赫德和麥克唐納群島"
+  }
+}

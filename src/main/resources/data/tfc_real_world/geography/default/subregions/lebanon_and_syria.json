@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/western_asia",
+  "title_lang": {
+    "de_de": "Libanon und Syrien",
+    "en_us": "Lebanon and Syria",
+    "es_es": "Líbano y Siria",
+    "ja_jp": "レバノンとシリア",
+    "ko_kr": "레바논과 시리아",
+    "pl_pl": "Liban i Syria",
+    "pt_br": "Líbano e Síria",
+    "ru_ru": "Ливан и Сирия",
+    "tr_tr": "Lübnan ve Suriye",
+    "uk_ua": "Ліван і Сирія",
+    "zh_cn": "黎巴嫩与叙利亚",
+    "zh_hk": "黎巴嫩與敍利亞",
+    "zh_tw": "黎巴嫩與敘利亞"
+  }
+}

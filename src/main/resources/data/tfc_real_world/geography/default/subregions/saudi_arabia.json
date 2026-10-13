@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/arabian_peninsula",
+  "title_lang": {
+    "de_de": "Saudi-Arabien",
+    "en_us": "Saudi Arabia",
+    "es_es": "Arabia Saudita",
+    "ja_jp": "サウジアラビア",
+    "ko_kr": "사우디아라비아",
+    "pl_pl": "Arabia Saudyjska",
+    "pt_br": "Arábia Saudita",
+    "ru_ru": "Саудовская Аравия",
+    "tr_tr": "Suudi Arabistan",
+    "uk_ua": "Саудівська Аравія",
+    "zh_cn": "沙特阿拉伯",
+    "zh_hk": "沙特阿拉伯",
+    "zh_tw": "沙特阿拉伯"
+  }
+}

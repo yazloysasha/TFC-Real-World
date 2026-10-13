@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northeast_tropical_africa",
+  "title_lang": {
+    "de_de": "Somalia",
+    "en_us": "Somalia",
+    "es_es": "Somalia",
+    "ja_jp": "ソマリア",
+    "ko_kr": "소말리아",
+    "pl_pl": "Somalia",
+    "pt_br": "Somália",
+    "ru_ru": "Сомали",
+    "tr_tr": "Somali",
+    "uk_ua": "Сомалі",
+    "zh_cn": "索马里",
+    "zh_hk": "索馬里",
+    "zh_tw": "索馬里"
+  }
+}

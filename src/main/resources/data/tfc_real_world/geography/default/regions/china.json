@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/asia_temperate",
+  "title_lang": {
+    "de_de": "China",
+    "en_us": "China",
+    "es_es": "China",
+    "ja_jp": "中国",
+    "ko_kr": "중국",
+    "pl_pl": "Chiny",
+    "pt_br": "China",
+    "ru_ru": "Китай",
+    "tr_tr": "Çin",
+    "uk_ua": "Китай",
+    "zh_cn": "中国",
+    "zh_hk": "中國",
+    "zh_tw": "中國"
+  }
+}

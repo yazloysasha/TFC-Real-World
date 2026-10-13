@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/mexico",
+  "title_lang": {
+    "de_de": "Mexikanischer Golf",
+    "en_us": "Mexico Gulf",
+    "es_es": "México del Golfo",
+    "ja_jp": "メキシコ湾岸",
+    "ko_kr": "멕시코 만안",
+    "pl_pl": "Meksyk Zatoki",
+    "pt_br": "Golfo do México",
+    "ru_ru": "Мексиканский залив",
+    "tr_tr": "Meksika Körfezi",
+    "uk_ua": "Мексиканська затока",
+    "zh_cn": "墨西哥湾岸",
+    "zh_hk": "墨西哥灣岸",
+    "zh_tw": "墨西哥灣岸"
+  }
+}

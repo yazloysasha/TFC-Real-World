@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/eastern_asia",
+  "title_lang": {
+    "de_de": "Taiwan",
+    "en_us": "Taiwan",
+    "es_es": "Taiwán",
+    "ja_jp": "台湾",
+    "ko_kr": "대만",
+    "pl_pl": "Tajwan",
+    "pt_br": "Taiwan",
+    "ru_ru": "Тайвань",
+    "tr_tr": "Tayvan",
+    "uk_ua": "Тайвань",
+    "zh_cn": "台湾",
+    "zh_hk": "台灣",
+    "zh_tw": "臺灣"
+  }
+}

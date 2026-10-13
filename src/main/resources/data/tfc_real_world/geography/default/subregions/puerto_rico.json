@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/caribbean",
+  "title_lang": {
+    "de_de": "Puerto Rico",
+    "en_us": "Puerto Rico",
+    "es_es": "Puerto Rico",
+    "ja_jp": "プエルトリコ",
+    "ko_kr": "푸에르토리코",
+    "pl_pl": "Portoryko",
+    "pt_br": "Porto Rico",
+    "ru_ru": "Пуэрто-Рико",
+    "tr_tr": "Porto Riko",
+    "uk_ua": "Пуерто-Рико",
+    "zh_cn": "波多黎各",
+    "zh_hk": "波多黎各",
+    "zh_tw": "波多黎各"
+  }
+}

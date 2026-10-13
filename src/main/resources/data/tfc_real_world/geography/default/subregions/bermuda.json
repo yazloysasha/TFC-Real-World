@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/caribbean",
+  "title_lang": {
+    "de_de": "Bermuda",
+    "en_us": "Bermuda",
+    "es_es": "Bermudas",
+    "ja_jp": "バミューダ",
+    "ko_kr": "버뮤다",
+    "pl_pl": "Bermudy",
+    "pt_br": "Bermudas",
+    "ru_ru": "Бермуды",
+    "tr_tr": "Bermuda",
+    "uk_ua": "Бермуди",
+    "zh_cn": "百慕大",
+    "zh_hk": "百慕大",
+    "zh_tw": "百慕大"
+  }
+}

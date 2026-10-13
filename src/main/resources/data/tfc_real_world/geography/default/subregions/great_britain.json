@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northern_europe",
+  "title_lang": {
+    "de_de": "Großbritannien",
+    "en_us": "Great Britain",
+    "es_es": "Gran Bretaña",
+    "ja_jp": "グレートブリテン",
+    "ko_kr": "그레이트브리튼",
+    "pl_pl": "Wielka Brytania",
+    "pt_br": "Grã-Bretanha",
+    "ru_ru": "Великобритания",
+    "tr_tr": "Büyük Britanya",
+    "uk_ua": "Велика Британія",
+    "zh_cn": "大不列颠",
+    "zh_hk": "大不列顛",
+    "zh_tw": "大不列顛"
+  }
+}

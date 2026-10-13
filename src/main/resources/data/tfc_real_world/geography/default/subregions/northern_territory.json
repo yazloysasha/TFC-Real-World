@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/australia",
+  "title_lang": {
+    "de_de": "Northern Territory",
+    "en_us": "Northern Territory",
+    "es_es": "Territorio del Norte",
+    "ja_jp": "ノーザンテリトリー",
+    "ko_kr": "노던 준주",
+    "pl_pl": "Terytorium Północne",
+    "pt_br": "Território do Norte",
+    "ru_ru": "Северная территория",
+    "tr_tr": "Kuzey Toprakları",
+    "uk_ua": "Північна територія",
+    "zh_cn": "北领地",
+    "zh_hk": "北領地",
+    "zh_tw": "北領地"
+  }
+}

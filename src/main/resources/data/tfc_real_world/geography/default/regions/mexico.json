@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/northern_america",
+  "title_lang": {
+    "de_de": "Mexiko",
+    "en_us": "Mexico",
+    "es_es": "México",
+    "ja_jp": "メキシコ",
+    "ko_kr": "멕시코",
+    "pl_pl": "Meksyk",
+    "pt_br": "México",
+    "ru_ru": "Мексика",
+    "tr_tr": "Meksika",
+    "uk_ua": "Мексика",
+    "zh_cn": "墨西哥",
+    "zh_hk": "墨西哥",
+    "zh_tw": "墨西哥"
+  }
+}

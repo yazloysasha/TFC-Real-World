@@ -13,6 +13,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * The world is made by the region generator, as in TFC 3, and its settings
+ * come from the config.
+ */
 @Mixin(value = TFCBiomeSource.class, remap = false)
 public class TFCBiomeSourceMixin {
 
@@ -21,67 +25,47 @@ public class TFCBiomeSourceMixin {
     at = @At("RETURN"),
     cancellable = true
   )
-  private static void tfcrealworld$useRegionBiomeSourceWhenContinentsFromMap(
+  private static void tfcrealworld$useRegionBiomeSource(
     long seed,
     Registry<Biome> biomeRegistry,
     CallbackInfoReturnable<TFCBiomeSource> cir
   ) {
-    if (!TFCRealWorldConfig.CONTINENT_FROM_MAP.get()) {
-      return;
-    }
-
     final TFCBiomeSource original = cir.getReturnValue();
-    if (original == null || original instanceof RegionBiomeSource) {
-      return;
+    if (original != null && !(original instanceof RegionBiomeSource)) {
+      cir.setReturnValue(
+        new RegionBiomeSource(original.settings(), biomeRegistry)
+      );
     }
-
-    cir.setReturnValue(
-      new RegionBiomeSource(original.settings(), biomeRegistry)
-    );
   }
 
   @Inject(
     method = "settings()Lnet/dries007/tfc/world/biome/BiomeSourceExtension$Settings;",
     at = @At("RETURN"),
-    cancellable = true,
-    remap = false
+    cancellable = true
   )
   private void tfcrealworld$overrideSettings(
     CallbackInfoReturnable<BiomeSourceExtension.Settings> cir
   ) {
-    BiomeSourceExtension.Settings original = cir.getReturnValue();
+    final BiomeSourceExtension.Settings original = cir.getReturnValue();
     if (original == null) {
       return;
     }
-
-    int spawnDistance = SpawnCenterHelper.getSpawnDistance();
-    int spawnCenterX = SpawnCenterHelper.getSpawnCenterX();
-    int spawnCenterZ = SpawnCenterHelper.getSpawnCenterZ();
-
-    int temperatureScale = TFCRealWorldConfig.TEMPERATURE_SCALE.get();
-    int rainfallScale = TFCRealWorldConfig.RAINFALL_SCALE.get();
-
-    ClimateSettings newTemperatureSettings = new ClimateSettings(
-      temperatureScale,
-      original.temperatureSettings().endlessPoles()
-    );
-
-    ClimateSettings newRainfallSettings = new ClimateSettings(
-      rainfallScale,
-      original.rainfallSettings().endlessPoles()
-    );
-
-    BiomeSourceExtension.Settings newSettings =
+    cir.setReturnValue(
       new BiomeSourceExtension.Settings(
         original.seed(),
-        spawnDistance,
-        spawnCenterX,
-        spawnCenterZ,
+        SpawnCenterHelper.getSpawnDistance(),
+        SpawnCenterHelper.getSpawnCenterX(),
+        SpawnCenterHelper.getSpawnCenterZ(),
         original.rockLayerSettings(),
-        newTemperatureSettings,
-        newRainfallSettings
-      );
-
-    cir.setReturnValue(newSettings);
+        new ClimateSettings(
+          TFCRealWorldConfig.TEMPERATURE_SCALE.get(),
+          original.temperatureSettings().endlessPoles()
+        ),
+        new ClimateSettings(
+          TFCRealWorldConfig.RAINFALL_SCALE.get(),
+          original.rainfallSettings().endlessPoles()
+        )
+      )
+    );
   }
 }

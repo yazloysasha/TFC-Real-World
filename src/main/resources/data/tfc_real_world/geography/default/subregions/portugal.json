@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southwestern_europe",
+  "title_lang": {
+    "de_de": "Portugal",
+    "en_us": "Portugal",
+    "es_es": "Portugal",
+    "ja_jp": "ポルトガル",
+    "ko_kr": "포르투갈",
+    "pl_pl": "Portugalia",
+    "pt_br": "Portugal",
+    "ru_ru": "Португалия",
+    "tr_tr": "Portekiz",
+    "uk_ua": "Португалія",
+    "zh_cn": "葡萄牙",
+    "zh_hk": "葡萄牙",
+    "zh_tw": "葡萄牙"
+  }
+}

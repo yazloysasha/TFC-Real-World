@@ -1,14 +1,17 @@
 package net.yazloysasha.tfcrealworld.world.region;
 
 import net.dries007.tfc.world.region.Region;
-import net.yazloysasha.tfcrealworld.TFCRealWorld;
+import net.dries007.tfc.world.region.RegionGenerator;
+import net.dries007.tfc.world.region.Units;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Grid coordinates for TFC 2 {@code Region.Point}, which has no {@code x}/{@code z}
- * fields.
+ * Grid coordinates for TFC {@code Region.Point}, which has no {@code x}/{@code z}
+ * fields: they are reconstructed from the region array.
  */
 public final class RegionCoords {
+
+  public static final int GRID_WIDTH_IN_BLOCK = 1 << Units.GRID_BITS;
 
   private RegionCoords() {}
 
@@ -20,8 +23,13 @@ public final class RegionCoords {
     return region.minZ() + (index / region.sizeX());
   }
 
-  public static int gridToBlock(int grid) {
-    return grid * TFCRealWorld.GRID_WIDTH_IN_BLOCK;
+  /** The point of the region that owns the grid cell, as TFC's RegionLayer. */
+  public static Region.Point pointAt(
+    RegionGenerator generator,
+    int gridX,
+    int gridZ
+  ) {
+    return generator.getOrCreateRegion(gridX, gridZ).at(gridX, gridZ);
   }
 
   public static int indexOf(Region region, Region.Point point) {
@@ -32,6 +40,14 @@ public final class RegionCoords {
       }
     }
     return -1;
+  }
+
+  public static int blockToGrid(int block) {
+    return block >> Units.GRID_BITS;
+  }
+
+  public static int gridToBlock(int grid) {
+    return grid * RegionCoords.GRID_WIDTH_IN_BLOCK;
   }
 
   @Nullable

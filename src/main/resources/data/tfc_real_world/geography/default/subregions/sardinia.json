@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southwestern_europe",
+  "title_lang": {
+    "de_de": "Sardinien",
+    "en_us": "Sardinia",
+    "es_es": "Cerdeña",
+    "ja_jp": "サルデーニャ",
+    "ko_kr": "사르데냐",
+    "pl_pl": "Sardynia",
+    "pt_br": "Sardenha",
+    "ru_ru": "Сардиния",
+    "tr_tr": "Sardinya",
+    "uk_ua": "Сардинія",
+    "zh_cn": "撒丁岛",
+    "zh_hk": "撒丁島",
+    "zh_tw": "撒丁島"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/middle_europe",
+  "title_lang": {
+    "de_de": "Polen",
+    "en_us": "Poland",
+    "es_es": "Polonia",
+    "ja_jp": "ポーランド",
+    "ko_kr": "폴란드",
+    "pl_pl": "Polska",
+    "pt_br": "Polônia",
+    "ru_ru": "Польша",
+    "tr_tr": "Polonya",
+    "uk_ua": "Польща",
+    "zh_cn": "波兰",
+    "zh_hk": "波蘭",
+    "zh_tw": "波蘭"
+  }
+}

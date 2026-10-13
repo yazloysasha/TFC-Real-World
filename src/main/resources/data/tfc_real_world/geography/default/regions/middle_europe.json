@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/europe",
+  "title_lang": {
+    "de_de": "Mitteleuropa",
+    "en_us": "Middle Europe",
+    "es_es": "Europa Central",
+    "ja_jp": "中央ヨーロッパ",
+    "ko_kr": "중유럽",
+    "pl_pl": "Europa Środkowa",
+    "pt_br": "Europa Central",
+    "ru_ru": "Центральная Европа",
+    "tr_tr": "Orta Avrupa",
+    "uk_ua": "Центральна Європа",
+    "zh_cn": "中欧",
+    "zh_hk": "中歐",
+    "zh_tw": "中歐"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/western_asia",
+  "title_lang": {
+    "de_de": "Ostägäische Inseln",
+    "en_us": "East Aegean Islands",
+    "es_es": "Islas del Egeo Oriental",
+    "ja_jp": "東エーゲ諸島",
+    "ko_kr": "동에게 제도",
+    "pl_pl": "Wyspy wschodnioegejskie",
+    "pt_br": "Ilhas do Egeu Oriental",
+    "ru_ru": "Восточноэгейские острова",
+    "tr_tr": "Doğu Ege Adaları",
+    "uk_ua": "Східноегейські острови",
+    "zh_cn": "东爱琴群岛",
+    "zh_hk": "東愛琴群島",
+    "zh_tw": "東愛琴群島"
+  }
+}

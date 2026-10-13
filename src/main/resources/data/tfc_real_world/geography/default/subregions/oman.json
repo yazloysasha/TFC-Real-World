@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/arabian_peninsula",
+  "title_lang": {
+    "de_de": "Oman",
+    "en_us": "Oman",
+    "es_es": "Omán",
+    "ja_jp": "オマーン",
+    "ko_kr": "오만",
+    "pl_pl": "Oman",
+    "pt_br": "Omã",
+    "ru_ru": "Оман",
+    "tr_tr": "Umman",
+    "uk_ua": "Оман",
+    "zh_cn": "阿曼",
+    "zh_hk": "阿曼",
+    "zh_tw": "阿曼"
+  }
+}

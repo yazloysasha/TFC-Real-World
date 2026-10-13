@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/eastern_europe",
+  "title_lang": {
+    "de_de": "Südrussland",
+    "en_us": "South European Russia",
+    "es_es": "Rusia europea meridional",
+    "ja_jp": "ロシア欧州南部",
+    "ko_kr": "러시아 유럽 남부",
+    "pl_pl": "Rosja południowoeuropejska",
+    "pt_br": "Rússia Europeia Meridional",
+    "ru_ru": "Юг Европейской России",
+    "tr_tr": "Güney Avrupa Rusyası",
+    "uk_ua": "Південь Європейської Росії",
+    "zh_cn": "俄罗斯欧洲南部",
+    "zh_hk": "俄羅斯歐洲南部",
+    "zh_tw": "俄羅斯歐洲南部"
+  }
+}

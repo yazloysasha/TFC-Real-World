@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/middle_europe",
+  "title_lang": {
+    "de_de": "Österreich",
+    "en_us": "Austria",
+    "es_es": "Austria",
+    "ja_jp": "オーストリア",
+    "ko_kr": "오스트리아",
+    "pl_pl": "Austria",
+    "pt_br": "Áustria",
+    "ru_ru": "Австрия",
+    "tr_tr": "Avusturya",
+    "uk_ua": "Австрія",
+    "zh_cn": "奥地利",
+    "zh_hk": "奧地利",
+    "zh_tw": "奧地利"
+  }
+}

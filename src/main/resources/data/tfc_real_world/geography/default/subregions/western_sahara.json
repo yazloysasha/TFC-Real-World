@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northern_africa",
+  "title_lang": {
+    "de_de": "Westsahara",
+    "en_us": "Western Sahara",
+    "es_es": "Sáhara Occidental",
+    "ja_jp": "西サハラ",
+    "ko_kr": "서사하라",
+    "pl_pl": "Sahara Zachodnia",
+    "pt_br": "Saara Ocidental",
+    "ru_ru": "Западная Сахара",
+    "tr_tr": "Batı Sahra",
+    "uk_ua": "Західна Сахара",
+    "zh_cn": "西撒哈拉",
+    "zh_hk": "西撒哈拉",
+    "zh_tw": "西撒哈拉"
+  }
+}

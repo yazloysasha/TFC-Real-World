@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northeastern_usa",
+  "title_lang": {
+    "de_de": "West Virginia",
+    "en_us": "West Virginia",
+    "es_es": "Virginia Occidental",
+    "ja_jp": "ウェストバージニア",
+    "ko_kr": "웨스트버지니아",
+    "pl_pl": "Wirginia Zachodnia",
+    "pt_br": "Virgínia Ocidental",
+    "ru_ru": "Западная Виргиния",
+    "tr_tr": "Batı Virginia",
+    "uk_ua": "Західна Вірджинія",
+    "zh_cn": "西弗吉尼亚",
+    "zh_hk": "西弗吉尼亞",
+    "zh_tw": "西弗吉尼亞"
+  }
+}

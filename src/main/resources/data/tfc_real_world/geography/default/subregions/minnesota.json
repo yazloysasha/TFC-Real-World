@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/north_central_usa",
+  "title_lang": {
+    "de_de": "Minnesota",
+    "en_us": "Minnesota",
+    "es_es": "Minnesota",
+    "ja_jp": "ミネソタ",
+    "ko_kr": "미네소타",
+    "pl_pl": "Minnesota",
+    "pt_br": "Minnesota",
+    "ru_ru": "Миннесота",
+    "tr_tr": "Minnesota",
+    "uk_ua": "Міннесота",
+    "zh_cn": "明尼苏达",
+    "zh_hk": "明尼蘇達",
+    "zh_tw": "明尼蘇達"
+  }
+}

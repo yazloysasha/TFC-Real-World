@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/arabian_peninsula",
+  "title_lang": {
+    "de_de": "Golfstaaten",
+    "en_us": "Gulf States",
+    "es_es": "Estados del Golfo",
+    "ja_jp": "湾岸諸国",
+    "ko_kr": "걸프 국가",
+    "pl_pl": "Państwa Zatoki",
+    "pt_br": "Estados do Golfo",
+    "ru_ru": "Страны Персидского залива",
+    "tr_tr": "Körfez ülkeleri",
+    "uk_ua": "Країни Перської затоки",
+    "zh_cn": "海湾国家",
+    "zh_hk": "海灣國家",
+    "zh_tw": "海灣國家"
+  }
+}

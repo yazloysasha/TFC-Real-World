@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/western_asia",
+  "title_lang": {
+    "de_de": "Irak",
+    "en_us": "Iraq",
+    "es_es": "Irak",
+    "ja_jp": "イラク",
+    "ko_kr": "이라크",
+    "pl_pl": "Irak",
+    "pt_br": "Iraque",
+    "ru_ru": "Ирак",
+    "tr_tr": "Irak",
+    "uk_ua": "Ірак",
+    "zh_cn": "伊拉克",
+    "zh_hk": "伊拉克",
+    "zh_tw": "伊拉克"
+  }
+}

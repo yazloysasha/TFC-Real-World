@@ -31,15 +31,16 @@ public class TFCRealWorldConfig {
   public static final ConfigOption<Integer> SPAWN_CENTER_Z;
   public static final ConfigOption<Integer> SPAWN_DISTANCE;
   public static final ConfigOption<Boolean> FLAT_BEDROCK;
-  public static final ConfigOption<Double> CONTINENTALNESS;
   public static final ConfigOption<Integer> TEMPERATURE_SCALE;
   public static final ConfigOption<Integer> RAINFALL_SCALE;
   public static final ConfigOption<Integer> HORIZONTAL_SCALE;
   public static final ConfigOption<Integer> VERTICAL_SCALE;
   public static final ConfigOption<Boolean> CONTINENT_FROM_MAP;
-  public static final ConfigOption<Boolean> ALTITUDE_FROM_MAP;
-  public static final ConfigOption<Boolean> HOTSPOTS_FROM_MAP;
-  public static final ConfigOption<Boolean> KOPPEN_FROM_MAP;
+  public static final ConfigOption<Boolean> LAKES_FROM_MAP;
+  public static final ConfigOption<Boolean> TECTONICS_FROM_MAP;
+  public static final ConfigOption<Boolean> VOLCANOES_FROM_MAP;
+  public static final ConfigOption<Boolean> RIVERS_FROM_MAP;
+  public static final ConfigOption<Boolean> CLIMATE_FROM_MAP;
 
   private static final List<ConfigOption<?>> allOptions;
 
@@ -51,8 +52,8 @@ public class TFCRealWorldConfig {
       BUILDER,
       "map_profile",
       "Map profile ID. Profiles are loaded from config/" +
-      TFCRealWorld.MOD_ID +
-      "/profiles/",
+        TFCRealWorld.MOD_ID +
+        "/profiles/",
       DEFAULT_MAP_PROFILE
     );
 
@@ -120,14 +121,6 @@ public class TFCRealWorldConfig {
       "TFC option. If the bottom of the world is a single layer of flat bedrock, or random like vanilla",
       false
     );
-    CONTINENTALNESS = new ConfigOption<>(
-      BUILDER,
-      "continentalness",
-      "TFC option. Determines the nature of continents. Smaller values create smaller continents and more islands, larger values create larger, blobbier continents",
-      0.5,
-      0.0,
-      1.0
-    );
     TEMPERATURE_SCALE = new ConfigOption<>(
       BUILDER,
       "temperature_scale",
@@ -170,22 +163,34 @@ public class TFCRealWorldConfig {
       "Generate continents from map or procedurally",
       true
     );
-    ALTITUDE_FROM_MAP = new ConfigOption<>(
+    LAKES_FROM_MAP = new ConfigOption<>(
       BUILDER,
-      "altitude_from_map",
-      "Generate base land height and ocean depth from altitude map or procedurally",
+      "lakes_from_map",
+      "Place the lakes of the continent map (needs continents from map) or generate lakes procedurally",
       true
     );
-    HOTSPOTS_FROM_MAP = new ConfigOption<>(
+    TECTONICS_FROM_MAP = new ConfigOption<>(
       BUILDER,
-      "hotspots_from_map",
-      "Generate hotspots from map or procedurally",
+      "tectonics_from_map",
+      "Generate relief, plate boundaries and volcanism from tectonics map or procedurally",
       true
     );
-    KOPPEN_FROM_MAP = new ConfigOption<>(
+    VOLCANOES_FROM_MAP = new ConfigOption<>(
       BUILDER,
-      "koppen_from_map",
-      "Generate climate parameters (temperature, rainfall, rainfall variance) from Köppen climate map or procedurally",
+      "volcanoes_from_map",
+      "Place hotspot volcanoes where the tectonics map has them (needs tectonics from map) or procedurally",
+      true
+    );
+    RIVERS_FROM_MAP = new ConfigOption<>(
+      BUILDER,
+      "rivers_from_map",
+      "Place the real rivers of the profile (needs continents from map) or generate rivers procedurally",
+      true
+    );
+    CLIMATE_FROM_MAP = new ConfigOption<>(
+      BUILDER,
+      "climate_from_map",
+      "Read climate parameters (temperature, rainfall) from the climate maps or generate them procedurally",
       true
     );
 
@@ -201,15 +206,16 @@ public class TFCRealWorldConfig {
       SPAWN_CENTER_Z,
       SPAWN_DISTANCE,
       FLAT_BEDROCK,
-      CONTINENTALNESS,
       TEMPERATURE_SCALE,
       RAINFALL_SCALE,
       HORIZONTAL_SCALE,
       VERTICAL_SCALE,
       CONTINENT_FROM_MAP,
-      ALTITUDE_FROM_MAP,
-      HOTSPOTS_FROM_MAP,
-      KOPPEN_FROM_MAP
+      LAKES_FROM_MAP,
+      TECTONICS_FROM_MAP,
+      VOLCANOES_FROM_MAP,
+      RIVERS_FROM_MAP,
+      CLIMATE_FROM_MAP
     );
   }
 
@@ -222,15 +228,16 @@ public class TFCRealWorldConfig {
     int spawnCenterZ,
     int spawnDistance,
     boolean flatBedrock,
-    double continentalness,
     int temperatureScale,
     int rainfallScale,
     int horizontalScale,
     int verticalScale,
     boolean continentFromMap,
-    boolean altitudeFromMap,
-    boolean hotspotsFromMap,
-    boolean koppenFromMap
+    boolean lakesFromMap,
+    boolean tectonicsFromMap,
+    boolean volcanoesFromMap,
+    boolean riversFromMap,
+    boolean climateFromMap
   ) {
     MAP_PROFILE.setServerValue(mapProfile);
     SPAWN_MODE.setServerValue(spawnMode);
@@ -240,15 +247,16 @@ public class TFCRealWorldConfig {
     SPAWN_CENTER_Z.setServerValue(spawnCenterZ);
     SPAWN_DISTANCE.setServerValue(spawnDistance);
     FLAT_BEDROCK.setServerValue(flatBedrock);
-    CONTINENTALNESS.setServerValue(continentalness);
     TEMPERATURE_SCALE.setServerValue(temperatureScale);
     RAINFALL_SCALE.setServerValue(rainfallScale);
     HORIZONTAL_SCALE.setServerValue(horizontalScale);
     VERTICAL_SCALE.setServerValue(verticalScale);
     CONTINENT_FROM_MAP.setServerValue(continentFromMap);
-    ALTITUDE_FROM_MAP.setServerValue(altitudeFromMap);
-    HOTSPOTS_FROM_MAP.setServerValue(hotspotsFromMap);
-    KOPPEN_FROM_MAP.setServerValue(koppenFromMap);
+    LAKES_FROM_MAP.setServerValue(lakesFromMap);
+    TECTONICS_FROM_MAP.setServerValue(tectonicsFromMap);
+    VOLCANOES_FROM_MAP.setServerValue(volcanoesFromMap);
+    RIVERS_FROM_MAP.setServerValue(riversFromMap);
+    CLIMATE_FROM_MAP.setServerValue(climateFromMap);
   }
 
   public static void clearServerConfig() {

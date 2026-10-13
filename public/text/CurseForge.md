@@ -90,7 +90,7 @@ Fine-tune familiar TFC world generation values.<br>
 <ul>
 <li><b>Flat Bedrock</b>: If enabled, the bottom of the world is a single, flat bedrock layer.</li>
 <li><b>Finite Continents</b>: If enabled, the world has a limited number of continents surrounded by a vast, deep ocean (1.21.1, or 1.20.1 with TerraFirmaEarth).</li>
-<li><b>Continentalness</b>: Controls landmass size. Lower values = more fragmented land and islands. Higher values = larger, solid continents (if continents from map are disabled).</li>
+<li><b>Continentalness</b>: Controls landmass size. Lower values = more fragmented land and islands. Higher values = larger, solid continents (if continents from map are disabled, 1.20.1+).</li>
 <li><b>Grass Density</b>: Affects the amount of grass coverage globally (1.20.1+).</li>
 <li><b>Temperature Constant</b>: A number representing the temperature for an entire world, where -1.0 is polar and 1.0 is tropical (if climate from map is disabled, 1.20.1+).</li>
 <li><b>Rainfall Constant</b>: A number representing the rainfall for an entire world, where -1.0 is arid and 1.0 is tropical (if climate from map is disabled, 1.20.1+).</li>
@@ -117,7 +117,7 @@ Toggle which aspects of the world are shaped by real data. Disabling a mode will
 <li><b>Generate Tectonics from Map</b>: Relief, plate boundaries and volcanism from the tectonics map (needs continents from map).</li>
 <li><b>Generate Volcanoes from Map</b>: Places hotspot volcanoes where the tectonics map has them instead of at random (needs tectonics from map).</li>
 <li><b>Generate Rivers from Map</b>: Places the real rivers of the profile instead of TFC's procedural rivers (needs continents from map).</li>
-<li><b>Generate Climate from Map</b>: Reads temperature, rainfall and rainfall variance from the climate maps instead of generating them procedurally.</li>
+<li><b>Generate Climate from Map</b>: Reads temperature, rainfall and rainfall variance (1.20.1+) from the climate maps instead of generating them procedurally.</li>
 </ul>
 
 <b>💡 Quick Tips</b><br>

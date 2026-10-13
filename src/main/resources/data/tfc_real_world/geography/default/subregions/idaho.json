@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northwestern_usa",
+  "title_lang": {
+    "de_de": "Idaho",
+    "en_us": "Idaho",
+    "es_es": "Idaho",
+    "ja_jp": "アイダホ",
+    "ko_kr": "아이다호",
+    "pl_pl": "Idaho",
+    "pt_br": "Idaho",
+    "ru_ru": "Айдахо",
+    "tr_tr": "Idaho",
+    "uk_ua": "Айдахо",
+    "zh_cn": "爱达荷",
+    "zh_hk": "愛達荷",
+    "zh_tw": "愛達荷"
+  }
+}

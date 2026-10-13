@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/middle_atlantic_ocean",
+  "title_lang": {
+    "de_de": "Ascension",
+    "en_us": "Ascension",
+    "es_es": "Ascensión",
+    "ja_jp": "アセンション島",
+    "ko_kr": "어센션섬",
+    "pl_pl": "Wyspa Wniebowstąpienia",
+    "pt_br": "Ascensão",
+    "ru_ru": "Вознесение",
+    "tr_tr": "Ascension",
+    "uk_ua": "Вознесіння",
+    "zh_cn": "阿森松",
+    "zh_hk": "阿森松",
+    "zh_tw": "阿森松"
+  }
+}

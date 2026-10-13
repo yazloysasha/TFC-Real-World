@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/west_tropical_africa",
+  "title_lang": {
+    "de_de": "Niger",
+    "en_us": "Niger",
+    "es_es": "Níger",
+    "ja_jp": "ニジェール",
+    "ko_kr": "니제르",
+    "pl_pl": "Niger",
+    "pt_br": "Níger",
+    "ru_ru": "Нигер",
+    "tr_tr": "Nijer",
+    "uk_ua": "Нігер",
+    "zh_cn": "尼日尔",
+    "zh_hk": "尼日爾",
+    "zh_tw": "尼日爾"
+  }
+}

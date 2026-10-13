@@ -1,0 +1,51 @@
+{
+  "parent": "default:subregion/gulf_states",
+  "title_lang": {
+    "de_de": "Manama",
+    "en_us": "Manama",
+    "es_es": "Manama",
+    "ja_jp": "マナーマ",
+    "ko_kr": "마나마",
+    "pl_pl": "Manama",
+    "pt_br": "Manama",
+    "ru_ru": "Манама",
+    "tr_tr": "Mename",
+    "uk_ua": "Манама",
+    "zh_cn": "麦纳麦",
+    "zh_hk": "麥納瑪",
+    "zh_tw": "麥納瑪"
+  },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt des Königreichs Bahrain",
+    "en_us": "Capital of the Kingdom of Bahrain",
+    "es_es": "Capital del Reino de Baréin",
+    "ja_jp": "バーレーン王国の首都",
+    "ko_kr": "바레인 왕국의 수도",
+    "pl_pl": "Stolica Królestwa Bahrajnu",
+    "pt_br": "Capital do Reino do Barém",
+    "ru_ru": "Столица Королевства Бахрейн",
+    "tr_tr": "Bahreyn Krallığı'nın başkenti",
+    "uk_ua": "Столиця Королівства Бахрейн",
+    "zh_cn": "巴林王国的首都",
+    "zh_hk": "巴林王國的首都",
+    "zh_tw": "巴林王國的首都"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt des Königreichs Bahrain",
+    "en_us": "Visit the capital of the Kingdom of Bahrain",
+    "es_es": "Visita la capital del Reino de Baréin",
+    "ja_jp": "バーレーン王国の首都を訪れよう",
+    "ko_kr": "바레인 왕국의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Królestwa Bahrajnu",
+    "pt_br": "Visite a capital do Reino do Barém",
+    "ru_ru": "Посетите столицу Королевства Бахрейн",
+    "tr_tr": "Bahreyn Krallığı'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Королівства Бахрейн",
+    "zh_cn": "访问巴林王国的首都",
+    "zh_hk": "遊覽巴林王國的首都",
+    "zh_tw": "造訪巴林王國的首都"
+  },
+  "longitude": 50.58565,
+  "latitude": 26.22787,
+  "capital": 1
+}

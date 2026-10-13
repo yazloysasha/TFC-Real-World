@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/northern_america",
+  "title_lang": {
+    "de_de": "Nordosten der USA",
+    "en_us": "Northeastern U.S.A.",
+    "es_es": "Noreste de EE. UU.",
+    "ja_jp": "アメリカ北東部",
+    "ko_kr": "미국 북동부",
+    "pl_pl": "Północno-wschodnie USA",
+    "pt_br": "Nordeste dos EUA",
+    "ru_ru": "Северо-восток США",
+    "tr_tr": "Kuzeydoğu ABD",
+    "uk_ua": "Північний схід США",
+    "zh_cn": "美国东北部",
+    "zh_hk": "美國東北部",
+    "zh_tw": "美國東北部"
+  }
+}

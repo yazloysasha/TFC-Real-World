@@ -83,7 +83,7 @@ Fine-tune familiar TFC world generation values.
 
 - **Flat Bedrock**: If enabled, the bottom of the world is a single, flat bedrock layer.
 - **Finite Continents**: If enabled, the world has a limited number of continents surrounded by a vast, deep ocean (1.21.1, or 1.20.1 with TerraFirmaEarth).
-- **Continentalness**: Controls landmass size. Lower values = more fragmented land and islands. Higher values = larger, solid continents (if continents from map are disabled).
+- **Continentalness**: Controls landmass size. Lower values = more fragmented land and islands. Higher values = larger, solid continents (if continents from map are disabled, 1.20.1+).
 - **Grass Density**: Affects the amount of grass coverage globally (1.20.1+).
 - **Temperature Constant**: A number representing the temperature for an entire world, where -1.0 is polar and 1.0 is tropical (if climate from map is disabled, 1.20.1+).
 - **Rainfall Constant**: A number representing the rainfall for an entire world, where -1.0 is arid and 1.0 is tropical (if climate from map is disabled, 1.20.1+).
@@ -108,7 +108,7 @@ Toggle which aspects of the world are shaped by real data. Disabling a mode will
 - **Generate Tectonics from Map**: Relief, plate boundaries and volcanism from the tectonics map (needs continents from map).
 - **Generate Volcanoes from Map**: Places hotspot volcanoes where the tectonics map has them instead of at random (needs tectonics from map).
 - **Generate Rivers from Map**: Places the real rivers of the profile instead of TFC's procedural rivers (needs continents from map).
-- **Generate Climate from Map**: Reads temperature, rainfall and rainfall variance from the climate maps instead of generating them procedurally.
+- **Generate Climate from Map**: Reads temperature, rainfall and rainfall variance (1.20.1+) from the climate maps instead of generating them procedurally.
 
 #### 💡 Quick Tips
 

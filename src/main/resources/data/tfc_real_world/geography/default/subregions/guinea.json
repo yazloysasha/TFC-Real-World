@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/west_tropical_africa",
+  "title_lang": {
+    "de_de": "Guinea",
+    "en_us": "Guinea",
+    "es_es": "Guinea",
+    "ja_jp": "ギニア",
+    "ko_kr": "기니",
+    "pl_pl": "Gwinea",
+    "pt_br": "Guiné",
+    "ru_ru": "Гвинея",
+    "tr_tr": "Gine",
+    "uk_ua": "Гвінея",
+    "zh_cn": "几内亚",
+    "zh_hk": "幾內亞",
+    "zh_tw": "幾內亞"
+  }
+}

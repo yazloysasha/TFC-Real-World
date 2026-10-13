@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/siberia",
+  "title_lang": {
+    "de_de": "Westsibirien",
+    "en_us": "West Siberia",
+    "es_es": "Siberia Occidental",
+    "ja_jp": "西シベリア",
+    "ko_kr": "서시베리아",
+    "pl_pl": "Syberia Zachodnia",
+    "pt_br": "Sibéria Ocidental",
+    "ru_ru": "Западная Сибирь",
+    "tr_tr": "Batı Sibirya",
+    "uk_ua": "Західний Сибір",
+    "zh_cn": "西西伯利亚",
+    "zh_hk": "西西伯利亞",
+    "zh_tw": "西西伯利亞"
+  }
+}

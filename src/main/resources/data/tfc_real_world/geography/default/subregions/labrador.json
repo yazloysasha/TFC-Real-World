@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/eastern_canada",
+  "title_lang": {
+    "de_de": "Labrador",
+    "en_us": "Labrador",
+    "es_es": "Labrador",
+    "ja_jp": "ラブラドル",
+    "ko_kr": "래브라도르",
+    "pl_pl": "Labrador",
+    "pt_br": "Labrador",
+    "ru_ru": "Лабрадор",
+    "tr_tr": "Labrador",
+    "uk_ua": "Лабрадор",
+    "zh_cn": "拉布拉多",
+    "zh_hk": "拉布拉多",
+    "zh_tw": "拉布拉多"
+  }
+}

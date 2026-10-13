@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southwestern_pacific",
+  "title_lang": {
+    "de_de": "Tokelau und Manihiki",
+    "en_us": "Tokelau and Manihiki",
+    "es_es": "Tokelau y Manihiki",
+    "ja_jp": "トケラウとマニヒキ",
+    "ko_kr": "토켈라우와 마니히키",
+    "pl_pl": "Tokelau i Manihiki",
+    "pt_br": "Tokelau e Manihiki",
+    "ru_ru": "Токелау и Манихики",
+    "tr_tr": "Tokelau ve Manihiki",
+    "uk_ua": "Токелау і Маніхікі",
+    "zh_cn": "托克劳与马尼希基",
+    "zh_hk": "托克勞與馬尼希基",
+    "zh_tw": "托克勞與馬尼希基"
+  }
+}

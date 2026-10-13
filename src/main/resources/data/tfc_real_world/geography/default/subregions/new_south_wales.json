@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/australia",
+  "title_lang": {
+    "de_de": "New South Wales",
+    "en_us": "New South Wales",
+    "es_es": "Nueva Gales del Sur",
+    "ja_jp": "ニューサウスウェールズ",
+    "ko_kr": "뉴사우스웨일스",
+    "pl_pl": "Nowa Południowa Walia",
+    "pt_br": "Nova Gales do Sul",
+    "ru_ru": "Новый Южный Уэльс",
+    "tr_tr": "Yeni Güney Galler",
+    "uk_ua": "Новий Південний Уельс",
+    "zh_cn": "新南威尔士",
+    "zh_hk": "新南威爾士",
+    "zh_tw": "新南威爾士"
+  }
+}

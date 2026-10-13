@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/west_tropical_africa",
+  "title_lang": {
+    "de_de": "Ghana",
+    "en_us": "Ghana",
+    "es_es": "Ghana",
+    "ja_jp": "ガーナ",
+    "ko_kr": "가나",
+    "pl_pl": "Ghana",
+    "pt_br": "Gana",
+    "ru_ru": "Гана",
+    "tr_tr": "Gana",
+    "uk_ua": "Гана",
+    "zh_cn": "加纳",
+    "zh_hk": "加納",
+    "zh_tw": "加納"
+  }
+}

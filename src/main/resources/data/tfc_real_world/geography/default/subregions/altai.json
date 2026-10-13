@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/siberia",
+  "title_lang": {
+    "de_de": "Altai",
+    "en_us": "Altai",
+    "es_es": "Altái",
+    "ja_jp": "アルタイ",
+    "ko_kr": "알타이",
+    "pl_pl": "Ałtaj",
+    "pt_br": "Altai",
+    "ru_ru": "Алтай",
+    "tr_tr": "Altay",
+    "uk_ua": "Алтай",
+    "zh_cn": "阿尔泰",
+    "zh_hk": "阿爾泰",
+    "zh_tw": "阿爾泰"
+  }
+}

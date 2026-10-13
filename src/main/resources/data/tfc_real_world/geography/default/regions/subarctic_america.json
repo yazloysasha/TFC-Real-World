@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/northern_america",
+  "title_lang": {
+    "de_de": "Subarktisches Amerika",
+    "en_us": "Subarctic America",
+    "es_es": "América Subártica",
+    "ja_jp": "亜北極アメリカ",
+    "ko_kr": "아북극 아메리카",
+    "pl_pl": "Ameryka subarktyczna",
+    "pt_br": "América Subártica",
+    "ru_ru": "Субарктическая Америка",
+    "tr_tr": "Subarktik Amerika",
+    "uk_ua": "Субарктична Америка",
+    "zh_cn": "亚北极美洲",
+    "zh_hk": "亞北極美洲",
+    "zh_tw": "亞北極美洲"
+  }
+}

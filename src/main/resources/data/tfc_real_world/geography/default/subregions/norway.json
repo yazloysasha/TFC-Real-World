@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northern_europe",
+  "title_lang": {
+    "de_de": "Norwegen",
+    "en_us": "Norway",
+    "es_es": "Noruega",
+    "ja_jp": "ノルウェー",
+    "ko_kr": "노르웨이",
+    "pl_pl": "Norwegia",
+    "pt_br": "Noruega",
+    "ru_ru": "Норвегия",
+    "tr_tr": "Norveç",
+    "uk_ua": "Норвегія",
+    "zh_cn": "挪威",
+    "zh_hk": "挪威",
+    "zh_tw": "挪威"
+  }
+}

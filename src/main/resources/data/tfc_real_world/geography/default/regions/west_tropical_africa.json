@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/africa",
+  "title_lang": {
+    "de_de": "Westliches tropisches Afrika",
+    "en_us": "West Tropical Africa",
+    "es_es": "África Tropical Occidental",
+    "ja_jp": "西熱帯アフリカ",
+    "ko_kr": "서부 열대 아프리카",
+    "pl_pl": "Zachodnia Afryka tropikalna",
+    "pt_br": "África Tropical Ocidental",
+    "ru_ru": "Западная тропическая Африка",
+    "tr_tr": "Batı Tropikal Afrika",
+    "uk_ua": "Західна тропічна Африка",
+    "zh_cn": "西部热带非洲",
+    "zh_hk": "西部熱帶非洲",
+    "zh_tw": "西部熱帶非洲"
+  }
+}

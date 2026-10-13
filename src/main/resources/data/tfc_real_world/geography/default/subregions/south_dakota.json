@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/north_central_usa",
+  "title_lang": {
+    "de_de": "South Dakota",
+    "en_us": "South Dakota",
+    "es_es": "Dakota del Sur",
+    "ja_jp": "サウスダコタ",
+    "ko_kr": "사우스다코타",
+    "pl_pl": "Dakota Południowa",
+    "pt_br": "Dakota do Sul",
+    "ru_ru": "Южная Дакота",
+    "tr_tr": "Güney Dakota",
+    "uk_ua": "Південна Дакота",
+    "zh_cn": "南达科他",
+    "zh_hk": "南達科他",
+    "zh_tw": "南達科他"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/central_america",
+  "title_lang": {
+    "de_de": "Nicaragua",
+    "en_us": "Nicaragua",
+    "es_es": "Nicaragua",
+    "ja_jp": "ニカラグア",
+    "ko_kr": "니카라과",
+    "pl_pl": "Nikaragua",
+    "pt_br": "Nicarágua",
+    "ru_ru": "Никарагуа",
+    "tr_tr": "Nikaragua",
+    "uk_ua": "Нікарагуа",
+    "zh_cn": "尼加拉瓜",
+    "zh_hk": "尼加拉瓜",
+    "zh_tw": "尼加拉瓜"
+  }
+}

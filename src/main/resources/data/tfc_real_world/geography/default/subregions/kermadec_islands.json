@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/new_zealand",
+  "title_lang": {
+    "de_de": "Kermadecinseln",
+    "en_us": "Kermadec Islands",
+    "es_es": "Islas Kermadec",
+    "ja_jp": "ケルマディック諸島",
+    "ko_kr": "커매дек 제도",
+    "pl_pl": "Wyspy Kermadec",
+    "pt_br": "Ilhas Kermadec",
+    "ru_ru": "Острова Кермадек",
+    "tr_tr": "Kermadec Adaları",
+    "uk_ua": "Острови Кермадек",
+    "zh_cn": "克马德克群岛",
+    "zh_hk": "克馬德克群島",
+    "zh_tw": "克馬德克群島"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/china",
+  "title_lang": {
+    "de_de": "Südwestchina",
+    "en_us": "China South-Central",
+    "es_es": "China surcentral",
+    "ja_jp": "西南中国",
+    "ko_kr": "중국 남중부",
+    "pl_pl": "Chiny południowo-środkowe",
+    "pt_br": "China Sul-Central",
+    "ru_ru": "Юго-Западный Китай",
+    "tr_tr": "Güney-Orta Çin",
+    "uk_ua": "Південно-центральний Китай",
+    "zh_cn": "西南",
+    "zh_hk": "西南",
+    "zh_tw": "西南"
+  }
+}

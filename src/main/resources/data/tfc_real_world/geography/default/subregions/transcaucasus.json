@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/caucasus",
+  "title_lang": {
+    "de_de": "Transkaukasien",
+    "en_us": "Transcaucasus",
+    "es_es": "Transcaucasia",
+    "ja_jp": "ザカフカース",
+    "ko_kr": "자캅카스",
+    "pl_pl": "Zakaukazie",
+    "pt_br": "Transcaucásia",
+    "ru_ru": "Закавказье",
+    "tr_tr": "Transkafkasya",
+    "uk_ua": "Закавказзя",
+    "zh_cn": "外高加索",
+    "zh_hk": "外高加索",
+    "zh_tw": "外高加索"
+  }
+}

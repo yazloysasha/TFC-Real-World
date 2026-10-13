@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northern_europe",
+  "title_lang": {
+    "de_de": "Island",
+    "en_us": "Iceland",
+    "es_es": "Islandia",
+    "ja_jp": "アイスランド",
+    "ko_kr": "아이슬란드",
+    "pl_pl": "Islandia",
+    "pt_br": "Islândia",
+    "ru_ru": "Исландия",
+    "tr_tr": "İzlanda",
+    "uk_ua": "Ісландія",
+    "zh_cn": "冰岛",
+    "zh_hk": "冰島",
+    "zh_tw": "冰島"
+  }
+}

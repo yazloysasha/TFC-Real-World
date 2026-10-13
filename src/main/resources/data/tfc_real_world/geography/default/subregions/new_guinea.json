@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/papuasia",
+  "title_lang": {
+    "de_de": "Neuguinea",
+    "en_us": "New Guinea",
+    "es_es": "Nueva Guinea",
+    "ja_jp": "ニューギニア",
+    "ko_kr": "뉴기니",
+    "pl_pl": "Nowa Gwinea",
+    "pt_br": "Nova Guiné",
+    "ru_ru": "Новая Гвинея",
+    "tr_tr": "Yeni Gine",
+    "uk_ua": "Нова Гвінея",
+    "zh_cn": "新几内亚",
+    "zh_hk": "新幾內亞",
+    "zh_tw": "新幾內亞"
+  }
+}

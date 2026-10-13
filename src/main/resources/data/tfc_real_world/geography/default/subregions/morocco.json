@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northern_africa",
+  "title_lang": {
+    "de_de": "Marokko",
+    "en_us": "Morocco",
+    "es_es": "Marruecos",
+    "ja_jp": "モロッコ",
+    "ko_kr": "모로코",
+    "pl_pl": "Maroko",
+    "pt_br": "Marrocos",
+    "ru_ru": "Марокко",
+    "tr_tr": "Fas",
+    "uk_ua": "Марокко",
+    "zh_cn": "摩洛哥",
+    "zh_hk": "摩洛哥",
+    "zh_tw": "摩洛哥"
+  }
+}

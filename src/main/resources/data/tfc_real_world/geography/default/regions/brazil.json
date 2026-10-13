@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/southern_america",
+  "title_lang": {
+    "de_de": "Brasilien",
+    "en_us": "Brazil",
+    "es_es": "Brasil",
+    "ja_jp": "ブラジル",
+    "ko_kr": "브라질",
+    "pl_pl": "Brazylia",
+    "pt_br": "Brasil",
+    "ru_ru": "Бразилия",
+    "tr_tr": "Brezilya",
+    "uk_ua": "Бразилія",
+    "zh_cn": "巴西",
+    "zh_hk": "巴西",
+    "zh_tw": "巴西"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southeastern_europe",
+  "title_lang": {
+    "de_de": "Italien",
+    "en_us": "Italy",
+    "es_es": "Italia",
+    "ja_jp": "イタリア",
+    "ko_kr": "이탈리아",
+    "pl_pl": "Włochy",
+    "pt_br": "Itália",
+    "ru_ru": "Италия",
+    "tr_tr": "İtalya",
+    "uk_ua": "Італія",
+    "zh_cn": "意大利",
+    "zh_hk": "意大利",
+    "zh_tw": "義大利"
+  }
+}

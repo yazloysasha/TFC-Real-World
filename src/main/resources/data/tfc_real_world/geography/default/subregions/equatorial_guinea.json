@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/west_central_tropical_africa",
+  "title_lang": {
+    "de_de": "Äquatorialguinea",
+    "en_us": "Equatorial Guinea",
+    "es_es": "Guinea Ecuatorial",
+    "ja_jp": "赤道ギニア",
+    "ko_kr": "적도 기니",
+    "pl_pl": "Gwinea Równikowa",
+    "pt_br": "Guiné Equatorial",
+    "ru_ru": "Экваториальная Гвинея",
+    "tr_tr": "Ekvator Ginesi",
+    "uk_ua": "Екваторіальна Гвінея",
+    "zh_cn": "赤道几内亚",
+    "zh_hk": "赤道幾內亞",
+    "zh_tw": "赤道幾內亞"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/eastern_canada",
+  "title_lang": {
+    "de_de": "Ontario",
+    "en_us": "Ontario",
+    "es_es": "Ontario",
+    "ja_jp": "オンタリオ",
+    "ko_kr": "온타리오",
+    "pl_pl": "Ontario",
+    "pt_br": "Ontário",
+    "ru_ru": "Онтарио",
+    "tr_tr": "Ontario",
+    "uk_ua": "Онтаріо",
+    "zh_cn": "安大略",
+    "zh_hk": "安大略",
+    "zh_tw": "安大略"
+  }
+}

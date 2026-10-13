@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southwestern_europe",
+  "title_lang": {
+    "de_de": "Balearen",
+    "en_us": "Balearic Islands",
+    "es_es": "Islas Baleares",
+    "ja_jp": "バレアレス諸島",
+    "ko_kr": "발레아레스 제도",
+    "pl_pl": "Baleary",
+    "pt_br": "Ilhas Baleares",
+    "ru_ru": "Балеарские острова",
+    "tr_tr": "Balear Adaları",
+    "uk_ua": "Балеарські острови",
+    "zh_cn": "巴利阿里群岛",
+    "zh_hk": "巴利阿里群島",
+    "zh_tw": "巴利阿里群島"
+  }
+}

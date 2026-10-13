@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/china",
+  "title_lang": {
+    "de_de": "Hainan",
+    "en_us": "Hainan",
+    "es_es": "Hainan",
+    "ja_jp": "海南",
+    "ko_kr": "하이난",
+    "pl_pl": "Hajnan",
+    "pt_br": "Hainan",
+    "ru_ru": "Хайнань",
+    "tr_tr": "Hainan",
+    "uk_ua": "Хайнань",
+    "zh_cn": "海南",
+    "zh_hk": "海南",
+    "zh_tw": "海南"
+  }
+}

@@ -117,11 +117,6 @@ public class ConfigManager {
           "world_generation.flat_bedrock",
           TFCRealWorldConfig.FLAT_BEDROCK.get()
         ),
-        getDouble(
-          config,
-          "world_generation.continentalness",
-          TFCRealWorldConfig.CONTINENTALNESS.get()
-        ),
         getInt(
           config,
           "world_generation.temperature_scale",
@@ -149,18 +144,28 @@ public class ConfigManager {
         ),
         getBoolean(
           config,
-          "generation_modes.altitude_from_map",
-          TFCRealWorldConfig.ALTITUDE_FROM_MAP.get()
+          "generation_modes.lakes_from_map",
+          TFCRealWorldConfig.LAKES_FROM_MAP.get()
         ),
         getBoolean(
           config,
-          "generation_modes.hotspots_from_map",
-          TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get()
+          "generation_modes.tectonics_from_map",
+          TFCRealWorldConfig.TECTONICS_FROM_MAP.get()
         ),
         getBoolean(
           config,
-          "generation_modes.koppen_from_map",
-          TFCRealWorldConfig.KOPPEN_FROM_MAP.get()
+          "generation_modes.volcanoes_from_map",
+          TFCRealWorldConfig.VOLCANOES_FROM_MAP.get()
+        ),
+        getBoolean(
+          config,
+          "generation_modes.rivers_from_map",
+          TFCRealWorldConfig.RIVERS_FROM_MAP.get()
+        ),
+        getBoolean(
+          config,
+          "generation_modes.climate_from_map",
+          TFCRealWorldConfig.CLIMATE_FROM_MAP.get()
         )
       );
 
@@ -259,15 +264,16 @@ public class ConfigManager {
       TFCRealWorldConfig.SPAWN_CENTER_Z.get(),
       TFCRealWorldConfig.SPAWN_DISTANCE.get(),
       TFCRealWorldConfig.FLAT_BEDROCK.get(),
-      TFCRealWorldConfig.CONTINENTALNESS.get(),
       TFCRealWorldConfig.TEMPERATURE_SCALE.get(),
       TFCRealWorldConfig.RAINFALL_SCALE.get(),
       TFCRealWorldConfig.HORIZONTAL_SCALE.get(),
       TFCRealWorldConfig.VERTICAL_SCALE.get(),
       TFCRealWorldConfig.CONTINENT_FROM_MAP.get(),
-      TFCRealWorldConfig.ALTITUDE_FROM_MAP.get(),
-      TFCRealWorldConfig.HOTSPOTS_FROM_MAP.get(),
-      TFCRealWorldConfig.KOPPEN_FROM_MAP.get()
+      TFCRealWorldConfig.LAKES_FROM_MAP.get(),
+      TFCRealWorldConfig.TECTONICS_FROM_MAP.get(),
+      TFCRealWorldConfig.VOLCANOES_FROM_MAP.get(),
+      TFCRealWorldConfig.RIVERS_FROM_MAP.get(),
+      TFCRealWorldConfig.CLIMATE_FROM_MAP.get()
     );
     PacketHandler.INSTANCE.sendTo(
       packet,

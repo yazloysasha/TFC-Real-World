@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/australia",
+  "title_lang": {
+    "de_de": "Norfolkinsel",
+    "en_us": "Norfolk Island",
+    "es_es": "Isla Norfolk",
+    "ja_jp": "ノーフォーク島",
+    "ko_kr": "노퍽섬",
+    "pl_pl": "Wyspa Norfolk",
+    "pt_br": "Ilha Norfolk",
+    "ru_ru": "Остров Норфолк",
+    "tr_tr": "Norfolk Adası",
+    "uk_ua": "Острів Норфолк",
+    "zh_cn": "诺福克岛",
+    "zh_hk": "諾福克島",
+    "zh_tw": "諾福克島"
+  }
+}

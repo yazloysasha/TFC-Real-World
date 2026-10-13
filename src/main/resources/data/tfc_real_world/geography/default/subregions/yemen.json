@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/arabian_peninsula",
+  "title_lang": {
+    "de_de": "Jemen",
+    "en_us": "Yemen",
+    "es_es": "Yemen",
+    "ja_jp": "イエメン",
+    "ko_kr": "예멘",
+    "pl_pl": "Jemen",
+    "pt_br": "Iêmen",
+    "ru_ru": "Йемен",
+    "tr_tr": "Yemen",
+    "uk_ua": "Ємен",
+    "zh_cn": "也门",
+    "zh_hk": "也門",
+    "zh_tw": "也門"
+  }
+}

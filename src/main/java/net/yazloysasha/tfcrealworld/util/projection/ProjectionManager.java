@@ -3,9 +3,9 @@ package net.yazloysasha.tfcrealworld.util.projection;
 import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.util.Mth;
-import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.types.MapProjection;
+import net.yazloysasha.tfcrealworld.world.region.RegionCoords;
 
 public class ProjectionManager {
 
@@ -29,6 +29,38 @@ public class ProjectionManager {
 
   private static double normalizeLongitude(double longitude) {
     return longitude % 360.0;
+  }
+
+  public static int transformWorldZToLocal(int z, int verticalScale) {
+    int tileRadius = verticalScale;
+    int tileDiameter = verticalScale * 2;
+    int tileIndex = (int) Math.floor((z + tileRadius) / (double) tileDiameter);
+    int localZ = z - tileIndex * tileDiameter;
+
+    if (Math.floorMod(tileIndex, 2) != 0) {
+      localZ = -localZ;
+    }
+
+    return Mth.clamp(localZ, -tileRadius, tileRadius);
+  }
+
+  public static double resolveLatitudeFromWorldZ(double worldZ) {
+    int localZ = transformWorldZToLocal(
+      (int) Math.floor(worldZ),
+      TFCRealWorldConfig.VERTICAL_SCALE.get()
+    );
+    return getLatitudeByZ(localZ);
+  }
+
+  /**
+   * Maps geographic latitude to the classic TFC Z coordinate where the equator
+   * lies at {@code scale / 2} and poles at {@code -scale / 2} and {@code 3 * scale / 2}.
+   */
+  public static double virtualClassicZFromLatitude(
+    double latitudeDegrees,
+    int scale
+  ) {
+    return ((latitudeDegrees + 90.0) / 180.0) * (2.0 * scale) - scale * 0.5;
   }
 
   public static double getLatitudeByZ(double z) {
@@ -106,12 +138,12 @@ public class ProjectionManager {
     double tileRadiusBlocksX = horizontalScale;
     double tileRadiusBlocksZ = verticalScale;
     double tileRadiusGridX =
-      tileRadiusBlocksX / TFCRealWorld.GRID_WIDTH_IN_BLOCK;
+      tileRadiusBlocksX / RegionCoords.GRID_WIDTH_IN_BLOCK;
     double tileRadiusGridZ =
-      tileRadiusBlocksZ / TFCRealWorld.GRID_WIDTH_IN_BLOCK;
+      tileRadiusBlocksZ / RegionCoords.GRID_WIDTH_IN_BLOCK;
 
-    double gridX = x / TFCRealWorld.GRID_WIDTH_IN_BLOCK;
-    double gridZ = z / TFCRealWorld.GRID_WIDTH_IN_BLOCK;
+    double gridX = x / RegionCoords.GRID_WIDTH_IN_BLOCK;
+    double gridZ = z / RegionCoords.GRID_WIDTH_IN_BLOCK;
 
     int tileX = (int) Math.floor(
       (gridX + tileRadiusGridX) / (2.0 * tileRadiusGridX)
@@ -125,15 +157,15 @@ public class ProjectionManager {
     double localX = gridX - tileCenterX;
     double localZ = gridZ - tileCenterZ;
 
-    if (Math.floorMod(tileX, 2) != 0) {
+    if (Math.floorMod(tileX + tileZ, 2) != 0) {
       localX = -localX;
     }
     if (Math.floorMod(tileZ, 2) != 0) {
       localZ = -localZ;
     }
 
-    double unreflectedX = localX * TFCRealWorld.GRID_WIDTH_IN_BLOCK;
-    double unreflectedZ = localZ * TFCRealWorld.GRID_WIDTH_IN_BLOCK;
+    double unreflectedX = localX * RegionCoords.GRID_WIDTH_IN_BLOCK;
+    double unreflectedZ = localZ * RegionCoords.GRID_WIDTH_IN_BLOCK;
 
     double[] result = strategy.classicToGeographic(
       unreflectedX,

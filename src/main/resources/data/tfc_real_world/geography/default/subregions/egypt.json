@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northern_africa",
+  "title_lang": {
+    "de_de": "Ägypten",
+    "en_us": "Egypt",
+    "es_es": "Egipto",
+    "ja_jp": "エジプト",
+    "ko_kr": "이집트",
+    "pl_pl": "Egipt",
+    "pt_br": "Egito",
+    "ru_ru": "Египет",
+    "tr_tr": "Mısır",
+    "uk_ua": "Єгипет",
+    "zh_cn": "埃及",
+    "zh_hk": "埃及",
+    "zh_tw": "埃及"
+  }
+}

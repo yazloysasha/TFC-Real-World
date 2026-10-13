@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northern_africa",
+  "title_lang": {
+    "de_de": "Algerien",
+    "en_us": "Algeria",
+    "es_es": "Argelia",
+    "ja_jp": "アルジェリア",
+    "ko_kr": "알제리",
+    "pl_pl": "Algieria",
+    "pt_br": "Argélia",
+    "ru_ru": "Алжир",
+    "tr_tr": "Cezayir",
+    "uk_ua": "Алжир",
+    "zh_cn": "阿尔及利亚",
+    "zh_hk": "阿爾及利亞",
+    "zh_tw": "阿爾及利亞"
+  }
+}

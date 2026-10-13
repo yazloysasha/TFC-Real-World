@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/caribbean",
+  "title_lang": {
+    "de_de": "Bahamas",
+    "en_us": "Bahamas",
+    "es_es": "Bahamas",
+    "ja_jp": "バハマ",
+    "ko_kr": "바하마",
+    "pl_pl": "Bahamy",
+    "pt_br": "Bahamas",
+    "ru_ru": "Багамы",
+    "tr_tr": "Bahamalar",
+    "uk_ua": "Багами",
+    "zh_cn": "巴哈马",
+    "zh_hk": "巴哈馬",
+    "zh_tw": "巴哈馬"
+  }
+}

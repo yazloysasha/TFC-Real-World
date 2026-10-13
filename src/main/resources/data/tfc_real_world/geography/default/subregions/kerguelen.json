@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/subantarctic_islands",
+  "title_lang": {
+    "de_de": "Kerguelen",
+    "en_us": "Kerguelen",
+    "es_es": "Kerguelen",
+    "ja_jp": "ケルゲレン諸島",
+    "ko_kr": "케르겔렌",
+    "pl_pl": "Kerguelen",
+    "pt_br": "Kerguelen",
+    "ru_ru": "Кергелен",
+    "tr_tr": "Kerguelen",
+    "uk_ua": "Кергелен",
+    "zh_cn": "凯尔盖朗",
+    "zh_hk": "凱爾蓋朗",
+    "zh_tw": "凱爾蓋朗"
+  }
+}

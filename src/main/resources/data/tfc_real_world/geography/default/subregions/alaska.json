@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/subarctic_america",
+  "title_lang": {
+    "de_de": "Alaska",
+    "en_us": "Alaska",
+    "es_es": "Alaska",
+    "ja_jp": "アラスカ",
+    "ko_kr": "알래스카",
+    "pl_pl": "Alaska",
+    "pt_br": "Alasca",
+    "ru_ru": "Аляска",
+    "tr_tr": "Alaska",
+    "uk_ua": "Аляска",
+    "zh_cn": "阿拉斯加",
+    "zh_hk": "阿拉斯加",
+    "zh_tw": "阿拉斯加"
+  }
+}

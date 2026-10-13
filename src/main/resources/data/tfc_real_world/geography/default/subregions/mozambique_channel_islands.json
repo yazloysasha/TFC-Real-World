@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/western_indian_ocean",
+  "title_lang": {
+    "de_de": "Inseln der Mosambikstraße",
+    "en_us": "Mozambique Channel Islands",
+    "es_es": "Islas del canal de Mozambique",
+    "ja_jp": "モザンビーク海峡諸島",
+    "ko_kr": "모잠비크 해협 제도",
+    "pl_pl": "Wyspy Kanału Mozambickiego",
+    "pt_br": "Ilhas do canal de Moçambique",
+    "ru_ru": "Острова Мозамбикского пролива",
+    "tr_tr": "Mozambik Kanalı Adaları",
+    "uk_ua": "Острови Мозамбіцької протоки",
+    "zh_cn": "莫桑比克海峡群岛",
+    "zh_hk": "莫桑比克海峽群島",
+    "zh_tw": "莫桑比克海峽群島"
+  }
+}

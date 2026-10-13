@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/eastern_asia",
+  "title_lang": {
+    "de_de": "Nansei-Inseln",
+    "en_us": "Nansei Islands",
+    "es_es": "Islas Nansei",
+    "ja_jp": "南西諸島",
+    "ko_kr": "난세이 제도",
+    "pl_pl": "Wyspy Nansei",
+    "pt_br": "Ilhas Nansei",
+    "ru_ru": "Острова Нансэй",
+    "tr_tr": "Nansei Adaları",
+    "uk_ua": "Острови Нансей",
+    "zh_cn": "南西诸岛",
+    "zh_hk": "南西諸島",
+    "zh_tw": "南西諸島"
+  }
+}

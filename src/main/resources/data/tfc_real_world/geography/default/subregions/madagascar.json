@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/western_indian_ocean",
+  "title_lang": {
+    "de_de": "Madagaskar",
+    "en_us": "Madagascar",
+    "es_es": "Madagascar",
+    "ja_jp": "マダガスカル",
+    "ko_kr": "마다가스카르",
+    "pl_pl": "Madagaskar",
+    "pt_br": "Madagáscar",
+    "ru_ru": "Мадагаскар",
+    "tr_tr": "Madagaskar",
+    "uk_ua": "Мадагаскар",
+    "zh_cn": "马达加斯加",
+    "zh_hk": "馬達加斯加",
+    "zh_tw": "馬達加斯加"
+  }
+}

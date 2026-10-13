@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southern_africa",
+  "title_lang": {
+    "de_de": "Eswatini",
+    "en_us": "Eswatini",
+    "es_es": "Esuatini",
+    "ja_jp": "エスワティニ",
+    "ko_kr": "에스와티니",
+    "pl_pl": "Eswatini",
+    "pt_br": "Essuatíni",
+    "ru_ru": "Эсватини",
+    "tr_tr": "Esvatini",
+    "uk_ua": "Есватіні",
+    "zh_cn": "埃斯瓦蒂尼",
+    "zh_hk": "埃斯瓦蒂尼",
+    "zh_tw": "埃斯瓦蒂尼"
+  }
+}

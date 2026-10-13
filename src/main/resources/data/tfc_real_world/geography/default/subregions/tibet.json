@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/china",
+  "title_lang": {
+    "de_de": "Tibet",
+    "en_us": "Tibet",
+    "es_es": "Tíbet",
+    "ja_jp": "チベット",
+    "ko_kr": "티베트",
+    "pl_pl": "Tybet",
+    "pt_br": "Tibete",
+    "ru_ru": "Тибет",
+    "tr_tr": "Tibet",
+    "uk_ua": "Тибет",
+    "zh_cn": "西藏",
+    "zh_hk": "西藏",
+    "zh_tw": "西藏"
+  }
+}

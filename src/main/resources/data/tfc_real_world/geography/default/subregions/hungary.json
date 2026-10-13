@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/middle_europe",
+  "title_lang": {
+    "de_de": "Ungarn",
+    "en_us": "Hungary",
+    "es_es": "Hungría",
+    "ja_jp": "ハンガリー",
+    "ko_kr": "헝가리",
+    "pl_pl": "Węgry",
+    "pt_br": "Hungria",
+    "ru_ru": "Венгрия",
+    "tr_tr": "Macaristan",
+    "uk_ua": "Угорщина",
+    "zh_cn": "匈牙利",
+    "zh_hk": "匈牙利",
+    "zh_tw": "匈牙利"
+  }
+}

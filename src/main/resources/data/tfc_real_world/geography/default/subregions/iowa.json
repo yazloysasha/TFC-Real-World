@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/north_central_usa",
+  "title_lang": {
+    "de_de": "Iowa",
+    "en_us": "Iowa",
+    "es_es": "Iowa",
+    "ja_jp": "アイオワ",
+    "ko_kr": "아이오와",
+    "pl_pl": "Iowa",
+    "pt_br": "Iowa",
+    "ru_ru": "Айова",
+    "tr_tr": "Iowa",
+    "uk_ua": "Айова",
+    "zh_cn": "艾奥瓦",
+    "zh_hk": "艾奧瓦",
+    "zh_tw": "艾奧瓦"
+  }
+}

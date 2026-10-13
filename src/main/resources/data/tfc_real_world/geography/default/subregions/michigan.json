@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northeastern_usa",
+  "title_lang": {
+    "de_de": "Michigan",
+    "en_us": "Michigan",
+    "es_es": "Míchigan",
+    "ja_jp": "ミシガン",
+    "ko_kr": "미시간",
+    "pl_pl": "Michigan",
+    "pt_br": "Michigan",
+    "ru_ru": "Мичиган",
+    "tr_tr": "Michigan",
+    "uk_ua": "Мічиган",
+    "zh_cn": "密歇根",
+    "zh_hk": "密歇根",
+    "zh_tw": "密歇根"
+  }
+}

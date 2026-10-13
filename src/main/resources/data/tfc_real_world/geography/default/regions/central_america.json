@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/southern_america",
+  "title_lang": {
+    "de_de": "Mittelamerika",
+    "en_us": "Central America",
+    "es_es": "América Central",
+    "ja_jp": "中央アメリカ",
+    "ko_kr": "중앙아메리카",
+    "pl_pl": "Ameryka Środkowa",
+    "pt_br": "América Central",
+    "ru_ru": "Центральная Америка",
+    "tr_tr": "Orta Amerika",
+    "uk_ua": "Центральна Америка",
+    "zh_cn": "中美洲",
+    "zh_hk": "中美洲",
+    "zh_tw": "中美洲"
+  }
+}

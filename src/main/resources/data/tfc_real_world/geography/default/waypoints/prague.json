@@ -1,0 +1,51 @@
+{
+  "parent": "default:subregion/czechoslovakia",
+  "title_lang": {
+    "de_de": "Prag",
+    "en_us": "Prague",
+    "es_es": "Praga",
+    "ja_jp": "プラハ",
+    "ko_kr": "프라하",
+    "pl_pl": "Praga",
+    "pt_br": "Praga",
+    "ru_ru": "Прага",
+    "tr_tr": "Prag",
+    "uk_ua": "Прага",
+    "zh_cn": "布拉格",
+    "zh_hk": "布拉格",
+    "zh_tw": "布拉格"
+  },
+  "subtitle_lang": {
+    "de_de": "Hauptstadt von Tschechien",
+    "en_us": "Capital of Czechia",
+    "es_es": "Capital de Chequia",
+    "ja_jp": "チェコの首都",
+    "ko_kr": "체코의 수도",
+    "pl_pl": "Stolica Czech",
+    "pt_br": "Capital da Tchéquia",
+    "ru_ru": "Столица Чехии",
+    "tr_tr": "Çekya'nın başkenti",
+    "uk_ua": "Столиця Чехії",
+    "zh_cn": "捷克的首都",
+    "zh_hk": "捷克的首都",
+    "zh_tw": "捷克的首都"
+  },
+  "description_lang": {
+    "de_de": "Besuchen Sie die Hauptstadt von Tschechien",
+    "en_us": "Visit the capital of Czechia",
+    "es_es": "Visita la capital de Chequia",
+    "ja_jp": "チェコの首都を訪れよう",
+    "ko_kr": "체코의 수도를 방문하세요",
+    "pl_pl": "Odwiedź stolicę Czech",
+    "pt_br": "Visite a capital da Tchéquia",
+    "ru_ru": "Посетите столицу Чехии",
+    "tr_tr": "Çekya'nın başkentini ziyaret edin",
+    "uk_ua": "Відвідайте столицю Чехії",
+    "zh_cn": "访问捷克的首都",
+    "zh_hk": "遊覽捷克的首都",
+    "zh_tw": "造訪捷克的首都"
+  },
+  "longitude": 14.42076,
+  "latitude": 50.08804,
+  "capital": 1
+}

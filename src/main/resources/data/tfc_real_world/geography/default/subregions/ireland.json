@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northern_europe",
+  "title_lang": {
+    "de_de": "Irland",
+    "en_us": "Ireland",
+    "es_es": "Irlanda",
+    "ja_jp": "アイルランド",
+    "ko_kr": "아일랜드",
+    "pl_pl": "Irlandia",
+    "pt_br": "Irlanda",
+    "ru_ru": "Ирландия",
+    "tr_tr": "İrlanda",
+    "uk_ua": "Ірландія",
+    "zh_cn": "爱尔兰",
+    "zh_hk": "愛爾蘭",
+    "zh_tw": "愛爾蘭"
+  }
+}

@@ -1,0 +1,157 @@
+package net.yazloysasha.tfcrealworld.client.widget;
+
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.dries007.tfc.client.ClientHelpers;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.yazloysasha.tfcrealworld.TFCRealWorld;
+import net.yazloysasha.tfcrealworld.client.tab.InventoryTabs;
+import net.yazloysasha.tfcrealworld.network.OpenGeographyTabPacket;
+import net.yazloysasha.tfcrealworld.network.PacketHandler;
+
+/**
+ * Sixth TFC-style inventory tab, below TFC's own five. Uses TFC's tab
+ * chrome with the globe for an icon.
+ */
+public class GeographyInventoryTabButton extends Button {
+
+  /** Below TFC's five tabs. */
+  private static final int TAB_Y_IN = 119;
+  private static final int TAB_HEIGHT = 22;
+
+  private static final ResourceLocation GLOBE_ICON = TFCRealWorld.id(
+    "textures/item/globe.png"
+  );
+
+  private int iconX;
+  private int iconY;
+  private int prevGuiLeft;
+  private int prevGuiTop;
+  private final boolean active;
+  private final InventoryTabs.TabChrome chrome;
+  private Runnable tickCallback = () -> {};
+
+  /** On an inventory-like screen with this corner: opens the map. */
+  public GeographyInventoryTabButton(int guiLeft, int guiTop) {
+    this(new InventoryTabs.Anchor(guiLeft, guiTop, false), false);
+  }
+
+  /** Hung from this anchor: opens the map. */
+  public GeographyInventoryTabButton(
+    InventoryTabs.Anchor anchor,
+    boolean active
+  ) {
+    this(anchor, active, button ->
+      PacketHandler.INSTANCE.sendToServer(new OpenGeographyTabPacket())
+    );
+  }
+
+  public GeographyInventoryTabButton(
+    InventoryTabs.Anchor anchor,
+    boolean active,
+    OnPress onPress
+  ) {
+    this(
+      anchor.guiLeft(),
+      anchor.guiTop(),
+      active,
+      InventoryTabs.CURRENT.chrome(active, anchor.detached()),
+      onPress
+    );
+  }
+
+  private GeographyInventoryTabButton(
+    int guiLeft,
+    int guiTop,
+    boolean active,
+    InventoryTabs.TabChrome chrome,
+    OnPress onPress
+  ) {
+    super(
+      guiLeft + chrome.xIn(),
+      guiTop + TAB_Y_IN + chrome.yIn(),
+      chrome.width(),
+      TAB_HEIGHT,
+      TextComponent.EMPTY,
+      onPress
+    );
+    this.prevGuiLeft = guiLeft;
+    this.prevGuiTop = guiTop;
+    this.chrome = chrome;
+    this.iconX = x + chrome.iconX();
+    this.iconY = y + 3;
+    this.active = active;
+  }
+
+  public GeographyInventoryTabButton setRecipeBookCallback(
+    InventoryScreen screen
+  ) {
+    this.tickCallback = new Runnable() {
+      boolean recipeBookVisible = screen.getRecipeBookComponent().isVisible();
+
+      @Override
+      public void run() {
+        boolean now = screen.getRecipeBookComponent().isVisible();
+        if (now != recipeBookVisible) {
+          recipeBookVisible = now;
+          GeographyInventoryTabButton.this.updateGuiSize(
+            screen.getGuiLeft(),
+            screen.getGuiTop()
+          );
+        }
+      }
+    };
+    return this;
+  }
+
+  @Override
+  public void renderButton(
+    PoseStack poseStack,
+    int mouseX,
+    int mouseY,
+    float partialTicks
+  ) {
+    tickCallback.run();
+    RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
+    RenderSystem.enableBlend();
+    RenderSystem.setShaderTexture(0, ClientHelpers.GUI_ICONS);
+    blit(
+      poseStack,
+      x,
+      y,
+      0,
+      (float) chrome.textureU(),
+      (float) chrome.textureV(),
+      width,
+      height,
+      256,
+      256
+    );
+    RenderSystem.setShaderTexture(0, GLOBE_ICON);
+    blit(poseStack, iconX, iconY, 0, 0, 16, 16, 16, 16);
+    final Screen screen = Minecraft.getInstance().screen;
+    if (this.isHoveredOrFocused() && !this.active && screen != null) {
+      screen.renderTooltip(
+        poseStack,
+        new TranslatableComponent("tfc_real_world.screen.geography"),
+        mouseX,
+        mouseY
+      );
+    }
+  }
+
+  public void updateGuiSize(int guiLeft, int guiTop) {
+    x += guiLeft - prevGuiLeft;
+    y += guiTop - prevGuiTop;
+    this.iconX += guiLeft - prevGuiLeft;
+    this.iconY += guiTop - prevGuiTop;
+    prevGuiLeft = guiLeft;
+    prevGuiTop = guiTop;
+  }
+}

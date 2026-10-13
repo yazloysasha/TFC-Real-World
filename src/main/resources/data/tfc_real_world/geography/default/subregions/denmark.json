@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northern_europe",
+  "title_lang": {
+    "de_de": "Dänemark",
+    "en_us": "Denmark",
+    "es_es": "Dinamarca",
+    "ja_jp": "デンマーク",
+    "ko_kr": "덴마크",
+    "pl_pl": "Dania",
+    "pt_br": "Dinamarca",
+    "ru_ru": "Дания",
+    "tr_tr": "Danimarka",
+    "uk_ua": "Данія",
+    "zh_cn": "丹麦",
+    "zh_hk": "丹麥",
+    "zh_tw": "丹麥"
+  }
+}

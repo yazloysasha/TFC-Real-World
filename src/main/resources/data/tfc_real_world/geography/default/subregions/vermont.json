@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northeastern_usa",
+  "title_lang": {
+    "de_de": "Vermont",
+    "en_us": "Vermont",
+    "es_es": "Vermont",
+    "ja_jp": "バーモント",
+    "ko_kr": "버몬트",
+    "pl_pl": "Vermont",
+    "pt_br": "Vermont",
+    "ru_ru": "Вермонт",
+    "tr_tr": "Vermont",
+    "uk_ua": "Вермонт",
+    "zh_cn": "佛蒙特",
+    "zh_hk": "佛蒙特",
+    "zh_tw": "佛蒙特"
+  }
+}

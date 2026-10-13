@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/northern_south_america",
+  "title_lang": {
+    "de_de": "Französisch-Guayana",
+    "en_us": "French Guiana",
+    "es_es": "Guayana Francesa",
+    "ja_jp": "フランス領ギアナ",
+    "ko_kr": "프랑스령 기아나",
+    "pl_pl": "Gujana Francuska",
+    "pt_br": "Guiana Francesa",
+    "ru_ru": "Французская Гвиана",
+    "tr_tr": "Fransız Guyanası",
+    "uk_ua": "Французька Гвіана",
+    "zh_cn": "法属圭亚那",
+    "zh_hk": "法屬圭亞那",
+    "zh_tw": "法屬圭亞那"
+  }
+}

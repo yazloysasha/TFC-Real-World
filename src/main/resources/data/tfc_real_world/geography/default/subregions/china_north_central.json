@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/china",
+  "title_lang": {
+    "de_de": "Nordchina",
+    "en_us": "China North-Central",
+    "es_es": "China norcentral",
+    "ja_jp": "華北",
+    "ko_kr": "화베이",
+    "pl_pl": "Chiny północno-środkowe",
+    "pt_br": "China Norte-Central",
+    "ru_ru": "Северный Китай",
+    "tr_tr": "Kuzey-Orta Çin",
+    "uk_ua": "Північний Китай",
+    "zh_cn": "华北",
+    "zh_hk": "華北",
+    "zh_tw": "華北"
+  }
+}

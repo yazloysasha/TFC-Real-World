@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/asia_tropical",
+  "title_lang": {
+    "de_de": "Malesien",
+    "en_us": "Malesia",
+    "es_es": "Malesia",
+    "ja_jp": "マレシア",
+    "ko_kr": "말레시아",
+    "pl_pl": "Malesja",
+    "pt_br": "Malesia",
+    "ru_ru": "Малезия",
+    "tr_tr": "Malesya",
+    "uk_ua": "Малезія",
+    "zh_cn": "马来区",
+    "zh_hk": "馬來區",
+    "zh_tw": "馬來區"
+  }
+}

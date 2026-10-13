@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/southern_america",
+  "title_lang": {
+    "de_de": "Südliches Südamerika",
+    "en_us": "Southern South America",
+    "es_es": "Sur de Sudamérica",
+    "ja_jp": "南アメリカ南部",
+    "ko_kr": "남아메리카 남부",
+    "pl_pl": "Południowa Ameryka Południowa",
+    "pt_br": "Sul da América do Sul",
+    "ru_ru": "Юг Южной Америки",
+    "tr_tr": "Güney Amerika'nın Güneyi",
+    "uk_ua": "Південь Південної Америки",
+    "zh_cn": "南美洲南部",
+    "zh_hk": "南美洲南部",
+    "zh_tw": "南美洲南部"
+  }
+}

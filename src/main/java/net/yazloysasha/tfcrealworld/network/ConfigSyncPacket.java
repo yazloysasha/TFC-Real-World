@@ -16,15 +16,16 @@ public class ConfigSyncPacket {
   private final int spawnCenterZ;
   private final int spawnDistance;
   private final boolean flatBedrock;
-  private final double continentalness;
   private final int temperatureScale;
   private final int rainfallScale;
   private final int horizontalScale;
   private final int verticalScale;
   private final boolean continentFromMap;
-  private final boolean altitudeFromMap;
-  private final boolean hotspotsFromMap;
-  private final boolean koppenFromMap;
+  private final boolean lakesFromMap;
+  private final boolean tectonicsFromMap;
+  private final boolean volcanoesFromMap;
+  private final boolean riversFromMap;
+  private final boolean climateFromMap;
 
   public ConfigSyncPacket(
     String mapProfile,
@@ -35,15 +36,16 @@ public class ConfigSyncPacket {
     int spawnCenterZ,
     int spawnDistance,
     boolean flatBedrock,
-    double continentalness,
     int temperatureScale,
     int rainfallScale,
     int horizontalScale,
     int verticalScale,
     boolean continentFromMap,
-    boolean altitudeFromMap,
-    boolean hotspotsFromMap,
-    boolean koppenFromMap
+    boolean lakesFromMap,
+    boolean tectonicsFromMap,
+    boolean volcanoesFromMap,
+    boolean riversFromMap,
+    boolean climateFromMap
   ) {
     this.mapProfile = mapProfile;
     this.spawnMode = spawnMode;
@@ -53,15 +55,16 @@ public class ConfigSyncPacket {
     this.spawnCenterZ = spawnCenterZ;
     this.spawnDistance = spawnDistance;
     this.flatBedrock = flatBedrock;
-    this.continentalness = continentalness;
     this.temperatureScale = temperatureScale;
     this.rainfallScale = rainfallScale;
     this.horizontalScale = horizontalScale;
     this.verticalScale = verticalScale;
     this.continentFromMap = continentFromMap;
-    this.altitudeFromMap = altitudeFromMap;
-    this.hotspotsFromMap = hotspotsFromMap;
-    this.koppenFromMap = koppenFromMap;
+    this.lakesFromMap = lakesFromMap;
+    this.tectonicsFromMap = tectonicsFromMap;
+    this.volcanoesFromMap = volcanoesFromMap;
+    this.riversFromMap = riversFromMap;
+    this.climateFromMap = climateFromMap;
   }
 
   public static void encode(ConfigSyncPacket packet, FriendlyByteBuf buffer) {
@@ -73,15 +76,16 @@ public class ConfigSyncPacket {
     buffer.writeInt(packet.spawnCenterZ);
     buffer.writeInt(packet.spawnDistance);
     buffer.writeBoolean(packet.flatBedrock);
-    buffer.writeDouble(packet.continentalness);
     buffer.writeInt(packet.temperatureScale);
     buffer.writeInt(packet.rainfallScale);
     buffer.writeInt(packet.horizontalScale);
     buffer.writeInt(packet.verticalScale);
     buffer.writeBoolean(packet.continentFromMap);
-    buffer.writeBoolean(packet.altitudeFromMap);
-    buffer.writeBoolean(packet.hotspotsFromMap);
-    buffer.writeBoolean(packet.koppenFromMap);
+    buffer.writeBoolean(packet.lakesFromMap);
+    buffer.writeBoolean(packet.tectonicsFromMap);
+    buffer.writeBoolean(packet.volcanoesFromMap);
+    buffer.writeBoolean(packet.riversFromMap);
+    buffer.writeBoolean(packet.climateFromMap);
   }
 
   public static ConfigSyncPacket decode(FriendlyByteBuf buffer) {
@@ -94,11 +98,12 @@ public class ConfigSyncPacket {
       buffer.readInt(),
       buffer.readInt(),
       buffer.readBoolean(),
-      buffer.readDouble(),
       buffer.readInt(),
       buffer.readInt(),
       buffer.readInt(),
       buffer.readInt(),
+      buffer.readBoolean(),
+      buffer.readBoolean(),
       buffer.readBoolean(),
       buffer.readBoolean(),
       buffer.readBoolean(),
@@ -122,15 +127,16 @@ public class ConfigSyncPacket {
           packet.spawnCenterZ,
           packet.spawnDistance,
           packet.flatBedrock,
-          packet.continentalness,
           packet.temperatureScale,
           packet.rainfallScale,
           packet.horizontalScale,
           packet.verticalScale,
           packet.continentFromMap,
-          packet.altitudeFromMap,
-          packet.hotspotsFromMap,
-          packet.koppenFromMap
+          packet.lakesFromMap,
+          packet.tectonicsFromMap,
+          packet.volcanoesFromMap,
+          packet.riversFromMap,
+          packet.climateFromMap
         );
       });
     ctx.get().setPacketHandled(true);

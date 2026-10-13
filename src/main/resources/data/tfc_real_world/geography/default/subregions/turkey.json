@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/western_asia",
+  "title_lang": {
+    "de_de": "Türkei",
+    "en_us": "Turkey",
+    "es_es": "Turquía",
+    "ja_jp": "トルコ",
+    "ko_kr": "튀르키예",
+    "pl_pl": "Turcja",
+    "pt_br": "Turquia",
+    "ru_ru": "Турция",
+    "tr_tr": "Türkiye",
+    "uk_ua": "Туреччина",
+    "zh_cn": "土耳其",
+    "zh_hk": "土耳其",
+    "zh_tw": "土耳其"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "default:continent/asia_temperate",
+  "title_lang": {
+    "de_de": "Arabische Halbinsel",
+    "en_us": "Arabian Peninsula",
+    "es_es": "Península Arábiga",
+    "ja_jp": "アラビア半島",
+    "ko_kr": "아라비아 반도",
+    "pl_pl": "Półwysep Arabski",
+    "pt_br": "Península Arábica",
+    "ru_ru": "Аравийский полуостров",
+    "tr_tr": "Arap Yarımadası",
+    "uk_ua": "Аравійський півострів",
+    "zh_cn": "阿拉伯半岛",
+    "zh_hk": "阿拉伯半島",
+    "zh_tw": "阿拉伯半島"
+  }
+}

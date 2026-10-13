@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/southern_south_america",
+  "title_lang": {
+    "de_de": "Südargentinien",
+    "en_us": "Argentina South",
+    "es_es": "Argentina Sur",
+    "ja_jp": "アルゼンチン南部",
+    "ko_kr": "아르헨티나 남부",
+    "pl_pl": "Argentyna Południowa",
+    "pt_br": "Sul da Argentina",
+    "ru_ru": "Юг Аргентины",
+    "tr_tr": "Güney Arjantin",
+    "uk_ua": "Південь Аргентини",
+    "zh_cn": "阿根廷南部",
+    "zh_hk": "阿根廷南部",
+    "zh_tw": "阿根廷南部"
+  }
+}

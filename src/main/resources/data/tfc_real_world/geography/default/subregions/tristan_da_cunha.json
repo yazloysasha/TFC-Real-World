@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/subantarctic_islands",
+  "title_lang": {
+    "de_de": "Tristan da Cunha",
+    "en_us": "Tristan da Cunha",
+    "es_es": "Tristán de Acuña",
+    "ja_jp": "トリスタンダクーニャ",
+    "ko_kr": "트리스탄다쿠냐",
+    "pl_pl": "Tristan da Cunha",
+    "pt_br": "Tristão da Cunha",
+    "ru_ru": "Тристан-да-Кунья",
+    "tr_tr": "Tristan da Cunha",
+    "uk_ua": "Тристан-да-Кунья",
+    "zh_cn": "特里斯坦-达库尼亚",
+    "zh_hk": "特里斯坦-達庫尼亞",
+    "zh_tw": "特里斯坦-達庫尼亞"
+  }
+}

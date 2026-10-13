@@ -1,0 +1,18 @@
+{
+  "parent": "default:region/caribbean",
+  "title_lang": {
+    "de_de": "Niederländische Antillen",
+    "en_us": "Netherlands Antilles",
+    "es_es": "Antillas Neerlandesas",
+    "ja_jp": "オランダ領アンティル",
+    "ko_kr": "네덜란드령 안틸레스",
+    "pl_pl": "Antyle Holenderskie",
+    "pt_br": "Antilhas Neerlandesas",
+    "ru_ru": "Нидерландские Антилы",
+    "tr_tr": "Hollanda Antilleri",
+    "uk_ua": "Нідерландські Антильські острови",
+    "zh_cn": "荷属安的列斯",
+    "zh_hk": "荷屬安的列斯",
+    "zh_tw": "荷屬安的列斯"
+  }
+}
