@@ -1,6 +1,6 @@
 # TFC: Real World 🌍
 
-<p align="center"><b>🎉 The Ultra-Realistic Update is here!</b> Real rivers, lakes and islands, a detailed coastline, and a world map with 400+ waypoints and advancements since v4.2.0 on Minecraft 1.21.1 and v3.2.0 on Minecraft 1.20.1.</p>
+<p align="center"><b>🎉 The Ultra-Realistic Update is here!</b> Real rivers, lakes and islands, a detailed coastline, and a world map with 400+ waypoints and advancements since v2.2.0 / v3.2.0 / v4.2.0.</p>
 
 ### Survive on the Real Earth
 
