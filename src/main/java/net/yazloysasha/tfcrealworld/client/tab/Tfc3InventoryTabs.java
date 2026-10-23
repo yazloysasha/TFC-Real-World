@@ -23,11 +23,23 @@ final class Tfc3InventoryTabs implements InventoryTabs {
     1
   );
   private static final TabChrome ACTIVE = new TabChrome(173, 0, 23, 148, 0, 1);
+  /**
+   * TFC has no tab for apart from the inventory: the open tab, less the three
+   * columns that overlap and join the inventory's edge.
+   */
+  private static final TabChrome DETACHED_ACTIVE = new TabChrome(
+    176,
+    0,
+    20,
+    151,
+    0,
+    1
+  );
 
-  /** On a panel, the tabs hang off its right edge. */
+  /** On a panel, the tabs hang off its right edge, apart from it. */
   @Override
   public Anchor panelAnchor(int left, int top, int width) {
-    return new Anchor(left + width - INACTIVE.xIn(), top, false);
+    return new Anchor(left + width - INACTIVE.xIn(), top, true);
   }
 
   @Override
@@ -71,7 +83,10 @@ final class Tfc3InventoryTabs implements InventoryTabs {
 
   @Override
   public TabChrome chrome(boolean active, boolean detached) {
-    return active ? ACTIVE : INACTIVE;
+    if (!active) {
+      return INACTIVE;
+    }
+    return detached ? DETACHED_ACTIVE : ACTIVE;
   }
 
   private static Button tab(
