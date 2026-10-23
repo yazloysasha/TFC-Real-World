@@ -34,7 +34,6 @@ import org.slf4j.Logger;
 public final class TFCRealWorld {
 
   public static final String MOD_ID = "tfc_real_world";
-  public static final String MOD_NAME = "TFC: Real World";
   public static final Logger LOGGER = LogUtils.getLogger();
 
   public static ResourceLocation id(String path) {

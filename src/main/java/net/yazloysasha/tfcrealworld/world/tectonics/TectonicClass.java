@@ -117,15 +117,6 @@ public record TectonicClass(
     INTRAPLATE,
   }
 
-  /**
-   * A mountain range the sea reaches into ({@link #coast}): vanilla coastal
-   * (oceanic) mountains, whose valleys drop below sea level; other ranges are
-   * inland mountains.
-   */
-  public boolean isCoastalMountain() {
-    return coast && land == LandRelief.MOUNTAIN;
-  }
-
   static <E extends Enum<E>> E parseEnum(
     Class<E> type,
     String value,
