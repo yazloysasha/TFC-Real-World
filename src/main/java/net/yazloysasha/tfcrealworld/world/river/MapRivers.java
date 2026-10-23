@@ -149,6 +149,23 @@ public final class MapRivers {
   /** The rivers of the active profile, or {@code null} if it has none. */
   @Nullable
   public static MapRivers tryLoad(int horizontalScale, int verticalScale) {
+    final Network network = tryLoadNetwork();
+    if (network == null) {
+      return null;
+    }
+    return fromNetwork(
+      network,
+      (float) horizontalScale / RegionCoords.GRID_WIDTH_IN_BLOCK,
+      (float) verticalScale / RegionCoords.GRID_WIDTH_IN_BLOCK
+    );
+  }
+
+  /**
+   * The river network of the active profile as stored, or {@code null} if it
+   * has none.
+   */
+  @Nullable
+  public static Network tryLoadNetwork() {
     final String profileId = TFCRealWorldConfig.MAP_PROFILE.get();
     try (
       InputStream stream = ProfileManager.getProfileFileStream(
@@ -159,11 +176,7 @@ public final class MapRivers {
       if (stream == null) {
         return null;
       }
-      return read(
-        new DataInputStream(new BufferedInputStream(stream)),
-        (float) horizontalScale / RegionCoords.GRID_WIDTH_IN_BLOCK,
-        (float) verticalScale / RegionCoords.GRID_WIDTH_IN_BLOCK
-      );
+      return readNetwork(new DataInputStream(new BufferedInputStream(stream)));
     } catch (IOException e) {
       throw new IllegalStateException(
         "Failed to read " + FILE + " for profile " + profileId,
@@ -172,11 +185,7 @@ public final class MapRivers {
     }
   }
 
-  private static MapRivers read(
-    DataInputStream in,
-    float halfGridX,
-    float halfGridZ
-  ) throws IOException {
+  private static Network readNetwork(DataInputStream in) throws IOException {
     if (in.readInt() != MAGIC || in.readInt() != VERSION) {
       throw new IOException("Not a version " + VERSION + " " + FILE);
     }
@@ -184,20 +193,44 @@ public final class MapRivers {
     final float[] x = new float[vertexCount];
     final float[] z = new float[vertexCount];
     for (int i = 0; i < vertexCount; i++) {
-      x[i] = (in.readShort() / COORD_RANGE) * halfGridX;
-      z[i] = (in.readShort() / COORD_RANGE) * halfGridZ;
+      x[i] = in.readShort() / COORD_RANGE;
+      z[i] = in.readShort() / COORD_RANGE;
+    }
+    final int edgeCount = in.readInt();
+    final int[] source = new int[edgeCount];
+    final int[] drain = new int[edgeCount];
+    final int[] width = new int[edgeCount];
+    for (int i = 0; i < edgeCount; i++) {
+      source[i] = in.readInt();
+      drain[i] = in.readInt();
+      width[i] = in.readUnsignedByte();
+    }
+    return new Network(x, z, source, drain, width);
+  }
+
+  private static MapRivers fromNetwork(
+    Network network,
+    float halfGridX,
+    float halfGridZ
+  ) {
+    final int vertexCount = network.x().length;
+    final float[] x = new float[vertexCount];
+    final float[] z = new float[vertexCount];
+    for (int i = 0; i < vertexCount; i++) {
+      x[i] = network.x()[i] * halfGridX;
+      z[i] = network.z()[i] * halfGridZ;
     }
 
-    final int edgeCount = in.readInt();
+    final int edgeCount = network.source().length;
     final List<float[]> pieces = new ArrayList<>(edgeCount);
     final IntArrayList drainVertex = new IntArrayList(edgeCount);
     final IntArrayList widths = new IntArrayList(edgeCount);
     final int[] firstPieceFromVertex = new int[vertexCount];
     Arrays.fill(firstPieceFromVertex, -1);
     for (int i = 0; i < edgeCount; i++) {
-      final int source = in.readInt();
-      final int drain = in.readInt();
-      final int edgeWidth = in.readUnsignedByte();
+      final int source = network.source()[i];
+      final int drain = network.drain()[i];
+      final int edgeWidth = network.width()[i];
       final float dx = x[drain] - x[source];
       final float dz = z[drain] - z[source];
       final int split = Math.max(
@@ -528,4 +561,16 @@ public final class MapRivers {
   private static long bucket(int bucketX, int bucketZ) {
     return ((long) bucketX << 32) | (bucketZ & 0xFFFFFFFFL);
   }
+
+  /**
+   * The rivers as stored: vertices from -1 to 1 across the map, each edge
+   * from a source vertex to the drain vertex below it, and its width.
+   */
+  public record Network(
+    float[] x,
+    float[] z,
+    int[] source,
+    int[] drain,
+    int[] width
+  ) {}
 }

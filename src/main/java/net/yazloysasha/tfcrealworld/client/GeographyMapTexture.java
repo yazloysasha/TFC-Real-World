@@ -10,6 +10,7 @@ import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
 import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise.ContinentBand;
+import net.yazloysasha.tfcrealworld.world.river.MapRivers;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -42,7 +43,9 @@ public final class GeographyMapTexture {
       "|" +
       Integer.toHexString(GeographyUI.OCEAN_ARGB) +
       "|" +
-      TFCRealWorldConfig.LAKES_FROM_MAP.get();
+      TFCRealWorldConfig.LAKES_FROM_MAP.get() +
+      "|" +
+      TFCRealWorldConfig.RIVERS_FROM_MAP.get();
     if (location != null && key.equals(cacheKey)) {
       return location;
     }
@@ -110,6 +113,9 @@ public final class GeographyMapTexture {
     } else {
       paintFromMask(image, source, tw, th);
     }
+    if (TFCRealWorldConfig.RIVERS_FROM_MAP.get()) {
+      paintRivers(image, tw, th);
+    }
     texture = new DynamicTexture(image);
     // Nearest-neighbor: bilinear sampling causes marker/map jitter on zoom.
     texture.setFilter(false, false);
@@ -153,6 +159,63 @@ public final class GeographyMapTexture {
           (lakesFromMap &&
             (band == ContinentBand.LAKE || band == ContinentBand.SALT_LAKE));
         image.setPixelRGBA(x, y, water ? ocean : land);
+      }
+    }
+  }
+
+  /** The profile's rivers, a texel wide, in the ocean color. */
+  private static void paintRivers(NativeImage image, int tw, int th) {
+    MapRivers.Network rivers = MapRivers.tryLoadNetwork();
+    if (rivers == null) {
+      return;
+    }
+    int water = toAbgr(GeographyUI.OCEAN_ARGB);
+    for (int edge = 0; edge < rivers.source().length; edge++) {
+      int from = rivers.source()[edge];
+      int to = rivers.drain()[edge];
+      drawLine(
+        image,
+        texel(rivers.x()[from], tw),
+        texel(rivers.z()[from], th),
+        texel(rivers.x()[to], tw),
+        texel(rivers.z()[to], th),
+        water
+      );
+    }
+  }
+
+  /** The texel a coordinate from -1 to 1 across the map falls in. */
+  private static int texel(float coord, int size) {
+    return Math.min(size - 1, Math.max(0, (int) ((coord + 1f) * 0.5f * size)));
+  }
+
+  /** Bresenham's line, both ends included. */
+  private static void drawLine(
+    NativeImage image,
+    int x0,
+    int y0,
+    int x1,
+    int y1,
+    int abgr
+  ) {
+    int dx = Math.abs(x1 - x0);
+    int dy = -Math.abs(y1 - y0);
+    int sx = x0 < x1 ? 1 : -1;
+    int sy = y0 < y1 ? 1 : -1;
+    int err = dx + dy;
+    while (true) {
+      image.setPixelRGBA(x0, y0, abgr);
+      if (x0 == x1 && y0 == y1) {
+        return;
+      }
+      int e2 = 2 * err;
+      if (e2 >= dy) {
+        err += dy;
+        x0 += sx;
+      }
+      if (e2 <= dx) {
+        err += dx;
+        y0 += sy;
       }
     }
   }
