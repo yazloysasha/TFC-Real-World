@@ -24,10 +24,11 @@ public final class AurorasCompat {
   }
 
   /**
-   * World Z coordinate as Auroras expects it: linear classic TFC latitude along Z.
+   * World Z coordinate as Auroras expects it: linear classic TFC latitude along
+   * Z, on TFC's temperature scale, as Auroras finds the equator and poles.
    */
   public static double toVirtualClassicZ(double worldZ) {
-    final int scale = TFCRealWorldConfig.VERTICAL_SCALE.get();
+    final int scale = TFCRealWorldConfig.TEMPERATURE_SCALE.get();
     final double latitude = ProjectionManager.resolveLatitudeFromWorldZ(worldZ);
     return ProjectionManager.virtualClassicZFromLatitude(latitude, scale);
   }

@@ -54,13 +54,15 @@ public class ProjectionManager {
 
   /**
    * Maps geographic latitude to the classic TFC Z coordinate where the equator
-   * lies at {@code scale / 2} and poles at {@code -scale / 2} and {@code 3 * scale / 2}.
+   * lies at {@code scale / 2}, the north pole at {@code -scale / 2} and the
+   * south pole at {@code 3 * scale / 2}: the inverse of TFC's
+   * {@code SolarCalculator.getLatitude} from pole to pole.
    */
   public static double virtualClassicZFromLatitude(
     double latitudeDegrees,
     int scale
   ) {
-    return ((latitudeDegrees + 90.0) / 180.0) * (2.0 * scale) - scale * 0.5;
+    return scale * (0.5 - latitudeDegrees / 90.0);
   }
 
   public static double getLatitudeByZ(double z) {

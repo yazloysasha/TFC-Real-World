@@ -39,7 +39,6 @@
     "world.settings.SettingsMixin",
     "world.region.tfe.TfeAddHotspotsMixin",
     "world.region.tfe.TfeChooseBiomesMixin",
-    "world.region.tfe.TfeClimateHelpersInvoker",
     "world.region.tfe.TfeClimateHelpersMixin",
     "world.region.tfe.TfeRegionGeneratorMixin",
     "world.region.tfg.TfgAddContinentsMixin",
