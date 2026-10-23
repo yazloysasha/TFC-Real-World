@@ -20,10 +20,11 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Land/ocean overview from the active profile's {@code continent.png}.
  * <p>
- * Texture size/aspect matches the source mask (same-aspect downsample): full
- * world masks are 2:1, old/new world masks are 1:1. Full PNG UV maps to world
- * block bounds {@code ±HORIZONTAL_SCALE} × {@code ±VERTICAL_SCALE} — the same
- * space as {@code BasePNGNoise} and waypoint classic coordinates.
+ * Texture aspect is the world's, {@code HORIZONTAL_SCALE} to
+ * {@code VERTICAL_SCALE}, whatever the mask's: the mask stretches over the
+ * world, and the map with it. Full PNG UV maps to world block bounds
+ * {@code ±HORIZONTAL_SCALE} × {@code ±VERTICAL_SCALE} — the same space as
+ * {@code BasePNGNoise} and waypoint classic coordinates.
  */
 public final class GeographyMapTexture {
 
@@ -88,29 +89,29 @@ public final class GeographyMapTexture {
   private static void rebuild(String key) {
     clear();
     BufferedImage source = BasePNGNoise.loadImage("continent");
+    int hs = Math.max(1, TFCRealWorldConfig.HORIZONTAL_SCALE.get());
+    int vs = Math.max(1, TFCRealWorldConfig.VERTICAL_SCALE.get());
+    int maxShort = GeographyUI.TEXTURE_MAX_SHORT_EDGE;
+    int maxW = source == null ? Integer.MAX_VALUE : source.getWidth();
+    int maxH = source == null ? Integer.MAX_VALUE : source.getHeight();
+    // Texels square in blocks: the map stretches as the world does.
     int tw;
     int th;
-    int maxShort = GeographyUI.TEXTURE_MAX_SHORT_EDGE;
-    if (source == null) {
-      int hs = Math.max(1, TFCRealWorldConfig.HORIZONTAL_SCALE.get());
-      int vs = Math.max(1, TFCRealWorldConfig.VERTICAL_SCALE.get());
-      if (hs >= vs) {
-        th = maxShort;
-        tw = Math.max(1, Math.round(maxShort * (hs / (float) vs)));
-      } else {
-        tw = maxShort;
-        th = Math.max(1, Math.round(maxShort * (vs / (float) hs)));
-      }
+    if (hs >= vs) {
+      th = Math.min(maxH, maxShort);
+      tw = Math.max(1, Math.round(th * (hs / (float) vs)));
     } else {
-      int sw = Math.max(1, source.getWidth());
-      int sh = Math.max(1, source.getHeight());
-      if (sw >= sh) {
-        th = Math.min(sh, maxShort);
-        tw = Math.max(1, Math.round(th * (sw / (float) sh)));
-      } else {
-        tw = Math.min(sw, maxShort);
-        th = Math.max(1, Math.round(tw * (sh / (float) sw)));
-      }
+      tw = Math.min(maxW, maxShort);
+      th = Math.max(1, Math.round(tw * (vs / (float) hs)));
+    }
+    // Never finer than the mask along either axis.
+    if (tw > maxW) {
+      th = Math.max(1, Math.round(th * (maxW / (float) tw)));
+      tw = maxW;
+    }
+    if (th > maxH) {
+      tw = Math.max(1, Math.round(tw * (maxH / (float) th)));
+      th = maxH;
     }
     texWidth = tw;
     texHeight = th;
