@@ -1,11 +1,13 @@
 package net.yazloysasha.tfcrealworld.client;
 
 import com.mojang.blaze3d.platform.NativeImage;
+import com.mojang.blaze3d.platform.TextureUtil;
 import java.awt.image.BufferedImage;
 import net.dries007.tfc.world.river.RiverFractal;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.DynamicTexture;
+import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.level.levelgen.XoroshiroRandomSource;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
@@ -25,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public final class GeographyMapTexture {
 
-  private static @Nullable DynamicTexture texture;
+  private static @Nullable UploadedTexture texture;
   private static @Nullable ResourceLocation location;
   private static @Nullable String cacheKey;
   private static int texWidth = 2;
@@ -115,28 +117,17 @@ public final class GeographyMapTexture {
 
     NativeImage image = new NativeImage(tw, th, false);
     if (source == null) {
-      fill(image, tw, th, GeographyUI.OCEAN_ARGB);
+      image.fillRect(0, 0, tw, th, toAbgr(GeographyUI.OCEAN_ARGB));
     } else {
       paintFromMask(image, source, tw, th);
     }
     if (TFCRealWorldConfig.RIVERS_FROM_MAP.get()) {
       paintRivers(image, tw, th);
     }
-    texture = new DynamicTexture(image);
-    // Nearest-neighbor: bilinear sampling causes marker/map jitter on zoom.
-    texture.setFilter(false, false);
+    texture = new UploadedTexture(image);
     location = TFCRealWorld.id("dynamic/geography_map");
     Minecraft.getInstance().getTextureManager().register(location, texture);
     cacheKey = key;
-  }
-
-  private static void fill(NativeImage image, int tw, int th, int argb) {
-    int abgr = toAbgr(argb);
-    for (int y = 0; y < th; y++) {
-      for (int x = 0; x < tw; x++) {
-        image.setPixelRGBA(x, y, abgr);
-      }
-    }
   }
 
   /**
@@ -154,11 +145,12 @@ public final class GeographyMapTexture {
     boolean lakesFromMap = TFCRealWorldConfig.LAKES_FROM_MAP.get();
     int land = toAbgr(GeographyUI.LAND_ARGB);
     int ocean = toAbgr(GeographyUI.OCEAN_ARGB);
+    int[] row = new int[sw];
     for (int y = 0; y < th; y++) {
       int sy = ((2 * y + 1) * sh) / (2 * th);
+      BasePNGNoise.readBrightnessRow(source, sy, row);
       for (int x = 0; x < tw; x++) {
-        int sx = ((2 * x + 1) * sw) / (2 * tw);
-        int gray = (source.getRGB(sx, sy) >> 16) & 0xFF;
+        int gray = row[((2 * x + 1) * sw) / (2 * tw)];
         ContinentBand band = PNGContinentNoise.bandFromBrightness(gray);
         boolean water =
           band == ContinentBand.OCEAN ||
@@ -285,6 +277,39 @@ public final class GeographyMapTexture {
           image.setPixelRGBA(px, py, abgr);
         }
       }
+    }
+  }
+
+  /**
+   * A texture that keeps no copy of its pixels once they are on the GPU, as
+   * {@code DynamicTexture} does: tens of megabytes for the whole world.
+   * Nearest-neighbor: bilinear sampling causes marker/map jitter on zoom.
+   */
+  private static final class UploadedTexture extends AbstractTexture {
+
+    private UploadedTexture(NativeImage image) {
+      TextureUtil.prepareImage(getId(), image.getWidth(), image.getHeight());
+      image.upload(
+        0,
+        0,
+        0,
+        0,
+        0,
+        image.getWidth(),
+        image.getHeight(),
+        false,
+        true,
+        false,
+        true
+      );
+    }
+
+    @Override
+    public void load(ResourceManager resourceManager) {}
+
+    @Override
+    public void close() {
+      releaseId();
     }
   }
 
