@@ -2,9 +2,11 @@ package net.yazloysasha.tfcrealworld.client;
 
 import com.mojang.blaze3d.platform.NativeImage;
 import java.awt.image.BufferedImage;
+import net.dries007.tfc.world.river.RiverFractal;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.XoroshiroRandomSource;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
@@ -28,6 +30,10 @@ public final class GeographyMapTexture {
   private static @Nullable String cacheKey;
   private static int texWidth = 2;
   private static int texHeight = 1;
+
+  /** TFC's RiverEdge: how often a river edge is bisected. */
+  private static final int RIVER_BISECTIONS = 4;
+  private static final long RIVER_BEND_SALT = 0x9E3779B97F4A7C15L;
 
   private GeographyMapTexture() {}
 
@@ -163,39 +169,73 @@ public final class GeographyMapTexture {
     }
   }
 
-  /** The profile's rivers, a texel wide, in the ocean color. */
+  /**
+   * The profile's rivers in the ocean color, as wide as their channels. Each
+   * edge bends as TFC bends river edges in the world, though not along the
+   * same curve: the world's bends come from the world seed, which the client
+   * lacks.
+   */
   private static void paintRivers(NativeImage image, int tw, int th) {
     MapRivers.Network rivers = MapRivers.tryLoadNetwork();
     if (rivers == null) {
       return;
     }
     int water = toAbgr(GeographyUI.OCEAN_ARGB);
+    float texelsPerBlock =
+      tw / (2f * Math.max(1, TFCRealWorldConfig.HORIZONTAL_SCALE.get()));
     for (int edge = 0; edge < rivers.source().length; edge++) {
       int from = rivers.source()[edge];
       int to = rivers.drain()[edge];
-      drawLine(
-        image,
-        texel(rivers.x()[from], tw),
-        texel(rivers.z()[from], th),
-        texel(rivers.x()[to], tw),
-        texel(rivers.z()[to], th),
-        water
+      float x0 = texelCoord(rivers.x()[from], tw);
+      float y0 = texelCoord(rivers.z()[from], th);
+      float x1 = texelCoord(rivers.x()[to], tw);
+      float y1 = texelCoord(rivers.z()[to], th);
+      float angle = (float) Math.atan2(y1 - y0, x1 - x0);
+      float length = (float) Math.hypot(x1 - x0, y1 - y0);
+      float[] points = new RiverFractal.Edge(
+        new RiverFractal.Vertex(x0, y0, angle, length, 0),
+        new RiverFractal.Vertex(x1, y1, angle, length, 0)
+      ).fractal(
+        new XoroshiroRandomSource((edge + 1) * RIVER_BEND_SALT),
+        RIVER_BISECTIONS
+      ).segments;
+      // Stored width is half the channel's, in blocks.
+      int brush = Math.max(
+        1,
+        Math.round(2 * rivers.width()[edge] * texelsPerBlock)
       );
+      for (int i = 0; i + 3 < points.length; i += 2) {
+        drawLine(
+          image,
+          texel(points[i], tw),
+          texel(points[i + 1], th),
+          texel(points[i + 2], tw),
+          texel(points[i + 3], th),
+          brush,
+          water
+        );
+      }
     }
   }
 
-  /** The texel a coordinate from -1 to 1 across the map falls in. */
-  private static int texel(float coord, int size) {
-    return Math.min(size - 1, Math.max(0, (int) ((coord + 1f) * 0.5f * size)));
+  /** Where a coordinate from -1 to 1 across the map falls, in texels. */
+  private static float texelCoord(float coord, int size) {
+    return (coord + 1f) * 0.5f * size;
   }
 
-  /** Bresenham's line, both ends included. */
+  /** The texel a position in texels falls in. */
+  private static int texel(float position, int size) {
+    return Math.min(size - 1, Math.max(0, (int) position));
+  }
+
+  /** Bresenham's line, both ends included, of a round brush this wide. */
   private static void drawLine(
     NativeImage image,
     int x0,
     int y0,
     int x1,
     int y1,
+    int brush,
     int abgr
   ) {
     int dx = Math.abs(x1 - x0);
@@ -204,7 +244,7 @@ public final class GeographyMapTexture {
     int sy = y0 < y1 ? 1 : -1;
     int err = dx + dy;
     while (true) {
-      image.setPixelRGBA(x0, y0, abgr);
+      stamp(image, x0, y0, brush, abgr);
       if (x0 == x1 && y0 == y1) {
         return;
       }
@@ -216,6 +256,34 @@ public final class GeographyMapTexture {
       if (e2 <= dx) {
         err += dx;
         y0 += sy;
+      }
+    }
+  }
+
+  /** A round brush this wide, centered on the texel or, if even, its corner. */
+  private static void stamp(
+    NativeImage image,
+    int x,
+    int y,
+    int brush,
+    int abgr
+  ) {
+    int lo = -(brush / 2);
+    int hi = (brush - 1) / 2;
+    float centre = (lo + hi) * 0.5f;
+    float radiusSq = brush * brush * 0.25f;
+    for (int oy = lo; oy <= hi; oy++) {
+      int py = y + oy;
+      if (py < 0 || py >= image.getHeight()) {
+        continue;
+      }
+      for (int ox = lo; ox <= hi; ox++) {
+        int px = x + ox;
+        float fx = ox - centre;
+        float fy = oy - centre;
+        if (px >= 0 && px < image.getWidth() && fx * fx + fy * fy <= radiusSq) {
+          image.setPixelRGBA(px, py, abgr);
+        }
       }
     }
   }
