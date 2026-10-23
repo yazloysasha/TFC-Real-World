@@ -14,7 +14,7 @@ val compatMods: List<String> = listOf(
   "caelum-556708:4674619", // caelum-1.20.1-2.0.0.0
   "tfc-caelum-999031:5307466", // TFCCaelum-1.20.1-1.2
   "firmaciv-714158:5737719", // FirmaCivilization-1.20.1-1.0.9
-  "terrafirmagreg-core-513402:8810011", // TerraFirmaGreg-Core-Modern-0.9.23
+  "terrafirmagreg-core-513402:9271777", // TerraFirmaGreg-Core-Modern-0.9.29
   "terrafirmaearth-1526100:9120244", // Wildfire_TerraFirmaEarth-1.20.1-forge-2.3.0
 )
 
