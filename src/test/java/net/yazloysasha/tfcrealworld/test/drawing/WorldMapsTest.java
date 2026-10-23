@@ -53,9 +53,9 @@ import net.minecraft.world.level.biome.Biome;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.test.TestSetup;
 import net.yazloysasha.tfcrealworld.util.profile.MapProfile;
+import net.yazloysasha.tfcrealworld.util.projection.ProjectionManager;
 import net.yazloysasha.tfcrealworld.world.MapLakeWater;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
-import net.yazloysasha.tfcrealworld.world.noise.png.PNGRainVarianceNoise;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
@@ -367,7 +367,7 @@ public class WorldMapsTest implements TestSetup {
                   temperature[pixel],
                   rainfall[pixel],
                   data.getRainVariance(x, z),
-                  PNGRainVarianceNoise.hemisphere(Units.blockToGrid(z)) > 0
+                  ProjectionManager.resolveLatitudeFromWorldZ(z) > 0
                 )
               ).getRGB();
         }

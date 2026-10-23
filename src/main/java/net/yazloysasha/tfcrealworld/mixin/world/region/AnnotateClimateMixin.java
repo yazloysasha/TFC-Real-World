@@ -41,8 +41,7 @@ public class AnnotateClimateMixin {
         500
       );
       point.rainfallVariance = PNGRainVarianceNoise.calendarVariance(
-        generator.rainfallVarianceNoise.noise(x, z),
-        z
+        generator.rainfallVarianceNoise.noise(x, z)
       );
     }
     ci.cancel();

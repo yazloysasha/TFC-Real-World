@@ -41,8 +41,11 @@ public class MapOptionsTest implements TestSetup {
   private static final int SCAN_RADIUS = 96;
 
   private static final double RIVER_TOLERANCE_CELLS = 1.5;
-  /** Most the variance may change from one region point to the next. */
-  private static final float EQUATOR_VARIANCE_STEP = 0.15f;
+  /** Region points either side of the equator its steps are compared with. */
+  private static final int EQUATOR_REACH = 8;
+
+  /** How much more the variance may step across the equator than near it. */
+  private static final double EQUATOR_STEP_RATIO = 1.5;
   private static final double DRY_DISTANCE_CELLS = 3.0;
 
   private record Place(String name, double latitude, double longitude) {}
@@ -291,12 +294,14 @@ public class MapOptionsTest implements TestSetup {
   }
 
   /**
-   * TFC's rainfall variance changes sign at the equator. It must fade through
-   * zero there, not turn at once: a turn splits rain, groundwater and grass
+   * TFC's rainfall variance is the calendar's in both hemispheres, so the map
+   * holds it with no turn at the equator: it crosses there as the real
+   * climate does, and a chunk between two region points blends them without
+   * passing outside them. A turn would split rain, groundwater and grass
    * colour along the equator in a straight line.
    */
   @Test
-  public void seasonsFadeThroughTheEquator() {
+  public void seasonsAreContinuousAcrossTheEquator() {
     final RegionGenerator generator = generator(
       true,
       true,
@@ -311,7 +316,22 @@ public class MapOptionsTest implements TestSetup {
       settings.rockLayerSettings(),
       Seed.of(SEED)
     );
+    double equatorSteps = 0;
+    double nearbySteps = 0;
+    int nearbyCount = 0;
     for (int gridX = -312; gridX < 312; gridX++) {
+      for (int gridZ = -EQUATOR_REACH; gridZ < EQUATOR_REACH; gridZ++) {
+        final float step = Math.abs(
+          generator.getOrCreateRegionPoint(gridX, gridZ).rainfallVariance -
+            generator.getOrCreateRegionPoint(gridX, gridZ + 1).rainfallVariance
+        );
+        if (gridZ == -1) {
+          equatorSteps += step;
+        } else {
+          nearbySteps += step;
+          nearbyCount++;
+        }
+      }
       final float north = generator.getOrCreateRegionPoint(
         gridX,
         -1
@@ -320,19 +340,48 @@ public class MapOptionsTest implements TestSetup {
         gridX,
         0
       ).rainfallVariance;
-      assertTrue(
-        Math.abs(north - south) <= EQUATOR_VARIANCE_STEP,
-        "variance turns from " + north + " to " + south + " at " + gridX
+      final float northEast = generator.getOrCreateRegionPoint(
+        gridX + 1,
+        -1
+      ).rainfallVariance;
+      final float southEast = generator.getOrCreateRegionPoint(
+        gridX + 1,
+        0
+      ).rainfallVariance;
+      final float least = Math.min(
+        Math.min(north, south),
+        Math.min(northEast, southEast)
+      );
+      final float most = Math.max(
+        Math.max(north, south),
+        Math.max(northEast, southEast)
       );
       final ChunkPos pos = new ChunkPos(gridX * 8, -1);
       final float variance = chunks
         .generate(new ChunkData(chunks, pos))
         .getRainVariance(pos.getMinBlockX(), pos.getMinBlockZ());
       assertTrue(
-        Math.abs(variance) <= EQUATOR_VARIANCE_STEP,
-        "seasons at the equator are " + variance + " at chunk " + pos
+        variance >= least - 0.01f && variance <= most + 0.01f,
+        "chunk " +
+          pos +
+          " reads " +
+          variance +
+          " outside " +
+          least +
+          " to " +
+          most
       );
     }
+    final double equatorStep = equatorSteps / 624;
+    final double nearbyStep = nearbySteps / nearbyCount;
+    assertTrue(
+      equatorStep <= EQUATOR_STEP_RATIO * nearbyStep,
+      "variance steps " +
+        equatorStep +
+        " across the equator, " +
+        nearbyStep +
+        " near it"
+    );
   }
 
   private static RegionGenerator generator(
