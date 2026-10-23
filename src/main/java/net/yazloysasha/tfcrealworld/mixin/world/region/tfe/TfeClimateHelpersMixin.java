@@ -54,10 +54,7 @@ public class TfeClimateHelpersMixin {
     final PNGRainVarianceNoise variance = RainVarianceRegistry.get(generator);
     if (variance != null) {
       cir.setReturnValue(
-        PNGRainVarianceNoise.calendarVariance(
-          variance.noise(gridX, gridZ),
-          gridZ
-        )
+        PNGRainVarianceNoise.calendarVariance(variance.noise(gridX, gridZ))
       );
     }
   }

@@ -370,7 +370,7 @@ public final class MapRegionTasks {
       if (variance != null) {
         backend.setRainfallVariance(
           point,
-          PNGRainVarianceNoise.calendarVariance(variance.noise(x, z), z)
+          PNGRainVarianceNoise.calendarVariance(variance.noise(x, z))
         );
       }
     }
