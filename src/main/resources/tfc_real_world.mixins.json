@@ -8,6 +8,7 @@
   "mixins": [
     "client.overworld.SolarCalculatorMixin",
     "minecraft.server.ServerAdvancementManagerMixin",
+    "util.climate.OverworldClimateModelMixin",
     "util.tracker.WeatherHelpersInvoker",
     "util.tracker.WeatherHelpersMixin",
     "world.ChunkBaseBlockSourceMixin",

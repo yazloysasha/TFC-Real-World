@@ -41,7 +41,8 @@ public class MapOptionsTest implements TestSetup {
   private static final int SCAN_RADIUS = 96;
 
   private static final double RIVER_TOLERANCE_CELLS = 1.5;
-  private static final float SEASONAL_VARIANCE = 0.3f;
+  /** Most the variance may change from one region point to the next. */
+  private static final float EQUATOR_VARIANCE_STEP = 0.15f;
   private static final double DRY_DISTANCE_CELLS = 3.0;
 
   private record Place(String name, double latitude, double longitude) {}
@@ -290,12 +291,12 @@ public class MapOptionsTest implements TestSetup {
   }
 
   /**
-   * TFC's rainfall variance changes sign at the equator. A chunk between a
-   * region point north of it and one south of it must not blend the two
-   * signs into an even climate: its seasonality stays as strong as theirs.
+   * TFC's rainfall variance changes sign at the equator. It must fade through
+   * zero there, not turn at once: a turn splits rain, groundwater and grass
+   * colour along the equator in a straight line.
    */
   @Test
-  public void seasonsDoNotFadeAtTheEquator() {
+  public void seasonsFadeThroughTheEquator() {
     final RegionGenerator generator = generator(
       true,
       true,
@@ -310,7 +311,6 @@ public class MapOptionsTest implements TestSetup {
       settings.rockLayerSettings(),
       Seed.of(SEED)
     );
-    int seasonal = 0;
     for (int gridX = -312; gridX < 312; gridX++) {
       final float north = generator.getOrCreateRegionPoint(
         gridX,
@@ -320,26 +320,19 @@ public class MapOptionsTest implements TestSetup {
         gridX,
         0
       ).rainfallVariance;
-      // Strongly seasonal on both sides, wet in the local summer.
-      if (north < SEASONAL_VARIANCE || south > -SEASONAL_VARIANCE) {
-        continue;
-      }
-      seasonal++;
-      final float weakest = Math.min(north, -south);
-      for (int chunkZ = -8; chunkZ < 0; chunkZ++) {
-        final ChunkPos pos = new ChunkPos(gridX * 8, chunkZ);
-        final ChunkData data = chunks.generate(new ChunkData(chunks, pos));
-        final float variance = data.getRainVariance(
-          pos.getMinBlockX(),
-          pos.getMinBlockZ()
-        );
-        assertTrue(
-          variance >= weakest - 0.01f,
-          "seasons fade to " + variance + " at chunk " + pos
-        );
-      }
+      assertTrue(
+        Math.abs(north - south) <= EQUATOR_VARIANCE_STEP,
+        "variance turns from " + north + " to " + south + " at " + gridX
+      );
+      final ChunkPos pos = new ChunkPos(gridX * 8, -1);
+      final float variance = chunks
+        .generate(new ChunkData(chunks, pos))
+        .getRainVariance(pos.getMinBlockX(), pos.getMinBlockZ());
+      assertTrue(
+        Math.abs(variance) <= EQUATOR_VARIANCE_STEP,
+        "seasons at the equator are " + variance + " at chunk " + pos
+      );
     }
-    assertTrue(seasonal > 0, "the equator crosses a seasonal climate");
   }
 
   private static RegionGenerator generator(

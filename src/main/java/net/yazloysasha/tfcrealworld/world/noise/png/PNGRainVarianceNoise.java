@@ -8,9 +8,15 @@ import net.yazloysasha.tfcrealworld.util.projection.ProjectionManager;
  * year, black = -1 (wet winter, dry summer), white = 1 (wet summer, dry
  * winter), mid gray = even rain. The same on both sides of the equator, so
  * the map has no jump there; TFC's variance follows the calendar, and takes
- * the sign of the hemisphere the map is read in.
+ * the sign of the hemisphere the map is read in. Near the equator that sign
+ * fades through zero, as rain there comes evenly round the year: a sign
+ * turned at the equator itself splits rain, groundwater and grass colour
+ * along it.
  */
 public class PNGRainVarianceNoise extends BaseClimatePNGNoise {
+
+  /** Latitude, either side of the equator, over which the sign fades. */
+  private static final double EQUATORIAL_BAND_DEGREES = 10.0;
 
   public PNGRainVarianceNoise(int horizontalScale, int verticalScale) {
     super(
@@ -26,21 +32,21 @@ public class PNGRainVarianceNoise extends BaseClimatePNGNoise {
     return -1.0 + (brightness / 255.0) * 2.0;
   }
 
-  /** The hemisphere of a region point: that of its cell centre. */
-  public static boolean isNorth(int gridZ) {
-    return (
-      ProjectionManager.resolveLatitudeFromWorldZ(
-        Units.gridToBlock(gridZ) + Units.GRID_WIDTH_IN_BLOCK / 2
-      ) >
-      0
+  /**
+   * The hemisphere of a region point, from its cell centre: 1 north, -1 south,
+   * in between near the equator.
+   */
+  public static double hemisphere(int gridZ) {
+    final double latitude = ProjectionManager.resolveLatitudeFromWorldZ(
+      Units.gridToBlock(gridZ) + Units.GRID_WIDTH_IN_BLOCK / 2
     );
+    return Math.clamp(latitude / EQUATORIAL_BAND_DEGREES, -1, 1);
   }
 
   /**
    * TFC's calendar variance of a region point from the map's summer variance.
    */
   public static float calendarVariance(double summerVariance, int gridZ) {
-    final double variance = isNorth(gridZ) ? summerVariance : -summerVariance;
-    return Math.clamp((float) variance, -1, 1);
+    return Math.clamp((float) (hemisphere(gridZ) * summerVariance), -1, 1);
   }
 }

@@ -367,7 +367,7 @@ public class WorldMapsTest implements TestSetup {
                   temperature[pixel],
                   rainfall[pixel],
                   data.getRainVariance(x, z),
-                  PNGRainVarianceNoise.isNorth(Units.blockToGrid(z))
+                  PNGRainVarianceNoise.hemisphere(Units.blockToGrid(z)) > 0
                 )
               ).getRGB();
         }
