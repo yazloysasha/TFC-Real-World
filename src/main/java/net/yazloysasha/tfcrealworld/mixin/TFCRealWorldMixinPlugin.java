@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
  * Drops optional-integration mixins when their mod is absent so
  * stub-backed packages never resolve missing classes.
  */
-public final class _TFCRealWorldMixinPlugin implements IMixinConfigPlugin {
+public final class TFCRealWorldMixinPlugin implements IMixinConfigPlugin {
 
   @Override
   public void onLoad(String mixinPackage) {}
