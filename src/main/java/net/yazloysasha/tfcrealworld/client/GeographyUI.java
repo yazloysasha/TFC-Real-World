@@ -61,6 +61,6 @@ public final class GeographyUI {
   public static final int PANEL_BG_ARGB = 0xFF181E28;
   public static final int PANEL_OUTLINE_ARGB = 0xFF4A5A6C;
 
-  /** Longest edge for overview GPU texture (~75% of a 1280-wide mask). */
-  public static final int TEXTURE_MAX_EDGE = 960;
+  /** Shortest edge for overview GPU texture. */
+  public static final int TEXTURE_MAX_SHORT_EDGE = 2496;
 }

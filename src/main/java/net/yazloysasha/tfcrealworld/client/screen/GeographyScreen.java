@@ -1,5 +1,6 @@
 package net.yazloysasha.tfcrealworld.client.screen;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -515,6 +516,24 @@ public class GeographyScreen extends Screen {
       zoomScrollAccum += 1.0;
     }
     return true;
+  }
+
+  /** Inventory key closes the page, same as AbstractContainerScreen. */
+  @Override
+  public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+    if (super.keyPressed(keyCode, scanCode, modifiers)) {
+      return true;
+    }
+    if (
+      minecraft != null &&
+      minecraft.options.keyInventory.isActiveAndMatches(
+        InputConstants.getKey(keyCode, scanCode)
+      )
+    ) {
+      onClose();
+      return true;
+    }
+    return false;
   }
 
   @Override

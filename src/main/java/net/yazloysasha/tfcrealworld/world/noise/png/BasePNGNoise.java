@@ -1,6 +1,7 @@
 package net.yazloysasha.tfcrealworld.world.noise.png;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
 import java.awt.image.IndexColorModel;
 import java.awt.image.Raster;
 import java.io.IOException;
@@ -152,30 +153,48 @@ public abstract class BasePNGNoise implements Noise2D {
 
   protected abstract double transformBrightness(double brightness);
 
-  /**
-   * Gray samples are read raw: {@code ImageIO.getRGB} on gray PNGs applies
-   * sRGB and skews mid-tones. Anything else is read as colour, row by row.
-   */
+  /** Brightness of every pixel, 0 to 255, row by row. */
   private static byte[] readBrightness(BufferedImage image) {
     final int width = image.getWidth();
     final int height = image.getHeight();
     final byte[] pixels = new byte[width * height];
-    final Raster raster = image.getRaster();
-    final boolean gray =
-      raster.getNumBands() == 1 &&
-      !(image.getColorModel() instanceof IndexColorModel);
     final int[] row = new int[width];
     for (int z = 0; z < height; z++) {
-      if (gray) {
-        raster.getSamples(0, z, width, 1, 0, row);
-      } else {
-        image.getRGB(0, z, width, 1, row, 0, width);
-      }
+      readBrightnessRow(image, z, row);
       for (int x = 0; x < width; x++) {
-        pixels[z * width + x] = (byte) (gray ? row[x] : brightness(row[x]));
+        pixels[z * width + x] = (byte) row[x];
       }
     }
     return pixels;
+  }
+
+  /**
+   * Brightness of row {@code z}, 0 to 255, into {@code row}. Gray samples are
+   * read raw: {@code ImageIO.getRGB} on gray PNGs applies sRGB and skews
+   * mid-tones. A palette's colors are weighed once, anything else pixel by
+   * pixel.
+   */
+  public static void readBrightnessRow(BufferedImage image, int z, int[] row) {
+    final int width = image.getWidth();
+    final Raster raster = image.getRaster();
+    final ColorModel model = image.getColorModel();
+    if (model instanceof IndexColorModel palette) {
+      final int[] weighed = new int[palette.getMapSize()];
+      for (int i = 0; i < weighed.length; i++) {
+        weighed[i] = brightness(palette.getRGB(i));
+      }
+      raster.getSamples(0, z, width, 1, 0, row);
+      for (int x = 0; x < width; x++) {
+        row[x] = weighed[row[x]];
+      }
+    } else if (raster.getNumBands() == 1) {
+      raster.getSamples(0, z, width, 1, 0, row);
+    } else {
+      image.getRGB(0, z, width, 1, row, 0, width);
+      for (int x = 0; x < width; x++) {
+        row[x] = brightness(row[x]);
+      }
+    }
   }
 
   private static int brightness(int rgb) {
