@@ -7,7 +7,7 @@ plugins {
 val minecraftVersion: String = "1.20.1"
 val forgeVersion: String = "47.1.3"
 val minTfcVersion: String = "3.2.6"
-val maxTfcVersion: String = "3.2.27"
+val maxTfcVersion: String = "3.2.28"
 
 val compatMods: List<String> = listOf(
   "auroras-1105290:6040671", // Auroras-1.20.1-1.6.2
