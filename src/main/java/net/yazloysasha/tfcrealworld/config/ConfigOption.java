@@ -16,9 +16,6 @@ public class ConfigOption<T> implements Supplier<T> {
   @SuppressWarnings("rawtypes")
   private ForgeConfigSpec.ConfigValue enumConfigValue;
 
-  private T minValue;
-  private T maxValue;
-
   public ConfigOption(
     ForgeConfigSpec.Builder builder,
     String name,
@@ -40,9 +37,6 @@ public class ConfigOption<T> implements Supplier<T> {
     T min,
     T max
   ) {
-    this.minValue = min;
-    this.maxValue = max;
-
     builder.comment("");
     builder.comment(comment);
 
@@ -119,13 +113,5 @@ public class ConfigOption<T> implements Supplier<T> {
       );
     }
     setServerValue(value);
-  }
-
-  public T getMin() {
-    return minValue;
-  }
-
-  public T getMax() {
-    return maxValue;
   }
 }

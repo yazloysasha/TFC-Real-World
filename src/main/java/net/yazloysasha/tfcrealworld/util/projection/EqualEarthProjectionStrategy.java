@@ -12,36 +12,6 @@ public class EqualEarthProjectionStrategy implements MapProjectionStrategy {
   private static final double R = 1.0;
 
   @Override
-  public double getLatitudeByZ(
-    double z,
-    int verticalScale,
-    double southEdgeLatitude,
-    double northEdgeLatitude,
-    double tileCenterLongitude
-  ) {
-    double normalizedY = 1.0 - (z + verticalScale) / (2.0 * verticalScale);
-
-    double southLatRad = Math.toRadians(southEdgeLatitude);
-    double northLatRad = Math.toRadians(northEdgeLatitude);
-
-    double[] southProj = forwardProjection(southLatRad, 0.0);
-    double[] northProj = forwardProjection(northLatRad, 0.0);
-    double southProjY = southProj[1];
-    double northProjY = northProj[1];
-
-    double projHeight = Math.abs(northProjY - southProjY);
-    double projY = southProjY + normalizedY * projHeight;
-
-    double lambda0 = Math.toRadians(tileCenterLongitude);
-    double projX = 0.0;
-
-    double[] geoCoords = inverseProjection(projX, projY, lambda0);
-    double latitude = Math.toDegrees(geoCoords[1]);
-
-    return Mth.clamp(latitude, -90.0, 90.0);
-  }
-
-  @Override
   public double[] geographicToClassic(
     double longitude,
     double latitude,

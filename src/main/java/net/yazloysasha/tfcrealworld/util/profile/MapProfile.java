@@ -7,9 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.types.CachedClassicCoords;
@@ -19,7 +17,6 @@ import net.yazloysasha.tfcrealworld.util.projection.ProjectionManager;
 public record MapProfile(
   String namespace,
   String name,
-  int index,
   double spawnCenterLongitude,
   double spawnCenterLatitude,
   int horizontalScale,
@@ -29,7 +26,6 @@ public record MapProfile(
   double southEdgeLatitude,
   double northEdgeLatitude,
   MapProjection mapProjection,
-  Map<String, String> lang,
   List<String> waypoints
 ) {
   private static final Gson GSON = new GsonBuilder()
@@ -39,7 +35,6 @@ public record MapProfile(
   private static final ThreadLocal<CachedClassicCoords> CLASSIC_COORDS_CACHE =
     new ThreadLocal<>();
 
-  private static final Integer DEFAULT_INDEX = Integer.MAX_VALUE;
   private static final double DEFAULT_SPAWN_CENTER_LONGITUDE = 12.51133;
   private static final double DEFAULT_SPAWN_CENTER_LATITUDE = 41.89193;
   private static final int DEFAULT_HORIZONTAL_SCALE =
@@ -98,14 +93,6 @@ public record MapProfile(
     String name,
     JsonObject json
   ) {
-    Map<String, String> langMap = new HashMap<>();
-    if (json.has("lang") && json.get("lang").isJsonObject()) {
-      JsonObject langObj = json.get("lang").getAsJsonObject();
-      for (String key : langObj.keySet()) {
-        langMap.put(key.toLowerCase(), langObj.get(key).getAsString());
-      }
-    }
-
     List<String> waypoints = new ArrayList<>();
     if (json.has("waypoints") && json.get("waypoints").isJsonArray()) {
       for (var element : json.getAsJsonArray("waypoints")) {
@@ -118,7 +105,6 @@ public record MapProfile(
     return new MapProfile(
       namespace,
       name,
-      json.has("index") ? json.get("index").getAsInt() : DEFAULT_INDEX,
       json.has("spawn_center_longitude")
         ? json.get("spawn_center_longitude").getAsDouble()
         : DEFAULT_SPAWN_CENTER_LONGITUDE,
@@ -148,7 +134,6 @@ public record MapProfile(
             json.get("map_projection").getAsString().toUpperCase()
           )
         : DEFAULT_MAP_PROJECTION,
-      langMap,
       Collections.unmodifiableList(waypoints)
     );
   }
@@ -157,7 +142,6 @@ public record MapProfile(
     return new MapProfile(
       namespace,
       name,
-      DEFAULT_INDEX,
       DEFAULT_SPAWN_CENTER_LONGITUDE,
       DEFAULT_SPAWN_CENTER_LATITUDE,
       DEFAULT_HORIZONTAL_SCALE,
@@ -167,7 +151,6 @@ public record MapProfile(
       DEFAULT_SOUTH_EDGE_LATITUDE,
       DEFAULT_NORTH_EDGE_LATITUDE,
       DEFAULT_MAP_PROJECTION,
-      new HashMap<>(),
       List.of()
     );
   }
@@ -219,18 +202,5 @@ public record MapProfile(
 
   public int getSpawnCenterZ() {
     return getClassicCoords()[1];
-  }
-
-  public String getDisplayName(String languageCode) {
-    if (lang == null || lang.isEmpty()) {
-      return namespace + ":" + name;
-    }
-
-    String langKey =
-      languageCode != null ? languageCode.toLowerCase() : "en_us";
-    return lang.getOrDefault(
-      langKey,
-      lang.getOrDefault("en_us", namespace + ":" + name)
-    );
   }
 }

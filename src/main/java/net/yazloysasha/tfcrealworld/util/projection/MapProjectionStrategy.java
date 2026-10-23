@@ -1,14 +1,6 @@
 package net.yazloysasha.tfcrealworld.util.projection;
 
 public interface MapProjectionStrategy {
-  double getLatitudeByZ(
-    double z,
-    int verticalScale,
-    double southEdgeLatitude,
-    double northEdgeLatitude,
-    double tileCenterLongitude
-  );
-
   double[] geographicToClassic(
     double longitude,
     double latitude,

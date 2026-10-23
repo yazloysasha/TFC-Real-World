@@ -12,7 +12,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +20,6 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
-import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import org.jetbrains.annotations.Nullable;
 
 public class ProfileManager {
@@ -58,19 +56,6 @@ public class ProfileManager {
     }
 
     initialized = true;
-  }
-
-  public static List<String> discoverProfiles() {
-    List<String> profileIds = new ArrayList<>(PROFILE_LOCATIONS.keySet());
-    if (profileIds.isEmpty()) {
-      return getDefaultProfileList();
-    }
-    Map<String, Integer> indexMap = new HashMap<>();
-    for (String profileId : profileIds) {
-      indexMap.put(profileId, getProfile(profileId).index());
-    }
-    profileIds.sort(Comparator.comparing(indexMap::get));
-    return profileIds;
   }
 
   private static void discoverProfilesFromJar(List<String> profileIds) {
@@ -295,10 +280,6 @@ public class ProfileManager {
       profileId.substring(0, colonIndex),
       profileId.substring(colonIndex + 1),
     };
-  }
-
-  private static List<String> getDefaultProfileList() {
-    return List.of(TFCRealWorldConfig.DEFAULT_MAP_PROFILE);
   }
 
   public static MapProfile getProfile(String profileId) {

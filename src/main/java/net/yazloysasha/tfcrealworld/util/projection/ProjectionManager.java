@@ -31,55 +31,6 @@ public class ProjectionManager {
     return longitude % 360.0;
   }
 
-  public static int transformWorldZToLocal(int z, int verticalScale) {
-    int tileRadius = verticalScale;
-    int tileDiameter = verticalScale * 2;
-    int tileIndex = (int) Math.floor((z + tileRadius) / (double) tileDiameter);
-    int localZ = z - tileIndex * tileDiameter;
-
-    if (Math.floorMod(tileIndex, 2) != 0) {
-      localZ = -localZ;
-    }
-
-    return Mth.clamp(localZ, -tileRadius, tileRadius);
-  }
-
-  public static double resolveLatitudeFromWorldZ(double worldZ) {
-    int localZ = transformWorldZToLocal(
-      (int) Math.floor(worldZ),
-      TFCRealWorldConfig.VERTICAL_SCALE.get()
-    );
-    return getLatitudeByZ(localZ);
-  }
-
-  /**
-   * Maps geographic latitude to the classic TFC Z coordinate where the equator
-   * lies at {@code scale / 2} and poles at {@code -scale / 2} and {@code 3 * scale / 2}.
-   */
-  public static double virtualClassicZFromLatitude(
-    double latitudeDegrees,
-    int scale
-  ) {
-    return ((latitudeDegrees + 90.0) / 180.0) * (2.0 * scale) - scale * 0.5;
-  }
-
-  public static double getLatitudeByZ(double z) {
-    MapProjection projection = TFCRealWorldConfig.getMapProjection();
-    MapProjectionStrategy strategy = getStrategy(projection);
-
-    double west = normalizeLongitude(TFCRealWorldConfig.getWestEdgeLongitude());
-    double east = normalizeLongitude(TFCRealWorldConfig.getEastEdgeLongitude());
-    double tileCenterLongitude = (west + east) / 2.0;
-
-    return strategy.getLatitudeByZ(
-      z,
-      TFCRealWorldConfig.VERTICAL_SCALE.get(),
-      TFCRealWorldConfig.getSouthEdgeLatitude(),
-      TFCRealWorldConfig.getNorthEdgeLatitude(),
-      tileCenterLongitude
-    );
-  }
-
   public static double[] geographicToClassic(
     double longitude,
     double latitude,

@@ -147,11 +147,6 @@ public class PNGContinentNoise extends BasePNGNoise {
     return band == ContinentBand.LAKE || band == ContinentBand.SALT_LAKE;
   }
 
-  /** Pixel-space non-ocean test (same bands as {@link #isLandAtGridHard}). */
-  public boolean isLandPixel(int x, int z) {
-    return bandAtPixel(x, z) != ContinentBand.OCEAN;
-  }
-
   /**
    * Whether any island-band pixel lies inside region cell {@code [x, x + 1) ×
    * [z, z + 1)}; catches islands smaller than a cell.

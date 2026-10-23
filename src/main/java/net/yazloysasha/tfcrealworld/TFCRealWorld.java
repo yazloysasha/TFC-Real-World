@@ -12,7 +12,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.yazloysasha.tfcrealworld.attachment.VisitedWaypoints;
 import net.yazloysasha.tfcrealworld.config.ConfigManager;
@@ -32,7 +31,6 @@ import org.slf4j.Logger;
 public final class TFCRealWorld {
 
   public static final String MOD_ID = "tfc_real_world";
-  public static final String MOD_NAME = "TFC: Real World";
   public static final Logger LOGGER = LogUtils.getLogger();
 
   public static ResourceLocation id(String path) {
@@ -50,8 +48,6 @@ public final class TFCRealWorld {
       TFCRealWorldConfig.SPEC,
       MOD_ID + "/common.toml"
     );
-
-    modEventBus.addListener(this::onModConfigLoading);
 
     MinecraftForge.EVENT_BUS.register(ConfigManager.class);
 
@@ -71,12 +67,6 @@ public final class TFCRealWorld {
     MinecraftForge.EVENT_BUS.addListener(this::onClientLoggingOut);
 
     MinecraftForge.EVENT_BUS.addListener(this::onLevelUnload);
-  }
-
-  private void onModConfigLoading(ModConfigEvent.Loading event) {
-    if (event.getConfig().getModId().equals(MOD_ID)) {
-      TFCRealWorldConfig.setModConfig(event.getConfig());
-    }
   }
 
   private void onPlayerTick(TickEvent.PlayerTickEvent event) {

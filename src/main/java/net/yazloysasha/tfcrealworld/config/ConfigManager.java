@@ -240,20 +240,6 @@ public class ConfigManager {
     }
   }
 
-  public static void reloadServerConfig(MinecraftServer server) {
-    Path serverConfigFile = getServerConfigPath(server);
-
-    try {
-      loadServerConfig(serverConfigFile);
-
-      for (ServerPlayer player : server.getPlayerList().getPlayers()) {
-        sendConfigToClient(player);
-      }
-    } catch (Exception e) {
-      TFCRealWorld.LOGGER.error("Error reloading server config", e);
-    }
-  }
-
   public static void sendConfigToClient(ServerPlayer player) {
     ConfigSyncPacket packet = new ConfigSyncPacket(
       TFCRealWorldConfig.MAP_PROFILE.get(),

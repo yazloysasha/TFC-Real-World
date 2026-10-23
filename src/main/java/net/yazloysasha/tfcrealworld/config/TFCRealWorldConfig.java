@@ -3,7 +3,6 @@ package net.yazloysasha.tfcrealworld.config;
 import java.util.Arrays;
 import java.util.List;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.config.ModConfig;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.types.MapProjection;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
@@ -15,8 +14,6 @@ public class TFCRealWorldConfig {
   public static final ForgeConfigSpec.Builder BUILDER =
     new ForgeConfigSpec.Builder();
   public static final ForgeConfigSpec SPEC;
-
-  private static ModConfig modConfig;
 
   public static final int MIN_SCALE = 256;
   public static final int MAX_SCALE = 100_000;
@@ -261,20 +258,6 @@ public class TFCRealWorldConfig {
 
   public static void clearServerConfig() {
     allOptions.forEach(ConfigOption::clearServerValue);
-  }
-
-  public static void setModConfig(ModConfig config) {
-    modConfig = config;
-  }
-
-  public static void saveConfig() {
-    if (modConfig != null) {
-      try {
-        SPEC.save();
-      } catch (Exception e) {
-        TFCRealWorld.LOGGER.warn("Failed to save config to file", e);
-      }
-    }
   }
 
   private static double getSpawnCenterLongitude() {
