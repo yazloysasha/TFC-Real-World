@@ -8,6 +8,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
 import net.yazloysasha.tfcrealworld.world.noise.png.BasePNGNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise;
+import net.yazloysasha.tfcrealworld.world.noise.png.PNGContinentNoise.ContinentBand;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -38,7 +40,9 @@ public final class GeographyMapTexture {
       "|" +
       Integer.toHexString(GeographyUI.LAND_ARGB) +
       "|" +
-      Integer.toHexString(GeographyUI.OCEAN_ARGB);
+      Integer.toHexString(GeographyUI.OCEAN_ARGB) +
+      "|" +
+      TFCRealWorldConfig.LAKES_FROM_MAP.get();
     if (location != null && key.equals(cacheKey)) {
       return location;
     }
@@ -75,26 +79,26 @@ public final class GeographyMapTexture {
     BufferedImage source = BasePNGNoise.loadImage("continent");
     int tw;
     int th;
-    int maxEdge = GeographyUI.TEXTURE_MAX_EDGE;
+    int maxShort = GeographyUI.TEXTURE_MAX_SHORT_EDGE;
     if (source == null) {
       int hs = Math.max(1, TFCRealWorldConfig.HORIZONTAL_SCALE.get());
       int vs = Math.max(1, TFCRealWorldConfig.VERTICAL_SCALE.get());
       if (hs >= vs) {
-        tw = maxEdge;
-        th = Math.max(1, Math.round(maxEdge * (vs / (float) hs)));
+        th = maxShort;
+        tw = Math.max(1, Math.round(maxShort * (hs / (float) vs)));
       } else {
-        th = maxEdge;
-        tw = Math.max(1, Math.round(maxEdge * (hs / (float) vs)));
+        tw = maxShort;
+        th = Math.max(1, Math.round(maxShort * (vs / (float) hs)));
       }
     } else {
       int sw = Math.max(1, source.getWidth());
       int sh = Math.max(1, source.getHeight());
       if (sw >= sh) {
-        tw = Math.min(sw, maxEdge);
-        th = Math.max(1, Math.round(tw * (sh / (float) sw)));
-      } else {
-        th = Math.min(sh, maxEdge);
+        th = Math.min(sh, maxShort);
         tw = Math.max(1, Math.round(th * (sw / (float) sh)));
+      } else {
+        tw = Math.min(sw, maxShort);
+        th = Math.max(1, Math.round(tw * (sh / (float) sw)));
       }
     }
     texWidth = tw;
@@ -123,6 +127,10 @@ public final class GeographyMapTexture {
     }
   }
 
+  /**
+   * One source pixel per texel, at the texel's center, colored by the band the
+   * world generator reads from it.
+   */
   private static void paintFromMask(
     NativeImage image,
     BufferedImage source,
@@ -131,39 +139,20 @@ public final class GeographyMapTexture {
   ) {
     int sw = source.getWidth();
     int sh = source.getHeight();
-    int oceanR = (GeographyUI.OCEAN_ARGB >> 16) & 0xFF;
-    int oceanG = (GeographyUI.OCEAN_ARGB >> 8) & 0xFF;
-    int oceanB = GeographyUI.OCEAN_ARGB & 0xFF;
-    int landR = (GeographyUI.LAND_ARGB >> 16) & 0xFF;
-    int landG = (GeographyUI.LAND_ARGB >> 8) & 0xFF;
-    int landB = GeographyUI.LAND_ARGB & 0xFF;
+    boolean lakesFromMap = TFCRealWorldConfig.LAKES_FROM_MAP.get();
+    int land = toAbgr(GeographyUI.LAND_ARGB);
+    int ocean = toAbgr(GeographyUI.OCEAN_ARGB);
     for (int y = 0; y < th; y++) {
+      int sy = ((2 * y + 1) * sh) / (2 * th);
       for (int x = 0; x < tw; x++) {
-        int x0 = (x * sw) / tw;
-        int y0 = (y * sh) / th;
-        int x1 = Math.min(sw - 1, ((x + 1) * sw) / tw);
-        int y1 = Math.min(sh - 1, ((y + 1) * sh) / th);
-        if (x1 < x0) {
-          x1 = x0;
-        }
-        if (y1 < y0) {
-          y1 = y0;
-        }
-        long sum = 0;
-        int n = 0;
-        for (int sy = y0; sy <= y1; sy++) {
-          for (int sx = x0; sx <= x1; sx++) {
-            sum += (source.getRGB(sx, sy) >> 16) & 0xFF;
-            n++;
-          }
-        }
-        int gray = n == 0 ? 0 : (int) (sum / n);
-        // Soft AA shoreline: blend ocean↔land by mask gray (0=ocean, 255=land).
-        int r = (oceanR * (255 - gray) + landR * gray) / 255;
-        int g = (oceanG * (255 - gray) + landG * gray) / 255;
-        int b = (oceanB * (255 - gray) + landB * gray) / 255;
-        int argb = 0xFF000000 | (r << 16) | (g << 8) | b;
-        image.setPixelRGBA(x, y, toAbgr(argb));
+        int sx = ((2 * x + 1) * sw) / (2 * tw);
+        int gray = (source.getRGB(sx, sy) >> 16) & 0xFF;
+        ContinentBand band = PNGContinentNoise.bandFromBrightness(gray);
+        boolean water =
+          band == ContinentBand.OCEAN ||
+          (lakesFromMap &&
+            (band == ContinentBand.LAKE || band == ContinentBand.SALT_LAKE));
+        image.setPixelRGBA(x, y, water ? ocean : land);
       }
     }
   }
