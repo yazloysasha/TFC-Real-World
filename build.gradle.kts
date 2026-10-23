@@ -9,7 +9,7 @@ val minecraftVersion: String = "1.21.1"
 val neoForgeVersion: String = "21.1.234"
 val patchouliVersion: String = "1.21.1-92-NEOFORGE"
 val minTfcVersion: String = "4.2.0"
-val maxTfcVersion: String = "4.2.11"
+val maxTfcVersion: String = "4.2.12"
 
 val compatMods: List<String> = listOf(
   "auroras-1105290:6040674", // Auroras-1.21-1.6.2
