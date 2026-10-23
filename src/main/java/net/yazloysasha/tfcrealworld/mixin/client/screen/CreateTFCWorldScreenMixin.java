@@ -7,12 +7,15 @@ import net.dries007.tfc.client.screen.CreateTFCWorldScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
+import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.gui.components.OptionsList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.yazloysasha.tfcrealworld.TFCRealWorld;
 import net.yazloysasha.tfcrealworld.compat.TfeCompat;
+import net.yazloysasha.tfcrealworld.config.ConfigOption;
 import net.yazloysasha.tfcrealworld.config.TFCRealWorldConfig;
+import net.yazloysasha.tfcrealworld.mixin.minecraft.client.gui.components.AbstractSliderButtonAccessor;
 import net.yazloysasha.tfcrealworld.types.SpawnMode;
 import net.yazloysasha.tfcrealworld.util.profile.MapProfile;
 import net.yazloysasha.tfcrealworld.util.profile.ProfileManager;
@@ -268,6 +271,7 @@ public class CreateTFCWorldScreenMixin {
       );
       if (verticalScale.get() != newVerticalScale) {
         verticalScale.set(newVerticalScale);
+        refreshSlider(verticalScale, TFCRealWorldConfig.VERTICAL_SCALE);
       }
     } finally {
       updatingScales = false;
@@ -288,10 +292,44 @@ public class CreateTFCWorldScreenMixin {
       );
       if (horizontalScale.get() != newHorizontalScale) {
         horizontalScale.set(newHorizontalScale);
+        refreshSlider(horizontalScale, TFCRealWorldConfig.HORIZONTAL_SCALE);
       }
     } finally {
       updatingScales = false;
     }
+  }
+
+  /**
+   * Shows a scale set from the other one on its slider, which keeps its own
+   * copy of the value until it is built again.
+   */
+  @Unique
+  private void refreshSlider(
+    OptionInstance<Integer> option,
+    ConfigOption<Integer> range
+  ) {
+    final OptionsList options = (
+      (CreateTFCWorldScreenAccessor) (Object) this
+    ).tfcrealworld$getOptions();
+    if (
+      options == null ||
+      !(options.findOption(option) instanceof AbstractSliderButton slider)
+    ) {
+      return;
+    }
+    final AbstractSliderButtonAccessor accessor =
+      (AbstractSliderButtonAccessor) slider;
+    // As OptionInstance.IntRange places a value on its slider.
+    accessor.tfcrealworld$setValue(
+      Mth.map(
+        (float) option.get(),
+        (float) range.getMin(),
+        (float) range.getMax(),
+        0f,
+        1f
+      )
+    );
+    accessor.tfcrealworld$invokeUpdateMessage();
   }
 
   @Unique

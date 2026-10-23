@@ -60,6 +60,7 @@
   "client": [
     "minecraft.advancements.DisplayInfoMixin",
     "minecraft.client.resources.language.ClientLanguageMixin",
+    "minecraft.client.gui.components.AbstractSliderButtonAccessor",
     "client.auroras.AHelpersMixin",
     "client.auroras.AuroraRendererMixin",
     "client.caelum.CaelumSkyUtilsMixin",
