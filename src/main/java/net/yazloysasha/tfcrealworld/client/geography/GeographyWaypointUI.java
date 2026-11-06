@@ -102,7 +102,7 @@ public final class GeographyWaypointUI {
   }
 
   public void copyCoords(Minecraft minecraft, PlottedWaypoint w) {
-    String coords = FirmaCivCompat.isModPresent()
+    String coords = FirmaCivCompat.isActive()
       ? geographic(w)
       : w.x() + " ~ " + w.z();
     if (minecraft != null) {
@@ -204,7 +204,7 @@ public final class GeographyWaypointUI {
       );
     }
     lines.add(
-      (FirmaCivCompat.isModPresent()
+      (FirmaCivCompat.isActive()
         ? Component.literal(geographic(w))
         : Component.translatable(
             "tfc_real_world.geography.tooltip.xz",

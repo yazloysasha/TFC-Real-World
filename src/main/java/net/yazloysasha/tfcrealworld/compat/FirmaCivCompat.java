@@ -23,6 +23,11 @@ public final class FirmaCivCompat {
     return loading != null && loading.getModFileById(MOD_ID) != null;
   }
 
+  /** True when the map shows FirmaCiv coordinates: FirmaCiv without TFG. */
+  public static boolean isActive() {
+    return isModPresent() && !TfgCompat.isModPresent();
+  }
+
   /**
    * Navigation coordinates for FirmaCiv tools: geographic latitude and longitude
    * (degrees, signed) plus altitude relative to sea level, matching
