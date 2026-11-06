@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import net.dries007.tfc.config.TFCConfig;
+import net.dries007.tfc.mixin.accessor.ChunkMapAccessor;
 import net.dries007.tfc.mixin.accessor.SectionStorageAccessor;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.climate.ClimateModel;
@@ -11,12 +12,14 @@ import net.dries007.tfc.util.tracker.WeatherHelpers;
 import net.dries007.tfc.util.tracker.WorldTracker;
 import net.dries007.tfc.world.chunkdata.ChunkData;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ChunkHolder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.ai.village.poi.PoiRecord;
 import net.minecraft.world.entity.ai.village.poi.PoiSection;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -71,23 +74,90 @@ public abstract class WeatherHelpersMixin {
   @Unique
   private static final int ACCUMULATION_PER_STEP = 1 + 4_000 / 80;
 
+  /**
+   * Set once TFC 4.2.13+ catches chunks up per level tick, after which
+   * {@code onTickChunk} leaves stale chunks to {@code tickCatchUp}.
+   */
+  @Unique
+  private static volatile boolean tfcrealworld$levelCatchUp;
+
+  /** TFC before 4.2.13 catches a stale chunk up when it is ticked. */
   @Inject(method = "onTickChunk", at = @At("HEAD"), cancellable = true)
   private static void tfcrealworld$catchUpPerColumn(
     ServerLevel level,
     ChunkAccess chunk,
     CallbackInfo ci
   ) {
+    if (!tfcrealworld$levelCatchUp && tfcrealworld$catchUp(level, chunk)) {
+      ci.cancel();
+    }
+  }
+
+  /**
+   * TFC 4.2.13+ catches stale chunks up at the start of a level tick, at most
+   * {@code snowMaxCatchUpChunksPerTick} of them. The same chunks are caught
+   * up here per column. Absent before 4.2.13, hence {@code require = 0}.
+   */
+  @Inject(
+    method = "tickCatchUp",
+    at = @At("HEAD"),
+    cancellable = true,
+    require = 0
+  )
+  private static void tfcrealworld$catchUpLevel(
+    ServerLevel level,
+    CallbackInfo ci
+  ) {
+    tfcrealworld$levelCatchUp = true;
+    ci.cancel();
     final WorldTracker tracker = WorldTracker.get(level);
     final ClimateModel model = tracker.getClimateModel();
     if (!tracker.isWeatherEnabled() || !model.supportsRain()) {
       return;
+    }
+    final int maxChunks = TFCConfig.SERVER.snowMaxCatchUpChunksPerTick.get();
+    final long currentTick = Calendars.SERVER.getTicks();
+    final List<LevelChunk> stale = new ArrayList<>();
+    final ChunkMapAccessor chunkMap =
+      (ChunkMapAccessor) level.getChunkSource().chunkMap;
+    for (final ChunkHolder holder : chunkMap.invoke$getChunks()) {
+      final LevelChunk chunk = holder.getTickingChunk();
+      if (
+        chunk != null &&
+        currentTick - ChunkData.get(chunk).getLastRandomTick() >
+        CATCH_UP_STEP_TICKS
+      ) {
+        stale.add(chunk);
+        if (stale.size() >= maxChunks) {
+          break;
+        }
+      }
+    }
+    for (final LevelChunk chunk : stale) {
+      tfcrealworld$catchUp(level, chunk);
+    }
+  }
+
+  /**
+   * Catches a chunk up per column when it has not been ticked for over
+   * {@link #CATCH_UP_STEP_TICKS}; false when there was nothing to do.
+   */
+  @Unique
+  private static boolean tfcrealworld$catchUp(
+    ServerLevel level,
+    ChunkAccess chunk
+  ) {
+    final WorldTracker tracker = WorldTracker.get(level);
+    final ClimateModel model = tracker.getClimateModel();
+    if (!tracker.isWeatherEnabled() || !model.supportsRain()) {
+      return false;
     }
     final ChunkData data = ChunkData.get(chunk);
     final long currentTick = Calendars.SERVER.getTicks();
     final long lastTick = data.getLastRandomTick();
     final long sinceTick = currentTick - lastTick;
     if (sinceTick <= CATCH_UP_STEP_TICKS) {
-      return;
+      return false;
     }
 
     final ChunkPos chunkPos = chunk.getPos();
@@ -167,7 +237,7 @@ public abstract class WeatherHelpersMixin {
     );
 
     data.setLastRandomTick(chunk, currentTick);
-    ci.cancel();
+    return true;
   }
 
   /**
