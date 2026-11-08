@@ -263,18 +263,6 @@ A river is a chain of edges that share vertices, running from source to drain. K
 
 </div>
 
-#### 🗓️ Roadmap
-
-<div class="spoiler">
-
-<ol>
-<li>A similar mod for vanilla Minecraft.</li>
-<li>A version with a larger and more detailed world map.</li>
-<li>Port the mod to TFC 1.12.2 (though this will be challenging).</li>
-</ol>
-
-</div>
-
 ---
 
 ### 🤝 Compatibility
