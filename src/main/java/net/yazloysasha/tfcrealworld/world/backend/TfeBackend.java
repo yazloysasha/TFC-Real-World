@@ -21,7 +21,7 @@ import net.dries007.tfc.world.layer.framework.AreaContext;
 import net.dries007.tfc.world.layer.framework.AreaFactory;
 import net.dries007.tfc.world.region.Region;
 import net.dries007.tfc.world.region.RegionGenerator;
-import net.yazloysasha.tfcrealworld.mixin.world.surface.builder.tfe.TfeShorelineSurfaceBuilderAccessor;
+import net.yazloysasha.tfcrealworld.mixin.world.surface.tfe.TfeShorelineSurfaceBuilderAccessor;
 import net.yazloysasha.tfcrealworld.world.surface.FrozenWaterSurfaceBuilder;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 import net.yazloysasha.tfcrealworld.world.volcano.CenteredFeatureAligner;

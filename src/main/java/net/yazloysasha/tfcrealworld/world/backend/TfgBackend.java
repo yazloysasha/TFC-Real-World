@@ -5,7 +5,7 @@ import net.dries007.tfc.world.biome.BiomeExtension;
 import net.dries007.tfc.world.layer.framework.AreaContext;
 import net.dries007.tfc.world.layer.framework.AreaFactory;
 import net.dries007.tfc.world.region.Region;
-import net.yazloysasha.tfcrealworld.mixin.world.surface.builder.tfg.TfgShoreAndOceanSurfaceBuilderAccessor;
+import net.yazloysasha.tfcrealworld.mixin.world.new_ow_wg.surface_builders.tfg.TfgShoreAndOceanSurfaceBuilderAccessor;
 import net.yazloysasha.tfcrealworld.world.surface.FrozenWaterSurfaceBuilder;
 import net.yazloysasha.tfcrealworld.world.tectonics.TectonicsMap;
 import net.yazloysasha.tfcrealworld.world.volcano.CenteredFeatureAligner;
