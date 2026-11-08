@@ -58,14 +58,9 @@ repositories {
     forRepository { maven("https://cursemaven.com") }
     filter { includeGroup("curse.maven") }
   }
-  ivy {
-    url = uri("https://github.com/TerraFirmaCraft/TerraFirmaCraft/releases/download")
-    patternLayout {
-      artifact("/v[revision]/[artifact]-[revision].[ext]")
-    }
-    metadataSources {
-      artifact()
-    }
+  exclusiveContent {
+    forRepository { maven("https://api.modrinth.com/maven") }
+    filter { includeGroup("maven.modrinth") }
   }
 }
 
@@ -110,11 +105,11 @@ neoForge {
 }
 
 dependencies {
-  compileOnly("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$maxTfcVersion@jar")
+  compileOnly("maven.modrinth:terrafirmacraft:$maxTfcVersion@jar")
   compileOnly("vazkii.patchouli:Patchouli:$patchouliVersion")
   compatMods.forEach { compileOnly("curse.maven:$it") }
 
-  testImplementation("net.dries007.tfc:TerraFirmaCraft-NeoForge-$minecraftVersion:$maxTfcVersion@jar")
+  testImplementation("maven.modrinth:terrafirmacraft:$maxTfcVersion@jar")
   testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
   testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.3")
   testImplementation("vazkii.patchouli:Patchouli:$patchouliVersion")
