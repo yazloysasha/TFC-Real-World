@@ -54,13 +54,9 @@ repositories {
       includeGroup("curse.maven")
     }
   }
-  ivy {
-    url = uri("https://github.com/TerraFirmaCraft/TerraFirmaCraft/releases/download")
-    patternLayout {
-      artifact("/v[revision]/[artifact]-[revision].[ext]")
-    }
-    metadataSources {
-      artifact()
+  maven(url = "https://api.modrinth.com/maven") {
+    content {
+      includeGroup("maven.modrinth")
     }
   }
 }
@@ -110,12 +106,12 @@ mixin {
 dependencies {
   minecraft("net.minecraftforge", "forge", version = "$minecraftVersion-$forgeVersion")
 
-  compileOnly(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$maxTfcVersion@jar"))
+  compileOnly(fg.deobf("maven.modrinth:terrafirmacraft:$maxTfcVersion@jar"))
   compatMods.forEach { compileOnly(fg.deobf("curse.maven:$it")) }
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
-  testImplementation(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$maxTfcVersion@jar"))
+  testImplementation(fg.deobf("maven.modrinth:terrafirmacraft:$maxTfcVersion@jar"))
 
   annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
 }
