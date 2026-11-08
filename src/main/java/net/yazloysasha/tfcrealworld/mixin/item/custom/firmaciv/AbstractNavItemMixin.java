@@ -1,4 +1,4 @@
-package net.yazloysasha.tfcrealworld.mixin.firmaciv;
+package net.yazloysasha.tfcrealworld.mixin.item.custom.firmaciv;
 
 import com.hyperdash.firmaciv.item.custom.AbstractNavItem;
 import net.minecraft.world.phys.Vec3;
