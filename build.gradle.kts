@@ -49,13 +49,9 @@ repositories {
       includeGroup("curse.maven")
     }
   }
-  ivy {
-    url = uri("https://github.com/TerraFirmaCraft/TerraFirmaCraft/releases/download")
-    patternLayout {
-      artifact("/v[revision]/[artifact]-[revision].[ext]")
-    }
-    metadataSources {
-      artifact()
+  maven(url = "https://api.modrinth.com/maven") {
+    content {
+      includeGroup("maven.modrinth")
     }
   }
 }
@@ -107,7 +103,7 @@ dependencies {
   minecraft("net.minecraftforge", "forge", version = "$minecraftVersion-$forgeVersion")
 
   // TerraFirmaCraft
-  compileOnly(fg.deobf("net.dries007.tfc:TerraFirmaCraft-Forge-$minecraftVersion:$maxTfcVersion@jar"))
+  compileOnly(fg.deobf("maven.modrinth:terrafirmacraft:$maxTfcVersion@jar"))
   compatMods.forEach { compileOnly(fg.deobf("curse.maven:$it")) }
 
   // Mixin
